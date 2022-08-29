@@ -466,10 +466,10 @@ brailleSkills = ['1.1. Track left to right',
 date = datetime.datetime.now().strftime("%Y_%m_%d-%H%M%S_%p")
 
 
-class StudentDataBook(wx.Frame, wx.TAB_TRAVERSAL):
+class StudentDataBook(wx.Frame,wx.Accessible):
     def __init__(self, parent, title):
         super(StudentDataBook, self).__init__(parent, title="Data Entry Form",
-                                              size=(1500, 1000))
+                                              size=(1550, 1000))
         self.InitUI()
 
     def InitUI(self):
@@ -489,7 +489,7 @@ class dataPanel(wx.Panel):
         self.ln = wx.StaticLine(self, -1, pos=(950, 0), style=wx.LI_VERTICAL)
         self.ln.SetSize((5, 900))
         self.ln.IsVertical()
-
+        self.SetBackgroundColour(wx.Colour(241,205,234))
         wx.StaticText(self, -1, "Session Information", pos=(170, 20))
         wx.StaticText(self, -1, "Student Name", pos=(30, 50))
         self.studentname1 = wx.Choice(self, -1, choices=students_all, pos=(130, 50),
@@ -554,8 +554,8 @@ class dataPanel(wx.Panel):
         wx.StaticText(self, -1, "Performance", pos=(665, 20))
         wx.StaticText(self, -1,
                       "RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent",
-                      pos=(490, 50))
-        
+                      pos=(490, 50),)
+        self.blank=wx.TextCtrl(self,-1,"",pos=(0,0),size=(0,0))
         wx.StaticText(self, -1, "Trial 1", pos=(500, 80))
         self.trial011 = wx.TextCtrl(self, -1, "", pos=(550, 80),
                                     size=(300, 20))
@@ -589,7 +589,7 @@ class dataPanel(wx.Panel):
         wx.StaticText(self, -1, "Trial 11", pos=(500, 380))
         self.trial111 = wx.TextCtrl(self, -1, "", pos=(550, 380),
                                     size=(300, 20))
-        wx.StaticText(self, -1, "Anecodatal Notes", pos=(500, 410))
+        wx.StaticText(self, -1, "Anecdotal Notes", pos=(500, 410))
         self.notes1 = wx.TextCtrl(self, -1, "", pos=(550, 440), size=(300, 375),
                                   style=wx.TE_MULTILINE)
         self.btn = wx.Button(self, 201, "SAVE", pos=(625, 850),

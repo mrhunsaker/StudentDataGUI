@@ -609,6 +609,7 @@ class dataPanel(wx.Panel):
         studentname = self.studentname1.GetString(
                 self.studentname1.GetSelection())
         dateNow = datetime.datetime.now().strftime("%Y_%m_%d-%H%M%S")
+        simpleDate = datetime.datetime.now().strftime("%Y_%m_%d-%H%M")
         item = self.lesson1.GetSelection()
         task = self.lesson1.GetItemText(self.lesson1.GetItemParent(item))
         lesson = self.lesson1.GetItemText(self.lesson1.GetSelection())
@@ -645,7 +646,7 @@ class dataPanel(wx.Panel):
                 if not os.path.exists(ROOT_DIR + '\\' 'StudentDataBase' + '\\' + self.studentdatabasename + '.txt'):
                     self.filename = open(ROOT_DIR + '\\' 'StudentDataBase' + '\\' + self.studentdatabasename + '.txt', 'w')
                     self.filename.write('studentname' + ',')
-                    self.filename.write('date' + ',')
+                    self.filename.write('simpleDate' + ',')
                     self.filename.write('task' + ',')
                     self.filename.write('lesson' + ',')
                     self.filename.write('session' + ',')
@@ -739,6 +740,7 @@ class dataPanel(wx.Panel):
         df = dataView.to_html()
         html = f"<h3>{studentname}<br /><br />{task.title()}: {lesson.title()}<br /></h3><br /><br />{df} "
         self.dataWindow.SetPage(html,"")
+
 
         fig=go.Figure()
         fig.add_trace(go.Scatter(x=dataView.date,y=dataView["median"], mode="lines+markers"))

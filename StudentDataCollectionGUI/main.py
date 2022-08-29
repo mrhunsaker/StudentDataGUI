@@ -466,7 +466,7 @@ brailleSkills = ['1.1. Track left to right',
 date = datetime.datetime.now().strftime("%Y_%m_%d-%H%M%S_%p")
 
 
-class StudentDataBook(wx.Frame):
+class StudentDataBook(wx.Frame, wx.TAB_TRAVERSAL):
     def __init__(self, parent, title):
         super(StudentDataBook, self).__init__(parent, title="Data Entry Form",
                                               size=(1500, 1000))
@@ -555,6 +555,7 @@ class dataPanel(wx.Panel):
         wx.StaticText(self, -1,
                       "RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent",
                       pos=(490, 50))
+        
         wx.StaticText(self, -1, "Trial 1", pos=(500, 80))
         self.trial011 = wx.TextCtrl(self, -1, "", pos=(550, 80),
                                     size=(300, 20))

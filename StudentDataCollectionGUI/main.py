@@ -13,6 +13,8 @@ os.chdir(os.path.dirname(os.path.abspath(__file__)))
 print(os.path.dirname(os.path.abspath(__file__)))
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 print(ROOT_DIR)
+USER_DIR = os.path.join(os.environ['USERPROFILE'], "Documents")
+print(USER_DIR)
 
 def create_connection(db_file):
     conn = None
@@ -82,6 +84,125 @@ students = ['CCooper',
             'PSackett'
             ]
 
+students_all =['AddisonBooker',
+                'AlaijahValdez',
+                'AlessaPurcel',
+                'AlexRoylance',
+                'AmiRito',
+                'AmmonOlsen',
+                'AshlynnNelson',
+                'AustinDenney',
+                'AvaWilson',
+                'BaraahAlArbid',
+                'BelleOsborn',
+                'BrightonTingey',
+                'BryceClark',
+                'CallumDavis',
+                'CarstonTalbot',
+                'CarterCostello',
+                'CasonHemphill',
+                'CelestialNelson',
+                'CharlieChristensen',
+                'ChaseCreer',
+                'ChristiGriffin',
+                'ColbieBlodgett',
+                'ColeCooper',
+                'ColeHalbasch',
+                'ConnorDenney',
+                'CristianPerez',
+                'CruAnderson',
+                'DaltonCarter',
+                'DylanPenaloza-Diaz',
+                'EleanorParson',
+                'EllaLechtenberg',
+                'ElliotWhite',
+                'ElyseStephensen',
+                'EmmaThompson',
+                'EmmaTorres',
+                'EvieCompton',
+                'FrancisAnwar',
+                'FrancisLeyva',
+                'GenevieveBriceno',
+                'GraceDavis',
+                'GrantChristensen',
+                'HalleGallacher',
+                'HannahHadean',
+                'HillaryWheeler',
+                'HunterHaskell',
+                'HunterTrevino',
+                'IsaacChiakis',
+                'JacksonJohnson',
+                'JacksonWhitear',
+                'JainaKarakusis',
+                'JakeHeairld',
+                'JayceAbles',
+                'JaydenSmith',
+                'JeffreyLeishman',
+                'JonathanChesnovar',
+                'JulieMartin',
+                'JustinBadham',
+                'KahvonFord',
+                'KaitlinStott',
+                'KatelynChamberlain',
+                'KayleeVimahi',
+                'KaysonWallwork',
+                'KenzieBybee',
+                'KinisouElimo',
+                'KiraAgamez',
+                'KiyrahMiller',
+                'LandonGraham',
+                'LandonUlrich',
+                'LanedanLee',
+                'LaurenArnesen',
+                'LeonaMizera',
+                'LillyVanwagoner',
+                'LincolnHoke',
+                'LucasKirby',
+                'LukeMontgomery',
+                'MackenzieMcclean',
+                'MadelineCostello',
+                'MagnusWilson',
+                'MallieMartin',
+                'MargaretWalker',
+                'MarilynParker',
+                'MaryJaneBlack',
+                'MayaHegoas',
+                'MeelaZendejas',
+                'MentorAngela',
+                'MichelleCorrea',
+                'MilesWebster',
+                'MillieBeckstead',
+                'NadiaBurns',
+                'NoahPalmer',
+                'NoraBarton',
+                'OliverPage',
+                'OliviaEvershed',
+                'PaulaSackett',
+                'PrestonPage',
+                'RachelBallard',
+                'RachelScott',
+                'RyderReddig',
+                'RykerWeight',
+                'SamuelWilliam',
+                'SaraHill',
+                'SavannahWinegar',
+                'ShelbySteed',
+                'SpencerCostello',
+                'SuttonBuell',
+                'TalmageTingey',
+                'TarelLewis',
+                'TaylorTroxel',
+                'TheodoreLloyd',
+                'TjGutierrez',
+                'TyGoddard',
+                'TylerAshby',
+                'TysonGraham',
+                'WestonHemphill',
+                'WilliamHayes',
+                'WilliamJackson',
+                'WilliamMacKay',
+                'ZoeyFerguson']
+
 taskType = ['braille',
             'screenreader',
             'abacus',
@@ -93,11 +214,45 @@ sessionType = ['ProgressMonitor',
                'Instruction',
                'Assessment']
 
-magnifierSkills = ['test', 'test']
+magnifierSkills = ['Concept of "in focus" and how to bring the image into focus.',
+                    'Change the image size and then focus. Provide the students with materials of various print sizes and practice adjusting the image appropriately.',
+                    'Spot or locate an image on the page and then focus.',
+                    'Follow a line of text, and then track down to locate the next line of text.',
+                    'Use various features of the electronic magnifier and when it is adventitious to use those features.',
+                    'Become accustomed to writing and drawing while looking at the monitor.',
+                    'Care for the video magnifier and demonstrate safe use.',]
 
-iOSSkills = ['Select and speak and Item','Select the next/previous item',
-
+iOSSkills = ['Select and speak an item',
+             'Select the previous / next item',
+             'Move into / out of a group of items',
+             'Select the first / last item on the screen',
+             'Speak the entire screen from the top',
+             'Speak the entire screen from the selected item',
+             'Pause or continue speaking',
+             'Speak additional information, such as the position within a list or whether text is selected',
+             'Drag over the screen',
+             'Scroll up /down one page',
+             'Scroll left / right  one page',
+             'Activate the selected item',
+             'Double-tap the selected item',
+             'Drag a slider',
+             'Dismiss an alert or return to the previous screen',
+             'Edit an item label to make it easier to find',
+             'Navigate forms',
+             'Help with current element',
+             'Toggle screen curtain on/off',
+             'Split tap quick activation',
+             'Double-press button',
+             'Speak words/characters typed',
+             'Access control center',
+             'Backspace',
+             'Write letters, numbers, punctation',
+             'Change case, punctuation, numbers',
+             'Insert space',
+             'Choose a rotor setting',
+             'Change keyboard mode',
              ]
+
 ECC_CompensatorySkills = [
         'Concept development: developing mental ideas about the environment and the objects, people and processes and interactions taking place in the world.',
         'Spatial understanding:  understanding the physical location of objects in relation to one’s self and to other objects',
@@ -337,7 +492,7 @@ class dataPanel(wx.Panel):
 
         wx.StaticText(self, -1, "Session Information", pos=(170, 20))
         wx.StaticText(self, -1, "Student Name", pos=(30, 50))
-        self.studentname1 = wx.Choice(self, -1, choices=students, pos=(130, 50),
+        self.studentname1 = wx.Choice(self, -1, choices=students_all, pos=(130, 50),
                                       size=(300, 20))
         wx.StaticText(self, -1, "Date", pos=(30, 80))
         self.date1 = wx.StaticText(self, -1, date, pos=(200, 80))
@@ -591,6 +746,24 @@ class dataPanel(wx.Panel):
 
         self.dataPlot = wx.StaticBitmap(self,-1,wx.Bitmap("temp.png", wx.BITMAP_TYPE_ANY),pos=(975, 400),
                                              size=(500,400))
+        list_names=['student',
+                     'date',
+                     'task',
+                     'lesson',
+                     'session',
+                     'trial01',
+                     'trial02',
+                     'trial03',
+                     'trial04',
+                     'trial05',
+                     'trial06',
+                     'trial07',
+                     'trial08',
+                     'trial09',
+                     'trial10',
+                     'trial11',
+                     'median',
+                     'notes']
         list_data=[studentname,
                      dateNow,
                      task,
@@ -609,18 +782,22 @@ class dataPanel(wx.Panel):
                      trial11,
                      trialmedian,
                      notes]
-        if not os.path.exists(
-               ROOT_DIR + '\\' + 'StudentDataBase\\' + 'omnibusDatabase.csv'):
-            self.filename = open(
-                    ROOT_DIR + '\\' + 'StudentDataBase\\' + 'omnibusDatabase.csv', 'w')
-        with open(ROOT_DIR + '\\' + 'StudentDataBase\\' + 'omnibusDatabase.csv', 'a',newline='') as f_object:
+        os.chdir(USER_DIR)
+        if not os.path.exists('StudentDataBase'):
+            os.makedirs('StudentDataBase')
+        if not os.path.exists( USER_DIR + '\\' + 'StudentDatabase' '\\' 'omnibusDatabase.csv'):
+            self.filename = open(USER_DIR + '\\' + 'StudentDatabase' '\\' 'omnibusDatabase.csv', 'w')
+            with open(USER_DIR + '\\' + 'StudentDatabase' '\\' 'omnibusDatabase.csv', 'a',newline='') as f_setup:
+                writer_setup=writer(f_setup)
+                writer_setup.writerow(list_names)
+                f_setup.close()
+        with open(USER_DIR + '\\' + 'StudentDatabase' '\\' 'omnibusDatabase.csv', 'a',newline='') as f_object:
             writer_object = writer(f_object)
             writer_object.writerow(list_data)
             f_object.close()
     def OnChoice(self, event):
         self.label.SetLabel(self.choice.GetString(self.choice.GetSelection()))
-
-
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
 #################################
 app = wx.App()
 frame = StudentDataBook(None, 'title')

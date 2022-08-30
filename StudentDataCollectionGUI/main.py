@@ -15,6 +15,17 @@ print(os.path.dirname(os.path.abspath(__file__)))
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 USER_DIR = os.path.join(os.environ['USERPROFILE'], "Documents")
 os.chdir(USER_DIR)
+if not os.path.exists('StudentDataBase'):
+    os.makedirs('StudentDataBase')
+if not os.path.exists(USER_DIR + '\\' + 'StudentDatabase'):
+    os.makedirs(USER_DIR + '\\' + 'StudentDatabase')
+if not os.path.exists(
+        USER_DIR + '\\' + 'StudentDatabase' '\\' 'omnibusDatabase.csv'):
+        filename = open(
+        USER_DIR + '\\' + 'StudentDatabase' '\\' 'omnibusDatabase.csv', 'w')
+if not os.path.exists(
+        USER_DIR + '\\' 'StudentDataBase' + '\\' + 'StudentDataFiles'):
+    os.makedirs(USER_DIR + '\\' 'StudentDataBase' + '\\' + 'StudentDataFiles')
 def create_connection(db_file):
     conn = None
     try:
@@ -77,7 +88,6 @@ class StudentDataBook(wx.Frame,wx.Accessible):
         # nb.AddPage(explorePanel(nb), "Explore Data")
         self.Centre()
         self.Show(True)
-
 
 class dataPanel(wx.Panel):
     def __init__(self, parent):
@@ -244,8 +254,8 @@ class dataPanel(wx.Panel):
                                      "Title", f"{studentname.title()}{dateNow}")
             if box.ShowModal() == wx.ID_OK:
                 self.studentdatabasename = box.GetValue()
-                if not os.path.exists(USER_DIR + '\\' 'StudentDataBase' + '\\' + self.studentdatabasename + '.txt'):
-                    self.filename = open(USER_DIR + '\\' 'StudentDataBase' + '\\' + self.studentdatabasename + '.txt', 'w')
+                if not os.path.exists(USER_DIR + '\\' 'StudentDataBase' + '\\' + 'StudentDataFiles' + '\\' + self.studentdatabasename + '.txt'):
+                    self.filename = open(USER_DIR + '\\' 'StudentDataBase' +'\\' + 'StudentDataFiles' + '\\' + self.studentdatabasename + '.txt', 'w')
                     self.filename.write('studentname' + ',')
                     self.filename.write('simpleDate' + ',')
                     self.filename.write('task' + ',')
@@ -386,14 +396,10 @@ class dataPanel(wx.Panel):
                      trialmedian,
                      notes]
         os.chdir(USER_DIR)
-        if not os.path.exists(USER_DIR + '\\' + 'StudentDatabase'):
-            os.makedirs(USER_DIR + '\\' + 'StudentDatabase')
-        if not os.path.exists( USER_DIR + '\\' + 'StudentDatabase' '\\' 'omnibusDatabase.csv'):
-            self.filename = open(USER_DIR + '\\' + 'StudentDatabase' '\\' 'omnibusDatabase.csv', 'w')
-            with open(USER_DIR + '\\' + 'StudentDatabase' '\\' 'omnibusDatabase.csv', 'a',newline='') as f_setup:
-                writer_setup=writer(f_setup)
-                writer_setup.writerow(list_names)
-                f_setup.close()
+        with open(USER_DIR + '\\' + 'StudentDatabase' '\\' 'omnibusDatabase.csv', 'a',newline='') as f_setup:
+            writer_setup=writer(f_setup)
+            writer_setup.writerow(list_names)
+            f_setup.close()
         with open(USER_DIR + '\\' + 'StudentDatabase' '\\' 'omnibusDatabase.csv', 'a',newline='') as f_object:
             writer_object = writer(f_object)
             writer_object.writerow(list_data)

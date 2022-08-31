@@ -17,135 +17,19 @@ students_all = ['ColeCooper',
              'PaulaSackett'
              ]
 
-# students_all = ['AddisonBooker',
-#                 'AlaijahValdez',
-#                 'AlessaPurcel',
-#                 'AlexRoylance',
-#                 'AmiRito',
-#                 'AmmonOlsen',
-#                 'AshlynnNelson',
-#                 'AustinDenney',
-#                 'AvaWilson',
-#                 'BaraahAlArbid',
-#                 'BelleOsborn',
-#                 'BrightonTingey',
-#                 'BryceClark',
-#                 'CallumDavis',
-#                 'CarstonTalbot',
-#                 'CarterCostello',
-#                 'CasonHemphill',
-#                 'CelestialNelson',
-#                 'CharlieChristensen',
-#                 'ChaseCreer',
-#                 'ChristiGriffin',
-#                 'ColbieBlodgett',
-#                 'ColeCooper',
-#                 'ColeHalbasch',
-#                 'ConnorDenney',
-#                 'CristianPerez',
-#                 'CruAnderson',
-#                 'DaltonCarter',
-#                 'DylanPenaloza-Diaz',
-#                 'EleanorParson',
-#                 'EllaLechtenberg',
-#                 'ElliotWhite',
-#                 'ElyseStephensen',
-#                 'EmmaThompson',
-#                 'EmmaTorres',
-#                 'EvieCompton',
-#                 'FrancisAnwar',
-#                 'FrancisLeyva',
-#                 'GenevieveBriceno',
-#                 'GraceDavis',
-#                 'GrantChristensen',
-#                 'HalleGallacher',
-#                 'HannahHadean',
-#                 'HillaryWheeler',
-#                 'HunterHaskell',
-#                 'HunterTrevino',
-#                 'IsaacChiakis',
-#                 'JacksonJohnson',
-#                 'JacksonWhitear',
-#                 'JainaKarakusis',
-#                 'JakeHeairld',
-#                 'JayceAbles',
-#                 'JaydenSmith',
-#                 'JeffreyLeishman',
-#                 'JonathanChesnovar',
-#                 'JulieMartin',
-#                 'JustinBadham',
-#                 'KahvonFord',
-#                 'KaitlinStott',
-#                 'KatelynChamberlain',
-#                 'KayleeVimahi',
-#                 'KaysonWallwork',
-#                 'KenzieBybee',
-#                 'KinisouElimo',
-#                 'KiraAgamez',
-#                 'KiyrahMiller',
-#                 'LandonGraham',
-#                 'LandonUlrich',
-#                 'LanedanLee',
-#                 'LaurenArnesen',
-#                 'LeonaMizera',
-#                 'LillyVanwagoner',
-#                 'LincolnHoke',
-#                 'LucasKirby',
-#                 'LukeMontgomery',
-#                 'MackenzieMcclean',
-#                 'MadelineCostello',
-#                 'MagnusWilson',
-#                 'MallieMartin',
-#                 'MargaretWalker',
-#                 'MarilynParker',
-#                 'MaryJaneBlack',
-#                 'MayaHegoas',
-#                 'MeelaZendejas',
-#                 'MentorAngela',
-#                 'MichelleCorrea',
-#                 'MilesWebster',
-#                 'MillieBeckstead',
-#                 'NadiaBurns',
-#                 'NoahPalmer',
-#                 'NoraBarton',
-#                 'OliverPage',
-#                 'OliviaEvershed',
-#                 'PaulaSackett',
-#                 'PrestonPage',
-#                 'RachelBallard',
-#                 'RachelScott',
-#                 'RyderReddig',
-#                 'RykerWeight',
-#                 'SamuelWilliam',
-#                 'SaraHill',
-#                 'SavannahWinegar',
-#                 'ShelbySteed',
-#                 'SpencerCostello',
-#                 'SuttonBuell',
-#                 'TalmageTingey',
-#                 'TarelLewis',
-#                 'TaylorTroxel',
-#                 'TheodoreLloyd',
-#                 'TjGutierrez',
-#                 'TyGoddard',
-#                 'TylerAshby',
-#                 'TysonGraham',
-#                 'WestonHemphill',
-#                 'WilliamHayes',
-#                 'WilliamJackson',
-#                 'WilliamMacKay',
-#                 'ZoeyFerguson']
 
 taskType = ['braille',
             'screenreader',
             'abacus',
             'iOS',
             'magnifierSkills',
-            'Expanded Core Curriculum']
+            'Expanded Core Curriculum'
+            ]
 
 sessionType = ['ProgressMonitor',
                'Instruction',
-               'Assessment']
+               'Assessment'
+               ]
 
 magnifierSkills = [
         'Concept of "in focus" and how to bring the image into focus.',
@@ -154,7 +38,8 @@ magnifierSkills = [
         'Follow a line of text, and then track down to locate the next line of text.',
         'Use various features of the electronic magnifier and when it is adventitious to use those features.',
         'Become accustomed to writing and drawing while looking at the monitor.',
-        'Care for the video magnifier and demonstrate safe use.', ]
+        'Care for the video magnifier and demonstrate safe use.'
+        ]
 
 iOSSkills = ['Select and speak an item',
              'Select the previous / next item',
@@ -193,19 +78,22 @@ ECC_CompensatorySkills = [
         'Communication modes: developing facility with techniques and tools needed to access information presented in print and to write or communicate thoughts',
         'Speaking and listening skills: learning appropriate methods of addressing others in conversation and comprehending what is said.',
         'Study and organization skills: developing methods that allow a student to maintain order in the use of materials and time and to set priorities for such activities as they completion of school work.',
-        'Use of adapted and specialized educational materials: independently using tools and devices that provide compensatory access.']
+        'Use of adapted and specialized educational materials: independently using tools and devices that provide compensatory access.'
+        ]
 
 ECC_SensoryEfficiency = [
         'Visual function: fixating, orienting, tracking and recognizing objects and using optical devices',
         'Auditory function: localization, aural discrimination and presentation, and sound pattern use',
         'Tactile function: tactile discrimination, scanning, manipulation and dexterity',
         'Gustatory (taste) function: appreciation for food, discrimination of food types and recognition of various tastes',
-        'Olfactory (smell) function: localization of smells, discrimination of odors, and recognition of pleasant and unpleasant odors.']
+        'Olfactory (smell) function: localization of smells, discrimination of odors, and recognition of pleasant and unpleasant odors.'
+        ]
 
 ECC_AssistiveTechnology = [
         'Access to information: developing facility with general applications and basic technology skills such as inputting information and producing documents',
         ' Communication: developing awareness of electronic communication modes and the ability to conduct research and written assignments.',
-        ' Personal productivity: practicing the use of basic applications in activities related to learning and daily living ']
+        ' Personal productivity: practicing the use of basic applications in activities related to learning and daily living '
+        ]
 
 ECC_OrientationMobility = [
         'Body concepts: understanding body parts and function',
@@ -215,14 +103,16 @@ ECC_OrientationMobility = [
         'Mobility skills: noticing and negotiating unexpected drop-offs, using systematic search techniques, and knowing built elements such as block distances, corners, intersection types, streets and road structures.',
         'Orientation skills: knowing routes and understanding layouts',
         'Interpersonal skills: requesting directions, arranging for rides; soliciting information from individuals such as dispatchers, drivers, and store personnel; and using appropriate telephone manners',
-        'Decision-making skills: altering travel in response to inclement weather, choosing appropriate clothing and gear, choosing between routes, knowing the advantage and disadvantage of different modes of travel and making back up plans.']
+        'Decision-making skills: altering travel in response to inclement weather, choosing appropriate clothing and gear, choosing between routes, knowing the advantage and disadvantage of different modes of travel and making back up plans.'
+        ]
 
 ECC_RecreationLeisure = [
         'Play: interacting through play with peers and siblings, entertaining oneself for various periods of time',
         'Physical activity: participating in physical education or other active play activities, taking part in recreation and leisure activities enjoyed by the family',
         'Health, fitness and individual sports: developing a regimen of physical exercise that leads to improvement or maintenance of strength, stamina and endurance; developing skills for engaging in such activities  as track, wrestling and weight-lifting.',
         'Team and spectator sports: learning  to enjoy competitive and noncompetitive sports activities such as football, baseball, soccer, golf baseball or goalball, as a participant or as a spectator',
-        'Leisure activities and hobbies: being exposed to opportunities for choosing a favorite game or book, experiencing arts and crafts activities, appreciating and enjoying fine arts in such forms as museum visits, theater, dance, opera and music.']
+        'Leisure activities and hobbies: being exposed to opportunities for choosing a favorite game or book, experiencing arts and crafts activities, appreciating and enjoying fine arts in such forms as museum visits, theater, dance, opera and music.'
+        ]
 
 ECC_SelfDetermination = [
         'Self-knowledge: developing personal preferences, needs and desires',
@@ -231,7 +121,8 @@ ECC_SelfDetermination = [
         'Problem-solving and goal-setting skills: making personal and educational goals and interacting with others to obtain assistance',
         'Ability to engage in self-regulated and self-directed behavior: developing negotiation skills and skills involved in interacting with others and the public at large',
         'Self-advocacy and empowerment: choosing favorite or desired activities and being able to evaluate one’s own behavior or progress',
-        'Assertiveness skills: being able to advocate for one’s needs and wants.']
+        'Assertiveness skills: being able to advocate for one’s needs and wants.'
+        ]
 
 ECC_IndependentLivingSkills = [
         'Organization: Maintaining school notes and materials where can be accessed easily, prioritizing daily demands of everyday life and of school and work, and keeping personal objects in a specific location',
@@ -243,7 +134,8 @@ ECC_IndependentLivingSkills = [
         'Cooking: preparing and cooking meals, pouring liquids, retrieving utensils, stirring and mixing, spreading and spooning, helping with dishes, using a stove, cleaning up, learning food-related concepts involved in gardening, visiting grocery stores, applying food nutrition, and opening and closing different kinds of packages.',
         'Cleaning and general household tasks: participating in responsibilities at home and school, retrieving and replacing toys and games, and using cleaning supplies and equipment.',
         'Telephone use: calling friends, knowing how to make emergency calls and having a system of phone number retrieval',
-        'Money management: identifying coins and bills, using ATMs, writing checks, and managing money.']
+        'Money management: identifying coins and bills, using ATMs, writing checks, and managing money.'
+        ]
 
 ECC_SocialInteractionSkills = [
         'Appropriate body language: knowing when to lean forward to hear a secret from a friend, maintaining appropriate eye contact, facing a person who is speaking, standing up to greet a new friend, keeping hands to oneself during a group conversation',
@@ -254,7 +146,8 @@ ECC_SocialInteractionSkills = [
         'Social etiquette: demonstrate courteous behavior, thanking a friend for a gift, sharing a seat with another on the bus, smiling at others.',
         'Development of relationships and friendships: taking turns, seeking friendships with others, working effectively in groups',
         'Knowledge of self: knowing one’s likes and dislikes, taking responsibility for actions, understanding the concept of personal body space, showing pride in accomplished tasks, stating one’s point of view',
-        'Interpretation and monitoring of social behavior: knowing when to disobey an adult, understanding the appropriate time to ask questions, developing problem solving skills, recognizing sarcasm in a conversation, understanding the difference between reacting to requests from strangers and familiar people.']
+        'Interpretation and monitoring of social behavior: knowing when to disobey an adult, understanding the appropriate time to ask questions, developing problem solving skills, recognizing sarcasm in a conversation, understanding the difference between reacting to requests from strangers and familiar people.'
+        ]
 
 ECC_CareerEducation = [
         'Career awareness: differentiating between work and play, understanding the value of work',
@@ -278,7 +171,8 @@ ECC_CareerEducation = [
         'Participate in work activities and jobs and possibly work part time',
         'Show an understanding  of work performed by adults and what is involved in being successful in multiple areas of work',
         'Show interest in particular areas of work',
-        'Plan for life beyond high school']
+        'Plan for life beyond high school'
+        ]
 
 abacusSkills = ['1.1. Setting Numbers',
                 '1.2. Clearing Beads',
@@ -302,7 +196,8 @@ abacusSkills = ['1.1. Setting Numbers',
                 '7.2. Subtraction of Fractions',
                 '7.3. Multiplication of Fractions',
                 '7.4. Division of Fractions', '8.1. Percent',
-                '8.2. Square Root']
+                '8.2. Square Root'
+                ]
 
 screenreaderSkills = ['1.1. Turn on and off the screen reader',
                       '1.2 Utilize modifier keys ',
@@ -331,7 +226,8 @@ screenreaderSkills = ['1.1. Turn on and off the screen reader',
                       '4.4. Download material from the internet',
                       '4.5. Extract zipped folders',
                       '4.6. Utilize virtual cursors',
-                      '4.7. Use OCR']
+                      '4.7. Use OCR'
+                      ]
 
 brailleSkills = ['1.1. Track left to right',
                  '1.2. Track top to bottom',
@@ -396,4 +292,5 @@ brailleSkills = ['1.1. Track left to right',
                  '8.4. Probability',
                  '8.5. Calculus: Differentiation',
                  '8.6. Calculus: Integration',
-                 '8.7. Vertical Bars']
+                 '8.7. Vertical Bars'
+                 ]

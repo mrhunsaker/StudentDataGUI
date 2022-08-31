@@ -1,22 +1,21 @@
 students_all = ['ColeCooper',
-             'LandonGraham',
-             'TarelLewis',
-             'DiegoPenaloza-Diaz',
-             'CarterCostello',
-             'MCadelineostello',
-             'SuttonBuell',
-             'MargaretWalker',
-             'TysonGraham',
-             'AddisonBooker',
-             'AmiRito',
-             'AshlynneNelson',
-             'CarstonTalbot',
-             'CelestialNelson',
-             'LanedonLee',
-             'NoahPalmer',
-             'PaulaSackett'
-             ]
-
+                'LandonGraham',
+                'TarelLewis',
+                'DiegoPenaloza-Diaz',
+                'CarterCostello',
+                'MCadelineostello',
+                'SuttonBuell',
+                'MargaretWalker',
+                'TysonGraham',
+                'AddisonBooker',
+                'AmiRito',
+                'AshlynneNelson',
+                'CarstonTalbot',
+                'CelestialNelson',
+                'LanedonLee',
+                'NoahPalmer',
+                'PaulaSackett'
+                ]
 
 taskType = ['braille',
             'screenreader',
@@ -39,7 +38,7 @@ magnifierSkills = [
         'Use various features of the electronic magnifier and when it is adventitious to use those features.',
         'Become accustomed to writing and drawing while looking at the monitor.',
         'Care for the video magnifier and demonstrate safe use.'
-        ]
+]
 
 iOSSkills = ['Select and speak an item',
              'Select the previous / next item',
@@ -79,7 +78,7 @@ ECC_CompensatorySkills = [
         'Speaking and listening skills: learning appropriate methods of addressing others in conversation and comprehending what is said.',
         'Study and organization skills: developing methods that allow a student to maintain order in the use of materials and time and to set priorities for such activities as they completion of school work.',
         'Use of adapted and specialized educational materials: independently using tools and devices that provide compensatory access.'
-        ]
+]
 
 ECC_SensoryEfficiency = [
         'Visual function: fixating, orienting, tracking and recognizing objects and using optical devices',
@@ -87,13 +86,13 @@ ECC_SensoryEfficiency = [
         'Tactile function: tactile discrimination, scanning, manipulation and dexterity',
         'Gustatory (taste) function: appreciation for food, discrimination of food types and recognition of various tastes',
         'Olfactory (smell) function: localization of smells, discrimination of odors, and recognition of pleasant and unpleasant odors.'
-        ]
+]
 
 ECC_AssistiveTechnology = [
         'Access to information: developing facility with general applications and basic technology skills such as inputting information and producing documents',
         ' Communication: developing awareness of electronic communication modes and the ability to conduct research and written assignments.',
         ' Personal productivity: practicing the use of basic applications in activities related to learning and daily living '
-        ]
+]
 
 ECC_OrientationMobility = [
         'Body concepts: understanding body parts and function',
@@ -104,7 +103,7 @@ ECC_OrientationMobility = [
         'Orientation skills: knowing routes and understanding layouts',
         'Interpersonal skills: requesting directions, arranging for rides; soliciting information from individuals such as dispatchers, drivers, and store personnel; and using appropriate telephone manners',
         'Decision-making skills: altering travel in response to inclement weather, choosing appropriate clothing and gear, choosing between routes, knowing the advantage and disadvantage of different modes of travel and making back up plans.'
-        ]
+]
 
 ECC_RecreationLeisure = [
         'Play: interacting through play with peers and siblings, entertaining oneself for various periods of time',
@@ -112,7 +111,7 @@ ECC_RecreationLeisure = [
         'Health, fitness and individual sports: developing a regimen of physical exercise that leads to improvement or maintenance of strength, stamina and endurance; developing skills for engaging in such activities  as track, wrestling and weight-lifting.',
         'Team and spectator sports: learning  to enjoy competitive and noncompetitive sports activities such as football, baseball, soccer, golf baseball or goalball, as a participant or as a spectator',
         'Leisure activities and hobbies: being exposed to opportunities for choosing a favorite game or book, experiencing arts and crafts activities, appreciating and enjoying fine arts in such forms as museum visits, theater, dance, opera and music.'
-        ]
+]
 
 ECC_SelfDetermination = [
         'Self-knowledge: developing personal preferences, needs and desires',
@@ -122,7 +121,7 @@ ECC_SelfDetermination = [
         'Ability to engage in self-regulated and self-directed behavior: developing negotiation skills and skills involved in interacting with others and the public at large',
         'Self-advocacy and empowerment: choosing favorite or desired activities and being able to evaluate one’s own behavior or progress',
         'Assertiveness skills: being able to advocate for one’s needs and wants.'
-        ]
+]
 
 ECC_IndependentLivingSkills = [
         'Organization: Maintaining school notes and materials where can be accessed easily, prioritizing daily demands of everyday life and of school and work, and keeping personal objects in a specific location',
@@ -135,7 +134,7 @@ ECC_IndependentLivingSkills = [
         'Cleaning and general household tasks: participating in responsibilities at home and school, retrieving and replacing toys and games, and using cleaning supplies and equipment.',
         'Telephone use: calling friends, knowing how to make emergency calls and having a system of phone number retrieval',
         'Money management: identifying coins and bills, using ATMs, writing checks, and managing money.'
-        ]
+]
 
 ECC_SocialInteractionSkills = [
         'Appropriate body language: knowing when to lean forward to hear a secret from a friend, maintaining appropriate eye contact, facing a person who is speaking, standing up to greet a new friend, keeping hands to oneself during a group conversation',
@@ -147,7 +146,7 @@ ECC_SocialInteractionSkills = [
         'Development of relationships and friendships: taking turns, seeking friendships with others, working effectively in groups',
         'Knowledge of self: knowing one’s likes and dislikes, taking responsibility for actions, understanding the concept of personal body space, showing pride in accomplished tasks, stating one’s point of view',
         'Interpretation and monitoring of social behavior: knowing when to disobey an adult, understanding the appropriate time to ask questions, developing problem solving skills, recognizing sarcasm in a conversation, understanding the difference between reacting to requests from strangers and familiar people.'
-        ]
+]
 
 ECC_CareerEducation = [
         'Career awareness: differentiating between work and play, understanding the value of work',
@@ -172,7 +171,7 @@ ECC_CareerEducation = [
         'Show an understanding  of work performed by adults and what is involved in being successful in multiple areas of work',
         'Show interest in particular areas of work',
         'Plan for life beyond high school'
-        ]
+]
 
 abacusSkills = ['1.1. Setting Numbers',
                 '1.2. Clearing Beads',

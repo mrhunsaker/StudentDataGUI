@@ -1,6 +1,19 @@
 # StudentDataGUI
-Student Data Input GUI with wxPython and sqlite
 
-To use this project, open the helpers.py file and replace the filler material with the appropriate information (names of students, tasks, etc.). Follow the formatting present in the file (separation of items by single quotes ' ' and commas).
+Student Data Input GUI designed in wxPython and sqlite
+
+
+
+To use this package open 'helpers.py' and edit the names for the **students_all** variable, following the pattern of surrounding text with single quotes (' ') and separating entries with commas.
+
+
+
+This is designed to be used by Teachers for Students with Visual Impairments, and any Tasks, Domains, and Lessons can be edited as you desire. Just do not change any variable names without editing the 'main.py' file accordingly 
+
+
+
+At present, all file paths reflect a Windows 11 environment. 
+
+
 
 This program will create a StudentDatabase folder in your %USERPROFILE%/Documents folder for a sqlite database file and resulting data. 

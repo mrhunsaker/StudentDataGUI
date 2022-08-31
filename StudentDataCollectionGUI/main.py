@@ -13,16 +13,20 @@ from helpers import *
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 USER_DIR = os.path.join(os.environ['USERPROFILE'], "Documents")
+
 os.chdir(USER_DIR)
 
 if not os.path.exists('StudentDatabase'):
     os.makedirs('StudentDatabase')
+
 if not os.path.exists(USER_DIR + '\\' + 'StudentDatabase'):
     os.makedirs(USER_DIR + '\\' + 'StudentDatabase')
+
 if not os.path.exists(
         USER_DIR + '\\' + 'StudentDatabase' '\\' 'omnibusDatabase.csv'):
         filename = open(
         USER_DIR + '\\' + 'StudentDatabase' '\\' 'omnibusDatabase.csv', 'w')
+
 if not os.path.exists(
         USER_DIR + '\\' 'StudentDatabase' + '\\' + 'StudentDataFiles'):
     os.makedirs(USER_DIR + '\\' 'StudentDatabase' + '\\' + 'StudentDataFiles')
@@ -84,8 +88,11 @@ class StudentDataBook(wx.Frame,wx.Accessible):
 
     def InitUI(self):
         nb = wx.Notebook(self)
-        nb.AddPage(dataPanel(nb), "Data Entry")
-        # nb.AddPage(explorePanel(nb), "Explore Data")
+        nb.AddPage(dataPanel(nb), "Data Entry Form")
+        nb.AddPage(explorePanel(nb), "Explore Data")
+        #nb.AddPage(braillePanel(nb), "Braille Graphs")
+        #nb.AddPage(screenreaderPanel(nb), "ScreenReader Graphs")
+        #nb.AddPage(abacusPanel(nb), "Abacus Graphs")
         self.Centre()
         self.Show(True)
 
@@ -407,6 +414,19 @@ class dataPanel(wx.Panel):
     def OnChoice(self, event):
         self.label.SetLabel(self.choice.GetString(self.choice.GetSelection()))
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
+
+class explorePanel(wx.Panel):
+    def __init__(self, parent):
+        super(explorePanel, self).__init__(parent)
+        conn = sqlite3.connect(USER_DIR + '\\' + 'StudentDatabase' '\\' 'students.db')
+        c = conn.cursor()
+        dataView = pd.read_sql(f"SELECT date,median,notes FROM studentdata", conn)
+        c.close()
+        conn.close()
+        self.dataWindow = wx.html2.WebView.New(self, pos=(975, 20), size=(500, 400))
+        df = dataView.to_html()
+        self.dataWindow.SetPage(df, "")
+
 #################################
 app = wx.App()
 frame = StudentDataBook(None, 'title')

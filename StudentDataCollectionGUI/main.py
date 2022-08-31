@@ -24,12 +24,14 @@ if not os.path.exists(USER_DIR + '\\' + 'StudentDatabase'):
 
 if not os.path.exists(
         USER_DIR + '\\' + 'StudentDatabase' '\\' 'omnibusDatabase.csv'):
-        filename = open(
-        USER_DIR + '\\' + 'StudentDatabase' '\\' 'omnibusDatabase.csv', 'w')
+    filename = open(
+            USER_DIR + '\\' + 'StudentDatabase' '\\' 'omnibusDatabase.csv', 'w')
 
 if not os.path.exists(
         USER_DIR + '\\' 'StudentDatabase' + '\\' + 'StudentDataFiles'):
     os.makedirs(USER_DIR + '\\' 'StudentDatabase' + '\\' + 'StudentDataFiles')
+
+
 def create_connection(db_file):
     conn = None
     try:
@@ -67,7 +69,8 @@ def create_table(conn, sql_create_studentdata_table):
 
 def main():
     sql_create_studentdata_table = "CREATE TABLE IF NOT EXISTS studentdata (id INTEGER PRIMARY KEY AUTOINCREMENT, studentname TEXT NOT NULL,  date TEXT NOT NULL,  task TEXT NOT NULL, lesson TEXT NOT NULL, session TEXT NOT NULL,  trial01 INTEGER,  trial02 INTEGER,  trial03 INTEGER,  trial04 INTEGER,  trial05 INTEGER,  trial06 INTEGER,  trial07 INTEGER,  trial08 INTEGER,  trial09 INTEGER,  trial10 INTEGER,  trial11 INTEGER,  median FLOAT, notes TEXT NOT NULL );"
-    conn = create_connection(USER_DIR + '\\' + 'StudentDatabase' '\\' 'students.db')
+    conn = create_connection(
+        USER_DIR + '\\' + 'StudentDatabase' '\\' 'students.db')
     if conn is not None:
         create_table(conn, sql_create_studentdata_table)
     else:
@@ -80,7 +83,7 @@ if __name__ == '__main__':
 date = datetime.datetime.now().strftime("%Y_%m_%d-%H%M%S_%p")
 
 
-class StudentDataBook(wx.Frame,wx.Accessible):
+class StudentDataBook(wx.Frame, wx.Accessible):
     def __init__(self, parent, title):
         super(StudentDataBook, self).__init__(parent, title="Data Entry Form",
                                               size=(1550, 1000))
@@ -90,11 +93,12 @@ class StudentDataBook(wx.Frame,wx.Accessible):
         nb = wx.Notebook(self)
         nb.AddPage(dataPanel(nb), "Data Entry Form")
         nb.AddPage(explorePanel(nb), "Explore Data")
-        #nb.AddPage(braillePanel(nb), "Braille Graphs")
-        #nb.AddPage(screenreaderPanel(nb), "ScreenReader Graphs")
-        #nb.AddPage(abacusPanel(nb), "Abacus Graphs")
+        # nb.AddPage(braillePanel(nb), "Braille Graphs")
+        # nb.AddPage(screenreaderPanel(nb), "ScreenReader Graphs")
+        # nb.AddPage(abacusPanel(nb), "Abacus Graphs")
         self.Centre()
         self.Show(True)
+
 
 class dataPanel(wx.Panel):
     def __init__(self, parent):
@@ -105,17 +109,17 @@ class dataPanel(wx.Panel):
         self.ln = wx.StaticLine(self, -1, pos=(950, 0), style=wx.LI_VERTICAL)
         self.ln.SetSize((5, 900))
         self.ln.IsVertical()
-        self.SetBackgroundColour(wx.Colour(241,205,234))
+        self.SetBackgroundColour(wx.Colour(241, 205, 234))
         wx.StaticText(self, -1, "Session Information", pos=(170, 20))
         wx.StaticText(self, -1, "Student Name", pos=(30, 50))
-        self.studentname1 = wx.Choice(self, -1, choices=students_all, pos=(130, 50),
-                                      size=(300, 20))
+        self.studentname1 = wx.Choice(self, -1, choices=students_all,
+                                      pos=(130, 50), size=(300, 20))
         wx.StaticText(self, -1, "Date", pos=(30, 80))
         self.date1 = wx.StaticText(self, -1, date, pos=(200, 80))
         wx.StaticText(self, -1, "Session Type", pos=(30, 110))
         self.session1 = wx.Choice(self, -1, choices=sessionType, pos=(130, 110),
                                   size=(300, 20))
-        wx.StaticText(self,-1, "Domain and Lesson", pos=(30,140))
+        wx.StaticText(self, -1, "Domain and Lesson", pos=(30, 140))
         self.lesson1 = wx.TreeCtrl(self, 301, pos=(30, 170), size=(400, 650))
         self.root = self.lesson1.AddRoot('Lesson Type ')
         self.item1 = self.lesson1.AppendItem(self.root, 'Abacus')
@@ -171,7 +175,7 @@ class dataPanel(wx.Panel):
         wx.StaticText(self, -1,
                       "RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent",
                       pos=(490, 50))
-        self.blank=wx.TextCtrl(self,-1,"",pos=(0,0),size=(0,0))
+        self.blank = wx.TextCtrl(self, -1, "", pos=(0, 0), size=(0, 0))
         wx.StaticText(self, -1, "Trial 1", pos=(500, 80))
         self.trial011 = wx.TextCtrl(self, -1, "", pos=(550, 80),
                                     size=(300, 20))
@@ -208,11 +212,9 @@ class dataPanel(wx.Panel):
         wx.StaticText(self, -1, "Anecdotal Notes", pos=(500, 410))
         self.notes1 = wx.TextCtrl(self, -1, "", pos=(550, 440), size=(300, 375),
                                   style=wx.TE_MULTILINE)
-        self.btn = wx.Button(self, 201, "SAVE", pos=(625, 850),
-                             size=(70, 30))
+        self.btn = wx.Button(self, 201, "SAVE", pos=(625, 850), size=(70, 30))
         self.Bind(wx.EVT_BUTTON, self.save, id=201)
-        self.btn1 = wx.Button(self, 202, "EXIT", pos=(715, 850),
-                              size=(70, 30))
+        self.btn1 = wx.Button(self, 202, "EXIT", pos=(715, 850), size=(70, 30))
         self.Bind(wx.EVT_BUTTON, self.exit, id=202)
         self.Bind(wx.EVT_BUTTON, self.save, id=201)
         os.chdir(USER_DIR)
@@ -243,17 +245,8 @@ class dataPanel(wx.Panel):
         trial09 = self.trial091.GetValue()
         trial10 = self.trial101.GetValue()
         trial11 = self.trial111.GetValue()
-        trials = [trial01,
-                  trial02,
-                  trial03,
-                  trial04,
-                  trial05,
-                  trial06,
-                  trial07,
-                  trial08,
-                  trial09,
-                  trial10,
-                  trial11]
+        trials = [trial01, trial02, trial03, trial04, trial05, trial06, trial07,
+                  trial08, trial09, trial10, trial11]
         trialmedian = statistics.median(trials)
         notes = self.notes1.GetValue()
         if (len(studentname) and len(date) and len(task) and len(notes)) > 0:
@@ -261,8 +254,11 @@ class dataPanel(wx.Panel):
                                      "Title", f"{studentname.title()}{dateNow}")
             if box.ShowModal() == wx.ID_OK:
                 self.studentdatabasename = box.GetValue()
-                if not os.path.exists(USER_DIR + '\\' 'StudentDataBase' + '\\' + 'StudentDataFiles' + '\\' + self.studentdatabasename + '.txt'):
-                    self.filename = open(USER_DIR + '\\' 'StudentDataBase' +'\\' + 'StudentDataFiles' + '\\' + self.studentdatabasename + '.txt', 'w')
+                if not os.path.exists(
+                        USER_DIR + '\\' 'StudentDataBase' + '\\' + 'StudentDataFiles' + '\\' + self.studentdatabasename + '.txt'):
+                    self.filename = open(
+                        USER_DIR + '\\' 'StudentDataBase' + '\\' + 'StudentDataFiles' + '\\' + self.studentdatabasename + '.txt',
+                        'w')
                     self.filename.write('studentname' + ',')
                     self.filename.write('simpleDate' + ',')
                     self.filename.write('task' + ',')
@@ -300,15 +296,15 @@ class dataPanel(wx.Panel):
                     self.filename.write(trialmedian + ',')
                     self.filename.write(notes + ',')
                     self.filename.close()
-                    self.filename = open(USER_DIR + '\\' + 'StudentDatabase\\Filenames.txt', 'a')
+                    self.filename = open(
+                        USER_DIR + '\\' + 'StudentDatabase\\Filenames.txt', 'a')
                     self.filename.write(self.studentdatabasename + '\n')
                     self.filename.close()
                     self.dial = wx.MessageDialog(None, 'Saved successfully!',
                                                  'Info', wx.OK)
                     self.dial.ShowModal()
                 else:
-                    self.dial = wx.MessageDialog(None,
-                                                 'Name already exists',
+                    self.dial = wx.MessageDialog(None, 'Name already exists',
                                                  'Info', wx.OK)
                     self.dial.ShowModal()
             else:
@@ -327,24 +323,9 @@ class dataPanel(wx.Panel):
         def data_entry():
             c.execute(
                     "INSERT INTO studentdata (studentname, date, task, lesson, session, trial01, trial02, trial03, trial04, trial05, trial06, trial07, trial08, trial09, trial10, trial11, median, notes) VALUES (?,?,?,?, ?, ?, ?, ?,?, ?, ?, ?, ?,?, ?, ?, ?, ?)",
-                    (studentname,
-                     dateNow,
-                     task,
-                     lesson,
-                     session,
-                     trial01,
-                     trial02,
-                     trial03,
-                     trial04,
-                     trial05,
-                     trial06,
-                     trial07,
-                     trial08,
-                     trial09,
-                     trial10,
-                     trial11,
-                     trialmedian,
-                     notes))
+                    (studentname, dateNow, task, lesson, session, trial01,
+                     trial02, trial03, trial04, trial05, trial06, trial07,
+                     trial08, trial09, trial10, trial11, trialmedian, notes))
             conn.commit()
 
         data_entry()
@@ -354,78 +335,63 @@ class dataPanel(wx.Panel):
         c.close()
         conn.close()
 
-        self.dataWindow = wx.html2.WebView.New(self, pos=(975, 20), size=(500,400))
+        self.dataWindow = wx.html2.WebView.New(self, pos=(975, 20),
+                                               size=(500, 400))
         df = dataView.to_html()
         html = f"<h3>{studentname}<br /><br />{task.title()}: {lesson.title()}<br /></h3><br /><br />{df} "
-        self.dataWindow.SetPage(html,"")
+        self.dataWindow.SetPage(html, "")
 
-
-        fig=go.Figure()
-        fig.add_trace(go.Scatter(x=dataView.date,y=dataView["median"], mode="lines+markers"))
+        fig = go.Figure()
+        fig.add_trace(go.Scatter(x=dataView.date, y=dataView["median"],
+                                 mode="lines+markers"))
         fig.write_image('temp.png')
 
-        self.dataPlot = wx.StaticBitmap(self,-1,wx.Bitmap("temp.png", wx.BITMAP_TYPE_ANY),pos=(975, 400),
-                                             size=(500,400))
-        list_names=['student',
-                     'date',
-                     'task',
-                     'lesson',
-                     'session',
-                     'trial01',
-                     'trial02',
-                     'trial03',
-                     'trial04',
-                     'trial05',
-                     'trial06',
-                     'trial07',
-                     'trial08',
-                     'trial09',
-                     'trial10',
-                     'trial11',
-                     'median',
-                     'notes']
-        list_data=[studentname,
-                     dateNow,
-                     task,
-                     lesson,
-                     session,
-                     trial01,
-                     trial02,
-                     trial03,
-                     trial04,
-                     trial05,
-                     trial06,
-                     trial07,
-                     trial08,
-                     trial09,
-                     trial10,
-                     trial11,
-                     trialmedian,
-                     notes]
+        self.dataPlot = wx.StaticBitmap(self, -1, wx.Bitmap("temp.png",
+                                                            wx.BITMAP_TYPE_ANY),
+                                        pos=(975, 400), size=(500, 400))
+        list_names = ['student', 'date', 'task', 'lesson', 'session', 'trial01',
+                      'trial02', 'trial03', 'trial04', 'trial05', 'trial06',
+                      'trial07', 'trial08', 'trial09', 'trial10', 'trial11',
+                      'median', 'notes']
+        list_data = [studentname, dateNow, task, lesson, session, trial01,
+                     trial02, trial03, trial04, trial05, trial06, trial07,
+                     trial08, trial09, trial10, trial11, trialmedian, notes]
         os.chdir(USER_DIR)
-        with open(USER_DIR + '\\' + 'StudentDatabase' '\\' 'omnibusDatabase.csv', 'a',newline='') as f_setup:
-            writer_setup=writer(f_setup)
+        with open(
+                USER_DIR + '\\' + 'StudentDatabase' '\\' 'omnibusDatabase.csv',
+                'a', newline='') as f_setup:
+            writer_setup = writer(f_setup)
             writer_setup.writerow(list_names)
             f_setup.close()
-        with open(USER_DIR + '\\' + 'StudentDatabase' '\\' 'omnibusDatabase.csv', 'a',newline='') as f_object:
+        with open(
+                USER_DIR + '\\' + 'StudentDatabase' '\\' 'omnibusDatabase.csv',
+                'a', newline='') as f_object:
             writer_object = writer(f_object)
             writer_object.writerow(list_data)
             f_object.close()
+
     def OnChoice(self, event):
         self.label.SetLabel(self.choice.GetString(self.choice.GetSelection()))
+
+
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
+
 
 class explorePanel(wx.Panel):
     def __init__(self, parent):
         super(explorePanel, self).__init__(parent)
-        conn = sqlite3.connect(USER_DIR + '\\' + 'StudentDatabase' '\\' 'students.db')
+        conn = sqlite3.connect(
+            USER_DIR + '\\' + 'StudentDatabase' '\\' 'students.db')
         c = conn.cursor()
-        dataView = pd.read_sql(f"SELECT date,median,notes FROM studentdata", conn)
+        dataView = pd.read_sql(f"SELECT date,median,notes FROM studentdata",
+                               conn)
         c.close()
         conn.close()
-        self.dataWindow = wx.html2.WebView.New(self, pos=(975, 20), size=(500, 400))
+        self.dataWindow = wx.html2.WebView.New(self, pos=(975, 20),
+                                               size=(500, 400))
         df = dataView.to_html()
         self.dataWindow.SetPage(df, "")
+
 
 # class braillePanel(wx.Panel):
 #     def __init__(self, parent):
@@ -438,7 +404,7 @@ class explorePanel(wx.Panel):
 #         self.dataWindow = wx.html2.WebView.New(self, pos=(975, 20), size=(500, 400))
 #         df = dataView.to_html()
 #         self.dataWindow.SetPage(df, "")
-#
+
 # class screenreaderPanel(wx.Panel):
 #     def __init__(self, parent):
 #         super(screenreaderPanel, self).__init__(parent)
@@ -450,7 +416,7 @@ class explorePanel(wx.Panel):
 #         self.dataWindow = wx.html2.WebView.New(self, pos=(975, 20), size=(500, 400))
 #         df = dataView.to_html()
 #         self.dataWindow.SetPage(df, "")
-#
+
 # class abacusPanel(wx.Panel):
 #     def __init__(self, parent):
 #         super(abacusPanel, self).__init__(parent)
@@ -465,7 +431,7 @@ class explorePanel(wx.Panel):
 
 #################################
 app = wx.App()
-frame = StudentDataBook(None, 'title')
+frame = StudentDataBook(None, 'Student Data Entry')
 frame.Centre()
 frame.Show()
 app.MainLoop()

@@ -11,12 +11,12 @@ from csv import writer
 from helpers import *
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
-print(os.path.dirname(os.path.abspath(__file__)))
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 USER_DIR = os.path.join(os.environ['USERPROFILE'], "Documents")
 os.chdir(USER_DIR)
-if not os.path.exists('StudentDataBase'):
-    os.makedirs('StudentDataBase')
+
+if not os.path.exists('StudentDatabase'):
+    os.makedirs('StudentDatabase')
 if not os.path.exists(USER_DIR + '\\' + 'StudentDatabase'):
     os.makedirs(USER_DIR + '\\' + 'StudentDatabase')
 if not os.path.exists(
@@ -24,8 +24,8 @@ if not os.path.exists(
         filename = open(
         USER_DIR + '\\' + 'StudentDatabase' '\\' 'omnibusDatabase.csv', 'w')
 if not os.path.exists(
-        USER_DIR + '\\' 'StudentDataBase' + '\\' + 'StudentDataFiles'):
-    os.makedirs(USER_DIR + '\\' 'StudentDataBase' + '\\' + 'StudentDataFiles')
+        USER_DIR + '\\' 'StudentDatabase' + '\\' + 'StudentDataFiles'):
+    os.makedirs(USER_DIR + '\\' 'StudentDatabase' + '\\' + 'StudentDataFiles')
 def create_connection(db_file):
     conn = None
     try:
@@ -163,7 +163,7 @@ class dataPanel(wx.Panel):
         wx.StaticText(self, -1, "Performance", pos=(665, 20))
         wx.StaticText(self, -1,
                       "RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent",
-                      pos=(490, 50),)
+                      pos=(490, 50))
         self.blank=wx.TextCtrl(self,-1,"",pos=(0,0),size=(0,0))
         wx.StaticText(self, -1, "Trial 1", pos=(500, 80))
         self.trial011 = wx.TextCtrl(self, -1, "", pos=(550, 80),
@@ -209,9 +209,9 @@ class dataPanel(wx.Panel):
         self.Bind(wx.EVT_BUTTON, self.exit, id=202)
         self.Bind(wx.EVT_BUTTON, self.save, id=201)
         os.chdir(USER_DIR)
-        self.filename = 'StudentDataBase'
+        self.filename = 'StudentDatabase'
         if not os.path.exists(self.filename):
-            os.makedirs('StudentDataBase')
+            os.makedirs('StudentDatabase')
 
     def exit(self, event):
         wx.Exit()
@@ -293,7 +293,7 @@ class dataPanel(wx.Panel):
                     self.filename.write(trialmedian + ',')
                     self.filename.write(notes + ',')
                     self.filename.close()
-                    self.filename = open(USER_DIR + '\\' + 'StudentDataBase\\Filenames.txt', 'a')
+                    self.filename = open(USER_DIR + '\\' + 'StudentDatabase\\Filenames.txt', 'a')
                     self.filename.write(self.studentdatabasename + '\n')
                     self.filename.close()
                     self.dial = wx.MessageDialog(None, 'Saved successfully!',
@@ -301,7 +301,7 @@ class dataPanel(wx.Panel):
                     self.dial.ShowModal()
                 else:
                     self.dial = wx.MessageDialog(None,
-                                                 'Address-Book name already exists. Enter another name to save!',
+                                                 'Name already exists',
                                                  'Info', wx.OK)
                     self.dial.ShowModal()
             else:

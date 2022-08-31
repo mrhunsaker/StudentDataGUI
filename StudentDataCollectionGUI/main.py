@@ -427,6 +427,42 @@ class explorePanel(wx.Panel):
         df = dataView.to_html()
         self.dataWindow.SetPage(df, "")
 
+# class braillePanel(wx.Panel):
+#     def __init__(self, parent):
+#         super(braillePanel, self).__init__(parent)
+#         conn = sqlite3.connect(USER_DIR + '\\' + 'StudentDatabase' '\\' 'students.db')
+#         c = conn.cursor()
+#         dataView = pd.read_sql(f"SELECT date,median,notes FROM studentdata", conn)
+#         c.close()
+#         conn.close()
+#         self.dataWindow = wx.html2.WebView.New(self, pos=(975, 20), size=(500, 400))
+#         df = dataView.to_html()
+#         self.dataWindow.SetPage(df, "")
+#
+# class screenreaderPanel(wx.Panel):
+#     def __init__(self, parent):
+#         super(screenreaderPanel, self).__init__(parent)
+#         conn = sqlite3.connect(USER_DIR + '\\' + 'StudentDatabase' '\\' 'students.db')
+#         c = conn.cursor()
+#         dataView = pd.read_sql(f"SELECT date,median,notes FROM studentdata", conn)
+#         c.close()
+#         conn.close()
+#         self.dataWindow = wx.html2.WebView.New(self, pos=(975, 20), size=(500, 400))
+#         df = dataView.to_html()
+#         self.dataWindow.SetPage(df, "")
+#
+# class abacusPanel(wx.Panel):
+#     def __init__(self, parent):
+#         super(abacusPanel, self).__init__(parent)
+#         conn = sqlite3.connect(USER_DIR + '\\' + 'StudentDatabase' '\\' 'students.db')
+#         c = conn.cursor()
+#         dataView = pd.read_sql(f"SELECT date,median,notes FROM studentdata", conn)
+#         c.close()
+#         conn.close()
+#         self.dataWindow = wx.html2.WebView.New(self, pos=(975, 20), size=(500, 400))
+#         df = dataView.to_html()
+#         self.dataWindow.SetPage(df, "")
+
 #################################
 app = wx.App()
 frame = StudentDataBook(None, 'title')

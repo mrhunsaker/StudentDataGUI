@@ -23,13 +23,14 @@ if not os.path.exists(USER_DIR + '\\' + 'StudentDatabase'):
     os.makedirs(USER_DIR + '\\' + 'StudentDatabase')
 
 if not os.path.exists(
-        USER_DIR + '\\' + 'StudentDatabase' '\\' 'omnibusDatabase.csv'):
+        USER_DIR + '\\' + 'StudentDatabase' + '\\' + 'omnibusDatabase.csv'):
     filename = open(
-            USER_DIR + '\\' + 'StudentDatabase' '\\' 'omnibusDatabase.csv', 'w')
+            USER_DIR + '\\' + 'StudentDatabase' + '\\' + 'omnibusDatabase.csv',
+            'w')
 
 if not os.path.exists(
-        USER_DIR + '\\' 'StudentDatabase' + '\\' + 'StudentDataFiles'):
-    os.makedirs(USER_DIR + '\\' 'StudentDatabase' + '\\' + 'StudentDataFiles')
+        USER_DIR + '\\' + 'StudentDatabase' + '\\' + 'StudentDataFiles'):
+    os.makedirs(USER_DIR + '\\' + 'StudentDatabase' + '\\' + 'StudentDataFiles')
 
 
 def create_connection(db_file):
@@ -45,7 +46,8 @@ def create_connection(db_file):
 
 
 if __name__ == '__main__':
-    create_connection(USER_DIR + '\\' + 'StudentDatabase' '\\' 'students.db')
+    create_connection(
+        USER_DIR + '\\' + 'StudentDatabase' + '\\' + 'students.db')
 
 
 def create_connection(db_file):
@@ -70,7 +72,7 @@ def create_table(conn, sql_create_studentdata_table):
 def main():
     sql_create_studentdata_table = "CREATE TABLE IF NOT EXISTS studentdata (id INTEGER PRIMARY KEY AUTOINCREMENT, studentname TEXT NOT NULL,  date TEXT NOT NULL,  task TEXT NOT NULL, lesson TEXT NOT NULL, session TEXT NOT NULL,  trial01 INTEGER,  trial02 INTEGER,  trial03 INTEGER,  trial04 INTEGER,  trial05 INTEGER,  trial06 INTEGER,  trial07 INTEGER,  trial08 INTEGER,  trial09 INTEGER,  trial10 INTEGER,  trial11 INTEGER,  median FLOAT, notes TEXT NOT NULL );"
     conn = create_connection(
-        USER_DIR + '\\' + 'StudentDatabase' '\\' 'students.db')
+            USER_DIR + '\\' + 'StudentDatabase' + '\\' + 'students.db')
     if conn is not None:
         create_table(conn, sql_create_studentdata_table)
     else:
@@ -175,7 +177,7 @@ class dataPanel(wx.Panel):
         wx.StaticText(self, -1,
                       "RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent",
                       pos=(490, 50))
-        self.blank = wx.TextCtrl(self, -1, "", pos=(0, 0), size=(0, 0))
+        self.blank = wx.TextCtrl(self, -1, "", pos=(490, 50), size=(0, 0))
         wx.StaticText(self, -1, "Trial 1", pos=(500, 80))
         self.trial011 = wx.TextCtrl(self, -1, "", pos=(550, 80),
                                     size=(300, 20))
@@ -217,9 +219,9 @@ class dataPanel(wx.Panel):
         self.btn1 = wx.Button(self, 202, "EXIT", pos=(715, 850), size=(70, 30))
         self.Bind(wx.EVT_BUTTON, self.exit, id=202)
         self.Bind(wx.EVT_BUTTON, self.save, id=201)
+
         os.chdir(USER_DIR)
-        self.filename = 'StudentDatabase'
-        if not os.path.exists(self.filename):
+        if not os.path.exists('StudentDatabase'):
             os.makedirs('StudentDatabase')
 
     def exit(self, event):
@@ -255,10 +257,10 @@ class dataPanel(wx.Panel):
             if box.ShowModal() == wx.ID_OK:
                 self.studentdatabasename = box.GetValue()
                 if not os.path.exists(
-                        USER_DIR + '\\' 'StudentDataBase' + '\\' + 'StudentDataFiles' + '\\' + self.studentdatabasename + '.txt'):
+                        USER_DIR + '\\' 'StudentDatabase' + '\\' + 'StudentDataFiles' + '\\' + self.studentdatabasename + '.txt'):
                     self.filename = open(
-                        USER_DIR + '\\' 'StudentDataBase' + '\\' + 'StudentDataFiles' + '\\' + self.studentdatabasename + '.txt',
-                        'w')
+                            USER_DIR + '\\' 'StudentDatabase' + '\\' + 'StudentDataFiles' + '\\' + self.studentdatabasename + '.txt',
+                            'w')
                     self.filename.write('studentname' + ',')
                     self.filename.write('simpleDate' + ',')
                     self.filename.write('task' + ',')
@@ -297,7 +299,8 @@ class dataPanel(wx.Panel):
                     self.filename.write(notes + ',')
                     self.filename.close()
                     self.filename = open(
-                        USER_DIR + '\\' + 'StudentDatabase\\Filenames.txt', 'a')
+                            USER_DIR + '\\' + 'StudentDatabase\\Filenames.txt',
+                            'a')
                     self.filename.write(self.studentdatabasename + '\n')
                     self.filename.close()
                     self.dial = wx.MessageDialog(None, 'Saved successfully!',
@@ -317,7 +320,7 @@ class dataPanel(wx.Panel):
             self.dial.ShowModal()
 
         conn = sqlite3.connect(
-                'students.db')
+                USER_DIR + '\\' + 'StudentDatabase' + '\\' + 'students.db')
         c = conn.cursor()
 
         def data_entry():
@@ -344,10 +347,11 @@ class dataPanel(wx.Panel):
         fig = go.Figure()
         fig.add_trace(go.Scatter(x=dataView.date, y=dataView["median"],
                                  mode="lines+markers"))
-        fig.write_image('temp.png')
+        fig.write_image(USER_DIR + '\\' + 'StudentDatabase' '\\' + 'temp.png')
 
-        self.dataPlot = wx.StaticBitmap(self, -1, wx.Bitmap("temp.png",
-                                                            wx.BITMAP_TYPE_ANY),
+        self.dataPlot = wx.StaticBitmap(self, -1, wx.Bitmap(
+            USER_DIR + '\\' + 'StudentDatabase' '\\' + 'temp.png',
+            wx.BITMAP_TYPE_ANY),
                                         pos=(975, 400), size=(500, 400))
         list_names = ['student', 'date', 'task', 'lesson', 'session', 'trial01',
                       'trial02', 'trial03', 'trial04', 'trial05', 'trial06',
@@ -358,13 +362,13 @@ class dataPanel(wx.Panel):
                      trial08, trial09, trial10, trial11, trialmedian, notes]
         os.chdir(USER_DIR)
         with open(
-                USER_DIR + '\\' + 'StudentDatabase' '\\' 'omnibusDatabase.csv',
+                USER_DIR + '\\' + 'StudentDatabase' '\\' + 'omnibusDatabase.csv',
                 'a', newline='') as f_setup:
             writer_setup = writer(f_setup)
             writer_setup.writerow(list_names)
             f_setup.close()
         with open(
-                USER_DIR + '\\' + 'StudentDatabase' '\\' 'omnibusDatabase.csv',
+                USER_DIR + '\\' + 'StudentDatabase' '\\' + 'omnibusDatabase.csv',
                 'a', newline='') as f_object:
             writer_object = writer(f_object)
             writer_object.writerow(list_data)
@@ -381,7 +385,7 @@ class explorePanel(wx.Panel):
     def __init__(self, parent):
         super(explorePanel, self).__init__(parent)
         conn = sqlite3.connect(
-            USER_DIR + '\\' + 'StudentDatabase' '\\' 'students.db')
+                USER_DIR + '\\' + 'StudentDatabase' '\\' 'students.db')
         c = conn.cursor()
         dataView = pd.read_sql(f"SELECT date,median,notes FROM studentdata",
                                conn)

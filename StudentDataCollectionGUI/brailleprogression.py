@@ -14,7 +14,6 @@ from sqlite3 import Error
 import wx.html2
 from csv import writer
 ###################
-
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 USER_DIR = os.path.join(os.environ['USERPROFILE'], "Documents")

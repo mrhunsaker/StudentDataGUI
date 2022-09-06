@@ -1,0 +1,76 @@
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_8_29_2022_12_44_PM/shelved.patch
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_8_29_2022_12_44_PM/shelved.patch b/.idea/shelf/Uncommitted_changes_before_Update_at_8_29_2022_12_44_PM/shelved.patch
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Update_at_8_29_2022_12_44_PM/shelved.patch	(revision ea4f68a6e4a80847c01369ddecfc111516c2285a)
++++ /dev/null	(revision ea4f68a6e4a80847c01369ddecfc111516c2285a)
+@@ -1,37 +0,0 @@
+-Index: .idea/misc.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ProjectRootManager\" version=\"2\" project-jdk-name=\"Python 3.10\" project-jdk-type=\"Python SDK\" />\r\n</project>
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/.idea/misc.xml b/.idea/misc.xml
+---- a/.idea/misc.xml	(revision 178f5a7fb47c2829331b622736a957419dae3f71)
+-+++ b/.idea/misc.xml	(date 1661796598697)
+-@@ -1,4 +1,4 @@
+- <?xml version="1.0" encoding="UTF-8"?>
+- <project version="4">
+--  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.10" project-jdk-type="Python SDK" />
+-+  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.8 (StudentDataGUI)" project-jdk-type="Python SDK" />
+- </project>
+-\ No newline at end of file
+-Index: .idea/StudentDataGUI.iml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<module type=\"PYTHON_MODULE\" version=\"4\">\r\n  <component name=\"NewModuleRootManager\">\r\n    <content url=\"file://$MODULE_DIR$\">\r\n      <excludeFolder url=\"file://$MODULE_DIR$/venv\" />\r\n    </content>\r\n    <orderEntry type=\"jdk\" jdkName=\"Python 3.10\" jdkType=\"Python SDK\" />\r\n    <orderEntry type=\"sourceFolder\" forTests=\"false\" />\r\n  </component>\r\n</module>
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/.idea/StudentDataGUI.iml b/.idea/StudentDataGUI.iml
+---- a/.idea/StudentDataGUI.iml	(revision 178f5a7fb47c2829331b622736a957419dae3f71)
+-+++ b/.idea/StudentDataGUI.iml	(date 1661796598627)
+-@@ -4,7 +4,7 @@
+-     <content url="file://$MODULE_DIR$">
+-       <excludeFolder url="file://$MODULE_DIR$/venv" />
+-     </content>
+--    <orderEntry type="jdk" jdkName="Python 3.10" jdkType="Python SDK" />
+-+    <orderEntry type="inheritedJdk" />
+-     <orderEntry type="sourceFolder" forTests="false" />
+-   </component>
+- </module>
+-\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_8_29_2022_12_44_PM.xml
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_8_29_2022_12_44_PM.xml b/.idea/shelf/Uncommitted_changes_before_Update_at_8_29_2022_12_44_PM.xml
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Update_at_8_29_2022_12_44_PM.xml	(revision ea4f68a6e4a80847c01369ddecfc111516c2285a)
++++ /dev/null	(revision ea4f68a6e4a80847c01369ddecfc111516c2285a)
+@@ -1,4 +0,0 @@
+-<changelist name="Uncommitted_changes_before_Update_at_8_29_2022_12_44_PM" date="1661798647485" recycled="true" deleted="true">
+-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_8_29_2022_12_44_PM/shelved.patch" />
+-  <option name="DESCRIPTION" value="Uncommitted changes before Update at 8/29/2022 12:44 PM" />
+-</changelist>
+\ No newline at end of file
+Index: .idea/StudentDataGUI.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<module type=\"PYTHON_MODULE\" version=\"4\">\r\n  <component name=\"NewModuleRootManager\">\r\n    <content url=\"file://$MODULE_DIR$\">\r\n      <excludeFolder url=\"file://$MODULE_DIR$/venv\" />\r\n    </content>\r\n    <orderEntry type=\"inheritedJdk\" />\r\n    <orderEntry type=\"sourceFolder\" forTests=\"false\" />\r\n  </component>\r\n</module>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/StudentDataGUI.iml b/.idea/StudentDataGUI.iml
+--- a/.idea/StudentDataGUI.iml	(revision ea4f68a6e4a80847c01369ddecfc111516c2285a)
++++ b/.idea/StudentDataGUI.iml	(date 1662475616473)
+@@ -4,7 +4,7 @@
+     <content url="file://$MODULE_DIR$">
+       <excludeFolder url="file://$MODULE_DIR$/venv" />
+     </content>
+-    <orderEntry type="inheritedJdk" />
++    <orderEntry type="jdk" jdkName="Python 3.8 (StudentDataGUI)" jdkType="Python SDK" />
+     <orderEntry type="sourceFolder" forTests="false" />
+   </component>
+ </module>
+\ No newline at end of file

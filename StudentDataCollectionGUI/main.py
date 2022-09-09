@@ -126,16 +126,19 @@ def main():
         create_table(conn, sql_create_studentdata_table)
     else:
         print("Error! cannot create the database connection.")
+
     conn = create_connection(f"{USER_DIR}\\StudentDatabase\\students.db")
     if conn is not None:
         create_table(conn, sql_create_brailledata_table)
     else:
         print("Error! cannot create the database connection.")
+
     conn = create_connection(f"{USER_DIR}\\StudentDatabase\\students.db")
     if conn is not None:
         create_table(conn, sql_create_screenreaderdata_table)
     else:
         print("Error! cannot create the database connection.")
+
     conn = create_connection(f"{USER_DIR}\\StudentDatabase\\students.db")
     if conn is not None:
         create_table(conn, sql_create_abacusdata_table)

@@ -11,7 +11,7 @@ from plotly.subplots import make_subplots
 import plotly.graph_objects as go
 import wx.lib.scrolledpanel as scrolled
 import numpy as np
-from helpers import *
+from ".\\helpers\\helpers" import *
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))

@@ -160,7 +160,7 @@ def create_table(conn, sql_create_sql_table):
 def main():
     sql_create_studentdata_table = "CREATE TABLE IF NOT EXISTS studentdata (id INTEGER PRIMARY KEY AUTOINCREMENT, studentname TEXT NOT NULL, date TEXT NOT NULL, task TEXT NOT NULL, lesson TEXT NOT NULL, session TEXT NOT NULL, trial01 INTEGER, trial02 INTEGER, trial03 INTEGER, trial04 INTEGER, trial05 INTEGER, trial06 INTEGER, trial07 INTEGER, trial08 INTEGER, trial09 INTEGER, trial10 INTEGER, trial11 INTEGER, median FLOAT, notes TEXT NOT NULL );"
     sql_create_brailledata_table = "CREATE TABLE IF NOT EXISTS brailleProgress (id INTEGER PRIMARY KEY AUTOINCREMENT, studentname TEXT NOT NULL, date TEXT NOT NULL,P1_1 INTEGER,P1_2 INTEGER,P1_3 INTEGER,P1_4 INTEGER,P2_1 INTEGER,P2_2 INTEGER,P2_3 INTEGER,P2_4 INTEGER,P2_5 INTEGER,P2_6 INTEGER,P2_7 INTEGER,P2_8 INTEGER,P2_9 INTEGER,P2_10 INTEGER,P2_11 INTEGER,P2_12 INTEGER,P2_13 INTEGER,P2_14 INTEGER,P2_15 INTEGER,P3_1 INTEGER,P3_2 INTEGER,P3_3 INTEGER,P3_4 INTEGER,P3_5 INTEGER,P3_6 INTEGER,P3_7 INTEGER,P3_8 INTEGER,P3_9 INTEGER,P3_10 INTEGER,P3_11 INTEGER,P3_12 INTEGER,P3_13 INTEGER,P3_14 INTEGER,P3_15 INTEGER,P4_1 INTEGER,P4_2 INTEGER,P4_3 INTEGER,P4_4 INTEGER,P5_1 INTEGER,P5_2 INTEGER,P5_3 INTEGER,P5_4 INTEGER,P6_1 INTEGER,P6_2 INTEGER,P6_3 INTEGER,P6_4 INTEGER,P6_5 INTEGER,P6_6 INTEGER,P6_7 INTEGER,P7_1 INTEGER,P7_2 INTEGER,P7_3 INTEGER,P7_4 INTEGER,P7_5 INTEGER,P7_6 INTEGER,P7_7 INTEGER,P7_8 INTEGER,P8_1 INTEGER,P8_2 INTEGER,P8_3 INTEGER,P8_4 INTEGER,P8_5 INTEGER,P8_6 INTEGER,P8_7 );"
-    sql_create_screenreaderdata_table = "CREATE TABLE IF NOT EXISTS screenreaderProgress (id INTEGER PRIMARY KEY AUTOINCREMENT, studentname TEXT NOT NULL, date TEXT NOT NULL,P1_1 INTEGER,P1_2 INTEGER,P1_3 INTEGER,P1_4 INTEGER,P1_4 INTEGER,P2_1 INTEGER,P2_2 INTEGER,P2_3 INTEGER,P2_4 INTEGER,P2_5 INTEGER,P2_6 INTEGER,P2_7 INTEGER,P2_8 INTEGER,P2_9 INTEGER,P2_10 INTEGER,P2_11 INTEGER,P2_12 INTEGER,P2_13 INTEGER,P2_14 INTEGER,P2_15 INTEGER,P3_1 INTEGER,P3_2 INTEGER,P3_3 INTEGER,P3_4 INTEGER,P3_5 INTEGER,P3_6 INTEGER,P3_7 INTEGER,P3_8 INTEGER,P3_9 INTEGER,P3_10 INTEGER,P3_11 INTEGER,P3_12 INTEGER,P3_13 INTEGER,P3_14 INTEGER,P3_15 INTEGER,P4_1 INTEGER,P4_2 INTEGER,P4_3 INTEGER,P4_4 INTEGER,P5_1 INTEGER,P5_2 INTEGER,P5_3 INTEGER,P5_4 INTEGER,P6_1 INTEGER,P6_2 INTEGER,P6_3 INTEGER,P6_4 INTEGER,P6_5 INTEGER,P6_6 INTEGER,P6_7 INTEGER,P7_1 INTEGER,P7_2 INTEGER,P7_3 INTEGER,P7_4 INTEGER,P7_5 INTEGER,P7_6 INTEGER,P7_7 INTEGER,P7_8 INTEGER,P8_1 INTEGER,P8_2 INTEGER,P8_3 INTEGER,P8_4 INTEGER,P8_5 INTEGER,P8_6 INTEGER,P8_7 );"
+    sql_create_screenreaderdata_table = "CREATE TABLE IF NOT EXISTS screenreaderProgress (id INTEGER PRIMARY KEY AUTOINCREMENT, studentname TEXT NOT NULL, date TEXT NOT NULL,P1_1 INTEGER,P1_2 INTEGER,P1_3 INTEGER,P1_4 INTEGER,P1_5 INTEGER,P1_6 INTEGER,P2_1 INTEGER,P2_2 INTEGER,P2_3 INTEGER,P2_4 INTEGER,P2_5 INTEGER,P2_6 INTEGER,P2_7 INTEGER,P2_8 INTEGER,P2_9 INTEGER,P2_10 INTEGER,P2_11 INTEGER,P2_12 INTEGER,P2_13 INTEGER,P2_14 INTEGER,P2_15 INTEGER,P3_1 INTEGER,P3_2 INTEGER,P3_3 INTEGER,P3_4 INTEGER,P3_5 INTEGER,P3_6 INTEGER,P3_7 INTEGER,P3_8 INTEGER,P3_9 INTEGER,P3_10 INTEGER,P3_11 INTEGER,P3_12 INTEGER,P3_13 INTEGER,P3_14 INTEGER,P3_15 INTEGER,P4_1 INTEGER,P4_2 INTEGER,P4_3 INTEGER,P4_4 INTEGER,P5_1 INTEGER,P5_2 INTEGER,P5_3 INTEGER,P5_4 INTEGER,P6_1 INTEGER,P6_2 INTEGER,P6_3 INTEGER,P6_4 INTEGER,P6_5 INTEGER,P6_6 INTEGER,P6_7 INTEGER,P7_1 INTEGER,P7_2 INTEGER,P7_3 INTEGER,P7_4 INTEGER,P7_5 INTEGER,P7_6 INTEGER,P7_7 INTEGER,P7_8 INTEGER,P8_1 INTEGER,P8_2 INTEGER,P8_3 INTEGER,P8_4 INTEGER,P8_5 INTEGER,P8_6 INTEGER,P8_7 );"
     sql_create_abacusdata_table = "CREATE TABLE IF NOT EXISTS abacusProgress (id INTEGER PRIMARY KEY AUTOINCREMENT, studentname TEXT NOT NULL, date TEXT NOT NULL,P1_1 INTEGER,P1_2 INTEGER,P1_3 INTEGER,P1_4 INTEGER,P2_1 INTEGER,P2_2 INTEGER,P2_3 INTEGER,P2_4 INTEGER,P2_5 INTEGER,P2_6 INTEGER,P2_7 INTEGER,P2_8 INTEGER,P2_9 INTEGER,P2_10 INTEGER,P2_11 INTEGER,P2_12 INTEGER,P2_13 INTEGER,P2_14 INTEGER,P2_15 INTEGER,P3_1 INTEGER,P3_2 INTEGER,P3_3 INTEGER,P3_4 INTEGER,P3_5 INTEGER,P3_6 INTEGER,P3_7 INTEGER,P3_8 INTEGER,P3_9 INTEGER,P3_10 INTEGER,P3_11 INTEGER,P3_12 INTEGER,P3_13 INTEGER,P3_14 INTEGER,P3_15 INTEGER,P4_1 INTEGER,P4_2 INTEGER,P4_3 INTEGER,P4_4 INTEGER,P5_1 INTEGER,P5_2 INTEGER,P5_3 INTEGER,P5_4 INTEGER,P6_1 INTEGER,P6_2 INTEGER,P6_3 INTEGER,P6_4 INTEGER,P6_5 INTEGER,P6_6 INTEGER,P6_7 INTEGER,P7_1 INTEGER,P7_2 INTEGER,P7_3 INTEGER,P7_4 INTEGER,P7_5 INTEGER,P7_6 INTEGER,P7_7 INTEGER,P7_8 INTEGER,P8_1 INTEGER,P8_2 INTEGER,P8_3 INTEGER,P8_4 INTEGER,P8_5 INTEGER,P8_6 INTEGER,P8_7 );"
 
     conn = create_connection(f"{USER_DIR}\\StudentDatabase\\students.db")
@@ -2029,120 +2029,112 @@ class screenreaderPanel(scrolled.ScrolledPanel):
             self.studentdatabasename = box.GetValue()
             if not os.path.exists(
                     f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\{self.studentdatabasename}.txt"):
-                if box.ShowModal() == wx.ID_OK:
-                    self.studentdatabasename = box.GetValue()
-                    if not os.path.exists(
-                            f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\{self.studentdatabasename}.txt"):
-                        self.filename = open(
-                                f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\{self.studentdatabasename}.txt",
-                                'w')
-                        self.filename.write('studentname' + ',')
-                        self.filename.write('simpleDate' + ',')
-                        self.filename.write('trial11' + ',')
-                        self.filename.write('trial12' + ',')
-                        self.filename.write('trial13' + ',')
-                        self.filename.write('trial14' + ',')
-                        self.filename.write('trial15' + ',')
-                        self.filename.write('trial16' + ',')
-                        self.filename.write('trial21' + ',')
-                        self.filename.write('trial22' + ',')
-                        self.filename.write('trial23' + ',')
-                        self.filename.write('trial24' + ',')
-                        self.filename.write('trial31' + ',')
-                        self.filename.write('trial32' + ',')
-                        self.filename.write('trial33' + ',')
-                        self.filename.write('trial34' + ',')
-                        self.filename.write('trial35' + ',')
-                        self.filename.write('trial36' + ',')
-                        self.filename.write('trial37' + ',')
-                        self.filename.write('trial38' + ',')
-                        self.filename.write('trial39' + ',')
-                        self.filename.write('trial310' + ',')
-                        self.filename.write('trial311' + ',')
-                        self.filename.write('trial41' + ',')
-                        self.filename.write('trial42' + ',')
-                        self.filename.write('trial43' + ',')
-                        self.filename.write('trial44' + ',')
-                        self.filename.write('trial45' + ',')
-                        self.filename.write('trial46' + ',')
-                        self.filename.write('trial47' + ',')
-                        self.filename.write(studentname + ',')
-                        self.filename.write(dateNow + ',')
-                        self.filename.write(trial11 + ',')
-                        self.filename.write(trial12 + ',')
-                        self.filename.write(trial13 + ',')
-                        self.filename.write(trial14 + ',')
-                        self.filename.write(trial15 + ',')
-                        self.filename.write(trial16 + ',')
-                        self.filename.write(trial21 + ',')
-                        self.filename.write(trial22 + ',')
-                        self.filename.write(trial23 + ',')
-                        self.filename.write(trial24 + ',')
-                        self.filename.write(trial31 + ',')
-                        self.filename.write(trial32 + ',')
-                        self.filename.write(trial33 + ',')
-                        self.filename.write(trial34 + ',')
-                        self.filename.write(trial35 + ',')
-                        self.filename.write(trial36 + ',')
-                        self.filename.write(trial37 + ',')
-                        self.filename.write(trial38 + ',')
-                        self.filename.write(trial39 + ',')
-                        self.filename.write(trial310 + ',')
-                        self.filename.write(trial311 + ',')
-                        self.filename.write(trial41 + ',')
-                        self.filename.write(trial42 + ',')
-                        self.filename.write(trial43 + ',')
-                        self.filename.write(trial44 + ',')
-                        self.filename.write(trial45 + ',')
-                        self.filename.write(trial46 + ',')
-                        self.filename.write(trial47 + ',')
-                        self.filename.close()
-                        self.filename = open(
-                            f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\Filenames.txt",
-                            'a')
-                        self.filename.write(
-                                f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\{self.studentdatabasename}.txt" + '\n')
-                        self.filename.close()
+                self.filename = open(
+                        f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\{self.studentdatabasename}.txt",
+                        'w')
+                self.filename.write('studentname' + ',')
+                self.filename.write('simpleDate' + ',')
+                self.filename.write('trial11' + ',')
+                self.filename.write('trial12' + ',')
+                self.filename.write('trial13' + ',')
+                self.filename.write('trial14' + ',')
+                self.filename.write('trial15' + ',')
+                self.filename.write('trial16' + ',')
+                self.filename.write('trial21' + ',')
+                self.filename.write('trial22' + ',')
+                self.filename.write('trial23' + ',')
+                self.filename.write('trial24' + ',')
+                self.filename.write('trial31' + ',')
+                self.filename.write('trial32' + ',')
+                self.filename.write('trial33' + ',')
+                self.filename.write('trial34' + ',')
+                self.filename.write('trial35' + ',')
+                self.filename.write('trial36' + ',')
+                self.filename.write('trial37' + ',')
+                self.filename.write('trial38' + ',')
+                self.filename.write('trial39' + ',')
+                self.filename.write('trial310' + ',')
+                self.filename.write('trial311' + ',')
+                self.filename.write('trial41' + ',')
+                self.filename.write('trial42' + ',')
+                self.filename.write('trial43' + ',')
+                self.filename.write('trial44' + ',')
+                self.filename.write('trial45' + ',')
+                self.filename.write('trial46' + ',')
+                self.filename.write('trial47' + ',')
+                self.filename.write(studentname + ',')
+                self.filename.write(dateNow + ',')
+                self.filename.write(trial11 + ',')
+                self.filename.write(trial12 + ',')
+                self.filename.write(trial13 + ',')
+                self.filename.write(trial14 + ',')
+                self.filename.write(trial15 + ',')
+                self.filename.write(trial16 + ',')
+                self.filename.write(trial21 + ',')
+                self.filename.write(trial22 + ',')
+                self.filename.write(trial23 + ',')
+                self.filename.write(trial24 + ',')
+                self.filename.write(trial31 + ',')
+                self.filename.write(trial32 + ',')
+                self.filename.write(trial33 + ',')
+                self.filename.write(trial34 + ',')
+                self.filename.write(trial35 + ',')
+                self.filename.write(trial36 + ',')
+                self.filename.write(trial37 + ',')
+                self.filename.write(trial38 + ',')
+                self.filename.write(trial39 + ',')
+                self.filename.write(trial310 + ',')
+                self.filename.write(trial311 + ',')
+                self.filename.write(trial41 + ',')
+                self.filename.write(trial42 + ',')
+                self.filename.write(trial43 + ',')
+                self.filename.write(trial44 + ',')
+                self.filename.write(trial45 + ',')
+                self.filename.write(trial46 + ',')
+                self.filename.write(trial47 + ',')
+                self.filename.close()
+                self.filename = open(
+                    f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\Filenames.txt",
+                    'a')
+                self.filename.write(
+                        f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\{self.studentdatabasename}.txt" + '\n')
+                self.filename.close()
 
-                        # list_names = ['date','P1_1','P1_2','P1_3','P1_4','P1_5','P1_6','P2_1','P2_2','P2_3','P2_4','P3_1','P3_2','P3_3','P3_4','P3_5','P3_6','P3_7','P3_8','P3_9','P3_10','P3_11','P4_1','P4_2','P4_3','P4_4','P4_5','P4_6','P4_7']
+                # list_names = ['date','P1_1','P1_2','P1_3','P1_4','P1_5','P1_6','P2_1','P2_2','P2_3','P2_4','P3_1','P3_2','P3_3','P3_4','P3_5','P3_6','P3_7','P3_8','P3_9','P3_10','P3_11','P4_1','P4_2','P4_3','P4_4','P4_5','P4_6','P4_7']
 
-                        list_data = [studentname, dateNow, trial11, trial12,
-                                     trial13, trial14,
-                                     trial15, trial16, trial21, trial22,
-                                     trial23, trial24,
-                                     trial31, trial32, trial33, trial34,
-                                     trial35, trial36,
-                                     trial37, trial38, trial39, trial310,
-                                     trial311,
-                                     trial41, trial42, trial43, trial44,
-                                     trial45, trial46,
-                                     trial47]
+                list_data = [dateNow, trial11, trial12,
+                             trial13, trial14,
+                             trial15, trial16, trial21, trial22,
+                             trial23, trial24,
+                             trial31, trial32, trial33, trial34,
+                             trial35, trial36,
+                             trial37, trial38, trial39, trial310,
+                             trial311,
+                             trial41, trial42, trial43, trial44,
+                             trial45, trial46,
+                             trial47]
 
-                        os.chdir(USER_DIR)
-                        with open(
-                                f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\ScreenReaderSkillsProgression.csv",
-                                'a',
-                                newline='') as f_setup:
-                            writer_setup = writer(f_setup)
-                            writer_setup.writerow(list_data)
-                            f_setup.close()
+                os.chdir(USER_DIR)
+                with open(
+                        f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\ScreenReaderSkillsProgression.csv",
+                        'a',
+                        newline='') as f_setup:
+                    writer_setup = writer(f_setup)
+                    writer_setup.writerow(list_data)
+                    f_setup.close()
 
-                        self.dial = wx.MessageDialog(None,
-                                                     'Saved successfully!',
-                                                     'Info', wx.OK)
-                        self.dial.ShowModal()
-                    else:
-                        self.dial = wx.MessageDialog(None,
-                                                     'Name already exists',
-                                                     'Info', wx.OK)
-                        self.dial.ShowModal()
-                else:
-                    self.dial = wx.MessageDialog(None, 'Save cancelled', 'Info',
-                                                 wx.OK)
-                    self.dial.ShowModal()
+                self.dial = wx.MessageDialog(None,
+                                             'Saved successfully!',
+                                             'Info', wx.OK)
+                self.dial.ShowModal()
+            else:
+                self.dial = wx.MessageDialog(None,
+                                                 'Name already exists',
+                                                 'Info', wx.OK)
+                self.dial.ShowModal()
         else:
-            self.dial = wx.MessageDialog(None, 'Fill Required Fields!', 'Info',
-                                         wx.OK)
+            self.dial = wx.MessageDialog(None, 'Save cancelled', 'Info',
+                                             wx.OK)
             self.dial.ShowModal()
 
         def data_entry():
@@ -2190,151 +2182,151 @@ class screenreaderPanel(scrolled.ScrolledPanel):
                 # print_grid=True
         )
 
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1.1"],
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1_1"],
                                  mode="lines+markers", name="Turn ON/OFF",
                                  legendgroup="Phase 1a",
                                  legendgrouptitle_text="Phase 1a"), row=1,
                       col=1)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1.2"],
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1_2"],
                                  mode="lines+markers", name="Use Modifier Keys",
                                  legendgroup="Phase 1a",
                                  legendgrouptitle_text="Phase 1a"), row=1,
                       col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1.3"],
+                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1_3"],
                            mode="lines+markers", name="Use Reading Commands",
                            legendgroup="Phase 1a",
                            legendgrouptitle_text="Phase 1a"), row=1, col=1)
 
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1.4"],
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1_4"],
                                  mode="lines+markers", name="ID Titles",
                                  legendgroup="Phase 1b",
                                  legendgrouptitle_text=" "), row=2, col=1)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1.5"],
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1_5"],
                                  mode="lines+markers", name="Access Documents",
                                  legendgroup="Phase 1b",
                                  legendgrouptitle_text=" "), row=2, col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1.6"],
+                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1_6"],
                            mode="lines+markers", name="Switch Program Focus",
                            legendgroup="Phase 1b", legendgrouptitle_text=" "),
                 row=2, col=1)
 
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P2.1"],
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P2_1"],
                                  mode="lines+markers",
                                  name="Type with all keys",
                                  legendgroup="Phase 2",
                                  legendgrouptitle_text="Phase 2"), row=1, col=2)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P2.2"],
+                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P2_2"],
                            mode="lines+markers",
                            name="Change Screen Reader Settings",
                            legendgroup="Phase 2",
                            legendgrouptitle_text="Phase 2"), row=1, col=2)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P2.3"],
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P2_3"],
                                  mode="lines+markers", name="Write documents",
                                  legendgroup="Phase 2",
                                  legendgrouptitle_text="Phase 2"), row=1, col=2)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P2.4"],
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P2_4"],
                                  mode="lines+markers", name="Copy/Paste Text",
                                  legendgroup="Phase 2",
                                  legendgrouptitle_text="Phase 2"), row=1, col=2)
 
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3.4"],
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_4"],
                                  mode="lines+markers", name="TAB Navigation",
                                  legendgroup="Phase 3a",
                                  legendgrouptitle_text="Phase 3a"), row=3,
                       col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3.5"],
+                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_5"],
                            mode="lines+markers", name="Quick Key Navigation",
                            legendgroup="Phase 3a",
                            legendgrouptitle_text="Phase 3a"), row=3, col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3.6"],
+                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_6"],
                            mode="lines+markers",
                            name="Elements List Navigation",
                            legendgroup="Phase 3a",
                            legendgrouptitle_text="Phase 3a"), row=3, col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3.7"],
+                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_7"],
                            mode="lines+markers",
                            name="Justify Navigation Method",
                            legendgroup="Phase 3a",
                            legendgrouptitle_text="Phase 3a"), row=3, col=1)
 
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3.1"],
+                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_1"],
                            mode="lines+markers", name="Define HTML Elements",
                            legendgroup="Phase 3b",
                            legendgrouptitle_text="Phase 3b"), row=3, col=2)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3.2"],
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_2"],
                                  mode="lines+markers", name="ID HTML Elements",
                                  legendgroup="Phase 3b",
                                  legendgrouptitle_text="Phase 3b"), row=3,
                       col=2)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3.3"],
+                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_3"],
                            mode="lines+markers", name="Navigate to Address Bar",
                            legendgroup="Phase 3b",
                            legendgrouptitle_text="Phase 3b"), row=3, col=2)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3.8"],
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_8"],
                                  mode="lines+markers", name="ALT-TAB Focus",
                                  legendgroup="Phase 3b",
                                  legendgrouptitle_text="Phase 3b"), row=3,
                       col=2)
 
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3.9"],
+                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_9"],
                            mode="lines+markers",
                            name="Toggle Screen Reader Mode",
                            legendgroup="Phase 3c",
                            legendgrouptitle_text="Phase 3c"), row=4, col=2)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3.10"],
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_10"],
                                  mode="lines+markers", name="Navigate a Table",
                                  legendgroup="Phase 3c",
                                  legendgrouptitle_text="Phase 3c"), row=4,
                       col=2)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3.11"],
+                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_11"],
                            mode="lines+markers", name="Navigation Sequence",
                            legendgroup="Phase 3c",
                            legendgrouptitle_text="Phase 3c"), row=4, col=2)
 
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P4.1"],
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P4_1"],
                                  mode="lines+markers",
                                  name="Save and Open Files",
                                  legendgroup="Phase 4a",
                                  legendgrouptitle_text="Phase 4a"), row=5,
                       col=1)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P4.2"],
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P4_2"],
                                  mode="lines+markers", name="Create Folders",
                                  legendgroup="Phase 4a",
                                  legendgrouptitle_text="Phase 4a"), row=5,
                       col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P4.3"],
+                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P4_3"],
                            mode="lines+markers", name="Navigate Cloud Storage",
                            legendgroup="Phase 4a",
                            legendgrouptitle_text="Phase 4a"), row=5, col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P4.4"],
+                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P4_4"],
                            mode="lines+markers", name="Download from Internet",
                            legendgroup="Phase 4a",
                            legendgrouptitle_text="Phase 4a"), row=5, col=1)
 
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P4.5"],
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P4_5"],
                                  mode="lines+markers", name="UNZIP Folders",
                                  legendgroup="Phase 4b",
                                  legendgrouptitle_text="Phase 4b"), row=5,
                       col=2)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P4.6"],
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P4_6"],
                                  mode="lines+markers",
                                  name="Use Virtual Cursor",
                                  legendgroup="Phase 4b",
                                  legendgrouptitle_text="Phase 4b"), row=5,
                       col=2)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P4.7"],
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P4_7"],
                                  mode="lines+markers", name="Use Built-In OCR",
                                  legendgroup="Phase 4b",
                                  legendgrouptitle_text="Phase 4b"), row=5,
@@ -2803,106 +2795,106 @@ class abacusPanel(scrolled.ScrolledPanel):
                 # print_grid=True
         )
 
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1.1"],
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1_1"],
                                  mode="lines+markers", name="Setting Numbers",
                                  legendgroup="Phase 1",
                                  legendgrouptitle_text="Phase 1"), row=1, col=1)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1.2"],
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1_2"],
                                  mode="lines+markers", name="Clearing Beads",
                                  legendgroup="Phase 1",
                                  legendgrouptitle_text="Phase 1"), row=1, col=1)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1.3"],
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1_3"],
                                  mode="lines+markers", name="Place Value",
                                  legendgroup="Phase 1",
                                  legendgrouptitle_text="Phase 1"), row=1, col=1)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1.4"],
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1_4"],
                                  mode="lines+markers", name="Vocabulary",
                                  legendgroup="Phase 1",
                                  legendgrouptitle_text="Phase 1"), row=1, col=1)
 
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P2.1"],
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P2_1"],
                                  mode="lines+markers", name="Setting Numbers",
                                  legendgroup="Phase 2",
                                  legendgrouptitle_text="Phase 2"), row=1, col=2)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P2.2"],
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P2_2"],
                                  mode="lines+markers", name="Clearing Beads",
                                  legendgroup="Phase 2",
                                  legendgrouptitle_text="Phase 2"), row=1, col=2)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P2.3"],
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P2_3"],
                                  mode="lines+markers", name="Place Value",
                                  legendgroup="Phase 2",
                                  legendgrouptitle_text="Phase 2"), row=1, col=2)
 
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3.1"],
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_1"],
                                  mode="lines+markers", name="Setting Numbers",
                                  legendgroup="Phase 3",
                                  legendgrouptitle_text="Phase 3"), row=2, col=1)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3.2"],
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_2"],
                                  mode="lines+markers", name="Clearing Beads",
                                  legendgroup="Phase 3",
                                  legendgrouptitle_text="Phase 3"), row=2, col=1)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3.3"],
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_3"],
                                  mode="lines+markers", name="Place Value",
                                  legendgroup="Phase 3",
                                  legendgrouptitle_text="Phase 3"), row=2, col=1)
 
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P4.1"],
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P4_1"],
                                  mode="lines+markers", name="Setting Numbers",
                                  legendgroup="Phase 4",
                                  legendgrouptitle_text="Phase 4"), row=2, col=2)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P4.2"],
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P4_2"],
                                  mode="lines+markers", name="Clearing Beads",
                                  legendgroup="Phase 4",
                                  legendgrouptitle_text="Phase 4"), row=2, col=2)
 
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P5.1"],
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P5_1"],
                                  mode="lines+markers", name="Place Value",
                                  legendgroup="Phase 5",
                                  legendgrouptitle_text="Phase 5"), row=3, col=1)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P5.2"],
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P5_2"],
                                  mode="lines+markers", name="Vocabulary",
                                  legendgroup="Phase 5",
                                  legendgrouptitle_text="Phase 5"), row=3, col=1)
 
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P6.1"],
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P6_1"],
                                  mode="lines+markers", name="Setting Numbers",
                                  legendgroup="Phase 6",
                                  legendgrouptitle_text="Phase 6"), row=3, col=2)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P6.2"],
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P6_2"],
                                  mode="lines+markers", name="Clearing Beads",
                                  legendgroup="Phase 6",
                                  legendgrouptitle_text="Phase 6"), row=3, col=2)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P6.3"],
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P6_3"],
                                  mode="lines+markers", name="Place Value",
                                  legendgroup="Phase 6",
                                  legendgrouptitle_text="Phase 6"), row=3, col=2)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P6.4"],
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P6_4"],
                                  mode="lines+markers", name="Vocabulary",
                                  legendgroup="Phase 6",
                                  legendgrouptitle_text="Phase 6"), row=3, col=2)
 
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P7.1"],
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P7_1"],
                                  mode="lines+markers", name="Setting Numbers",
                                  legendgroup="Phase 7",
                                  legendgrouptitle_text="Phase 7"), row=4, col=1)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P7.2"],
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P7_2"],
                                  mode="lines+markers", name="Clearing Beads",
                                  legendgroup="Phase 7",
                                  legendgrouptitle_text="Phase 7"), row=4, col=1)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P7.3"],
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P7_3"],
                                  mode="lines+markers", name="Place Value",
                                  legendgroup="Phase 7",
                                  legendgrouptitle_text="Phase 7"), row=4, col=1)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P7.4"],
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P7_4"],
                                  mode="lines+markers", name="Vocabulary",
                                  legendgroup="Phase 7",
                                  legendgrouptitle_text="Phase 7"), row=4, col=1)
 
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P8.1"],
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P8_1"],
                                  mode="lines+markers", name="Setting Numbers",
                                  legendgroup="Phase 8",
                                  legendgrouptitle_text="Phase 8"), row=4, col=2)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P8.2"],
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P8_2"],
                                  mode="lines+markers", name="Clearing Beads",
                                  legendgroup="Phase 8",
                                  legendgrouptitle_text="Phase 8"), row=4, col=2)

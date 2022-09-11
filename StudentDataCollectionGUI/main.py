@@ -78,7 +78,7 @@ for name in students_all:
     if not os.path.exists(
             f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{name}\\ScreenReaderSkillsProgression.csv"):
         filename = open(
-            f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{name}\\ScrenReaderSkillsProgression.csv",
+            f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{name}\\ScreenReaderSkillsProgression.csv",
             'w')
         list_names = ['date', 'P1_1', 'P1_2', 'P1_3', 'P1_4', 'P1_5', 'P1_6',
                       'P2_1', 'P2_2', 'P2_3', 'P2_4', 'P3_1',
@@ -86,7 +86,7 @@ for name in students_all:
                       'P3_9', 'P3_10', 'P3_11', 'P4_1', 'P4_2',
                       'P4_3', 'P4_4', 'P4_5', 'P4_6', 'P4_7']
         with open(
-                f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{name}\\ScrenReaderSkillsProgression.csv",
+                f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{name}\\ScreenReaderSkillsProgression.csv",
                 'a',
                 newline='') as f_object:
             writer_setup = writer(f_object)
@@ -160,7 +160,7 @@ def create_table(conn, sql_create_sql_table):
 def main():
     sql_create_studentdata_table = "CREATE TABLE IF NOT EXISTS studentdata (id INTEGER PRIMARY KEY AUTOINCREMENT, studentname TEXT NOT NULL, date TEXT NOT NULL, task TEXT NOT NULL, lesson TEXT NOT NULL, session TEXT NOT NULL, trial01 INTEGER, trial02 INTEGER, trial03 INTEGER, trial04 INTEGER, trial05 INTEGER, trial06 INTEGER, trial07 INTEGER, trial08 INTEGER, trial09 INTEGER, trial10 INTEGER, trial11 INTEGER, median FLOAT, notes TEXT NOT NULL );"
     sql_create_brailledata_table = "CREATE TABLE IF NOT EXISTS brailleProgress (id INTEGER PRIMARY KEY AUTOINCREMENT, studentname TEXT NOT NULL, date TEXT NOT NULL,P1_1 INTEGER,P1_2 INTEGER,P1_3 INTEGER,P1_4 INTEGER,P2_1 INTEGER,P2_2 INTEGER,P2_3 INTEGER,P2_4 INTEGER,P2_5 INTEGER,P2_6 INTEGER,P2_7 INTEGER,P2_8 INTEGER,P2_9 INTEGER,P2_10 INTEGER,P2_11 INTEGER,P2_12 INTEGER,P2_13 INTEGER,P2_14 INTEGER,P2_15 INTEGER,P3_1 INTEGER,P3_2 INTEGER,P3_3 INTEGER,P3_4 INTEGER,P3_5 INTEGER,P3_6 INTEGER,P3_7 INTEGER,P3_8 INTEGER,P3_9 INTEGER,P3_10 INTEGER,P3_11 INTEGER,P3_12 INTEGER,P3_13 INTEGER,P3_14 INTEGER,P3_15 INTEGER,P4_1 INTEGER,P4_2 INTEGER,P4_3 INTEGER,P4_4 INTEGER,P5_1 INTEGER,P5_2 INTEGER,P5_3 INTEGER,P5_4 INTEGER,P6_1 INTEGER,P6_2 INTEGER,P6_3 INTEGER,P6_4 INTEGER,P6_5 INTEGER,P6_6 INTEGER,P6_7 INTEGER,P7_1 INTEGER,P7_2 INTEGER,P7_3 INTEGER,P7_4 INTEGER,P7_5 INTEGER,P7_6 INTEGER,P7_7 INTEGER,P7_8 INTEGER,P8_1 INTEGER,P8_2 INTEGER,P8_3 INTEGER,P8_4 INTEGER,P8_5 INTEGER,P8_6 INTEGER,P8_7 );"
-    sql_create_screenreaderdata_table = "CREATE TABLE IF NOT EXISTS screenreaderProgress (id INTEGER PRIMARY KEY AUTOINCREMENT, studentname TEXT NOT NULL, date TEXT NOT NULL,P1_1 INTEGER,P1_2 INTEGER,P1_3 INTEGER,P1_4 INTEGER,P2_1 INTEGER,P2_2 INTEGER,P2_3 INTEGER,P2_4 INTEGER,P2_5 INTEGER,P2_6 INTEGER,P2_7 INTEGER,P2_8 INTEGER,P2_9 INTEGER,P2_10 INTEGER,P2_11 INTEGER,P2_12 INTEGER,P2_13 INTEGER,P2_14 INTEGER,P2_15 INTEGER,P3_1 INTEGER,P3_2 INTEGER,P3_3 INTEGER,P3_4 INTEGER,P3_5 INTEGER,P3_6 INTEGER,P3_7 INTEGER,P3_8 INTEGER,P3_9 INTEGER,P3_10 INTEGER,P3_11 INTEGER,P3_12 INTEGER,P3_13 INTEGER,P3_14 INTEGER,P3_15 INTEGER,P4_1 INTEGER,P4_2 INTEGER,P4_3 INTEGER,P4_4 INTEGER,P5_1 INTEGER,P5_2 INTEGER,P5_3 INTEGER,P5_4 INTEGER,P6_1 INTEGER,P6_2 INTEGER,P6_3 INTEGER,P6_4 INTEGER,P6_5 INTEGER,P6_6 INTEGER,P6_7 INTEGER,P7_1 INTEGER,P7_2 INTEGER,P7_3 INTEGER,P7_4 INTEGER,P7_5 INTEGER,P7_6 INTEGER,P7_7 INTEGER,P7_8 INTEGER,P8_1 INTEGER,P8_2 INTEGER,P8_3 INTEGER,P8_4 INTEGER,P8_5 INTEGER,P8_6 INTEGER,P8_7 );"
+    sql_create_screenreaderdata_table = "CREATE TABLE IF NOT EXISTS screenreaderProgress (id INTEGER PRIMARY KEY AUTOINCREMENT, studentname TEXT NOT NULL, date TEXT NOT NULL,P1_1 INTEGER,P1_2 INTEGER,P1_3 INTEGER,P1_4 INTEGER,P1_4 INTEGER,P2_1 INTEGER,P2_2 INTEGER,P2_3 INTEGER,P2_4 INTEGER,P2_5 INTEGER,P2_6 INTEGER,P2_7 INTEGER,P2_8 INTEGER,P2_9 INTEGER,P2_10 INTEGER,P2_11 INTEGER,P2_12 INTEGER,P2_13 INTEGER,P2_14 INTEGER,P2_15 INTEGER,P3_1 INTEGER,P3_2 INTEGER,P3_3 INTEGER,P3_4 INTEGER,P3_5 INTEGER,P3_6 INTEGER,P3_7 INTEGER,P3_8 INTEGER,P3_9 INTEGER,P3_10 INTEGER,P3_11 INTEGER,P3_12 INTEGER,P3_13 INTEGER,P3_14 INTEGER,P3_15 INTEGER,P4_1 INTEGER,P4_2 INTEGER,P4_3 INTEGER,P4_4 INTEGER,P5_1 INTEGER,P5_2 INTEGER,P5_3 INTEGER,P5_4 INTEGER,P6_1 INTEGER,P6_2 INTEGER,P6_3 INTEGER,P6_4 INTEGER,P6_5 INTEGER,P6_6 INTEGER,P6_7 INTEGER,P7_1 INTEGER,P7_2 INTEGER,P7_3 INTEGER,P7_4 INTEGER,P7_5 INTEGER,P7_6 INTEGER,P7_7 INTEGER,P7_8 INTEGER,P8_1 INTEGER,P8_2 INTEGER,P8_3 INTEGER,P8_4 INTEGER,P8_5 INTEGER,P8_6 INTEGER,P8_7 );"
     sql_create_abacusdata_table = "CREATE TABLE IF NOT EXISTS abacusProgress (id INTEGER PRIMARY KEY AUTOINCREMENT, studentname TEXT NOT NULL, date TEXT NOT NULL,P1_1 INTEGER,P1_2 INTEGER,P1_3 INTEGER,P1_4 INTEGER,P2_1 INTEGER,P2_2 INTEGER,P2_3 INTEGER,P2_4 INTEGER,P2_5 INTEGER,P2_6 INTEGER,P2_7 INTEGER,P2_8 INTEGER,P2_9 INTEGER,P2_10 INTEGER,P2_11 INTEGER,P2_12 INTEGER,P2_13 INTEGER,P2_14 INTEGER,P2_15 INTEGER,P3_1 INTEGER,P3_2 INTEGER,P3_3 INTEGER,P3_4 INTEGER,P3_5 INTEGER,P3_6 INTEGER,P3_7 INTEGER,P3_8 INTEGER,P3_9 INTEGER,P3_10 INTEGER,P3_11 INTEGER,P3_12 INTEGER,P3_13 INTEGER,P3_14 INTEGER,P3_15 INTEGER,P4_1 INTEGER,P4_2 INTEGER,P4_3 INTEGER,P4_4 INTEGER,P5_1 INTEGER,P5_2 INTEGER,P5_3 INTEGER,P5_4 INTEGER,P6_1 INTEGER,P6_2 INTEGER,P6_3 INTEGER,P6_4 INTEGER,P6_5 INTEGER,P6_6 INTEGER,P6_7 INTEGER,P7_1 INTEGER,P7_2 INTEGER,P7_3 INTEGER,P7_4 INTEGER,P7_5 INTEGER,P7_6 INTEGER,P7_7 INTEGER,P7_8 INTEGER,P8_1 INTEGER,P8_2 INTEGER,P8_3 INTEGER,P8_4 INTEGER,P8_5 INTEGER,P8_6 INTEGER,P8_7 );"
 
     conn = create_connection(f"{USER_DIR}\\StudentDatabase\\students.db")
@@ -2103,6 +2103,30 @@ class screenreaderPanel(scrolled.ScrolledPanel):
                         self.filename.write(
                                 f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\{self.studentdatabasename}.txt" + '\n')
                         self.filename.close()
+
+                        # list_names = ['date','P1_1','P1_2','P1_3','P1_4','P1_5','P1_6','P2_1','P2_2','P2_3','P2_4','P3_1','P3_2','P3_3','P3_4','P3_5','P3_6','P3_7','P3_8','P3_9','P3_10','P3_11','P4_1','P4_2','P4_3','P4_4','P4_5','P4_6','P4_7']
+
+                        list_data = [studentname, dateNow, trial11, trial12,
+                                     trial13, trial14,
+                                     trial15, trial16, trial21, trial22,
+                                     trial23, trial24,
+                                     trial31, trial32, trial33, trial34,
+                                     trial35, trial36,
+                                     trial37, trial38, trial39, trial310,
+                                     trial311,
+                                     trial41, trial42, trial43, trial44,
+                                     trial45, trial46,
+                                     trial47]
+
+                        os.chdir(USER_DIR)
+                        with open(
+                                f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\ScreenReaderSkillsProgression.csv",
+                                'a',
+                                newline='') as f_setup:
+                            writer_setup = writer(f_setup)
+                            writer_setup.writerow(list_data)
+                            f_setup.close()
+
                         self.dial = wx.MessageDialog(None,
                                                      'Saved successfully!',
                                                      'Info', wx.OK)
@@ -2125,7 +2149,7 @@ class screenreaderPanel(scrolled.ScrolledPanel):
             conn = sqlite3.connect(f"{USER_DIR}\\StudentDatabase\\students.db")
             c = conn.cursor()
             c.execute(
-                    "INSERT INTO brailleProgress (studentname,date,P1_1,P1_2,P1_3,P1_4,P1_5,P1_6,P2_1,P2_2,P2_3,P2_4,P3_1,P3_2,P3_3,P3_4,P3_5,P3_6,P3_7,P3_8,P3_9,P3_10,P3_11,P4_1,P4_2,P4_3,P4_4,P4_5,P4_6,P4_7) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                    "INSERT INTO screenreaderProgress (studentname,date,P1_1,P1_2,P1_3,P1_4,P1_5,P1_6,P2_1,P2_2,P2_3,P2_4,P3_1,P3_2,P3_3,P3_4,P3_5,P3_6,P3_7,P3_8,P3_9,P3_10,P3_11,P4_1,P4_2,P4_3,P4_4,P4_5,P4_6,P4_7) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
                     (studentname, dateNow, trial11, trial12, trial13, trial14,
                      trial15, trial16, trial21, trial22, trial23,
                      trial24,
@@ -2137,25 +2161,7 @@ class screenreaderPanel(scrolled.ScrolledPanel):
 
         data_entry()
 
-        # list_names = ['date','P1_1','P1_2','P1_3','P1_4','P1_5','P1_6','P2_1','P2_2','P2_3','P2_4','P3_1','P3_2','P3_3','P3_4','P3_5','P3_6','P3_7','P3_8','P3_9','P3_10','P3_11','P4_1','P4_2','P4_3','P4_4','P4_5','P4_6','P4_7']
 
-        list_data = [studentname, dateNow, trial11, trial12, trial13, trial14,
-                     trial15, trial16, trial21, trial22,
-                     trial23, trial24,
-                     trial31, trial32, trial33, trial34, trial35, trial36,
-                     trial37, trial38, trial39, trial310,
-                     trial311,
-                     trial41, trial42, trial43, trial44, trial45, trial46,
-                     trial47]
-
-        os.chdir(USER_DIR)
-        with open(
-                f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\ScreenReaderSkillsProgression.csv",
-                'a',
-                newline='') as f_setup:
-            writer_setup = writer(f_setup)
-            writer_setup.writerow(list_data)
-            f_setup.close()
 
     def graph(self, event):
         studentname = self.studentname1.GetString(
@@ -2720,6 +2726,29 @@ class abacusPanel(scrolled.ScrolledPanel):
                         self.filename.write(
                                 f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\{self.studentdatabasename}.txt" + '\n')
                         self.filename.close()
+                        list_names = ['date', 'P1_1', 'P1_2', 'P1_3', 'P1_4',
+                                      'P2_1', 'P2_2',
+                                      'P2_3', 'P3_1', 'P3_2', 'P3_3', 'P4_1',
+                                      'P4_2', 'P5_1', 'P5_2', 'P6_1', 'P6_2',
+                                      'P6_3', 'P6_4',
+                                      'P7_1', 'P7_2', 'P7_3', 'P7_4', 'P8_1',
+                                      'P8_2']
+                        list_data = [dateNow, trial11, trial12, trial13,
+                                     trial14, trial21,
+                                     trial22, trial23, trial31, trial32,
+                                     trial33,
+                                     trial41, trial42, trial51, trial52,
+                                     trial61, trial62,
+                                     trial63, trial64, trial71, trial72,
+                                     trial73, trial74, trial81, trial82]
+                        os.chdir(USER_DIR)
+                        with open(
+                                f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\AbacusSkillsProgression.csv",
+                                'a',
+                                newline='') as f_setup:
+                            writer_setup = writer(f_setup)
+                            writer_setup.writerow(list_data)
+                            f_setup.close()
                         self.dial = wx.MessageDialog(None,
                                                      'Saved successfully!',
                                                      'Info', wx.OK)
@@ -2751,24 +2780,7 @@ class abacusPanel(scrolled.ScrolledPanel):
             conn.commit()
 
         data_entry()
-        list_names = ['date', 'P1_1', 'P1_2', 'P1_3', 'P1_4', 'P2_1', 'P2_2',
-                      'P2_3', 'P3_1', 'P3_2', 'P3_3', 'P4_1',
-                      'P4_2', 'P5_1', 'P5_2', 'P6_1', 'P6_2', 'P6_3', 'P6_4',
-                      'P7_1', 'P7_2', 'P7_3', 'P7_4', 'P8_1',
-                      'P8_2']
-        list_data = [dateNow, trial11, trial12, trial13, trial14, trial21,
-                     trial22, trial23, trial31, trial32, trial33,
-                     trial41, trial42, trial51, trial52, trial61, trial62,
-                     trial63, trial64, trial71, trial72,
-                     trial73, trial74, trial81, trial82]
-        os.chdir(USER_DIR)
-        with open(
-                f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\AbacusSkillsProgression.csv",
-                'a',
-                newline='') as f_setup:
-            writer_setup = writer(f_setup)
-            writer_setup.writerow(list_data)
-            f_setup.close()
+
 
     def graph(self, event):
         studentname = self.studentname1.GetString(

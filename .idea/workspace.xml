@@ -9,6 +9,7 @@
   <component name="ChangeListManager">
     <list default="true" id="fa304d23-fe14-4dd1-9cb8-16c0a72e419f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/StudentDataCollectionGUI/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/StudentDataCollectionGUI/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -205,7 +206,14 @@
       <option name="project" value="LOCAL" />
       <updated>1662756663843</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Linted Code">
+      <created>1662903375658</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1662903375661</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -231,12 +239,12 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/StudentDataCollectionGUI/main.py</url>
-          <line>3074</line>
+          <line>3086</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/StudentDataCollectionGUI/main.py</url>
-          <line>2505</line>
+          <line>2511</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>

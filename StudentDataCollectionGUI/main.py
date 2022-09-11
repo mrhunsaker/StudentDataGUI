@@ -159,9 +159,9 @@ def create_table(conn, sql_create_sql_table):
 
 def main():
     sql_create_studentdata_table = "CREATE TABLE IF NOT EXISTS studentdata (id INTEGER PRIMARY KEY AUTOINCREMENT, studentname TEXT NOT NULL, date TEXT NOT NULL, task TEXT NOT NULL, lesson TEXT NOT NULL, session TEXT NOT NULL, trial01 INTEGER, trial02 INTEGER, trial03 INTEGER, trial04 INTEGER, trial05 INTEGER, trial06 INTEGER, trial07 INTEGER, trial08 INTEGER, trial09 INTEGER, trial10 INTEGER, trial11 INTEGER, median FLOAT, notes TEXT NOT NULL );"
-    sql_create_brailledata_table = "CREATE TABLE IF NOT EXISTS brailleProgress (id INTEGER PRIMARY KEY AUTOINCREMENT, studentname TEXT NOT NULL, date TEXT NOT NULL,P1_1 INTEGER,P1_2 INTEGER,P1_3 INTEGER,P1_4 INTEGER,P2_1 INTEGER,P2_2 INTEGER,P2_3 INTEGER,P2_4 INTEGER,P2_5 INTEGER,P2_6 INTEGER,P2_7 INTEGER,P2_8 INTEGER,P2_9 INTEGER,P2_10 INTEGER,P2_11 INTEGER,P2_12 INTEGER,P2_13 INTEGER,P2_14 INTEGER,P2_15 INTEGER,P3_1 INTEGER,P3_2 INTEGER,P3_3 INTEGER,P3_4 INTEGER,P3_5 INTEGER,P3_6 INTEGER,P3_7 INTEGER,P3_8 INTEGER,P3_9 INTEGER,P3_10 INTEGER,P3_11 INTEGER,P3_12 INTEGER,P3_13 INTEGER,P3_14 INTEGER,P3_15 INTEGER,P4_1 INTEGER,P4_2 INTEGER,P4_3 INTEGER,P4_4 INTEGER,P5_1 INTEGER,P5_2 INTEGER,P5_3 INTEGER,P5_4 INTEGER,P6_1 INTEGER,P6_2 INTEGER,P6_3 INTEGER,P6_4 INTEGER,P6_5 INTEGER,P6_6 INTEGER,P6_7 INTEGER,P7_1 INTEGER,P7_2 INTEGER,P7_3 INTEGER,P7_4 INTEGER,P7_5 INTEGER,P7_6 INTEGER,P7_7 INTEGER,P7_8 INTEGER,P8_1 INTEGER,P8_2 INTEGER,P8_3 INTEGER,P8_4 INTEGER,P8_5 INTEGER,P8_6 INTEGER,P8_7 );"
-    sql_create_screenreaderdata_table = "CREATE TABLE IF NOT EXISTS screenreaderProgress (id INTEGER PRIMARY KEY AUTOINCREMENT, studentname TEXT NOT NULL, date TEXT NOT NULL,P1_1 INTEGER,P1_2 INTEGER,P1_3 INTEGER,P1_4 INTEGER,P1_5 INTEGER,P1_6 INTEGER,P2_1 INTEGER,P2_2 INTEGER,P2_3 INTEGER,P2_4 INTEGER,P2_5 INTEGER,P2_6 INTEGER,P2_7 INTEGER,P2_8 INTEGER,P2_9 INTEGER,P2_10 INTEGER,P2_11 INTEGER,P2_12 INTEGER,P2_13 INTEGER,P2_14 INTEGER,P2_15 INTEGER,P3_1 INTEGER,P3_2 INTEGER,P3_3 INTEGER,P3_4 INTEGER,P3_5 INTEGER,P3_6 INTEGER,P3_7 INTEGER,P3_8 INTEGER,P3_9 INTEGER,P3_10 INTEGER,P3_11 INTEGER,P3_12 INTEGER,P3_13 INTEGER,P3_14 INTEGER,P3_15 INTEGER,P4_1 INTEGER,P4_2 INTEGER,P4_3 INTEGER,P4_4 INTEGER,P5_1 INTEGER,P5_2 INTEGER,P5_3 INTEGER,P5_4 INTEGER,P6_1 INTEGER,P6_2 INTEGER,P6_3 INTEGER,P6_4 INTEGER,P6_5 INTEGER,P6_6 INTEGER,P6_7 INTEGER,P7_1 INTEGER,P7_2 INTEGER,P7_3 INTEGER,P7_4 INTEGER,P7_5 INTEGER,P7_6 INTEGER,P7_7 INTEGER,P7_8 INTEGER,P8_1 INTEGER,P8_2 INTEGER,P8_3 INTEGER,P8_4 INTEGER,P8_5 INTEGER,P8_6 INTEGER,P8_7 );"
-    sql_create_abacusdata_table = "CREATE TABLE IF NOT EXISTS abacusProgress (id INTEGER PRIMARY KEY AUTOINCREMENT, studentname TEXT NOT NULL, date TEXT NOT NULL,P1_1 INTEGER,P1_2 INTEGER,P1_3 INTEGER,P1_4 INTEGER,P2_1 INTEGER,P2_2 INTEGER,P2_3 INTEGER,P2_4 INTEGER,P2_5 INTEGER,P2_6 INTEGER,P2_7 INTEGER,P2_8 INTEGER,P2_9 INTEGER,P2_10 INTEGER,P2_11 INTEGER,P2_12 INTEGER,P2_13 INTEGER,P2_14 INTEGER,P2_15 INTEGER,P3_1 INTEGER,P3_2 INTEGER,P3_3 INTEGER,P3_4 INTEGER,P3_5 INTEGER,P3_6 INTEGER,P3_7 INTEGER,P3_8 INTEGER,P3_9 INTEGER,P3_10 INTEGER,P3_11 INTEGER,P3_12 INTEGER,P3_13 INTEGER,P3_14 INTEGER,P3_15 INTEGER,P4_1 INTEGER,P4_2 INTEGER,P4_3 INTEGER,P4_4 INTEGER,P5_1 INTEGER,P5_2 INTEGER,P5_3 INTEGER,P5_4 INTEGER,P6_1 INTEGER,P6_2 INTEGER,P6_3 INTEGER,P6_4 INTEGER,P6_5 INTEGER,P6_6 INTEGER,P6_7 INTEGER,P7_1 INTEGER,P7_2 INTEGER,P7_3 INTEGER,P7_4 INTEGER,P7_5 INTEGER,P7_6 INTEGER,P7_7 INTEGER,P7_8 INTEGER,P8_1 INTEGER,P8_2 INTEGER,P8_3 INTEGER,P8_4 INTEGER,P8_5 INTEGER,P8_6 INTEGER,P8_7 );"
+    sql_create_brailledata_table = "CREATE TABLE IF NOT EXISTS brailleProgress (id INTEGER PRIMARY KEY AUTOINCREMENT, studentname TEXT NOT NULL, date TEXT NOT NULL,P1_1 INTEGER,P1_2 INTEGER,P1_3 INTEGER,P1_4 INTEGER,P2_1 INTEGER,P2_2 INTEGER,P2_3 INTEGER,P2_4 INTEGER,P2_5 INTEGER,P2_6 INTEGER,P2_7 INTEGER,P2_8 INTEGER,P2_9 INTEGER,P2_10 INTEGER,P2_11 INTEGER,P2_12 INTEGER,P2_13 INTEGER,P2_14 INTEGER,P2_15 INTEGER,P3_1 INTEGER,P3_2 INTEGER,P3_3 INTEGER,P3_4 INTEGER,P3_5 INTEGER,P3_6 INTEGER,P3_7 INTEGER,P3_8 INTEGER,P3_9 INTEGER,P3_10 INTEGER,P3_11 INTEGER,P3_12 INTEGER,P3_13 INTEGER,P3_14 INTEGER,P3_15 INTEGER,P4_1 INTEGER,P4_2 INTEGER,P4_3 INTEGER,P4_4 INTEGER,P5_1 INTEGER,P5_2 INTEGER,P5_3 INTEGER,P5_4 INTEGER,P6_1 INTEGER,P6_2 INTEGER,P6_3 INTEGER,P6_4 INTEGER,P6_5 INTEGER,P6_6 INTEGER,P6_7 INTEGER,P7_1 INTEGER,P7_2 INTEGER,P7_3 INTEGER,P7_4 INTEGER,P7_5 INTEGER,P7_6 INTEGER,P7_7 INTEGER,P7_8 INTEGER,P8_1 INTEGER,P8_2 INTEGER,P8_3 INTEGER,P8_4 INTEGER,P8_5 INTEGER,P8_6 INTEGER,P8_7 INTEGER);"
+    sql_create_screenreaderdata_table = "CREATE TABLE IF NOT EXISTS screenreaderProgress (id INTEGER PRIMARY KEY AUTOINCREMENT, studentname TEXT NOT NULL, date TEXT NOT NULL,P1_1 INTEGER,P1_2 INTEGER,P1_3 INTEGER,P1_4 INTEGER,P1_5 INTEGER,P1_6 INTEGER,P2_1 INTEGER,P2_2 INTEGER,P2_3 INTEGER,P2_4 INTEGER,P3_1 INTEGER,P3_2 INTEGER,P3_3 INTEGER,P3_4 INTEGER,P3_5 INTEGER,P3_6 INTEGER,P3_7 INTEGER,P3_8 INTEGER,P3_9 INTEGER,P3_10 INTEGER,P3_11 INTEGER,P4_1 INTEGER,P4_2 INTEGER,P4_3 INTEGER,P4_4 INTEGER,P4_5 INTEGER,P4_6 INTEGER,P4_7 INTEGER);"
+    sql_create_abacusdata_table = "CREATE TABLE IF NOT EXISTS abacusProgress (id INTEGER PRIMARY KEY AUTOINCREMENT, studentname TEXT NOT NULL, date TEXT NOT NULL,P1_1 INTEGER,P1_2 INTEGER,P1_3 INTEGER,P1_4 INTEGER,P2_1 INTEGER,P2_2 INTEGER,P2_3 INTEGER,P3_1 INTEGER,P3_2 INTEGER,P3_3 INTEGER,P4_1 INTEGER,P4_2 INTEGER,P5_1 INTEGER,P5_2 INTEGER,P6_1 INTEGER,P6_2 INTEGER,P6_3 INTEGER,P6_4 INTEGER,P7_1 INTEGER,P7_2 INTEGER,P7_3 INTEGER,P7_4 INTEGER,P8_1 INTEGER,P8_2 INTEGER );"
 
     conn = create_connection(f"{USER_DIR}\\StudentDatabase\\students.db")
     if conn is not None:
@@ -2179,7 +2179,7 @@ class screenreaderPanel(scrolled.ScrolledPanel):
                         "Phase 3b: Internet",
                         "Phase 3c: Internet", "Phase 4a: File Management",
                         "Phase 4b: File Management"),
-                # print_grid=True
+                print_grid=True
         )
 
         fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1_1"],
@@ -2499,6 +2499,7 @@ class screenreaderPanel(scrolled.ScrolledPanel):
 
         fig.write_html(
                 f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\ScreenReaderSkillsProgression.html")
+        fig.show()
 
 
 class abacusPanel(scrolled.ScrolledPanel):
@@ -2653,109 +2654,101 @@ class abacusPanel(scrolled.ScrolledPanel):
             self.studentdatabasename = box.GetValue()
             if not os.path.exists(
                     f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\{self.studentdatabasename}.txt"):
-                if box.ShowModal() == wx.ID_OK:
-                    self.studentdatabasename = box.GetValue()
-                    if not os.path.exists(
-                            f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\{self.studentdatabasename}.txt"):
-                        self.filename = open(
-                                f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\{self.studentdatabasename}.txt",
-                                'w')
-                        self.filename.write('studentname' + ',')
-                        self.filename.write('simpleDate' + ',')
-                        self.filename.write('trial11' + ',')
-                        self.filename.write('trial12' + ',')
-                        self.filename.write('trial13' + ',')
-                        self.filename.write('trial14' + ',')
-                        self.filename.write('trial21' + ',')
-                        self.filename.write('trial22' + ',')
-                        self.filename.write('trial23' + ',')
-                        self.filename.write('trial31' + ',')
-                        self.filename.write('trial32' + ',')
-                        self.filename.write('trial33' + ',')
-                        self.filename.write('trial41' + ',')
-                        self.filename.write('trial42' + ',')
-                        self.filename.write('trial51' + ',')
-                        self.filename.write('trial52' + ',')
-                        self.filename.write('trial61' + ',')
-                        self.filename.write('trial62' + ',')
-                        self.filename.write('trial63' + ',')
-                        self.filename.write('trial64' + ',')
-                        self.filename.write('trial71' + ',')
-                        self.filename.write('trial72' + ',')
-                        self.filename.write('trial73' + ',')
-                        self.filename.write('trial74' + ',')
-                        self.filename.write('trial81' + ',')
-                        self.filename.write('trial82' + ',')
-                        self.filename.write(studentname + ',')
-                        self.filename.write(trial11 + ',')
-                        self.filename.write(trial12 + ',')
-                        self.filename.write(trial13 + ',')
-                        self.filename.write(trial14 + ',')
-                        self.filename.write(trial21 + ',')
-                        self.filename.write(trial22 + ',')
-                        self.filename.write(trial23 + ',')
-                        self.filename.write(trial31 + ',')
-                        self.filename.write(trial32 + ',')
-                        self.filename.write(trial33 + ',')
-                        self.filename.write(trial41 + ',')
-                        self.filename.write(trial42 + ',')
-                        self.filename.write(trial51 + ',')
-                        self.filename.write(trial52 + ',')
-                        self.filename.write(trial61 + ',')
-                        self.filename.write(trial62 + ',')
-                        self.filename.write(trial63 + ',')
-                        self.filename.write(trial64 + ',')
-                        self.filename.write(trial71 + ',')
-                        self.filename.write(trial72 + ',')
-                        self.filename.write(trial73 + ',')
-                        self.filename.write(trial74 + ',')
-                        self.filename.write(trial81 + ',')
-                        self.filename.write(trial82 + ',')
-                        self.filename.close()
-                        self.filename = open(
-                            f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\Filenames.txt",
-                            'a')
-                        self.filename.write(
-                                f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\{self.studentdatabasename}.txt" + '\n')
-                        self.filename.close()
-                        list_names = ['date', 'P1_1', 'P1_2', 'P1_3', 'P1_4',
-                                      'P2_1', 'P2_2',
-                                      'P2_3', 'P3_1', 'P3_2', 'P3_3', 'P4_1',
-                                      'P4_2', 'P5_1', 'P5_2', 'P6_1', 'P6_2',
-                                      'P6_3', 'P6_4',
-                                      'P7_1', 'P7_2', 'P7_3', 'P7_4', 'P8_1',
-                                      'P8_2']
-                        list_data = [dateNow, trial11, trial12, trial13,
-                                     trial14, trial21,
-                                     trial22, trial23, trial31, trial32,
-                                     trial33,
-                                     trial41, trial42, trial51, trial52,
-                                     trial61, trial62,
-                                     trial63, trial64, trial71, trial72,
-                                     trial73, trial74, trial81, trial82]
-                        os.chdir(USER_DIR)
-                        with open(
-                                f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\AbacusSkillsProgression.csv",
-                                'a',
-                                newline='') as f_setup:
-                            writer_setup = writer(f_setup)
-                            writer_setup.writerow(list_data)
-                            f_setup.close()
-                        self.dial = wx.MessageDialog(None,
-                                                     'Saved successfully!',
-                                                     'Info', wx.OK)
-                        self.dial.ShowModal()
-                    else:
-                        self.dial = wx.MessageDialog(None,
-                                                     'Name already exists',
-                                                     'Info', wx.OK)
-                        self.dial.ShowModal()
-                else:
-                    self.dial = wx.MessageDialog(None, 'Save cancelled', 'Info',
-                                                 wx.OK)
-                    self.dial.ShowModal()
+                self.filename = open(
+                        f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\{self.studentdatabasename}.txt",
+                        'w')
+                self.filename.write('studentname' + ',')
+                self.filename.write('simpleDate' + ',')
+                self.filename.write('trial11' + ',')
+                self.filename.write('trial12' + ',')
+                self.filename.write('trial13' + ',')
+                self.filename.write('trial14' + ',')
+                self.filename.write('trial21' + ',')
+                self.filename.write('trial22' + ',')
+                self.filename.write('trial23' + ',')
+                self.filename.write('trial31' + ',')
+                self.filename.write('trial32' + ',')
+                self.filename.write('trial33' + ',')
+                self.filename.write('trial41' + ',')
+                self.filename.write('trial42' + ',')
+                self.filename.write('trial51' + ',')
+                self.filename.write('trial52' + ',')
+                self.filename.write('trial61' + ',')
+                self.filename.write('trial62' + ',')
+                self.filename.write('trial63' + ',')
+                self.filename.write('trial64' + ',')
+                self.filename.write('trial71' + ',')
+                self.filename.write('trial72' + ',')
+                self.filename.write('trial73' + ',')
+                self.filename.write('trial74' + ',')
+                self.filename.write('trial81' + ',')
+                self.filename.write('trial82' + ',')
+                self.filename.write(studentname + ',')
+                self.filename.write(trial11 + ',')
+                self.filename.write(trial12 + ',')
+                self.filename.write(trial13 + ',')
+                self.filename.write(trial14 + ',')
+                self.filename.write(trial21 + ',')
+                self.filename.write(trial22 + ',')
+                self.filename.write(trial23 + ',')
+                self.filename.write(trial31 + ',')
+                self.filename.write(trial32 + ',')
+                self.filename.write(trial33 + ',')
+                self.filename.write(trial41 + ',')
+                self.filename.write(trial42 + ',')
+                self.filename.write(trial51 + ',')
+                self.filename.write(trial52 + ',')
+                self.filename.write(trial61 + ',')
+                self.filename.write(trial62 + ',')
+                self.filename.write(trial63 + ',')
+                self.filename.write(trial64 + ',')
+                self.filename.write(trial71 + ',')
+                self.filename.write(trial72 + ',')
+                self.filename.write(trial73 + ',')
+                self.filename.write(trial74 + ',')
+                self.filename.write(trial81 + ',')
+                self.filename.write(trial82 + ',')
+                self.filename.close()
+                self.filename = open(
+                    f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\Filenames.txt",
+                    'a')
+                self.filename.write(
+                        f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\{self.studentdatabasename}.txt" + '\n')
+                self.filename.close()
+                list_names = ['date', 'P1_1', 'P1_2', 'P1_3', 'P1_4',
+                              'P2_1', 'P2_2',
+                              'P2_3', 'P3_1', 'P3_2', 'P3_3', 'P4_1',
+                              'P4_2', 'P5_1', 'P5_2', 'P6_1', 'P6_2',
+                              'P6_3', 'P6_4',
+                              'P7_1', 'P7_2', 'P7_3', 'P7_4', 'P8_1',
+                              'P8_2']
+                list_data = [dateNow, trial11, trial12, trial13,
+                             trial14, trial21,
+                             trial22, trial23, trial31, trial32,
+                             trial33,
+                             trial41, trial42, trial51, trial52,
+                             trial61, trial62,
+                             trial63, trial64, trial71, trial72,
+                             trial73, trial74, trial81, trial82]
+                os.chdir(USER_DIR)
+                with open(
+                        f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\AbacusSkillsProgression.csv",
+                        'a',
+                        newline='') as f_setup:
+                    writer_setup = writer(f_setup)
+                    writer_setup.writerow(list_data)
+                    f_setup.close()
+                self.dial = wx.MessageDialog(None,
+                                             'Saved successfully!',
+                                             'Info', wx.OK)
+                self.dial.ShowModal()
+            else:
+                self.dial = wx.MessageDialog(None,
+                                             'Name already exists',
+                                             'Info', wx.OK)
+                self.dial.ShowModal()
         else:
-            self.dial = wx.MessageDialog(None, 'Fill Required Fields!', 'Info',
+            self.dial = wx.MessageDialog(None, 'Save cancelled', 'Info',
                                          wx.OK)
             self.dial.ShowModal()
 
@@ -2792,7 +2785,7 @@ class abacusPanel(scrolled.ScrolledPanel):
                         "Phase 3: Subtraction", "Phase 4: Multiplication",
                         "Phase 5: Division", "Phase 6: Decimals",
                         "Phase 7: Fractions", "Phase 8: Special Functions"),
-                # print_grid=True
+                print_grid=True
         )
 
         fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1_1"],
@@ -3066,9 +3059,7 @@ class abacusPanel(scrolled.ScrolledPanel):
 
         fig.write_html(
             f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\AbacusSkillsProgression.html")
-
-        # fig.show()
-
+        fig.show()
 
 class StudentDataBook(wx.Frame, wx.Accessible):
     def __init__(self, parent, title):

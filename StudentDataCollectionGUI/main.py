@@ -11,7 +11,7 @@ from plotly.subplots import make_subplots
 import plotly.graph_objects as go
 import wx.lib.scrolledpanel as scrolled
 import numpy as np
-from ".\\helpers\\helpers" import *
+from helpers import *
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -447,7 +447,7 @@ class braillePanel(scrolled.ScrolledPanel):
         vbox.Add((20, 20))
         self.SetSizer(vbox)
         self.SetupScrolling()
-        self.SetBackgroundColour(wx.Colour(241, 205, 234))
+        self.SetBackgroundColour(wx.Colour(229,204,255))
         # super(braillePanel, self).__init__(parent)
         wx.StaticText(self, -1, "Student Name", pos=(30, 50))
         self.studentname1 = wx.Choice(self, -1, choices=students_all,
@@ -1844,7 +1844,7 @@ class screenreaderPanel(scrolled.ScrolledPanel):
         vbox.Add((20, 20))
         self.SetSizer(vbox)
         self.SetupScrolling()
-        self.SetBackgroundColour(wx.Colour(241, 205, 234))
+        self.SetBackgroundColour(wx.Colour(204,255,255))
         wx.StaticText(self, -1, "Student Name", pos=(30, 50))
         self.studentname1 = wx.Choice(self, -1, choices=students_all,
                                       pos=(650, 50), size=(300, 20))
@@ -2125,7 +2125,7 @@ class screenreaderPanel(scrolled.ScrolledPanel):
             conn = sqlite3.connect(f"{USER_DIR}\\StudentDatabase\\students.db")
             c = conn.cursor()
             c.execute(
-                    "INSERT INTO brailleProgress (studentname,date,P1_1,P1_2,P1_3,P1_4,P1_5,P1_6,P2_1,P2_2,P2_3,P2_4,P3_1,P3_2,P3_3,P3_4,P3_5,P3_6,P3_7,P3_8,P3_9,P3_10,P3_11,P4_1,P4_2,P4_3,P4_4,P4_5,P4_6,P4_7) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                    "INSERT INTO brailleProgress (studentname,date,P1_1,P1_2,P1_3,P1_4,P1_5,P1_6,P2_1,P2_2,P2_3,P2_4,P3_1,P3_2,P3_3,P3_4,P3_5,P3_6,P3_7,P3_8,P3_9,P3_10,P3_11,P4_1,P4_2,P4_3,P4_4,P4_5,P4_6,P4_7) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
                     (studentname, dateNow, trial11, trial12, trial13, trial14,
                      trial15, trial16, trial21, trial22, trial23,
                      trial24,
@@ -2512,7 +2512,7 @@ class abacusPanel(scrolled.ScrolledPanel):
         vbox.Add((20, 20))
         self.SetSizer(vbox)
         self.SetupScrolling()
-        self.SetBackgroundColour(wx.Colour(241, 205, 234))
+        self.SetBackgroundColour(wx.Colour(204,255,204))
         wx.StaticText(self, -1, "Student Name", pos=(30, 50))
         self.studentname1 = wx.Choice(self, -1, choices=students_all,
                                       pos=(650, 50), size=(300, 20))
@@ -3073,7 +3073,7 @@ class StudentDataBook(wx.Frame, wx.Accessible):
         self.InitUI()
 
     def InitUI(self):
-        nb = wx.Notebook(self)
+        nb = wx.Notebook(self,style=wx.NB_LEFT)
         nb.AddPage(dataPanel(nb), "Data Entry Form")
         nb.AddPage(braillePanel(nb), "Braille Progression")
         nb.AddPage(screenreaderPanel(nb), "ScreenReader Progression")

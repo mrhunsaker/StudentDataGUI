@@ -3176,9 +3176,9 @@ Noah Palmer	    	20 min / month
         ◦ Given verbal support, Noah will solve math money problems using the dollar more strategy for amounts up to $15.00 dollars using 1, 5 and 10 dollar bills, on 4/5 daily trials over 3 consecutive weeks.
         ◦ Given verbal support, Noah will solve math money problems using the dollar more strategy for amounts up to $17.00 dollars using 1, 5 and 10 dollar bills, on 4/5 daily trials over 3 consecutive weeks.
          """)
-        font = wx.Font(14, family=wx.FONTFAMILY_MODERN, style=0, weight=90,underline=False, faceName="",  encoding = wx.FONTENCODING_DEFAULT)
+        font = wx.Font(10, family=wx.FONTFAMILY_MODERN, style=0, weight=90,underline=False, faceName="",  encoding = wx.FONTENCODING_DEFAULT)
         self.st.SetFont(font)
-        self.st.Wrap(1000)
+        self.st.Wrap(1200)
 class observationsPanel(scrolled.ScrolledPanel):
     def __init__(self, parent):
         scrolled.ScrolledPanel.__init__(self, parent, -1)
@@ -3217,7 +3217,7 @@ class observationsPanel(scrolled.ScrolledPanel):
             box = wx.TextEntryDialog(None,
                                      "Enter Address-Book name to save!",
                                      "Title",
-                                     f"{studentname.title()}{dateNow}")
+                                     f"observation{studentname.title()}{dateNow}")
             if box.ShowModal() == wx.ID_OK:
                 self.studentdatabasename = box.GetValue()
                 if not os.path.exists(

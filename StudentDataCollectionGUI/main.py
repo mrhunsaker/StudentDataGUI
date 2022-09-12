@@ -200,7 +200,7 @@ class dataPanel(wx.Panel):
         self.ln.SetSize((5, 900))
         self.ln.IsVertical()
         self.SetBackgroundColour(wx.Colour(241, 205, 234))
-        wx.StaticText(self, -1, "Session Information", pos=(170, 20))
+        wx.StaticText(self, -1, "GENERIC DATA ENTRY", pos=(170, 20))
         wx.StaticText(self, -1, "Student Name", pos=(30, 50))
         self.studentname1 = wx.Choice(self, -1, choices=students_all,
                                       pos=(130, 50), size=(300, 20))
@@ -343,9 +343,9 @@ class dataPanel(wx.Panel):
             if box.ShowModal() == wx.ID_OK:
                 self.studentdatabasename = box.GetValue()
                 if not os.path.exists(
-                        f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{name}\\{self.studentdatabasename}.txt"):
+                        f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\{self.studentdatabasename}.txt"):
                     self.filename = open(
-                            f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{name}\\{self.studentdatabasename}.txt",
+                            f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\{self.studentdatabasename}.txt",
                             'w')
                     self.filename.write('studentname' + ',')
                     self.filename.write('simpleDate' + ',')
@@ -388,8 +388,23 @@ class dataPanel(wx.Panel):
                         f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\Filenames.txt",
                         'a')
                     self.filename.write(
-                            f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{name}\\{self.studentdatabasename}.txt" + '\n')
+                            f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\{self.studentdatabasename}.txt" + '\n')
                     self.filename.close()
+                    list_data = [studentname, dateNow, task, lesson, session,
+                                 trial01,
+                                 trial02, trial03, trial04, trial05, trial06,
+                                 trial07, trial08, trial09, trial10, trial11,
+                                 trialmedian,
+                                 notes]
+                    os.chdir(USER_DIR)
+                    with open(
+                            f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\omnibusDatabase.csv",
+                            'a',
+                            newline='') as f_setup:
+                        writer_setup = writer(f_setup)
+                        writer_setup.writerow(list_data)
+                        f_setup.close()
+
                     self.dial = wx.MessageDialog(None, 'Saved successfully!',
                                                  'Info', wx.OK)
                     self.dial.ShowModal()
@@ -421,18 +436,7 @@ class dataPanel(wx.Panel):
 
         data_entry()
 
-        list_data = [studentname, dateNow, task, lesson, session, trial01,
-                     trial02, trial03, trial04, trial05, trial06,
-                     trial07, trial08, trial09, trial10, trial11, trialmedian,
-                     notes]
-        os.chdir(USER_DIR)
-        with open(
-                f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{name}\\omnibusDatabase.csv",
-                'a',
-                newline='') as f_setup:
-            writer_setup = writer(f_setup)
-            writer_setup.writerow(list_data)
-            f_setup.close()
+
 
     def OnChoice(self, event):
         self.label.SetLabel(self.choice.GetString(self.choice.GetSelection()))
@@ -449,10 +453,11 @@ class braillePanel(scrolled.ScrolledPanel):
         self.SetupScrolling()
         self.SetBackgroundColour(wx.Colour(229,204,255))
         # super(braillePanel, self).__init__(parent)
+        wx.StaticText(self, -1, "BRAILLE SKILLS PROGRESSION", pos=(200, 20))
         wx.StaticText(self, -1, "Student Name", pos=(30, 50))
         self.studentname1 = wx.Choice(self, -1, choices=students_all,
                                       pos=(650, 50), size=(300, 20))
-        wx.StaticText(self, -1, date, pos=(200, 50))
+        wx.StaticText(self, -1,f"Date: {date}", pos=(550, 20))
         wx.StaticText(self, -1, "1.1 Track Left to Right", pos=(30, 80))
         self.trial11 = wx.TextCtrl(self, -1, "0", pos=(650, 80), size=(300, 20))
         wx.StaticText(self, -1, "1.2 Track Top to Bottom", pos=(30, 110))
@@ -1845,10 +1850,11 @@ class screenreaderPanel(scrolled.ScrolledPanel):
         self.SetSizer(vbox)
         self.SetupScrolling()
         self.SetBackgroundColour(wx.Colour(204,255,255))
+        wx.StaticText(self, -1, "SCREENREADER SKILLS PROGRESSION", pos=(200, 20))
         wx.StaticText(self, -1, "Student Name", pos=(30, 50))
         self.studentname1 = wx.Choice(self, -1, choices=students_all,
                                       pos=(650, 50), size=(300, 20))
-        wx.StaticText(self, -1, date, pos=(200, 50))
+        wx.StaticText(self, -1, f"Date: {date}", pos=(550, 20))
         wx.StaticText(self, -1, "1.1 turn on and off the screen reader",
                       pos=(30, 80))
         self.trial11 = wx.TextCtrl(self, -1, "0", pos=(650, 80), size=(300, 20))
@@ -2512,11 +2518,11 @@ class abacusPanel(scrolled.ScrolledPanel):
         self.SetSizer(vbox)
         self.SetupScrolling()
         self.SetBackgroundColour(wx.Colour(204,255,204))
+        wx.StaticText(self, -1, "ABACUS SKILLS PROGRESSION", pos=(200, 20))
         wx.StaticText(self, -1, "Student Name", pos=(30, 50))
         self.studentname1 = wx.Choice(self, -1, choices=students_all,
                                       pos=(650, 50), size=(300, 20))
-        wx.StaticText(self, -1, date, pos=(200, 50))
-
+        wx.StaticText(self, -1,f"Date: {date}", pos=(550, 20))
         wx.StaticText(self, -1, "1.1 Setting NumbersNumbers", pos=(30, 80))
         self.trial11 = wx.TextCtrl(self, -1, "0", pos=(650, 80), size=(300, 20))
         wx.StaticText(self, -1, "1.2 Clearing Beads", pos=(30, 110))
@@ -3061,6 +3067,213 @@ class abacusPanel(scrolled.ScrolledPanel):
             f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\AbacusSkillsProgression.html")
         fig.show()
 
+class iepIntro(scrolled.ScrolledPanel):
+    def __init__(self, parent):
+        scrolled.ScrolledPanel.__init__(self, parent, -1)
+        vbox = wx.BoxSizer(wx.VERTICAL)
+        vbox.Add(wx.StaticLine(self, -1, size=(1500, -1)), 0, wx.ALL, 5)
+        vbox.Add(wx.StaticLine(self, -1, size=(-1, 2100)), 0, wx.ALL, 5)
+        vbox.Add((20, 20))
+        self.SetSizer(vbox)
+        self.SetupScrolling()
+        self.SetBackgroundColour(wx.Colour(255,255,204))
+        self.st = wx.StaticText(self, -1, """
+IEP CASELOAD 2022-2023
+###################################################################################################################################################################
+DAVIS HIGH
+
+Cole  Cooper    	30 min / month
+    • When presented with 2 objects, Cole will be able to utilize his central vision to locate an object with 70% accuracy as measured by the TVI and classroom teacher over 3 consecutive data sessions.
+        ◦ When presented with 2 objects, Cole will be able to utilize his central vision to locate an object with 50% accuracy as measured by the TVI and classroom teacher over 3 consecutive data sessions.
+        ◦ When presented with 2 objects, Cole will be able to utilize his central vision to locate an object with 60% accuracy as measured by the TVI and classroom teacher over 3 consecutive data sessions
+Landon Graham   	120 min / month
+    • Dino will, when presented with a blind-accessible media device, correctly activate the device, select media, start and pause media, and adjust volume unprompted with 85% accuracy as assessed quarterly by the vision teacher
+        ◦ Dino will, when presented with a blind-accessible media device, correctly activate the device, select media, start and pause media, and adjust volume with at most 2 teacher prompts with 85% accuracy as assessed quarterly by the vision teacher.
+        ◦ Dino will, when presented with a blind-accessible media device, correctly activate the device, and select media with at most 1 teacher prompt with 85% accuracy as assessed quarterly by the vision teacher.
+        ◦ Dino will, when presented with a blind-accessible media device, correctly activate the device, and select media with at most 3 teacher prompts with 85% accuracy as assessed quarterly by the vision teacher.
+Tarel Lewis	    	15 min / month
+    • Tarel, when given a choice between 3 or more objects, symbol requests (yes/no board), or other classroom activities, will clearly use his eye gaze to make a clear response with 80% accuracy over 3 consecutive data sessions with classroom teacher or TVI by March of 2023.
+        ◦ Tarel will visually explore 3 or more visually engaging/age appropriate objects when presented at the same time for at least 15 seconds without becoming overwhelmed on 80% of opportunities over 3 data sessions with classroom teacher or TVI.
+        ◦ Tarel will visually explore 3 or more visually complex objects (multicolored, no auditory component, 6 inches or smaller in size, etc.) when presented at the same time on 60% of opportunities over 3 consecutive data sessions with the classroom teacher or TVI.
+
+DOXEY ELEMENTARY
+
+Dylan Penaloza-Diaz	    	40 min / month
+    • Dylan will independently complete eye-hand coordination matching activities and/or locating a specific letter, word, or icon on a communication board with 70% accuracy on by completing 4/5 requests across 3 data sessions.
+        ◦ Dylan will independently complete eye-hand coordination matching activities and/or locating a specific letter, word, or icon on a communication board with 30% accuracy on by completing 4/5 requests across 3 data sessions.
+        ◦ Dylan will independently complete eye-hand coordination matching activities and/or locating a specific letter, word, or icon on a communication board with 50% accuracy on by completing 4/5 requests across 3 data sessions.
+
+FREMONT ELEMENTARY
+
+Carter Costello	    	120 min / month
+    • Carter will identify the braille letters of his name with 80% accuracy in 4/5 trials as measured by classroom data. (EE.RF.1.3)
+        ◦ Carter will identify 2/6 braille letters of his name with 80% accuracy in 4/5 trials as measured by classroom data.
+        ◦ Carter will identify 4/6 braille letters of his name with 80% accuracy in 4/5 trails as measured by classroom data.
+    • Carter will independently indicate the number that results when adding one more using manipulatives and/or the abacus with 80% accuracy in 4/5 trials as measured by classroom data. (EE.1.OA.5.a)
+        ◦ With assistance from staff, Carter will indicate the number that results when adding one more using manipulatives or the abacus with 80% accuracy in 4/5 trials as measured by classroom data
+        ◦ Carter will independently identify the different parts of the abacus: the one beads, five beads and the reckoning bar with 80% accuracy unprompted in 4/5 trials as measured by classroom data.
+    • Carter will braille his name independently with 80% accuracy and no more than one prompt per probe on 5 probes as measured by classroom data. (EE.W.1.6)
+        ◦ Carter will independently learn to braille the letters in his name with 60% accuracy with less than 3 physical prompts as measured by classroom data.
+        ◦ Carter will use a braille writer to braille his name with limited physical assistance with 60% accuracy and no more than one prompt per probe on 5 probes as measured by classroom data.
+Madeline Costello   	120 min / month
+    • When given 2 sets of textured items, Maddie will identify same and different by separating all the same items into a box with 80% accuracy in 4/5 trials as measured by classroom data. (EE.4.MD.6)
+        ◦ When given 2 sets of textured items, Maddie will identify the set that is either the same or different with 60% accuracy in 4/5 trials as measured by classroom data.
+        ◦ When given 2 sets of textured items, Maddie will identify the set that is either the same or different with 70% accuracy in 4/5 trials as measured by classroom data.
+    • When read a story by an adult, Maddie will determine the meaning of words in text by identifying the object or tactile drawing that goes with the story with 70% accuracy in 4/5 trials as measured by classroom data. (EE.RL.4.4)
+        ◦ When given an actual object, Maddie will be able to identify the tactile drawing version of the object with 70% accuracy in 4/5 trials as measured by classroom data.
+        ◦ When given an actual object, Maddie will be able to identify the tactile drawing version of the object with 60% accuracy in 4/5 trials as measured by classroom data.
+    • With guidance and support, Maddie will use the braille writer to braille her name with 80% accuracy in 4/5 trials as measured by classroom data. (EE.W.4.6)
+        ◦ When presented with a braille swing cell, Maddie independently will learn cell placement (1,2,3,4,5,6) with 40% accuracy in 4/5 trials as measured by classroom data. (EE.W.4.6)
+        ◦ When asked to braille up to 3 specified braille cell numbers (such as 1,2,3) Maddie will braille them independently with 40% accuracy in 4/5 trials as measured by classroom data
+        ◦ When presented with a braille swing cell, Maddie independently will learn cell placement with 60% accuracy in 4/5 trials as measured by classroom data
+Sutton Buell    	20 min / month
+    • Sutton will independently point to and label shapes, numbers, and count by rote and objects to 10, with a 80% accuracy over 3 consecutive data sessions.
+    • Sutton will recognize and label 15 letters and sounds starting with those in her name with 100% accuracy across 4 data sessions as recorded by teacher collected data.
+
+HILLFIELD ELEMENTARY
+
+Margaret Walker 	30 min / month
+    • When given an iOS device, Maggie will increase her knowledge of iOS device concepts (e.g. camera, screen enhancement, etc.) with 80% accuracy 4/5 trials across 3 data session based on TVI rubric.
+        ◦ When given an iOS device, Maggie will locate physical control buttons (power, volume, camera etc) with 80% accuracy, 4/5 trials across 3 data sessions based on TVI rubric.
+        ◦ When given an iOS device, Maggie will use implement advance iOS skills such as camera and take pictures, learn gestures, etc. with 80% accuracy, 4/5 trials across 3 data sessions based on TVI rubric.
+
+NORTHRIDGE HIGH 
+
+Tyson Graham    	720 min / month
+    • Tyson will use a screen reader to complete technology tasks, including but not limited to: accessing the internet, completing research, using software to write papers, completing worksheets, emailing, submitting all applicable work (including quizzes) on Canvas, across situations and environments, based on a teacher checklist/rubric, with 90% accuracy and no more than one prompt per probe, on six probes in a four week period, as measured by the TVI.
+
+VISTA
+
+Addison Booker  	20 min / quarter
+    • When Addi is read a short story from a book with pictures, she will use eye gaze or touch to identify people or objects from the story or answer yes/no comprehension questions with 60% accuracy 2x weekly, across 3/5 data sessions.
+        ◦ When Addi is read a short story from a book with pictures, she will use eye gaze or touch to identify people or objects from the story or answer yes/no comprehension questions with 20% accuracy 2x weekly, across 3/5 data sessions.
+        ◦ When Addi is read a short story from a book with pictures, she will use eye gaze or touch to identify people or objects from the story or answer yes/no comprehension questions with 40% accuracy 2x weekly, across 3/5 data sessions.
+Ami Rito    20 min / month
+    • When presented with a 3D household or classroom item, Ami will find its match using eye gaze or touch selection, matching a total of 3 items, on 4/5 daily trials, over 3 consecutive weeks.
+        ◦ When presented with a 3D household or classroom item, Ami will find its match using eye gaze or touch selection, matching a total of 1 item, on 4/5 daily trials, over 3 consecutive weeks.
+        ◦ When presented with a 3D household or classroom item, Ami will find its match using eye gaze or touch selection, matching a total of 2 items, on 4/5 daily trials, over 3 consecutive weeks.
+Ashlynn Nelson  	20 min / month
+    • When given partial physical support, Ashylnn will be shown a selected musical instrument (xylophone, bells, drum, tambourine), and be shown a video (4-6ft away) of someone playing the selected musical instrument, then will focus her attention on the video for 3 seconds or more on 4/5 twice weekly trials, over 3 consecutive weeks.
+        ◦ When given partial physical support, Ashylnn will be shown a selected musical instrument (xylophone, bells, drum, tambourine), and be shown a video (4-6ft away) of someone playing the selected musical instrument, then will focus her attention on the video for 1 second on 4/5 twice weekly trials, over 3 consecutive weeks.
+        ◦ When given partial physical support, Ashylnn will be shown a selected musical instrument (xylophone, bells, drum, tambourine), and be shown a video (4-6ft away) of someone playing the selected musical instrument, then will focus her attention on the video for 2 second or more on 4/5 twice weekly trials, over 3 consecutive weeks.
+Carston Talbot  	30 min / month
+    • When given a choice between two pictures, Carston will visually locate and chose the picture that represents the object/activity he would like with 4 out of 5 trials over 3 consecutive data sessions as evidenced by vision and classroom data.
+        ◦ Carston will visually locate and chose the picture that represents the activity he would like with 4 out of 5 trials over 3 consecutive data sessions as evidenced by vision and classroom data.
+        ◦ Carston will visually locate and chose a picture that represents a preferred object that he would like with 4 out of 5 trials over 3 consecutive data sessions as evidenced by vision and classroom data.
+Celestial  Nelson   	30 min / month
+    • Given the opportunity, in a variety of school-based locations, CD will, with minimal prompting, using her vision, make choices about academic and preferred activities within a class period in addition to 2 topics of conversation per location with a variety of people 70% of opportunities across 3 consecutive data session, as measured by classroom data and observation.
+        ◦ Given the opportunity, in a variety of school-based locations, CD will, with maximum prompting, using her vision, make choices about academic and preferred activities within a class period in addition to 1 topic of conversation per location with a variety of people 70% of opportunities across 3 consecutive data session, as measured by classroom data and observation.
+        ◦ Given the opportunity, in a variety of school-based locations, CD will, with maximum prompting, using her vision, make choices about academic and preferred activities within a class period in addition to 2 topics of conversation per location with a variety of people 70% of opportunities across 3 consecutive data session, as measured by classroom data and observation.
+Lanedan Lee	    	120 min / month
+    • Lanedon needs to learn braille with purpose and understanding by locating a line of braille, track a line on a braille and be able to produce legible dots on a page. With 60% accuracy 3/5 trials.
+        ◦ Lanedon needs to learn braille with purpose and understanding by locating a line of braille, track a line on a braille and be able to produce legible dots on a page. With 40% accuracy 3/5 trials.
+        ◦ Lanedon needs to learn braille with purpose and understanding by locating a line of braille, track a line on a braille and be able to produce legible dots on a page. With 20% accuracy 3/5 trials.
+    • Lanedan will be given a tactile cue to feel that correlates with each class in his schedule and anticipate what is coming next by feeling the cue and verbally stating what class is coming next with 90% accuracy 4/5 separate data points using information by teacher observation and classroom data.
+        ◦ Lanedan will be given a tactile cue to feel that correlates with each class in his schedule and anticipate what is coming next by feeling the cue and verbally stating what class is coming next with 80% accuracy 4/5 separate data points using information by teacher observation and classroom data.
+        ◦ Lanedan will be given a tactile cue to feel that correlates with each class in his schedule and anticipate what is coming next by feeling the cue and verbally stating what class is coming next with 70% accuracy 4/5 separate data points using information by teacher observation and classroom data
+Noah Palmer	    	20 min / month
+    • Given verbal support, Noah will solve math money problems using the dollar more strategy for amounts up to $20.00 dollars using 1, 5 and 10 dollar bills, on 4/5 daily trials over 3 consecutive weeks.
+        ◦ Given verbal support, Noah will solve math money problems using the dollar more strategy for amounts up to $15.00 dollars using 1, 5 and 10 dollar bills, on 4/5 daily trials over 3 consecutive weeks.
+        ◦ Given verbal support, Noah will solve math money problems using the dollar more strategy for amounts up to $17.00 dollars using 1, 5 and 10 dollar bills, on 4/5 daily trials over 3 consecutive weeks.
+         """)
+        font = wx.Font(14, family=wx.FONTFAMILY_MODERN, style=0, weight=90,underline=False, faceName="",  encoding = wx.FONTENCODING_DEFAULT)
+        self.st.SetFont(font)
+        self.st.Wrap(1000)
+class observationsPanel(scrolled.ScrolledPanel):
+    def __init__(self, parent):
+        scrolled.ScrolledPanel.__init__(self, parent, -1)
+        vbox = wx.BoxSizer(wx.VERTICAL)
+        vbox.Add(wx.StaticLine(self, -1, size=(1500, -1)), 0, wx.ALL, 5)
+        vbox.Add(wx.StaticLine(self, -1, size=(-1, 2100)), 0, wx.ALL, 5)
+        vbox.Add((20, 20))
+        self.SetSizer(vbox)
+        self.SetupScrolling()
+        self.SetBackgroundColour(wx.Colour(204,229,255))
+        wx.StaticText(self, -1, "VISION OBSERVATIONS", pos=(170, 20))
+        wx.StaticText(self, -1, "Student Name", pos=(30, 50))
+        self.studentname1 = wx.Choice(self, -1, choices=students_all,
+                                      pos=(130, 50), size=(300, 20))
+        wx.StaticText(self, -1, "Date", pos=(30, 80))
+        wx.StaticText(self, -1, "Anecdotal Notes", pos=(30, 110))
+        self.notes1 = wx.TextCtrl(self, -1, "0", pos=(170, 110),
+                                  size=(700, 700), style=wx.TE_MULTILINE)
+        self.btn = wx.Button(self, 201, "SAVE", pos=(450, 850), size=(70, 30))
+        self.Bind(wx.EVT_BUTTON, self.save, id=201)
+        self.btn1 = wx.Button(self, 202, "EXIT", pos=(550, 850), size=(70, 30))
+        self.Bind(wx.EVT_BUTTON, self.exit, id=202)
+        self.Bind(wx.EVT_BUTTON, self.save, id=201)
+        os.chdir(USER_DIR)
+
+    def exit(self, event):
+        wx.Exit()
+
+    def save(self, event):
+        studentname = self.studentname1.GetString(
+                self.studentname1.GetSelection())
+        dateNow = datetime.datetime.now().strftime("%Y_%m_%d-%H%M%S")
+        simpleDate = datetime.datetime.now().strftime("%Y_%m_%d-%H%M")
+        notes = self.notes1.GetValue()
+        if (len(studentname) and len(notes)) > 0:
+            box = wx.TextEntryDialog(None,
+                                     "Enter Address-Book name to save!",
+                                     "Title",
+                                     f"{studentname.title()}{dateNow}")
+            if box.ShowModal() == wx.ID_OK:
+                self.studentdatabasename = box.GetValue()
+                if not os.path.exists(
+                        f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\{self.studentdatabasename}.txt"):
+                    self.filename = open(
+                            f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\{self.studentdatabasename}.txt",
+                            'w')
+                    self.filename.write('studentname' + ',')
+                    self.filename.write('simpleDate' + ',')
+                    self.filename.write('notes' + ',\n')
+                    self.filename.write(studentname + ',')
+                    self.filename.write(simpleDate + ',')
+                    self.filename.write(notes + ',')
+                    self.filename.close()
+                    self.filename = open(
+                            f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\Filenames.txt",
+                            'a')
+                    self.filename.write(
+                            f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\{self.studentdatabasename}.txt" + '\n')
+                    self.filename.close()
+                    # list_data = [studentname, dateNow, task, lesson,
+                    #              session,
+                    #              trial01,
+                    #              trial02, trial03, trial04, trial05,
+                    #              trial06,
+                    #              trial07, trial08, trial09, trial10,
+                    #              trial11,
+                    #              trialmedian,
+                    #              notes]
+                    # os.chdir(USER_DIR)
+                    # with open(
+                    #         f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\omnibusDatabase.csv",
+                    #         'a',
+                    #         newline='') as f_setup:
+                    #     writer_setup = writer(f_setup)
+                    #     writer_setup.writerow(list_data)
+                    #     f_setup.close()
+
+                    self.dial = wx.MessageDialog(None,
+                                                 'Saved successfully!',
+                                                 'Info', wx.OK)
+                    self.dial.ShowModal()
+                else:
+                    self.dial = wx.MessageDialog(None,
+                                                 'Name already exists',
+                                                 'Info', wx.OK)
+                    self.dial.ShowModal()
+            else:
+                self.dial = wx.MessageDialog(None, 'Save cancelled', 'Info',
+                                             wx.OK)
+                self.dial.ShowModal()
+        else:
+            self.dial = wx.MessageDialog(None, 'Fill Required Fields!',
+                                         'Info',
+                                         wx.OK)
+            self.dial.ShowModal()
 class StudentDataBook(wx.Frame, wx.Accessible):
     def __init__(self, parent, title):
         super(StudentDataBook, self).__init__(parent, title="Data Entry Form",
@@ -3069,10 +3282,12 @@ class StudentDataBook(wx.Frame, wx.Accessible):
 
     def InitUI(self):
         nb = wx.Notebook(self,style=wx.NB_LEFT)
+        nb.AddPage(iepIntro(nb), "IEP Caseload 2022-2023")
         nb.AddPage(dataPanel(nb), "Data Entry Form")
         nb.AddPage(braillePanel(nb), "Braille Progression")
         nb.AddPage(screenreaderPanel(nb), "ScreenReader Progression")
         nb.AddPage(abacusPanel(nb), "Abacus Progression")
+        nb.AddPage(observationsPanel(nb), "Vision Observations")
         self.Centre()
         self.Show(True)
 

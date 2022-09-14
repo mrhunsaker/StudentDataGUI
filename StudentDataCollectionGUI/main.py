@@ -265,42 +265,42 @@ class dataPanel(wx.Panel):
         wx.StaticText(self, -1,
                       "RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent",
                       pos=(490, 50))
-        self.blank = wx.TextCtrl(self, -1, "0", pos=(490, 50), size=(0, 0))
+        self.blank = wx.TextCtrl(self, -1, "", pos=(490, 50), size=(0, 0))
         wx.StaticText(self, -1, "Trial 1", pos=(500, 80))
-        self.trial011 = wx.TextCtrl(self, -1, "0", pos=(650, 80),
+        self.trial011 = wx.TextCtrl(self, -1, "", pos=(650, 80),
                                     size=(300, 20))
         wx.StaticText(self, -1, "Trial 2", pos=(500, 110))
-        self.trial021 = wx.TextCtrl(self, -1, "0", pos=(650, 110),
+        self.trial021 = wx.TextCtrl(self, -1, "", pos=(650, 110),
                                     size=(300, 20))
         wx.StaticText(self, -1, "Trial 3", pos=(500, 140))
-        self.trial031 = wx.TextCtrl(self, -1, "0", pos=(650, 140),
+        self.trial031 = wx.TextCtrl(self, -1, "", pos=(650, 140),
                                     size=(300, 20))
         wx.StaticText(self, -1, "Trial 4", pos=(500, 170))
-        self.trial041 = wx.TextCtrl(self, -1, "0", pos=(650, 170),
+        self.trial041 = wx.TextCtrl(self, -1, "", pos=(650, 170),
                                     size=(300, 20))
         wx.StaticText(self, -1, "Trial 5", pos=(500, 200))
-        self.trial051 = wx.TextCtrl(self, -1, "0", pos=(650, 200),
+        self.trial051 = wx.TextCtrl(self, -1, "", pos=(650, 200),
                                     size=(300, 20))
         wx.StaticText(self, -1, "Trial 6", pos=(500, 230))
-        self.trial061 = wx.TextCtrl(self, -1, "0", pos=(650, 230),
+        self.trial061 = wx.TextCtrl(self, -1, "", pos=(650, 230),
                                     size=(300, 20))
         wx.StaticText(self, -1, "Trial 7", pos=(500, 260))
-        self.trial071 = wx.TextCtrl(self, -1, "0", pos=(650, 260),
+        self.trial071 = wx.TextCtrl(self, -1, "", pos=(650, 260),
                                     size=(300, 20))
         wx.StaticText(self, -1, "Trial 8", pos=(500, 290))
-        self.trial081 = wx.TextCtrl(self, -1, "0", pos=(650, 290),
+        self.trial081 = wx.TextCtrl(self, -1, "", pos=(650, 290),
                                     size=(300, 20))
         wx.StaticText(self, -1, "Trial 9", pos=(500, 320))
-        self.trial091 = wx.TextCtrl(self, -1, "0", pos=(650, 320),
+        self.trial091 = wx.TextCtrl(self, -1, "", pos=(650, 320),
                                     size=(300, 20))
         wx.StaticText(self, -1, "Trial 10", pos=(500, 350))
-        self.trial101 = wx.TextCtrl(self, -1, "0", pos=(650, 350),
+        self.trial101 = wx.TextCtrl(self, -1, "", pos=(650, 350),
                                     size=(300, 20))
         wx.StaticText(self, -1, "Trial 11", pos=(500, 380))
-        self.trial111 = wx.TextCtrl(self, -1, "0", pos=(650, 380),
+        self.trial111 = wx.TextCtrl(self, -1, "", pos=(650, 380),
                                     size=(300, 20))
         wx.StaticText(self, -1, "Anecdotal Notes", pos=(500, 410))
-        self.notes1 = wx.TextCtrl(self, -1, "0", pos=(650, 440),
+        self.notes1 = wx.TextCtrl(self, -1, "", pos=(650, 440),
                                   size=(300, 375), style=wx.TE_MULTILINE)
         self.btn = wx.Button(self, 201, "SAVE", pos=(625, 850), size=(70, 30))
         self.Bind(wx.EVT_BUTTON, self.save, id=201)
@@ -459,212 +459,212 @@ class braillePanel(scrolled.ScrolledPanel):
                                       pos=(650, 50), size=(300, 20))
         wx.StaticText(self, -1,f"Date: {date}", pos=(550, 20))
         wx.StaticText(self, -1, "1.1 Track Left to Right", pos=(30, 80))
-        self.trial11 = wx.TextCtrl(self, -1, "0", pos=(650, 80), size=(300, 20))
+        self.trial11 = wx.TextCtrl(self, -1, "", pos=(650, 80), size=(300, 20))
         wx.StaticText(self, -1, "1.2 Track Top to Bottom", pos=(30, 110))
-        self.trial12 = wx.TextCtrl(self, -1, "0", pos=(650, 110),
+        self.trial12 = wx.TextCtrl(self, -1, "", pos=(650, 110),
                                    size=(300, 20))
         wx.StaticText(self, -1, "1.3 Discriminate Shapes", pos=(30, 140))
-        self.trial13 = wx.TextCtrl(self, -1, "0", pos=(650, 140),
+        self.trial13 = wx.TextCtrl(self, -1, "", pos=(650, 140),
                                    size=(300, 20))
         wx.StaticText(self, -1, "1.4 Discriminate Braille Characters",
                       pos=(30, 170))
-        self.trial14 = wx.TextCtrl(self, -1, "0", pos=(650, 170),
+        self.trial14 = wx.TextCtrl(self, -1, "", pos=(650, 170),
                                    size=(300, 20))
         wx.StaticText(self, -1, "2.1 G C L", pos=(30, 200))
-        self.trial21 = wx.TextCtrl(self, -1, "0", pos=(650, 200),
+        self.trial21 = wx.TextCtrl(self, -1, "", pos=(650, 200),
                                    size=(300, 20))
         wx.StaticText(self, -1, "2.2 D Y", pos=(30, 230))
-        self.trial22 = wx.TextCtrl(self, -1, "0", pos=(650, 230),
+        self.trial22 = wx.TextCtrl(self, -1, "", pos=(650, 230),
                                    size=(300, 20))
         wx.StaticText(self, -1, "2.3 A B", pos=(30, 260))
-        self.trial23 = wx.TextCtrl(self, -1, "0", pos=(650, 260),
+        self.trial23 = wx.TextCtrl(self, -1, "", pos=(650, 260),
                                    size=(300, 20))
         wx.StaticText(self, -1, "2.4 S", pos=(30, 290))
-        self.trial24 = wx.TextCtrl(self, -1, "0", pos=(650, 290),
+        self.trial24 = wx.TextCtrl(self, -1, "", pos=(650, 290),
                                    size=(300, 20))
         wx.StaticText(self, -1, "2.5 W", pos=(30, 320))
-        self.trial25 = wx.TextCtrl(self, -1, "0", pos=(650, 320),
+        self.trial25 = wx.TextCtrl(self, -1, "", pos=(650, 320),
                                    size=(300, 20))
         wx.StaticText(self, -1, "2.6 P O", pos=(30, 350))
-        self.trial26 = wx.TextCtrl(self, -1, "0", pos=(650, 350),
+        self.trial26 = wx.TextCtrl(self, -1, "", pos=(650, 350),
                                    size=(300, 20))
         wx.StaticText(self, -1, "2.7 K", pos=(30, 380))
-        self.trial27 = wx.TextCtrl(self, -1, "0", pos=(650, 380),
+        self.trial27 = wx.TextCtrl(self, -1, "", pos=(650, 380),
                                    size=(300, 20))
         wx.StaticText(self, -1, "2.8 R", pos=(30, 410))
-        self.trial28 = wx.TextCtrl(self, -1, "0", pos=(650, 410),
+        self.trial28 = wx.TextCtrl(self, -1, "", pos=(650, 410),
                                    size=(300, 20))
         wx.StaticText(self, -1, "2.9 M E", pos=(30, 440))
-        self.trial29 = wx.TextCtrl(self, -1, "0", pos=(650, 440),
+        self.trial29 = wx.TextCtrl(self, -1, "", pos=(650, 440),
                                    size=(300, 20))
         wx.StaticText(self, -1, "2.10 H", pos=(30, 470))
-        self.trial210 = wx.TextCtrl(self, -1, "0", pos=(650, 470),
+        self.trial210 = wx.TextCtrl(self, -1, "", pos=(650, 470),
                                     size=(300, 20))
         wx.StaticText(self, -1, "2.11 N X", pos=(30, 500))
-        self.trial211 = wx.TextCtrl(self, -1, "0", pos=(650, 500),
+        self.trial211 = wx.TextCtrl(self, -1, "", pos=(650, 500),
                                     size=(300, 20))
         wx.StaticText(self, -1, "2.12 Z F", pos=(30, 530))
-        self.trial212 = wx.TextCtrl(self, -1, "0", pos=(650, 530),
+        self.trial212 = wx.TextCtrl(self, -1, "", pos=(650, 530),
                                     size=(300, 20))
         wx.StaticText(self, -1, "2.13 U T", pos=(30, 560))
-        self.trial213 = wx.TextCtrl(self, -1, "0", pos=(650, 560),
+        self.trial213 = wx.TextCtrl(self, -1, "", pos=(650, 560),
                                     size=(300, 20))
         wx.StaticText(self, -1, "2.14 Q I", pos=(30, 590))
-        self.trial214 = wx.TextCtrl(self, -1, "0", pos=(650, 590),
+        self.trial214 = wx.TextCtrl(self, -1, "", pos=(650, 590),
                                     size=(300, 20))
         wx.StaticText(self, -1, "2.15 V J", pos=(30, 620))
-        self.trial215 = wx.TextCtrl(self, -1, "0", pos=(650, 620),
+        self.trial215 = wx.TextCtrl(self, -1, "", pos=(650, 620),
                                     size=(300, 20))
         wx.StaticText(self, -1, "3.1 Alphabetic Wordsigns", pos=(30, 650))
-        self.trial31 = wx.TextCtrl(self, -1, "0", pos=(650, 650),
+        self.trial31 = wx.TextCtrl(self, -1, "", pos=(650, 650),
                                    size=(300, 20))
         wx.StaticText(self, -1, "3.2 Braille Numbers", pos=(30, 680))
-        self.trial32 = wx.TextCtrl(self, -1, "0", pos=(650, 680),
+        self.trial32 = wx.TextCtrl(self, -1, "", pos=(650, 680),
                                    size=(300, 20))
         wx.StaticText(self, -1, "3.3 Punctuation", pos=(30, 710))
-        self.trial33 = wx.TextCtrl(self, -1, "0", pos=(650, 710),
+        self.trial33 = wx.TextCtrl(self, -1, "", pos=(650, 710),
                                    size=(300, 20))
         wx.StaticText(self, -1, "3.4 Strong Contractions - AND OF FOR WITH THE",
                       pos=(30, 740))
-        self.trial34 = wx.TextCtrl(self, -1, "0", pos=(650, 740),
+        self.trial34 = wx.TextCtrl(self, -1, "", pos=(650, 740),
                                    size=(300, 20))
         wx.StaticText(self, -1,
                       "3.5 Strong Groupsigns - CH GH SH TH WH ED ER OU OW ST AR ING",
                       pos=(30, 770))
-        self.trial35 = wx.TextCtrl(self, -1, "0", pos=(650, 770),
+        self.trial35 = wx.TextCtrl(self, -1, "", pos=(650, 770),
                                    size=(300, 20))
         wx.StaticText(self, -1, "3.6 Strong Wordsigns - CH SH TH WH OU ST",
                       pos=(30, 800))
-        self.trial36 = wx.TextCtrl(self, -1, "0", pos=(650, 800),
+        self.trial36 = wx.TextCtrl(self, -1, "", pos=(650, 800),
                                    size=(300, 20))
         wx.StaticText(self, -1, "3.7 Lower Groupsigns - BE CON DIS",
                       pos=(30, 830))
-        self.trial37 = wx.TextCtrl(self, -1, "0", pos=(650, 830),
+        self.trial37 = wx.TextCtrl(self, -1, "", pos=(650, 830),
                                    size=(300, 20))
         wx.StaticText(self, -1, "3.8 Lower Groupsigns - EA BB CC FF GG",
                       pos=(30, 860))
-        self.trial38 = wx.TextCtrl(self, -1, "0", pos=(650, 860),
+        self.trial38 = wx.TextCtrl(self, -1, "", pos=(650, 860),
                                    size=(300, 20))
         wx.StaticText(self, -1, "3.9 Lower Group/Wordsigns - EN IN",
                       pos=(30, 890))
-        self.trial39 = wx.TextCtrl(self, -1, "0", pos=(650, 890),
+        self.trial39 = wx.TextCtrl(self, -1, "", pos=(650, 890),
                                    size=(300, 20))
         wx.StaticText(self, -1, "3.10 Lower Wordsigns - BE HIS WAS WERE",
                       pos=(30, 920))
-        self.trial310 = wx.TextCtrl(self, -1, "0", pos=(650, 920),
+        self.trial310 = wx.TextCtrl(self, -1, "", pos=(650, 920),
                                     size=(300, 20))
         wx.StaticText(self, -1, "3.11 Dot 5 Contractions", pos=(30, 950))
-        self.trial311 = wx.TextCtrl(self, -1, "0", pos=(650, 950),
+        self.trial311 = wx.TextCtrl(self, -1, "", pos=(650, 950),
                                     size=(300, 20))
         wx.StaticText(self, -1, "3.12 Dot 45 Contractions", pos=(30, 980))
-        self.trial312 = wx.TextCtrl(self, -1, "0", pos=(650, 980),
+        self.trial312 = wx.TextCtrl(self, -1, "", pos=(650, 980),
                                     size=(300, 20))
         wx.StaticText(self, -1, "3.13 Dot 456 Contractions", pos=(30, 1010))
-        self.trial313 = wx.TextCtrl(self, -1, "0", pos=(650, 1010),
+        self.trial313 = wx.TextCtrl(self, -1, "", pos=(650, 1010),
                                     size=(300, 20))
         wx.StaticText(self, -1, "3.14 Final Letter Groupsigns", pos=(30, 1040))
-        self.trial314 = wx.TextCtrl(self, -1, "0", pos=(650, 1040),
+        self.trial314 = wx.TextCtrl(self, -1, "", pos=(650, 1040),
                                     size=(300, 20))
         wx.StaticText(self, -1, "3.15 Shortform Words", pos=(30, 1070))
-        self.trial315 = wx.TextCtrl(self, -1, "0", pos=(650, 1070),
+        self.trial315 = wx.TextCtrl(self, -1, "", pos=(650, 1070),
                                     size=(300, 20))
         wx.StaticText(self, -1, "4.1 Grade 1 Indicators", pos=(30, 1100))
-        self.trial41 = wx.TextCtrl(self, -1, "0", pos=(650, 1100),
+        self.trial41 = wx.TextCtrl(self, -1, "", pos=(650, 1100),
                                    size=(300, 20))
         wx.StaticText(self, -1, "4.2 Capitals Indicators", pos=(30, 1130))
-        self.trial42 = wx.TextCtrl(self, -1, "0", pos=(650, 1130),
+        self.trial42 = wx.TextCtrl(self, -1, "", pos=(650, 1130),
                                    size=(300, 20))
         wx.StaticText(self, -1, "4.3 Numeric Mode and Spatial Math",
                       pos=(30, 1160))
-        self.trial43 = wx.TextCtrl(self, -1, "0", pos=(650, 1160),
+        self.trial43 = wx.TextCtrl(self, -1, "", pos=(650, 1160),
                                    size=(300, 20))
         wx.StaticText(self, -1,
                       "4.4 Typeform Indicators - ITALIC, SCRIPT, UNDERLINE, SCRIPT",
                       pos=(30, 1190))
-        self.trial44 = wx.TextCtrl(self, -1, "0", pos=(650, 1190),
+        self.trial44 = wx.TextCtrl(self, -1, "", pos=(650, 1190),
                                    size=(300, 20))
         wx.StaticText(self, -1, "5.1 Page Numbering", pos=(30, 1220))
-        self.trial51 = wx.TextCtrl(self, -1, "0", pos=(650, 1220),
+        self.trial51 = wx.TextCtrl(self, -1, "", pos=(650, 1220),
                                    size=(300, 20))
         wx.StaticText(self, -1, "5.2 Headings", pos=(30, 1250))
-        self.trial52 = wx.TextCtrl(self, -1, "0", pos=(650, 1250),
+        self.trial52 = wx.TextCtrl(self, -1, "", pos=(650, 1250),
                                    size=(300, 20))
         wx.StaticText(self, -1, "5.3 Lists", pos=(30, 1280))
-        self.trial53 = wx.TextCtrl(self, -1, "0", pos=(650, 1280),
+        self.trial53 = wx.TextCtrl(self, -1, "", pos=(650, 1280),
                                    size=(300, 20))
         wx.StaticText(self, -1, "5.4 Poetry / Drama", pos=(30, 1310))
-        self.trial54 = wx.TextCtrl(self, -1, "0", pos=(650, 1310),
+        self.trial54 = wx.TextCtrl(self, -1, "", pos=(650, 1310),
                                    size=(300, 20))
         wx.StaticText(self, -1, "6.1 Operation and Comparison Signs",
                       pos=(30, 1340))
-        self.trial61 = wx.TextCtrl(self, -1, "0", pos=(650, 1340),
+        self.trial61 = wx.TextCtrl(self, -1, "", pos=(650, 1340),
                                    size=(300, 20))
         wx.StaticText(self, -1, "6.2 Grade 1 Mode", pos=(30, 1370))
-        self.trial62 = wx.TextCtrl(self, -1, "0", pos=(650, 1370),
+        self.trial62 = wx.TextCtrl(self, -1, "", pos=(650, 1370),
                                    size=(300, 20))
         wx.StaticText(self, -1, "6.3 Special Print Symbols", pos=(30, 1400))
-        self.trial63 = wx.TextCtrl(self, -1, "0", pos=(650, 1400),
+        self.trial63 = wx.TextCtrl(self, -1, "", pos=(650, 1400),
                                    size=(300, 20))
         wx.StaticText(self, -1, "6.4 Omission Marks", pos=(30, 1430))
-        self.trial64 = wx.TextCtrl(self, -1, "0", pos=(650, 1430),
+        self.trial64 = wx.TextCtrl(self, -1, "", pos=(650, 1430),
                                    size=(300, 20))
         wx.StaticText(self, -1, "6.5 Shape Indicators", pos=(30, 1460))
-        self.trial65 = wx.TextCtrl(self, -1, "0", pos=(650, 1460),
+        self.trial65 = wx.TextCtrl(self, -1, "", pos=(650, 1460),
                                    size=(300, 20))
         wx.StaticText(self, -1, "6.6 Roman Numerals", pos=(30, 1490))
-        self.trial66 = wx.TextCtrl(self, -1, "0", pos=(650, 1490),
+        self.trial66 = wx.TextCtrl(self, -1, "", pos=(650, 1490),
                                    size=(300, 20))
         wx.StaticText(self, -1, "6.7 Fractions", pos=(30, 1520))
-        self.trial67 = wx.TextCtrl(self, -1, "0", pos=(650, 1520),
+        self.trial67 = wx.TextCtrl(self, -1, "", pos=(650, 1520),
                                    size=(300, 20))
         wx.StaticText(self, -1, "7.1 Grade 1 Mode and algebra", pos=(30, 1550))
-        self.trial71 = wx.TextCtrl(self, -1, "0", pos=(650, 1550),
+        self.trial71 = wx.TextCtrl(self, -1, "", pos=(650, 1550),
                                    size=(300, 20))
         wx.StaticText(self, -1, "7.2 Grade 1 Mode and Fractions",
                       pos=(30, 1580))
-        self.trial72 = wx.TextCtrl(self, -1, "0", pos=(650, 1580),
+        self.trial72 = wx.TextCtrl(self, -1, "", pos=(650, 1580),
                                    size=(300, 20))
         wx.StaticText(self, -1, "7.3 Advanced Operation and Comparison Signs",
                       pos=(30, 1610))
-        self.trial73 = wx.TextCtrl(self, -1, "0", pos=(650, 1610),
+        self.trial73 = wx.TextCtrl(self, -1, "", pos=(650, 1610),
                                    size=(300, 20))
         wx.StaticText(self, -1, "7.4 Indices", pos=(30, 1640))
-        self.trial74 = wx.TextCtrl(self, -1, "0", pos=(650, 1640),
+        self.trial74 = wx.TextCtrl(self, -1, "", pos=(650, 1640),
                                    size=(300, 20))
         wx.StaticText(self, -1, "7.5 Roots and Radicals", pos=(30, 1670))
-        self.trial75 = wx.TextCtrl(self, -1, "0", pos=(650, 1670),
+        self.trial75 = wx.TextCtrl(self, -1, "", pos=(650, 1670),
                                    size=(300, 20))
         wx.StaticText(self, -1, "7.6 Miscellaneous Shape Indicators",
                       pos=(30, 1700))
-        self.trial76 = wx.TextCtrl(self, -1, "0", pos=(650, 1700),
+        self.trial76 = wx.TextCtrl(self, -1, "", pos=(650, 1700),
                                    size=(300, 20))
         wx.StaticText(self, -1, "7.7 Functions", pos=(30, 1730))
-        self.trial77 = wx.TextCtrl(self, -1, "0", pos=(650, 1730),
+        self.trial77 = wx.TextCtrl(self, -1, "", pos=(650, 1730),
                                    size=(300, 20))
         wx.StaticText(self, -1, "7.8 Greek Letters", pos=(30, 1760))
-        self.trial78 = wx.TextCtrl(self, -1, "0", pos=(650, 1760),
+        self.trial78 = wx.TextCtrl(self, -1, "", pos=(650, 1760),
                                    size=(300, 20))
         wx.StaticText(self, -1, "8.1 Functions", pos=(30, 1790))
-        self.trial81 = wx.TextCtrl(self, -1, "0", pos=(650, 1790),
+        self.trial81 = wx.TextCtrl(self, -1, "", pos=(650, 1790),
                                    size=(300, 20))
         wx.StaticText(self, -1, "8.2 Modifiers, Bars, and Dots", pos=(30, 1820))
-        self.trial82 = wx.TextCtrl(self, -1, "0", pos=(650, 1820),
+        self.trial82 = wx.TextCtrl(self, -1, "", pos=(650, 1820),
                                    size=(300, 20))
         wx.StaticText(self, -1, "8.3 Modifiers, Arrows, and Limits",
                       pos=(30, 1850))
-        self.trial83 = wx.TextCtrl(self, -1, "0", pos=(650, 1850),
+        self.trial83 = wx.TextCtrl(self, -1, "", pos=(650, 1850),
                                    size=(300, 20))
         wx.StaticText(self, -1, "8.4 Probability", pos=(30, 1880))
-        self.trial84 = wx.TextCtrl(self, -1, "0", pos=(650, 1880),
+        self.trial84 = wx.TextCtrl(self, -1, "", pos=(650, 1880),
                                    size=(300, 20))
         wx.StaticText(self, -1, "8.5 Calculus: Differentiation", pos=(30, 1910))
-        self.trial85 = wx.TextCtrl(self, -1, "0", pos=(650, 1910),
+        self.trial85 = wx.TextCtrl(self, -1, "", pos=(650, 1910),
                                    size=(300, 20))
         wx.StaticText(self, -1, "8.6 Calculus: Integration", pos=(30, 1940))
-        self.trial86 = wx.TextCtrl(self, -1, "0", pos=(650, 1940),
+        self.trial86 = wx.TextCtrl(self, -1, "", pos=(650, 1940),
                                    size=(300, 20))
         wx.StaticText(self, -1, "8.7 Vertical Bars", pos=(30, 1970))
-        self.trial87 = wx.TextCtrl(self, -1, "0", pos=(650, 1970),
+        self.trial87 = wx.TextCtrl(self, -1, "", pos=(650, 1970),
                                    size=(300, 20))
 
         self.btn = wx.Button(self, 201, "SAVE", pos=(450, 2000), size=(70, 30))
@@ -1857,130 +1857,130 @@ class screenreaderPanel(scrolled.ScrolledPanel):
         wx.StaticText(self, -1, f"Date: {date}", pos=(550, 20))
         wx.StaticText(self, -1, "1.1 turn on and off the screen reader",
                       pos=(30, 80))
-        self.trial11 = wx.TextCtrl(self, -1, "0", pos=(650, 80), size=(300, 20))
+        self.trial11 = wx.TextCtrl(self, -1, "", pos=(650, 80), size=(300, 20))
         wx.StaticText(self, -1,
                       "1.2 utilize modifier keys such as ctrl, alt and shift to enter a modified key command. eg: Ctrl + Left Arrow",
                       pos=(30, 110))
-        self.trial12 = wx.TextCtrl(self, -1, "0", pos=(650, 110),
+        self.trial12 = wx.TextCtrl(self, -1, "", pos=(650, 110),
                                    size=(300, 20))
         wx.StaticText(self, -1,
                       "1.3 read text using a variety of reading commands",
                       pos=(30, 140))
-        self.trial13 = wx.TextCtrl(self, -1, "0", pos=(650, 140),
+        self.trial13 = wx.TextCtrl(self, -1, "", pos=(650, 140),
                                    size=(300, 20))
         wx.StaticText(self, -1,
                       "1.4 identify the titles and section titles of documents with Headings",
                       pos=(30, 170))
-        self.trial14 = wx.TextCtrl(self, -1, "0", pos=(650, 170),
+        self.trial14 = wx.TextCtrl(self, -1, "", pos=(650, 170),
                                    size=(300, 20))
         wx.StaticText(self, -1,
                       "1.5 access documents, open and close programs, and will be able to navigate easily to the desktop.",
                       pos=(30, 200))
-        self.trial15 = wx.TextCtrl(self, -1, "0", pos=(650, 200),
+        self.trial15 = wx.TextCtrl(self, -1, "", pos=(650, 200),
                                    size=(300, 20))
         wx.StaticText(self, -1, "1.6 switch program focus", pos=(30, 230))
-        self.trial16 = wx.TextCtrl(self, -1, "0", pos=(650, 230),
+        self.trial16 = wx.TextCtrl(self, -1, "", pos=(650, 230),
                                    size=(300, 20))
         wx.StaticText(self, -1,
                       "2.1 type with all alphanumeric keys on the keyboard.",
                       pos=(30, 260))
-        self.trial21 = wx.TextCtrl(self, -1, "0", pos=(650, 260),
+        self.trial21 = wx.TextCtrl(self, -1, "", pos=(650, 260),
                                    size=(300, 20))
         wx.StaticText(self, -1,
                       "2.2 navigate to and change screen reader settings",
                       pos=(30, 290))
-        self.trial22 = wx.TextCtrl(self, -1, "0", pos=(650, 290),
+        self.trial22 = wx.TextCtrl(self, -1, "", pos=(650, 290),
                                    size=(300, 20))
         wx.StaticText(self, -1,
                       "2.3 write and edit documents using a basic understanding of cursor placement.",
                       pos=(30, 320))
-        self.trial23 = wx.TextCtrl(self, -1, "0", pos=(650, 320),
+        self.trial23 = wx.TextCtrl(self, -1, "", pos=(650, 320),
                                    size=(300, 20))
         wx.StaticText(self, -1, "2.4. select, copy and paste text.",
                       pos=(30, 350))
-        self.trial24 = wx.TextCtrl(self, -1, "0", pos=(650, 350),
+        self.trial24 = wx.TextCtrl(self, -1, "", pos=(650, 350),
                                    size=(300, 20))
         wx.StaticText(self, -1,
                       "3.1 define common element types on the internet such as Headings, Buttons, Links, Tables as well as text.",
                       pos=(30, 380))
-        self.trial31 = wx.TextCtrl(self, -1, "0", pos=(650, 380),
+        self.trial31 = wx.TextCtrl(self, -1, "", pos=(650, 380),
                                    size=(300, 20))
         wx.StaticText(self, -1, "3.2 identify each element by type.",
                       pos=(30, 410))
-        self.trial32 = wx.TextCtrl(self, -1, "0", pos=(650, 410),
+        self.trial32 = wx.TextCtrl(self, -1, "", pos=(650, 410),
                                    size=(300, 20))
         wx.StaticText(self, -1, "3.3 navigate to the address bar",
                       pos=(30, 440))
-        self.trial33 = wx.TextCtrl(self, -1, "0", pos=(650, 440),
+        self.trial33 = wx.TextCtrl(self, -1, "", pos=(650, 440),
                                    size=(300, 20))
         wx.StaticText(self, -1,
                       "3.4 Use the “Tab” key to navigate to the next clickable object (Shift Tab for previous) (METHOD 1) ",
                       pos=(30, 470))
-        self.trial34 = wx.TextCtrl(self, -1, "0", pos=(650, 470),
+        self.trial34 = wx.TextCtrl(self, -1, "", pos=(650, 470),
                                    size=(300, 20))
         wx.StaticText(self, -1,
                       "3.5 navigate by “Quick Keys” (h for heading, b for button, v, and u for link) (METHOD 2)",
                       pos=(30, 500))
-        self.trial35 = wx.TextCtrl(self, -1, "0", pos=(650, 500),
+        self.trial35 = wx.TextCtrl(self, -1, "", pos=(650, 500),
                                    size=(300, 20))
         wx.StaticText(self, -1,
                       "3.6 use Elements Lists on a website to navigate by element type (METHOD 3)",
                       pos=(30, 530))
-        self.trial36 = wx.TextCtrl(self, -1, "0", pos=(650, 530),
+        self.trial36 = wx.TextCtrl(self, -1, "", pos=(650, 530),
                                    size=(300, 20))
         wx.StaticText(self, -1,
                       "3.7 justify why he/she/they selected a particular method for the situation.",
                       pos=(30, 560))
-        self.trial37 = wx.TextCtrl(self, -1, "0", pos=(650, 560),
+        self.trial37 = wx.TextCtrl(self, -1, "", pos=(650, 560),
                                    size=(300, 20))
         wx.StaticText(self, -1, "3.8 switch tab focus", pos=(30, 590))
-        self.trial38 = wx.TextCtrl(self, -1, "0", pos=(650, 590),
+        self.trial38 = wx.TextCtrl(self, -1, "", pos=(650, 590),
                                    size=(300, 20))
         wx.StaticText(self, -1,
                       "3.9 switch between screen reader modes. (Forms Mode in JAWS or Browse/Focus Mode in NVDA)",
                       pos=(30, 620))
-        self.trial39 = wx.TextCtrl(self, -1, "0", pos=(650, 620),
+        self.trial39 = wx.TextCtrl(self, -1, "", pos=(650, 620),
                                    size=(300, 20))
         wx.StaticText(self, -1, "3.10 navigate a table.", pos=(30, 650))
-        self.trial310 = wx.TextCtrl(self, -1, "0", pos=(650, 650),
+        self.trial310 = wx.TextCtrl(self, -1, "", pos=(650, 650),
                                     size=(300, 20))
         wx.StaticText(self, -1,
                       "3.11 develop a navigation sequence to access an unfamiliar website.",
                       pos=(30, 680))
-        self.trial311 = wx.TextCtrl(self, -1, "0", pos=(650, 680),
+        self.trial311 = wx.TextCtrl(self, -1, "", pos=(650, 680),
                                     size=(300, 20))
         wx.StaticText(self, -1,
                       "4.1 be able to save and open files using File Explorer.",
                       pos=(30, 710))
-        self.trial41 = wx.TextCtrl(self, -1, "0", pos=(650, 710),
+        self.trial41 = wx.TextCtrl(self, -1, "", pos=(650, 710),
                                    size=(300, 20))
         wx.StaticText(self, -1,
                       "4.2 create folders and move files in File Explorer.",
                       pos=(30, 740))
-        self.trial42 = wx.TextCtrl(self, -1, "0", pos=(650, 740),
+        self.trial42 = wx.TextCtrl(self, -1, "", pos=(650, 740),
                                    size=(300, 20))
         wx.StaticText(self, -1,
                       "4.3 navigate a cloud-based file management system (eg: Google Drive, Microsoft OneDrive)",
                       pos=(30, 770))
-        self.trial43 = wx.TextCtrl(self, -1, "0", pos=(650, 770),
+        self.trial43 = wx.TextCtrl(self, -1, "", pos=(650, 770),
                                    size=(300, 20))
         wx.StaticText(self, -1,
                       "4.4 download material from the internet and place that material in a location on the computer.",
                       pos=(30, 800))
-        self.trial44 = wx.TextCtrl(self, -1, "0", pos=(650, 800),
+        self.trial44 = wx.TextCtrl(self, -1, "", pos=(650, 800),
                                    size=(300, 20))
         wx.StaticText(self, -1, "4.5 extract zipped folders.", pos=(30, 830))
-        self.trial45 = wx.TextCtrl(self, -1, "0", pos=(650, 830),
+        self.trial45 = wx.TextCtrl(self, -1, "", pos=(650, 830),
                                    size=(300, 20))
         wx.StaticText(self, -1,
                       "4.6 utilize the virtual cursor and mouse keys as a backup to access inaccessible elements.",
                       pos=(30, 860))
-        self.trial46 = wx.TextCtrl(self, -1, "0", pos=(650, 860),
+        self.trial46 = wx.TextCtrl(self, -1, "", pos=(650, 860),
                                    size=(300, 20))
         wx.StaticText(self, -1,
                       "4.7 to use OCR features to read inaccessible material.",
                       pos=(30, 890))
-        self.trial47 = wx.TextCtrl(self, -1, "0", pos=(650, 890),
+        self.trial47 = wx.TextCtrl(self, -1, "", pos=(650, 890),
                                    size=(300, 20))
 
         self.btn = wx.Button(self, 201, "SAVE", pos=(450, 930), size=(70, 30))
@@ -2524,93 +2524,93 @@ class abacusPanel(scrolled.ScrolledPanel):
                                       pos=(650, 50), size=(300, 20))
         wx.StaticText(self, -1,f"Date: {date}", pos=(550, 20))
         wx.StaticText(self, -1, "1.1 Setting NumbersNumbers", pos=(30, 80))
-        self.trial11 = wx.TextCtrl(self, -1, "0", pos=(650, 80), size=(300, 20))
+        self.trial11 = wx.TextCtrl(self, -1, "", pos=(650, 80), size=(300, 20))
         wx.StaticText(self, -1, "1.2 Clearing Beads", pos=(30, 110))
-        self.trial12 = wx.TextCtrl(self, -1, "0", pos=(650, 110),
+        self.trial12 = wx.TextCtrl(self, -1, "", pos=(650, 110),
                                    size=(300, 20))
         wx.StaticText(self, -1, "1.3 Place Value", pos=(30, 140))
-        self.trial13 = wx.TextCtrl(self, -1, "0", pos=(650, 140),
+        self.trial13 = wx.TextCtrl(self, -1, "", pos=(650, 140),
                                    size=(300, 20))
         wx.StaticText(self, -1, "1.4 Vocabulary", pos=(30, 170))
-        self.trial14 = wx.TextCtrl(self, -1, "0", pos=(650, 170),
+        self.trial14 = wx.TextCtrl(self, -1, "", pos=(650, 170),
                                    size=(300, 20))
         wx.StaticText(self, -1, "2.1 Addition of Single Digit Numbers",
                       pos=(30, 200))
-        self.trial21 = wx.TextCtrl(self, -1, "0", pos=(650, 200),
+        self.trial21 = wx.TextCtrl(self, -1, "", pos=(650, 200),
                                    size=(300, 20))
         wx.StaticText(self, -1,
                       "2.2 Addition of Multiple Digit Numbers – Direct",
                       pos=(30, 230))
-        self.trial22 = wx.TextCtrl(self, -1, "0", pos=(650, 230),
+        self.trial22 = wx.TextCtrl(self, -1, "", pos=(650, 230),
                                    size=(300, 20))
         wx.StaticText(self, -1,
                       "2.3 Addition of Multiple Digit Numbers – Indirect",
                       pos=(30, 260))
-        self.trial23 = wx.TextCtrl(self, -1, "0", pos=(650, 260),
+        self.trial23 = wx.TextCtrl(self, -1, "", pos=(650, 260),
                                    size=(300, 20))
         wx.StaticText(self, -1, "3.1 Subtraction", pos=(30, 290))
-        self.trial31 = wx.TextCtrl(self, -1, "0", pos=(650, 290),
+        self.trial31 = wx.TextCtrl(self, -1, "", pos=(650, 290),
                                    size=(300, 20))
         wx.StaticText(self, -1,
                       "3.2 Subtraction of Multiple Digit Numbers – Direct",
                       pos=(30, 320))
-        self.trial32 = wx.TextCtrl(self, -1, "0", pos=(650, 320),
+        self.trial32 = wx.TextCtrl(self, -1, "", pos=(650, 320),
                                    size=(300, 20))
         wx.StaticText(self, -1,
                       "3.3 Subtraction of Multiple Digit Numbers – Indirect",
                       pos=(30, 350))
-        self.trial33 = wx.TextCtrl(self, -1, "0", pos=(650, 350),
+        self.trial33 = wx.TextCtrl(self, -1, "", pos=(650, 350),
                                    size=(300, 20))
         wx.StaticText(self, -1,
                       "4.1 Multiplication – 2+ Digit Multiplicand, 1 Digit Multiplier",
                       pos=(30, 380))
-        self.trial41 = wx.TextCtrl(self, -1, "0", pos=(650, 380),
+        self.trial41 = wx.TextCtrl(self, -1, "", pos=(650, 380),
                                    size=(300, 20))
         wx.StaticText(self, -1,
                       "4.2 Multiplication – 2+ Digit Multiplicand AND Multiplier",
                       pos=(30, 410))
-        self.trial42 = wx.TextCtrl(self, -1, "0", pos=(650, 410),
+        self.trial42 = wx.TextCtrl(self, -1, "", pos=(650, 410),
                                    size=(300, 20))
         wx.StaticText(self, -1,
                       "5.1 Division – 2+ Digit Dividend, 1 Digit Divisor ",
                       pos=(30, 440))
-        self.trial51 = wx.TextCtrl(self, -1, "0", pos=(650, 440),
+        self.trial51 = wx.TextCtrl(self, -1, "", pos=(650, 440),
                                    size=(300, 20))
         wx.StaticText(self, -1,
                       "5.2 Division – 2+ Digit Dividend AND 1 Digit Divisor ",
                       pos=(30, 470))
-        self.trial52 = wx.TextCtrl(self, -1, "0", pos=(650, 470),
+        self.trial52 = wx.TextCtrl(self, -1, "", pos=(650, 470),
                                    size=(300, 20))
         wx.StaticText(self, -1, "6.1 Addition of Decimals", pos=(30, 500))
-        self.trial61 = wx.TextCtrl(self, -1, "0", pos=(650, 500),
+        self.trial61 = wx.TextCtrl(self, -1, "", pos=(650, 500),
                                    size=(300, 20))
         wx.StaticText(self, -1, "6.2 Subtraction of Decimals", pos=(30, 530))
-        self.trial62 = wx.TextCtrl(self, -1, "0", pos=(650, 530),
+        self.trial62 = wx.TextCtrl(self, -1, "", pos=(650, 530),
                                    size=(300, 20))
         wx.StaticText(self, -1, "6.3 Multiplication of Decimals", pos=(30, 560))
-        self.trial63 = wx.TextCtrl(self, -1, "0", pos=(650, 560),
+        self.trial63 = wx.TextCtrl(self, -1, "", pos=(650, 560),
                                    size=(300, 20))
         wx.StaticText(self, -1, "6.4 Division of Decimals", pos=(30, 590))
-        self.trial64 = wx.TextCtrl(self, -1, "0", pos=(650, 590),
+        self.trial64 = wx.TextCtrl(self, -1, "", pos=(650, 590),
                                    size=(300, 20))
         wx.StaticText(self, -1, "7.1 Addition of Fractions", pos=(30, 620))
-        self.trial71 = wx.TextCtrl(self, -1, "0", pos=(650, 620),
+        self.trial71 = wx.TextCtrl(self, -1, "", pos=(650, 620),
                                    size=(300, 20))
         wx.StaticText(self, -1, "7.2 Subtraction of Fractions", pos=(30, 650))
-        self.trial72 = wx.TextCtrl(self, -1, "0", pos=(650, 650),
+        self.trial72 = wx.TextCtrl(self, -1, "", pos=(650, 650),
                                    size=(300, 20))
         wx.StaticText(self, -1, "7.3 Multiplication of Fractions",
                       pos=(30, 680))
-        self.trial73 = wx.TextCtrl(self, -1, "0", pos=(650, 680),
+        self.trial73 = wx.TextCtrl(self, -1, "", pos=(650, 680),
                                    size=(300, 20))
         wx.StaticText(self, -1, "7.4 Division of Fractions", pos=(30, 710))
-        self.trial74 = wx.TextCtrl(self, -1, "0", pos=(650, 710),
+        self.trial74 = wx.TextCtrl(self, -1, "", pos=(650, 710),
                                    size=(300, 20))
         wx.StaticText(self, -1, "8.1 Percent", pos=(30, 740))
-        self.trial81 = wx.TextCtrl(self, -1, "0", pos=(650, 740),
+        self.trial81 = wx.TextCtrl(self, -1, "", pos=(650, 740),
                                    size=(300, 20))
         wx.StaticText(self, -1, "8.2 Square Root", pos=(30, 770))
-        self.trial82 = wx.TextCtrl(self, -1, "0", pos=(650, 770),
+        self.trial82 = wx.TextCtrl(self, -1, "", pos=(650, 770),
                                    size=(300, 20))
         self.btn = wx.Button(self, 201, "SAVE", pos=(450, 830), size=(70, 30))
         self.Bind(wx.EVT_BUTTON, self.save, id=201)
@@ -3195,7 +3195,7 @@ class observationsPanel(scrolled.ScrolledPanel):
                                       pos=(130, 50), size=(300, 20))
         wx.StaticText(self, -1, "Date", pos=(30, 80))
         wx.StaticText(self, -1, "Anecdotal Notes", pos=(30, 110))
-        self.notes1 = wx.TextCtrl(self, -1, "0", pos=(170, 110),
+        self.notes1 = wx.TextCtrl(self, -1, "", pos=(170, 110),
                                   size=(700, 700), style=wx.TE_MULTILINE)
         self.btn = wx.Button(self, 201, "SAVE", pos=(450, 850), size=(70, 30))
         self.Bind(wx.EVT_BUTTON, self.save, id=201)

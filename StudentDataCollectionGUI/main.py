@@ -470,49 +470,49 @@ class braillePanel(scrolled.ScrolledPanel):
                       pos=(30, 170))
         self.trial14 = wx.TextCtrl(self, -1, "", pos=(650, 170),
                                    size=(300, 20))
-        wx.StaticText(self, -1, "2.1 G C L", pos=(30, 200))
+        wx.StaticText(self, -1, "2.1 Mangold Progression: G C L", pos=(30, 200))
         self.trial21 = wx.TextCtrl(self, -1, "", pos=(650, 200),
                                    size=(300, 20))
-        wx.StaticText(self, -1, "2.2 D Y", pos=(30, 230))
+        wx.StaticText(self, -1, "2.2 Mangold Progression: D Y", pos=(30, 230))
         self.trial22 = wx.TextCtrl(self, -1, "", pos=(650, 230),
                                    size=(300, 20))
-        wx.StaticText(self, -1, "2.3 A B", pos=(30, 260))
+        wx.StaticText(self, -1, "2.3 Mangold Progression: A B", pos=(30, 260))
         self.trial23 = wx.TextCtrl(self, -1, "", pos=(650, 260),
                                    size=(300, 20))
-        wx.StaticText(self, -1, "2.4 S", pos=(30, 290))
+        wx.StaticText(self, -1, "2.4 Mangold Progression: S", pos=(30, 290))
         self.trial24 = wx.TextCtrl(self, -1, "", pos=(650, 290),
                                    size=(300, 20))
-        wx.StaticText(self, -1, "2.5 W", pos=(30, 320))
+        wx.StaticText(self, -1, "2.5 Mangold Progression: W", pos=(30, 320))
         self.trial25 = wx.TextCtrl(self, -1, "", pos=(650, 320),
                                    size=(300, 20))
-        wx.StaticText(self, -1, "2.6 P O", pos=(30, 350))
+        wx.StaticText(self, -1, "2.6 Mangold Progression: P O", pos=(30, 350))
         self.trial26 = wx.TextCtrl(self, -1, "", pos=(650, 350),
                                    size=(300, 20))
-        wx.StaticText(self, -1, "2.7 K", pos=(30, 380))
+        wx.StaticText(self, -1, "2.7 Mangold Progression: K", pos=(30, 380))
         self.trial27 = wx.TextCtrl(self, -1, "", pos=(650, 380),
                                    size=(300, 20))
-        wx.StaticText(self, -1, "2.8 R", pos=(30, 410))
+        wx.StaticText(self, -1, "2.8 Mangold Progression: R", pos=(30, 410))
         self.trial28 = wx.TextCtrl(self, -1, "", pos=(650, 410),
                                    size=(300, 20))
-        wx.StaticText(self, -1, "2.9 M E", pos=(30, 440))
+        wx.StaticText(self, -1, "2.9 Mangold Progression: M E", pos=(30, 440))
         self.trial29 = wx.TextCtrl(self, -1, "", pos=(650, 440),
                                    size=(300, 20))
-        wx.StaticText(self, -1, "2.10 H", pos=(30, 470))
+        wx.StaticText(self, -1, "2.10 Mangold Progression: H", pos=(30, 470))
         self.trial210 = wx.TextCtrl(self, -1, "", pos=(650, 470),
                                     size=(300, 20))
-        wx.StaticText(self, -1, "2.11 N X", pos=(30, 500))
+        wx.StaticText(self, -1, "2.11 Mangold Progression: N X", pos=(30, 500))
         self.trial211 = wx.TextCtrl(self, -1, "", pos=(650, 500),
                                     size=(300, 20))
-        wx.StaticText(self, -1, "2.12 Z F", pos=(30, 530))
+        wx.StaticText(self, -1, "2.12 Mangold Progression: Z F", pos=(30, 530))
         self.trial212 = wx.TextCtrl(self, -1, "", pos=(650, 530),
                                     size=(300, 20))
-        wx.StaticText(self, -1, "2.13 U T", pos=(30, 560))
+        wx.StaticText(self, -1, "2.13 Mangold Progression: U T", pos=(30, 560))
         self.trial213 = wx.TextCtrl(self, -1, "", pos=(650, 560),
                                     size=(300, 20))
-        wx.StaticText(self, -1, "2.14 Q I", pos=(30, 590))
+        wx.StaticText(self, -1, "2.14 Mangold Progression: Q I", pos=(30, 590))
         self.trial214 = wx.TextCtrl(self, -1, "", pos=(650, 590),
                                     size=(300, 20))
-        wx.StaticText(self, -1, "2.15 V J", pos=(30, 620))
+        wx.StaticText(self, -1, "2.15 Mangold Progression: V J", pos=(30, 620))
         self.trial215 = wx.TextCtrl(self, -1, "", pos=(650, 620),
                                     size=(300, 20))
         wx.StaticText(self, -1, "3.1 Alphabetic Wordsigns", pos=(30, 650))

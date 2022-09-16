@@ -3077,108 +3077,124 @@ class iepIntro(scrolled.ScrolledPanel):
         self.SetSizer(vbox)
         self.SetupScrolling()
         self.SetBackgroundColour(wx.Colour(255,255,204))
-        self.st = wx.StaticText(self, -1, """
-IEP CASELOAD 2022-2023
-###################################################################################################################################################################
-DAVIS HIGH
+        scrolled.ScrolledPanel.__init__(self, parent, -1)
+        vbox = wx.BoxSizer(wx.VERTICAL)
+        vbox.Add(wx.StaticLine(self, -1, size=(1500, -1)), 0, wx.ALL, 5)
+        vbox.Add(wx.StaticLine(self, -1, size=(-1, 2100)), 0, wx.ALL, 5)
+        vbox.Add((20, 20))
 
-Cole  Cooper    	30 min / month
-    • When presented with 2 objects, Cole will be able to utilize his central vision to locate an object with 70% accuracy as measured by the TVI and classroom teacher over 3 consecutive data sessions.
-        ◦ When presented with 2 objects, Cole will be able to utilize his central vision to locate an object with 50% accuracy as measured by the TVI and classroom teacher over 3 consecutive data sessions.
-        ◦ When presented with 2 objects, Cole will be able to utilize his central vision to locate an object with 60% accuracy as measured by the TVI and classroom teacher over 3 consecutive data sessions
-Landon Graham   	120 min / month
-    • Dino will, when presented with a blind-accessible media device, correctly activate the device, select media, start and pause media, and adjust volume unprompted with 85% accuracy as assessed quarterly by the vision teacher
-        ◦ Dino will, when presented with a blind-accessible media device, correctly activate the device, select media, start and pause media, and adjust volume with at most 2 teacher prompts with 85% accuracy as assessed quarterly by the vision teacher.
-        ◦ Dino will, when presented with a blind-accessible media device, correctly activate the device, and select media with at most 1 teacher prompt with 85% accuracy as assessed quarterly by the vision teacher.
-        ◦ Dino will, when presented with a blind-accessible media device, correctly activate the device, and select media with at most 3 teacher prompts with 85% accuracy as assessed quarterly by the vision teacher.
-Tarel Lewis	    	15 min / month
-    • Tarel, when given a choice between 3 or more objects, symbol requests (yes/no board), or other classroom activities, will clearly use his eye gaze to make a clear response with 80% accuracy over 3 consecutive data sessions with classroom teacher or TVI by March of 2023.
-        ◦ Tarel will visually explore 3 or more visually engaging/age appropriate objects when presented at the same time for at least 15 seconds without becoming overwhelmed on 80% of opportunities over 3 data sessions with classroom teacher or TVI.
-        ◦ Tarel will visually explore 3 or more visually complex objects (multicolored, no auditory component, 6 inches or smaller in size, etc.) when presented at the same time on 60% of opportunities over 3 consecutive data sessions with the classroom teacher or TVI.
+        self.SetSizer(vbox)
+        self.SetupScrolling()
+        wx.StaticText(self, -1, "2022-2023 IEP CASELOAD REPORT", pos=(170, 20))
+        wx.StaticText(self, -1, "Student Name", pos=(30, 50))
+        self.studentname1 = wx.Choice(self, -1, choices=students_all,
+                                      pos=(130, 50), size=(300, 20))
 
-DOXEY ELEMENTARY
+        self.btn = wx.Button(self, 201, "SUBMIT", pos=(450, 50), size=(70, 30))
+        self.Bind(wx.EVT_BUTTON, self.submit, id=201)
+        self.btn1 = wx.Button(self, 202, "EXIT", pos=(550, 830), size=(70, 30))
+        self.Bind(wx.EVT_BUTTON, self.exit, id=202)
+    def exit(self, event):
+        wx.Exit()
 
-Dylan Penaloza-Diaz	    	40 min / month
-    • Dylan will independently complete eye-hand coordination matching activities and/or locating a specific letter, word, or icon on a communication board with 70% accuracy on by completing 4/5 requests across 3 data sessions.
-        ◦ Dylan will independently complete eye-hand coordination matching activities and/or locating a specific letter, word, or icon on a communication board with 30% accuracy on by completing 4/5 requests across 3 data sessions.
-        ◦ Dylan will independently complete eye-hand coordination matching activities and/or locating a specific letter, word, or icon on a communication board with 50% accuracy on by completing 4/5 requests across 3 data sessions.
+    def submit(self, event):
+        studentname = self.studentname1.GetString(self.studentname1.GetSelection())
+        ColeCooperIEP = ("""<h3>Cole  Cooper</h3><h4>30 min/month</h4><ul><li>When presented with 2 objects, Cole will be able to utilize his central vision to locate an object with 70% accuracy as measured by the TVI and classroom teacher over 3 consecutive data sessions.<ul><li>When presented with 2 objects, Cole will be able to utilize his central vision to locate an object with 50% accuracy as measured by the TVI and classroom teacher over 3 consecutive data sessions.</li><li>When presented with 2 objects, Cole will be able to utilize his central vision to locate an object with 60% accuracy as measured by the TVI and classroom teacher over 3 consecutive data sessions</li></ul></li></ul>""")
+        LandonGrahamIEP = """<h3>Landon Graham</h3>   	<h4>120 min / month</h4>
+                    <ul><li>Dino will, when presented with a blind-accessible media device, correctly activate the device, select media, start and pause media, and adjust volume unprompted with 85% accuracy as assessed quarterly by the vision teacher
+                        <ul><li>Dino will, when presented with a blind-accessible media device, correctly activate the device, select media, start and pause media, and adjust volume with at most 2 teacher prompts with 85% accuracy as assessed quarterly by the vision teacher.</li>
+                        <li>Dino will, when presented with a blind-accessible media device, correctly activate the device, and select media with at most 1 teacher prompt with 85% accuracy as assessed quarterly by the vision teacher.</li>
+                        <li>Dino will, when presented with a blind-accessible media device, correctly activate the device, and select media with at most 3 teacher prompts with 85% accuracy as assessed quarterly by the vision teacher.</li></ul></li></ul>
+                """
+        TarelLewisIEP = """<h3>Tarel Lewis</h3>	    	<h4>15 min / month</h4>
+                    <ul><li>Tarel, when given a choice between 3 or more objects, symbol requests (yes/no board), or other classroom activities, will clearly use his eye gaze to make a clear response with 80% accuracy over 3 consecutive data sessions with classroom teacher or TVI by March of 2023.
+                        <ul><li>Tarel will visually explore 3 or more visually engaging/age appropriate objects when presented at the same time for at least 15 seconds without becoming overwhelmed on 80% of opportunities over 3 data sessions with classroom teacher or TVI.</li>
+                        <li>Tarel will visually explore 3 or more visually complex objects (multicolored, no auditory component, 6 inches or smaller in size, etc.) when presented at the same time on 60% of opportunities over 3 consecutive data sessions with the classroom teacher or TVI.</li></ul></li></ul>
+                """
+        DiegoPenalozaDiazIEP = """Dylan Penaloza-Diaz	    	40 min / month
+                    <ul><li>Dylan will independently complete eye-hand coordination matching activities and/or locating a specific letter, word, or icon on a communication board with 70% accuracy on by completing 4/5 requests across 3 data sessions.
+                        <ul><li>Dylan will independently complete eye-hand coordination matching activities and/or locating a specific letter, word, or icon on a communication board with 30% accuracy on by completing 4/5 requests across 3 data sessions.</li>
+                        <li>Dylan will independently complete eye-hand coordination matching activities and/or locating a specific letter, word, or icon on a communication board with 50% accuracy on by completing 4/5 requests across 3 data sessions.</li></ul></li></ul>
+                """
+        CarterCostelloIEP = """Carter Costello	    	120 min / month
+                    <ul><li>Carter will identify the braille letters of his name with 80% accuracy in 4/5 trials as measured by classroom data. (EE.RF.1.3)</li>
+                        <ul><li>Carter will identify 2/6 braille letters of his name with 80% accuracy in 4/5 trials as measured by classroom data.</li>
+                        <li>Carter will identify 4/6 braille letters of his name with 80% accuracy in 4/5 trails as measured by classroom data.</li></ul></li></ul>
+                    <ul><li>Carter will independently indicate the number that results when adding one more using manipulatives and/or the abacus with 80% accuracy in 4/5 trials as measured by classroom data. (EE.1.OA.5.a)
+                        <ul><li>With assistance from staff, Carter will indicate the number that results when adding one more using manipulatives or the abacus with 80% accuracy in 4/5 trials as measured by classroom data</li>
+                        <li>Carter will independently identify the different parts of the abacus: the one beads, five beads and the reckoning bar with 80% accuracy unprompted in 4/5 trials as measured by classroom data.</li></ul></li></ul>
+                    <ul><li>Carter will braille his name independently with 80% accuracy and no more than one prompt per probe on 5 probes as measured by classroom data. (EE.W.1.6)</li>
+                        <ul><li>Carter will independently learn to braille the letters in his name with 60% accuracy with less than 3 physical prompts as measured by classroom data.</li>
+                        <li>Carter will use a braille writer to braille his name with limited physical assistance with 60% accuracy and no more than one prompt per probe on 5 probes as measured by classroom data.</li></ul></li></ul>
+                """
+        MadelineCostelloIEP = """Madeline Costello   	120 min / month
+                    <ul><li>When given 2 sets of textured items, Maddie will identify same and different by separating all the same items into a box with 80% accuracy in 4/5 trials as measured by classroom data. (EE.4.MD.6)
+                        <ul><li>When given 2 sets of textured items, Maddie will identify the set that is either the same or different with 60% accuracy in 4/5 trials as measured by classroom data.</li>
+                        <li>When given 2 sets of textured items, Maddie will identify the set that is either the same or different with 70% accuracy in 4/5 trials as measured by classroom data.</li></ul></li></ul>
+                    <ul><li>When read a story by an adult, Maddie will determine the meaning of words in text by identifying the object or tactile drawing that goes with the story with 70% accuracy in 4/5 trials as measured by classroom data. (EE.RL.4.4)
+                        <ul><li>When given an actual object, Maddie will be able to identify the tactile drawing version of the object with 70% accuracy in 4/5 trials as measured by classroom data.</li>
+                        <li>When given an actual object, Maddie will be able to identify the tactile drawing version of the object with 60% accuracy in 4/5 trials as measured by classroom data.</li></ul></li></ul>
+                    <ul><li>With guidance and support, Maddie will use the braille writer to braille her name with 80% accuracy in 4/5 trials as measured by classroom data. (EE.W.4.6)
+                        <li>>When presented with a braille swing cell, Maddie independently will learn cell placement (1,2,3,4,5,6) with 40% accuracy in 4/5 trials as measured by classroom data. (EE.W.4.6)</li>
+                        <li>When asked to braille up to 3 specified braille cell numbers (such as 1,2,3) Maddie will braille them independently with 40% accuracy in 4/5 trials as measured by classroom data</li>
+                        <li>When presented with a braille swing cell, Maddie independently will learn cell placement with 60% accuracy in 4/5 trials as measured by classroom data</li></ul></li></ul>
+                """
+        SuttonBuellIEP = """Sutton Buell    	20 min / month
+                    <ul><li>Sutton will independently point to and label shapes, numbers, and count by rote and objects to 10, with a 80% accuracy over 3 consecutive data sessions.
+                    <li>Sutton will recognize and label 15 letters and sounds starting with those in her name with 100% accuracy across 4 data sessions as recorded by teacher collected data.</li></ul></li></ul>
+                """
+        MargaretWalkerIEP = """Margaret Walker 	30 min / month
+                    <ul><li>When given an iOS device, Maggie will increase her knowledge of iOS device concepts (e.g. camera, screen enhancement, etc.) with 80% accuracy 4/5 trials across 3 data session based on TVI rubric.
+                        <ul><li>When given an iOS device, Maggie will locate physical control buttons (power, volume, camera etc) with 80% accuracy, 4/5 trials across 3 data sessions based on TVI rubric.</li>
+                        <li>When given an iOS device, Maggie will use implement advance iOS skills such as camera and take pictures, learn gestures, etc. with 80% accuracy, 4/5 trials across 3 data sessions based on TVI rubric.</li></ul></li></ul>
 
-FREMONT ELEMENTARY
-
-Carter Costello	    	120 min / month
-    • Carter will identify the braille letters of his name with 80% accuracy in 4/5 trials as measured by classroom data. (EE.RF.1.3)
-        ◦ Carter will identify 2/6 braille letters of his name with 80% accuracy in 4/5 trials as measured by classroom data.
-        ◦ Carter will identify 4/6 braille letters of his name with 80% accuracy in 4/5 trails as measured by classroom data.
-    • Carter will independently indicate the number that results when adding one more using manipulatives and/or the abacus with 80% accuracy in 4/5 trials as measured by classroom data. (EE.1.OA.5.a)
-        ◦ With assistance from staff, Carter will indicate the number that results when adding one more using manipulatives or the abacus with 80% accuracy in 4/5 trials as measured by classroom data
-        ◦ Carter will independently identify the different parts of the abacus: the one beads, five beads and the reckoning bar with 80% accuracy unprompted in 4/5 trials as measured by classroom data.
-    • Carter will braille his name independently with 80% accuracy and no more than one prompt per probe on 5 probes as measured by classroom data. (EE.W.1.6)
-        ◦ Carter will independently learn to braille the letters in his name with 60% accuracy with less than 3 physical prompts as measured by classroom data.
-        ◦ Carter will use a braille writer to braille his name with limited physical assistance with 60% accuracy and no more than one prompt per probe on 5 probes as measured by classroom data.
-Madeline Costello   	120 min / month
-    • When given 2 sets of textured items, Maddie will identify same and different by separating all the same items into a box with 80% accuracy in 4/5 trials as measured by classroom data. (EE.4.MD.6)
-        ◦ When given 2 sets of textured items, Maddie will identify the set that is either the same or different with 60% accuracy in 4/5 trials as measured by classroom data.
-        ◦ When given 2 sets of textured items, Maddie will identify the set that is either the same or different with 70% accuracy in 4/5 trials as measured by classroom data.
-    • When read a story by an adult, Maddie will determine the meaning of words in text by identifying the object or tactile drawing that goes with the story with 70% accuracy in 4/5 trials as measured by classroom data. (EE.RL.4.4)
-        ◦ When given an actual object, Maddie will be able to identify the tactile drawing version of the object with 70% accuracy in 4/5 trials as measured by classroom data.
-        ◦ When given an actual object, Maddie will be able to identify the tactile drawing version of the object with 60% accuracy in 4/5 trials as measured by classroom data.
-    • With guidance and support, Maddie will use the braille writer to braille her name with 80% accuracy in 4/5 trials as measured by classroom data. (EE.W.4.6)
-        ◦ When presented with a braille swing cell, Maddie independently will learn cell placement (1,2,3,4,5,6) with 40% accuracy in 4/5 trials as measured by classroom data. (EE.W.4.6)
-        ◦ When asked to braille up to 3 specified braille cell numbers (such as 1,2,3) Maddie will braille them independently with 40% accuracy in 4/5 trials as measured by classroom data
-        ◦ When presented with a braille swing cell, Maddie independently will learn cell placement with 60% accuracy in 4/5 trials as measured by classroom data
-Sutton Buell    	20 min / month
-    • Sutton will independently point to and label shapes, numbers, and count by rote and objects to 10, with a 80% accuracy over 3 consecutive data sessions.
-    • Sutton will recognize and label 15 letters and sounds starting with those in her name with 100% accuracy across 4 data sessions as recorded by teacher collected data.
-
-HILLFIELD ELEMENTARY
-
-Margaret Walker 	30 min / month
-    • When given an iOS device, Maggie will increase her knowledge of iOS device concepts (e.g. camera, screen enhancement, etc.) with 80% accuracy 4/5 trials across 3 data session based on TVI rubric.
-        ◦ When given an iOS device, Maggie will locate physical control buttons (power, volume, camera etc) with 80% accuracy, 4/5 trials across 3 data sessions based on TVI rubric.
-        ◦ When given an iOS device, Maggie will use implement advance iOS skills such as camera and take pictures, learn gestures, etc. with 80% accuracy, 4/5 trials across 3 data sessions based on TVI rubric.
-
-NORTHRIDGE HIGH 
-
-Tyson Graham    	720 min / month
-    • Tyson will use a screen reader to complete technology tasks, including but not limited to: accessing the internet, completing research, using software to write papers, completing worksheets, emailing, submitting all applicable work (including quizzes) on Canvas, across situations and environments, based on a teacher checklist/rubric, with 90% accuracy and no more than one prompt per probe, on six probes in a four week period, as measured by the TVI.
-
-VISTA
-
-Addison Booker  	20 min / quarter
-    • When Addi is read a short story from a book with pictures, she will use eye gaze or touch to identify people or objects from the story or answer yes/no comprehension questions with 60% accuracy 2x weekly, across 3/5 data sessions.
-        ◦ When Addi is read a short story from a book with pictures, she will use eye gaze or touch to identify people or objects from the story or answer yes/no comprehension questions with 20% accuracy 2x weekly, across 3/5 data sessions.
-        ◦ When Addi is read a short story from a book with pictures, she will use eye gaze or touch to identify people or objects from the story or answer yes/no comprehension questions with 40% accuracy 2x weekly, across 3/5 data sessions.
-Ami Rito    20 min / month
-    • When presented with a 3D household or classroom item, Ami will find its match using eye gaze or touch selection, matching a total of 3 items, on 4/5 daily trials, over 3 consecutive weeks.
-        ◦ When presented with a 3D household or classroom item, Ami will find its match using eye gaze or touch selection, matching a total of 1 item, on 4/5 daily trials, over 3 consecutive weeks.
-        ◦ When presented with a 3D household or classroom item, Ami will find its match using eye gaze or touch selection, matching a total of 2 items, on 4/5 daily trials, over 3 consecutive weeks.
-Ashlynn Nelson  	20 min / month
-    • When given partial physical support, Ashylnn will be shown a selected musical instrument (xylophone, bells, drum, tambourine), and be shown a video (4-6ft away) of someone playing the selected musical instrument, then will focus her attention on the video for 3 seconds or more on 4/5 twice weekly trials, over 3 consecutive weeks.
-        ◦ When given partial physical support, Ashylnn will be shown a selected musical instrument (xylophone, bells, drum, tambourine), and be shown a video (4-6ft away) of someone playing the selected musical instrument, then will focus her attention on the video for 1 second on 4/5 twice weekly trials, over 3 consecutive weeks.
-        ◦ When given partial physical support, Ashylnn will be shown a selected musical instrument (xylophone, bells, drum, tambourine), and be shown a video (4-6ft away) of someone playing the selected musical instrument, then will focus her attention on the video for 2 second or more on 4/5 twice weekly trials, over 3 consecutive weeks.
-Carston Talbot  	30 min / month
-    • When given a choice between two pictures, Carston will visually locate and chose the picture that represents the object/activity he would like with 4 out of 5 trials over 3 consecutive data sessions as evidenced by vision and classroom data.
-        ◦ Carston will visually locate and chose the picture that represents the activity he would like with 4 out of 5 trials over 3 consecutive data sessions as evidenced by vision and classroom data.
-        ◦ Carston will visually locate and chose a picture that represents a preferred object that he would like with 4 out of 5 trials over 3 consecutive data sessions as evidenced by vision and classroom data.
-Celestial  Nelson   	30 min / month
-    • Given the opportunity, in a variety of school-based locations, CD will, with minimal prompting, using her vision, make choices about academic and preferred activities within a class period in addition to 2 topics of conversation per location with a variety of people 70% of opportunities across 3 consecutive data session, as measured by classroom data and observation.
-        ◦ Given the opportunity, in a variety of school-based locations, CD will, with maximum prompting, using her vision, make choices about academic and preferred activities within a class period in addition to 1 topic of conversation per location with a variety of people 70% of opportunities across 3 consecutive data session, as measured by classroom data and observation.
-        ◦ Given the opportunity, in a variety of school-based locations, CD will, with maximum prompting, using her vision, make choices about academic and preferred activities within a class period in addition to 2 topics of conversation per location with a variety of people 70% of opportunities across 3 consecutive data session, as measured by classroom data and observation.
-Lanedan Lee	    	120 min / month
-    • Lanedon needs to learn braille with purpose and understanding by locating a line of braille, track a line on a braille and be able to produce legible dots on a page. With 60% accuracy 3/5 trials.
-        ◦ Lanedon needs to learn braille with purpose and understanding by locating a line of braille, track a line on a braille and be able to produce legible dots on a page. With 40% accuracy 3/5 trials.
-        ◦ Lanedon needs to learn braille with purpose and understanding by locating a line of braille, track a line on a braille and be able to produce legible dots on a page. With 20% accuracy 3/5 trials.
-    • Lanedan will be given a tactile cue to feel that correlates with each class in his schedule and anticipate what is coming next by feeling the cue and verbally stating what class is coming next with 90% accuracy 4/5 separate data points using information by teacher observation and classroom data.
-        ◦ Lanedan will be given a tactile cue to feel that correlates with each class in his schedule and anticipate what is coming next by feeling the cue and verbally stating what class is coming next with 80% accuracy 4/5 separate data points using information by teacher observation and classroom data.
-        ◦ Lanedan will be given a tactile cue to feel that correlates with each class in his schedule and anticipate what is coming next by feeling the cue and verbally stating what class is coming next with 70% accuracy 4/5 separate data points using information by teacher observation and classroom data
-Noah Palmer	    	20 min / month
-    • Given verbal support, Noah will solve math money problems using the dollar more strategy for amounts up to $20.00 dollars using 1, 5 and 10 dollar bills, on 4/5 daily trials over 3 consecutive weeks.
-        ◦ Given verbal support, Noah will solve math money problems using the dollar more strategy for amounts up to $15.00 dollars using 1, 5 and 10 dollar bills, on 4/5 daily trials over 3 consecutive weeks.
-        ◦ Given verbal support, Noah will solve math money problems using the dollar more strategy for amounts up to $17.00 dollars using 1, 5 and 10 dollar bills, on 4/5 daily trials over 3 consecutive weeks.
-         """)
-        font = wx.Font(10, family=wx.FONTFAMILY_MODERN, style=0, weight=90,underline=False, faceName="",  encoding = wx.FONTENCODING_DEFAULT)
-        self.st.SetFont(font)
-        self.st.Wrap(1200)
+                """
+        TysonGrahamIEP = """Tyson Graham    	720 min / month
+                    <ul><li>Tyson will use a screen reader to complete technology tasks, including but not limited to: accessing the internet, completing research, using software to write papers, completing worksheets, emailing, submitting all applicable work (including quizzes) on Canvas, across situations and environments, based on a teacher checklist/rubric, with 90% accuracy and no more than one prompt per probe, on six probes in a four week period, as measured by the TVI.</li></ul></li></ul>
+                """
+        AddisonBookerIEP = """Addison Booker  	20 min / quarter
+                    <ul><li>When Addi is read a short story from a book with pictures, she will use eye gaze or touch to identify people or objects from the story or answer yes/no comprehension questions with 60% accuracy 2x weekly, across 3/5 data sessions.
+                        <ul><li>When Addi is read a short story from a book with pictures, she will use eye gaze or touch to identify people or objects from the story or answer yes/no comprehension questions with 20% accuracy 2x weekly, across 3/5 data sessions.</li>
+                        <li>When Addi is read a short story from a book with pictures, she will use eye gaze or touch to identify people or objects from the story or answer yes/no comprehension questions with 40% accuracy 2x weekly, across 3/5 data sessions.</li></ul></li></ul>
+                """
+        AmiRitoIEP = """Ami Rito    20 min / month
+                    <ul><li>When presented with a 3D household or classroom item, Ami will find its match using eye gaze or touch selection, matching a total of 3 items, on 4/5 daily trials, over 3 consecutive weeks.
+                        <ul><li>When presented with a 3D household or classroom item, Ami will find its match using eye gaze or touch selection, matching a total of 1 item, on 4/5 daily trials, over 3 consecutive weeks.</li>
+                        <li>When presented with a 3D household or classroom item, Ami will find its match using eye gaze or touch selection, matching a total of 2 items, on 4/5 daily trials, over 3 consecutive weeks.</li></ul></li></ul>
+                """
+        AshlynneNelsonIEP = """Ashlynn Nelson  	20 min / month
+                    <ul><li>When given partial physical support, Ashylnn will be shown a selected musical instrument (xylophone, bells, drum, tambourine), and be shown a video (4-6ft away) of someone playing the selected musical instrument, then will focus her attention on the video for 3 seconds or more on 4/5 twice weekly trials, over 3 consecutive weeks.
+                        <ul><li>When given partial physical support, Ashylnn will be shown a selected musical instrument (xylophone, bells, drum, tambourine), and be shown a video (4-6ft away) of someone playing the selected musical instrument, then will focus her attention on the video for 1 second on 4/5 twice weekly trials, over 3 consecutive weeks.</li>
+                        <li> When given partial physical support, Ashylnn will be shown a selected musical instrument (xylophone, bells, drum, tambourine), and be shown a video (4-6ft away) of someone playing the selected musical instrument, then will focus her attention on the video for 2 second or more on 4/5 twice weekly trials, over 3 consecutive weeks.</li></ul></li></ul>
+                """
+        CarstonTalbotIEP = """Carston Talbot  	30 min / month
+                    <ul><li>When given a choice between two pictures, Carston will visually locate and chose the picture that represents the object/activity he would like with 4 out of 5 trials over 3 consecutive data sessions as evidenced by vision and classroom data.
+                        <ul><li>Carston will visually locate and chose the picture that represents the activity he would like with 4 out of 5 trials over 3 consecutive data sessions as evidenced by vision and classroom data.</li>
+                        <li>Carston will visually locate and chose a picture that represents a preferred object that he would like with 4 out of 5 trials over 3 consecutive data sessions as evidenced by vision and classroom data.</li></ul></li></ul>
+                """
+        CelestialNelsonIEP = """Celestial  Nelson   	30 min / month
+                    <ul><li>Given the opportunity, in a variety of school-based locations, CD will, with minimal prompting, using her vision, make choices about academic and preferred activities within a class period in addition to 2 topics of conversation per location with a variety of people 70% of opportunities across 3 consecutive data session, as measured by classroom data and observation.
+                        <ul><li>Given the opportunity, in a variety of school-based locations, CD will, with maximum prompting, using her vision, make choices about academic and preferred activities within a class period in addition to 1 topic of conversation per location with a variety of people 70% of opportunities across 3 consecutive data session, as measured by classroom data and observation.</li>
+                       <li>Given the opportunity, in a variety of school-based locations, CD will, with maximum prompting, using her vision, make choices about academic and preferred activities within a class period in addition to 2 topics of conversation per location with a variety of people 70% of opportunities across 3 consecutive data session, as measured by classroom data and observation.</li></ul></li></ul>
+                """
+        LanedonLeeIEP = """Lanedan Lee	    	120 min / month
+                    <ul><li>Lanedon needs to learn braille with purpose and understanding by locating a line of braille, track a line on a braille and be able to produce legible dots on a page. With 60% accuracy 3/5 trials.<
+                        <ul><li>Lanedon needs to learn braille with purpose and understanding by locating a line of braille, track a line on a braille and be able to produce legible dots on a page. With 40% accuracy 3/5 trials.</li>
+                        <li>Lanedon needs to learn braille with purpose and understanding by locating a line of braille, track a line on a braille and be able to produce legible dots on a page. With 20% accuracy 3/5 trials.</li></ul></li></ul>
+                    <ul><li>Lanedan will be given a tactile cue to feel that correlates with each class in his schedule and anticipate what is coming next by feeling the cue and verbally stating what class is coming next with 90% accuracy 4/5 separate data points using information by teacher observation and classroom data.
+                        <ul><li>Lanedan will be given a tactile cue to feel that correlates with each class in his schedule and anticipate what is coming next by feeling the cue and verbally stating what class is coming next with 80% accuracy 4/5 separate data points using information by teacher observation and classroom data.</li>
+                        <li>Lanedan will be given a tactile cue to feel that correlates with each class in his schedule and anticipate what is coming next by feeling the cue and verbally stating what class is coming next with 70% accuracy 4/5 separate data points using information by teacher observation and classroom data</li></ul></li></ul>
+                """
+        NoahPalmerIEP = """Noah Palmer	    	20 min / month
+                    <ul><li>Given verbal support, Noah will solve math money problems using the dollar more strategy for amounts up to $20.00 dollars using 1, 5 and 10 dollar bills, on 4/5 daily trials over 3 consecutive weeks.
+                        <ul><li>Given verbal support, Noah will solve math money problems using the dollar more strategy for amounts up to $15.00 dollars using 1, 5 and 10 dollar bills, on 4/5 daily trials over 3 consecutive weeks.</li>
+                        <li>Given verbal support, Noah will solve math money problems using the dollar more strategy for amounts up to $17.00 dollars using 1, 5 and 10 dollar bills, on 4/5 daily trials over 3 consecutive weeks.</li></ul></li></ul>
+                 """
+        PaulaSackettIEP = """   """
+        lookupID = f"{studentname}IEP"
+        iepData = locals()[lookupID]
+        self.iepWindow = wx.html2.WebView.New(self,pos=(50,80), size=(750,800))
+        self.iepWindow.SetPage(iepData,"")
 class observationsPanel(scrolled.ScrolledPanel):
     def __init__(self, parent):
         scrolled.ScrolledPanel.__init__(self, parent, -1)

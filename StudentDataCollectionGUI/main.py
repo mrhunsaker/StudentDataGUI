@@ -345,8 +345,8 @@ class dataPanel(wx.Panel):
                 if not os.path.exists(
                         f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\{self.studentdatabasename}.txt"):
                     self.filename = open(
-                            f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\{self.studentdatabasename}.txt",
-                            'w')
+                        f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\{self.studentdatabasename}.txt",
+                        'w')
                     self.filename.write('studentname' + ',')
                     self.filename.write('simpleDate' + ',')
                     self.filename.write('task' + ',')
@@ -388,7 +388,7 @@ class dataPanel(wx.Panel):
                         f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\Filenames.txt",
                         'a')
                     self.filename.write(
-                            f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\{self.studentdatabasename}.txt" + '\n')
+                        f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\{self.studentdatabasename}.txt" + '\n')
                     self.filename.close()
                     list_data = [studentname, dateNow, task, lesson, session,
                                  trial01,
@@ -425,18 +425,16 @@ class dataPanel(wx.Panel):
             conn = sqlite3.connect(f"{USER_DIR}\\StudentDatabase\\students.db")
             c = conn.cursor()
             c.execute(
-                    "INSERT INTO studentdata (studentname, date, task, lesson, session, trial01, trial02, trial03, trial04, trial05, trial06, trial07, trial08, trial09, trial10, trial11, median, notes) VALUES (?,?,?,?, ?, ?, ?, ?,?, ?, ?, ?, ?,?, ?, ?, ?, ?)",
-                    (studentname, dateNow, task, lesson, session, trial01,
-                     trial02, trial03, trial04, trial05, trial06,
-                     trial07, trial08, trial09, trial10, trial11, trialmedian,
-                     notes))
+                "INSERT INTO studentdata (studentname, date, task, lesson, session, trial01, trial02, trial03, trial04, trial05, trial06, trial07, trial08, trial09, trial10, trial11, median, notes) VALUES (?,?,?,?, ?, ?, ?, ?,?, ?, ?, ?, ?,?, ?, ?, ?, ?)",
+                (studentname, dateNow, task, lesson, session, trial01,
+                 trial02, trial03, trial04, trial05, trial06,
+                 trial07, trial08, trial09, trial10, trial11, trialmedian,
+                 notes))
             conn.commit()
             c.close()
             conn.close()
 
         data_entry()
-
-
 
     def OnChoice(self, event):
         self.label.SetLabel(self.choice.GetString(self.choice.GetSelection()))
@@ -451,13 +449,13 @@ class braillePanel(scrolled.ScrolledPanel):
         vbox.Add((20, 20))
         self.SetSizer(vbox)
         self.SetupScrolling()
-        self.SetBackgroundColour(wx.Colour(229,204,255))
+        self.SetBackgroundColour(wx.Colour(229, 204, 255))
         # super(braillePanel, self).__init__(parent)
         wx.StaticText(self, -1, "BRAILLE SKILLS PROGRESSION", pos=(200, 20))
         wx.StaticText(self, -1, "Student Name", pos=(30, 50))
         self.studentname1 = wx.Choice(self, -1, choices=students_all,
                                       pos=(650, 50), size=(300, 20))
-        wx.StaticText(self, -1,f"Date: {date}", pos=(550, 20))
+        wx.StaticText(self, -1, f"Date: {date}", pos=(550, 20))
         wx.StaticText(self, -1, "1.1 Track Left to Right", pos=(30, 80))
         self.trial11 = wx.TextCtrl(self, -1, "", pos=(650, 80), size=(300, 20))
         wx.StaticText(self, -1, "1.2 Track Top to Bottom", pos=(30, 110))
@@ -756,8 +754,8 @@ class braillePanel(scrolled.ScrolledPanel):
             if not os.path.exists(
                     f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\{self.studentdatabasename}.txt"):
                 self.filename = open(
-                        f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\{self.studentdatabasename}.txt",
-                        'w')
+                    f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\{self.studentdatabasename}.txt",
+                    'w')
                 self.filename.write('studentname' + ',')
                 self.filename.write('simpleDate' + ',')
                 self.filename.write('trial11' + ',')
@@ -958,7 +956,7 @@ class braillePanel(scrolled.ScrolledPanel):
                     f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\Filenames.txt",
                     'a')
                 self.filename.write(
-                        f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\{self.studentdatabasename}.txt" + '\n')
+                    f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\{self.studentdatabasename}.txt" + '\n')
                 self.filename.close()
                 os.chdir(USER_DIR)
                 with open(
@@ -1000,20 +998,20 @@ class braillePanel(scrolled.ScrolledPanel):
             conn = sqlite3.connect(f"{USER_DIR}\\StudentDatabase\\students.db")
             c = conn.cursor()
             c.execute(
-                    "INSERT INTO brailleProgress (studentname,date,P1_1 ,P1_2 ,P1_3 ,P1_4 ,P2_1 ,P2_2 ,P2_3 ,P2_4 ,P2_5 ,P2_6 ,P2_7 ,P2_8 ,P2_9 ,P2_10 ,P2_11 ,P2_12 ,P2_13 ,P2_14 ,P2_15 ,P3_1 ,P3_2 ,P3_3 ,P3_4 ,P3_5 ,P3_6 ,P3_7 ,P3_8 ,P3_9 ,P3_10 ,P3_11 ,P3_12 ,P3_13 ,P3_14 ,P3_15 ,P4_1 ,P4_2 ,P4_3 ,P4_4 ,P5_1 ,P5_2 ,P5_3 ,P5_4 ,P6_1 ,P6_2 ,P6_3 ,P6_4 ,P6_5 ,P6_6 ,P6_7 ,P7_1 ,P7_2 ,P7_3 ,P7_4 ,P7_5 ,P7_6 ,P7_7 ,P7_8 ,P8_1 ,P8_2 ,P8_3 ,P8_4 ,P8_5 ,P8_6 ,P8_7 ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                    (studentname, dateNow, trial11, trial12, trial13, trial14,
-                     trial21, trial22, trial23, trial24, trial25,
-                     trial26, trial27, trial28, trial29, trial210, trial211,
-                     trial212, trial213, trial214, trial215,
-                     trial31, trial32, trial33, trial34, trial35, trial36,
-                     trial37, trial38, trial39, trial310, trial311,
-                     trial312, trial313, trial314, trial315, trial41, trial42,
-                     trial43, trial44, trial51, trial52, trial53,
-                     trial54, trial61, trial62, trial63, trial64, trial65,
-                     trial66, trial67, trial71, trial72, trial73,
-                     trial74, trial75, trial76, trial77, trial78, trial81,
-                     trial82, trial83, trial84, trial85, trial86,
-                     trial87))
+                "INSERT INTO brailleProgress (studentname,date,P1_1 ,P1_2 ,P1_3 ,P1_4 ,P2_1 ,P2_2 ,P2_3 ,P2_4 ,P2_5 ,P2_6 ,P2_7 ,P2_8 ,P2_9 ,P2_10 ,P2_11 ,P2_12 ,P2_13 ,P2_14 ,P2_15 ,P3_1 ,P3_2 ,P3_3 ,P3_4 ,P3_5 ,P3_6 ,P3_7 ,P3_8 ,P3_9 ,P3_10 ,P3_11 ,P3_12 ,P3_13 ,P3_14 ,P3_15 ,P4_1 ,P4_2 ,P4_3 ,P4_4 ,P5_1 ,P5_2 ,P5_3 ,P5_4 ,P6_1 ,P6_2 ,P6_3 ,P6_4 ,P6_5 ,P6_6 ,P6_7 ,P7_1 ,P7_2 ,P7_3 ,P7_4 ,P7_5 ,P7_6 ,P7_7 ,P7_8 ,P8_1 ,P8_2 ,P8_3 ,P8_4 ,P8_5 ,P8_6 ,P8_7 ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                (studentname, dateNow, trial11, trial12, trial13, trial14,
+                 trial21, trial22, trial23, trial24, trial25,
+                 trial26, trial27, trial28, trial29, trial210, trial211,
+                 trial212, trial213, trial214, trial215,
+                 trial31, trial32, trial33, trial34, trial35, trial36,
+                 trial37, trial38, trial39, trial310, trial311,
+                 trial312, trial313, trial314, trial315, trial41, trial42,
+                 trial43, trial44, trial51, trial52, trial53,
+                 trial54, trial61, trial62, trial63, trial64, trial65,
+                 trial66, trial67, trial71, trial72, trial73,
+                 trial74, trial75, trial76, trial77, trial78, trial81,
+                 trial82, trial83, trial84, trial85, trial86,
+                 trial87))
             conn.commit()
 
             data_entry()
@@ -1042,15 +1040,15 @@ class braillePanel(scrolled.ScrolledPanel):
         noise = np.random.normal(mu, sigma, [len(df.index), len(df.columns)])
         df_noisy = df + noise
         fig = make_subplots(
-                rows=7, cols=2,
-                specs=[[{}, {"rowspan": 2}],
-                       [{}, None],
-                       [{"rowspan": 2}, {"rowspan": 2}],
-                       [None, None],
-                       [{"rowspan": 2}, {"rowspan": 2}],
-                       [None, None],
-                       [{}, {}]],
-                subplot_titles=(
+            rows=7, cols=2,
+            specs=[[{}, {"rowspan": 2}],
+                   [{}, None],
+                   [{"rowspan": 2}, {"rowspan": 2}],
+                   [None, None],
+                   [{"rowspan": 2}, {"rowspan": 2}],
+                   [None, None],
+                   [{}, {}]],
+            subplot_titles=(
                 "Phase 1: Tracking Skills", "Phase 2: Braille Alphabet",
                 "Phase 1: Tracking Skills",
                 "Phase 3a: Wordsigns, Numbers,Punctuation",
@@ -1059,35 +1057,35 @@ class braillePanel(scrolled.ScrolledPanel):
                 "Phase 3d: Multiple Cell Contractions",
                 "Phase 4a: Braille Mode Indicators",
                 "Phase 5: Document Formatting"),
-                print_grid=True)
+            print_grid=True)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P1_1'],
-                           mode="lines+markers",
-                           name="Track left to right", legendgroup="Phase 1",
-                           legendgrouptitle_text="Phase 1"), row=1, col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P1_1'],
+                       mode="lines+markers",
+                       name="Track left to right", legendgroup="Phase 1",
+                       legendgrouptitle_text="Phase 1"), row=1, col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P1_2'],
-                           mode="lines+markers",
-                           name="Track top to bottom", legendgroup="Phase 1",
-                           legendgrouptitle_text="Phase 1"), row=1, col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P1_2'],
+                       mode="lines+markers",
+                       name="Track top to bottom", legendgroup="Phase 1",
+                       legendgrouptitle_text="Phase 1"), row=1, col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]],
-                           y=df_noisy['P1_3'].iloc[[-1]], mode="lines+markers",
-                           name="Discriminate shapes", legendgroup="Phase 1",
-                           legendgrouptitle_text="Phase 1"), row=2, col=1)
+            go.Scatter(x=df_noisy.index[[-1]],
+                       y=df_noisy['P1_3'].iloc[[-1]], mode="lines+markers",
+                       name="Discriminate shapes", legendgroup="Phase 1",
+                       legendgrouptitle_text="Phase 1"), row=2, col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P1_4'],
-                           mode="lines+markers",
-                           name="Discriminate braille characters",
-                           legendgroup="Phase 1",
-                           legendgrouptitle_text="Phase 1"), row=2, col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P1_4'],
+                       mode="lines+markers",
+                       name="Discriminate braille characters",
+                       legendgroup="Phase 1",
+                       legendgrouptitle_text="Phase 1"), row=2, col=1)
         #
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_1'],
-                           mode="lines+markers+text",
-                           name="Alphabet", legendgroup="Phase 2",
-                           legendgrouptitle_text="Phase 2", showlegend=True),
-                row=1, col=2)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_1'],
+                       mode="lines+markers+text",
+                       name="Alphabet", legendgroup="Phase 2",
+                       legendgrouptitle_text="Phase 2", showlegend=True),
+            row=1, col=2)
         fig.add_trace(
             go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_1'].iloc[[-1]],
                        mode="text", text=[" G C L"],
@@ -1096,11 +1094,11 @@ class braillePanel(scrolled.ScrolledPanel):
             row=1, col=2)
         #
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_2'],
-                           mode="lines+markers+text",
-                           name="D Y", legendgroup="Phase 2",
-                           legendgrouptitle_text="Phase 2", showlegend=False),
-                row=1, col=2)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_2'],
+                       mode="lines+markers+text",
+                       name="D Y", legendgroup="Phase 2",
+                       legendgrouptitle_text="Phase 2", showlegend=False),
+            row=1, col=2)
         fig.add_trace(
             go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_2'].iloc[[-1]],
                        mode="text", text=[" D Y"],
@@ -1109,11 +1107,11 @@ class braillePanel(scrolled.ScrolledPanel):
             row=1, col=2)
         #
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_3'],
-                           mode="lines+markers+text",
-                           name="A B", legendgroup="Phase 2",
-                           legendgrouptitle_text="Phase 2", showlegend=False),
-                row=1, col=2)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_3'],
+                       mode="lines+markers+text",
+                       name="A B", legendgroup="Phase 2",
+                       legendgrouptitle_text="Phase 2", showlegend=False),
+            row=1, col=2)
         fig.add_trace(
             go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_3'].iloc[[-1]],
                        mode="text", text=[" A B"],
@@ -1122,11 +1120,11 @@ class braillePanel(scrolled.ScrolledPanel):
             row=1, col=2)
         #
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_4'],
-                           mode="lines+markers+text",
-                           name="S", legendgroup="Phase 2",
-                           legendgrouptitle_text="Phase 2",
-                           showlegend=False), row=1, col=2)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_4'],
+                       mode="lines+markers+text",
+                       name="S", legendgroup="Phase 2",
+                       legendgrouptitle_text="Phase 2",
+                       showlegend=False), row=1, col=2)
         fig.add_trace(
             go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_4'].iloc[[-1]],
                        mode="text", text=[" S"], textposition="middle right",
@@ -1134,11 +1132,11 @@ class braillePanel(scrolled.ScrolledPanel):
                        showlegend=False), row=1, col=2)
         #
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_5'],
-                           mode="lines+markers+text",
-                           name="W", legendgroup="Phase 2",
-                           legendgrouptitle_text="Phase 2",
-                           showlegend=False), row=1, col=2)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_5'],
+                       mode="lines+markers+text",
+                       name="W", legendgroup="Phase 2",
+                       legendgrouptitle_text="Phase 2",
+                       showlegend=False), row=1, col=2)
         fig.add_trace(
             go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_5'].iloc[[-1]],
                        mode="text", text=[" W"], textposition="middle right",
@@ -1146,11 +1144,11 @@ class braillePanel(scrolled.ScrolledPanel):
                        showlegend=False), row=1, col=2)
         #
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_6'],
-                           mode="lines+markers+text",
-                           name="P O", legendgroup="Phase 2",
-                           legendgrouptitle_text="Phase 2", showlegend=False),
-                row=1, col=2)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_6'],
+                       mode="lines+markers+text",
+                       name="P O", legendgroup="Phase 2",
+                       legendgrouptitle_text="Phase 2", showlegend=False),
+            row=1, col=2)
         fig.add_trace(
             go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_6'].iloc[[-1]],
                        mode="text", text=[" P O"],
@@ -1159,11 +1157,11 @@ class braillePanel(scrolled.ScrolledPanel):
             row=1, col=2)
         #
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_7'],
-                           mode="lines+markers+text",
-                           name="K", legendgroup="Phase 2",
-                           legendgrouptitle_text="Phase 2",
-                           showlegend=False), row=1, col=2)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_7'],
+                       mode="lines+markers+text",
+                       name="K", legendgroup="Phase 2",
+                       legendgrouptitle_text="Phase 2",
+                       showlegend=False), row=1, col=2)
         fig.add_trace(
             go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_7'].iloc[[-1]],
                        mode="text", text=[" K"], textposition="middle right",
@@ -1171,11 +1169,11 @@ class braillePanel(scrolled.ScrolledPanel):
                        showlegend=False), row=1, col=2)
         #
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_8'],
-                           mode="lines+markers+text",
-                           name="R", legendgroup="Phase 2",
-                           legendgrouptitle_text="Phase 2",
-                           showlegend=False), row=1, col=2)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_8'],
+                       mode="lines+markers+text",
+                       name="R", legendgroup="Phase 2",
+                       legendgrouptitle_text="Phase 2",
+                       showlegend=False), row=1, col=2)
         fig.add_trace(
             go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_8'].iloc[[-1]],
                        mode="text", text=[" R"], textposition="middle right",
@@ -1183,11 +1181,11 @@ class braillePanel(scrolled.ScrolledPanel):
                        showlegend=False), row=1, col=2)
         #
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_9'],
-                           mode="lines+markers+text",
-                           name="M E", legendgroup="Phase 2",
-                           legendgrouptitle_text="Phase 2", showlegend=False),
-                row=1, col=2)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_9'],
+                       mode="lines+markers+text",
+                       name="M E", legendgroup="Phase 2",
+                       legendgrouptitle_text="Phase 2", showlegend=False),
+            row=1, col=2)
         fig.add_trace(
             go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_9'].iloc[[-1]],
                        mode="text", text=[" M E"],
@@ -1196,11 +1194,11 @@ class braillePanel(scrolled.ScrolledPanel):
             row=1, col=2)
         #
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_10'],
-                           mode="lines+markers+text",
-                           name="H", legendgroup="Phase 2",
-                           legendgrouptitle_text="Phase 2",
-                           showlegend=False), row=1, col=2)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_10'],
+                       mode="lines+markers+text",
+                       name="H", legendgroup="Phase 2",
+                       legendgrouptitle_text="Phase 2",
+                       showlegend=False), row=1, col=2)
         fig.add_trace(
             go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_10'].iloc[[-1]],
                        mode="text", text=[" H"], textposition="middle right",
@@ -1208,11 +1206,11 @@ class braillePanel(scrolled.ScrolledPanel):
                        showlegend=False), row=1, col=2)
         #
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_11'],
-                           mode="lines+markers+text",
-                           name="N X", legendgroup="Phase 2",
-                           legendgrouptitle_text="Phase 2", showlegend=False),
-                row=1, col=2)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_11'],
+                       mode="lines+markers+text",
+                       name="N X", legendgroup="Phase 2",
+                       legendgrouptitle_text="Phase 2", showlegend=False),
+            row=1, col=2)
         fig.add_trace(
             go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_11'].iloc[[-1]],
                        mode="text", text=[" N X"],
@@ -1221,11 +1219,11 @@ class braillePanel(scrolled.ScrolledPanel):
             row=1, col=2)
         #
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_12'],
-                           mode="lines+markers+text",
-                           name="Z F", legendgroup="Phase 2",
-                           legendgrouptitle_text="Phase 2", showlegend=False),
-                row=1, col=2)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_12'],
+                       mode="lines+markers+text",
+                       name="Z F", legendgroup="Phase 2",
+                       legendgrouptitle_text="Phase 2", showlegend=False),
+            row=1, col=2)
         fig.add_trace(
             go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_12'].iloc[[-1]],
                        mode="text", text=[" Z F"],
@@ -1234,11 +1232,11 @@ class braillePanel(scrolled.ScrolledPanel):
             row=1, col=2)
         #
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_13'],
-                           mode="lines+markers+text",
-                           name="U T", legendgroup="Phase 2",
-                           legendgrouptitle_text="Phase 2", showlegend=False),
-                row=1, col=2)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_13'],
+                       mode="lines+markers+text",
+                       name="U T", legendgroup="Phase 2",
+                       legendgrouptitle_text="Phase 2", showlegend=False),
+            row=1, col=2)
         fig.add_trace(
             go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_13'].iloc[[-1]],
                        mode="text", text=[" U T"],
@@ -1247,11 +1245,11 @@ class braillePanel(scrolled.ScrolledPanel):
             row=1, col=2)
         #
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_14'],
-                           mode="lines+markers+text",
-                           name="Q I", legendgroup="Phase 2",
-                           legendgrouptitle_text="Phase 2", showlegend=False),
-                row=1, col=2)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_14'],
+                       mode="lines+markers+text",
+                       name="Q I", legendgroup="Phase 2",
+                       legendgrouptitle_text="Phase 2", showlegend=False),
+            row=1, col=2)
         fig.add_trace(
             go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_14'].iloc[[-1]],
                        mode="text", text=[" Q I"],
@@ -1260,11 +1258,11 @@ class braillePanel(scrolled.ScrolledPanel):
             row=1, col=2)
         #
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_15'],
-                           mode="lines+markers+text",
-                           name="V J ", legendgroup="Phase 2",
-                           legendgrouptitle_text="Phase 2", showlegend=False),
-                row=1, col=2)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_15'],
+                       mode="lines+markers+text",
+                       name="V J ", legendgroup="Phase 2",
+                       legendgrouptitle_text="Phase 2", showlegend=False),
+            row=1, col=2)
         fig.add_trace(
             go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_15'].iloc[[-1]],
                        mode="text", text=[" V J"],
@@ -1275,142 +1273,142 @@ class braillePanel(scrolled.ScrolledPanel):
         fig.update_layout(showlegend=True)
         #
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_1'],
-                           mode="lines+markers",
-                           name="Alphabetic Wordsigns", legendgroup="Phase 3a",
-                           legendgrouptitle_text="Phase 3a"), row=3, col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_1'],
+                       mode="lines+markers",
+                       name="Alphabetic Wordsigns", legendgroup="Phase 3a",
+                       legendgrouptitle_text="Phase 3a"), row=3, col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_2'],
-                           mode="lines+markers",
-                           name="Braille Numbers", legendgroup="Phase 3a",
-                           legendgrouptitle_text="Phase 3a"), row=3, col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_2'],
+                       mode="lines+markers",
+                       name="Braille Numbers", legendgroup="Phase 3a",
+                       legendgrouptitle_text="Phase 3a"), row=3, col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_3'],
-                           mode="lines+markers",
-                           name="Punctuation", legendgroup="Phase 3a",
-                           legendgrouptitle_text="Phase 3a"), row=3, col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_3'],
+                       mode="lines+markers",
+                       name="Punctuation", legendgroup="Phase 3a",
+                       legendgrouptitle_text="Phase 3a"), row=3, col=1)
         #
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_4'],
-                           mode="lines+markers",
-                           name="Strong Contractions <br>(AND OF FOR WITH THE)",
-                           legendgroup="Phase 3b",
-                           legendgrouptitle_text="Phase 3b"), row=3,
-                col=2)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_4'],
+                       mode="lines+markers",
+                       name="Strong Contractions <br>(AND OF FOR WITH THE)",
+                       legendgroup="Phase 3b",
+                       legendgrouptitle_text="Phase 3b"), row=3,
+            col=2)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_5'],
-                           mode="lines+markers",
-                           name="Strong Groupsigns <br>(CH GH SH TH WH ED ER OU OW ST AR ING)",
-                           legendgroup="Phase 3b",
-                           legendgrouptitle_text="Phase 3b"), row=3,
-                col=2)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_5'],
+                       mode="lines+markers",
+                       name="Strong Groupsigns <br>(CH GH SH TH WH ED ER OU OW ST AR ING)",
+                       legendgroup="Phase 3b",
+                       legendgrouptitle_text="Phase 3b"), row=3,
+            col=2)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_6'],
-                           mode="lines+markers",
-                           name="Strong Wordsigns <br>(CH SH TH WH OU ST)",
-                           legendgroup="Phase 3b",
-                           legendgrouptitle_text="Phase 3b"), row=3,
-                col=2)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_6'],
+                       mode="lines+markers",
+                       name="Strong Wordsigns <br>(CH SH TH WH OU ST)",
+                       legendgroup="Phase 3b",
+                       legendgrouptitle_text="Phase 3b"), row=3,
+            col=2)
         #
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_7'],
-                           mode="lines+markers",
-                           name="Lower Groupsigns <br>(BE CON DIS)",
-                           legendgroup="Phase 3c",
-                           legendgrouptitle_text="Phase 3c"), row=5, col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_7'],
+                       mode="lines+markers",
+                       name="Lower Groupsigns <br>(BE CON DIS)",
+                       legendgroup="Phase 3c",
+                       legendgrouptitle_text="Phase 3c"), row=5, col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_8'],
-                           mode="lines+markers",
-                           name="Lower Groupsigns <br>(EA BB CC FF GG)",
-                           legendgroup="Phase 3c",
-                           legendgrouptitle_text="Phase 3c"), row=5,
-                col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_8'],
+                       mode="lines+markers",
+                       name="Lower Groupsigns <br>(EA BB CC FF GG)",
+                       legendgroup="Phase 3c",
+                       legendgrouptitle_text="Phase 3c"), row=5,
+            col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_9'],
-                           mode="lines+markers",
-                           name="Lower Groupsigns/Wordsigns <br>(EN IN)",
-                           legendgroup="Phase 3c",
-                           legendgrouptitle_text="Phase 3c"), row=5,
-                col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_9'],
+                       mode="lines+markers",
+                       name="Lower Groupsigns/Wordsigns <br>(EN IN)",
+                       legendgroup="Phase 3c",
+                       legendgrouptitle_text="Phase 3c"), row=5,
+            col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_10'],
-                           mode="lines+markers",
-                           name="Lower Wordsigns <br>(BE HIS WAS WERE)",
-                           legendgroup="Phase 3c",
-                           legendgrouptitle_text="Phase 3c"), row=5,
-                col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_10'],
+                       mode="lines+markers",
+                       name="Lower Wordsigns <br>(BE HIS WAS WERE)",
+                       legendgroup="Phase 3c",
+                       legendgrouptitle_text="Phase 3c"), row=5,
+            col=1)
         #
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_11'],
-                           mode="lines+markers",
-                           name="Dot 5 Contractions", legendgroup="Phase 3d",
-                           legendgrouptitle_text="Phase 3d"), row=5, col=2)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_11'],
+                       mode="lines+markers",
+                       name="Dot 5 Contractions", legendgroup="Phase 3d",
+                       legendgrouptitle_text="Phase 3d"), row=5, col=2)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_12'],
-                           mode="lines+markers",
-                           name="Dot 45 Contractions", legendgroup="Phase 3d",
-                           legendgrouptitle_text="Phase 3d"), row=5, col=2)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_12'],
+                       mode="lines+markers",
+                       name="Dot 45 Contractions", legendgroup="Phase 3d",
+                       legendgrouptitle_text="Phase 3d"), row=5, col=2)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_13'],
-                           mode="lines+markers",
-                           name="Dot 456 Contractions", legendgroup="Phase 3d",
-                           legendgrouptitle_text="Phase 3d"), row=5, col=2)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_13'],
+                       mode="lines+markers",
+                       name="Dot 456 Contractions", legendgroup="Phase 3d",
+                       legendgrouptitle_text="Phase 3d"), row=5, col=2)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_14'],
-                           mode="lines+markers",
-                           name="Final Letter Groupsigns",
-                           legendgroup="Phase 3d",
-                           legendgrouptitle_text="Phase 3d"), row=5, col=2)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_14'],
+                       mode="lines+markers",
+                       name="Final Letter Groupsigns",
+                       legendgroup="Phase 3d",
+                       legendgrouptitle_text="Phase 3d"), row=5, col=2)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_15'],
-                           mode="lines+markers",
-                           name="Shortform Words", legendgroup="Phase 3d",
-                           legendgrouptitle_text="Phase 3d"), row=5, col=2)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_15'],
+                       mode="lines+markers",
+                       name="Shortform Words", legendgroup="Phase 3d",
+                       legendgrouptitle_text="Phase 3d"), row=5, col=2)
         #
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P4_1'],
-                           mode="lines+markers",
-                           name="Grade 1 Indicators", legendgroup="Phase 4",
-                           legendgrouptitle_text="Phase 4"), row=7, col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P4_1'],
+                       mode="lines+markers",
+                       name="Grade 1 Indicators", legendgroup="Phase 4",
+                       legendgrouptitle_text="Phase 4"), row=7, col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P4_2'],
-                           mode="lines+markers",
-                           name="Capitals Indicators", legendgroup="Phase 4",
-                           legendgrouptitle_text="Phase 4"), row=7, col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P4_2'],
+                       mode="lines+markers",
+                       name="Capitals Indicators", legendgroup="Phase 4",
+                       legendgrouptitle_text="Phase 4"), row=7, col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P4_3'],
-                           mode="lines+markers",
-                           name="Numeric Mode and Spatial math",
-                           legendgroup="Phase 4",
-                           legendgrouptitle_text="Phase 4"), row=7, col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P4_3'],
+                       mode="lines+markers",
+                       name="Numeric Mode and Spatial math",
+                       legendgroup="Phase 4",
+                       legendgrouptitle_text="Phase 4"), row=7, col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P4_4'],
-                           mode="lines+markers",
-                           name="Typeform Indicators <br>(ITALIC, SCRIPT, UNDERLINE, BOLDFACE)",
-                           legendgroup="Phase 4",
-                           legendgrouptitle_text="Phase 4"), row=7,
-                col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P4_4'],
+                       mode="lines+markers",
+                       name="Typeform Indicators <br>(ITALIC, SCRIPT, UNDERLINE, BOLDFACE)",
+                       legendgroup="Phase 4",
+                       legendgrouptitle_text="Phase 4"), row=7,
+            col=1)
         #
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P5_1'],
-                           mode="lines+markers",
-                           name="Page Numbering", legendgroup="Phase 5",
-                           legendgrouptitle_text="Phase 5"), row=7, col=2)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P5_1'],
+                       mode="lines+markers",
+                       name="Page Numbering", legendgroup="Phase 5",
+                       legendgrouptitle_text="Phase 5"), row=7, col=2)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P5_2'],
-                           mode="lines+markers",
-                           name="Headings", legendgroup="Phase 5",
-                           legendgrouptitle_text="Phase 5"), row=7, col=2)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P5_2'],
+                       mode="lines+markers",
+                       name="Headings", legendgroup="Phase 5",
+                       legendgrouptitle_text="Phase 5"), row=7, col=2)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P5_3'],
-                           mode="lines+markers",
-                           name="Lists", legendgroup="Phase 5",
-                           legendgrouptitle_text="Phase 5"), row=7, col=2)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P5_3'],
+                       mode="lines+markers",
+                       name="Lists", legendgroup="Phase 5",
+                       legendgrouptitle_text="Phase 5"), row=7, col=2)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P5_4'],
-                           mode="lines+markers",
-                           name="Poety / Drama", legendgroup="Phase 5",
-                           legendgrouptitle_text="Phase 5"), row=7, col=2)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P5_4'],
+                       mode="lines+markers",
+                       name="Poety / Drama", legendgroup="Phase 5",
+                       legendgrouptitle_text="Phase 5"), row=7, col=2)
         fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2,
                       row=1,
                       col=1)
@@ -1530,59 +1528,59 @@ class braillePanel(scrolled.ScrolledPanel):
         fig.add_vline(x=marker, line_width=3, line_color="black", row=7, col=1)
         fig.add_vline(x=marker, line_width=3, line_color="black", row=7, col=2)
         fig.update_xaxes(rangebreaks=[dict(
-                values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
-                        "2021-12-20", "2021-12-21", "2021-12-22", "2021-12-23",
-                        "2021-12-24", "2021-12-25", "2021-12-26", "2021-12-27",
-                        "2021-12-28", "2021-12-29", "2021-12-30"])], row=1,
-                col=1)
+            values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
+                    "2021-12-20", "2021-12-21", "2021-12-22", "2021-12-23",
+                    "2021-12-24", "2021-12-25", "2021-12-26", "2021-12-27",
+                    "2021-12-28", "2021-12-29", "2021-12-30"])], row=1,
+            col=1)
         fig.update_xaxes(rangebreaks=[dict(
-                values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
-                        "2021-12-20", "2021-12-21", "2021-12-22", "2021-12-23",
-                        "2021-12-24", "2021-12-25", "2021-12-26", "2021-12-27",
-                        "2021-12-28", "2021-12-29", "2021-12-30"])], row=1,
-                col=2)
+            values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
+                    "2021-12-20", "2021-12-21", "2021-12-22", "2021-12-23",
+                    "2021-12-24", "2021-12-25", "2021-12-26", "2021-12-27",
+                    "2021-12-28", "2021-12-29", "2021-12-30"])], row=1,
+            col=2)
         fig.update_xaxes(rangebreaks=[dict(
-                values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
-                        "2021-12-20", "2021-12-21", "2021-12-22", "2021-12-23",
-                        "2021-12-24", "2021-12-25", "2021-12-26", "2021-12-27",
-                        "2021-12-28", "2021-12-29", "2021-12-30"])], row=2,
-                col=1)
+            values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
+                    "2021-12-20", "2021-12-21", "2021-12-22", "2021-12-23",
+                    "2021-12-24", "2021-12-25", "2021-12-26", "2021-12-27",
+                    "2021-12-28", "2021-12-29", "2021-12-30"])], row=2,
+            col=1)
         fig.update_xaxes(rangebreaks=[dict(
-                values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
-                        "2021-12-20", "2021-12-21", "2021-12-22", "2021-12-23",
-                        "2021-12-24", "2021-12-25", "2021-12-26", "2021-12-27",
-                        "2021-12-28", "2021-12-29", "2021-12-30"])], row=3,
-                col=1)
+            values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
+                    "2021-12-20", "2021-12-21", "2021-12-22", "2021-12-23",
+                    "2021-12-24", "2021-12-25", "2021-12-26", "2021-12-27",
+                    "2021-12-28", "2021-12-29", "2021-12-30"])], row=3,
+            col=1)
         fig.update_xaxes(rangebreaks=[dict(
-                values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
-                        "2021-12-20", "2021-12-21", "2021-12-22", "2021-12-23",
-                        "2021-12-24", "2021-12-25", "2021-12-26", "2021-12-27",
-                        "2021-12-28", "2021-12-29", "2021-12-30"])], row=3,
-                col=2)
+            values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
+                    "2021-12-20", "2021-12-21", "2021-12-22", "2021-12-23",
+                    "2021-12-24", "2021-12-25", "2021-12-26", "2021-12-27",
+                    "2021-12-28", "2021-12-29", "2021-12-30"])], row=3,
+            col=2)
         fig.update_xaxes(rangebreaks=[dict(
-                values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
-                        "2021-12-20", "2021-12-21", "2021-12-22", "2021-12-23",
-                        "2021-12-24", "2021-12-25", "2021-12-26", "2021-12-27",
-                        "2021-12-28", "2021-12-29", "2021-12-30"])], row=5,
-                col=1)
+            values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
+                    "2021-12-20", "2021-12-21", "2021-12-22", "2021-12-23",
+                    "2021-12-24", "2021-12-25", "2021-12-26", "2021-12-27",
+                    "2021-12-28", "2021-12-29", "2021-12-30"])], row=5,
+            col=1)
         fig.update_xaxes(rangebreaks=[dict(
-                values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
-                        "2021-12-20", "2021-12-21", "2021-12-22", "2021-12-23",
-                        "2021-12-24", "2021-12-25", "2021-12-26", "2021-12-27",
-                        "2021-12-28", "2021-12-29", "2021-12-30"])], row=5,
-                col=2)
+            values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
+                    "2021-12-20", "2021-12-21", "2021-12-22", "2021-12-23",
+                    "2021-12-24", "2021-12-25", "2021-12-26", "2021-12-27",
+                    "2021-12-28", "2021-12-29", "2021-12-30"])], row=5,
+            col=2)
         fig.update_xaxes(rangebreaks=[dict(
-                values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
-                        "2021-12-20", "2021-12-21", "2021-12-22", "2021-12-23",
-                        "2021-12-24", "2021-12-25", "2021-12-26", "2021-12-27",
-                        "2021-12-28", "2021-12-29", "2021-12-30"])], row=7,
-                col=1)
+            values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
+                    "2021-12-20", "2021-12-21", "2021-12-22", "2021-12-23",
+                    "2021-12-24", "2021-12-25", "2021-12-26", "2021-12-27",
+                    "2021-12-28", "2021-12-29", "2021-12-30"])], row=7,
+            col=1)
         fig.update_xaxes(rangebreaks=[dict(
-                values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
-                        "2021-12-20", "2021-12-21", "2021-12-22", "2021-12-23",
-                        "2021-12-24", "2021-12-25", "2021-12-26", "2021-12-27",
-                        "2021-12-28", "2021-12-29", "2021-12-30"])], row=7,
-                col=2)
+            values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
+                    "2021-12-20", "2021-12-21", "2021-12-22", "2021-12-23",
+                    "2021-12-24", "2021-12-25", "2021-12-26", "2021-12-27",
+                    "2021-12-28", "2021-12-29", "2021-12-30"])], row=7,
+            col=2)
         fig.update_yaxes(range=[-.5, 3.5], fixedrange=True,
                          ticktext=["Unable", "Prompted", "Hesitated",
                                    "Independent"],
@@ -1632,158 +1630,158 @@ class braillePanel(scrolled.ScrolledPanel):
                           legend=dict(font=dict(size=10)))
 
         fig.write_html(
-                f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\UEBLiterarySkillsProgression.html")
+            f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\UEBLiterarySkillsProgression.html")
         fig.show()
         #
         fig = make_subplots(
-                rows=3, cols=1,
-                subplot_titles=(
-                        "Phase 6: UEB Technical Basics",
-                        "Phase 7: Advanced UEB Technical",
-                        "Phase 8: Accellerated UEB Technical"),
-                print_grid=True
+            rows=3, cols=1,
+            subplot_titles=(
+                "Phase 6: UEB Technical Basics",
+                "Phase 7: Advanced UEB Technical",
+                "Phase 8: Accellerated UEB Technical"),
+            print_grid=True
         )
         #
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P6_1'],
-                           mode="lines+markers",
-                           name=" Operation and Comparison Signs",
-                           legendgroup="Phase 6",
-                           legendgrouptitle_text="Phase 6"), row=1, col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P6_1'],
+                       mode="lines+markers",
+                       name=" Operation and Comparison Signs",
+                       legendgroup="Phase 6",
+                       legendgrouptitle_text="Phase 6"), row=1, col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P6_2'],
-                           mode="lines+markers",
-                           name="Grade 1 Mode", legendgroup="Phase 6",
-                           legendgrouptitle_text="Phase 6"), row=1, col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P6_2'],
+                       mode="lines+markers",
+                       name="Grade 1 Mode", legendgroup="Phase 6",
+                       legendgrouptitle_text="Phase 6"), row=1, col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P6_3'],
-                           mode="lines+markers",
-                           name="Special Print Symbols", legendgroup="Phase 6",
-                           legendgrouptitle_text="Phase 6"), row=1, col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P6_3'],
+                       mode="lines+markers",
+                       name="Special Print Symbols", legendgroup="Phase 6",
+                       legendgrouptitle_text="Phase 6"), row=1, col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P6_4'],
-                           mode="lines+markers",
-                           name="Omission Marks", legendgroup="Phase 6",
-                           legendgrouptitle_text="Phase 6"), row=1, col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P6_4'],
+                       mode="lines+markers",
+                       name="Omission Marks", legendgroup="Phase 6",
+                       legendgrouptitle_text="Phase 6"), row=1, col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P6_5'],
-                           mode="lines+markers",
-                           name="Shape Indicators", legendgroup="Phase 6",
-                           legendgrouptitle_text="Phase 6"), row=1, col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P6_5'],
+                       mode="lines+markers",
+                       name="Shape Indicators", legendgroup="Phase 6",
+                       legendgrouptitle_text="Phase 6"), row=1, col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P6_6'],
-                           mode="lines+markers",
-                           name="Roman Numerals", legendgroup="Phase 6",
-                           legendgrouptitle_text="Phase 6"), row=1, col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P6_6'],
+                       mode="lines+markers",
+                       name="Roman Numerals", legendgroup="Phase 6",
+                       legendgrouptitle_text="Phase 6"), row=1, col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P6_7'],
-                           mode="lines+markers",
-                           name="Fractions", legendgroup="Phase 6",
-                           legendgrouptitle_text="Phase 6"), row=1, col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P6_7'],
+                       mode="lines+markers",
+                       name="Fractions", legendgroup="Phase 6",
+                       legendgrouptitle_text="Phase 6"), row=1, col=1)
         #
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P7_1'],
-                           mode="lines+markers",
-                           name="Grade 1 Mode and Algebra",
-                           legendgroup="Phase 7",
-                           legendgrouptitle_text="Phase 7"), row=2, col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P7_1'],
+                       mode="lines+markers",
+                       name="Grade 1 Mode and Algebra",
+                       legendgroup="Phase 7",
+                       legendgrouptitle_text="Phase 7"), row=2, col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P7_2'],
-                           mode="lines+markers",
-                           name="Grade 1 Mode and Fractions",
-                           legendgroup="Phase 7",
-                           legendgrouptitle_text="Phase 7"), row=2, col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P7_2'],
+                       mode="lines+markers",
+                       name="Grade 1 Mode and Fractions",
+                       legendgroup="Phase 7",
+                       legendgrouptitle_text="Phase 7"), row=2, col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P7_3'],
-                           mode="lines+markers",
-                           name="Advanced Operation and Comparison Signs",
-                           legendgroup="Phase 7",
-                           legendgrouptitle_text="Phase 7"), row=2,
-                col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P7_3'],
+                       mode="lines+markers",
+                       name="Advanced Operation and Comparison Signs",
+                       legendgroup="Phase 7",
+                       legendgrouptitle_text="Phase 7"), row=2,
+            col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P7_4'],
-                           mode="lines+markers",
-                           name="Indices", legendgroup="Phase 7",
-                           legendgrouptitle_text="Phase 7"), row=2, col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P7_4'],
+                       mode="lines+markers",
+                       name="Indices", legendgroup="Phase 7",
+                       legendgrouptitle_text="Phase 7"), row=2, col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P7_5'],
-                           mode="lines+markers",
-                           name="Roots and Radicals", legendgroup="Phase 7",
-                           legendgrouptitle_text="Phase 7"), row=2, col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P7_5'],
+                       mode="lines+markers",
+                       name="Roots and Radicals", legendgroup="Phase 7",
+                       legendgrouptitle_text="Phase 7"), row=2, col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P7_6'],
-                           mode="lines+markers",
-                           name="Miscellaneous Shape Indicators",
-                           legendgroup="Phase 7",
-                           legendgrouptitle_text="Phase 7"), row=2, col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P7_6'],
+                       mode="lines+markers",
+                       name="Miscellaneous Shape Indicators",
+                       legendgroup="Phase 7",
+                       legendgrouptitle_text="Phase 7"), row=2, col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P7_7'],
-                           mode="lines+markers",
-                           name="Functions", legendgroup="Phase 7",
-                           legendgrouptitle_text="Phase 7"), row=2, col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P7_7'],
+                       mode="lines+markers",
+                       name="Functions", legendgroup="Phase 7",
+                       legendgrouptitle_text="Phase 7"), row=2, col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P7_8'],
-                           mode="lines+markers",
-                           name="Greek letters", legendgroup="Phase 7",
-                           legendgrouptitle_text="Phase 7"), row=2, col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P7_8'],
+                       mode="lines+markers",
+                       name="Greek letters", legendgroup="Phase 7",
+                       legendgrouptitle_text="Phase 7"), row=2, col=1)
         #
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P8_1'],
-                           mode="lines+markers",
-                           name="Functions", legendgroup="Phase 8",
-                           legendgrouptitle_text="Phase 8"), row=3, col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P8_1'],
+                       mode="lines+markers",
+                       name="Functions", legendgroup="Phase 8",
+                       legendgrouptitle_text="Phase 8"), row=3, col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P8_2'],
-                           mode="lines+markers",
-                           name="Modifiers, Bars, and Dots",
-                           legendgroup="Phase 8",
-                           legendgrouptitle_text="Phase 8"), row=3, col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P8_2'],
+                       mode="lines+markers",
+                       name="Modifiers, Bars, and Dots",
+                       legendgroup="Phase 8",
+                       legendgrouptitle_text="Phase 8"), row=3, col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P8_3'],
-                           mode="lines+markers",
-                           name="Modifiers, Arrows, and Limits",
-                           legendgroup="Phase 8",
-                           legendgrouptitle_text="Phase 8"), row=3, col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P8_3'],
+                       mode="lines+markers",
+                       name="Modifiers, Arrows, and Limits",
+                       legendgroup="Phase 8",
+                       legendgrouptitle_text="Phase 8"), row=3, col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P8_4'],
-                           mode="lines+markers", name="Probability",
-                           legendgroup="Phase 8",
-                           legendgrouptitle_text="Phase 8"), row=3, col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P8_4'],
+                       mode="lines+markers", name="Probability",
+                       legendgroup="Phase 8",
+                       legendgrouptitle_text="Phase 8"), row=3, col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P8_5'],
-                           mode="lines+markers",
-                           name="Calculus: Differentiation",
-                           legendgroup="Phase 8",
-                           legendgrouptitle_text="Phase 8"), row=3, col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P8_5'],
+                       mode="lines+markers",
+                       name="Calculus: Differentiation",
+                       legendgroup="Phase 8",
+                       legendgrouptitle_text="Phase 8"), row=3, col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P8_6'],
-                           mode="lines+markers", name="Calculus: Integration",
-                           legendgroup="Phase 8",
-                           legendgrouptitle_text="Phase 8"), row=3, col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P8_6'],
+                       mode="lines+markers", name="Calculus: Integration",
+                       legendgroup="Phase 8",
+                       legendgrouptitle_text="Phase 8"), row=3, col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P8_7'],
-                           mode="lines+markers", name="Vertical Bars",
-                           legendgroup="Phase 8",
-                           legendgrouptitle_text="Phase 8"), row=3, col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P8_7'],
+                       mode="lines+markers", name="Vertical Bars",
+                       legendgroup="Phase 8",
+                       legendgrouptitle_text="Phase 8"), row=3, col=1)
         #
         fig.update_xaxes(rangebreaks=[dict(
-                values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
-                        "2021-12-20", "2021-12-21", "2021-12-22", "2021-12-23",
-                        "2021-12-24", "2021-12-25", "2021-12-26", "2021-12-27",
-                        "2021-12-28", "2021-12-29", "2021-12-30", "2021-12-31",
-                        "2022-01-01", "2022-01-02"])], row=1, col=1)
+            values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
+                    "2021-12-20", "2021-12-21", "2021-12-22", "2021-12-23",
+                    "2021-12-24", "2021-12-25", "2021-12-26", "2021-12-27",
+                    "2021-12-28", "2021-12-29", "2021-12-30", "2021-12-31",
+                    "2022-01-01", "2022-01-02"])], row=1, col=1)
         fig.update_xaxes(rangebreaks=[dict(
-                values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
-                        "2021-12-20", "2021-12-21", "2021-12-22", "2021-12-23",
-                        "2021-12-24", "2021-12-25", "2021-12-26", "2021-12-27",
-                        "2021-12-28", "2021-12-29", "2021-12-30", "2021-12-31",
-                        "2022-01-01", "2022-01-02"])], row=2, col=1)
+            values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
+                    "2021-12-20", "2021-12-21", "2021-12-22", "2021-12-23",
+                    "2021-12-24", "2021-12-25", "2021-12-26", "2021-12-27",
+                    "2021-12-28", "2021-12-29", "2021-12-30", "2021-12-31",
+                    "2022-01-01", "2022-01-02"])], row=2, col=1)
         fig.update_xaxes(rangebreaks=[dict(
-                values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
-                        "2021-12-20", "2021-12-21", "2021-12-22", "2021-12-23",
-                        "2021-12-24", "2021-12-25", "2021-12-26", "2021-12-27",
-                        "2021-12-28", "2021-12-29", "2021-12-30", "2021-12-31",
-                        "2022-01-01", "2022-01-02"])], row=3, col=1)
+            values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
+                    "2021-12-20", "2021-12-21", "2021-12-22", "2021-12-23",
+                    "2021-12-24", "2021-12-25", "2021-12-26", "2021-12-27",
+                    "2021-12-28", "2021-12-29", "2021-12-30", "2021-12-31",
+                    "2022-01-01", "2022-01-02"])], row=3, col=1)
         #
         fig.update_yaxes(range=[-.5, 3.5], fixedrange=True,
                          ticktext=["Unable", "Prompted", "Hesitated",
@@ -1836,7 +1834,7 @@ class braillePanel(scrolled.ScrolledPanel):
                           title_text=f"{studentname}: Technical UEB Skills Progression",
                           legend=dict(font=dict(size=10)))
         fig.write_html(
-                f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\UEBTechnicalSkillsProgression.html")
+            f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\UEBTechnicalSkillsProgression.html")
         fig.show()
 
 
@@ -1849,7 +1847,7 @@ class screenreaderPanel(scrolled.ScrolledPanel):
         vbox.Add((20, 20))
         self.SetSizer(vbox)
         self.SetupScrolling()
-        self.SetBackgroundColour(wx.Colour(204,255,255))
+        self.SetBackgroundColour(wx.Colour(204, 255, 255))
         wx.StaticText(self, -1, "SCREENREADER SKILLS PROGRESSION", pos=(200, 20))
         wx.StaticText(self, -1, "Student Name", pos=(30, 50))
         self.studentname1 = wx.Choice(self, -1, choices=students_all,
@@ -2036,8 +2034,8 @@ class screenreaderPanel(scrolled.ScrolledPanel):
             if not os.path.exists(
                     f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\{self.studentdatabasename}.txt"):
                 self.filename = open(
-                        f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\{self.studentdatabasename}.txt",
-                        'w')
+                    f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\{self.studentdatabasename}.txt",
+                    'w')
                 self.filename.write('studentname' + ',')
                 self.filename.write('simpleDate' + ',')
                 self.filename.write('trial11' + ',')
@@ -2103,7 +2101,7 @@ class screenreaderPanel(scrolled.ScrolledPanel):
                     f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\Filenames.txt",
                     'a')
                 self.filename.write(
-                        f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\{self.studentdatabasename}.txt" + '\n')
+                    f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\{self.studentdatabasename}.txt" + '\n')
                 self.filename.close()
 
                 # list_names = ['date','P1_1','P1_2','P1_3','P1_4','P1_5','P1_6','P2_1','P2_2','P2_3','P2_4','P3_1','P3_2','P3_3','P3_4','P3_5','P3_6','P3_7','P3_8','P3_9','P3_10','P3_11','P4_1','P4_2','P4_3','P4_4','P4_5','P4_6','P4_7']
@@ -2135,57 +2133,55 @@ class screenreaderPanel(scrolled.ScrolledPanel):
                 self.dial.ShowModal()
             else:
                 self.dial = wx.MessageDialog(None,
-                                                 'Name already exists',
-                                                 'Info', wx.OK)
+                                             'Name already exists',
+                                             'Info', wx.OK)
                 self.dial.ShowModal()
         else:
             self.dial = wx.MessageDialog(None, 'Save cancelled', 'Info',
-                                             wx.OK)
+                                         wx.OK)
             self.dial.ShowModal()
 
         def data_entry():
             conn = sqlite3.connect(f"{USER_DIR}\\StudentDatabase\\students.db")
             c = conn.cursor()
             c.execute(
-                    "INSERT INTO screenreaderProgress (studentname,date,P1_1,P1_2,P1_3,P1_4,P1_5,P1_6,P2_1,P2_2,P2_3,P2_4,P3_1,P3_2,P3_3,P3_4,P3_5,P3_6,P3_7,P3_8,P3_9,P3_10,P3_11,P4_1,P4_2,P4_3,P4_4,P4_5,P4_6,P4_7) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
-                    (studentname, dateNow, trial11, trial12, trial13, trial14,
-                     trial15, trial16, trial21, trial22, trial23,
-                     trial24,
-                     trial31, trial32, trial33, trial34, trial35, trial36,
-                     trial37, trial38, trial39, trial310, trial311,
-                     trial41, trial42, trial43, trial44, trial45, trial46,
-                     trial47))
+                "INSERT INTO screenreaderProgress (studentname,date,P1_1,P1_2,P1_3,P1_4,P1_5,P1_6,P2_1,P2_2,P2_3,P2_4,P3_1,P3_2,P3_3,P3_4,P3_5,P3_6,P3_7,P3_8,P3_9,P3_10,P3_11,P4_1,P4_2,P4_3,P4_4,P4_5,P4_6,P4_7) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                (studentname, dateNow, trial11, trial12, trial13, trial14,
+                 trial15, trial16, trial21, trial22, trial23,
+                 trial24,
+                 trial31, trial32, trial33, trial34, trial35, trial36,
+                 trial37, trial38, trial39, trial310, trial311,
+                 trial41, trial42, trial43, trial44, trial45, trial46,
+                 trial47))
             conn.commit()
 
         data_entry()
-
-
 
     def graph(self, event):
         studentname = self.studentname1.GetString(
             self.studentname1.GetSelection())
         df = pd.read_csv(
-                f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\ScreenReaderSkillsProgression.csv",
-                sep=',', index_col=[0], parse_dates=[0])
+            f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\ScreenReaderSkillsProgression.csv",
+            sep=',', index_col=[0], parse_dates=[0])
         df = df.sort_values(by="date")
         mu, sigma = 0, 0.1
         noise = np.random.normal(mu, sigma, [len(df.index), len(df.columns)])
         df_noisy = df + noise
 
         fig = make_subplots(
-                rows=5, cols=2,
-                specs=[[{}, {"rowspan": 2}],
-                       [{}, None],
-                       [{"rowspan": 2}, {}],
-                       [None, {}],
-                       [{}, {}]],
-                subplot_titles=(
-                        "Phase 1a: Reading", "Phase 2: Writing",
-                        "Phase 1b: Reading", "Phase 3a: Internet",
-                        "Phase 3b: Internet",
-                        "Phase 3c: Internet", "Phase 4a: File Management",
-                        "Phase 4b: File Management"),
-                print_grid=True
+            rows=5, cols=2,
+            specs=[[{}, {"rowspan": 2}],
+                   [{}, None],
+                   [{"rowspan": 2}, {}],
+                   [None, {}],
+                   [{}, {}]],
+            subplot_titles=(
+                "Phase 1a: Reading", "Phase 2: Writing",
+                "Phase 1b: Reading", "Phase 3a: Internet",
+                "Phase 3b: Internet",
+                "Phase 3c: Internet", "Phase 4a: File Management",
+                "Phase 4b: File Management"),
+            print_grid=True
         )
 
         fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1_1"],
@@ -2199,10 +2195,10 @@ class screenreaderPanel(scrolled.ScrolledPanel):
                                  legendgrouptitle_text="Phase 1a"), row=1,
                       col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1_3"],
-                           mode="lines+markers", name="Use Reading Commands",
-                           legendgroup="Phase 1a",
-                           legendgrouptitle_text="Phase 1a"), row=1, col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1_3"],
+                       mode="lines+markers", name="Use Reading Commands",
+                       legendgroup="Phase 1a",
+                       legendgrouptitle_text="Phase 1a"), row=1, col=1)
 
         fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1_4"],
                                  mode="lines+markers", name="ID Titles",
@@ -2213,10 +2209,10 @@ class screenreaderPanel(scrolled.ScrolledPanel):
                                  legendgroup="Phase 1b",
                                  legendgrouptitle_text=" "), row=2, col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1_6"],
-                           mode="lines+markers", name="Switch Program Focus",
-                           legendgroup="Phase 1b", legendgrouptitle_text=" "),
-                row=2, col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1_6"],
+                       mode="lines+markers", name="Switch Program Focus",
+                       legendgroup="Phase 1b", legendgrouptitle_text=" "),
+            row=2, col=1)
 
         fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P2_1"],
                                  mode="lines+markers",
@@ -2224,11 +2220,11 @@ class screenreaderPanel(scrolled.ScrolledPanel):
                                  legendgroup="Phase 2",
                                  legendgrouptitle_text="Phase 2"), row=1, col=2)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P2_2"],
-                           mode="lines+markers",
-                           name="Change Screen Reader Settings",
-                           legendgroup="Phase 2",
-                           legendgrouptitle_text="Phase 2"), row=1, col=2)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P2_2"],
+                       mode="lines+markers",
+                       name="Change Screen Reader Settings",
+                       legendgroup="Phase 2",
+                       legendgrouptitle_text="Phase 2"), row=1, col=2)
         fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P2_3"],
                                  mode="lines+markers", name="Write documents",
                                  legendgroup="Phase 2",
@@ -2244,38 +2240,38 @@ class screenreaderPanel(scrolled.ScrolledPanel):
                                  legendgrouptitle_text="Phase 3a"), row=3,
                       col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_5"],
-                           mode="lines+markers", name="Quick Key Navigation",
-                           legendgroup="Phase 3a",
-                           legendgrouptitle_text="Phase 3a"), row=3, col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_5"],
+                       mode="lines+markers", name="Quick Key Navigation",
+                       legendgroup="Phase 3a",
+                       legendgrouptitle_text="Phase 3a"), row=3, col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_6"],
-                           mode="lines+markers",
-                           name="Elements List Navigation",
-                           legendgroup="Phase 3a",
-                           legendgrouptitle_text="Phase 3a"), row=3, col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_6"],
+                       mode="lines+markers",
+                       name="Elements List Navigation",
+                       legendgroup="Phase 3a",
+                       legendgrouptitle_text="Phase 3a"), row=3, col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_7"],
-                           mode="lines+markers",
-                           name="Justify Navigation Method",
-                           legendgroup="Phase 3a",
-                           legendgrouptitle_text="Phase 3a"), row=3, col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_7"],
+                       mode="lines+markers",
+                       name="Justify Navigation Method",
+                       legendgroup="Phase 3a",
+                       legendgrouptitle_text="Phase 3a"), row=3, col=1)
 
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_1"],
-                           mode="lines+markers", name="Define HTML Elements",
-                           legendgroup="Phase 3b",
-                           legendgrouptitle_text="Phase 3b"), row=3, col=2)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_1"],
+                       mode="lines+markers", name="Define HTML Elements",
+                       legendgroup="Phase 3b",
+                       legendgrouptitle_text="Phase 3b"), row=3, col=2)
         fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_2"],
                                  mode="lines+markers", name="ID HTML Elements",
                                  legendgroup="Phase 3b",
                                  legendgrouptitle_text="Phase 3b"), row=3,
                       col=2)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_3"],
-                           mode="lines+markers", name="Navigate to Address Bar",
-                           legendgroup="Phase 3b",
-                           legendgrouptitle_text="Phase 3b"), row=3, col=2)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_3"],
+                       mode="lines+markers", name="Navigate to Address Bar",
+                       legendgroup="Phase 3b",
+                       legendgrouptitle_text="Phase 3b"), row=3, col=2)
         fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_8"],
                                  mode="lines+markers", name="ALT-TAB Focus",
                                  legendgroup="Phase 3b",
@@ -2283,21 +2279,21 @@ class screenreaderPanel(scrolled.ScrolledPanel):
                       col=2)
 
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_9"],
-                           mode="lines+markers",
-                           name="Toggle Screen Reader Mode",
-                           legendgroup="Phase 3c",
-                           legendgrouptitle_text="Phase 3c"), row=4, col=2)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_9"],
+                       mode="lines+markers",
+                       name="Toggle Screen Reader Mode",
+                       legendgroup="Phase 3c",
+                       legendgrouptitle_text="Phase 3c"), row=4, col=2)
         fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_10"],
                                  mode="lines+markers", name="Navigate a Table",
                                  legendgroup="Phase 3c",
                                  legendgrouptitle_text="Phase 3c"), row=4,
                       col=2)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_11"],
-                           mode="lines+markers", name="Navigation Sequence",
-                           legendgroup="Phase 3c",
-                           legendgrouptitle_text="Phase 3c"), row=4, col=2)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_11"],
+                       mode="lines+markers", name="Navigation Sequence",
+                       legendgroup="Phase 3c",
+                       legendgrouptitle_text="Phase 3c"), row=4, col=2)
 
         fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P4_1"],
                                  mode="lines+markers",
@@ -2311,15 +2307,15 @@ class screenreaderPanel(scrolled.ScrolledPanel):
                                  legendgrouptitle_text="Phase 4a"), row=5,
                       col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P4_3"],
-                           mode="lines+markers", name="Navigate Cloud Storage",
-                           legendgroup="Phase 4a",
-                           legendgrouptitle_text="Phase 4a"), row=5, col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P4_3"],
+                       mode="lines+markers", name="Navigate Cloud Storage",
+                       legendgroup="Phase 4a",
+                       legendgrouptitle_text="Phase 4a"), row=5, col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P4_4"],
-                           mode="lines+markers", name="Download from Internet",
-                           legendgroup="Phase 4a",
-                           legendgrouptitle_text="Phase 4a"), row=5, col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P4_4"],
+                       mode="lines+markers", name="Download from Internet",
+                       legendgroup="Phase 4a",
+                       legendgrouptitle_text="Phase 4a"), row=5, col=1)
 
         fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P4_5"],
                                  mode="lines+markers", name="UNZIP Folders",
@@ -2404,68 +2400,68 @@ class screenreaderPanel(scrolled.ScrolledPanel):
                       opacity=0.2, row=5, col=2)
 
         fig.update_xaxes(rangebreaks=[dict(
-                values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
-                        "2021-12-20", "2021-12-21", "2021-12-22",
-                        "2021-12-23", "2021-12-24", "2021-12-25", "2021-12-26",
-                        "2021-12-27", "2021-12-28", "2021-12-29",
-                        "2021-12-30", "2021-12-31", "2022-01-01",
-                        "2022-01-02"])], row=1, col=1)
+            values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
+                    "2021-12-20", "2021-12-21", "2021-12-22",
+                    "2021-12-23", "2021-12-24", "2021-12-25", "2021-12-26",
+                    "2021-12-27", "2021-12-28", "2021-12-29",
+                    "2021-12-30", "2021-12-31", "2022-01-01",
+                    "2022-01-02"])], row=1, col=1)
         fig.update_xaxes(rangebreaks=[dict(
-                values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
-                        "2021-12-20", "2021-12-21", "2021-12-22",
-                        "2021-12-23", "2021-12-24", "2021-12-25", "2021-12-26",
-                        "2021-12-27", "2021-12-28", "2021-12-29",
-                        "2021-12-30", "2021-12-31", "2022-01-01",
-                        "2022-01-02"])], row=1, col=2)
+            values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
+                    "2021-12-20", "2021-12-21", "2021-12-22",
+                    "2021-12-23", "2021-12-24", "2021-12-25", "2021-12-26",
+                    "2021-12-27", "2021-12-28", "2021-12-29",
+                    "2021-12-30", "2021-12-31", "2022-01-01",
+                    "2022-01-02"])], row=1, col=2)
         fig.update_xaxes(rangebreaks=[dict(
-                values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
-                        "2021-12-20", "2021-12-21", "2021-12-22",
-                        "2021-12-23", "2021-12-24", "2021-12-25", "2021-12-26",
-                        "2021-12-27", "2021-12-28", "2021-12-29",
-                        "2021-12-30", "2021-12-31", "2022-01-01",
-                        "2022-01-02"])], row=2, col=1)
+            values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
+                    "2021-12-20", "2021-12-21", "2021-12-22",
+                    "2021-12-23", "2021-12-24", "2021-12-25", "2021-12-26",
+                    "2021-12-27", "2021-12-28", "2021-12-29",
+                    "2021-12-30", "2021-12-31", "2022-01-01",
+                    "2022-01-02"])], row=2, col=1)
         fig.update_xaxes(rangebreaks=[dict(
-                values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
-                        "2021-12-20", "2021-12-21", "2021-12-22",
-                        "2021-12-23", "2021-12-24", "2021-12-25", "2021-12-26",
-                        "2021-12-27", "2021-12-28", "2021-12-29",
-                        "2021-12-30", "2021-12-31", "2022-01-01",
-                        "2022-01-02"])], row=3, col=1)
+            values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
+                    "2021-12-20", "2021-12-21", "2021-12-22",
+                    "2021-12-23", "2021-12-24", "2021-12-25", "2021-12-26",
+                    "2021-12-27", "2021-12-28", "2021-12-29",
+                    "2021-12-30", "2021-12-31", "2022-01-01",
+                    "2022-01-02"])], row=3, col=1)
         fig.update_xaxes(rangebreaks=[dict(
-                values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
-                        "2021-12-20", "2021-12-21", "2021-12-22",
-                        "2021-12-23", "2021-12-24", "2021-12-25", "2021-12-26",
-                        "2021-12-27", "2021-12-28", "2021-12-29",
-                        "2021-12-30", "2021-12-31", "2022-01-01",
-                        "2022-01-02"])], row=3, col=1)
+            values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
+                    "2021-12-20", "2021-12-21", "2021-12-22",
+                    "2021-12-23", "2021-12-24", "2021-12-25", "2021-12-26",
+                    "2021-12-27", "2021-12-28", "2021-12-29",
+                    "2021-12-30", "2021-12-31", "2022-01-01",
+                    "2022-01-02"])], row=3, col=1)
         fig.update_xaxes(rangebreaks=[dict(
-                values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
-                        "2021-12-20", "2021-12-21", "2021-12-22",
-                        "2021-12-23", "2021-12-24", "2021-12-25", "2021-12-26",
-                        "2021-12-27", "2021-12-28", "2021-12-29",
-                        "2021-12-30", "2021-12-31", "2022-01-01",
-                        "2022-01-02"])], row=3, col=2)
+            values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
+                    "2021-12-20", "2021-12-21", "2021-12-22",
+                    "2021-12-23", "2021-12-24", "2021-12-25", "2021-12-26",
+                    "2021-12-27", "2021-12-28", "2021-12-29",
+                    "2021-12-30", "2021-12-31", "2022-01-01",
+                    "2022-01-02"])], row=3, col=2)
         fig.update_xaxes(rangebreaks=[dict(
-                values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
-                        "2021-12-20", "2021-12-21", "2021-12-22",
-                        "2021-12-23", "2021-12-24", "2021-12-25", "2021-12-26",
-                        "2021-12-27", "2021-12-28", "2021-12-29",
-                        "2021-12-30", "2021-12-31", "2022-01-01",
-                        "2022-01-02"])], row=4, col=2)
+            values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
+                    "2021-12-20", "2021-12-21", "2021-12-22",
+                    "2021-12-23", "2021-12-24", "2021-12-25", "2021-12-26",
+                    "2021-12-27", "2021-12-28", "2021-12-29",
+                    "2021-12-30", "2021-12-31", "2022-01-01",
+                    "2022-01-02"])], row=4, col=2)
         fig.update_xaxes(rangebreaks=[dict(
-                values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
-                        "2021-12-20", "2021-12-21", "2021-12-22",
-                        "2021-12-23", "2021-12-24", "2021-12-25", "2021-12-26",
-                        "2021-12-27", "2021-12-28", "2021-12-29",
-                        "2021-12-30", "2021-12-31", "2022-01-01",
-                        "2022-01-02"])], row=5, col=1)
+            values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
+                    "2021-12-20", "2021-12-21", "2021-12-22",
+                    "2021-12-23", "2021-12-24", "2021-12-25", "2021-12-26",
+                    "2021-12-27", "2021-12-28", "2021-12-29",
+                    "2021-12-30", "2021-12-31", "2022-01-01",
+                    "2022-01-02"])], row=5, col=1)
         fig.update_xaxes(rangebreaks=[dict(
-                values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
-                        "2021-12-20", "2021-12-21", "2021-12-22",
-                        "2021-12-23", "2021-12-24", "2021-12-25", "2021-12-26",
-                        "2021-12-27", "2021-12-28", "2021-12-29",
-                        "2021-12-30", "2021-12-31", "2022-01-01",
-                        "2022-01-02"])], row=5, col=2)
+            values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
+                    "2021-12-20", "2021-12-21", "2021-12-22",
+                    "2021-12-23", "2021-12-24", "2021-12-25", "2021-12-26",
+                    "2021-12-27", "2021-12-28", "2021-12-29",
+                    "2021-12-30", "2021-12-31", "2022-01-01",
+                    "2022-01-02"])], row=5, col=2)
 
         fig.update_yaxes(range=[-.5, 3.5], fixedrange=True,
                          ticktext=["Unable", "Prompted", "Hesitated",
@@ -2504,7 +2500,7 @@ class screenreaderPanel(scrolled.ScrolledPanel):
                           title_text=f"{studentname}: Screen Reader Skills Progression")
 
         fig.write_html(
-                f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\ScreenReaderSkillsProgression.html")
+            f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\ScreenReaderSkillsProgression.html")
         fig.show()
 
 
@@ -2517,12 +2513,12 @@ class abacusPanel(scrolled.ScrolledPanel):
         vbox.Add((20, 20))
         self.SetSizer(vbox)
         self.SetupScrolling()
-        self.SetBackgroundColour(wx.Colour(204,255,204))
+        self.SetBackgroundColour(wx.Colour(204, 255, 204))
         wx.StaticText(self, -1, "ABACUS SKILLS PROGRESSION", pos=(200, 20))
         wx.StaticText(self, -1, "Student Name", pos=(30, 50))
         self.studentname1 = wx.Choice(self, -1, choices=students_all,
                                       pos=(650, 50), size=(300, 20))
-        wx.StaticText(self, -1,f"Date: {date}", pos=(550, 20))
+        wx.StaticText(self, -1, f"Date: {date}", pos=(550, 20))
         wx.StaticText(self, -1, "1.1 Setting NumbersNumbers", pos=(30, 80))
         self.trial11 = wx.TextCtrl(self, -1, "", pos=(650, 80), size=(300, 20))
         wx.StaticText(self, -1, "1.2 Clearing Beads", pos=(30, 110))
@@ -2661,8 +2657,8 @@ class abacusPanel(scrolled.ScrolledPanel):
             if not os.path.exists(
                     f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\{self.studentdatabasename}.txt"):
                 self.filename = open(
-                        f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\{self.studentdatabasename}.txt",
-                        'w')
+                    f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\{self.studentdatabasename}.txt",
+                    'w')
                 self.filename.write('studentname' + ',')
                 self.filename.write('simpleDate' + ',')
                 self.filename.write('trial11' + ',')
@@ -2719,7 +2715,7 @@ class abacusPanel(scrolled.ScrolledPanel):
                     f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\Filenames.txt",
                     'a')
                 self.filename.write(
-                        f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\{self.studentdatabasename}.txt" + '\n')
+                    f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\{self.studentdatabasename}.txt" + '\n')
                 self.filename.close()
                 list_names = ['date', 'P1_1', 'P1_2', 'P1_3', 'P1_4',
                               'P2_1', 'P2_2',
@@ -2762,16 +2758,15 @@ class abacusPanel(scrolled.ScrolledPanel):
             conn = sqlite3.connect(f"{USER_DIR}\\StudentDatabase\\students.db")
             c = conn.cursor()
             c.execute(
-                    "INSERT INTO abacusProgress (studentname, date,P1_1,P1_2,P1_3,P1_4,P2_1,P2_2,P2_3,P3_1,P3_2,P3_3,P4_1,P4_2,P5_1,P5_2,P6_1,P6_2,P6_3,P6_4,P7_1,P7_2,P7_3,P7_4,P8_1,P8_2) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                    (studentname, dateNow, trial11, trial12, trial13, trial14,
-                     trial21, trial22, trial23, trial31, trial32,
-                     trial33, trial41, trial42, trial51, trial52, trial61,
-                     trial62, trial63, trial64, trial71, trial72,
-                     trial73, trial74, trial81, trial82))
+                "INSERT INTO abacusProgress (studentname, date,P1_1,P1_2,P1_3,P1_4,P2_1,P2_2,P2_3,P3_1,P3_2,P3_3,P4_1,P4_2,P5_1,P5_2,P6_1,P6_2,P6_3,P6_4,P7_1,P7_2,P7_3,P7_4,P8_1,P8_2) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                (studentname, dateNow, trial11, trial12, trial13, trial14,
+                 trial21, trial22, trial23, trial31, trial32,
+                 trial33, trial41, trial42, trial51, trial52, trial61,
+                 trial62, trial63, trial64, trial71, trial72,
+                 trial73, trial74, trial81, trial82))
             conn.commit()
 
         data_entry()
-
 
     def graph(self, event):
         studentname = self.studentname1.GetString(
@@ -2785,13 +2780,13 @@ class abacusPanel(scrolled.ScrolledPanel):
         df_noisy = df + noise
 
         fig = make_subplots(
-                rows=4, cols=2,
-                subplot_titles=(
-                        "Phase 1: Foundation", "Phase 2: Addition",
-                        "Phase 3: Subtraction", "Phase 4: Multiplication",
-                        "Phase 5: Division", "Phase 6: Decimals",
-                        "Phase 7: Fractions", "Phase 8: Special Functions"),
-                print_grid=True
+            rows=4, cols=2,
+            subplot_titles=(
+                "Phase 1: Foundation", "Phase 2: Addition",
+                "Phase 3: Subtraction", "Phase 4: Multiplication",
+                "Phase 5: Division", "Phase 6: Decimals",
+                "Phase 7: Fractions", "Phase 8: Special Functions"),
+            print_grid=True
         )
 
         fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1_1"],
@@ -2971,61 +2966,61 @@ class abacusPanel(scrolled.ScrolledPanel):
                       opacity=0.2, row=4, col=2)
 
         fig.update_xaxes(rangebreaks=[dict(
-                values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
-                        "2021-12-20", "2021-12-21", "2021-12-22",
-                        "2021-12-23", "2021-12-24", "2021-12-25", "2021-12-26",
-                        "2021-12-27", "2021-12-28", "2021-12-29",
-                        "2021-12-30", "2021-12-31", "2022-01-01",
-                        "2022-01-02"])], row=1, col=1)
+            values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
+                    "2021-12-20", "2021-12-21", "2021-12-22",
+                    "2021-12-23", "2021-12-24", "2021-12-25", "2021-12-26",
+                    "2021-12-27", "2021-12-28", "2021-12-29",
+                    "2021-12-30", "2021-12-31", "2022-01-01",
+                    "2022-01-02"])], row=1, col=1)
         fig.update_xaxes(rangebreaks=[dict(
-                values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
-                        "2021-12-20", "2021-12-21", "2021-12-22",
-                        "2021-12-23", "2021-12-24", "2021-12-25", "2021-12-26",
-                        "2021-12-27", "2021-12-28", "2021-12-29",
-                        "2021-12-30", "2021-12-31", "2022-01-01",
-                        "2022-01-02"])], row=1, col=2)
+            values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
+                    "2021-12-20", "2021-12-21", "2021-12-22",
+                    "2021-12-23", "2021-12-24", "2021-12-25", "2021-12-26",
+                    "2021-12-27", "2021-12-28", "2021-12-29",
+                    "2021-12-30", "2021-12-31", "2022-01-01",
+                    "2022-01-02"])], row=1, col=2)
         fig.update_xaxes(rangebreaks=[dict(
-                values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
-                        "2021-12-20", "2021-12-21", "2021-12-22",
-                        "2021-12-23", "2021-12-24", "2021-12-25", "2021-12-26",
-                        "2021-12-27", "2021-12-28", "2021-12-29",
-                        "2021-12-30", "2021-12-31", "2022-01-01",
-                        "2022-01-02"])], row=2, col=1)
+            values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
+                    "2021-12-20", "2021-12-21", "2021-12-22",
+                    "2021-12-23", "2021-12-24", "2021-12-25", "2021-12-26",
+                    "2021-12-27", "2021-12-28", "2021-12-29",
+                    "2021-12-30", "2021-12-31", "2022-01-01",
+                    "2022-01-02"])], row=2, col=1)
         fig.update_xaxes(rangebreaks=[dict(
-                values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
-                        "2021-12-20", "2021-12-21", "2021-12-22",
-                        "2021-12-23", "2021-12-24", "2021-12-25", "2021-12-26",
-                        "2021-12-27", "2021-12-28", "2021-12-29",
-                        "2021-12-30", "2021-12-31", "2022-01-01",
-                        "2022-01-02"])], row=2, col=2)
+            values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
+                    "2021-12-20", "2021-12-21", "2021-12-22",
+                    "2021-12-23", "2021-12-24", "2021-12-25", "2021-12-26",
+                    "2021-12-27", "2021-12-28", "2021-12-29",
+                    "2021-12-30", "2021-12-31", "2022-01-01",
+                    "2022-01-02"])], row=2, col=2)
         fig.update_xaxes(rangebreaks=[dict(
-                values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
-                        "2021-12-20", "2021-12-21", "2021-12-22",
-                        "2021-12-23", "2021-12-24", "2021-12-25", "2021-12-26",
-                        "2021-12-27", "2021-12-28", "2021-12-29",
-                        "2021-12-30", "2021-12-31", "2022-01-01",
-                        "2022-01-02"])], row=3, col=1)
+            values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
+                    "2021-12-20", "2021-12-21", "2021-12-22",
+                    "2021-12-23", "2021-12-24", "2021-12-25", "2021-12-26",
+                    "2021-12-27", "2021-12-28", "2021-12-29",
+                    "2021-12-30", "2021-12-31", "2022-01-01",
+                    "2022-01-02"])], row=3, col=1)
         fig.update_xaxes(rangebreaks=[dict(
-                values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
-                        "2021-12-20", "2021-12-21", "2021-12-22",
-                        "2021-12-23", "2021-12-24", "2021-12-25", "2021-12-26",
-                        "2021-12-27", "2021-12-28", "2021-12-29",
-                        "2021-12-30", "2021-12-31", "2022-01-01",
-                        "2022-01-02"])], row=3, col=2)
+            values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
+                    "2021-12-20", "2021-12-21", "2021-12-22",
+                    "2021-12-23", "2021-12-24", "2021-12-25", "2021-12-26",
+                    "2021-12-27", "2021-12-28", "2021-12-29",
+                    "2021-12-30", "2021-12-31", "2022-01-01",
+                    "2022-01-02"])], row=3, col=2)
         fig.update_xaxes(rangebreaks=[dict(
-                values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
-                        "2021-12-20", "2021-12-21", "2021-12-22",
-                        "2021-12-23", "2021-12-24", "2021-12-25", "2021-12-26",
-                        "2021-12-27", "2021-12-28", "2021-12-29",
-                        "2021-12-30", "2021-12-31", "2022-01-01",
-                        "2022-01-02"])], row=4, col=1)
+            values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
+                    "2021-12-20", "2021-12-21", "2021-12-22",
+                    "2021-12-23", "2021-12-24", "2021-12-25", "2021-12-26",
+                    "2021-12-27", "2021-12-28", "2021-12-29",
+                    "2021-12-30", "2021-12-31", "2022-01-01",
+                    "2022-01-02"])], row=4, col=1)
         fig.update_xaxes(rangebreaks=[dict(
-                values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
-                        "2021-12-20", "2021-12-21", "2021-12-22",
-                        "2021-12-23", "2021-12-24", "2021-12-25", "2021-12-26",
-                        "2021-12-27", "2021-12-28", "2021-12-29",
-                        "2021-12-30", "2021-12-31", "2022-01-01",
-                        "2022-01-02"])], row=4, col=2)
+            values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
+                    "2021-12-20", "2021-12-21", "2021-12-22",
+                    "2021-12-23", "2021-12-24", "2021-12-25", "2021-12-26",
+                    "2021-12-27", "2021-12-28", "2021-12-29",
+                    "2021-12-30", "2021-12-31", "2022-01-01",
+                    "2022-01-02"])], row=4, col=2)
 
         fig.update_yaxes(range=[-.5, 3.5], fixedrange=True,
                          ticktext=["Unable", "Prompted", "Hesitated",
@@ -3067,6 +3062,7 @@ class abacusPanel(scrolled.ScrolledPanel):
             f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\AbacusSkillsProgression.html")
         fig.show()
 
+
 class iepIntro(scrolled.ScrolledPanel):
     def __init__(self, parent):
         scrolled.ScrolledPanel.__init__(self, parent, -1)
@@ -3076,7 +3072,7 @@ class iepIntro(scrolled.ScrolledPanel):
         vbox.Add((20, 20))
         self.SetSizer(vbox)
         self.SetupScrolling()
-        self.SetBackgroundColour(wx.Colour(255,255,204))
+        self.SetBackgroundColour(wx.Colour(255, 255, 204))
         scrolled.ScrolledPanel.__init__(self, parent, -1)
         vbox = wx.BoxSizer(wx.VERTICAL)
         vbox.Add(wx.StaticLine(self, -1, size=(1500, -1)), 0, wx.ALL, 5)
@@ -3090,111 +3086,122 @@ class iepIntro(scrolled.ScrolledPanel):
         self.studentname1 = wx.Choice(self, -1, choices=students_all,
                                       pos=(130, 50), size=(300, 20))
 
-        self.btn = wx.Button(self, 201, "SUBMIT", pos=(450, 50), size=(70, 30))
-        self.Bind(wx.EVT_BUTTON, self.submit, id=201)
-        self.btn1 = wx.Button(self, 202, "EXIT", pos=(550, 830), size=(70, 30))
-        self.Bind(wx.EVT_BUTTON, self.exit, id=202)
+        self.btn = wx.Button(self, 401, "SUBMIT", pos=(450, 50), size=(70, 30))
+        self.Bind(wx.EVT_BUTTON, self.submit, id=401)
+        self.btn1 = wx.Button(self, 402, "EXIT", pos=(550, 50), size=(70, 30))
+        self.Bind(wx.EVT_BUTTON, self.exit, id=402)
+        self.btn = wx.Button(self, 403, "CLEAR", pos=(650, 50), size=(70, 30))
+        self.Bind(wx.EVT_BUTTON, self.clear, id=403)
+
     def exit(self, event):
         wx.Exit()
 
+    def clear(self, event):
+        self.Refresh()
+
     def submit(self, event):
         studentname = self.studentname1.GetString(self.studentname1.GetSelection())
-        ColeCooperIEP = ("""<h3>Cole  Cooper</h3><h4>30 min/month</h4><ul><li>When presented with 2 objects, Cole will be able to utilize his central vision to locate an object with 70% accuracy as measured by the TVI and classroom teacher over 3 consecutive data sessions.<ul><li>When presented with 2 objects, Cole will be able to utilize his central vision to locate an object with 50% accuracy as measured by the TVI and classroom teacher over 3 consecutive data sessions.</li><li>When presented with 2 objects, Cole will be able to utilize his central vision to locate an object with 60% accuracy as measured by the TVI and classroom teacher over 3 consecutive data sessions</li></ul></li></ul>""")
-        LandonGrahamIEP = """<h3>Landon Graham</h3>   	<h4>120 min / month</h4>
-                    <ul><li>Dino will, when presented with a blind-accessible media device, correctly activate the device, select media, start and pause media, and adjust volume unprompted with 85% accuracy as assessed quarterly by the vision teacher
-                        <ul><li>Dino will, when presented with a blind-accessible media device, correctly activate the device, select media, start and pause media, and adjust volume with at most 2 teacher prompts with 85% accuracy as assessed quarterly by the vision teacher.</li>
-                        <li>Dino will, when presented with a blind-accessible media device, correctly activate the device, and select media with at most 1 teacher prompt with 85% accuracy as assessed quarterly by the vision teacher.</li>
-                        <li>Dino will, when presented with a blind-accessible media device, correctly activate the device, and select media with at most 3 teacher prompts with 85% accuracy as assessed quarterly by the vision teacher.</li></ul></li></ul>
-                """
-        TarelLewisIEP = """<h3>Tarel Lewis</h3>	    	<h4>15 min / month</h4>
-                    <ul><li>Tarel, when given a choice between 3 or more objects, symbol requests (yes/no board), or other classroom activities, will clearly use his eye gaze to make a clear response with 80% accuracy over 3 consecutive data sessions with classroom teacher or TVI by March of 2023.
-                        <ul><li>Tarel will visually explore 3 or more visually engaging/age appropriate objects when presented at the same time for at least 15 seconds without becoming overwhelmed on 80% of opportunities over 3 data sessions with classroom teacher or TVI.</li>
-                        <li>Tarel will visually explore 3 or more visually complex objects (multicolored, no auditory component, 6 inches or smaller in size, etc.) when presented at the same time on 60% of opportunities over 3 consecutive data sessions with the classroom teacher or TVI.</li></ul></li></ul>
-                """
+        ColeCooperIEP = ("""Cole  Cooper    30 min/month
+• When presented with 2 objects, Cole will be able to utilize his central vision to locate an object with 70% accuracy as measured by the TVI and classroom teacher over 3 consecutive data sessions.
+    ◦ When presented with 2 objects, Cole will be able to utilize his central vision to locate an object with 50% accuracy as measured by the TVI and classroom teacher over 3 consecutive data sessions.
+    ◦ When presented with 2 objects, Cole will be able to utilize his central vision to locate an object with 60% accuracy as measured by the TVI and classroom teacher over 3 consecutive data sessions.
+""")
+        LandonGrahamIEP = """Landon Graham   	120 min / month
+• Dino will, when presented with a blind-accessible media device, correctly activate the device, select media, start and pause media, and adjust volume unprompted with 85% accuracy as assessed quarterly by the vision teacher
+    ◦ Dino will, when presented with a blind-accessible media device, correctly activate the device, select media, start and pause media, and adjust volume with at most 2 teacher prompts with 85% accuracy as assessed quarterly by the vision teacher.
+    ◦ Dino will, when presented with a blind-accessible media device, correctly activate the device, and select media with at most 1 teacher prompt with 85% accuracy as assessed quarterly by the vision teacher.
+    ◦ Dino will, when presented with a blind-accessible media device, correctly activate the device, and select media with at most 3 teacher prompts with 85% accuracy as assessed quarterly by the vision teacher.
+"""
+        TarelLewisIEP = """Tarel Lewis	    	15 min / month
+• Tarel, when given a choice between 3 or more objects, symbol requests (yes/no board), or other classroom activities, will clearly use his eye gaze to make a clear response with 80% accuracy over 3 consecutive data sessions with classroom teacher or TVI by March of 2023.
+    ◦ Tarel will visually explore 3 or more visually engaging/age appropriate objects when presented at the same time for at least 15 seconds without becoming overwhelmed on 80% of opportunities over 3 data sessions with classroom teacher or TVI.
+    ◦ Tarel will visually explore 3 or more visually complex objects (multicolored, no auditory component, 6 inches or smaller in size, etc.) when presented at the same time on 60% of opportunities over 3 consecutive data sessions with the classroom teacher or TVI.
+"""
         DiegoPenalozaDiazIEP = """Dylan Penaloza-Diaz	    	40 min / month
-                    <ul><li>Dylan will independently complete eye-hand coordination matching activities and/or locating a specific letter, word, or icon on a communication board with 70% accuracy on by completing 4/5 requests across 3 data sessions.
-                        <ul><li>Dylan will independently complete eye-hand coordination matching activities and/or locating a specific letter, word, or icon on a communication board with 30% accuracy on by completing 4/5 requests across 3 data sessions.</li>
-                        <li>Dylan will independently complete eye-hand coordination matching activities and/or locating a specific letter, word, or icon on a communication board with 50% accuracy on by completing 4/5 requests across 3 data sessions.</li></ul></li></ul>
-                """
+• Dylan will independently complete eye-hand coordination matching activities and/or locating a specific letter, word, or icon on a communication board with 70% accuracy on by completing 4/5 requests across 3 data sessions.
+    ◦ Dylan will independently complete eye-hand coordination matching activities and/or locating a specific letter, word, or icon on a communication board with 30% accuracy on by completing 4/5 requests across 3 data sessions.
+    ◦ Dylan will independently complete eye-hand coordination matching activities and/or locating a specific letter, word, or icon on a communication board with 50% accuracy on by completing 4/5 requests across 3 data sessions.
+"""
         CarterCostelloIEP = """Carter Costello	    	120 min / month
-                    <ul><li>Carter will identify the braille letters of his name with 80% accuracy in 4/5 trials as measured by classroom data. (EE.RF.1.3)</li>
-                        <ul><li>Carter will identify 2/6 braille letters of his name with 80% accuracy in 4/5 trials as measured by classroom data.</li>
-                        <li>Carter will identify 4/6 braille letters of his name with 80% accuracy in 4/5 trails as measured by classroom data.</li></ul></li></ul>
-                    <ul><li>Carter will independently indicate the number that results when adding one more using manipulatives and/or the abacus with 80% accuracy in 4/5 trials as measured by classroom data. (EE.1.OA.5.a)
-                        <ul><li>With assistance from staff, Carter will indicate the number that results when adding one more using manipulatives or the abacus with 80% accuracy in 4/5 trials as measured by classroom data</li>
-                        <li>Carter will independently identify the different parts of the abacus: the one beads, five beads and the reckoning bar with 80% accuracy unprompted in 4/5 trials as measured by classroom data.</li></ul></li></ul>
-                    <ul><li>Carter will braille his name independently with 80% accuracy and no more than one prompt per probe on 5 probes as measured by classroom data. (EE.W.1.6)</li>
-                        <ul><li>Carter will independently learn to braille the letters in his name with 60% accuracy with less than 3 physical prompts as measured by classroom data.</li>
-                        <li>Carter will use a braille writer to braille his name with limited physical assistance with 60% accuracy and no more than one prompt per probe on 5 probes as measured by classroom data.</li></ul></li></ul>
-                """
+• Carter will identify the braille letters of his name with 80% accuracy in 4/5 trials as measured by classroom data. (EE.RF.1.3)
+    ◦ Carter will identify 2/6 braille letters of his name with 80% accuracy in 4/5 trials as measured by classroom data.
+    ◦ Carter will identify 4/6 braille letters of his name with 80% accuracy in 4/5 trails as measured by classroom data.
+• Carter will independently indicate the number that results when adding one more using manipulatives and/or the abacus with 80% accuracy in 4/5 trials as measured by classroom data. (EE.1.OA.5.a)
+    ◦ With assistance from staff, Carter will indicate the number that results when adding one more using manipulatives or the abacus with 80% accuracy in 4/5 trials as measured by classroom data
+    ◦ Carter will independently identify the different parts of the abacus: the one beads, five beads and the reckoning bar with 80% accuracy unprompted in 4/5 trials as measured by classroom data.
+• Carter will braille his name independently with 80% accuracy and no more than one prompt per probe on 5 probes as measured by classroom data. (EE.W.1.6)
+    ◦ Carter will independently learn to braille the letters in his name with 60% accuracy with less than 3 physical prompts as measured by classroom data.
+    ◦ Carter will use a braille writer to braille his name with limited physical assistance with 60% accuracy and no more than one prompt per probe on 5 probes as measured by classroom data.
+"""
         MadelineCostelloIEP = """Madeline Costello   	120 min / month
-                    <ul><li>When given 2 sets of textured items, Maddie will identify same and different by separating all the same items into a box with 80% accuracy in 4/5 trials as measured by classroom data. (EE.4.MD.6)
-                        <ul><li>When given 2 sets of textured items, Maddie will identify the set that is either the same or different with 60% accuracy in 4/5 trials as measured by classroom data.</li>
-                        <li>When given 2 sets of textured items, Maddie will identify the set that is either the same or different with 70% accuracy in 4/5 trials as measured by classroom data.</li></ul></li></ul>
-                    <ul><li>When read a story by an adult, Maddie will determine the meaning of words in text by identifying the object or tactile drawing that goes with the story with 70% accuracy in 4/5 trials as measured by classroom data. (EE.RL.4.4)
-                        <ul><li>When given an actual object, Maddie will be able to identify the tactile drawing version of the object with 70% accuracy in 4/5 trials as measured by classroom data.</li>
-                        <li>When given an actual object, Maddie will be able to identify the tactile drawing version of the object with 60% accuracy in 4/5 trials as measured by classroom data.</li></ul></li></ul>
-                    <ul><li>With guidance and support, Maddie will use the braille writer to braille her name with 80% accuracy in 4/5 trials as measured by classroom data. (EE.W.4.6)
-                        <li>>When presented with a braille swing cell, Maddie independently will learn cell placement (1,2,3,4,5,6) with 40% accuracy in 4/5 trials as measured by classroom data. (EE.W.4.6)</li>
-                        <li>When asked to braille up to 3 specified braille cell numbers (such as 1,2,3) Maddie will braille them independently with 40% accuracy in 4/5 trials as measured by classroom data</li>
-                        <li>When presented with a braille swing cell, Maddie independently will learn cell placement with 60% accuracy in 4/5 trials as measured by classroom data</li></ul></li></ul>
-                """
+• When given 2 sets of textured items, Maddie will identify same and different by separating all the same items into a box with 80% accuracy in 4/5 trials as measured by classroom data. (EE.4.MD.6)
+    ◦ When given 2 sets of textured items, Maddie will identify the set that is either the same or different with 60% accuracy in 4/5 trials as measured by classroom data.
+    ◦ When given 2 sets of textured items, Maddie will identify the set that is either the same or different with 70% accuracy in 4/5 trials as measured by classroom data.
+• When read a story by an adult, Maddie will determine the meaning of words in text by identifying the object or tactile drawing that goes with the story with 70% accuracy in 4/5 trials as measured by classroom data. (EE.RL.4.4)
+    ◦ When given an actual object, Maddie will be able to identify the tactile drawing version of the object with 70% accuracy in 4/5 trials as measured by classroom data.
+    ◦ When given an actual object, Maddie will be able to identify the tactile drawing version of the object with 60% accuracy in 4/5 trials as measured by classroom data.
+• With guidance and support, Maddie will use the braille writer to braille her name with 80% accuracy in 4/5 trials as measured by classroom data. (EE.W.4.6)
+    ◦ When presented with a braille swing cell, Maddie independently will learn cell placement (1,2,3,4,5,6) with 40% accuracy in 4/5 trials as measured by classroom data. (EE.W.4.6)
+    ◦ When asked to braille up to 3 specified braille cell numbers (such as 1,2,3) Maddie will braille them independently with 40% accuracy in 4/5 trials as measured by classroom data
+    ◦ When presented with a braille swing cell, Maddie independently will learn cell placement with 60% accuracy in 4/5 trials as measured by classroom data
+"""
         SuttonBuellIEP = """Sutton Buell    	20 min / month
-                    <ul><li>Sutton will independently point to and label shapes, numbers, and count by rote and objects to 10, with a 80% accuracy over 3 consecutive data sessions.
-                    <li>Sutton will recognize and label 15 letters and sounds starting with those in her name with 100% accuracy across 4 data sessions as recorded by teacher collected data.</li></ul></li></ul>
-                """
+• Sutton will independently point to and label shapes, numbers, and count by rote and objects to 10, with a 80% accuracy over 3 consecutive data sessions.
+• Sutton will recognize and label 15 letters and sounds starting with those in her name with 100% accuracy across 4 data sessions as recorded by teacher collected data.
+"""
         MargaretWalkerIEP = """Margaret Walker 	30 min / month
-                    <ul><li>When given an iOS device, Maggie will increase her knowledge of iOS device concepts (e.g. camera, screen enhancement, etc.) with 80% accuracy 4/5 trials across 3 data session based on TVI rubric.
-                        <ul><li>When given an iOS device, Maggie will locate physical control buttons (power, volume, camera etc) with 80% accuracy, 4/5 trials across 3 data sessions based on TVI rubric.</li>
-                        <li>When given an iOS device, Maggie will use implement advance iOS skills such as camera and take pictures, learn gestures, etc. with 80% accuracy, 4/5 trials across 3 data sessions based on TVI rubric.</li></ul></li></ul>
-
-                """
+• When given an iOS device, Maggie will increase her knowledge of iOS device concepts (e.g. camera, screen enhancement, etc.) with 80% accuracy 4/5 trials across 3 data session based on TVI rubric.
+    ◦ When given an iOS device, Maggie will locate physical control buttons (power, volume, camera etc) with 80% accuracy, 4/5 trials across 3 data sessions based on TVI rubric.
+    ◦ When given an iOS device, Maggie will use implement advance iOS skills such as camera and take pictures, learn gestures, etc. with 80% accuracy, 4/5 trials across 3 data sessions based on TVI rubric.
+"""
         TysonGrahamIEP = """Tyson Graham    	720 min / month
-                    <ul><li>Tyson will use a screen reader to complete technology tasks, including but not limited to: accessing the internet, completing research, using software to write papers, completing worksheets, emailing, submitting all applicable work (including quizzes) on Canvas, across situations and environments, based on a teacher checklist/rubric, with 90% accuracy and no more than one prompt per probe, on six probes in a four week period, as measured by the TVI.</li></ul></li></ul>
-                """
+• Tyson will use a screen reader to complete technology tasks, including but not limited to: accessing the internet, completing research, using software to write papers, completing worksheets, emailing, submitting all applicable work (including quizzes) on Canvas, across situations and environments, based on a teacher checklist/rubric, with 90% accuracy and no more than one prompt per probe, on six probes in a four week period, as measured by the TVI.
+"""
         AddisonBookerIEP = """Addison Booker  	20 min / quarter
-                    <ul><li>When Addi is read a short story from a book with pictures, she will use eye gaze or touch to identify people or objects from the story or answer yes/no comprehension questions with 60% accuracy 2x weekly, across 3/5 data sessions.
-                        <ul><li>When Addi is read a short story from a book with pictures, she will use eye gaze or touch to identify people or objects from the story or answer yes/no comprehension questions with 20% accuracy 2x weekly, across 3/5 data sessions.</li>
-                        <li>When Addi is read a short story from a book with pictures, she will use eye gaze or touch to identify people or objects from the story or answer yes/no comprehension questions with 40% accuracy 2x weekly, across 3/5 data sessions.</li></ul></li></ul>
-                """
+• When Addi is read a short story from a book with pictures, she will use eye gaze or touch to identify people or objects from the story or answer yes/no comprehension questions with 60% accuracy 2x weekly, across 3/5 data sessions.
+    ◦ When Addi is read a short story from a book with pictures, she will use eye gaze or touch to identify people or objects from the story or answer yes/no comprehension questions with 20% accuracy 2x weekly, across 3/5 data sessions.
+    ◦ When Addi is read a short story from a book with pictures, she will use eye gaze or touch to identify people or objects from the story or answer yes/no comprehension questions with 40% accuracy 2x weekly, across 3/5 data sessions.
+"""
         AmiRitoIEP = """Ami Rito    20 min / month
-                    <ul><li>When presented with a 3D household or classroom item, Ami will find its match using eye gaze or touch selection, matching a total of 3 items, on 4/5 daily trials, over 3 consecutive weeks.
-                        <ul><li>When presented with a 3D household or classroom item, Ami will find its match using eye gaze or touch selection, matching a total of 1 item, on 4/5 daily trials, over 3 consecutive weeks.</li>
-                        <li>When presented with a 3D household or classroom item, Ami will find its match using eye gaze or touch selection, matching a total of 2 items, on 4/5 daily trials, over 3 consecutive weeks.</li></ul></li></ul>
-                """
+• When presented with a 3D household or classroom item, Ami will find its match using eye gaze or touch selection, matching a total of 3 items, on 4/5 daily trials, over 3 consecutive weeks.
+    ◦ When presented with a 3D household or classroom item, Ami will find its match using eye gaze or touch selection, matching a total of 1 item, on 4/5 daily trials, over 3 consecutive weeks.
+    ◦ When presented with a 3D household or classroom item, Ami will find its match using eye gaze or touch selection, matching a total of 2 items, on 4/5 daily trials, over 3 consecutive weeks.
+"""
         AshlynneNelsonIEP = """Ashlynn Nelson  	20 min / month
-                    <ul><li>When given partial physical support, Ashylnn will be shown a selected musical instrument (xylophone, bells, drum, tambourine), and be shown a video (4-6ft away) of someone playing the selected musical instrument, then will focus her attention on the video for 3 seconds or more on 4/5 twice weekly trials, over 3 consecutive weeks.
-                        <ul><li>When given partial physical support, Ashylnn will be shown a selected musical instrument (xylophone, bells, drum, tambourine), and be shown a video (4-6ft away) of someone playing the selected musical instrument, then will focus her attention on the video for 1 second on 4/5 twice weekly trials, over 3 consecutive weeks.</li>
-                        <li> When given partial physical support, Ashylnn will be shown a selected musical instrument (xylophone, bells, drum, tambourine), and be shown a video (4-6ft away) of someone playing the selected musical instrument, then will focus her attention on the video for 2 second or more on 4/5 twice weekly trials, over 3 consecutive weeks.</li></ul></li></ul>
-                """
+• When given partial physical support, Ashylnn will be shown a selected musical instrument (xylophone, bells, drum, tambourine), and be shown a video (4-6ft away) of someone playing the selected musical instrument, then will focus her attention on the video for 3 seconds or more on 4/5 twice weekly trials, over 3 consecutive weeks.
+    ◦ When given partial physical support, Ashylnn will be shown a selected musical instrument (xylophone, bells, drum, tambourine), and be shown a video (4-6ft away) of someone playing the selected musical instrument, then will focus her attention on the video for 1 second on 4/5 twice weekly trials, over 3 consecutive weeks.
+    ◦ When given partial physical support, Ashylnn will be shown a selected musical instrument (xylophone, bells, drum, tambourine), and be shown a video (4-6ft away) of someone playing the selected musical instrument, then will focus her attention on the video for 2 second or more on 4/5 twice weekly trials, over 3 consecutive weeks.
+"""
         CarstonTalbotIEP = """Carston Talbot  	30 min / month
-                    <ul><li>When given a choice between two pictures, Carston will visually locate and chose the picture that represents the object/activity he would like with 4 out of 5 trials over 3 consecutive data sessions as evidenced by vision and classroom data.
-                        <ul><li>Carston will visually locate and chose the picture that represents the activity he would like with 4 out of 5 trials over 3 consecutive data sessions as evidenced by vision and classroom data.</li>
-                        <li>Carston will visually locate and chose a picture that represents a preferred object that he would like with 4 out of 5 trials over 3 consecutive data sessions as evidenced by vision and classroom data.</li></ul></li></ul>
-                """
+• When given a choice between two pictures, Carston will visually locate and chose the picture that represents the object/activity he would like with 4 out of 5 trials over 3 consecutive data sessions as evidenced by vision and classroom data.
+    ◦ Carston will visually locate and chose the picture that represents the activity he would like with 4 out of 5 trials over 3 consecutive data sessions as evidenced by vision and classroom data.
+    ◦ Carston will visually locate and chose a picture that represents a preferred object that he would like with 4 out of 5 trials over 3 consecutive data sessions as evidenced by vision and classroom data.
+"""
         CelestialNelsonIEP = """Celestial  Nelson   	30 min / month
-                    <ul><li>Given the opportunity, in a variety of school-based locations, CD will, with minimal prompting, using her vision, make choices about academic and preferred activities within a class period in addition to 2 topics of conversation per location with a variety of people 70% of opportunities across 3 consecutive data session, as measured by classroom data and observation.
-                        <ul><li>Given the opportunity, in a variety of school-based locations, CD will, with maximum prompting, using her vision, make choices about academic and preferred activities within a class period in addition to 1 topic of conversation per location with a variety of people 70% of opportunities across 3 consecutive data session, as measured by classroom data and observation.</li>
-                       <li>Given the opportunity, in a variety of school-based locations, CD will, with maximum prompting, using her vision, make choices about academic and preferred activities within a class period in addition to 2 topics of conversation per location with a variety of people 70% of opportunities across 3 consecutive data session, as measured by classroom data and observation.</li></ul></li></ul>
-                """
+• Given the opportunity, in a variety of school-based locations, CD will, with minimal prompting, using her vision, make choices about academic and preferred activities within a class period in addition to 2 topics of conversation per location with a variety of people 70% of opportunities across 3 consecutive data session, as measured by classroom data and observation.
+    ◦ Given the opportunity, in a variety of school-based locations, CD will, with maximum prompting, using her vision, make choices about academic and preferred activities within a class period in addition to 1 topic of conversation per location with a variety of people 70% of opportunities across 3 consecutive data session, as measured by classroom data and observation.
+    ◦ Given the opportunity, in a variety of school-based locations, CD will, with maximum prompting, using her vision, make choices about academic and preferred activities within a class period in addition to 2 topics of conversation per location with a variety of people 70% of opportunities across 3 consecutive data session, as measured by classroom data and observation.
+"""
         LanedonLeeIEP = """Lanedan Lee	    	120 min / month
-                    <ul><li>Lanedon needs to learn braille with purpose and understanding by locating a line of braille, track a line on a braille and be able to produce legible dots on a page. With 60% accuracy 3/5 trials.<
-                        <ul><li>Lanedon needs to learn braille with purpose and understanding by locating a line of braille, track a line on a braille and be able to produce legible dots on a page. With 40% accuracy 3/5 trials.</li>
-                        <li>Lanedon needs to learn braille with purpose and understanding by locating a line of braille, track a line on a braille and be able to produce legible dots on a page. With 20% accuracy 3/5 trials.</li></ul></li></ul>
-                    <ul><li>Lanedan will be given a tactile cue to feel that correlates with each class in his schedule and anticipate what is coming next by feeling the cue and verbally stating what class is coming next with 90% accuracy 4/5 separate data points using information by teacher observation and classroom data.
-                        <ul><li>Lanedan will be given a tactile cue to feel that correlates with each class in his schedule and anticipate what is coming next by feeling the cue and verbally stating what class is coming next with 80% accuracy 4/5 separate data points using information by teacher observation and classroom data.</li>
-                        <li>Lanedan will be given a tactile cue to feel that correlates with each class in his schedule and anticipate what is coming next by feeling the cue and verbally stating what class is coming next with 70% accuracy 4/5 separate data points using information by teacher observation and classroom data</li></ul></li></ul>
-                """
+• Lanedon needs to learn braille with purpose and understanding by locating a line of braille, track a line on a braille and be able to produce legible dots on a page. With 60% accuracy 3/5 trials.
+    ◦ Lanedon needs to learn braille with purpose and understanding by locating a line of braille, track a line on a braille and be able to produce legible dots on a page. With 40% accuracy 3/5 trials.
+    ◦ Lanedon needs to learn braille with purpose and understanding by locating a line of braille, track a line on a braille and be able to produce legible dots on a page. With 20% accuracy 3/5 trials.
+• Lanedan will be given a tactile cue to feel that correlates with each class in his schedule and anticipate what is coming next by feeling the cue and verbally stating what class is coming next with 90% accuracy 4/5 separate data points using information by teacher observation and classroom data.
+    ◦ Lanedan will be given a tactile cue to feel that correlates with each class in his schedule and anticipate what is coming next by feeling the cue and verbally stating what class is coming next with 80% accuracy 4/5 separate data points using information by teacher observation and classroom data.
+    ◦ Lanedan will be given a tactile cue to feel that correlates with each class in his schedule and anticipate what is coming next by feeling the cue and verbally stating what class is coming next with 70% accuracy 4/5 separate data points using information by teacher observation and classroom data
+"""
         NoahPalmerIEP = """Noah Palmer	    	20 min / month
-                    <ul><li>Given verbal support, Noah will solve math money problems using the dollar more strategy for amounts up to $20.00 dollars using 1, 5 and 10 dollar bills, on 4/5 daily trials over 3 consecutive weeks.
-                        <ul><li>Given verbal support, Noah will solve math money problems using the dollar more strategy for amounts up to $15.00 dollars using 1, 5 and 10 dollar bills, on 4/5 daily trials over 3 consecutive weeks.</li>
-                        <li>Given verbal support, Noah will solve math money problems using the dollar more strategy for amounts up to $17.00 dollars using 1, 5 and 10 dollar bills, on 4/5 daily trials over 3 consecutive weeks.</li></ul></li></ul>
-                 """
-        PaulaSackettIEP = """   """
+• Given verbal support, Noah will solve math money problems using the dollar more strategy for amounts up to $20.00 dollars using 1, 5 and 10 dollar bills, on 4/5 daily trials over 3 consecutive weeks.
+    ◦ Given verbal support, Noah will solve math money problems using the dollar more strategy for amounts up to $15.00 dollars using 1, 5 and 10 dollar bills, on 4/5 daily trials over 3 consecutive weeks.
+    ◦ Given verbal support, Noah will solve math money problems using the dollar more strategy for amounts up to $17.00 dollars using 1, 5 and 10 dollar bills, on 4/5 daily trials over 3 consecutive weeks.
+"""
+        PaulaSackettIEP = """  
+"""
         lookupID = f"{studentname}IEP"
         iepData = locals()[lookupID]
-        self.iepWindow = wx.html2.WebView.New(self,pos=(50,80), size=(750,800))
-        self.iepWindow.SetPage(iepData,"")
+        wx.MessageBox(iepData)
+
+
 class observationsPanel(scrolled.ScrolledPanel):
     def __init__(self, parent):
         scrolled.ScrolledPanel.__init__(self, parent, -1)
@@ -3204,7 +3211,7 @@ class observationsPanel(scrolled.ScrolledPanel):
         vbox.Add((20, 20))
         self.SetSizer(vbox)
         self.SetupScrolling()
-        self.SetBackgroundColour(wx.Colour(204,229,255))
+        self.SetBackgroundColour(wx.Colour(204, 229, 255))
         wx.StaticText(self, -1, "VISION OBSERVATIONS", pos=(170, 20))
         wx.StaticText(self, -1, "Student Name", pos=(30, 50))
         self.studentname1 = wx.Choice(self, -1, choices=students_all,
@@ -3225,7 +3232,7 @@ class observationsPanel(scrolled.ScrolledPanel):
 
     def save(self, event):
         studentname = self.studentname1.GetString(
-                self.studentname1.GetSelection())
+            self.studentname1.GetSelection())
         dateNow = datetime.datetime.now().strftime("%Y_%m_%d-%H%M%S")
         simpleDate = datetime.datetime.now().strftime("%Y_%m_%d-%H%M")
         notes = self.notes1.GetValue()
@@ -3239,8 +3246,8 @@ class observationsPanel(scrolled.ScrolledPanel):
                 if not os.path.exists(
                         f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\{self.studentdatabasename}.txt"):
                     self.filename = open(
-                            f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\{self.studentdatabasename}.txt",
-                            'w')
+                        f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\{self.studentdatabasename}.txt",
+                        'w')
                     self.filename.write('studentname' + ',')
                     self.filename.write('simpleDate' + ',')
                     self.filename.write('notes' + ',\n')
@@ -3249,10 +3256,10 @@ class observationsPanel(scrolled.ScrolledPanel):
                     self.filename.write(notes + ',')
                     self.filename.close()
                     self.filename = open(
-                            f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\Filenames.txt",
-                            'a')
+                        f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\Filenames.txt",
+                        'a')
                     self.filename.write(
-                            f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\{self.studentdatabasename}.txt" + '\n')
+                        f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\{self.studentdatabasename}.txt" + '\n')
                     self.filename.close()
                     # list_data = [studentname, dateNow, task, lesson,
                     #              session,
@@ -3290,6 +3297,8 @@ class observationsPanel(scrolled.ScrolledPanel):
                                          'Info',
                                          wx.OK)
             self.dial.ShowModal()
+
+
 class StudentDataBook(wx.Frame, wx.Accessible):
     def __init__(self, parent, title):
         super(StudentDataBook, self).__init__(parent, title="Data Entry Form",
@@ -3297,7 +3306,7 @@ class StudentDataBook(wx.Frame, wx.Accessible):
         self.InitUI()
 
     def InitUI(self):
-        nb = wx.Notebook(self,style=wx.NB_LEFT)
+        nb = wx.Notebook(self, style=wx.NB_LEFT)
         nb.AddPage(iepIntro(nb), "IEP Caseload 2022-2023")
         nb.AddPage(dataPanel(nb), "Data Entry Form")
         nb.AddPage(braillePanel(nb), "Braille Progression")

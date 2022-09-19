@@ -3199,7 +3199,7 @@ class iepIntro(scrolled.ScrolledPanel):
 """
         lookupID = f"{studentname}IEP"
         iepData = locals()[lookupID]
-        wx.MessageBox(iepData)
+        wx.MessageBox(iepData, caption=f"IEP Summary for {studentname}")
 
 
 class observationsPanel(scrolled.ScrolledPanel):

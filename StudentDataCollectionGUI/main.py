@@ -3090,8 +3090,7 @@ class iepIntro(scrolled.ScrolledPanel):
         self.Bind(wx.EVT_BUTTON, self.submit, id=401)
         self.btn1 = wx.Button(self, 402, "EXIT", pos=(550, 50), size=(70, 30))
         self.Bind(wx.EVT_BUTTON, self.exit, id=402)
-        self.btn = wx.Button(self, 403, "CLEAR", pos=(650, 50), size=(70, 30))
-        self.Bind(wx.EVT_BUTTON, self.clear, id=403)
+
 
     def exit(self, event):
         wx.Exit()

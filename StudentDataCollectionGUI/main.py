@@ -17,7 +17,7 @@ from pathlib import Path
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 
-USER_DIR= ""
+USER_DIR = ""
 if os.name == 'nt':
     USER_DIR = os.path.join(os.environ['USERPROFILE'], "Documents")
 elif os.name == 'posix':
@@ -53,8 +53,7 @@ for name in students:
                                    'BrailleSkillsProgression.csv').exists():
         tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', name, 'BrailleSkillsProgression.csv')
         filename = Path.touch(tmpPath)
-        list_names = ['date', 'P1_1', 'P1_2', 'P1_3', 'P1_4', 'P2_1', 'P2_2',
-                      'P2_3', 'P2_4', 'P2_5', 'P2_6', 'P2_7',
+        list_names = ['date', 'P1_1', 'P1_2', 'P1_3', 'P1_4', 'P2_1', 'P2_2', 'P2_3', 'P2_4', 'P2_5', 'P2_6', 'P2_7',
                       'P2_8', 'P2_9', 'P2_10', 'P2_11', 'P2_12', 'P2_13',
                       'P2_14', 'P2_15', 'P3_1', 'P3_2', 'P3_3',
                       'P3_4', 'P3_5', 'P3_6', 'P3_7', 'P3_8', 'P3_9', 'P3_10',
@@ -68,7 +67,8 @@ for name in students:
             writer_setup = writer(f_object)
             writer_setup.writerow(list_names)
             f_object.close()
-    if not Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', name, 'UEBLiterarySkillsProgression.html').exists():
+    if not Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', name,
+                                   'UEBLiterarySkillsProgression.html').exists():
         tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', name,
                                           'UEBLiterarySkillsProgression.html')
         filename = Path.touch(tmpPath)
@@ -3255,22 +3255,22 @@ class observationsPanel(scrolled.ScrolledPanel):
                     self.filename.close()
 
                     self.dial = wx.MessageDialog(None,
-                    'Saved successfully!',
-                    'Info', wx.OK)
+                                                 'Saved successfully!',
+                                                 'Info', wx.OK)
                     self.dial.ShowModal()
                 else:
                     self.dial = wx.MessageDialog(None,
-                    'Name already exists',
-                    'Info', wx.OK)
+                                                 'Name already exists',
+                                                 'Info', wx.OK)
                     self.dial.ShowModal()
             else:
                 self.dial = wx.MessageDialog(None, 'Save cancelled', 'Info',
-                wx.OK)
+                                             wx.OK)
                 self.dial.ShowModal()
         else:
             self.dial = wx.MessageDialog(None, 'Fill Required Fields!',
-            'Info',
-            wx.OK)
+                                         'Info',
+                                         wx.OK)
             self.dial.ShowModal()
 
 

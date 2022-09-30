@@ -12,41 +12,47 @@ import plotly.graph_objects as go
 import wx.lib.scrolledpanel as scrolled
 import numpy as np
 from helpers import *
+from pathlib import Path
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
-USER_DIR = os.path.join(os.environ['USERPROFILE'], "Documents")
+
+USER_DIR= ""
+if os.name == 'nt':
+    USER_DIR = os.path.join(os.environ['USERPROFILE'], "Documents")
+elif os.name == 'posix':
+    tmpPath = Path(os.environ['HOME']).joinpath('Documents')
+    USER_DIR = Path.mkdir(tmpPath, parents=True, exist_ok=True)
+else:
+    print("Error! Cannot find HOME directory")
+
 os.chdir(USER_DIR)
 
-for name in students_all:
-    if not os.path.exists(f"{USER_DIR}\\StudentDatabase"):
-        os.makedirs(f"{USER_DIR}\\StudentDatabase")
-    if not os.path.exists(f"{USER_DIR}\\StudentDatabase\\StudentDataFiles"):
-        os.makedirs(f"{USER_DIR}\\StudentDatabase\\StudentDataFiles")
-    if not os.path.exists(
-            f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{name}"):
-        os.makedirs(f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{name}")
-    if not os.path.exists(
-            f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{name}\\omnibusDatabase.csv"):
-        filename = open(
-            f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{name}\\omnibusDatabase.csv",
-            'w')
+for name in students:
+    if not Path(USER_DIR).joinpath('StudentDatabase').exists():
+        tmpPath = Path(USER_DIR).joinpath('StudentDatabase')
+        Path.mkdir(tmpPath, parents=True, exist_ok=True)
+    if not Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles').exists():
+        tmpPath = Path(USER_DIR).joinpath('StudentDatabase/StudentDataFiles')
+        Path.mkdir(tmpPath, parents=True, exist_ok=True)
+    if not Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', name).exists():
+        tmpPath = Path(USER_DIR).joinpath('StudentDatabase/StudentDataFiles', name)
+        Path.mkdir(tmpPath, parents=True, exist_ok=True)
+    if not Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', name, 'omnibusDatabase.csv').exists():
+        tmpPath = Path(USER_DIR).joinpath('StudentDatabase/StudentDataFiles', name, 'omnibusDatabase.csv')
+        filename = Path.touch(tmpPath)
         list_names = ['student', 'date', 'task', 'lesson', 'session', 'trial01',
                       'trial02', 'trial03', 'trial04',
                       'trial05', 'trial06', 'trial07', 'trial08', 'trial09',
                       'trial10', 'trial11', 'median', 'notes']
-        with open(
-                f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{name}\\omnibusDatabase.csv",
-                'a',
-                newline='') as f_object:
+        with open(tmpPath, 'a', newline='') as f_object:
             writer_setup = writer(f_object)
             writer_setup.writerow(list_names)
             f_object.close()
-    if not os.path.exists(
-            f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{name}\\BrailleSkillsProgression.csv"):
-        filename = open(
-            f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{name}\\BrailleSkillsProgression.csv",
-            'w')
+    if not Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', name,
+                                   'BrailleSkillsProgression.csv').exists():
+        tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', name, 'BrailleSkillsProgression.csv')
+        filename = Path.touch(tmpPath)
         list_names = ['date', 'P1_1', 'P1_2', 'P1_3', 'P1_4', 'P2_1', 'P2_2',
                       'P2_3', 'P2_4', 'P2_5', 'P2_6', 'P2_7',
                       'P2_8', 'P2_9', 'P2_10', 'P2_11', 'P2_12', 'P2_13',
@@ -58,67 +64,54 @@ for name in students_all:
                       'P6_4', 'P6_5', 'P6_6', 'P6_7', 'P7_1', 'P7_2', 'P7_3',
                       'P7_4', 'P7_5', 'P7_6', 'P7_7', 'P7_8',
                       'P8_1', 'P8_2', 'P8_3', 'P8_4', 'P8_5', 'P8_6', 'P8_7']
-        with open(
-                f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{name}\\BrailleSkillsProgression.csv",
-                'a',
-                newline='') as f_object:
+        with open(tmpPath, 'a', newline='') as f_object:
             writer_setup = writer(f_object)
             writer_setup.writerow(list_names)
             f_object.close()
-    if not os.path.exists(
-            f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{name}\\UEBLiterarySkillsProgression.html"):
-        filename = open(
-            f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{name}\\UEBLiterarySkillsProgression.html",
-            'w')
-    if not os.path.exists(
-            f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{name}\\UEBTechnicalSkillsProgression.html"):
-        filename = open(
-            f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{name}\\UEBTechnicalSkillsProgression.html",
-            'w')
-    if not os.path.exists(
-            f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{name}\\ScreenReaderSkillsProgression.csv"):
-        filename = open(
-            f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{name}\\ScreenReaderSkillsProgression.csv",
-            'w')
+    if not Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', name, 'UEBLiterarySkillsProgression.html').exists():
+        tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', name,
+                                          'UEBLiterarySkillsProgression.html')
+        filename = Path.touch(tmpPath)
+    if not Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', name,
+                                   'UEBTechnicalSkillsProgression.html').exists():
+        tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', name,
+                                          'UEBTechnicalSkillsProgression.html')
+        filename = Path.touch(tmpPath)
+    if not Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', name,
+                                   'ScreenReaderSkillsProgression.csv').exists():
+        tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', name,
+                                          'ScreenReaderSkillsProgression.csv')
+        filename = Path.touch(tmpPath)
         list_names = ['date', 'P1_1', 'P1_2', 'P1_3', 'P1_4', 'P1_5', 'P1_6',
                       'P2_1', 'P2_2', 'P2_3', 'P2_4', 'P3_1',
                       'P3_2', 'P3_3', 'P3_4', 'P3_5', 'P3_6', 'P3_7', 'P3_8',
                       'P3_9', 'P3_10', 'P3_11', 'P4_1', 'P4_2',
                       'P4_3', 'P4_4', 'P4_5', 'P4_6', 'P4_7']
-        with open(
-                f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{name}\\ScreenReaderSkillsProgression.csv",
-                'a',
-                newline='') as f_object:
+        with open(tmpPath, 'a', newline='') as f_object:
             writer_setup = writer(f_object)
             writer_setup.writerow(list_names)
             f_object.close()
-    if not os.path.exists(
-            f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{name}\\ScreenReaderSkillsProgression.html"):
-        filename = open(
-            f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{name}\\ScreenReaderSkillsProgression.html",
-            'w')
-    if not os.path.exists(
-            f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{name}\\AbacusSkillsProgression.csv"):
-        filename = open(
-            f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{name}\\AbacusSkillsProgression.csv",
-            'w')
+    if not Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', name,
+                                   'ScreenReaderSkillsProgression.html').exists():
+        tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', name,
+                                          'ScreenReaderSkillsProgression.html')
+        filename = Path.touch(tmpPath)
+    if not Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', name, 'AbacusSkillsProgression.csv').exists():
+        tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', name, 'AbacusSkillsProgression.csv')
+        filename = Path.touch(tmpPath)
         list_names = ['date', 'P1_1', 'P1_2', 'P1_3', 'P1_4', 'P2_1', 'P2_2',
                       'P2_3', 'P3_1', 'P3_2', 'P3_3', 'P4_1',
                       'P4_2', 'P5_1', 'P5_2', 'P6_1', 'P6_2', 'P6_3', 'P6_4',
                       'P7_1', 'P7_2', 'P7_3', 'P7_4', 'P8_1',
                       'P8_2']
-        with open(
-                f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{name}\\AbacusSkillsProgression.csv",
-                'a',
-                newline='') as f_object:
+        with open(tmpPath, 'a', newline='') as f_object:
             writer_setup = writer(f_object)
             writer_setup.writerow(list_names)
             f_object.close()
-    if not os.path.exists(
-            f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{name}\\AbacusSkillsProgression.html"):
-        filename = open(
-            f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{name}\\AbacusSkillsProgression.html",
-            'w')
+    if not Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', name,
+                                   'AbacusSkillsProgression.html').exists():
+        tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', name, 'AbacusSkillsProgression.html')
+        filename = Path.touch(tmpPath)
 
 
 def create_connection(db_file):
@@ -133,8 +126,10 @@ def create_connection(db_file):
             conn.close()
 
 
+dataBasePath = Path(USER_DIR).joinpath('StudentDatabase/students.db')
+
 if __name__ == '__main__':
-    create_connection(f"{USER_DIR}\\StudentDatabase\\students.db")
+    create_connection(dataBasePath)
 
 
 def create_connection(db_file):
@@ -159,29 +154,29 @@ def create_table(conn, sql_create_sql_table):
 
 def main():
     sql_create_studentdata_table = "CREATE TABLE IF NOT EXISTS studentdata (id INTEGER PRIMARY KEY AUTOINCREMENT, studentname TEXT NOT NULL, date TEXT NOT NULL, task TEXT NOT NULL, lesson TEXT NOT NULL, session TEXT NOT NULL, trial01 INTEGER, trial02 INTEGER, trial03 INTEGER, trial04 INTEGER, trial05 INTEGER, trial06 INTEGER, trial07 INTEGER, trial08 INTEGER, trial09 INTEGER, trial10 INTEGER, trial11 INTEGER, median FLOAT, notes TEXT NOT NULL );"
-    sql_create_brailledata_table = "CREATE TABLE IF NOT EXISTS brailleProgress (id INTEGER PRIMARY KEY AUTOINCREMENT, studentname TEXT NOT NULL, date TEXT NOT NULL,P1_1 INTEGER,P1_2 INTEGER,P1_3 INTEGER,P1_4 INTEGER,P2_1 INTEGER,P2_2 INTEGER,P2_3 INTEGER,P2_4 INTEGER,P2_5 INTEGER,P2_6 INTEGER,P2_7 INTEGER,P2_8 INTEGER,P2_9 INTEGER,P2_10 INTEGER,P2_11 INTEGER,P2_12 INTEGER,P2_13 INTEGER,P2_14 INTEGER,P2_15 INTEGER,P3_1 INTEGER,P3_2 INTEGER,P3_3 INTEGER,P3_4 INTEGER,P3_5 INTEGER,P3_6 INTEGER,P3_7 INTEGER,P3_8 INTEGER,P3_9 INTEGER,P3_10 INTEGER,P3_11 INTEGER,P3_12 INTEGER,P3_13 INTEGER,P3_14 INTEGER,P3_15 INTEGER,P4_1 INTEGER,P4_2 INTEGER,P4_3 INTEGER,P4_4 INTEGER,P5_1 INTEGER,P5_2 INTEGER,P5_3 INTEGER,P5_4 INTEGER,P6_1 INTEGER,P6_2 INTEGER,P6_3 INTEGER,P6_4 INTEGER,P6_5 INTEGER,P6_6 INTEGER,P6_7 INTEGER,P7_1 INTEGER,P7_2 INTEGER,P7_3 INTEGER,P7_4 INTEGER,P7_5 INTEGER,P7_6 INTEGER,P7_7 INTEGER,P7_8 INTEGER,P8_1 INTEGER,P8_2 INTEGER,P8_3 INTEGER,P8_4 INTEGER,P8_5 INTEGER,P8_6 INTEGER,P8_7 INTEGER);"
-    sql_create_screenreaderdata_table = "CREATE TABLE IF NOT EXISTS screenreaderProgress (id INTEGER PRIMARY KEY AUTOINCREMENT, studentname TEXT NOT NULL, date TEXT NOT NULL,P1_1 INTEGER,P1_2 INTEGER,P1_3 INTEGER,P1_4 INTEGER,P1_5 INTEGER,P1_6 INTEGER,P2_1 INTEGER,P2_2 INTEGER,P2_3 INTEGER,P2_4 INTEGER,P3_1 INTEGER,P3_2 INTEGER,P3_3 INTEGER,P3_4 INTEGER,P3_5 INTEGER,P3_6 INTEGER,P3_7 INTEGER,P3_8 INTEGER,P3_9 INTEGER,P3_10 INTEGER,P3_11 INTEGER,P4_1 INTEGER,P4_2 INTEGER,P4_3 INTEGER,P4_4 INTEGER,P4_5 INTEGER,P4_6 INTEGER,P4_7 INTEGER);"
-    sql_create_abacusdata_table = "CREATE TABLE IF NOT EXISTS abacusProgress (id INTEGER PRIMARY KEY AUTOINCREMENT, studentname TEXT NOT NULL, date TEXT NOT NULL,P1_1 INTEGER,P1_2 INTEGER,P1_3 INTEGER,P1_4 INTEGER,P2_1 INTEGER,P2_2 INTEGER,P2_3 INTEGER,P3_1 INTEGER,P3_2 INTEGER,P3_3 INTEGER,P4_1 INTEGER,P4_2 INTEGER,P5_1 INTEGER,P5_2 INTEGER,P6_1 INTEGER,P6_2 INTEGER,P6_3 INTEGER,P6_4 INTEGER,P7_1 INTEGER,P7_2 INTEGER,P7_3 INTEGER,P7_4 INTEGER,P8_1 INTEGER,P8_2 INTEGER );"
+    sql_create_brailledata_table = "CREATE TABLE IF NOT EXISTS brailleProgress (id INTEGER PRIMARY KEY AUTOINCREMENT, studentname TEXT NOT NULL, date TEXT NOT NULL, P1_1 INTEGER, P1_2 INTEGER, P1_3 INTEGER, P1_4 INTEGER, P2_1 INTEGER, P2_2 INTEGER, P2_3 INTEGER, P2_4 INTEGER, P2_5 INTEGER, P2_6 INTEGER, P2_7 INTEGER, P2_8 INTEGER, P2_9 INTEGER, P2_10 INTEGER, P2_11 INTEGER, P2_12 INTEGER, P2_13 INTEGER, P2_14 INTEGER, P2_15 INTEGER, P3_1 INTEGER, P3_2 INTEGER, P3_3 INTEGER, P3_4 INTEGER, P3_5 INTEGER, P3_6 INTEGER, P3_7 INTEGER, P3_8 INTEGER, P3_9 INTEGER, P3_10 INTEGER, P3_11 INTEGER, P3_12 INTEGER, P3_13 INTEGER, P3_14 INTEGER, P3_15 INTEGER, P4_1 INTEGER, P4_2 INTEGER, P4_3 INTEGER, P4_4 INTEGER, P5_1 INTEGER, P5_2 INTEGER, P5_3 INTEGER, P5_4 INTEGER, P6_1 INTEGER, P6_2 INTEGER, P6_3 INTEGER, P6_4 INTEGER, P6_5 INTEGER, P6_6 INTEGER, P6_7 INTEGER, P7_1 INTEGER, P7_2 INTEGER, P7_3 INTEGER, P7_4 INTEGER, P7_5 INTEGER, P7_6 INTEGER, P7_7 INTEGER, P7_8 INTEGER, P8_1 INTEGER, P8_2 INTEGER, P8_3 INTEGER, P8_4 INTEGER, P8_5 INTEGER, P8_6 INTEGER, P8_7 INTEGER);"
+    sql_create_screenreaderdata_table = "CREATE TABLE IF NOT EXISTS screenreaderProgress (id INTEGER PRIMARY KEY AUTOINCREMENT, studentname TEXT NOT NULL, date TEXT NOT NULL, P1_1 INTEGER, P1_2 INTEGER, P1_3 INTEGER, P1_4 INTEGER, P1_5 INTEGER, P1_6 INTEGER, P2_1 INTEGER, P2_2 INTEGER, P2_3 INTEGER, P2_4 INTEGER, P3_1 INTEGER, P3_2 INTEGER, P3_3 INTEGER, P3_4 INTEGER, P3_5 INTEGER, P3_6 INTEGER, P3_7 INTEGER, P3_8 INTEGER, P3_9 INTEGER, P3_10 INTEGER, P3_11 INTEGER, P4_1 INTEGER, P4_2 INTEGER, P4_3 INTEGER, P4_4 INTEGER, P4_5 INTEGER, P4_6 INTEGER, P4_7 INTEGER);"
+    sql_create_abacusdata_table = "CREATE TABLE IF NOT EXISTS abacusProgress (id INTEGER PRIMARY KEY AUTOINCREMENT, studentname TEXT NOT NULL, date TEXT NOT NULL, P1_1 INTEGER, P1_2 INTEGER, P1_3 INTEGER, P1_4 INTEGER, P2_1 INTEGER, P2_2 INTEGER, P2_3 INTEGER, P3_1 INTEGER, P3_2 INTEGER, P3_3 INTEGER, P4_1 INTEGER, P4_2 INTEGER, P5_1 INTEGER, P5_2 INTEGER, P6_1 INTEGER, P6_2 INTEGER, P6_3 INTEGER, P6_4 INTEGER, P7_1 INTEGER, P7_2 INTEGER, P7_3 INTEGER, P7_4 INTEGER, P8_1 INTEGER, P8_2 INTEGER );"
 
-    conn = create_connection(f"{USER_DIR}\\StudentDatabase\\students.db")
+    conn = create_connection(dataBasePath)
     if conn is not None:
         create_table(conn, sql_create_studentdata_table)
     else:
         print("Error! cannot create the database connection.")
 
-    conn = create_connection(f"{USER_DIR}\\StudentDatabase\\students.db")
+    conn = create_connection(dataBasePath)
     if conn is not None:
         create_table(conn, sql_create_brailledata_table)
     else:
         print("Error! cannot create the database connection.")
 
-    conn = create_connection(f"{USER_DIR}\\StudentDatabase\\students.db")
+    conn = create_connection(dataBasePath)
     if conn is not None:
         create_table(conn, sql_create_screenreaderdata_table)
     else:
         print("Error! cannot create the database connection.")
 
-    conn = create_connection(f"{USER_DIR}\\StudentDatabase\\students.db")
+    conn = create_connection(dataBasePath)
     if conn is not None:
         create_table(conn, sql_create_abacusdata_table)
     else:
@@ -200,9 +195,9 @@ class dataPanel(wx.Panel):
         self.ln.SetSize((5, 900))
         self.ln.IsVertical()
         self.SetBackgroundColour(wx.Colour(241, 205, 234))
-        wx.StaticText(self, -1, "GENERIC DATA ENTRY", pos=(170, 20))
+        wx.StaticText(self, -1, "EXPANDED CORE CURRICULUM DATA ENTRY", pos=(170, 20))
         wx.StaticText(self, -1, "Student Name", pos=(30, 50))
-        self.studentname1 = wx.Choice(self, -1, choices=students_all,
+        self.studentname1 = wx.Choice(self, -1, choices=students,
                                       pos=(130, 50), size=(300, 20))
         wx.StaticText(self, -1, "Date", pos=(30, 80))
         self.date1 = wx.StaticText(self, -1, date, pos=(200, 80))
@@ -342,53 +337,53 @@ class dataPanel(wx.Panel):
                                      f"{studentname.title()}{dateNow}")
             if box.ShowModal() == wx.ID_OK:
                 self.studentdatabasename = box.GetValue()
-                if not os.path.exists(
-                        f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\{self.studentdatabasename}.txt"):
-                    self.filename = open(
-                        f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\{self.studentdatabasename}.txt",
-                        'w')
-                    self.filename.write('studentname' + ',')
-                    self.filename.write('simpleDate' + ',')
-                    self.filename.write('task' + ',')
-                    self.filename.write('lesson' + ',')
-                    self.filename.write('session' + ',')
-                    self.filename.write('trial01' + ',')
-                    self.filename.write('trial02' + ',')
-                    self.filename.write('trial03' + ',')
-                    self.filename.write('trial04' + ',')
-                    self.filename.write('trial05' + ',')
-                    self.filename.write('trial06' + ',')
-                    self.filename.write('trial07' + ',')
-                    self.filename.write('trial08' + ',')
-                    self.filename.write('trial09' + ',')
-                    self.filename.write('trial10' + ',')
-                    self.filename.write('trial11' + ',')
-                    self.filename.write('median' + ',')
+                if not Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', studentname,
+                                               self.studentdatabasename + '.txt').exists():
+                    tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', studentname,
+                                                      self.studentdatabasename + '.txt')
+                    self.filename = Path.touch(tmpPath)
+                    self.filename.write('studentname' + ', ')
+                    self.filename.write('simpleDate' + ', ')
+                    self.filename.write('task' + ', ')
+                    self.filename.write('lesson' + ', ')
+                    self.filename.write('session' + ', ')
+                    self.filename.write('trial01' + ', ')
+                    self.filename.write('trial02' + ', ')
+                    self.filename.write('trial03' + ', ')
+                    self.filename.write('trial04' + ', ')
+                    self.filename.write('trial05' + ', ')
+                    self.filename.write('trial06' + ', ')
+                    self.filename.write('trial07' + ', ')
+                    self.filename.write('trial08' + ', ')
+                    self.filename.write('trial09' + ', ')
+                    self.filename.write('trial10' + ', ')
+                    self.filename.write('trial11' + ', ')
+                    self.filename.write('median' + ', ')
                     self.filename.write('notes' + ',\n')
-                    self.filename.write(studentname + ',')
-                    self.filename.write(dateNow + ',')
-                    self.filename.write(task + ',')
-                    self.filename.write(lesson + ',')
-                    self.filename.write(session + ',')
-                    self.filename.write(trial01 + ',')
-                    self.filename.write(trial02 + ',')
-                    self.filename.write(trial03 + ',')
-                    self.filename.write(trial04 + ',')
-                    self.filename.write(trial05 + ',')
-                    self.filename.write(trial06 + ',')
-                    self.filename.write(trial07 + ',')
-                    self.filename.write(trial08 + ',')
-                    self.filename.write(trial09 + ',')
-                    self.filename.write(trial10 + ',')
-                    self.filename.write(trial11 + ',')
-                    self.filename.write(trialmedian + ',')
-                    self.filename.write(notes + ',')
+                    self.filename.write(studentname + ', ')
+                    self.filename.write(dateNow + ', ')
+                    self.filename.write(task + ', ')
+                    self.filename.write(lesson + ', ')
+                    self.filename.write(session + ', ')
+                    self.filename.write(trial01 + ', ')
+                    self.filename.write(trial02 + ', ')
+                    self.filename.write(trial03 + ', ')
+                    self.filename.write(trial04 + ', ')
+                    self.filename.write(trial05 + ', ')
+                    self.filename.write(trial06 + ', ')
+                    self.filename.write(trial07 + ', ')
+                    self.filename.write(trial08 + ', ')
+                    self.filename.write(trial09 + ', ')
+                    self.filename.write(trial10 + ', ')
+                    self.filename.write(trial11 + ', ')
+                    self.filename.write(trialmedian + ', ')
+                    self.filename.write(notes + ', ')
                     self.filename.close()
-                    self.filename = open(
-                        f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\Filenames.txt",
-                        'a')
-                    self.filename.write(
-                        f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\{self.studentdatabasename}.txt" + '\n')
+                    tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', 'Filenames.txt')
+                    self.filename = open(tmpPath, 'a')
+                    tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', studentname,
+                                                      self.studentdatabasename + '.txt')
+                    self.filename.write(f"'{tmpPath}'" + '\n')
                     self.filename.close()
                     list_data = [studentname, dateNow, task, lesson, session,
                                  trial01,
@@ -397,10 +392,9 @@ class dataPanel(wx.Panel):
                                  trialmedian,
                                  notes]
                     os.chdir(USER_DIR)
-                    with open(
-                            f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\omnibusDatabase.csv",
-                            'a',
-                            newline='') as f_setup:
+                    tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', studentname,
+                                                      'omnibusDatabase.csv')
+                    with open(tmpPath, 'a', newline='') as f_setup:
                         writer_setup = writer(f_setup)
                         writer_setup.writerow(list_data)
                         f_setup.close()
@@ -422,7 +416,7 @@ class dataPanel(wx.Panel):
             self.dial.ShowModal()
 
         def data_entry():
-            conn = sqlite3.connect(f"{USER_DIR}\\StudentDatabase\\students.db")
+            conn = sqlite3.connect(dataBasePath)
             c = conn.cursor()
             c.execute(
                 "INSERT INTO studentdata (studentname, date, task, lesson, session, trial01, trial02, trial03, trial04, trial05, trial06, trial07, trial08, trial09, trial10, trial11, median, notes) VALUES (?,?,?,?, ?, ?, ?, ?,?, ?, ?, ?, ?,?, ?, ?, ?, ?)",
@@ -453,7 +447,7 @@ class braillePanel(scrolled.ScrolledPanel):
         # super(braillePanel, self).__init__(parent)
         wx.StaticText(self, -1, "BRAILLE SKILLS PROGRESSION", pos=(200, 20))
         wx.StaticText(self, -1, "Student Name", pos=(30, 50))
-        self.studentname1 = wx.Choice(self, -1, choices=students_all,
+        self.studentname1 = wx.Choice(self, -1, choices=students,
                                       pos=(650, 50), size=(300, 20))
         wx.StaticText(self, -1, f"Date: {date}", pos=(550, 20))
         wx.StaticText(self, -1, "1.1 Track Left to Right", pos=(30, 80))
@@ -751,218 +745,218 @@ class braillePanel(scrolled.ScrolledPanel):
                                  f"braille{studentname.title()}{dateNow}")
         if box.ShowModal() == wx.ID_OK:
             self.studentdatabasename = box.GetValue()
-            if not os.path.exists(
-                    f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\{self.studentdatabasename}.txt"):
-                self.filename = open(
-                    f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\{self.studentdatabasename}.txt",
-                    'w')
-                self.filename.write('studentname' + ',')
-                self.filename.write('simpleDate' + ',')
-                self.filename.write('trial11' + ',')
-                self.filename.write('trial12' + ',')
-                self.filename.write('trial13' + ',')
-                self.filename.write('trial14' + ',')
-                self.filename.write('trial21' + ',')
-                self.filename.write('trial22' + ',')
-                self.filename.write('trial23' + ',')
-                self.filename.write('trial24' + ',')
-                self.filename.write('trial25' + ',')
-                self.filename.write('trial26' + ',')
-                self.filename.write('trial27' + ',')
-                self.filename.write('trial28' + ',')
-                self.filename.write('trial29' + ',')
-                self.filename.write('trial210' + ',')
-                self.filename.write('trial211' + ',')
-                self.filename.write('trial212' + ',')
-                self.filename.write('trial213' + ',')
-                self.filename.write('trial214' + ',')
-                self.filename.write('trial215' + ',')
-                self.filename.write('trial31' + ',')
-                self.filename.write('trial32' + ',')
-                self.filename.write('trial33' + ',')
-                self.filename.write('trial34' + ',')
-                self.filename.write('trial35' + ',')
-                self.filename.write('trial36' + ',')
-                self.filename.write('trial37' + ',')
-                self.filename.write('trial38' + ',')
-                self.filename.write('trial39' + ',')
-                self.filename.write('trial310' + ',')
-                self.filename.write('trial311' + ',')
-                self.filename.write('trial312' + ',')
-                self.filename.write('trial313' + ',')
-                self.filename.write('trial314' + ',')
-                self.filename.write('trial315' + ',')
-                self.filename.write('trial41' + ',')
-                self.filename.write('trial42' + ',')
-                self.filename.write('trial43' + ',')
-                self.filename.write('trial44' + ',')
-                self.filename.write('trial51' + ',')
-                self.filename.write('trial52' + ',')
-                self.filename.write('trial53' + ',')
-                self.filename.write('trial54' + ',')
-                self.filename.write('trial61' + ',')
-                self.filename.write('trial62' + ',')
-                self.filename.write('trial63' + ',')
-                self.filename.write('trial64' + ',')
-                self.filename.write('trial65' + ',')
-                self.filename.write('trial66' + ',')
-                self.filename.write('trial67' + ',')
-                self.filename.write('trial71' + ',')
-                self.filename.write('trial72' + ',')
-                self.filename.write('trial73' + ',')
-                self.filename.write('trial74' + ',')
-                self.filename.write('trial75' + ',')
-                self.filename.write('trial76' + ',')
-                self.filename.write('trial77' + ',')
-                self.filename.write('trial78' + ',')
-                self.filename.write('trial81' + ',')
-                self.filename.write('trial82' + ',')
-                self.filename.write('trial83' + ',')
-                self.filename.write('trial84' + ',')
-                self.filename.write('trial85' + ',')
-                self.filename.write('trial86' + ',')
-                self.filename.write('trial87' + ',')
-                self.filename.write(studentname + ',')
-                self.filename.write(dateNow + ',')
-                self.filename.write(trial11 + ',')
-                self.filename.write(trial12 + ',')
-                self.filename.write(trial13 + ',')
-                self.filename.write(trial14 + ',')
-                self.filename.write(trial21 + ',')
-                self.filename.write(trial22 + ',')
-                self.filename.write(trial23 + ',')
-                self.filename.write(trial24 + ',')
-                self.filename.write(trial25 + ',')
-                self.filename.write(trial26 + ',')
-                self.filename.write(trial27 + ',')
-                self.filename.write(trial28 + ',')
-                self.filename.write(trial29 + ',')
-                self.filename.write(trial210 + ',')
-                self.filename.write(trial211 + ',')
-                self.filename.write(trial212 + ',')
-                self.filename.write(trial213 + ',')
-                self.filename.write(trial214 + ',')
-                self.filename.write(trial215 + ',')
-                self.filename.write(trial31 + ',')
-                self.filename.write(trial32 + ',')
-                self.filename.write(trial33 + ',')
-                self.filename.write(trial34 + ',')
-                self.filename.write(trial35 + ',')
-                self.filename.write(trial36 + ',')
-                self.filename.write(trial37 + ',')
-                self.filename.write(trial38 + ',')
-                self.filename.write(trial39 + ',')
-                self.filename.write(trial310 + ',')
-                self.filename.write(trial311 + ',')
-                self.filename.write(trial312 + ',')
-                self.filename.write(trial313 + ',')
-                self.filename.write(trial314 + ',')
-                self.filename.write(trial315 + ',')
-                self.filename.write(trial41 + ',')
-                self.filename.write(trial42 + ',')
-                self.filename.write(trial43 + ',')
-                self.filename.write(trial44 + ',')
-                self.filename.write(trial51 + ',')
-                self.filename.write(trial52 + ',')
-                self.filename.write(trial53 + ',')
-                self.filename.write(trial54 + ',')
-                self.filename.write(trial61 + ',')
-                self.filename.write(trial62 + ',')
-                self.filename.write(trial63 + ',')
-                self.filename.write(trial64 + ',')
-                self.filename.write(trial65 + ',')
-                self.filename.write(trial66 + ',')
-                self.filename.write(trial67 + ',')
-                self.filename.write(trial71 + ',')
-                self.filename.write(trial72 + ',')
-                self.filename.write(trial73 + ',')
-                self.filename.write(trial74 + ',')
-                self.filename.write(trial75 + ',')
-                self.filename.write(trial76 + ',')
-                self.filename.write(trial77 + ',')
-                self.filename.write(trial78 + ',')
-                self.filename.write(trial81 + ',')
-                self.filename.write(trial82 + ',')
-                self.filename.write(trial83 + ',')
-                self.filename.write(trial84 + ',')
-                self.filename.write(trial85 + ',')
-                self.filename.write(trial86 + ',')
-                self.filename.write(trial87 + ',')
-                self.filename.write(trial12 + ',')
-                self.filename.write(trial13 + ',')
-                self.filename.write(trial14 + ',')
-                self.filename.write(trial21 + ',')
-                self.filename.write(trial22 + ',')
-                self.filename.write(trial23 + ',')
-                self.filename.write(trial24 + ',')
-                self.filename.write(trial25 + ',')
-                self.filename.write(trial26 + ',')
-                self.filename.write(trial27 + ',')
-                self.filename.write(trial28 + ',')
-                self.filename.write(trial29 + ',')
-                self.filename.write(trial210 + ',')
-                self.filename.write(trial211 + ',')
-                self.filename.write(trial212 + ',')
-                self.filename.write(trial213 + ',')
-                self.filename.write(trial214 + ',')
-                self.filename.write(trial215 + ',')
-                self.filename.write(trial31 + ',')
-                self.filename.write(trial32 + ',')
-                self.filename.write(trial33 + ',')
-                self.filename.write(trial34 + ',')
-                self.filename.write(trial35 + ',')
-                self.filename.write(trial36 + ',')
-                self.filename.write(trial37 + ',')
-                self.filename.write(trial38 + ',')
-                self.filename.write(trial39 + ',')
-                self.filename.write(trial310 + ',')
-                self.filename.write(trial311 + ',')
-                self.filename.write(trial312 + ',')
-                self.filename.write(trial313 + ',')
-                self.filename.write(trial314 + ',')
-                self.filename.write(trial315 + ',')
-                self.filename.write(trial41 + ',')
-                self.filename.write(trial42 + ',')
-                self.filename.write(trial43 + ',')
-                self.filename.write(trial44 + ',')
-                self.filename.write(trial51 + ',')
-                self.filename.write(trial52 + ',')
-                self.filename.write(trial53 + ',')
-                self.filename.write(trial54 + ',')
-                self.filename.write(trial61 + ',')
-                self.filename.write(trial62 + ',')
-                self.filename.write(trial63 + ',')
-                self.filename.write(trial64 + ',')
-                self.filename.write(trial65 + ',')
-                self.filename.write(trial66 + ',')
-                self.filename.write(trial67 + ',')
-                self.filename.write(trial71 + ',')
-                self.filename.write(trial72 + ',')
-                self.filename.write(trial73 + ',')
-                self.filename.write(trial74 + ',')
-                self.filename.write(trial75 + ',')
-                self.filename.write(trial76 + ',')
-                self.filename.write(trial77 + ',')
-                self.filename.write(trial78 + ',')
-                self.filename.write(trial81 + ',')
-                self.filename.write(trial82 + ',')
-                self.filename.write(trial83 + ',')
-                self.filename.write(trial84 + ',')
-                self.filename.write(trial85 + ',')
-                self.filename.write(trial86 + ',')
-                self.filename.write(trial87 + ',')
+            if not Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', studentname,
+                                           self.studentdatabasename + '.txt').exists():
+                tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', studentname,
+                                                  self.studentdatabasename + '.txt')
+                Path.touch(tmpPath)
+                self.filename = open(tmpPath, 'w')
+                self.filename.write('studentname' + ', ')
+                self.filename.write('simpleDate' + ', ')
+                self.filename.write('trial11' + ', ')
+                self.filename.write('trial12' + ', ')
+                self.filename.write('trial13' + ', ')
+                self.filename.write('trial14' + ', ')
+                self.filename.write('trial21' + ', ')
+                self.filename.write('trial22' + ', ')
+                self.filename.write('trial23' + ', ')
+                self.filename.write('trial24' + ', ')
+                self.filename.write('trial25' + ', ')
+                self.filename.write('trial26' + ', ')
+                self.filename.write('trial27' + ', ')
+                self.filename.write('trial28' + ', ')
+                self.filename.write('trial29' + ', ')
+                self.filename.write('trial210' + ', ')
+                self.filename.write('trial211' + ', ')
+                self.filename.write('trial212' + ', ')
+                self.filename.write('trial213' + ', ')
+                self.filename.write('trial214' + ', ')
+                self.filename.write('trial215' + ', ')
+                self.filename.write('trial31' + ', ')
+                self.filename.write('trial32' + ', ')
+                self.filename.write('trial33' + ', ')
+                self.filename.write('trial34' + ', ')
+                self.filename.write('trial35' + ', ')
+                self.filename.write('trial36' + ', ')
+                self.filename.write('trial37' + ', ')
+                self.filename.write('trial38' + ', ')
+                self.filename.write('trial39' + ', ')
+                self.filename.write('trial310' + ', ')
+                self.filename.write('trial311' + ', ')
+                self.filename.write('trial312' + ', ')
+                self.filename.write('trial313' + ', ')
+                self.filename.write('trial314' + ', ')
+                self.filename.write('trial315' + ', ')
+                self.filename.write('trial41' + ', ')
+                self.filename.write('trial42' + ', ')
+                self.filename.write('trial43' + ', ')
+                self.filename.write('trial44' + ', ')
+                self.filename.write('trial51' + ', ')
+                self.filename.write('trial52' + ', ')
+                self.filename.write('trial53' + ', ')
+                self.filename.write('trial54' + ', ')
+                self.filename.write('trial61' + ', ')
+                self.filename.write('trial62' + ', ')
+                self.filename.write('trial63' + ', ')
+                self.filename.write('trial64' + ', ')
+                self.filename.write('trial65' + ', ')
+                self.filename.write('trial66' + ', ')
+                self.filename.write('trial67' + ', ')
+                self.filename.write('trial71' + ', ')
+                self.filename.write('trial72' + ', ')
+                self.filename.write('trial73' + ', ')
+                self.filename.write('trial74' + ', ')
+                self.filename.write('trial75' + ', ')
+                self.filename.write('trial76' + ', ')
+                self.filename.write('trial77' + ', ')
+                self.filename.write('trial78' + ', ')
+                self.filename.write('trial81' + ', ')
+                self.filename.write('trial82' + ', ')
+                self.filename.write('trial83' + ', ')
+                self.filename.write('trial84' + ', ')
+                self.filename.write('trial85' + ', ')
+                self.filename.write('trial86' + ', ')
+                self.filename.write('trial87' + ', ')
+                self.filename.write(studentname + ', ')
+                self.filename.write(dateNow + ', ')
+                self.filename.write(trial11 + ', ')
+                self.filename.write(trial12 + ', ')
+                self.filename.write(trial13 + ', ')
+                self.filename.write(trial14 + ', ')
+                self.filename.write(trial21 + ', ')
+                self.filename.write(trial22 + ', ')
+                self.filename.write(trial23 + ', ')
+                self.filename.write(trial24 + ', ')
+                self.filename.write(trial25 + ', ')
+                self.filename.write(trial26 + ', ')
+                self.filename.write(trial27 + ', ')
+                self.filename.write(trial28 + ', ')
+                self.filename.write(trial29 + ', ')
+                self.filename.write(trial210 + ', ')
+                self.filename.write(trial211 + ', ')
+                self.filename.write(trial212 + ', ')
+                self.filename.write(trial213 + ', ')
+                self.filename.write(trial214 + ', ')
+                self.filename.write(trial215 + ', ')
+                self.filename.write(trial31 + ', ')
+                self.filename.write(trial32 + ', ')
+                self.filename.write(trial33 + ', ')
+                self.filename.write(trial34 + ', ')
+                self.filename.write(trial35 + ', ')
+                self.filename.write(trial36 + ', ')
+                self.filename.write(trial37 + ', ')
+                self.filename.write(trial38 + ', ')
+                self.filename.write(trial39 + ', ')
+                self.filename.write(trial310 + ', ')
+                self.filename.write(trial311 + ', ')
+                self.filename.write(trial312 + ', ')
+                self.filename.write(trial313 + ', ')
+                self.filename.write(trial314 + ', ')
+                self.filename.write(trial315 + ', ')
+                self.filename.write(trial41 + ', ')
+                self.filename.write(trial42 + ', ')
+                self.filename.write(trial43 + ', ')
+                self.filename.write(trial44 + ', ')
+                self.filename.write(trial51 + ', ')
+                self.filename.write(trial52 + ', ')
+                self.filename.write(trial53 + ', ')
+                self.filename.write(trial54 + ', ')
+                self.filename.write(trial61 + ', ')
+                self.filename.write(trial62 + ', ')
+                self.filename.write(trial63 + ', ')
+                self.filename.write(trial64 + ', ')
+                self.filename.write(trial65 + ', ')
+                self.filename.write(trial66 + ', ')
+                self.filename.write(trial67 + ', ')
+                self.filename.write(trial71 + ', ')
+                self.filename.write(trial72 + ', ')
+                self.filename.write(trial73 + ', ')
+                self.filename.write(trial74 + ', ')
+                self.filename.write(trial75 + ', ')
+                self.filename.write(trial76 + ', ')
+                self.filename.write(trial77 + ', ')
+                self.filename.write(trial78 + ', ')
+                self.filename.write(trial81 + ', ')
+                self.filename.write(trial82 + ', ')
+                self.filename.write(trial83 + ', ')
+                self.filename.write(trial84 + ', ')
+                self.filename.write(trial85 + ', ')
+                self.filename.write(trial86 + ', ')
+                self.filename.write(trial87 + ', ')
+                self.filename.write(trial12 + ', ')
+                self.filename.write(trial13 + ', ')
+                self.filename.write(trial14 + ', ')
+                self.filename.write(trial21 + ', ')
+                self.filename.write(trial22 + ', ')
+                self.filename.write(trial23 + ', ')
+                self.filename.write(trial24 + ', ')
+                self.filename.write(trial25 + ', ')
+                self.filename.write(trial26 + ', ')
+                self.filename.write(trial27 + ', ')
+                self.filename.write(trial28 + ', ')
+                self.filename.write(trial29 + ', ')
+                self.filename.write(trial210 + ', ')
+                self.filename.write(trial211 + ', ')
+                self.filename.write(trial212 + ', ')
+                self.filename.write(trial213 + ', ')
+                self.filename.write(trial214 + ', ')
+                self.filename.write(trial215 + ', ')
+                self.filename.write(trial31 + ', ')
+                self.filename.write(trial32 + ', ')
+                self.filename.write(trial33 + ', ')
+                self.filename.write(trial34 + ', ')
+                self.filename.write(trial35 + ', ')
+                self.filename.write(trial36 + ', ')
+                self.filename.write(trial37 + ', ')
+                self.filename.write(trial38 + ', ')
+                self.filename.write(trial39 + ', ')
+                self.filename.write(trial310 + ', ')
+                self.filename.write(trial311 + ', ')
+                self.filename.write(trial312 + ', ')
+                self.filename.write(trial313 + ', ')
+                self.filename.write(trial314 + ', ')
+                self.filename.write(trial315 + ', ')
+                self.filename.write(trial41 + ', ')
+                self.filename.write(trial42 + ', ')
+                self.filename.write(trial43 + ', ')
+                self.filename.write(trial44 + ', ')
+                self.filename.write(trial51 + ', ')
+                self.filename.write(trial52 + ', ')
+                self.filename.write(trial53 + ', ')
+                self.filename.write(trial54 + ', ')
+                self.filename.write(trial61 + ', ')
+                self.filename.write(trial62 + ', ')
+                self.filename.write(trial63 + ', ')
+                self.filename.write(trial64 + ', ')
+                self.filename.write(trial65 + ', ')
+                self.filename.write(trial66 + ', ')
+                self.filename.write(trial67 + ', ')
+                self.filename.write(trial71 + ', ')
+                self.filename.write(trial72 + ', ')
+                self.filename.write(trial73 + ', ')
+                self.filename.write(trial74 + ', ')
+                self.filename.write(trial75 + ', ')
+                self.filename.write(trial76 + ', ')
+                self.filename.write(trial77 + ', ')
+                self.filename.write(trial78 + ', ')
+                self.filename.write(trial81 + ', ')
+                self.filename.write(trial82 + ', ')
+                self.filename.write(trial83 + ', ')
+                self.filename.write(trial84 + ', ')
+                self.filename.write(trial85 + ', ')
+                self.filename.write(trial86 + ', ')
+                self.filename.write(trial87 + ', ')
                 self.filename.close()
-                self.filename = open(
-                    f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\Filenames.txt",
-                    'a')
-                self.filename.write(
-                    f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\{self.studentdatabasename}.txt" + '\n')
+                tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', 'Filenames.txt')
+                self.filename = open(tmpPath, 'a')
+                tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', studentname,
+                                                  self.studentdatabasename + '.txt')
+                self.filename.write(f"'{tmpPath}'" + '\n')
                 self.filename.close()
                 os.chdir(USER_DIR)
-                with open(
-                        f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\BrailleSkillsProgression.csv",
-                        'a',
-                        newline='') as f_setup:
+                tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', studentname,
+                                                  'BrailleSkillsProgression.csv')
+                with open(tmpPath, 'a', newline='') as f_setup:
                     list_data = [dateNow, trial11, trial12, trial13, trial14,
                                  trial21, trial22, trial23, trial24, trial25,
                                  trial26, trial27, trial28, trial29, trial210,
@@ -995,10 +989,10 @@ class braillePanel(scrolled.ScrolledPanel):
             self.dial.ShowModal()
 
         def data_entry():
-            conn = sqlite3.connect(f"{USER_DIR}\\StudentDatabase\\students.db")
+            conn = sqlite3.connect(dataBasePath)
             c = conn.cursor()
             c.execute(
-                "INSERT INTO brailleProgress (studentname,date,P1_1 ,P1_2 ,P1_3 ,P1_4 ,P2_1 ,P2_2 ,P2_3 ,P2_4 ,P2_5 ,P2_6 ,P2_7 ,P2_8 ,P2_9 ,P2_10 ,P2_11 ,P2_12 ,P2_13 ,P2_14 ,P2_15 ,P3_1 ,P3_2 ,P3_3 ,P3_4 ,P3_5 ,P3_6 ,P3_7 ,P3_8 ,P3_9 ,P3_10 ,P3_11 ,P3_12 ,P3_13 ,P3_14 ,P3_15 ,P4_1 ,P4_2 ,P4_3 ,P4_4 ,P5_1 ,P5_2 ,P5_3 ,P5_4 ,P6_1 ,P6_2 ,P6_3 ,P6_4 ,P6_5 ,P6_6 ,P6_7 ,P7_1 ,P7_2 ,P7_3 ,P7_4 ,P7_5 ,P7_6 ,P7_7 ,P7_8 ,P8_1 ,P8_2 ,P8_3 ,P8_4 ,P8_5 ,P8_6 ,P8_7 ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                "INSERT INTO brailleProgress (studentname, date, P1_1 ,P1_2 ,P1_3 ,P1_4 ,P2_1 ,P2_2 ,P2_3 ,P2_4 ,P2_5 ,P2_6 ,P2_7 ,P2_8 ,P2_9 ,P2_10 ,P2_11 ,P2_12 ,P2_13 ,P2_14 ,P2_15 ,P3_1 ,P3_2 ,P3_3 ,P3_4 ,P3_5 ,P3_6 ,P3_7 ,P3_8 ,P3_9 ,P3_10 ,P3_11 ,P3_12 ,P3_13 ,P3_14 ,P3_15 ,P4_1 ,P4_2 ,P4_3 ,P4_4 ,P5_1 ,P5_2 ,P5_3 ,P5_4 ,P6_1 ,P6_2 ,P6_3 ,P6_4 ,P6_5 ,P6_6 ,P6_7 ,P7_1 ,P7_2 ,P7_3 ,P7_4 ,P7_5 ,P7_6 ,P7_7 ,P7_8 ,P8_1 ,P8_2 ,P8_3 ,P8_4 ,P8_5 ,P8_6 ,P8_7 ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                 (studentname, dateNow, trial11, trial12, trial13, trial14,
                  trial21, trial22, trial23, trial24, trial25,
                  trial26, trial27, trial28, trial29, trial210, trial211,
@@ -1032,9 +1026,9 @@ class braillePanel(scrolled.ScrolledPanel):
     def graph(self, event):
         studentname = self.studentname1.GetString(
             self.studentname1.GetSelection())
-        df = pd.read_csv(
-            f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\BrailleSkillsProgression.csv",
-            sep=',', index_col=[0], parse_dates=[0])
+        tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', studentname,
+                                          'BrailleSkillsProgression.csv')
+        df = pd.read_csv(tmpPath, sep=', ', index_col=[0], parse_dates=[0])
         df = df.sort_values(by="date")
         mu, sigma = 0, 0.1
         noise = np.random.normal(mu, sigma, [len(df.index), len(df.columns)])
@@ -1051,7 +1045,7 @@ class braillePanel(scrolled.ScrolledPanel):
             subplot_titles=(
                 "Phase 1: Tracking Skills", "Phase 2: Braille Alphabet",
                 "Phase 1: Tracking Skills",
-                "Phase 3a: Wordsigns, Numbers,Punctuation",
+                "Phase 3a: Wordsigns, Numbers, Punctuation",
                 "Phase 3b: Strong Contractions",
                 "Phase 3c: Lower Cell Contractions",
                 "Phase 3d: Multiple Cell Contractions",
@@ -1628,9 +1622,9 @@ class braillePanel(scrolled.ScrolledPanel):
                           xaxis9_tickformat='%d %b', template="simple_white",
                           title_text=f"{studentname}: Literary UEB Skills Progression",
                           legend=dict(font=dict(size=10)))
-
-        fig.write_html(
-            f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\UEBLiterarySkillsProgression.html")
+        tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', studentname,
+                                          'UEBLiterarySkillsProgression.html')
+        fig.write_html(tmpPath)
         fig.show()
         #
         fig = make_subplots(
@@ -1833,8 +1827,9 @@ class braillePanel(scrolled.ScrolledPanel):
                           xaxis3_tickformat='%d %b', template="simple_white",
                           title_text=f"{studentname}: Technical UEB Skills Progression",
                           legend=dict(font=dict(size=10)))
-        fig.write_html(
-            f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\UEBTechnicalSkillsProgression.html")
+        tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', studentname,
+                                          'UEBTechnicalSkillsProgression.html')
+        fig.write_html(tmpPath)
         fig.show()
 
 
@@ -1850,7 +1845,7 @@ class screenreaderPanel(scrolled.ScrolledPanel):
         self.SetBackgroundColour(wx.Colour(204, 255, 255))
         wx.StaticText(self, -1, "SCREENREADER SKILLS PROGRESSION", pos=(200, 20))
         wx.StaticText(self, -1, "Student Name", pos=(30, 50))
-        self.studentname1 = wx.Choice(self, -1, choices=students_all,
+        self.studentname1 = wx.Choice(self, -1, choices=students,
                                       pos=(650, 50), size=(300, 20))
         wx.StaticText(self, -1, f"Date: {date}", pos=(550, 20))
         wx.StaticText(self, -1, "1.1 turn on and off the screen reader",
@@ -2036,66 +2031,66 @@ class screenreaderPanel(scrolled.ScrolledPanel):
                 self.filename = open(
                     f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\{self.studentdatabasename}.txt",
                     'w')
-                self.filename.write('studentname' + ',')
-                self.filename.write('simpleDate' + ',')
-                self.filename.write('trial11' + ',')
-                self.filename.write('trial12' + ',')
-                self.filename.write('trial13' + ',')
-                self.filename.write('trial14' + ',')
-                self.filename.write('trial15' + ',')
-                self.filename.write('trial16' + ',')
-                self.filename.write('trial21' + ',')
-                self.filename.write('trial22' + ',')
-                self.filename.write('trial23' + ',')
-                self.filename.write('trial24' + ',')
-                self.filename.write('trial31' + ',')
-                self.filename.write('trial32' + ',')
-                self.filename.write('trial33' + ',')
-                self.filename.write('trial34' + ',')
-                self.filename.write('trial35' + ',')
-                self.filename.write('trial36' + ',')
-                self.filename.write('trial37' + ',')
-                self.filename.write('trial38' + ',')
-                self.filename.write('trial39' + ',')
-                self.filename.write('trial310' + ',')
-                self.filename.write('trial311' + ',')
-                self.filename.write('trial41' + ',')
-                self.filename.write('trial42' + ',')
-                self.filename.write('trial43' + ',')
-                self.filename.write('trial44' + ',')
-                self.filename.write('trial45' + ',')
-                self.filename.write('trial46' + ',')
-                self.filename.write('trial47' + ',')
-                self.filename.write(studentname + ',')
-                self.filename.write(dateNow + ',')
-                self.filename.write(trial11 + ',')
-                self.filename.write(trial12 + ',')
-                self.filename.write(trial13 + ',')
-                self.filename.write(trial14 + ',')
-                self.filename.write(trial15 + ',')
-                self.filename.write(trial16 + ',')
-                self.filename.write(trial21 + ',')
-                self.filename.write(trial22 + ',')
-                self.filename.write(trial23 + ',')
-                self.filename.write(trial24 + ',')
-                self.filename.write(trial31 + ',')
-                self.filename.write(trial32 + ',')
-                self.filename.write(trial33 + ',')
-                self.filename.write(trial34 + ',')
-                self.filename.write(trial35 + ',')
-                self.filename.write(trial36 + ',')
-                self.filename.write(trial37 + ',')
-                self.filename.write(trial38 + ',')
-                self.filename.write(trial39 + ',')
-                self.filename.write(trial310 + ',')
-                self.filename.write(trial311 + ',')
-                self.filename.write(trial41 + ',')
-                self.filename.write(trial42 + ',')
-                self.filename.write(trial43 + ',')
-                self.filename.write(trial44 + ',')
-                self.filename.write(trial45 + ',')
-                self.filename.write(trial46 + ',')
-                self.filename.write(trial47 + ',')
+                self.filename.write('studentname' + ', ')
+                self.filename.write('simpleDate' + ', ')
+                self.filename.write('trial11' + ', ')
+                self.filename.write('trial12' + ', ')
+                self.filename.write('trial13' + ', ')
+                self.filename.write('trial14' + ', ')
+                self.filename.write('trial15' + ', ')
+                self.filename.write('trial16' + ', ')
+                self.filename.write('trial21' + ', ')
+                self.filename.write('trial22' + ', ')
+                self.filename.write('trial23' + ', ')
+                self.filename.write('trial24' + ', ')
+                self.filename.write('trial31' + ', ')
+                self.filename.write('trial32' + ', ')
+                self.filename.write('trial33' + ', ')
+                self.filename.write('trial34' + ', ')
+                self.filename.write('trial35' + ', ')
+                self.filename.write('trial36' + ', ')
+                self.filename.write('trial37' + ', ')
+                self.filename.write('trial38' + ', ')
+                self.filename.write('trial39' + ', ')
+                self.filename.write('trial310' + ', ')
+                self.filename.write('trial311' + ', ')
+                self.filename.write('trial41' + ', ')
+                self.filename.write('trial42' + ', ')
+                self.filename.write('trial43' + ', ')
+                self.filename.write('trial44' + ', ')
+                self.filename.write('trial45' + ', ')
+                self.filename.write('trial46' + ', ')
+                self.filename.write('trial47' + ', ')
+                self.filename.write(studentname + ', ')
+                self.filename.write(dateNow + ', ')
+                self.filename.write(trial11 + ', ')
+                self.filename.write(trial12 + ', ')
+                self.filename.write(trial13 + ', ')
+                self.filename.write(trial14 + ', ')
+                self.filename.write(trial15 + ', ')
+                self.filename.write(trial16 + ', ')
+                self.filename.write(trial21 + ', ')
+                self.filename.write(trial22 + ', ')
+                self.filename.write(trial23 + ', ')
+                self.filename.write(trial24 + ', ')
+                self.filename.write(trial31 + ', ')
+                self.filename.write(trial32 + ', ')
+                self.filename.write(trial33 + ', ')
+                self.filename.write(trial34 + ', ')
+                self.filename.write(trial35 + ', ')
+                self.filename.write(trial36 + ', ')
+                self.filename.write(trial37 + ', ')
+                self.filename.write(trial38 + ', ')
+                self.filename.write(trial39 + ', ')
+                self.filename.write(trial310 + ', ')
+                self.filename.write(trial311 + ', ')
+                self.filename.write(trial41 + ', ')
+                self.filename.write(trial42 + ', ')
+                self.filename.write(trial43 + ', ')
+                self.filename.write(trial44 + ', ')
+                self.filename.write(trial45 + ', ')
+                self.filename.write(trial46 + ', ')
+                self.filename.write(trial47 + ', ')
                 self.filename.close()
                 self.filename = open(
                     f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\Filenames.txt",
@@ -2104,7 +2099,7 @@ class screenreaderPanel(scrolled.ScrolledPanel):
                     f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\{self.studentdatabasename}.txt" + '\n')
                 self.filename.close()
 
-                # list_names = ['date','P1_1','P1_2','P1_3','P1_4','P1_5','P1_6','P2_1','P2_2','P2_3','P2_4','P3_1','P3_2','P3_3','P3_4','P3_5','P3_6','P3_7','P3_8','P3_9','P3_10','P3_11','P4_1','P4_2','P4_3','P4_4','P4_5','P4_6','P4_7']
+                # list_names = ['date', 'P1_1', 'P1_2', 'P1_3', 'P1_4', 'P1_5', 'P1_6', 'P2_1', 'P2_2', 'P2_3', 'P2_4', 'P3_1', 'P3_2', 'P3_3', 'P3_4', 'P3_5', 'P3_6', 'P3_7', 'P3_8', 'P3_9', 'P3_10', 'P3_11', 'P4_1', 'P4_2', 'P4_3', 'P4_4', 'P4_5', 'P4_6', 'P4_7']
 
                 list_data = [dateNow, trial11, trial12,
                              trial13, trial14,
@@ -2142,10 +2137,10 @@ class screenreaderPanel(scrolled.ScrolledPanel):
             self.dial.ShowModal()
 
         def data_entry():
-            conn = sqlite3.connect(f"{USER_DIR}\\StudentDatabase\\students.db")
+            conn = sqlite3.connect(Path(USER_DIR / 'StudentDatabase' / 'students.db'))
             c = conn.cursor()
             c.execute(
-                "INSERT INTO screenreaderProgress (studentname,date,P1_1,P1_2,P1_3,P1_4,P1_5,P1_6,P2_1,P2_2,P2_3,P2_4,P3_1,P3_2,P3_3,P3_4,P3_5,P3_6,P3_7,P3_8,P3_9,P3_10,P3_11,P4_1,P4_2,P4_3,P4_4,P4_5,P4_6,P4_7) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                "INSERT INTO screenreaderProgress (studentname, date, P1_1, P1_2, P1_3, P1_4, P1_5, P1_6, P2_1, P2_2, P2_3, P2_4, P3_1, P3_2, P3_3, P3_4, P3_5, P3_6, P3_7, P3_8, P3_9, P3_10, P3_11, P4_1, P4_2, P4_3, P4_4, P4_5, P4_6, P4_7) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
                 (studentname, dateNow, trial11, trial12, trial13, trial14,
                  trial15, trial16, trial21, trial22, trial23,
                  trial24,
@@ -2162,7 +2157,7 @@ class screenreaderPanel(scrolled.ScrolledPanel):
             self.studentname1.GetSelection())
         df = pd.read_csv(
             f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\ScreenReaderSkillsProgression.csv",
-            sep=',', index_col=[0], parse_dates=[0])
+            sep=', ', index_col=[0], parse_dates=[0])
         df = df.sort_values(by="date")
         mu, sigma = 0, 0.1
         noise = np.random.normal(mu, sigma, [len(df.index), len(df.columns)])
@@ -2516,7 +2511,7 @@ class abacusPanel(scrolled.ScrolledPanel):
         self.SetBackgroundColour(wx.Colour(204, 255, 204))
         wx.StaticText(self, -1, "ABACUS SKILLS PROGRESSION", pos=(200, 20))
         wx.StaticText(self, -1, "Student Name", pos=(30, 50))
-        self.studentname1 = wx.Choice(self, -1, choices=students_all,
+        self.studentname1 = wx.Choice(self, -1, choices=students,
                                       pos=(650, 50), size=(300, 20))
         wx.StaticText(self, -1, f"Date: {date}", pos=(550, 20))
         wx.StaticText(self, -1, "1.1 Setting NumbersNumbers", pos=(30, 80))
@@ -2654,68 +2649,69 @@ class abacusPanel(scrolled.ScrolledPanel):
                                  f"abacus{studentname.title()}{dateNow}")
         if box.ShowModal() == wx.ID_OK:
             self.studentdatabasename = box.GetValue()
-            if not os.path.exists(
-                    f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\{self.studentdatabasename}.txt"):
-                self.filename = open(
-                    f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\{self.studentdatabasename}.txt",
-                    'w')
-                self.filename.write('studentname' + ',')
-                self.filename.write('simpleDate' + ',')
-                self.filename.write('trial11' + ',')
-                self.filename.write('trial12' + ',')
-                self.filename.write('trial13' + ',')
-                self.filename.write('trial14' + ',')
-                self.filename.write('trial21' + ',')
-                self.filename.write('trial22' + ',')
-                self.filename.write('trial23' + ',')
-                self.filename.write('trial31' + ',')
-                self.filename.write('trial32' + ',')
-                self.filename.write('trial33' + ',')
-                self.filename.write('trial41' + ',')
-                self.filename.write('trial42' + ',')
-                self.filename.write('trial51' + ',')
-                self.filename.write('trial52' + ',')
-                self.filename.write('trial61' + ',')
-                self.filename.write('trial62' + ',')
-                self.filename.write('trial63' + ',')
-                self.filename.write('trial64' + ',')
-                self.filename.write('trial71' + ',')
-                self.filename.write('trial72' + ',')
-                self.filename.write('trial73' + ',')
-                self.filename.write('trial74' + ',')
-                self.filename.write('trial81' + ',')
-                self.filename.write('trial82' + ',')
-                self.filename.write(studentname + ',')
-                self.filename.write(trial11 + ',')
-                self.filename.write(trial12 + ',')
-                self.filename.write(trial13 + ',')
-                self.filename.write(trial14 + ',')
-                self.filename.write(trial21 + ',')
-                self.filename.write(trial22 + ',')
-                self.filename.write(trial23 + ',')
-                self.filename.write(trial31 + ',')
-                self.filename.write(trial32 + ',')
-                self.filename.write(trial33 + ',')
-                self.filename.write(trial41 + ',')
-                self.filename.write(trial42 + ',')
-                self.filename.write(trial51 + ',')
-                self.filename.write(trial52 + ',')
-                self.filename.write(trial61 + ',')
-                self.filename.write(trial62 + ',')
-                self.filename.write(trial63 + ',')
-                self.filename.write(trial64 + ',')
-                self.filename.write(trial71 + ',')
-                self.filename.write(trial72 + ',')
-                self.filename.write(trial73 + ',')
-                self.filename.write(trial74 + ',')
-                self.filename.write(trial81 + ',')
-                self.filename.write(trial82 + ',')
+            if not Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', studentname,
+                                           self.studentdatabasename + '.txt').exists():
+                tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', studentname,
+                                                  self.studentdatabasename + '.txt')
+                self.filename = open(tmpPath,
+                                     'w')
+                self.filename.write('studentname' + ', ')
+                self.filename.write('simpleDate' + ', ')
+                self.filename.write('trial11' + ', ')
+                self.filename.write('trial12' + ', ')
+                self.filename.write('trial13' + ', ')
+                self.filename.write('trial14' + ', ')
+                self.filename.write('trial21' + ', ')
+                self.filename.write('trial22' + ', ')
+                self.filename.write('trial23' + ', ')
+                self.filename.write('trial31' + ', ')
+                self.filename.write('trial32' + ', ')
+                self.filename.write('trial33' + ', ')
+                self.filename.write('trial41' + ', ')
+                self.filename.write('trial42' + ', ')
+                self.filename.write('trial51' + ', ')
+                self.filename.write('trial52' + ', ')
+                self.filename.write('trial61' + ', ')
+                self.filename.write('trial62' + ', ')
+                self.filename.write('trial63' + ', ')
+                self.filename.write('trial64' + ', ')
+                self.filename.write('trial71' + ', ')
+                self.filename.write('trial72' + ', ')
+                self.filename.write('trial73' + ', ')
+                self.filename.write('trial74' + ', ')
+                self.filename.write('trial81' + ', ')
+                self.filename.write('trial82' + ', ')
+                self.filename.write(studentname + ', ')
+                self.filename.write(trial11 + ', ')
+                self.filename.write(trial12 + ', ')
+                self.filename.write(trial13 + ', ')
+                self.filename.write(trial14 + ', ')
+                self.filename.write(trial21 + ', ')
+                self.filename.write(trial22 + ', ')
+                self.filename.write(trial23 + ', ')
+                self.filename.write(trial31 + ', ')
+                self.filename.write(trial32 + ', ')
+                self.filename.write(trial33 + ', ')
+                self.filename.write(trial41 + ', ')
+                self.filename.write(trial42 + ', ')
+                self.filename.write(trial51 + ', ')
+                self.filename.write(trial52 + ', ')
+                self.filename.write(trial61 + ', ')
+                self.filename.write(trial62 + ', ')
+                self.filename.write(trial63 + ', ')
+                self.filename.write(trial64 + ', ')
+                self.filename.write(trial71 + ', ')
+                self.filename.write(trial72 + ', ')
+                self.filename.write(trial73 + ', ')
+                self.filename.write(trial74 + ', ')
+                self.filename.write(trial81 + ', ')
+                self.filename.write(trial82 + ', ')
                 self.filename.close()
-                self.filename = open(
-                    f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\Filenames.txt",
-                    'a')
-                self.filename.write(
-                    f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\{self.studentdatabasename}.txt" + '\n')
+                tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', 'Filenames.txt')
+                self.filename = open(tmpPath, 'a')
+                tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', studentname,
+                                                  self.studentdatabasename + '.txt')
+                self.filename.write(f"{tmpPath}" + '\n')
                 self.filename.close()
                 list_names = ['date', 'P1_1', 'P1_2', 'P1_3', 'P1_4',
                               'P2_1', 'P2_2',
@@ -2733,10 +2729,9 @@ class abacusPanel(scrolled.ScrolledPanel):
                              trial63, trial64, trial71, trial72,
                              trial73, trial74, trial81, trial82]
                 os.chdir(USER_DIR)
-                with open(
-                        f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\AbacusSkillsProgression.csv",
-                        'a',
-                        newline='') as f_setup:
+                tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', studentname,
+                                                  'AbacusSkillsProgression.csv')
+                with open(tmpPath, 'a', newline='') as f_setup:
                     writer_setup = writer(f_setup)
                     writer_setup.writerow(list_data)
                     f_setup.close()
@@ -2755,10 +2750,10 @@ class abacusPanel(scrolled.ScrolledPanel):
             self.dial.ShowModal()
 
         def data_entry():
-            conn = sqlite3.connect(f"{USER_DIR}\\StudentDatabase\\students.db")
+            conn = sqlite3.connect(dataBasePath)
             c = conn.cursor()
             c.execute(
-                "INSERT INTO abacusProgress (studentname, date,P1_1,P1_2,P1_3,P1_4,P2_1,P2_2,P2_3,P3_1,P3_2,P3_3,P4_1,P4_2,P5_1,P5_2,P6_1,P6_2,P6_3,P6_4,P7_1,P7_2,P7_3,P7_4,P8_1,P8_2) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                "INSERT INTO abacusProgress (studentname, date, P1_1, P1_2, P1_3, P1_4, P2_1, P2_2, P2_3, P3_1, P3_2, P3_3, P4_1, P4_2, P5_1, P5_2, P6_1, P6_2, P6_3, P6_4, P7_1, P7_2, P7_3, P7_4, P8_1, P8_2) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                 (studentname, dateNow, trial11, trial12, trial13, trial14,
                  trial21, trial22, trial23, trial31, trial32,
                  trial33, trial41, trial42, trial51, trial52, trial61,
@@ -2769,11 +2764,10 @@ class abacusPanel(scrolled.ScrolledPanel):
         data_entry()
 
     def graph(self, event):
-        studentname = self.studentname1.GetString(
-            self.studentname1.GetSelection())
-        df = pd.read_csv(
-            f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\AbacusSkillsProgression.csv",
-            sep=',', index_col=[0], parse_dates=[0])
+        studentname = self.studentname1.GetString(self.studentname1.GetSelection())
+        tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', studentname,
+                                          'AbacusSkillsProgression.csv')
+        df = pd.read_csv(tmpPath, sep=', ', index_col=[0], parse_dates=[0])
         df = df.sort_values(by="date")
         mu, sigma = 0, 0.1
         noise = np.random.normal(mu, sigma, [len(df.index), len(df.columns)])
@@ -3057,9 +3051,9 @@ class abacusPanel(scrolled.ScrolledPanel):
 
         fig.update_layout(template="simple_white",
                           title_text=f"{studentname}: Abacus Skills Progression")
-
-        fig.write_html(
-            f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\AbacusSkillsProgression.html")
+        tmppath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', studentname,
+                                          'AbacusSkillsProgression.html')
+        fig.write_html(tmppath)
         fig.show()
 
 
@@ -3083,14 +3077,13 @@ class iepIntro(scrolled.ScrolledPanel):
         self.SetupScrolling()
         wx.StaticText(self, -1, "2022-2023 IEP CASELOAD REPORT", pos=(170, 20))
         wx.StaticText(self, -1, "Student Name", pos=(30, 50))
-        self.studentname1 = wx.Choice(self, -1, choices=students_all,
+        self.studentname1 = wx.Choice(self, -1, choices=students,
                                       pos=(130, 50), size=(300, 20))
 
         self.btn = wx.Button(self, 401, "SUBMIT", pos=(450, 50), size=(70, 30))
         self.Bind(wx.EVT_BUTTON, self.submit, id=401)
         self.btn1 = wx.Button(self, 402, "EXIT", pos=(550, 50), size=(70, 30))
         self.Bind(wx.EVT_BUTTON, self.exit, id=402)
-
 
     def exit(self, event):
         wx.Exit()
@@ -3140,8 +3133,8 @@ class iepIntro(scrolled.ScrolledPanel):
     ◦ When given an actual object, Maddie will be able to identify the tactile drawing version of the object with 70% accuracy in 4/5 trials as measured by classroom data.
     ◦ When given an actual object, Maddie will be able to identify the tactile drawing version of the object with 60% accuracy in 4/5 trials as measured by classroom data.
 • With guidance and support, Maddie will use the braille writer to braille her name with 80% accuracy in 4/5 trials as measured by classroom data. (EE.W.4.6)
-    ◦ When presented with a braille swing cell, Maddie independently will learn cell placement (1,2,3,4,5,6) with 40% accuracy in 4/5 trials as measured by classroom data. (EE.W.4.6)
-    ◦ When asked to braille up to 3 specified braille cell numbers (such as 1,2,3) Maddie will braille them independently with 40% accuracy in 4/5 trials as measured by classroom data
+    ◦ When presented with a braille swing cell, Maddie independently will learn cell placement (1, 2,3, 4,5, 6) with 40% accuracy in 4/5 trials as measured by classroom data. (EE.W.4.6)
+    ◦ When asked to braille up to 3 specified braille cell numbers (such as 1, 2,3) Maddie will braille them independently with 40% accuracy in 4/5 trials as measured by classroom data
     ◦ When presented with a braille swing cell, Maddie independently will learn cell placement with 60% accuracy in 4/5 trials as measured by classroom data
 """
         SuttonBuellIEP = """Sutton Buell    	20 min / month
@@ -3213,7 +3206,7 @@ class observationsPanel(scrolled.ScrolledPanel):
         self.SetBackgroundColour(wx.Colour(204, 229, 255))
         wx.StaticText(self, -1, "VISION OBSERVATIONS", pos=(170, 20))
         wx.StaticText(self, -1, "Student Name", pos=(30, 50))
-        self.studentname1 = wx.Choice(self, -1, choices=students_all,
+        self.studentname1 = wx.Choice(self, -1, choices=students,
                                       pos=(130, 50), size=(300, 20))
         wx.StaticText(self, -1, "Date", pos=(30, 80))
         wx.StaticText(self, -1, "Anecdotal Notes", pos=(30, 110))
@@ -3242,59 +3235,42 @@ class observationsPanel(scrolled.ScrolledPanel):
                                      f"observation{studentname.title()}{dateNow}")
             if box.ShowModal() == wx.ID_OK:
                 self.studentdatabasename = box.GetValue()
-                if not os.path.exists(
-                        f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\{self.studentdatabasename}.txt"):
-                    self.filename = open(
-                        f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\{self.studentdatabasename}.txt",
-                        'w')
-                    self.filename.write('studentname' + ',')
-                    self.filename.write('simpleDate' + ',')
+                if not Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', studentname,
+                                               self.studentdatabasename + '.txt').exists():
+                    tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', studentname,
+                                                      self.studentdatabasename + '.txt')
+                    self.filename = Path.touch(tmpPath)
+                    self.filename.write('studentname' + ', ')
+                    self.filename.write('simpleDate' + ', ')
                     self.filename.write('notes' + ',\n')
-                    self.filename.write(studentname + ',')
-                    self.filename.write(simpleDate + ',')
-                    self.filename.write(notes + ',')
+                    self.filename.write(studentname + ', ')
+                    self.filename.write(simpleDate + ', ')
+                    self.filename.write(notes + ', ')
                     self.filename.close()
-                    self.filename = open(
-                        f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\Filenames.txt",
-                        'a')
-                    self.filename.write(
-                        f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\{self.studentdatabasename}.txt" + '\n')
+                    tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', 'Filenames.txt')
+                    self.filename = open(tmpPath, 'a')
+                    tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', studentname,
+                                                      self.studentdatabasename + '.txt')
+                    self.filename.write(f"'{tmpPath}'" + '\n')
                     self.filename.close()
-                    # list_data = [studentname, dateNow, task, lesson,
-                    #              session,
-                    #              trial01,
-                    #              trial02, trial03, trial04, trial05,
-                    #              trial06,
-                    #              trial07, trial08, trial09, trial10,
-                    #              trial11,
-                    #              trialmedian,
-                    #              notes]
-                    # os.chdir(USER_DIR)
-                    # with open(
-                    #         f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\omnibusDatabase.csv",
-                    #         'a',
-                    #         newline='') as f_setup:
-                    #     writer_setup = writer(f_setup)
-                    #     writer_setup.writerow(list_data)
-                    #     f_setup.close()
 
                     self.dial = wx.MessageDialog(None,
-                                                 'Saved successfully!',
-                                                 'Info', wx.OK)
+                    'Saved successfully!',
+                    'Info', wx.OK)
                     self.dial.ShowModal()
                 else:
                     self.dial = wx.MessageDialog(None,
-                                                 'Name already exists',
-                                                 'Info', wx.OK)
+                    'Name already exists',
+                    'Info', wx.OK)
                     self.dial.ShowModal()
             else:
                 self.dial = wx.MessageDialog(None, 'Save cancelled', 'Info',
-                                             wx.OK)
+                wx.OK)
                 self.dial.ShowModal()
         else:
             self.dial = wx.MessageDialog(None, 'Fill Required Fields!',
-                                         'Info',
-                                         wx.OK)
+            'Info',
+            wx.OK)
             self.dial.ShowModal()
 
 

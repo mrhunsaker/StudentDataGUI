@@ -8,11 +8,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fa304d23-fe14-4dd1-9cb8-16c0a72e419f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/StudentDataGUI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/StudentDataGUI.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_9_16_2022_8_42_AM.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_9_16_2022_8_42_AM.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_9_16_2022_8_42_AM.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_9_16_2022_8_42_AM/shelved.patch" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StudentDataCollectionGUI/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/StudentDataCollectionGUI/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/StudentDataCollectionGUI/helpers.py" beforeDir="false" afterPath="$PROJECT_DIR$/StudentDataCollectionGUI/helpers.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -286,8 +285,25 @@
       <option name="project" value="LOCAL" />
       <updated>1663614930254</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Updated code">
+      <created>1663615239493</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1663615239493</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Updated code">
+      <created>1664295395261</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1664295395261</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="requirements.txt" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -307,5 +323,16 @@
     <MESSAGE value="All Progression Forms work" />
     <MESSAGE value="Updated code" />
     <option name="LAST_COMMIT_MESSAGE" value="Updated code" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/StudentDataCollectionGUI/main.py</url>
+          <line>63</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

@@ -19,7 +19,7 @@ ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 USER_DIR = ""
 if os.name == 'nt':
-    USER_DIR = os.path.join(os.environ['USERPROFILE'], "Documents")
+    USER_DIR = os.path.join(os.environ['USERPROFILE'], 'Documents')
 elif os.name == 'posix':
     tmpPath = Path(os.environ['HOME']).joinpath('Documents')
     USER_DIR = Path.mkdir(tmpPath, parents=True, exist_ok=True)

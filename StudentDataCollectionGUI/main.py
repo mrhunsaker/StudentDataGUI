@@ -82,6 +82,7 @@ for name in students:
         tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', name,
                                           'ScreenReaderSkillsProgression.csv')
         filename = Path.touch(tmpPath)
+
         list_names = ['date', 'P1_1', 'P1_2', 'P1_3', 'P1_4', 'P1_5', 'P1_6',
                       'P2_1', 'P2_2', 'P2_3', 'P2_4', 'P3_1',
                       'P3_2', 'P3_3', 'P3_4', 'P3_5', 'P3_6', 'P3_7', 'P3_8',
@@ -96,6 +97,7 @@ for name in students:
         tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', name,
                                           'ScreenReaderSkillsProgression.html')
         filename = Path.touch(tmpPath)
+
     if not Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', name, 'AbacusSkillsProgression.csv').exists():
         tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', name, 'AbacusSkillsProgression.csv')
         filename = Path.touch(tmpPath)
@@ -113,6 +115,23 @@ for name in students:
         tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', name, 'AbacusSkillsProgression.html')
         filename = Path.touch(tmpPath)
 
+    if not Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', name,
+                                   'cviProgression.csv').exists():
+        tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', name,
+                                          'cviProgression.csv')
+        filename = Path.touch(tmpPath)
+        list_names = ['date', 'P1_1', 'P1_2', 'P1_3', 'P1_4', 'P1_5', 'P1_6',
+                      'P2_1', 'P2_2', 'P2_3', 'P2_4', 'P3_1',
+                      'P3_2', 'P3_3']
+        with open(tmpPath, 'a', newline='') as f_object:
+            writer_setup = writer(f_object)
+            writer_setup.writerow(list_names)
+            f_object.close()
+    if not Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', name,
+                                   'cviProgression.html').exists():
+        tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', name,
+                                          'cviProgression.html')
+        filename = Path.touch(tmpPath)
 
 def create_connection(db_file):
     conn = None
@@ -124,8 +143,6 @@ def create_connection(db_file):
     finally:
         if conn:
             conn.close()
-
-
 dataBasePath = Path(USER_DIR).joinpath('StudentDatabase/students.db')
 
 if __name__ == '__main__':
@@ -157,6 +174,7 @@ def main():
     sql_create_brailledata_table = "CREATE TABLE IF NOT EXISTS brailleProgress (id INTEGER PRIMARY KEY AUTOINCREMENT, studentname TEXT NOT NULL, date TEXT NOT NULL, P1_1 INTEGER, P1_2 INTEGER, P1_3 INTEGER, P1_4 INTEGER, P2_1 INTEGER, P2_2 INTEGER, P2_3 INTEGER, P2_4 INTEGER, P2_5 INTEGER, P2_6 INTEGER, P2_7 INTEGER, P2_8 INTEGER, P2_9 INTEGER, P2_10 INTEGER, P2_11 INTEGER, P2_12 INTEGER, P2_13 INTEGER, P2_14 INTEGER, P2_15 INTEGER, P3_1 INTEGER, P3_2 INTEGER, P3_3 INTEGER, P3_4 INTEGER, P3_5 INTEGER, P3_6 INTEGER, P3_7 INTEGER, P3_8 INTEGER, P3_9 INTEGER, P3_10 INTEGER, P3_11 INTEGER, P3_12 INTEGER, P3_13 INTEGER, P3_14 INTEGER, P3_15 INTEGER, P4_1 INTEGER, P4_2 INTEGER, P4_3 INTEGER, P4_4 INTEGER, P5_1 INTEGER, P5_2 INTEGER, P5_3 INTEGER, P5_4 INTEGER, P6_1 INTEGER, P6_2 INTEGER, P6_3 INTEGER, P6_4 INTEGER, P6_5 INTEGER, P6_6 INTEGER, P6_7 INTEGER, P7_1 INTEGER, P7_2 INTEGER, P7_3 INTEGER, P7_4 INTEGER, P7_5 INTEGER, P7_6 INTEGER, P7_7 INTEGER, P7_8 INTEGER, P8_1 INTEGER, P8_2 INTEGER, P8_3 INTEGER, P8_4 INTEGER, P8_5 INTEGER, P8_6 INTEGER, P8_7 INTEGER);"
     sql_create_screenreaderdata_table = "CREATE TABLE IF NOT EXISTS screenreaderProgress (id INTEGER PRIMARY KEY AUTOINCREMENT, studentname TEXT NOT NULL, date TEXT NOT NULL, P1_1 INTEGER, P1_2 INTEGER, P1_3 INTEGER, P1_4 INTEGER, P1_5 INTEGER, P1_6 INTEGER, P2_1 INTEGER, P2_2 INTEGER, P2_3 INTEGER, P2_4 INTEGER, P3_1 INTEGER, P3_2 INTEGER, P3_3 INTEGER, P3_4 INTEGER, P3_5 INTEGER, P3_6 INTEGER, P3_7 INTEGER, P3_8 INTEGER, P3_9 INTEGER, P3_10 INTEGER, P3_11 INTEGER, P4_1 INTEGER, P4_2 INTEGER, P4_3 INTEGER, P4_4 INTEGER, P4_5 INTEGER, P4_6 INTEGER, P4_7 INTEGER);"
     sql_create_abacusdata_table = "CREATE TABLE IF NOT EXISTS abacusProgress (id INTEGER PRIMARY KEY AUTOINCREMENT, studentname TEXT NOT NULL, date TEXT NOT NULL, P1_1 INTEGER, P1_2 INTEGER, P1_3 INTEGER, P1_4 INTEGER, P2_1 INTEGER, P2_2 INTEGER, P2_3 INTEGER, P3_1 INTEGER, P3_2 INTEGER, P3_3 INTEGER, P4_1 INTEGER, P4_2 INTEGER, P5_1 INTEGER, P5_2 INTEGER, P6_1 INTEGER, P6_2 INTEGER, P6_3 INTEGER, P6_4 INTEGER, P7_1 INTEGER, P7_2 INTEGER, P7_3 INTEGER, P7_4 INTEGER, P8_1 INTEGER, P8_2 INTEGER );"
+    sql_create_cvidata_table = "CREATE TABLE IF NOT EXISTS abacusProgress (id INTEGER PRIMARY KEY AUTOINCREMENT, studentname TEXT NOT NULL, date TEXT NOT NULL, P1_1 INTEGER, P1_2 INTEGER, P1_3 INTEGER, P1_4 INTEGER, P2_1 INTEGER, P2_2 INTEGER, P2_3 INTEGER, P3_1 INTEGER, P3_2 INTEGER, P3_3 INTEGER );"
 
     conn = create_connection(dataBasePath)
     if conn is not None:
@@ -182,6 +200,11 @@ def main():
     else:
         print("Error! cannot create the database connection.")
 
+    conn = create_connection(dataBasePath)
+    if conn is not None:
+        create_table(conn, sql_create_cvidata_table)
+    else:
+        print("Error! cannot create the database connection.")
 
 if __name__ == '__main__':
     main()
@@ -3057,6 +3080,431 @@ class abacusPanel(scrolled.ScrolledPanel):
         fig.show()
 
 
+class cviPanel(scrolled.ScrolledPanel):
+    def __init__(self, parent):
+        scrolled.ScrolledPanel.__init__(self, parent, -1)
+        vbox = wx.BoxSizer(wx.VERTICAL)
+        vbox.Add(wx.StaticLine(self, -1, size=(1500, -1)), 0, wx.ALL, 5)
+        vbox.Add(wx.StaticLine(self, -1, size=(-1, 2100)), 0, wx.ALL, 5)
+        vbox.Add((20, 20))
+        self.SetSizer(vbox)
+        self.SetupScrolling()
+        self.SetBackgroundColour(wx.Colour(204, 255, 204))
+        wx.StaticText(self, -1, "CVI PROGRESSION", pos=(200, 20))
+        wx.StaticText(self, -1, "Student Name", pos=(30, 50))
+        self.studentname1 = wx.Choice(self, -1, choices=students,
+                                      pos=(650, 50), size=(300, 20))
+        wx.StaticText(self, -1, f"Date: {date}", pos=(550, 20))
+        wx.StaticText(self, -1, "Color Preference", pos=(30, 80))
+        self.trial11 = wx.TextCtrl(self, -1, "", pos=(650, 80), size=(300, 20))
+        wx.StaticText(self, -1, "Need for Movement", pos=(30, 110))
+        self.trial12 = wx.TextCtrl(self, -1, "", pos=(650, 110),
+                                   size=(300, 20))
+        wx.StaticText(self, -1, "Visual Latency", pos=(30, 140))
+        self.trial13 = wx.TextCtrl(self, -1, "", pos=(650, 140),
+                                   size=(300, 20))
+        wx.StaticText(self, -1, "Visual Field Preference", pos=(30, 170))
+        self.trial14 = wx.TextCtrl(self, -1, "", pos=(650, 170),
+                                   size=(300, 20))
+        wx.StaticText(self, -1, "Difficulty with Visual Complexity",
+                      pos=(30, 200))
+        self.trial21 = wx.TextCtrl(self, -1, "", pos=(650, 200),
+                                   size=(300, 20))
+        wx.StaticText(self, -1,
+                      "Light Gazing and Nonpurposeful Gaze",
+                      pos=(30, 230))
+        self.trial22 = wx.TextCtrl(self, -1, "", pos=(650, 230),
+                                   size=(300, 20))
+        wx.StaticText(self, -1,
+                      "Difficulty with Distance Viewing",
+                      pos=(30, 260))
+        self.trial23 = wx.TextCtrl(self, -1, "", pos=(650, 260),
+                                   size=(300, 20))
+        wx.StaticText(self, -1, "Atypical Visual Reflexes", pos=(30, 290))
+        self.trial31 = wx.TextCtrl(self, -1, "", pos=(650, 290),
+                                   size=(300, 20))
+        wx.StaticText(self, -1,
+                      "Difficulty with Visual Novelty",
+                      pos=(30, 320))
+        self.trial32 = wx.TextCtrl(self, -1, "", pos=(650, 320),
+                                   size=(300, 20))
+        wx.StaticText(self, -1,
+                      "Absence of Visually Guided Reach",
+                      pos=(30, 350))
+        self.trial33 = wx.TextCtrl(self, -1, "", pos=(650, 350), size=(300, 20))
+        self.btn = wx.Button(self, 201, "SAVE", pos=(450, 830), size=(70, 30))
+        self.Bind(wx.EVT_BUTTON, self.save, id=201)
+        self.btn1 = wx.Button(self, 202, "EXIT", pos=(550, 830), size=(70, 30))
+        self.Bind(wx.EVT_BUTTON, self.exit, id=202)
+        self.btn = wx.Button(self, 203, "PRINT GRAPHS", pos=(450, 870),
+                             size=(170, 30))
+        self.Bind(wx.EVT_BUTTON, self.graph, id=203)
+
+    def exit(self, event):
+        wx.Exit()
+
+    def save(self, event):
+        studentname = self.studentname1.GetString(
+                self.studentname1.GetSelection())
+        dateNow = datetime.datetime.now().strftime("%Y_%m_%d-%H%M%S")
+        simpleDate = datetime.datetime.now().strftime("%Y_%m_%d-%H%M")
+        trial11 = self.trial11.GetValue()
+        trial12 = self.trial12.GetValue()
+        trial13 = self.trial13.GetValue()
+        trial14 = self.trial14.GetValue()
+        trial21 = self.trial21.GetValue()
+        trial22 = self.trial22.GetValue()
+        trial23 = self.trial23.GetValue()
+        trial31 = self.trial31.GetValue()
+        trial32 = self.trial32.GetValue()
+        trial33 = self.trial33.GetValue()
+
+        box = wx.TextEntryDialog(None, "Enter Address-Book name to save!",
+                                 "Title",
+                                 f"cvi{studentname.title()}{dateNow}")
+        if box.ShowModal() == wx.ID_OK:
+            self.studentdatabasename = box.GetValue()
+            if not Path(USER_DIR).joinpath('StudentDatabase',
+                                           'StudentDataFiles', studentname,
+                                           self.studentdatabasename + '.txt').exists():
+                tmpPath = Path(USER_DIR).joinpath('StudentDatabase',
+                                                  'StudentDataFiles',
+                                                  studentname,
+                                                  self.studentdatabasename + '.txt')
+                self.filename = open(tmpPath,
+                                     'w')
+                self.filename.write('studentname' + ', ')
+                self.filename.write('simpleDate' + ', ')
+                self.filename.write('trial11' + ', ')
+                self.filename.write('trial12' + ', ')
+                self.filename.write('trial13' + ', ')
+                self.filename.write('trial14' + ', ')
+                self.filename.write('trial21' + ', ')
+                self.filename.write('trial22' + ', ')
+                self.filename.write('trial23' + ', ')
+                self.filename.write('trial31' + ', ')
+                self.filename.write('trial32' + ', ')
+                self.filename.write('trial33' + ', ')
+                self.filename.write(studentname + ', ')
+                self.filename.write(trial11 + ', ')
+                self.filename.write(trial12 + ', ')
+                self.filename.write(trial13 + ', ')
+                self.filename.write(trial14 + ', ')
+                self.filename.write(trial21 + ', ')
+                self.filename.write(trial22 + ', ')
+                self.filename.write(trial23 + ', ')
+                self.filename.write(trial31 + ', ')
+                self.filename.write(trial32 + ', ')
+                self.filename.write(trial33 + ', ')
+                self.filename.close()
+                tmpPath = Path(USER_DIR).joinpath('StudentDatabase',
+                                                  'StudentDataFiles',
+                                                  'Filenames.txt')
+                self.filename = open(tmpPath, 'a')
+                tmpPath = Path(USER_DIR).joinpath('StudentDatabase',
+                                                  'StudentDataFiles',
+                                                  studentname,
+                                                  self.studentdatabasename + '.txt')
+                self.filename.write(f"{tmpPath}" + '\n')
+                self.filename.close()
+                list_names = ['date', 'P1_1', 'P1_2', 'P1_3', 'P1_4',
+                              'P2_1', 'P2_2',
+                              'P2_3', 'P3_1', 'P3_2', 'P3_3']
+                list_data = [dateNow, trial11, trial12, trial13,
+                             trial14, trial21,
+                             trial22, trial23, trial31, trial32,
+                             trial33]
+                os.chdir(USER_DIR)
+                tmpPath = Path(USER_DIR).joinpath('StudentDatabase',
+                                                  'StudentDataFiles',
+                                                  studentname,
+                                                  'cviProgression.csv')
+                with open(tmpPath, 'a', newline='') as f_setup:
+                    writer_setup = writer(f_setup)
+                    writer_setup.writerow(list_data)
+                    f_setup.close()
+                self.dial = wx.MessageDialog(None,
+                                             'Saved successfully!',
+                                             'Info', wx.OK)
+                self.dial.ShowModal()
+            else:
+                self.dial = wx.MessageDialog(None,
+                                             'Name already exists',
+                                             'Info', wx.OK)
+                self.dial.ShowModal()
+        else:
+            self.dial = wx.MessageDialog(None, 'Save cancelled', 'Info',
+                                         wx.OK)
+            self.dial.ShowModal()
+
+        def data_entry():
+            conn = sqlite3.connect(dataBasePath)
+            c = conn.cursor()
+            c.execute(
+                    "INSERT INTO abacusProgress (studentname, date, P1_1, P1_2, P1_3, P1_4, P2_1, P2_2, P2_3, P3_1, P3_2, P3_3) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                    (studentname, dateNow, trial11, trial12, trial13, trial14,
+                     trial21, trial22, trial23, trial31, trial32,
+                     trial33))
+            conn.commit()
+
+        data_entry()
+
+    def graph(self, event):
+        studentname = self.studentname1.GetString(
+            self.studentname1.GetSelection())
+        tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles',
+                                          studentname,
+                                          'cviProgression.csv')
+        df = pd.read_csv(tmpPath, sep=', ', index_col=[0], parse_dates=[0])
+        df = df.sort_values(by="date")
+        mu, sigma = 0, 0.1
+        noise = np.random.normal(mu, sigma, [len(df.index), len(df.columns)])
+        df_noisy = df + noise
+
+        fig = make_subplots(
+                rows=5, cols=2,
+                subplot_titles=(
+                        "Color Preference", "Need for Movement",
+                        "Latency", "Field Preference",
+                        "Visual Complexity", "Nonpurposeful Gaze",
+                        "Distance Viewing", "Atypical Reflexes",
+                        "Visual Novelty", "Visual Reach"),
+                print_grid=True
+        )
+
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1_1"],
+                                 mode="lines+markers", name="Color Preference",
+                                 legendgroup="Phase 1",
+                                 legendgrouptitle_text="Phase 1"), row=1, col=1)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1_2"],
+                                 mode="lines+markers", name="Need for Movement",
+                                 legendgroup="Phase 1",
+                                 legendgrouptitle_text="Phase 1"), row=1, col=2)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1_3"],
+                                 mode="lines+markers", name="Latency",
+                                 legendgroup="Phase 1",
+                                 legendgrouptitle_text="Phase 1"), row=2, col=1)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1_4"],
+                                 mode="lines+markers", name="Field Prefence",
+                                 legendgroup="Phase 1",
+                                 legendgrouptitle_text="Phase 1"), row=2, col=2)
+
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P2_1"],
+                                 mode="lines+markers", name="Visual Complexity",
+                                 legendgroup="Phase 2",
+                                 legendgrouptitle_text="Phase 2"), row=3, col=1)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P2_2"],
+                                 mode="lines+markers",
+                                 name="Nonpurposeful Gaze",
+                                 legendgroup="Phase 2",
+                                 legendgrouptitle_text="Phase 2"), row=3, col=2)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P2_3"],
+                                 mode="lines+markers", name="Distance Viewing",
+                                 legendgroup="Phase 2",
+                                 legendgrouptitle_text="Phase 2"), row=4, col=1)
+
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_1"],
+                                 mode="lines+markers", name="Atypical Reflexes",
+                                 legendgroup="Phase 3",
+                                 legendgrouptitle_text="Phase 3"), row=4, col=2)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_2"],
+                                 mode="lines+markers", name="Visual Novelty",
+                                 legendgroup="Phase 3",
+                                 legendgrouptitle_text="Phase 3"), row=5, col=1)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_3"],
+                                 mode="lines+markers", name="Visual Reach",
+                                 legendgroup="Phase 3",
+                                 legendgrouptitle_text="Phase 3"), row=5, col=2)
+
+        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2,
+                      row=1, col=1)
+        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange",
+                      opacity=0.2, row=1, col=1)
+        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow",
+                      opacity=0.2, row=1, col=1)
+        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green",
+                      opacity=0.2, row=1, col=1)
+
+        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2,
+                      row=1, col=2)
+        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange",
+                      opacity=0.2, row=1, col=2)
+        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow",
+                      opacity=0.2, row=1, col=2)
+        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green",
+                      opacity=0.2, row=1, col=2)
+
+        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2,
+                      row=2, col=1)
+        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange",
+                      opacity=0.2, row=2, col=1)
+        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow",
+                      opacity=0.2, row=2, col=1)
+        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green",
+                      opacity=0.2, row=2, col=1)
+
+        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2,
+                      row=2, col=2)
+        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange",
+                      opacity=0.2, row=2, col=2)
+        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow",
+                      opacity=0.2, row=2, col=2)
+        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green",
+                      opacity=0.2, row=2, col=2)
+
+        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2,
+                      row=3, col=1)
+        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange",
+                      opacity=0.2, row=3, col=1)
+        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow",
+                      opacity=0.2, row=3, col=1)
+        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green",
+                      opacity=0.2, row=3, col=1)
+
+        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2,
+                      row=3, col=2)
+        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange",
+                      opacity=0.2, row=3, col=2)
+        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow",
+                      opacity=0.2, row=3, col=2)
+        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green",
+                      opacity=0.2, row=3, col=2)
+
+        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2,
+                      row=4, col=1)
+        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange",
+                      opacity=0.2, row=4, col=1)
+        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow",
+                      opacity=0.2, row=4, col=1)
+        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green",
+                      opacity=0.2, row=4, col=1)
+
+        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2,
+                      row=4, col=2)
+        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange",
+                      opacity=0.2, row=4, col=2)
+        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow",
+                      opacity=0.2, row=4, col=2)
+        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green",
+                      opacity=0.2, row=4, col=2)
+
+        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2,
+                      row=5, col=1)
+        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange",
+                      opacity=0.2, row=5, col=1)
+
+        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow",
+                      opacity=0.2, row=5, col=1)
+        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green",
+                      opacity=0.2, row=5, col=1)
+
+        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2,
+                      row=5, col=2)
+        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange",
+                      opacity=0.2, row=5, col=2)
+        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow",
+                      opacity=0.2, row=5, col=2)
+        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green",
+                      opacity=0.2, row=5, col=2)
+        fig.update_xaxes(rangebreaks=[dict(
+                values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
+                        "2021-12-20", "2021-12-21", "2021-12-22",
+                        "2021-12-23", "2021-12-24", "2021-12-25", "2021-12-26",
+                        "2021-12-27", "2021-12-28", "2021-12-29",
+                        "2021-12-30", "2021-12-31", "2022-01-01",
+                        "2022-01-02"])], row=1, col=1)
+        fig.update_xaxes(rangebreaks=[dict(
+                values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
+                        "2021-12-20", "2021-12-21", "2021-12-22",
+                        "2021-12-23", "2021-12-24", "2021-12-25", "2021-12-26",
+                        "2021-12-27", "2021-12-28", "2021-12-29",
+                        "2021-12-30", "2021-12-31", "2022-01-01",
+                        "2022-01-02"])], row=1, col=2)
+        fig.update_xaxes(rangebreaks=[dict(
+                values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
+                        "2021-12-20", "2021-12-21", "2021-12-22",
+                        "2021-12-23", "2021-12-24", "2021-12-25", "2021-12-26",
+                        "2021-12-27", "2021-12-28", "2021-12-29",
+                        "2021-12-30", "2021-12-31", "2022-01-01",
+                        "2022-01-02"])], row=2, col=1)
+        fig.update_xaxes(rangebreaks=[dict(
+                values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
+                        "2021-12-20", "2021-12-21", "2021-12-22",
+                        "2021-12-23", "2021-12-24", "2021-12-25", "2021-12-26",
+                        "2021-12-27", "2021-12-28", "2021-12-29",
+                        "2021-12-30", "2021-12-31", "2022-01-01",
+                        "2022-01-02"])], row=2, col=2)
+        fig.update_xaxes(rangebreaks=[dict(
+                values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
+                        "2021-12-20", "2021-12-21", "2021-12-22",
+                        "2021-12-23", "2021-12-24", "2021-12-25", "2021-12-26",
+                        "2021-12-27", "2021-12-28", "2021-12-29",
+                        "2021-12-30", "2021-12-31", "2022-01-01",
+                        "2022-01-02"])], row=3, col=1)
+        fig.update_xaxes(rangebreaks=[dict(
+                values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
+                        "2021-12-20", "2021-12-21", "2021-12-22",
+                        "2021-12-23", "2021-12-24", "2021-12-25", "2021-12-26",
+                        "2021-12-27", "2021-12-28", "2021-12-29",
+                        "2021-12-30", "2021-12-31", "2022-01-01",
+                        "2022-01-02"])], row=3, col=2)
+        fig.update_xaxes(rangebreaks=[dict(
+                values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
+                        "2021-12-20", "2021-12-21", "2021-12-22",
+                        "2021-12-23", "2021-12-24", "2021-12-25", "2021-12-26",
+                        "2021-12-27", "2021-12-28", "2021-12-29",
+                        "2021-12-30", "2021-12-31", "2022-01-01",
+                        "2022-01-02"])], row=4, col=1)
+        fig.update_xaxes(rangebreaks=[dict(
+                values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
+                        "2021-12-20", "2021-12-21", "2021-12-22",
+                        "2021-12-23", "2021-12-24", "2021-12-25", "2021-12-26",
+                        "2021-12-27", "2021-12-28", "2021-12-29",
+                        "2021-12-30", "2021-12-31", "2022-01-01",
+                        "2022-01-02"])], row=4, col=2)
+
+        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True,
+                         ticktext=["Phase 1", "Phase 2", "Phase 3",
+                                   "Resolving"],
+                         tickvals=[0.1, 1, 2, 3], row=1, col=1)
+        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True,
+                         ticktext=["Phase 1", "Phase 2", "Phase 3", ],
+                         tickvals=[0.1, 1, 2, 3], row=1, col=2)
+        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True,
+                         ticktext=["Phase 1", "Phase 2", "Phase 3", ],
+                         tickvals=[0.1, 1, 2, 3], row=2, col=1)
+        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True,
+                         ticktext=["Phase 1", "Phase 2", "Phase 3", ],
+                         tickvals=[0.1, 1, 2, 3], row=2, col=2)
+        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True,
+                         ticktext=["Phase 1", "Phase 2", "Phase 3", ],
+                         tickvals=[0.1, 1, 2, 3], row=3, col=1)
+        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True,
+                         ticktext=["Phase 1", "Phase 2", "Phase 3", ],
+                         tickvals=[0.1, 1, 2, 3], row=3, col=2)
+        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True,
+                         ticktext=["Phase 1", "Phase 2", "Phase 3", ],
+                         tickvals=[0.1, 1, 2, 3], row=4, col=1)
+        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True,
+                         ticktext=["Phase 1", "Phase 2", "Phase 3", ],
+                         tickvals=[0.1, 1, 2, 3], row=4, col=2)
+        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True,
+                         ticktext=["Phase 1", "Phase 2", "Phase 3", ],
+                         tickvals=[0.1, 1, 2, 3], row=5, col=1)
+        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True,
+                         ticktext=["Phase 1", "Phase 2", "Phase 3", ],
+                         tickvals=[0.1, 1, 2, 3], row=5, col=2)
+
+        fig.update_layout(template="simple_white",
+                          title_text=f"{studentname}: CVI Progression")
+
+
+        tmppath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles',
+                                  studentname,
+                                  'cviProgression.html')
+        fig.write_html(tmppath)
+        fig.show()
+
 class iepIntro(scrolled.ScrolledPanel):
     def __init__(self, parent):
         scrolled.ScrolledPanel.__init__(self, parent, -1)
@@ -3287,6 +3735,7 @@ class StudentDataBook(wx.Frame, wx.Accessible):
         nb.AddPage(braillePanel(nb), "Braille Progression")
         nb.AddPage(screenreaderPanel(nb), "ScreenReader Progression")
         nb.AddPage(abacusPanel(nb), "Abacus Progression")
+        nb.AddPage(cviPanel(nb),"CVI Progression")
         nb.AddPage(observationsPanel(nb), "Vision Observations")
         self.Centre()
         self.Show(True)

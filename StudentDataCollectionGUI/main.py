@@ -283,6 +283,7 @@ class dataPanel(wx.Panel):
         self.Bind(wx.EVT_BUTTON, self.submit, id=203)
 
         os.chdir(USER_DIR)
+
     def submit(self, event):
         studentname = self.studentname1.GetString(self.studentname1.GetSelection())
         ColeCooperIEP = ("""Cole  Cooper    30 min/month
@@ -384,6 +385,7 @@ class dataPanel(wx.Panel):
         lookupID = f"{studentname}IEP"
         iepData = locals()[lookupID]
         wx.MessageBox(iepData, caption=f"IEP Summary for {studentname}")
+
     def exit(self, event):
         wx.Exit()
 
@@ -409,8 +411,6 @@ class dataPanel(wx.Panel):
         trials = [trial01, trial02, trial03, trial04, trial05, trial06, trial07, trial08, trial09, trial10, trial11]
         trialmedian = statistics.median(trials)
         notes = self.notes1.GetValue()
-
-
 
         if (len(studentname) and len(date) and len(task) and len(notes)) > 0:
             box = wx.TextEntryDialog(None, "Enter Address-Book name to save!", "Title",
@@ -517,7 +517,7 @@ class braillePanel(scrolled.ScrolledPanel):
         wx.StaticText(self, -1, "BRAILLE SKILLS PROGRESSION", pos=(200, 20))
         wx.StaticText(self, -1, "Student Name", pos=(30, 50))
         self.studentname1 = wx.Choice(self, -1, choices=students, pos=(650, 50), size=(300, 20))
-        wx.StaticText(self, -1, f"Date: {date}", pos=(550, 20))
+        wx.StaticText(self, -1, "RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent", pos=(550, 20))
         wx.StaticText(self, -1, "1.1 Track Left to Right", pos=(30, 80))
         self.trial11 = wx.TextCtrl(self, -1, "", pos=(650, 80), size=(300, 20))
         wx.StaticText(self, -1, "1.2 Track Top to Bottom", pos=(30, 110))
@@ -1388,9 +1388,9 @@ class braillePanel(scrolled.ScrolledPanel):
         fig.add_trace(
             go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P8_7'], mode="lines+markers", name="Vertical Bars",
                        legendgroup="Phase 8", legendgrouptitle_text="Phase 8"), row=3, col=1)
-        fig.update_xaxes(rangebreaks=[dict(bounds=["sat","mon"]),dict(values=[])], row=1, col=1)
-        fig.update_xaxes(rangebreaks=[dict(bounds=["sat","mon"]),dict(values=[])], row=2, col=1)
-        fig.update_xaxes(rangebreaks=[dict(bounds=["sat","mon"]),dict(values=[])], row=3, col=1)
+        fig.update_xaxes(rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=1, col=1)
+        fig.update_xaxes(rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=2, col=1)
+        fig.update_xaxes(rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=3, col=1)
         fig.update_yaxes(range=[-.5, 3.5], fixedrange=True, ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
                          tickvals=[0.1, 1, 2, 3], row=1, col=1)
         fig.update_yaxes(range=[-.5, 3.5], fixedrange=True, ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
@@ -1431,34 +1431,34 @@ class screenreaderPanel(scrolled.ScrolledPanel):
         wx.StaticText(self, -1, "SCREENREADER SKILLS PROGRESSION", pos=(200, 20))
         wx.StaticText(self, -1, "Student Name", pos=(30, 50))
         self.studentname1 = wx.Choice(self, -1, choices=students, pos=(650, 50), size=(300, 20))
-        wx.StaticText(self, -1, f"Date: {date}", pos=(550, 20))
-        wx.StaticText(self, -1, "1.1 turn on and off the screen reader", pos=(30, 80))
+        wx.StaticText(self, -1, "RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent", pos=(550, 20))
+        wx.StaticText(self, -1, "1.1 Turn on and off the screen reader", pos=(30, 80))
         self.trial11 = wx.TextCtrl(self, -1, "", pos=(650, 80), size=(300, 20))
         wx.StaticText(self, -1,
-                      "1.2 utilize modifier keys such as ctrl, alt and shift to enter a modified key command. eg: Ctrl + Left Arrow",
+                      "1.2 Utilize modifier keys such as ctrl, alt and shift to enter a modified key command. eg: Ctrl + Left Arrow",
                       pos=(30, 110))
         self.trial12 = wx.TextCtrl(self, -1, "", pos=(650, 110), size=(300, 20))
-        wx.StaticText(self, -1, "1.3 read text using a variety of reading commands", pos=(30, 140))
+        wx.StaticText(self, -1, "1.3 Read text using a variety of reading commands", pos=(30, 140))
         self.trial13 = wx.TextCtrl(self, -1, "", pos=(650, 140), size=(300, 20))
-        wx.StaticText(self, -1, "1.4 identify the titles and section titles of documents with Headings", pos=(30, 170))
+        wx.StaticText(self, -1, "1.4 Identify the titles and section titles of documents with Headings", pos=(30, 170))
         self.trial14 = wx.TextCtrl(self, -1, "", pos=(650, 170), size=(300, 20))
         wx.StaticText(self, -1,
-                      "1.5 access documents, open and close programs, and will be able to navigate easily to the desktop.",
+                      "1.5 Access documents, open and close programs, and will be able to navigate easily to the desktop.",
                       pos=(30, 200))
         self.trial15 = wx.TextCtrl(self, -1, "", pos=(650, 200), size=(300, 20))
-        wx.StaticText(self, -1, "1.6 switch program focus", pos=(30, 230))
+        wx.StaticText(self, -1, "1.6 Switch program focus", pos=(30, 230))
         self.trial16 = wx.TextCtrl(self, -1, "", pos=(650, 230), size=(300, 20))
-        wx.StaticText(self, -1, "2.1 type with all alphanumeric keys on the keyboard.", pos=(30, 260))
+        wx.StaticText(self, -1, "2.1 Type with all alphanumeric keys on the keyboard.", pos=(30, 260))
         self.trial21 = wx.TextCtrl(self, -1, "", pos=(650, 260), size=(300, 20))
-        wx.StaticText(self, -1, "2.2 navigate to and change screen reader settings", pos=(30, 290))
+        wx.StaticText(self, -1, "2.2 Navigate to and change screen reader settings", pos=(30, 290))
         self.trial22 = wx.TextCtrl(self, -1, "", pos=(650, 290), size=(300, 20))
-        wx.StaticText(self, -1, "2.3 write and edit documents using a basic understanding of cursor placement.",
+        wx.StaticText(self, -1, "2.3 Write and edit documents using a basic understanding of cursor placement.",
                       pos=(30, 320))
         self.trial23 = wx.TextCtrl(self, -1, "", pos=(650, 320), size=(300, 20))
-        wx.StaticText(self, -1, "2.4. select, copy and paste text.", pos=(30, 350))
+        wx.StaticText(self, -1, "2.4. Select, copy and paste text.", pos=(30, 350))
         self.trial24 = wx.TextCtrl(self, -1, "", pos=(650, 350), size=(300, 20))
         wx.StaticText(self, -1,
-                      "3.1 define common element types on the internet such as Headings, Buttons, Links, Tables as well as text.",
+                      "3.1 Define common element types on the internet such as Headings, Buttons, Links, Tables as well as text.",
                       pos=(30, 380))
         self.trial31 = wx.TextCtrl(self, -1, "", pos=(650, 380), size=(300, 20))
         wx.StaticText(self, -1, "3.2 identify each element by type.", pos=(30, 410))
@@ -1470,44 +1470,44 @@ class screenreaderPanel(scrolled.ScrolledPanel):
                       pos=(30, 470))
         self.trial34 = wx.TextCtrl(self, -1, "", pos=(650, 470), size=(300, 20))
         wx.StaticText(self, -1,
-                      "3.5 navigate by “Quick Keys” (h for heading, b for button, v, and u for link) (METHOD 2)",
+                      "3.5 Navigate by “Quick Keys” (h for heading, b for button, v, and u for link) (METHOD 2)",
                       pos=(30, 500))
         self.trial35 = wx.TextCtrl(self, -1, "", pos=(650, 500), size=(300, 20))
-        wx.StaticText(self, -1, "3.6 use Elements Lists on a website to navigate by element type (METHOD 3)",
+        wx.StaticText(self, -1, "3.6 Use Elements Lists on a website to navigate by element type (METHOD 3)",
                       pos=(30, 530))
         self.trial36 = wx.TextCtrl(self, -1, "", pos=(650, 530), size=(300, 20))
-        wx.StaticText(self, -1, "3.7 justify why he/she/they selected a particular method for the situation.",
+        wx.StaticText(self, -1, "3.7 Justify why he/she/they selected a particular method for the situation.",
                       pos=(30, 560))
         self.trial37 = wx.TextCtrl(self, -1, "", pos=(650, 560), size=(300, 20))
-        wx.StaticText(self, -1, "3.8 switch tab focus", pos=(30, 590))
+        wx.StaticText(self, -1, "3.8 Switch tab focus", pos=(30, 590))
         self.trial38 = wx.TextCtrl(self, -1, "", pos=(650, 590), size=(300, 20))
         wx.StaticText(self, -1,
-                      "3.9 switch between screen reader modes. (Forms Mode in JAWS or Browse/Focus Mode in NVDA)",
+                      "3.9 Switch between screen reader modes. (Forms Mode in JAWS or Browse/Focus Mode in NVDA)",
                       pos=(30, 620))
         self.trial39 = wx.TextCtrl(self, -1, "", pos=(650, 620), size=(300, 20))
-        wx.StaticText(self, -1, "3.10 navigate a table.", pos=(30, 650))
+        wx.StaticText(self, -1, "3.10 Navigate a table.", pos=(30, 650))
         self.trial310 = wx.TextCtrl(self, -1, "", pos=(650, 650), size=(300, 20))
-        wx.StaticText(self, -1, "3.11 develop a navigation sequence to access an unfamiliar website.", pos=(30, 680))
+        wx.StaticText(self, -1, "3.11 Develop a navigation sequence to access an unfamiliar website.", pos=(30, 680))
         self.trial311 = wx.TextCtrl(self, -1, "", pos=(650, 680), size=(300, 20))
-        wx.StaticText(self, -1, "4.1 be able to save and open files using File Explorer.", pos=(30, 710))
+        wx.StaticText(self, -1, "4.1 Be able to save and open files using File Explorer.", pos=(30, 710))
         self.trial41 = wx.TextCtrl(self, -1, "", pos=(650, 710), size=(300, 20))
-        wx.StaticText(self, -1, "4.2 create folders and move files in File Explorer.", pos=(30, 740))
+        wx.StaticText(self, -1, "4.2 Create folders and move files in File Explorer.", pos=(30, 740))
         self.trial42 = wx.TextCtrl(self, -1, "", pos=(650, 740), size=(300, 20))
         wx.StaticText(self, -1,
-                      "4.3 navigate a cloud-based file management system (eg: Google Drive, Microsoft OneDrive)",
+                      "4.3 Navigate a cloud-based file management system (eg: Google Drive, Microsoft OneDrive)",
                       pos=(30, 770))
         self.trial43 = wx.TextCtrl(self, -1, "", pos=(650, 770), size=(300, 20))
         wx.StaticText(self, -1,
-                      "4.4 download material from the internet and place that material in a location on the computer.",
+                      "4.4 Download material from the internet and place that material in a location on the computer.",
                       pos=(30, 800))
         self.trial44 = wx.TextCtrl(self, -1, "", pos=(650, 800), size=(300, 20))
-        wx.StaticText(self, -1, "4.5 extract zipped folders.", pos=(30, 830))
+        wx.StaticText(self, -1, "4.5 Extract zipped folders.", pos=(30, 830))
         self.trial45 = wx.TextCtrl(self, -1, "", pos=(650, 830), size=(300, 20))
         wx.StaticText(self, -1,
-                      "4.6 utilize the virtual cursor and mouse keys as a backup to access inaccessible elements.",
+                      "4.6 Utilize the virtual cursor and mouse keys as a backup to access inaccessible elements.",
                       pos=(30, 860))
         self.trial46 = wx.TextCtrl(self, -1, "", pos=(650, 860), size=(300, 20))
-        wx.StaticText(self, -1, "4.7 to use OCR features to read inaccessible material.", pos=(30, 890))
+        wx.StaticText(self, -1, "4.7 To use OCR features to read inaccessible material.", pos=(30, 890))
         self.trial47 = wx.TextCtrl(self, -1, "", pos=(650, 890), size=(300, 20))
         self.btn = wx.Button(self, 201, "SAVE", pos=(450, 930), size=(70, 30))
         self.Bind(wx.EVT_BUTTON, self.save, id=201)
@@ -1792,15 +1792,15 @@ class screenreaderPanel(scrolled.ScrolledPanel):
         fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange", opacity=0.2, row=5, col=2)
         fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow", opacity=0.2, row=5, col=2)
         fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green", opacity=0.2, row=5, col=2)
-        fig.update_xaxes(rangebreaks=[dict(bounds=["sat","mon"]),dict(values=[])], row=1, col=1)
-        fig.update_xaxes(rangebreaks=[dict(bounds=["sat","mon"]),dict(values=[])], row=1, col=2)
-        fig.update_xaxes(rangebreaks=[dict(bounds=["sat","mon"]),dict(values=[])], row=2, col=1)
-        fig.update_xaxes(rangebreaks=[dict(bounds=["sat","mon"]),dict(values=[])], row=3, col=1)
-        fig.update_xaxes(rangebreaks=[dict(bounds=["sat","mon"]),dict(values=[])], row=3, col=1)
-        fig.update_xaxes(rangebreaks=[dict(bounds=["sat","mon"]),dict(values=[])], row=3, col=2)
-        fig.update_xaxes(rangebreaks=[dict(bounds=["sat","mon"]),dict(values=[])], row=4, col=2)
-        fig.update_xaxes(rangebreaks=[dict(bounds=["sat","mon"]),dict(values=[])], row=5, col=1)
-        fig.update_xaxes(rangebreaks=[dict(bounds=["sat","mon"]),dict(values=[])], row=5, col=2)
+        fig.update_xaxes(rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=1, col=1)
+        fig.update_xaxes(rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=1, col=2)
+        fig.update_xaxes(rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=2, col=1)
+        fig.update_xaxes(rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=3, col=1)
+        fig.update_xaxes(rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=3, col=1)
+        fig.update_xaxes(rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=3, col=2)
+        fig.update_xaxes(rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=4, col=2)
+        fig.update_xaxes(rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=5, col=1)
+        fig.update_xaxes(rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=5, col=2)
         fig.update_yaxes(range=[-.5, 3.5], fixedrange=True, ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
                          tickvals=[0.1, 1, 2, 3], row=1, col=1)
         fig.update_yaxes(range=[-.5, 3.5], fixedrange=True, ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
@@ -1836,7 +1836,7 @@ class abacusPanel(scrolled.ScrolledPanel):
         wx.StaticText(self, -1, "ABACUS SKILLS PROGRESSION", pos=(200, 20))
         wx.StaticText(self, -1, "Student Name", pos=(30, 50))
         self.studentname1 = wx.Choice(self, -1, choices=students, pos=(650, 50), size=(300, 20))
-        wx.StaticText(self, -1, f"Date: {date}", pos=(550, 20))
+        wx.StaticText(self, -1, "RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent", pos=(550, 20))
         wx.StaticText(self, -1, "1.1 Setting NumbersNumbers", pos=(30, 80))
         self.trial11 = wx.TextCtrl(self, -1, "", pos=(650, 80), size=(300, 20))
         wx.StaticText(self, -1, "1.2 Clearing Beads", pos=(30, 110))
@@ -2134,14 +2134,14 @@ class abacusPanel(scrolled.ScrolledPanel):
         fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange", opacity=0.2, row=4, col=2)
         fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow", opacity=0.2, row=4, col=2)
         fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green", opacity=0.2, row=4, col=2)
-        fig.update_xaxes(rangebreaks=[dict(bounds=["sat","mon"]),dict(values=[])], row=1, col=1)
-        fig.update_xaxes(rangebreaks=[dict(bounds=["sat","mon"]),dict(values=[])], row=1, col=2)
-        fig.update_xaxes(rangebreaks=[dict(bounds=["sat","mon"]),dict(values=[])], row=2, col=1)
-        fig.update_xaxes(rangebreaks=[dict(bounds=["sat","mon"]),dict(values=[])], row=2, col=2)
-        fig.update_xaxes(rangebreaks=[dict(bounds=["sat","mon"]),dict(values=[])], row=3, col=1)
-        fig.update_xaxes(rangebreaks=[dict(bounds=["sat","mon"]),dict(values=[])], row=3, col=2)
-        fig.update_xaxes(rangebreaks=[dict(bounds=["sat","mon"]),dict(values=[])], row=4, col=1)
-        fig.update_xaxes(rangebreaks=[dict(bounds=["sat","mon"]),dict(values=[])], row=4, col=2)
+        fig.update_xaxes(rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=1, col=1)
+        fig.update_xaxes(rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=1, col=2)
+        fig.update_xaxes(rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=2, col=1)
+        fig.update_xaxes(rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=2, col=2)
+        fig.update_xaxes(rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=3, col=1)
+        fig.update_xaxes(rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=3, col=2)
+        fig.update_xaxes(rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=4, col=1)
+        fig.update_xaxes(rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=4, col=2)
         fig.update_yaxes(range=[-.5, 3.5], fixedrange=True, ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
                          tickvals=[0.1, 1, 2, 3], row=1, col=1)
         fig.update_yaxes(range=[-.5, 3.5], fixedrange=True, ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
@@ -2164,6 +2164,7 @@ class abacusPanel(scrolled.ScrolledPanel):
         fig.write_html(tmppath)
         fig.show()
 
+
 class cviPanel(scrolled.ScrolledPanel):
     def __init__(self, parent):
         scrolled.ScrolledPanel.__init__(self, parent, -1)
@@ -2177,7 +2178,7 @@ class cviPanel(scrolled.ScrolledPanel):
         wx.StaticText(self, -1, "CVI PROGRESSION", pos=(200, 20))
         wx.StaticText(self, -1, "Student Name", pos=(30, 50))
         self.studentname1 = wx.Choice(self, -1, choices=students, pos=(650, 50), size=(300, 20))
-        wx.StaticText(self, -1, f"Date: {date}", pos=(550, 20))
+        wx.StaticText(self, -1, "RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent", pos=(550, 20))
         wx.StaticText(self, -1, "Color Preference", pos=(30, 80))
         self.trial11 = wx.TextCtrl(self, -1, "", pos=(650, 80), size=(300, 20))
         wx.StaticText(self, -1, "Need for Movement", pos=(30, 110))
@@ -2199,87 +2200,111 @@ class cviPanel(scrolled.ScrolledPanel):
         wx.StaticText(self, -1, "Absence of Visually Guided Reach", pos=(30, 350))
         self.trial33 = wx.TextCtrl(self, -1, "", pos=(650, 350), size=(300, 20))
 
-        self.btn = wx.Button(self, 201, "SAVE", pos=(375, 950), size=(70, 30))
+        self.btn = wx.Button(self, 201, "SAVE", pos=(300, 450), size=(70, 30))
         self.Bind(wx.EVT_BUTTON, self.save, id=201)
-        self.btn1 = wx.Button(self, 202, "EXIT", pos=(625, 950), size=(70, 30))
+        self.btn1 = wx.Button(self, 202, "EXIT", pos=(600, 450), size=(70, 30))
         self.Bind(wx.EVT_BUTTON, self.exit, id=202)
-        self.btn = wx.Button(self, 203, "PRINT GRAPHS", pos=(450, 950), size=(170, 30))
+        self.btn2 = wx.Button(self, 203, "PRINT GRAPHS", pos=(400, 450), size=(170, 30))
         self.Bind(wx.EVT_BUTTON, self.graph, id=203)
-        self.ln2=wx.StaticLine(self, -1, pos=(0, 50), style=wx.LI_HORIZONTAL)
+        self.btn3 = wx.Button(self, 204, "SHOW RUBRIC", pos=(30, 550), size=(170, 30))
+        self.Bind(wx.EVT_BUTTON, self.rubric, id=204)
+        wx.StaticText(self, -1, "RUBRIC DATA", pos=(30, 450))
+        wx.StaticText(self, -1, "CVI DOMAIN", pos=(30, 500))
+        self.cviDomain1 = wx.Choice(self, -1, choices=cviDomains, pos=(150, 500), size=(300, 20))
 
-        self.info1=wx.StaticText(self,-1, """ 
-COLOR PREFERENCE	
-        Range 1-2:  Objects viewed are generally single color	
-        Range 3-4:  Has “favorite” color	
-        Range 5-6:  Objects may have 2- 3 colors	
-        Range 7-8:  More colors, familiar patterns regarded	
-        Range 9-10: No color or pattern preference
-NEED FOR MOVEMENT	
-        Range 1-2:  Objects viewed generally have movement/reflective properties	
-        Range 3-4:  More consistent localization, brief fixations on movement & reflective materials
-        Range 5-6:  Movement continues to be an important factor to initiate visual attention	
-        Range 7-8:  Movement not required for attention at near	
-        Range 9-10: Typical responses to moving targets
-VISUAL LATENCY
-        Range 1-2:  Prolonged periods of visual latency	
-        Range 3-4:  Latency slightly decreases after periods of consistent viewing	
-        Range 5-6:  Latency present only when student is tired, stressed, or over stimulated	
-        Range 7-8:  Latency rarely present	
-        Range 9-10: Latency resolved
-VISUAL FIELD LATENCY	
-        Range 1-2:  Distinct field dependency	
-        Range 3-4:  Shows visual field preferences	
-        Range 5-6:  Field preferences decreasing with familiar inputs	
-        Range 7-8:  May alternate use of right and left fields	
-        Range 9-10: Visual fields unrestricted
-DIFFICULTY WITH VISUAL COMPLEXITY
-        Range 1-2:  Responds only in strictly controlled environments	
-        Range 3-4:  Visually fixates when environment is controlled	
-        Range 5-6:  Student tolerates low levels of familiar background noise  
-                        Regards familiar faces when voice does not compete	
-        Range 7-8:  Competing auditory stimuli tolerated during periods of viewing  
-                        Views simple books/ symbols & Smiles at/regards familiar and new faces
-        Range 9-10: Only the most complex visual environments affect visual response 
-                        Views books or other 2-dimensional materials & Typical visual- social responses
-    """, pos=(0,375), size=(510,550))
-        self.info2=wx.StaticText(self, -1, """ 
-LIGHT GAZING AND NONPURPOSEFUL GAZE
-        Range 1-2:  May localize briefly but no prolonged fixations on objects or faces 
-                        Overly attentive to lights or perhaps ceiling fans	
-        Range 3-4:  Less attracted to lights - can be redirected to other targets	
-        Range 5-6:  Light is no longer a distractor	
-        Range 7-8:  Light is no longer a distractor	
-        Range 9-10: Light is no longer a distractor
-DIFFICULTY WITH DISTANCE VIEWING
-        Range 1-2:  Visually attends in near space only	
-        Range 3-4:  Occasional visual attention on familiar, moving or large targets at 2-3 feet	
-        Range 5-6:  Visual attention extends beyond near space, up to 4-6 feet	
-        Range 7-8:  Visual attention extends to 10 feet with targets that produce movement	
-        Range 9-10: Visual attention extends beyond 20 feet & Demonstrates memory of visual events
-ATYPICAL VISUAL REFLEXES	
-        Range 1-2:  No blink in response to touch and/or visual threat	
-        Range 3-4:  Blinks in response to touch but response may be latent	
-        Range 5-6:  Blink response to touch consistently present 
-                        Visual threat response intermittently present	
-        Range 7-8:  Visual threat response consistently present (both near 90% resolved)	
-        Range 9-10: Visual reflexes always present, resolved
-DIFFICULTY WITH VISUAL NOVELTY
-        Range 1-2:  Only favorite or known objects solicit visual attention	
-        Range 3-4:  May tolerate novel objects if the novel objects share characteristics of familiar objects	
-        Range 5-6:  Use of “known” objects to initiate looking sequence	
-        Range 7-8:  Selection of objects less restricted, requires 1-2 sessions of “warm up” time	
-        Range 9-10: Selection of objects not restricted
-ABSENCE OF VISUALLY GUIDED REACH	
-        Range 1-2:  Look & touch occur as separate functions 
-                    Large &/or moving targets	
-        Range 3-4:  Look & touch on smaller objects that are familiar, lighted, or reflective 
-                    Look and touch are still separate	
-        Range 5-6:  Visually guided reach with familiar objects or “favorite” color	
-        Range 7-8:  Look and touch occur in rapid sequence but not always together	
-        Range 9-10: Look and touch consistently
-        """, pos=(510, 375), size=(600, 550))
-        self.info1.SetBackgroundColour("yellow")
-        self.info2.SetBackgroundColour("yellow")
+    def rubric(self, event):
+
+        colorPreference = ("""
+        COLOR PREFERENCE
+        0.........Range 1-2:  Objects viewed are generally single color
+        1.........Range 3-4:  Has “favorite” color
+        2.........Range 5-6:  Objects may have 2- 3 colors
+        3.........Range 7-8:  More colors, familiar patterns regarded
+        4.........Range 9-10: No color or pattern preference
+        """)
+        needForMovement = ("""
+        NEED FOR MOVEMENT
+        0.........Range 1-2:  Objects viewed generally have movement/reflective properties
+        1.........Range 3-4:  More consistent localization, brief fixations on movement & reflective materials
+        2.........Range 5-6:  Movement continues to be an important factor to initiate visual attention
+        3.........Range 7-8:  Movement not required for attention at near
+        4.........Range 9-10: Typical responses to moving targets
+        """)
+        visualLatency = ("""
+        VISUAL LATENCY
+        0.........Range 1-2:  Prolonged periods of visual latency
+        1.........Range 3-4:  Latency slightly decreases after periods of consistent viewing
+        2.........Range 5-6:  Latency present only when student is tired, stressed, or over stimulated
+        3.........Range 7-8:  Latency rarely present
+        4.........Range 9-10: Latency resolved
+        """)
+        visualFieldPreference = ("""
+        VISUAL FIELD LATENCY
+        0.........Range 1-2:  Distinct field dependency
+        1.........Range 3-4:  Shows visual field preferences
+        2.........Range 5-6:  Field preferences decreasing with familiar inputs
+        3.........Range 7-8:  May alternate use of right and left fields
+        4.........Range 9-10: Visual fields unrestricted
+        """)
+        visualComplexity = ("""
+        DIFFICULTY WITH VISUAL COMPLEXITY
+        0.........Range 1-2:  Responds only in strictly controlled environments
+        1.........Range 3-4:  Visually fixates when environment is controlled
+        2.........Range 5-6:  Student tolerates low levels of familiar background noise
+                                 Regards familiar faces when voice does not compete
+        3.........Range 7-8:  Competing auditory stimuli tolerated during periods of viewing
+                                 Views simple books/ symbols & Smiles at/regards familiar and new faces
+        4.........Range 9-10: Only the most complex visual environments affect visual response
+                                 Views books or other 2-dimensional materials & Typical visual- social responses
+        """)
+        nonpurposefulGaze = ("""
+        LIGHT GAZING AND NONPURPOSEFUL GAZE
+        0.........Range 1-2:  May localize briefly but no prolonged fixations on objects or faces
+                                 Overly attentive to lights or perhaps ceiling fans
+        1.........Range 3-4:  Less attracted to lights - can be redirected to other targets
+        2.........Range 5-6:  Light is no longer a distractor
+        3.........Range 7-8:  Light is no longer a distractor
+        4.........Range 9-10: Light is no longer a distractor
+        """)
+        distanceViewing = ("""
+        DIFFICULTY WITH DISTANCE VIEWING
+        0.........Range 1-2:  Visually attends in near space only
+        1.........Range 3-4:  Occasional visual attention on familiar, moving or large targets at 2-3 feet
+        2.........Range 5-6:  Visual attention extends beyond near space, up to 4-6 feet
+        3.........Range 7-8:  Visual attention extends to 10 feet with targets that produce movement
+        4.........Range 9-10: Visual attention extends beyond 20 feet & Demonstrates memory of visual events
+        """)
+        visualReflexes = ("""
+        ATYPICAL VISUAL REFLEXES
+        0......... Range 1-2:  No blink in response to touch and/or visual threat
+        1.........Range 3-4:  Blinks in response to touch but response may be latent
+        2.........Range 5-6:  Blink response to touch consistently present
+                                 Visual threat response intermittently present
+        3.........Range 7-8:  Visual threat response consistently present (both near 90% resolved)
+        4.........Range 9-10: Visual reflexes always present, resolved
+        """)
+        visualNovelty = ("""
+        DIFFICULTY WITH VISUAL NOVELTY
+        0.........Range 1-2:  Only favorite or known objects solicit visual attention
+        1.........Range 3-4:  May tolerate novel objects if the novel objects share characteristics of familiar objects
+        2.........Range 5-6:  Use of “known” objects to initiate looking sequence
+        3.........Range 7-8:  Selection of objects less restricted, requires 1-2 sessions of “warm up” time
+        4.........Range 9-10: Selection of objects not restricted
+        """)
+        visuallyGuidedReach = ("""
+        ABSENCE OF VISUALLY GUIDED REACH
+        0.........Range 1-2:  Look & touch occur as separate functions
+                             Large &/or moving targets
+        1.........Range 3-4:  Look & touch on smaller objects that are familiar, lighted, or reflective
+                             Look and touch are still separate
+        2.........Range 5-6:  Visually guided reach with familiar objects or “favorite” color
+        3.........Range 7-8:  Look and touch occur in rapid sequence but not always together
+        4.........Range 9-10: Look and touch consistently
+        """)
+        cviDomain = self.cviDomain1.GetString(self.cviDomain1.GetSelection())
+        rubricData = locals()[cviDomain]
+        wx.MessageBox(rubricData, caption="CVI RUBRICS")
+
     def exit(self, event):
         wx.Exit()
 
@@ -2370,8 +2395,8 @@ ABSENCE OF VISUALLY GUIDED REACH
     def graph(self, event):
         studentname = self.studentname1.GetString(self.studentname1.GetSelection())
         tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', studentname, 'cviProgression.csv')
-        df = pd.read_csv(tmpPath, sep=',' , index_col=[0], parse_dates=['date'])
-        #df['date']=pd.to_datetime(df['date'])
+        df = pd.read_csv(tmpPath, sep=',', index_col=[0], parse_dates=['date'])
+        # df['date']=pd.to_datetime(df['date'])
         df = df.sort_values(by="date")
         mu, sigma = 0, 0.1
         noise = np.random.normal(mu, sigma, [len(df.index), len(df.columns)])
@@ -2450,14 +2475,14 @@ ABSENCE OF VISUALLY GUIDED REACH
         fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange", opacity=0.2, row=5, col=2)
         fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow", opacity=0.2, row=5, col=2)
         fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green", opacity=0.2, row=5, col=2)
-        fig.update_xaxes(rangebreaks=[dict(bounds=["sat","mon"]),dict(values=[" "])], row=1, col=1)
-        fig.update_xaxes(rangebreaks=[dict(bounds=["sat","mon"]),dict(values=[])], row=1, col=2)
-        fig.update_xaxes(rangebreaks=[dict(bounds=["sat","mon"]),dict(values=[])], row=2, col=1)
-        fig.update_xaxes(rangebreaks=[dict(bounds=["sat","mon"]),dict(values=[])], row=2, col=2)
-        fig.update_xaxes(rangebreaks=[dict(bounds=["sat","mon"]),dict(values=[])], row=3, col=1)
-        fig.update_xaxes(rangebreaks=[dict(bounds=["sat","mon"]),dict(values=[])], row=3, col=2)
-        fig.update_xaxes(rangebreaks=[dict(bounds=["sat","mon"]),dict(values=[])], row=4, col=1)
-        fig.update_xaxes(rangebreaks=[dict(bounds=["sat","mon"]),dict(values=[])], row=4, col=2)
+        fig.update_xaxes(rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[" "])], row=1, col=1)
+        fig.update_xaxes(rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=1, col=2)
+        fig.update_xaxes(rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=2, col=1)
+        fig.update_xaxes(rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=2, col=2)
+        fig.update_xaxes(rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=3, col=1)
+        fig.update_xaxes(rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=3, col=2)
+        fig.update_xaxes(rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=4, col=1)
+        fig.update_xaxes(rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=4, col=2)
         fig.update_yaxes(range=[-.5, 3.5], fixedrange=True, ticktext=["Phase 1", "Phase 2", "Phase 3", "Resolving"],
                          tickvals=[0.1, 1, 2, 3], row=1, col=1)
         fig.update_yaxes(range=[-.5, 3.5], fixedrange=True, ticktext=["Phase 1", "Phase 2", "Phase 3", "Resolving"],
@@ -2482,6 +2507,7 @@ ABSENCE OF VISUALLY GUIDED REACH
         tmppath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', studentname, 'cviProgression.html')
         fig.write_html(tmppath)
         fig.show()
+
 
 class iepIntro(scrolled.ScrolledPanel):
     def __init__(self, parent):
@@ -2615,6 +2641,7 @@ class iepIntro(scrolled.ScrolledPanel):
         lookupID = f"{studentname}IEP"
         iepData = locals()[lookupID]
         wx.MessageBox(iepData, caption=f"IEP Summary for {studentname}")
+
 
 class observationsPanel(scrolled.ScrolledPanel):
     def __init__(self, parent):

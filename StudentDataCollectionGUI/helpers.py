@@ -416,15 +416,15 @@ brailleSkills = ['1.1. Track left to right',
                     '8.7. Vertical Bars'
                     ]
 
-cviDomains = ['Color Preference',
-            'Movement',
-            'Visual Latency',
-            'Visual Field Preference',
-            'Visual Complexity',
-            'Nonpurposeful Gaze',
-            'Distance Viewing',
-            'Visual Reflexes',
-            'Visual Novelty',
-            'Visually Guided Reach'
+cviDomains = ['colorPreference',
+            'needForMovement',
+            'visualLatency',
+            'visualFieldPreference',
+            'visualComplexity',
+            'nonpurposefulGaze',
+            'distanceViewing',
+            'visualReflexes',
+            'visualNovelty',
+            'visuallyGuidedReach'
             ]
 

@@ -2642,7 +2642,72 @@ class iepIntro(scrolled.ScrolledPanel):
         iepData = locals()[lookupID]
         wx.MessageBox(iepData, caption=f"IEP Summary for {studentname}")
 
+class meetingsPanel(scrolled.ScrolledPanel):
+    def __init__(self, parent):
+        scrolled.ScrolledPanel.__init__(self, parent, -1)
+        vbox = wx.BoxSizer(wx.VERTICAL)
+        vbox.Add(wx.StaticLine(self, -1, size=(1500, -1)), 0, wx.ALL, 5)
+        vbox.Add(wx.StaticLine(self, -1, size=(-1, 2100)), 0, wx.ALL, 5)
+        vbox.Add((20, 20))
+        self.SetSizer(vbox)
+        self.SetupScrolling()
+        self.SetBackgroundColour(wx.Colour(248, 223, 129))
+        wx.StaticText(self, -1, "PLANNING MEETING", pos=(170, 20))
+        wx.StaticText(self, -1, "Student Name", pos=(30, 50))
+        self.studentname1 = wx.Choice(self, -1, choices=students, pos=(130, 50), size=(300, 20))
+        wx.StaticText(self, -1, f"Date: {date}", pos=(30, 80))
+        wx.StaticText(self, -1, "Anecdotal Notes", pos=(30, 110))
+        self.notes1 = wx.TextCtrl(self, -1, "", pos=(170, 110), size=(700, 700), style=wx.TE_MULTILINE)
+        self.btn = wx.Button(self, 201, "SAVE", pos=(450, 850), size=(70, 30))
+        self.Bind(wx.EVT_BUTTON, self.save, id=201)
+        self.btn1 = wx.Button(self, 202, "EXIT", pos=(550, 850), size=(70, 30))
+        self.Bind(wx.EVT_BUTTON, self.exit, id=202)
+        self.Bind(wx.EVT_BUTTON, self.save, id=201)
+        os.chdir(USER_DIR)
 
+    def exit(self, event):
+        wx.Exit()
+
+    def save(self, event):
+        studentname = self.studentname1.GetString(
+            self.studentname1.GetSelection())
+        dateNow = datetime.datetime.now().strftime("%Y_%m_%d-%H%M%S")
+        simpleDate = datetime.datetime.now().strftime("%Y_%m_%d-%H%M")
+        notes = self.notes1.GetValue()
+        if (len(studentname) and len(notes)) > 0:
+            box = wx.TextEntryDialog(None, "Enter Address-Book name to save!", "Title",
+                                     f"meeting{studentname.title()}{dateNow}")
+            if box.ShowModal() == wx.ID_OK:
+                self.studentdatabasename = box.GetValue()
+                if not Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', studentname,
+                                               self.studentdatabasename + '.txt').exists():
+                    tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', studentname,
+                                                      self.studentdatabasename + '.txt')
+                    self.filename = Path.touch(tmpPath)
+                    self.filename.write('studentname' + ', ')
+                    self.filename.write('simpleDate' + ', ')
+                    self.filename.write('notes' + ',\n')
+                    self.filename.write(studentname + ', ')
+                    self.filename.write(simpleDate + ', ')
+                    self.filename.write(notes + ', ')
+                    self.filename.close()
+                    tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', 'Filenames.txt')
+                    self.filename = open(tmpPath, 'a')
+                    tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', studentname,
+                                                      self.studentdatabasename + '.txt')
+                    self.filename.write(f"'{tmpPath}'" + '\n')
+                    self.filename.close()
+                    self.dial = wx.MessageDialog(None, 'Saved successfully!', 'Info', wx.OK)
+                    self.dial.ShowModal()
+                else:
+                    self.dial = wx.MessageDialog(None, 'Name already exists', 'Info', wx.OK)
+                    self.dial.ShowModal()
+            else:
+                self.dial = wx.MessageDialog(None, 'Save cancelled', 'Info', wx.OK)
+                self.dial.ShowModal()
+        else:
+            self.dial = wx.MessageDialog(None, 'Fill Required Fields!', 'Info', wx.OK)
+            self.dial.ShowModal()
 class observationsPanel(scrolled.ScrolledPanel):
     def __init__(self, parent):
         scrolled.ScrolledPanel.__init__(self, parent, -1)
@@ -2726,6 +2791,7 @@ class StudentDataBook(wx.Frame, wx.Accessible):
         nb.AddPage(abacusPanel(nb), "ABACUS SKILLS")
         nb.AddPage(cviPanel(nb), "CVI PROGRESSION")
         nb.AddPage(observationsPanel(nb), "VISION OBSERVATIONS")
+        nb.AddPage(meetingsPanel(nb), "MEETINGS")
         self.Centre()
         self.Show(True)
 

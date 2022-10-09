@@ -13,6 +13,7 @@ import wx.lib.scrolledpanel as scrolled
 import numpy as np
 from helpers import *
 from pathlib import Path
+import shutil
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -192,7 +193,7 @@ class dataPanel(wx.Panel):
         self.ln = wx.StaticLine(self, -1, pos=(465, 0), style=wx.LI_VERTICAL)
         self.ln.SetSize((5, 900))
         self.ln.IsVertical()
-        self.SetBackgroundColour(wx.Colour(248, 223, 129))
+        self.SetBackgroundColour(wx.Colour(213,214,234))
         wx.StaticText(self, -1, "EXPANDED CORE CURRICULUM DATA ENTRY", pos=(170, 20))
         wx.StaticText(self, -1, "Student Name", pos=(30, 50))
         self.studentname1 = wx.Choice(self, -1, choices=students, pos=(130, 50), size=(300, 20))
@@ -512,7 +513,7 @@ class braillePanel(scrolled.ScrolledPanel):
         vbox.Add((20, 20))
         self.SetSizer(vbox)
         self.SetupScrolling()
-        self.SetBackgroundColour(wx.Colour(246, 170, 144))
+        self.SetBackgroundColour(wx.Colour(246,246,235))
         # super(braillePanel, self).__init__(parent)
         wx.StaticText(self, -1, "BRAILLE SKILLS PROGRESSION", pos=(200, 20))
         wx.StaticText(self, -1, "Student Name", pos=(30, 50))
@@ -1427,7 +1428,7 @@ class screenreaderPanel(scrolled.ScrolledPanel):
         vbox.Add((20, 20))
         self.SetSizer(vbox)
         self.SetupScrolling()
-        self.SetBackgroundColour(wx.Colour(246, 180, 191))
+        self.SetBackgroundColour(wx.Colour(215,236,217))
         wx.StaticText(self, -1, "SCREENREADER SKILLS PROGRESSION", pos=(200, 20))
         wx.StaticText(self, -1, "Student Name", pos=(30, 50))
         self.studentname1 = wx.Choice(self, -1, choices=students, pos=(650, 50), size=(300, 20))
@@ -1832,7 +1833,7 @@ class abacusPanel(scrolled.ScrolledPanel):
         vbox.Add((20, 20))
         self.SetSizer(vbox)
         self.SetupScrolling()
-        self.SetBackgroundColour(wx.Colour(213, 182, 213))
+        self.SetBackgroundColour(wx.Colour(245,213,203))
         wx.StaticText(self, -1, "ABACUS SKILLS PROGRESSION", pos=(200, 20))
         wx.StaticText(self, -1, "Student Name", pos=(30, 50))
         self.studentname1 = wx.Choice(self, -1, choices=students, pos=(650, 50), size=(300, 20))
@@ -2174,7 +2175,7 @@ class cviPanel(scrolled.ScrolledPanel):
         vbox.Add((20, 20))
         self.SetSizer(vbox)
         self.SetupScrolling()
-        self.SetBackgroundColour(wx.Colour(186, 223, 218))
+        self.SetBackgroundColour(wx.Colour(246,236,245))
         wx.StaticText(self, -1, "CVI PROGRESSION", pos=(200, 20))
         wx.StaticText(self, -1, "Student Name", pos=(30, 50))
         self.studentname1 = wx.Choice(self, -1, choices=students, pos=(650, 50), size=(300, 20))
@@ -2518,7 +2519,7 @@ class iepIntro(scrolled.ScrolledPanel):
         vbox.Add((20, 20))
         self.SetSizer(vbox)
         self.SetupScrolling()
-        self.SetBackgroundColour(wx.Colour(155, 208, 183))
+        self.SetBackgroundColour(wx.Colour(243,221,242))
         scrolled.ScrolledPanel.__init__(self, parent, -1)
         vbox = wx.BoxSizer(wx.VERTICAL)
         vbox.Add(wx.StaticLine(self, -1, size=(1500, -1)), 0, wx.ALL, 5)
@@ -2651,7 +2652,7 @@ class meetingsPanel(scrolled.ScrolledPanel):
         vbox.Add((20, 20))
         self.SetSizer(vbox)
         self.SetupScrolling()
-        self.SetBackgroundColour(wx.Colour(248, 223, 129))
+        self.SetBackgroundColour(wx.Colour(213,214,234))
         wx.StaticText(self, -1, "PLANNING MEETING", pos=(170, 20))
         wx.StaticText(self, -1, "Student Name", pos=(30, 50))
         self.studentname1 = wx.Choice(self, -1, choices=students, pos=(130, 50), size=(300, 20))
@@ -2717,7 +2718,7 @@ class observationsPanel(scrolled.ScrolledPanel):
         vbox.Add((20, 20))
         self.SetSizer(vbox)
         self.SetupScrolling()
-        self.SetBackgroundColour(wx.Colour(248, 223, 129))
+        self.SetBackgroundColour(wx.Colour(246,246,235))
         wx.StaticText(self, -1, "VISION OBSERVATIONS", pos=(170, 20))
         wx.StaticText(self, -1, "Student Name", pos=(30, 50))
         self.studentname1 = wx.Choice(self, -1, choices=students, pos=(130, 50), size=(300, 20))
@@ -2729,10 +2730,21 @@ class observationsPanel(scrolled.ScrolledPanel):
         self.btn1 = wx.Button(self, 202, "EXIT", pos=(550, 850), size=(70, 30))
         self.Bind(wx.EVT_BUTTON, self.exit, id=202)
         self.Bind(wx.EVT_BUTTON, self.save, id=201)
+        self.btn2 = wx.Button(self, 203, "UPLOAD FILE", pos=(450, 890), size=(170, 30))
+        self.Bind(wx.EVT_BUTTON, self.upload, id=203)
         os.chdir(USER_DIR)
 
     def exit(self, event):
         wx.Exit()
+
+    def upload(self, event):
+        studentname = self.studentname1.GetString(self.studentname1.GetSelection())
+        uploadLocation  = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', studentname)
+        openFileDialog = wx.FileDialog(frame, "Open", "", "", "",wx.FD_OPEN | wx.FD_FILE_MUST_EXIST)
+        openFileDialog.ShowModal()
+        uploadFile = openFileDialog.GetPath()
+        openFileDialog.Destroy()
+        shutil.copy2(uploadFile,uploadLocation)
 
     def save(self, event):
         studentname = self.studentname1.GetString(
@@ -2779,6 +2791,7 @@ class observationsPanel(scrolled.ScrolledPanel):
 class StudentDataBook(wx.Frame, wx.Accessible):
     def __init__(self, parent, title):
         super(StudentDataBook, self).__init__(parent, title="Data Entry Form", size=(1130, 1000))
+        self.SetBackgroundColour(wx.Colour(215,236,217))
         self.InitUI()
 
     def InitUI(self):

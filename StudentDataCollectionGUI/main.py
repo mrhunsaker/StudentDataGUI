@@ -422,7 +422,9 @@ class dataPanel(wx.Panel):
                                                self.studentdatabasename + '.txt').exists():
                     tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', studentname,
                                                       self.studentdatabasename + '.txt')
-                    self.filename = Path.touch(tmpPath)
+                    Path.touch(tmpPath, mode=0o666, exist_ok=True )
+
+                    self.filename = open(tmpPath,'w')
                     self.filename.write('studentname' + ', ')
                     self.filename.write('simpleDate' + ', ')
                     self.filename.write('task' + ', ')

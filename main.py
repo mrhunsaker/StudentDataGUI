@@ -2665,11 +2665,20 @@ class meetingsPanel(scrolled.ScrolledPanel):
         self.btn1 = wx.Button(self, 202, "EXIT", pos=(550, 850), size=(70, 30))
         self.Bind(wx.EVT_BUTTON, self.exit, id=202)
         self.Bind(wx.EVT_BUTTON, self.save, id=201)
+        self.btn2 = wx.Button(self, 203, "UPLOAD FILE", pos=(450, 890), size=(170, 30))
+        self.Bind(wx.EVT_BUTTON, self.upload, id=203)
         os.chdir(USER_DIR)
 
     def exit(self, event):
         wx.Exit()
-
+    def upload(self, event):
+        studentname = self.studentname1.GetString(self.studentname1.GetSelection())
+        uploadLocation  = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', studentname)
+        openFileDialog = wx.FileDialog(frame, "Open", "", "", "",wx.FD_OPEN | wx.FD_FILE_MUST_EXIST)
+        openFileDialog.ShowModal()
+        uploadFile = openFileDialog.GetPath()
+        openFileDialog.Destroy()
+        shutil.copy2(uploadFile,uploadLocation)
     def save(self, event):
         studentname = self.studentname1.GetString(
             self.studentname1.GetSelection())

@@ -1,9 +1,7 @@
 wxPython
 attrdict
 datetime
-sqlite3
 statistics
-csv
 pandas
 plotly
 numpy

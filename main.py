@@ -30,43 +30,30 @@ for name in students:
     if not Path(USER_DIR).joinpath('StudentDatabase').exists():
         tmpPath = Path(USER_DIR).joinpath('StudentDatabase')
         Path.mkdir(tmpPath, parents=True, exist_ok=True)
-    if not Path(USER_DIR).joinpath('StudentDatabase',
-                                   'StudentDataFiles').exists():
+    if not Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles').exists():
         tmpPath = Path(USER_DIR).joinpath('StudentDatabase/StudentDataFiles')
         Path.mkdir(tmpPath, parents=True, exist_ok=True)
-    if not Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles',
-                                   name).exists():
-        tmpPath = Path(USER_DIR).joinpath('StudentDatabase/StudentDataFiles',
-                                          name)
+    if not Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', name).exists():
+        tmpPath = Path(USER_DIR).joinpath('StudentDatabase/StudentDataFiles', name)
         Path.mkdir(tmpPath, parents=True, exist_ok=True)
-    if not Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', name,
-                                   'omnibusDatabase.csv').exists():
-        tmpPath = Path(USER_DIR).joinpath('StudentDatabase/StudentDataFiles',
-                                          name, 'omnibusDatabase.csv')
+    if not Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', name, 'omnibusDatabase.csv').exists():
+        tmpPath = Path(USER_DIR).joinpath('StudentDatabase/StudentDataFiles', name, 'omnibusDatabase.csv')
         filename = Path.touch(tmpPath)
-        list_names = ['student', 'date', 'task', 'lesson', 'session', 'trial01',
-                      'trial02', 'trial03', 'trial04',
-                      'trial05', 'trial06', 'trial07', 'trial08', 'trial09',
-                      'trial10', 'trial11', 'median', 'notes']
+        list_names = ['student', 'date', 'task', 'lesson', 'session', 'trial01', 'trial02', 'trial03', 'trial04',
+                      'trial05', 'trial06', 'trial07', 'trial08', 'trial09', 'trial10', 'trial11', 'median', 'notes']
         with open(tmpPath, 'a', newline='') as f_object:
             writer_setup = writer(f_object)
             writer_setup.writerow(list_names)
             f_object.close()
     if not Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', name,
                                    'BrailleSkillsProgression.csv').exists():
-        tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles',
-                                          name, 'BrailleSkillsProgression.csv')
+        tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', name, 'BrailleSkillsProgression.csv')
         filename = Path.touch(tmpPath)
-        list_names = ['date', 'P1_1', 'P1_2', 'P1_3', 'P1_4', 'P2_1', 'P2_2',
-                      'P2_3', 'P2_4', 'P2_5', 'P2_6', 'P2_7',
-                      'P2_8', 'P2_9', 'P2_10', 'P2_11', 'P2_12', 'P2_13',
-                      'P2_14', 'P2_15', 'P3_1', 'P3_2', 'P3_3',
-                      'P3_4', 'P3_5', 'P3_6', 'P3_7', 'P3_8', 'P3_9', 'P3_10',
-                      'P3_11', 'P3_12', 'P3_13', 'P3_14',
-                      'P3_15', 'P4_1', 'P4_2', 'P4_3', 'P4_4', 'P5_1', 'P5_2',
-                      'P5_3', 'P5_4', 'P6_1', 'P6_2', 'P6_3',
-                      'P6_4', 'P6_5', 'P6_6', 'P6_7', 'P7_1', 'P7_2', 'P7_3',
-                      'P7_4', 'P7_5', 'P7_6', 'P7_7', 'P7_8',
+        list_names = ['date', 'P1_1', 'P1_2', 'P1_3', 'P1_4', 'P2_1', 'P2_2', 'P2_3', 'P2_4', 'P2_5', 'P2_6', 'P2_7',
+                      'P2_8', 'P2_9', 'P2_10', 'P2_11', 'P2_12', 'P2_13', 'P2_14', 'P2_15', 'P3_1', 'P3_2', 'P3_3',
+                      'P3_4', 'P3_5', 'P3_6', 'P3_7', 'P3_8', 'P3_9', 'P3_10', 'P3_11', 'P3_12', 'P3_13', 'P3_14',
+                      'P3_15', 'P4_1', 'P4_2', 'P4_3', 'P4_4', 'P5_1', 'P5_2', 'P5_3', 'P5_4', 'P6_1', 'P6_2', 'P6_3',
+                      'P6_4', 'P6_5', 'P6_6', 'P6_7', 'P7_1', 'P7_2', 'P7_3', 'P7_4', 'P7_5', 'P7_6', 'P7_7', 'P7_8',
                       'P8_1', 'P8_2', 'P8_3', 'P8_4', 'P8_5', 'P8_6', 'P8_7']
         with open(tmpPath, 'a', newline='') as f_object:
             writer_setup = writer(f_object)
@@ -74,26 +61,21 @@ for name in students:
             f_object.close()
     if not Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', name,
                                    'UEBLiterarySkillsProgression.html').exists():
-        tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles',
-                                          name,
+        tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', name,
                                           'UEBLiterarySkillsProgression.html')
         filename = Path.touch(tmpPath)
     if not Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', name,
                                    'UEBTechnicalSkillsProgression.html').exists():
-        tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles',
-                                          name,
+        tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', name,
                                           'UEBTechnicalSkillsProgression.html')
         filename = Path.touch(tmpPath)
     if not Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', name,
                                    'ScreenReaderSkillsProgression.csv').exists():
-        tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles',
-                                          name,
+        tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', name,
                                           'ScreenReaderSkillsProgression.csv')
         filename = Path.touch(tmpPath)
-        list_names = ['date', 'P1_1', 'P1_2', 'P1_3', 'P1_4', 'P1_5', 'P1_6',
-                      'P2_1', 'P2_2', 'P2_3', 'P2_4', 'P3_1',
-                      'P3_2', 'P3_3', 'P3_4', 'P3_5', 'P3_6', 'P3_7', 'P3_8',
-                      'P3_9', 'P3_10', 'P3_11', 'P4_1', 'P4_2',
+        list_names = ['date', 'P1_1', 'P1_2', 'P1_3', 'P1_4', 'P1_5', 'P1_6', 'P2_1', 'P2_2', 'P2_3', 'P2_4', 'P3_1',
+                      'P3_2', 'P3_3', 'P3_4', 'P3_5', 'P3_6', 'P3_7', 'P3_8', 'P3_9', 'P3_10', 'P3_11', 'P4_1', 'P4_2',
                       'P4_3', 'P4_4', 'P4_5', 'P4_6', 'P4_7']
         with open(tmpPath, 'a', newline='') as f_object:
             writer_setup = writer(f_object)
@@ -101,19 +83,14 @@ for name in students:
             f_object.close()
     if not Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', name,
                                    'ScreenReaderSkillsProgression.html').exists():
-        tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles',
-                                          name,
+        tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', name,
                                           'ScreenReaderSkillsProgression.html')
         filename = Path.touch(tmpPath)
-    if not Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', name,
-                                   'AbacusSkillsProgression.csv').exists():
-        tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles',
-                                          name, 'AbacusSkillsProgression.csv')
+    if not Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', name, 'AbacusSkillsProgression.csv').exists():
+        tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', name, 'AbacusSkillsProgression.csv')
         filename = Path.touch(tmpPath)
-        list_names = ['date', 'P1_1', 'P1_2', 'P1_3', 'P1_4', 'P2_1', 'P2_2',
-                      'P2_3', 'P3_1', 'P3_2', 'P3_3', 'P4_1',
-                      'P4_2', 'P5_1', 'P5_2', 'P6_1', 'P6_2', 'P6_3', 'P6_4',
-                      'P7_1', 'P7_2', 'P7_3', 'P7_4', 'P8_1',
+        list_names = ['date', 'P1_1', 'P1_2', 'P1_3', 'P1_4', 'P2_1', 'P2_2', 'P2_3', 'P3_1', 'P3_2', 'P3_3', 'P4_1',
+                      'P4_2', 'P5_1', 'P5_2', 'P6_1', 'P6_2', 'P6_3', 'P6_4', 'P7_1', 'P7_2', 'P7_3', 'P7_4', 'P8_1',
                       'P8_2']
         with open(tmpPath, 'a', newline='') as f_object:
             writer_setup = writer(f_object)
@@ -121,24 +98,18 @@ for name in students:
             f_object.close()
     if not Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', name,
                                    'AbacusSkillsProgression.html').exists():
-        tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles',
-                                          name, 'AbacusSkillsProgression.html')
+        tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', name, 'AbacusSkillsProgression.html')
         filename = Path.touch(tmpPath)
-    if not Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', name,
-                                   'cviProgression.csv').exists():
-        tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles',
-                                          name, 'cviProgression.csv')
+    if not Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', name, 'cviProgression.csv').exists():
+        tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', name, 'cviProgression.csv')
         filename = Path.touch(tmpPath)
-        list_names = ['date', 'P1_1', 'P1_2', 'P1_3', 'P1_4', 'P1_5', 'P1_6',
-                      'P2_1', 'P2_2', 'P2_3', 'P2_4']
+        list_names = ['date', 'P1_1', 'P1_2', 'P1_3', 'P1_4', 'P1_5', 'P1_6', 'P2_1', 'P2_2', 'P2_3', 'P2_4']
         with open(tmpPath, 'a', newline='') as f_object:
             writer_setup = writer(f_object)
             writer_setup.writerow(list_names)
             f_object.close()
-    if not Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', name,
-                                   'cviProgression.html').exists():
-        tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles',
-                                          name, 'cviProgression.html')
+    if not Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', name, 'cviProgression.html').exists():
+        tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', name, 'cviProgression.html')
         filename = Path.touch(tmpPath)
 
 
@@ -223,16 +194,13 @@ class dataPanel(wx.Panel):
         self.ln.SetSize((5, 900))
         self.ln.IsVertical()
         self.SetBackgroundColour(wx.Colour(213, 214, 234))
-        wx.StaticText(self, -1, "EXPANDED CORE CURRICULUM DATA ENTRY",
-                      pos=(170, 20))
+        wx.StaticText(self, -1, "INDIVIDUAL SESSION DATA ENTRY", pos=(170, 20))
         wx.StaticText(self, -1, "Student Name", pos=(30, 50))
-        self.studentname1 = wx.Choice(self, -1, choices=students, pos=(130, 50),
-                                      size=(300, 20))
+        self.studentname1 = wx.Choice(self, -1, choices=students, pos=(130, 50), size=(300, 20))
         wx.StaticText(self, -1, "Date", pos=(30, 80))
         self.date1 = wx.StaticText(self, -1, date, pos=(200, 80))
         wx.StaticText(self, -1, "Session Type", pos=(30, 110))
-        self.session1 = wx.Choice(self, -1, choices=sessionType, pos=(130, 110),
-                                  size=(300, 20))
+        self.session1 = wx.Choice(self, -1, choices=sessionType, pos=(130, 110), size=(300, 20))
         wx.StaticText(self, -1, "Domain and Lesson", pos=(30, 140))
         self.lesson1 = wx.TreeCtrl(self, 301, pos=(30, 170), size=(400, 650))
         self.root = self.lesson1.AddRoot('Lesson Type ')
@@ -251,97 +219,74 @@ class dataPanel(wx.Panel):
         self.item5 = self.lesson1.AppendItem(self.root, 'iOS')
         for name in iOSSkills:
             self.lesson1.AppendItem(self.item5, name)
-        self.item15 = self.lesson1.AppendItem(self.root,
-                                              'Cortical Vision Impairment')
+        self.item15 = self.lesson1.AppendItem(self.root, 'Cortical Vision Impairment')
         for name in cviDomains:
             self.lesson1.AppendItem(self.item15, name)
-        self.item6 = self.lesson1.AppendItem(self.root,
-                                             'ECC_CompensatorySkills')
+        self.item6 = self.lesson1.AppendItem(self.root, 'ECC_CompensatorySkills')
         for name in ECC_CompensatorySkills:
             self.lesson1.AppendItem(self.item6, name)
-        self.item7 = self.lesson1.AppendItem(self.root,
-                                             'ECC_AssistiveTechnology')
+        self.item7 = self.lesson1.AppendItem(self.root, 'ECC_AssistiveTechnology')
         for name in ECC_AssistiveTechnology:
             self.lesson1.AppendItem(self.item7, name)
         self.item8 = self.lesson1.AppendItem(self.root, 'ECC_SensoryEfficiency')
         for name in ECC_SensoryEfficiency:
             self.lesson1.AppendItem(self.item8, name)
-        self.item9 = self.lesson1.AppendItem(self.root,
-                                             'ECC_OrientationMobility')
+        self.item9 = self.lesson1.AppendItem(self.root, 'ECC_OrientationMobility')
         for name in magnifierSkills:
             self.lesson1.AppendItem(self.item9, name)
-        self.item10 = self.lesson1.AppendItem(self.root,
-                                              'ECC_RecreationLeisure')
+        self.item10 = self.lesson1.AppendItem(self.root, 'ECC_RecreationLeisure')
         for name in ECC_RecreationLeisure:
             self.lesson1.AppendItem(self.item10, name)
-        self.item11 = self.lesson1.AppendItem(self.root,
-                                              'ECC_SelfDetermination')
+        self.item11 = self.lesson1.AppendItem(self.root, 'ECC_SelfDetermination')
         for name in ECC_SelfDetermination:
             self.lesson1.AppendItem(self.item11, name)
-        self.item12 = self.lesson1.AppendItem(self.root,
-                                              'ECC_IndependentLivingSkills')
+        self.item12 = self.lesson1.AppendItem(self.root, 'ECC_IndependentLivingSkills')
         for name in ECC_IndependentLivingSkills:
             self.lesson1.AppendItem(self.item12, name)
-        self.item13 = self.lesson1.AppendItem(self.root,
-                                              'ECC_SocialInteractionSkills')
+        self.item13 = self.lesson1.AppendItem(self.root, 'ECC_SocialInteractionSkills')
         for name in ECC_SocialInteractionSkills:
             self.lesson1.AppendItem(self.item13, name)
         self.item14 = self.lesson1.AppendItem(self.root, 'ECC_CareerEducation')
         for name in ECC_CareerEducation:
             self.lesson1.AppendItem(self.item14, name)
         wx.StaticText(self, -1, "Performance", pos=(665, 20))
-        wx.StaticText(self, -1,
-                      "RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent",
-                      pos=(490, 50))
+        wx.StaticText(self, -1, "RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent", pos=(490, 50))
         self.blank = wx.TextCtrl(self, -1, "", pos=(490, 50), size=(0, 0))
         wx.StaticText(self, -1, "Trial 1", pos=(500, 80))
         self.trial011 = wx.TextCtrl(self, -1, "", pos=(650, 80), size=(300, 20))
         wx.StaticText(self, -1, "Trial 2", pos=(500, 110))
-        self.trial021 = wx.TextCtrl(self, -1, "", pos=(650, 110),
-                                    size=(300, 20))
+        self.trial021 = wx.TextCtrl(self, -1, "", pos=(650, 110), size=(300, 20))
         wx.StaticText(self, -1, "Trial 3", pos=(500, 140))
-        self.trial031 = wx.TextCtrl(self, -1, "", pos=(650, 140),
-                                    size=(300, 20))
+        self.trial031 = wx.TextCtrl(self, -1, "", pos=(650, 140), size=(300, 20))
         wx.StaticText(self, -1, "Trial 4", pos=(500, 170))
-        self.trial041 = wx.TextCtrl(self, -1, "", pos=(650, 170),
-                                    size=(300, 20))
+        self.trial041 = wx.TextCtrl(self, -1, "", pos=(650, 170), size=(300, 20))
         wx.StaticText(self, -1, "Trial 5", pos=(500, 200))
-        self.trial051 = wx.TextCtrl(self, -1, "", pos=(650, 200),
-                                    size=(300, 20))
+        self.trial051 = wx.TextCtrl(self, -1, "", pos=(650, 200), size=(300, 20))
         wx.StaticText(self, -1, "Trial 6", pos=(500, 230))
-        self.trial061 = wx.TextCtrl(self, -1, "", pos=(650, 230),
-                                    size=(300, 20))
+        self.trial061 = wx.TextCtrl(self, -1, "", pos=(650, 230), size=(300, 20))
         wx.StaticText(self, -1, "Trial 7", pos=(500, 260))
-        self.trial071 = wx.TextCtrl(self, -1, "", pos=(650, 260),
-                                    size=(300, 20))
+        self.trial071 = wx.TextCtrl(self, -1, "", pos=(650, 260), size=(300, 20))
         wx.StaticText(self, -1, "Trial 8", pos=(500, 290))
-        self.trial081 = wx.TextCtrl(self, -1, "", pos=(650, 290),
-                                    size=(300, 20))
+        self.trial081 = wx.TextCtrl(self, -1, "", pos=(650, 290), size=(300, 20))
         wx.StaticText(self, -1, "Trial 9", pos=(500, 320))
-        self.trial091 = wx.TextCtrl(self, -1, "", pos=(650, 320),
-                                    size=(300, 20))
+        self.trial091 = wx.TextCtrl(self, -1, "", pos=(650, 320), size=(300, 20))
         wx.StaticText(self, -1, "Trial 10", pos=(500, 350))
-        self.trial101 = wx.TextCtrl(self, -1, "", pos=(650, 350),
-                                    size=(300, 20))
+        self.trial101 = wx.TextCtrl(self, -1, "", pos=(650, 350), size=(300, 20))
         wx.StaticText(self, -1, "Trial 11", pos=(500, 380))
-        self.trial111 = wx.TextCtrl(self, -1, "", pos=(650, 380),
-                                    size=(300, 20))
+        self.trial111 = wx.TextCtrl(self, -1, "", pos=(650, 380), size=(300, 20))
         wx.StaticText(self, -1, "Anecdotal Notes", pos=(500, 410))
-        self.notes1 = wx.TextCtrl(self, -1, "", pos=(650, 440), size=(300, 375),
-                                  style=wx.TE_MULTILINE)
+        self.notes1 = wx.TextCtrl(self, -1, "", pos=(650, 440), size=(300, 375), style=wx.TE_MULTILINE)
         self.btn = wx.Button(self, 201, "SAVE", pos=(725, 850), size=(70, 30))
         self.Bind(wx.EVT_BUTTON, self.save, id=201)
         self.btn1 = wx.Button(self, 202, "EXIT", pos=(825, 850), size=(70, 30))
         self.Bind(wx.EVT_BUTTON, self.exit, id=202)
-        self.btn2 = wx.Button(self, 203, "Check IEP Goals", pos=(135, 850),
-                              size=(150, 30))
+        self.btn2 = wx.Button(self, 203, "Check IEP Goals", pos=(135, 850), size=(150, 30))
         self.Bind(wx.EVT_BUTTON, self.submit, id=203)
 
         os.chdir(USER_DIR)
 
     def submit(self, event):
-        studentname = self.studentname1.GetString(
-            self.studentname1.GetSelection())
+        studentname = self.studentname1.GetString(self.studentname1.GetSelection())
         ColeCooperIEP = ("""Cole  Cooper    30 min/month
     • When presented with 2 objects, Cole will be able to utilize his central vision to locate an object with 70% accuracy as measured by the TVI and classroom teacher over 3 consecutive data sessions.
         ◦ When presented with 2 objects, Cole will be able to utilize his central vision to locate an object with 50% accuracy as measured by the TVI and classroom teacher over 3 consecutive data sessions.
@@ -446,8 +391,7 @@ class dataPanel(wx.Panel):
         wx.Exit()
 
     def save(self, event):
-        studentname = self.studentname1.GetString(
-            self.studentname1.GetSelection())
+        studentname = self.studentname1.GetString(self.studentname1.GetSelection())
         dateNow = datetime.datetime.now().strftime("%Y_%m_%d-%H%M%S")
         simpleDate = datetime.datetime.now().strftime("%Y_%m_%d-%H%M")
         item = self.lesson1.GetSelection()
@@ -465,23 +409,18 @@ class dataPanel(wx.Panel):
         trial09 = self.trial091.GetValue()
         trial10 = self.trial101.GetValue()
         trial11 = self.trial111.GetValue()
-        trials = [trial01, trial02, trial03, trial04, trial05, trial06, trial07,
-                  trial08, trial09, trial10, trial11]
+        trials = [trial01, trial02, trial03, trial04, trial05, trial06, trial07, trial08, trial09, trial10, trial11]
         trialmedian = statistics.median(trials)
         notes = self.notes1.GetValue()
 
         if (len(studentname) and len(date) and len(task) and len(notes)) > 0:
-            box = wx.TextEntryDialog(None, "Enter Address-Book name to save!",
-                                     "Title",
+            box = wx.TextEntryDialog(None, "Enter Address-Book name to save!", "Title",
                                      f"{studentname.title()}{dateNow}")
             if box.ShowModal() == wx.ID_OK:
                 self.studentdatabasename = box.GetValue()
-                if not Path(USER_DIR).joinpath('StudentDatabase',
-                                               'StudentDataFiles', studentname,
+                if not Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', studentname,
                                                self.studentdatabasename + '.txt').exists():
-                    tmpPath = Path(USER_DIR).joinpath('StudentDatabase',
-                                                      'StudentDataFiles',
-                                                      studentname,
+                    tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', studentname,
                                                       self.studentdatabasename + '.txt')
                     Path.touch(tmpPath, mode=0o666, exist_ok=True)
                     self.filename = open(tmpPath, 'w')
@@ -522,62 +461,48 @@ class dataPanel(wx.Panel):
                     self.filename.write(trialmedian + ', ')
                     self.filename.write(notes + ', ')
                     self.filename.close()
-                    tmpPath = Path(USER_DIR).joinpath('StudentDatabase',
-                                                      'StudentDataFiles',
-                                                      'Filenames.txt')
+                    tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', 'Filenames.txt')
                     self.filename = open(tmpPath, 'a')
-                    tmpPath = Path(USER_DIR).joinpath('StudentDatabase',
-                                                      'StudentDataFiles',
-                                                      studentname,
+                    tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', studentname,
                                                       self.studentdatabasename + '.txt')
                     self.filename.write(f"'{tmpPath}'" + '\n')
                     self.filename.close()
-                    list_data = [studentname, dateNow, task, lesson, session,
-                                 trial01, trial02, trial03, trial04,
-                                 trial05, trial06, trial07, trial08, trial09,
-                                 trial10, trial11, trialmedian, notes]
+                    list_data = [studentname, dateNow, task, lesson, session, trial01, trial02, trial03, trial04,
+                                 trial05, trial06, trial07, trial08, trial09, trial10, trial11, trialmedian, notes]
                     os.chdir(USER_DIR)
-                    tmpPath = Path(USER_DIR).joinpath('StudentDatabase',
-                                                      'StudentDataFiles',
-                                                      studentname,
+                    tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', studentname,
                                                       'omnibusDatabase.csv')
                     with open(tmpPath, 'a', newline='') as f_setup:
                         writer_setup = writer(f_setup)
                         writer_setup.writerow(list_data)
                         f_setup.close()
-                    self.dial = wx.MessageDialog(None, 'Saved successfully!',
-                                                 'Info', wx.OK)
+                    self.dial = wx.MessageDialog(None, 'Saved successfully!', 'Info', wx.OK)
                     self.dial.ShowModal()
                 else:
-                    self.dial = wx.MessageDialog(None, 'Name already exists',
-                                                 'Info', wx.OK)
+                    self.dial = wx.MessageDialog(None, 'Name already exists', 'Info', wx.OK)
                     self.dial.ShowModal()
             else:
-                self.dial = wx.MessageDialog(None, 'Save cancelled', 'Info',
-                                             wx.OK)
+                self.dial = wx.MessageDialog(None, 'Save cancelled', 'Info', wx.OK)
                 self.dial.ShowModal()
         else:
-            self.dial = wx.MessageDialog(None, 'Fill Required Fields!', 'Info',
-                                         wx.OK)
+            self.dial = wx.MessageDialog(None, 'Fill Required Fields!', 'Info', wx.OK)
             self.dial.ShowModal()
 
         def data_entry():
             conn = sqlite3.connect(dataBasePath)
             c = conn.cursor()
             c.execute(
-                    "INSERT INTO studentdata (studentname, date, task, lesson, session, trial01, trial02, trial03, trial04, trial05, trial06, trial07, trial08, trial09, trial10, trial11, median, notes) VALUES (?,?,?,?, ?, ?, ?, ?,?, ?, ?, ?, ?,?, ?, ?, ?, ?)",
-                    (studentname, dateNow, task, lesson, session, trial01,
-                     trial02, trial03, trial04, trial05, trial06,
-                     trial07, trial08, trial09, trial10, trial11, trialmedian,
-                     notes))
+                "INSERT INTO studentdata (studentname, date, task, lesson, session, trial01, trial02, trial03, trial04, trial05, trial06, trial07, trial08, trial09, trial10, trial11, median, notes) VALUES (?,?,?,?, ?, ?, ?, ?,?, ?, ?, ?, ?,?, ?, ?, ?, ?)",
+                (studentname, dateNow, task, lesson, session, trial01, trial02, trial03, trial04, trial05, trial06,
+                 trial07, trial08, trial09, trial10, trial11, trialmedian, notes))
             conn.commit()
             c.close()
             conn.close()
 
         data_entry()
 
-    def OnChoice(self, event):
-        self.label.SetLabel(self.choice.GetString(self.choice.GetSelection()))
+    # def OnChoice(self, event):
+    #    self.label.SetLabel(self.choice.GetString(self.choice.GetSelection()))
 
 
 class braillePanel(scrolled.ScrolledPanel):
@@ -593,19 +518,15 @@ class braillePanel(scrolled.ScrolledPanel):
         # super(braillePanel, self).__init__(parent)
         wx.StaticText(self, -1, "BRAILLE SKILLS PROGRESSION", pos=(200, 20))
         wx.StaticText(self, -1, "Student Name", pos=(30, 50))
-        self.studentname1 = wx.Choice(self, -1, choices=students, pos=(650, 50),
-                                      size=(300, 20))
-        wx.StaticText(self, -1,
-                      "RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent",
-                      pos=(550, 20))
+        self.studentname1 = wx.Choice(self, -1, choices=students, pos=(650, 50), size=(300, 20))
+        wx.StaticText(self, -1, "RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent", pos=(550, 20))
         wx.StaticText(self, -1, "1.1 Track Left to Right", pos=(30, 80))
         self.trial11 = wx.TextCtrl(self, -1, "", pos=(650, 80), size=(300, 20))
         wx.StaticText(self, -1, "1.2 Track Top to Bottom", pos=(30, 110))
         self.trial12 = wx.TextCtrl(self, -1, "", pos=(650, 110), size=(300, 20))
         wx.StaticText(self, -1, "1.3 Discriminate Shapes", pos=(30, 140))
         self.trial13 = wx.TextCtrl(self, -1, "", pos=(650, 140), size=(300, 20))
-        wx.StaticText(self, -1, "1.4 Discriminate Braille Characters",
-                      pos=(30, 170))
+        wx.StaticText(self, -1, "1.4 Discriminate Braille Characters", pos=(30, 170))
         self.trial14 = wx.TextCtrl(self, -1, "", pos=(650, 170), size=(300, 20))
         wx.StaticText(self, -1, "2.1 Mangold Progression: G C L", pos=(30, 200))
         self.trial21 = wx.TextCtrl(self, -1, "", pos=(650, 200), size=(300, 20))
@@ -626,179 +547,119 @@ class braillePanel(scrolled.ScrolledPanel):
         wx.StaticText(self, -1, "2.9 Mangold Progression: M E", pos=(30, 440))
         self.trial29 = wx.TextCtrl(self, -1, "", pos=(650, 440), size=(300, 20))
         wx.StaticText(self, -1, "2.10 Mangold Progression: H", pos=(30, 470))
-        self.trial210 = wx.TextCtrl(self, -1, "", pos=(650, 470),
-                                    size=(300, 20))
+        self.trial210 = wx.TextCtrl(self, -1, "", pos=(650, 470), size=(300, 20))
         wx.StaticText(self, -1, "2.11 Mangold Progression: N X", pos=(30, 500))
-        self.trial211 = wx.TextCtrl(self, -1, "", pos=(650, 500),
-                                    size=(300, 20))
+        self.trial211 = wx.TextCtrl(self, -1, "", pos=(650, 500), size=(300, 20))
         wx.StaticText(self, -1, "2.12 Mangold Progression: Z F", pos=(30, 530))
-        self.trial212 = wx.TextCtrl(self, -1, "", pos=(650, 530),
-                                    size=(300, 20))
+        self.trial212 = wx.TextCtrl(self, -1, "", pos=(650, 530), size=(300, 20))
         wx.StaticText(self, -1, "2.13 Mangold Progression: U T", pos=(30, 560))
-        self.trial213 = wx.TextCtrl(self, -1, "", pos=(650, 560),
-                                    size=(300, 20))
+        self.trial213 = wx.TextCtrl(self, -1, "", pos=(650, 560), size=(300, 20))
         wx.StaticText(self, -1, "2.14 Mangold Progression: Q I", pos=(30, 590))
-        self.trial214 = wx.TextCtrl(self, -1, "", pos=(650, 590),
-                                    size=(300, 20))
+        self.trial214 = wx.TextCtrl(self, -1, "", pos=(650, 590), size=(300, 20))
         wx.StaticText(self, -1, "2.15 Mangold Progression: V J", pos=(30, 620))
-        self.trial215 = wx.TextCtrl(self, -1, "", pos=(650, 620),
-                                    size=(300, 20))
+        self.trial215 = wx.TextCtrl(self, -1, "", pos=(650, 620), size=(300, 20))
         wx.StaticText(self, -1, "3.1 Alphabetic Wordsigns", pos=(30, 650))
         self.trial31 = wx.TextCtrl(self, -1, "", pos=(650, 650), size=(300, 20))
         wx.StaticText(self, -1, "3.2 Braille Numbers", pos=(30, 680))
         self.trial32 = wx.TextCtrl(self, -1, "", pos=(650, 680), size=(300, 20))
         wx.StaticText(self, -1, "3.3 Punctuation", pos=(30, 710))
         self.trial33 = wx.TextCtrl(self, -1, "", pos=(650, 710), size=(300, 20))
-        wx.StaticText(self, -1, "3.4 Strong Contractions - AND OF FOR WITH THE",
-                      pos=(30, 740))
+        wx.StaticText(self, -1, "3.4 Strong Contractions - AND OF FOR WITH THE", pos=(30, 740))
         self.trial34 = wx.TextCtrl(self, -1, "", pos=(650, 740), size=(300, 20))
-        wx.StaticText(self, -1,
-                      "3.5 Strong Groupsigns - CH GH SH TH WH ED ER OU OW ST AR ING",
-                      pos=(30, 770))
+        wx.StaticText(self, -1, "3.5 Strong Groupsigns - CH GH SH TH WH ED ER OU OW ST AR ING", pos=(30, 770))
         self.trial35 = wx.TextCtrl(self, -1, "", pos=(650, 770), size=(300, 20))
-        wx.StaticText(self, -1, "3.6 Strong Wordsigns - CH SH TH WH OU ST",
-                      pos=(30, 800))
+        wx.StaticText(self, -1, "3.6 Strong Wordsigns - CH SH TH WH OU ST", pos=(30, 800))
         self.trial36 = wx.TextCtrl(self, -1, "", pos=(650, 800), size=(300, 20))
-        wx.StaticText(self, -1, "3.7 Lower Groupsigns - BE CON DIS",
-                      pos=(30, 830))
+        wx.StaticText(self, -1, "3.7 Lower Groupsigns - BE CON DIS", pos=(30, 830))
         self.trial37 = wx.TextCtrl(self, -1, "", pos=(650, 830), size=(300, 20))
-        wx.StaticText(self, -1, "3.8 Lower Groupsigns - EA BB CC FF GG",
-                      pos=(30, 860))
+        wx.StaticText(self, -1, "3.8 Lower Groupsigns - EA BB CC FF GG", pos=(30, 860))
         self.trial38 = wx.TextCtrl(self, -1, "", pos=(650, 860), size=(300, 20))
-        wx.StaticText(self, -1, "3.9 Lower Group/Wordsigns - EN IN",
-                      pos=(30, 890))
+        wx.StaticText(self, -1, "3.9 Lower Group/Wordsigns - EN IN", pos=(30, 890))
         self.trial39 = wx.TextCtrl(self, -1, "", pos=(650, 890), size=(300, 20))
-        wx.StaticText(self, -1, "3.10 Lower Wordsigns - BE HIS WAS WERE",
-                      pos=(30, 920))
-        self.trial310 = wx.TextCtrl(self, -1, "", pos=(650, 920),
-                                    size=(300, 20))
+        wx.StaticText(self, -1, "3.10 Lower Wordsigns - BE HIS WAS WERE", pos=(30, 920))
+        self.trial310 = wx.TextCtrl(self, -1, "", pos=(650, 920), size=(300, 20))
         wx.StaticText(self, -1, "3.11 Dot 5 Contractions", pos=(30, 950))
-        self.trial311 = wx.TextCtrl(self, -1, "", pos=(650, 950),
-                                    size=(300, 20))
+        self.trial311 = wx.TextCtrl(self, -1, "", pos=(650, 950), size=(300, 20))
         wx.StaticText(self, -1, "3.12 Dot 45 Contractions", pos=(30, 980))
-        self.trial312 = wx.TextCtrl(self, -1, "", pos=(650, 980),
-                                    size=(300, 20))
+        self.trial312 = wx.TextCtrl(self, -1, "", pos=(650, 980), size=(300, 20))
         wx.StaticText(self, -1, "3.13 Dot 456 Contractions", pos=(30, 1010))
-        self.trial313 = wx.TextCtrl(self, -1, "", pos=(650, 1010),
-                                    size=(300, 20))
+        self.trial313 = wx.TextCtrl(self, -1, "", pos=(650, 1010), size=(300, 20))
         wx.StaticText(self, -1, "3.14 Final Letter Groupsigns", pos=(30, 1040))
-        self.trial314 = wx.TextCtrl(self, -1, "", pos=(650, 1040),
-                                    size=(300, 20))
+        self.trial314 = wx.TextCtrl(self, -1, "", pos=(650, 1040), size=(300, 20))
         wx.StaticText(self, -1, "3.15 Shortform Words", pos=(30, 1070))
-        self.trial315 = wx.TextCtrl(self, -1, "", pos=(650, 1070),
-                                    size=(300, 20))
+        self.trial315 = wx.TextCtrl(self, -1, "", pos=(650, 1070), size=(300, 20))
         wx.StaticText(self, -1, "4.1 Grade 1 Indicators", pos=(30, 1100))
-        self.trial41 = wx.TextCtrl(self, -1, "", pos=(650, 1100),
-                                   size=(300, 20))
+        self.trial41 = wx.TextCtrl(self, -1, "", pos=(650, 1100), size=(300, 20))
         wx.StaticText(self, -1, "4.2 Capitals Indicators", pos=(30, 1130))
-        self.trial42 = wx.TextCtrl(self, -1, "", pos=(650, 1130),
-                                   size=(300, 20))
-        wx.StaticText(self, -1, "4.3 Numeric Mode and Spatial Math",
-                      pos=(30, 1160))
-        self.trial43 = wx.TextCtrl(self, -1, "", pos=(650, 1160),
-                                   size=(300, 20))
-        wx.StaticText(self, -1,
-                      "4.4 Typeform Indicators - ITALIC, SCRIPT, UNDERLINE, SCRIPT",
-                      pos=(30, 1190))
-        self.trial44 = wx.TextCtrl(self, -1, "", pos=(650, 1190),
-                                   size=(300, 20))
+        self.trial42 = wx.TextCtrl(self, -1, "", pos=(650, 1130), size=(300, 20))
+        wx.StaticText(self, -1, "4.3 Numeric Mode and Spatial Math", pos=(30, 1160))
+        self.trial43 = wx.TextCtrl(self, -1, "", pos=(650, 1160), size=(300, 20))
+        wx.StaticText(self, -1, "4.4 Typeform Indicators - ITALIC, SCRIPT, UNDERLINE, SCRIPT", pos=(30, 1190))
+        self.trial44 = wx.TextCtrl(self, -1, "", pos=(650, 1190), size=(300, 20))
         wx.StaticText(self, -1, "5.1 Page Numbering", pos=(30, 1220))
-        self.trial51 = wx.TextCtrl(self, -1, "", pos=(650, 1220),
-                                   size=(300, 20))
+        self.trial51 = wx.TextCtrl(self, -1, "", pos=(650, 1220), size=(300, 20))
         wx.StaticText(self, -1, "5.2 Headings", pos=(30, 1250))
-        self.trial52 = wx.TextCtrl(self, -1, "", pos=(650, 1250),
-                                   size=(300, 20))
+        self.trial52 = wx.TextCtrl(self, -1, "", pos=(650, 1250), size=(300, 20))
         wx.StaticText(self, -1, "5.3 Lists", pos=(30, 1280))
-        self.trial53 = wx.TextCtrl(self, -1, "", pos=(650, 1280),
-                                   size=(300, 20))
+        self.trial53 = wx.TextCtrl(self, -1, "", pos=(650, 1280), size=(300, 20))
         wx.StaticText(self, -1, "5.4 Poetry / Drama", pos=(30, 1310))
-        self.trial54 = wx.TextCtrl(self, -1, "", pos=(650, 1310),
-                                   size=(300, 20))
-        wx.StaticText(self, -1, "6.1 Operation and Comparison Signs",
-                      pos=(30, 1340))
-        self.trial61 = wx.TextCtrl(self, -1, "", pos=(650, 1340),
-                                   size=(300, 20))
+        self.trial54 = wx.TextCtrl(self, -1, "", pos=(650, 1310), size=(300, 20))
+        wx.StaticText(self, -1, "6.1 Operation and Comparison Signs", pos=(30, 1340))
+        self.trial61 = wx.TextCtrl(self, -1, "", pos=(650, 1340), size=(300, 20))
         wx.StaticText(self, -1, "6.2 Grade 1 Mode", pos=(30, 1370))
-        self.trial62 = wx.TextCtrl(self, -1, "", pos=(650, 1370),
-                                   size=(300, 20))
+        self.trial62 = wx.TextCtrl(self, -1, "", pos=(650, 1370), size=(300, 20))
         wx.StaticText(self, -1, "6.3 Special Print Symbols", pos=(30, 1400))
-        self.trial63 = wx.TextCtrl(self, -1, "", pos=(650, 1400),
-                                   size=(300, 20))
+        self.trial63 = wx.TextCtrl(self, -1, "", pos=(650, 1400), size=(300, 20))
         wx.StaticText(self, -1, "6.4 Omission Marks", pos=(30, 1430))
-        self.trial64 = wx.TextCtrl(self, -1, "", pos=(650, 1430),
-                                   size=(300, 20))
+        self.trial64 = wx.TextCtrl(self, -1, "", pos=(650, 1430), size=(300, 20))
         wx.StaticText(self, -1, "6.5 Shape Indicators", pos=(30, 1460))
-        self.trial65 = wx.TextCtrl(self, -1, "", pos=(650, 1460),
-                                   size=(300, 20))
+        self.trial65 = wx.TextCtrl(self, -1, "", pos=(650, 1460), size=(300, 20))
         wx.StaticText(self, -1, "6.6 Roman Numerals", pos=(30, 1490))
-        self.trial66 = wx.TextCtrl(self, -1, "", pos=(650, 1490),
-                                   size=(300, 20))
+        self.trial66 = wx.TextCtrl(self, -1, "", pos=(650, 1490), size=(300, 20))
         wx.StaticText(self, -1, "6.7 Fractions", pos=(30, 1520))
-        self.trial67 = wx.TextCtrl(self, -1, "", pos=(650, 1520),
-                                   size=(300, 20))
+        self.trial67 = wx.TextCtrl(self, -1, "", pos=(650, 1520), size=(300, 20))
         wx.StaticText(self, -1, "7.1 Grade 1 Mode and algebra", pos=(30, 1550))
-        self.trial71 = wx.TextCtrl(self, -1, "", pos=(650, 1550),
-                                   size=(300, 20))
-        wx.StaticText(self, -1, "7.2 Grade 1 Mode and Fractions",
-                      pos=(30, 1580))
-        self.trial72 = wx.TextCtrl(self, -1, "", pos=(650, 1580),
-                                   size=(300, 20))
-        wx.StaticText(self, -1, "7.3 Advanced Operation and Comparison Signs",
-                      pos=(30, 1610))
-        self.trial73 = wx.TextCtrl(self, -1, "", pos=(650, 1610),
-                                   size=(300, 20))
+        self.trial71 = wx.TextCtrl(self, -1, "", pos=(650, 1550), size=(300, 20))
+        wx.StaticText(self, -1, "7.2 Grade 1 Mode and Fractions", pos=(30, 1580))
+        self.trial72 = wx.TextCtrl(self, -1, "", pos=(650, 1580), size=(300, 20))
+        wx.StaticText(self, -1, "7.3 Advanced Operation and Comparison Signs", pos=(30, 1610))
+        self.trial73 = wx.TextCtrl(self, -1, "", pos=(650, 1610), size=(300, 20))
         wx.StaticText(self, -1, "7.4 Indices", pos=(30, 1640))
-        self.trial74 = wx.TextCtrl(self, -1, "", pos=(650, 1640),
-                                   size=(300, 20))
+        self.trial74 = wx.TextCtrl(self, -1, "", pos=(650, 1640), size=(300, 20))
         wx.StaticText(self, -1, "7.5 Roots and Radicals", pos=(30, 1670))
-        self.trial75 = wx.TextCtrl(self, -1, "", pos=(650, 1670),
-                                   size=(300, 20))
-        wx.StaticText(self, -1, "7.6 Miscellaneous Shape Indicators",
-                      pos=(30, 1700))
-        self.trial76 = wx.TextCtrl(self, -1, "", pos=(650, 1700),
-                                   size=(300, 20))
+        self.trial75 = wx.TextCtrl(self, -1, "", pos=(650, 1670), size=(300, 20))
+        wx.StaticText(self, -1, "7.6 Miscellaneous Shape Indicators", pos=(30, 1700))
+        self.trial76 = wx.TextCtrl(self, -1, "", pos=(650, 1700), size=(300, 20))
         wx.StaticText(self, -1, "7.7 Functions", pos=(30, 1730))
-        self.trial77 = wx.TextCtrl(self, -1, "", pos=(650, 1730),
-                                   size=(300, 20))
+        self.trial77 = wx.TextCtrl(self, -1, "", pos=(650, 1730), size=(300, 20))
         wx.StaticText(self, -1, "7.8 Greek Letters", pos=(30, 1760))
-        self.trial78 = wx.TextCtrl(self, -1, "", pos=(650, 1760),
-                                   size=(300, 20))
+        self.trial78 = wx.TextCtrl(self, -1, "", pos=(650, 1760), size=(300, 20))
         wx.StaticText(self, -1, "8.1 Functions", pos=(30, 1790))
-        self.trial81 = wx.TextCtrl(self, -1, "", pos=(650, 1790),
-                                   size=(300, 20))
+        self.trial81 = wx.TextCtrl(self, -1, "", pos=(650, 1790), size=(300, 20))
         wx.StaticText(self, -1, "8.2 Modifiers, Bars, and Dots", pos=(30, 1820))
-        self.trial82 = wx.TextCtrl(self, -1, "", pos=(650, 1820),
-                                   size=(300, 20))
-        wx.StaticText(self, -1, "8.3 Modifiers, Arrows, and Limits",
-                      pos=(30, 1850))
-        self.trial83 = wx.TextCtrl(self, -1, "", pos=(650, 1850),
-                                   size=(300, 20))
+        self.trial82 = wx.TextCtrl(self, -1, "", pos=(650, 1820), size=(300, 20))
+        wx.StaticText(self, -1, "8.3 Modifiers, Arrows, and Limits", pos=(30, 1850))
+        self.trial83 = wx.TextCtrl(self, -1, "", pos=(650, 1850), size=(300, 20))
         wx.StaticText(self, -1, "8.4 Probability", pos=(30, 1880))
-        self.trial84 = wx.TextCtrl(self, -1, "", pos=(650, 1880),
-                                   size=(300, 20))
+        self.trial84 = wx.TextCtrl(self, -1, "", pos=(650, 1880), size=(300, 20))
         wx.StaticText(self, -1, "8.5 Calculus: Differentiation", pos=(30, 1910))
-        self.trial85 = wx.TextCtrl(self, -1, "", pos=(650, 1910),
-                                   size=(300, 20))
+        self.trial85 = wx.TextCtrl(self, -1, "", pos=(650, 1910), size=(300, 20))
         wx.StaticText(self, -1, "8.6 Calculus: Integration", pos=(30, 1940))
-        self.trial86 = wx.TextCtrl(self, -1, "", pos=(650, 1940),
-                                   size=(300, 20))
+        self.trial86 = wx.TextCtrl(self, -1, "", pos=(650, 1940), size=(300, 20))
         wx.StaticText(self, -1, "8.7 Vertical Bars", pos=(30, 1970))
-        self.trial87 = wx.TextCtrl(self, -1, "", pos=(650, 1970),
-                                   size=(300, 20))
+        self.trial87 = wx.TextCtrl(self, -1, "", pos=(650, 1970), size=(300, 20))
         self.btn = wx.Button(self, 201, "SAVE", pos=(450, 2000), size=(70, 30))
         self.Bind(wx.EVT_BUTTON, self.save, id=201)
         self.btn1 = wx.Button(self, 202, "EXIT", pos=(550, 2000), size=(70, 30))
         self.Bind(wx.EVT_BUTTON, self.exit, id=202)
-        self.btn = wx.Button(self, 203, "PRINT GRAPHS", pos=(450, 2040),
-                             size=(170, 30))
+        self.btn = wx.Button(self, 203, "PRINT GRAPHS", pos=(450, 2040), size=(170, 30))
         self.Bind(wx.EVT_BUTTON, self.graph, id=203)
 
     def exit(self, event):
         wx.Exit()
 
     def save(self, event):
-        studentname = self.studentname1.GetString(
-                self.studentname1.GetSelection())
+        studentname = self.studentname1.GetString(self.studentname1.GetSelection())
         dateNow = datetime.datetime.now().strftime("%Y_%m_%d-%H%M%S")
         simpleDate = datetime.datetime.now().strftime("%Y_%m_%d-%H%M")
         trial11 = self.trial11.GetValue()
@@ -865,17 +726,13 @@ class braillePanel(scrolled.ScrolledPanel):
         trial85 = self.trial85.GetValue()
         trial86 = self.trial86.GetValue()
         trial87 = self.trial87.GetValue()
-        box = wx.TextEntryDialog(None, "Enter Address-Book name to save!",
-                                 "Title",
+        box = wx.TextEntryDialog(None, "Enter Address-Book name to save!", "Title",
                                  f"braille{studentname.title()}{dateNow}")
         if box.ShowModal() == wx.ID_OK:
             self.studentdatabasename = box.GetValue()
-            if not Path(USER_DIR).joinpath('StudentDatabase',
-                                           'StudentDataFiles', studentname,
+            if not Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', studentname,
                                            self.studentdatabasename + '.txt').exists():
-                tmpPath = Path(USER_DIR).joinpath('StudentDatabase',
-                                                  'StudentDataFiles',
-                                                  studentname,
+                tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', studentname,
                                                   self.studentdatabasename + '.txt')
                 Path.touch(tmpPath)
                 self.filename = open(tmpPath, 'w')
@@ -1075,46 +932,31 @@ class braillePanel(scrolled.ScrolledPanel):
                 self.filename.write(trial86 + ', ')
                 self.filename.write(trial87 + ', ')
                 self.filename.close()
-                tmpPath = Path(USER_DIR).joinpath('StudentDatabase',
-                                                  'StudentDataFiles',
-                                                  'Filenames.txt')
+                tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', 'Filenames.txt')
                 self.filename = open(tmpPath, 'a')
-                tmpPath = Path(USER_DIR).joinpath('StudentDatabase',
-                                                  'StudentDataFiles',
-                                                  studentname,
+                tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', studentname,
                                                   self.studentdatabasename + '.txt')
                 self.filename.write(f"'{tmpPath}'" + '\n')
                 self.filename.close()
                 os.chdir(USER_DIR)
-                tmpPath = Path(USER_DIR).joinpath('StudentDatabase',
-                                                  'StudentDataFiles',
-                                                  studentname,
+                tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', studentname,
                                                   'BrailleSkillsProgression.csv')
                 with open(tmpPath, 'a', newline='') as f_setup:
-                    list_data = [dateNow, trial11, trial12, trial13, trial14,
-                                 trial21, trial22, trial23, trial24,
-                                 trial25, trial26, trial27, trial28, trial29,
-                                 trial210, trial211, trial212, trial213,
-                                 trial214, trial215, trial31, trial32, trial33,
-                                 trial34, trial35, trial36, trial37,
-                                 trial38, trial39, trial310, trial311, trial312,
-                                 trial313, trial314, trial315, trial41,
-                                 trial42, trial43, trial44, trial51, trial52,
-                                 trial53, trial54, trial61, trial62,
-                                 trial63, trial64, trial65, trial66, trial67,
-                                 trial71, trial72, trial73, trial74,
-                                 trial75, trial76, trial77, trial78, trial81,
-                                 trial82, trial83, trial84, trial85,
+                    list_data = [dateNow, trial11, trial12, trial13, trial14, trial21, trial22, trial23, trial24,
+                                 trial25, trial26, trial27, trial28, trial29, trial210, trial211, trial212, trial213,
+                                 trial214, trial215, trial31, trial32, trial33, trial34, trial35, trial36, trial37,
+                                 trial38, trial39, trial310, trial311, trial312, trial313, trial314, trial315, trial41,
+                                 trial42, trial43, trial44, trial51, trial52, trial53, trial54, trial61, trial62,
+                                 trial63, trial64, trial65, trial66, trial67, trial71, trial72, trial73, trial74,
+                                 trial75, trial76, trial77, trial78, trial81, trial82, trial83, trial84, trial85,
                                  trial86, trial87]
                     writer_setup = writer(f_setup)
                     writer_setup.writerow(list_data)
                     f_setup.close()
-                self.dial = wx.MessageDialog(None, 'Saved successfully!',
-                                             'Info', wx.OK)
+                self.dial = wx.MessageDialog(None, 'Saved successfully!', 'Info', wx.OK)
                 self.dial.ShowModal()
             else:
-                self.dial = wx.MessageDialog(None, 'Name already exists',
-                                             'Info', wx.OK)
+                self.dial = wx.MessageDialog(None, 'Name already exists', 'Info', wx.OK)
                 self.dial.ShowModal()
         else:
             self.dial = wx.MessageDialog(None, 'Save cancelled', 'Info', wx.OK)
@@ -1124,478 +966,242 @@ class braillePanel(scrolled.ScrolledPanel):
             conn = sqlite3.connect(dataBasePath)
             c = conn.cursor()
             c.execute(
-                    "INSERT INTO brailleProgress (studentname, date, P1_1 ,P1_2 ,P1_3 ,P1_4 ,P2_1 ,P2_2 ,P2_3 ,P2_4 ,P2_5 ,P2_6 ,P2_7 ,P2_8 ,P2_9 ,P2_10 ,P2_11 ,P2_12 ,P2_13 ,P2_14 ,P2_15 ,P3_1 ,P3_2 ,P3_3 ,P3_4 ,P3_5 ,P3_6 ,P3_7 ,P3_8 ,P3_9 ,P3_10 ,P3_11 ,P3_12 ,P3_13 ,P3_14 ,P3_15 ,P4_1 ,P4_2 ,P4_3 ,P4_4 ,P5_1 ,P5_2 ,P5_3 ,P5_4 ,P6_1 ,P6_2 ,P6_3 ,P6_4 ,P6_5 ,P6_6 ,P6_7 ,P7_1 ,P7_2 ,P7_3 ,P7_4 ,P7_5 ,P7_6 ,P7_7 ,P7_8 ,P8_1 ,P8_2 ,P8_3 ,P8_4 ,P8_5 ,P8_6 ,P8_7 ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                    (studentname, dateNow, trial11, trial12, trial13, trial14,
-                     trial21, trial22, trial23, trial24, trial25,
-                     trial26, trial27, trial28, trial29, trial210, trial211,
-                     trial212, trial213, trial214, trial215,
-                     trial31, trial32, trial33, trial34, trial35, trial36,
-                     trial37, trial38, trial39, trial310, trial311,
-                     trial312, trial313, trial314, trial315, trial41, trial42,
-                     trial43, trial44, trial51, trial52, trial53,
-                     trial54, trial61, trial62, trial63, trial64, trial65,
-                     trial66, trial67, trial71, trial72, trial73,
-                     trial74, trial75, trial76, trial77, trial78, trial81,
-                     trial82, trial83, trial84, trial85, trial86,
-                     trial87))
+                "INSERT INTO brailleProgress (studentname, date, P1_1 ,P1_2 ,P1_3 ,P1_4 ,P2_1 ,P2_2 ,P2_3 ,P2_4 ,P2_5 ,P2_6 ,P2_7 ,P2_8 ,P2_9 ,P2_10 ,P2_11 ,P2_12 ,P2_13 ,P2_14 ,P2_15 ,P3_1 ,P3_2 ,P3_3 ,P3_4 ,P3_5 ,P3_6 ,P3_7 ,P3_8 ,P3_9 ,P3_10 ,P3_11 ,P3_12 ,P3_13 ,P3_14 ,P3_15 ,P4_1 ,P4_2 ,P4_3 ,P4_4 ,P5_1 ,P5_2 ,P5_3 ,P5_4 ,P6_1 ,P6_2 ,P6_3 ,P6_4 ,P6_5 ,P6_6 ,P6_7 ,P7_1 ,P7_2 ,P7_3 ,P7_4 ,P7_5 ,P7_6 ,P7_7 ,P7_8 ,P8_1 ,P8_2 ,P8_3 ,P8_4 ,P8_5 ,P8_6 ,P8_7 ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                (studentname, dateNow, trial11, trial12, trial13, trial14, trial21, trial22, trial23, trial24, trial25,
+                 trial26, trial27, trial28, trial29, trial210, trial211, trial212, trial213, trial214, trial215,
+                 trial31, trial32, trial33, trial34, trial35, trial36, trial37, trial38, trial39, trial310, trial311,
+                 trial312, trial313, trial314, trial315, trial41, trial42, trial43, trial44, trial51, trial52, trial53,
+                 trial54, trial61, trial62, trial63, trial64, trial65, trial66, trial67, trial71, trial72, trial73,
+                 trial74, trial75, trial76, trial77, trial78, trial81, trial82, trial83, trial84, trial85, trial86,
+                 trial87))
             conn.commit()
             data_entry()
-            list_names = ['date', 'P1_1', 'P1_2', 'P1_3', 'P1_4', 'P2_1',
-                          'P2_2', 'P2_3', 'P2_4', 'P2_5', 'P2_6',
-                          'P2_7', 'P2_8', 'P2_9', 'P2_10', 'P2_11', 'P2_12',
-                          'P2_13', 'P2_14', 'P2_15', 'P3_1', 'P3_2',
-                          'P3_3', 'P3_4', 'P3_5', 'P3_6', 'P3_7', 'P3_8',
-                          'P3_9', 'P3_10', 'P3_11', 'P3_12', 'P3_13',
-                          'P3_14', 'P3_15', 'P4_1', 'P4_2', 'P4_3', 'P4_4',
-                          'P5_1', 'P5_2', 'P5_3', 'P5_4', 'P6_1',
-                          'P6_2', 'P6_3', 'P6_4', 'P6_5', 'P6_6', 'P6_7',
-                          'P7_1', 'P7_2', 'P7_3', 'P7_4', 'P7_5',
-                          'P7_6', 'P7_7', 'P7_8', 'P8_1', 'P8_2', 'P8_3',
-                          'P8_4', 'P8_5', 'P8_6', 'P8_7']
+            list_names = ['date', 'P1_1', 'P1_2', 'P1_3', 'P1_4', 'P2_1', 'P2_2', 'P2_3', 'P2_4', 'P2_5', 'P2_6',
+                          'P2_7', 'P2_8', 'P2_9', 'P2_10', 'P2_11', 'P2_12', 'P2_13', 'P2_14', 'P2_15', 'P3_1', 'P3_2',
+                          'P3_3', 'P3_4', 'P3_5', 'P3_6', 'P3_7', 'P3_8', 'P3_9', 'P3_10', 'P3_11', 'P3_12', 'P3_13',
+                          'P3_14', 'P3_15', 'P4_1', 'P4_2', 'P4_3', 'P4_4', 'P5_1', 'P5_2', 'P5_3', 'P5_4', 'P6_1',
+                          'P6_2', 'P6_3', 'P6_4', 'P6_5', 'P6_6', 'P6_7', 'P7_1', 'P7_2', 'P7_3', 'P7_4', 'P7_5',
+                          'P7_6', 'P7_7', 'P7_8', 'P8_1', 'P8_2', 'P8_3', 'P8_4', 'P8_5', 'P8_6', 'P8_7']
 
     def graph(self, event):
-        studentname = self.studentname1.GetString(
-                self.studentname1.GetSelection())
-        tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles',
-                                          studentname,
+        studentname = self.studentname1.GetString(self.studentname1.GetSelection())
+        tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', studentname,
                                           'BrailleSkillsProgression.csv')
         df = pd.read_csv(tmpPath, sep=', ', index_col=[0], parse_dates=[0])
         df = df.sort_values(by="date")
         mu, sigma = 0, 0.1
         noise = np.random.normal(mu, sigma, [len(df.index), len(df.columns)])
         df_noisy = df + noise
-        fig = make_subplots(
-                rows=7, cols=2, specs=[[{}, {"rowspan": 2}], [{}, None],
-                                       [{"rowspan": 2}, {"rowspan": 2}],
-                                       [None, None],
-                                       [{"rowspan": 2}, {"rowspan": 2}],
-                                       [None, None], [{}, {}]], subplot_titles=(
-                        "Phase 1: Tracking Skills", "Phase 2: Braille Alphabet",
-                        "Phase 1: Tracking Skills",
-                        "Phase 3a: Wordsigns, Numbers, Punctuation",
-                        "Phase 3b: Strong Contractions",
-                        "Phase 3c: Lower Cell Contractions",
-                        "Phase 3d: Multiple Cell Contractions",
-                        "Phase 4a: Braille Mode Indicators",
-                        "Phase 5: Document Formatting"), print_grid=True)
+        fig = make_subplots(rows=7, cols=2,
+                            specs=[[{}, {"rowspan": 2}], [{}, None], [{"rowspan": 2}, {"rowspan": 2}], [None, None],
+                                   [{"rowspan": 2}, {"rowspan": 2}], [None, None], [{}, {}]], subplot_titles=(
+            "Phase 1: Tracking Skills", "Phase 2: Braille Alphabet", "Phase 1: Tracking Skills",
+            "Phase 3a: Wordsigns, Numbers, Punctuation", "Phase 3b: Strong Contractions",
+            "Phase 3c: Lower Cell Contractions", "Phase 3d: Multiple Cell Contractions",
+            "Phase 4a: Braille Mode Indicators", "Phase 5: Document Formatting"), print_grid=True)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P1_1'],
-                           mode="lines+markers", name="Track left to right",
-                           legendgroup="Phase 1",
-                           legendgrouptitle_text="Phase 1"), row=1, col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P1_1'], mode="lines+markers", name="Track left to right",
+                       legendgroup="Phase 1", legendgrouptitle_text="Phase 1"), row=1, col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P1_2'],
-                           mode="lines+markers", name="Track top to bottom",
-                           legendgroup="Phase 1",
-                           legendgrouptitle_text="Phase 1"), row=1, col=1)
-        fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]],
-                           y=df_noisy['P1_3'].iloc[[-1]], mode="lines+markers",
-                           name="Discriminate shapes", legendgroup="Phase 1",
-                           legendgrouptitle_text="Phase 1"), row=2,
-                col=1)
-        fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P1_4'],
-                           mode="lines+markers",
-                           name="Discriminate braille characters",
-                           legendgroup="Phase 1",
-                           legendgrouptitle_text="Phase 1"),
-                row=2, col=1)
-        fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_1'],
-                           mode="lines+markers+text", name="Alphabet",
-                           legendgroup="Phase 2",
-                           legendgrouptitle_text="Phase 2", showlegend=True),
-                row=1, col=2)
-        fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]],
-                           y=df_noisy['P2_1'].iloc[[-1]], mode="text",
-                           text=[" G C L"],
-                           textposition="middle right", legendgroup="Phase 2",
-                           legendgrouptitle_text="Phase 2",
-                           showlegend=False), row=1, col=2)
-        fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_2'],
-                           mode="lines+markers+text", name="D Y",
-                           legendgroup="Phase 2",
-                           legendgrouptitle_text="Phase 2", showlegend=False),
-                row=1, col=2)
-        fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]],
-                           y=df_noisy['P2_2'].iloc[[-1]], mode="text",
-                           text=[" D Y"],
-                           textposition="middle right", legendgroup="Phase 2",
-                           legendgrouptitle_text="Phase 2",
-                           showlegend=False), row=1, col=2)
-        fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_3'],
-                           mode="lines+markers+text", name="A B",
-                           legendgroup="Phase 2",
-                           legendgrouptitle_text="Phase 2", showlegend=False),
-                row=1, col=2)
-        fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]],
-                           y=df_noisy['P2_3'].iloc[[-1]], mode="text",
-                           text=[" A B"],
-                           textposition="middle right", legendgroup="Phase 2",
-                           legendgrouptitle_text="Phase 2",
-                           showlegend=False), row=1, col=2)
-        fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_4'],
-                           mode="lines+markers+text", name="S",
-                           legendgroup="Phase 2",
-                           legendgrouptitle_text="Phase 2", showlegend=False),
-                row=1, col=2)
-        fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]],
-                           y=df_noisy['P2_4'].iloc[[-1]], mode="text",
-                           text=[" S"],
-                           textposition="middle right", legendgroup="Phase 2",
-                           legendgrouptitle_text="Phase 2",
-                           showlegend=False), row=1, col=2)
-        fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_5'],
-                           mode="lines+markers+text", name="W",
-                           legendgroup="Phase 2",
-                           legendgrouptitle_text="Phase 2", showlegend=False),
-                row=1, col=2)
-        fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]],
-                           y=df_noisy['P2_5'].iloc[[-1]], mode="text",
-                           text=[" W"],
-                           textposition="middle right", legendgroup="Phase 2",
-                           legendgrouptitle_text="Phase 2",
-                           showlegend=False), row=1, col=2)
-        fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_6'],
-                           mode="lines+markers+text", name="P O",
-                           legendgroup="Phase 2",
-                           legendgrouptitle_text="Phase 2", showlegend=False),
-                row=1, col=2)
-        fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]],
-                           y=df_noisy['P2_6'].iloc[[-1]], mode="text",
-                           text=[" P O"],
-                           textposition="middle right", legendgroup="Phase 2",
-                           legendgrouptitle_text="Phase 2",
-                           showlegend=False), row=1, col=2)
-        fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_7'],
-                           mode="lines+markers+text", name="K",
-                           legendgroup="Phase 2",
-                           legendgrouptitle_text="Phase 2", showlegend=False),
-                row=1, col=2)
-        fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]],
-                           y=df_noisy['P2_7'].iloc[[-1]], mode="text",
-                           text=[" K"],
-                           textposition="middle right", legendgroup="Phase 2",
-                           legendgrouptitle_text="Phase 2",
-                           showlegend=False), row=1, col=2)
-        fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_8'],
-                           mode="lines+markers+text", name="R",
-                           legendgroup="Phase 2",
-                           legendgrouptitle_text="Phase 2", showlegend=False),
-                row=1, col=2)
-        fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]],
-                           y=df_noisy['P2_8'].iloc[[-1]], mode="text",
-                           text=[" R"],
-                           textposition="middle right", legendgroup="Phase 2",
-                           legendgrouptitle_text="Phase 2",
-                           showlegend=False), row=1, col=2)
-        fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_9'],
-                           mode="lines+markers+text", name="M E",
-                           legendgroup="Phase 2",
-                           legendgrouptitle_text="Phase 2", showlegend=False),
-                row=1, col=2)
-        fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]],
-                           y=df_noisy['P2_9'].iloc[[-1]], mode="text",
-                           text=[" M E"],
-                           textposition="middle right", legendgroup="Phase 2",
-                           legendgrouptitle_text="Phase 2",
-                           showlegend=False), row=1, col=2)
-        fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_10'],
-                           mode="lines+markers+text", name="H",
-                           legendgroup="Phase 2",
-                           legendgrouptitle_text="Phase 2", showlegend=False),
-                row=1, col=2)
-        fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]],
-                           y=df_noisy['P2_10'].iloc[[-1]], mode="text",
-                           text=[" H"],
-                           textposition="middle right", legendgroup="Phase 2",
-                           legendgrouptitle_text="Phase 2",
-                           showlegend=False), row=1, col=2)
-        fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_11'],
-                           mode="lines+markers+text", name="N X",
-                           legendgroup="Phase 2",
-                           legendgrouptitle_text="Phase 2", showlegend=False),
-                row=1, col=2)
-        fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]],
-                           y=df_noisy['P2_11'].iloc[[-1]], mode="text",
-                           text=[" N X"],
-                           textposition="middle right", legendgroup="Phase 2",
-                           legendgrouptitle_text="Phase 2",
-                           showlegend=False), row=1, col=2)
-        fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_12'],
-                           mode="lines+markers+text", name="Z F",
-                           legendgroup="Phase 2",
-                           legendgrouptitle_text="Phase 2", showlegend=False),
-                row=1, col=2)
-        fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]],
-                           y=df_noisy['P2_12'].iloc[[-1]], mode="text",
-                           text=[" Z F"],
-                           textposition="middle right", legendgroup="Phase 2",
-                           legendgrouptitle_text="Phase 2",
-                           showlegend=False), row=1, col=2)
-        fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_13'],
-                           mode="lines+markers+text", name="U T",
-                           legendgroup="Phase 2",
-                           legendgrouptitle_text="Phase 2", showlegend=False),
-                row=1, col=2)
-        fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]],
-                           y=df_noisy['P2_13'].iloc[[-1]], mode="text",
-                           text=[" U T"],
-                           textposition="middle right", legendgroup="Phase 2",
-                           legendgrouptitle_text="Phase 2",
-                           showlegend=False), row=1, col=2)
-        fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_14'],
-                           mode="lines+markers+text", name="Q I",
-                           legendgroup="Phase 2",
-                           legendgrouptitle_text="Phase 2", showlegend=False),
-                row=1, col=2)
-        fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]],
-                           y=df_noisy['P2_14'].iloc[[-1]], mode="text",
-                           text=[" Q I"],
-                           textposition="middle right", legendgroup="Phase 2",
-                           legendgrouptitle_text="Phase 2",
-                           showlegend=False), row=1, col=2)
-        fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_15'],
-                           mode="lines+markers+text", name="V J ",
-                           legendgroup="Phase 2",
-                           legendgrouptitle_text="Phase 2", showlegend=False),
-                row=1, col=2)
-        fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]],
-                           y=df_noisy['P2_15'].iloc[[-1]], mode="text",
-                           text=[" V J"],
-                           textposition="middle right", legendgroup="Phase 2",
-                           legendgrouptitle_text="Phase 2",
-                           showlegend=False), row=1, col=2)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P1_2'], mode="lines+markers", name="Track top to bottom",
+                       legendgroup="Phase 1", legendgrouptitle_text="Phase 1"), row=1, col=1)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P1_3'].iloc[[-1]], mode="lines+markers",
+                                 name="Discriminate shapes", legendgroup="Phase 1", legendgrouptitle_text="Phase 1"),
+                      row=2, col=1)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P1_4'], mode="lines+markers",
+                                 name="Discriminate braille characters", legendgroup="Phase 1",
+                                 legendgrouptitle_text="Phase 1"), row=2, col=1)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_1'], mode="lines+markers+text", name="Alphabet",
+                                 legendgroup="Phase 2", legendgrouptitle_text="Phase 2", showlegend=True), row=1, col=2)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_1'].iloc[[-1]], mode="text", text=[" G C L"],
+                                 textposition="middle right", legendgroup="Phase 2", legendgrouptitle_text="Phase 2",
+                                 showlegend=False), row=1, col=2)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_2'], mode="lines+markers+text", name="D Y",
+                                 legendgroup="Phase 2", legendgrouptitle_text="Phase 2", showlegend=False), row=1,
+                      col=2)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_2'].iloc[[-1]], mode="text", text=[" D Y"],
+                                 textposition="middle right", legendgroup="Phase 2", legendgrouptitle_text="Phase 2",
+                                 showlegend=False), row=1, col=2)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_3'], mode="lines+markers+text", name="A B",
+                                 legendgroup="Phase 2", legendgrouptitle_text="Phase 2", showlegend=False), row=1,
+                      col=2)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_3'].iloc[[-1]], mode="text", text=[" A B"],
+                                 textposition="middle right", legendgroup="Phase 2", legendgrouptitle_text="Phase 2",
+                                 showlegend=False), row=1, col=2)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_4'], mode="lines+markers+text", name="S",
+                                 legendgroup="Phase 2", legendgrouptitle_text="Phase 2", showlegend=False), row=1,
+                      col=2)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_4'].iloc[[-1]], mode="text", text=[" S"],
+                                 textposition="middle right", legendgroup="Phase 2", legendgrouptitle_text="Phase 2",
+                                 showlegend=False), row=1, col=2)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_5'], mode="lines+markers+text", name="W",
+                                 legendgroup="Phase 2", legendgrouptitle_text="Phase 2", showlegend=False), row=1,
+                      col=2)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_5'].iloc[[-1]], mode="text", text=[" W"],
+                                 textposition="middle right", legendgroup="Phase 2", legendgrouptitle_text="Phase 2",
+                                 showlegend=False), row=1, col=2)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_6'], mode="lines+markers+text", name="P O",
+                                 legendgroup="Phase 2", legendgrouptitle_text="Phase 2", showlegend=False), row=1,
+                      col=2)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_6'].iloc[[-1]], mode="text", text=[" P O"],
+                                 textposition="middle right", legendgroup="Phase 2", legendgrouptitle_text="Phase 2",
+                                 showlegend=False), row=1, col=2)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_7'], mode="lines+markers+text", name="K",
+                                 legendgroup="Phase 2", legendgrouptitle_text="Phase 2", showlegend=False), row=1,
+                      col=2)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_7'].iloc[[-1]], mode="text", text=[" K"],
+                                 textposition="middle right", legendgroup="Phase 2", legendgrouptitle_text="Phase 2",
+                                 showlegend=False), row=1, col=2)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_8'], mode="lines+markers+text", name="R",
+                                 legendgroup="Phase 2", legendgrouptitle_text="Phase 2", showlegend=False), row=1,
+                      col=2)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_8'].iloc[[-1]], mode="text", text=[" R"],
+                                 textposition="middle right", legendgroup="Phase 2", legendgrouptitle_text="Phase 2",
+                                 showlegend=False), row=1, col=2)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_9'], mode="lines+markers+text", name="M E",
+                                 legendgroup="Phase 2", legendgrouptitle_text="Phase 2", showlegend=False), row=1,
+                      col=2)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_9'].iloc[[-1]], mode="text", text=[" M E"],
+                                 textposition="middle right", legendgroup="Phase 2", legendgrouptitle_text="Phase 2",
+                                 showlegend=False), row=1, col=2)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_10'], mode="lines+markers+text", name="H",
+                                 legendgroup="Phase 2", legendgrouptitle_text="Phase 2", showlegend=False), row=1,
+                      col=2)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_10'].iloc[[-1]], mode="text", text=[" H"],
+                                 textposition="middle right", legendgroup="Phase 2", legendgrouptitle_text="Phase 2",
+                                 showlegend=False), row=1, col=2)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_11'], mode="lines+markers+text", name="N X",
+                                 legendgroup="Phase 2", legendgrouptitle_text="Phase 2", showlegend=False), row=1,
+                      col=2)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_11'].iloc[[-1]], mode="text", text=[" N X"],
+                                 textposition="middle right", legendgroup="Phase 2", legendgrouptitle_text="Phase 2",
+                                 showlegend=False), row=1, col=2)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_12'], mode="lines+markers+text", name="Z F",
+                                 legendgroup="Phase 2", legendgrouptitle_text="Phase 2", showlegend=False), row=1,
+                      col=2)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_12'].iloc[[-1]], mode="text", text=[" Z F"],
+                                 textposition="middle right", legendgroup="Phase 2", legendgrouptitle_text="Phase 2",
+                                 showlegend=False), row=1, col=2)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_13'], mode="lines+markers+text", name="U T",
+                                 legendgroup="Phase 2", legendgrouptitle_text="Phase 2", showlegend=False), row=1,
+                      col=2)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_13'].iloc[[-1]], mode="text", text=[" U T"],
+                                 textposition="middle right", legendgroup="Phase 2", legendgrouptitle_text="Phase 2",
+                                 showlegend=False), row=1, col=2)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_14'], mode="lines+markers+text", name="Q I",
+                                 legendgroup="Phase 2", legendgrouptitle_text="Phase 2", showlegend=False), row=1,
+                      col=2)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_14'].iloc[[-1]], mode="text", text=[" Q I"],
+                                 textposition="middle right", legendgroup="Phase 2", legendgrouptitle_text="Phase 2",
+                                 showlegend=False), row=1, col=2)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_15'], mode="lines+markers+text", name="V J ",
+                                 legendgroup="Phase 2", legendgrouptitle_text="Phase 2", showlegend=False), row=1,
+                      col=2)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_15'].iloc[[-1]], mode="text", text=[" V J"],
+                                 textposition="middle right", legendgroup="Phase 2", legendgrouptitle_text="Phase 2",
+                                 showlegend=False), row=1, col=2)
         fig.update_layout(showlegend=True)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_1'],
-                           mode="lines+markers", name="Alphabetic Wordsigns",
-                           legendgroup="Phase 3a",
-                           legendgrouptitle_text="Phase 3a"), row=3, col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_1'], mode="lines+markers", name="Alphabetic Wordsigns",
+                       legendgroup="Phase 3a", legendgrouptitle_text="Phase 3a"), row=3, col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_2'],
-                           mode="lines+markers", name="Braille Numbers",
-                           legendgroup="Phase 3a",
-                           legendgrouptitle_text="Phase 3a"), row=3, col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_2'], mode="lines+markers", name="Braille Numbers",
+                       legendgroup="Phase 3a", legendgrouptitle_text="Phase 3a"), row=3, col=1)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_3'], mode="lines+markers", name="Punctuation",
+                                 legendgroup="Phase 3a", legendgrouptitle_text="Phase 3a"), row=3, col=1)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_4'], mode="lines+markers",
+                                 name="Strong Contractions <br>(AND OF FOR WITH THE)", legendgroup="Phase 3b",
+                                 legendgrouptitle_text="Phase 3b"), row=3, col=2)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_5'], mode="lines+markers",
+                                 name="Strong Groupsigns <br>(CH GH SH TH WH ED ER OU OW ST AR ING)",
+                                 legendgroup="Phase 3b", legendgrouptitle_text="Phase 3b"), row=3, col=2)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_6'], mode="lines+markers",
+                                 name="Strong Wordsigns <br>(CH SH TH WH OU ST)", legendgroup="Phase 3b",
+                                 legendgrouptitle_text="Phase 3b"), row=3, col=2)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_7'], mode="lines+markers",
+                                 name="Lower Groupsigns <br>(BE CON DIS)", legendgroup="Phase 3c",
+                                 legendgrouptitle_text="Phase 3c"), row=5, col=1)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_8'], mode="lines+markers",
+                                 name="Lower Groupsigns <br>(EA BB CC FF GG)", legendgroup="Phase 3c",
+                                 legendgrouptitle_text="Phase 3c"), row=5, col=1)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_9'], mode="lines+markers",
+                                 name="Lower Groupsigns/Wordsigns <br>(EN IN)", legendgroup="Phase 3c",
+                                 legendgrouptitle_text="Phase 3c"), row=5, col=1)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_10'], mode="lines+markers",
+                                 name="Lower Wordsigns <br>(BE HIS WAS WERE)", legendgroup="Phase 3c",
+                                 legendgrouptitle_text="Phase 3c"), row=5, col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_3'],
-                           mode="lines+markers", name="Punctuation",
-                           legendgroup="Phase 3a",
-                           legendgrouptitle_text="Phase 3a"), row=3, col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_11'], mode="lines+markers", name="Dot 5 Contractions",
+                       legendgroup="Phase 3d", legendgrouptitle_text="Phase 3d"), row=5, col=2)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_4'],
-                           mode="lines+markers",
-                           name="Strong Contractions <br>(AND OF FOR WITH THE)",
-                           legendgroup="Phase 3b",
-                           legendgrouptitle_text="Phase 3b"), row=3, col=2)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_12'], mode="lines+markers", name="Dot 45 Contractions",
+                       legendgroup="Phase 3d", legendgrouptitle_text="Phase 3d"), row=5, col=2)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_5'],
-                           mode="lines+markers",
-                           name="Strong Groupsigns <br>(CH GH SH TH WH ED ER OU OW ST AR ING)",
-                           legendgroup="Phase 3b",
-                           legendgrouptitle_text="Phase 3b"), row=3, col=2)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_13'], mode="lines+markers", name="Dot 456 Contractions",
+                       legendgroup="Phase 3d", legendgrouptitle_text="Phase 3d"), row=5, col=2)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_14'], mode="lines+markers",
+                                 name="Final Letter Groupsigns", legendgroup="Phase 3d",
+                                 legendgrouptitle_text="Phase 3d"), row=5, col=2)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_6'],
-                           mode="lines+markers",
-                           name="Strong Wordsigns <br>(CH SH TH WH OU ST)",
-                           legendgroup="Phase 3b",
-                           legendgrouptitle_text="Phase 3b"), row=3, col=2)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_15'], mode="lines+markers", name="Shortform Words",
+                       legendgroup="Phase 3d", legendgrouptitle_text="Phase 3d"), row=5, col=2)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_7'],
-                           mode="lines+markers",
-                           name="Lower Groupsigns <br>(BE CON DIS)",
-                           legendgroup="Phase 3c",
-                           legendgrouptitle_text="Phase 3c"), row=5, col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P4_1'], mode="lines+markers", name="Grade 1 Indicators",
+                       legendgroup="Phase 4", legendgrouptitle_text="Phase 4"), row=7, col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_8'],
-                           mode="lines+markers",
-                           name="Lower Groupsigns <br>(EA BB CC FF GG)",
-                           legendgroup="Phase 3c",
-                           legendgrouptitle_text="Phase 3c"), row=5, col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P4_2'], mode="lines+markers", name="Capitals Indicators",
+                       legendgroup="Phase 4", legendgrouptitle_text="Phase 4"), row=7, col=1)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P4_3'], mode="lines+markers",
+                                 name="Numeric Mode and Spatial math", legendgroup="Phase 4",
+                                 legendgrouptitle_text="Phase 4"), row=7, col=1)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P4_4'], mode="lines+markers",
+                                 name="Typeform Indicators <br>(ITALIC, SCRIPT, UNDERLINE, BOLDFACE)",
+                                 legendgroup="Phase 4", legendgrouptitle_text="Phase 4"), row=7, col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_9'],
-                           mode="lines+markers",
-                           name="Lower Groupsigns/Wordsigns <br>(EN IN)",
-                           legendgroup="Phase 3c",
-                           legendgrouptitle_text="Phase 3c"), row=5, col=1)
-        fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_10'],
-                           mode="lines+markers",
-                           name="Lower Wordsigns <br>(BE HIS WAS WERE)",
-                           legendgroup="Phase 3c",
-                           legendgrouptitle_text="Phase 3c"), row=5, col=1)
-        fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_11'],
-                           mode="lines+markers", name="Dot 5 Contractions",
-                           legendgroup="Phase 3d",
-                           legendgrouptitle_text="Phase 3d"), row=5, col=2)
-        fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_12'],
-                           mode="lines+markers", name="Dot 45 Contractions",
-                           legendgroup="Phase 3d",
-                           legendgrouptitle_text="Phase 3d"), row=5, col=2)
-        fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_13'],
-                           mode="lines+markers", name="Dot 456 Contractions",
-                           legendgroup="Phase 3d",
-                           legendgrouptitle_text="Phase 3d"), row=5, col=2)
-        fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_14'],
-                           mode="lines+markers",
-                           name="Final Letter Groupsigns",
-                           legendgroup="Phase 3d",
-                           legendgrouptitle_text="Phase 3d"), row=5,
-                col=2)
-        fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_15'],
-                           mode="lines+markers", name="Shortform Words",
-                           legendgroup="Phase 3d",
-                           legendgrouptitle_text="Phase 3d"), row=5, col=2)
-        fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P4_1'],
-                           mode="lines+markers", name="Grade 1 Indicators",
-                           legendgroup="Phase 4",
-                           legendgrouptitle_text="Phase 4"), row=7, col=1)
-        fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P4_2'],
-                           mode="lines+markers", name="Capitals Indicators",
-                           legendgroup="Phase 4",
-                           legendgrouptitle_text="Phase 4"), row=7, col=1)
-        fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P4_3'],
-                           mode="lines+markers",
-                           name="Numeric Mode and Spatial math",
-                           legendgroup="Phase 4",
-                           legendgrouptitle_text="Phase 4"),
-                row=7, col=1)
-        fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P4_4'],
-                           mode="lines+markers",
-                           name="Typeform Indicators <br>(ITALIC, SCRIPT, UNDERLINE, BOLDFACE)",
-                           legendgroup="Phase 4",
-                           legendgrouptitle_text="Phase 4"), row=7, col=1)
-        fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P5_1'],
-                           mode="lines+markers", name="Page Numbering",
-                           legendgroup="Phase 5",
-                           legendgrouptitle_text="Phase 5"), row=7, col=2)
-        fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P5_2'],
-                           mode="lines+markers", name="Headings",
-                           legendgroup="Phase 5",
-                           legendgrouptitle_text="Phase 5"), row=7, col=2)
-        fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P5_3'],
-                           mode="lines+markers", name="Lists",
-                           legendgroup="Phase 5",
-                           legendgrouptitle_text="Phase 5"), row=7, col=2)
-        fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P5_4'],
-                           mode="lines+markers", name="Poety / Drama",
-                           legendgroup="Phase 5",
-                           legendgrouptitle_text="Phase 5"), row=7, col=2)
-        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2,
-                      row=1, col=1)
-        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange",
-                      opacity=0.2, row=1, col=1)
-        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow",
-                      opacity=0.2, row=1, col=1)
-        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green",
-                      opacity=0.2, row=1, col=1)
-        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2,
-                      row=1, col=2)
-        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange",
-                      opacity=0.2, row=1, col=2)
-        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow",
-                      opacity=0.2, row=1, col=2)
-        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green",
-                      opacity=0.2, row=1, col=2)
-        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2,
-                      row=2, col=1)
-        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange",
-                      opacity=0.2, row=2, col=1)
-        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow",
-                      opacity=0.2, row=2, col=1)
-        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green",
-                      opacity=0.2, row=2, col=1)
-        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2,
-                      row=3, col=1)
-        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange",
-                      opacity=0.2, row=3, col=1)
-        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow",
-                      opacity=0.2, row=3, col=1)
-        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green",
-                      opacity=0.2, row=3, col=1)
-        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2,
-                      row=3, col=2)
-        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange",
-                      opacity=0.2, row=3, col=2)
-        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow",
-                      opacity=0.2, row=3, col=2)
-        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green",
-                      opacity=0.2, row=3, col=2)
-        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2,
-                      row=5, col=1)
-        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange",
-                      opacity=0.2, row=5, col=1)
-        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow",
-                      opacity=0.2, row=5, col=1)
-        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green",
-                      opacity=0.2, row=5, col=1)
-        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2,
-                      row=5, col=2)
-        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange",
-                      opacity=0.2, row=5, col=2)
-        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow",
-                      opacity=0.2, row=5, col=2)
-        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green",
-                      opacity=0.2, row=5, col=2)
-        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2,
-                      row=7, col=1)
-        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange",
-                      opacity=0.2, row=7, col=1)
-        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow",
-                      opacity=0.2, row=7, col=1)
-        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green",
-                      opacity=0.2, row=7, col=1)
-        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2,
-                      row=7, col=2)
-        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange",
-                      opacity=0.2, row=7, col=2)
-        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow",
-                      opacity=0.2, row=7, col=2)
-        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green",
-                      opacity=0.2, row=7, col=2)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P5_1'], mode="lines+markers", name="Page Numbering",
+                       legendgroup="Phase 5", legendgrouptitle_text="Phase 5"), row=7, col=2)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P5_2'], mode="lines+markers", name="Headings",
+                                 legendgroup="Phase 5", legendgrouptitle_text="Phase 5"), row=7, col=2)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P5_3'], mode="lines+markers", name="Lists",
+                                 legendgroup="Phase 5", legendgrouptitle_text="Phase 5"), row=7, col=2)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P5_4'], mode="lines+markers", name="Poety / Drama",
+                                 legendgroup="Phase 5", legendgrouptitle_text="Phase 5"), row=7, col=2)
+        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2, row=1, col=1)
+        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange", opacity=0.2, row=1, col=1)
+        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow", opacity=0.2, row=1, col=1)
+        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green", opacity=0.2, row=1, col=1)
+        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2, row=1, col=2)
+        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange", opacity=0.2, row=1, col=2)
+        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow", opacity=0.2, row=1, col=2)
+        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green", opacity=0.2, row=1, col=2)
+        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2, row=2, col=1)
+        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange", opacity=0.2, row=2, col=1)
+        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow", opacity=0.2, row=2, col=1)
+        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green", opacity=0.2, row=2, col=1)
+        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2, row=3, col=1)
+        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange", opacity=0.2, row=3, col=1)
+        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow", opacity=0.2, row=3, col=1)
+        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green", opacity=0.2, row=3, col=1)
+        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2, row=3, col=2)
+        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange", opacity=0.2, row=3, col=2)
+        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow", opacity=0.2, row=3, col=2)
+        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green", opacity=0.2, row=3, col=2)
+        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2, row=5, col=1)
+        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange", opacity=0.2, row=5, col=1)
+        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow", opacity=0.2, row=5, col=1)
+        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green", opacity=0.2, row=5, col=1)
+        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2, row=5, col=2)
+        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange", opacity=0.2, row=5, col=2)
+        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow", opacity=0.2, row=5, col=2)
+        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green", opacity=0.2, row=5, col=2)
+        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2, row=7, col=1)
+        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange", opacity=0.2, row=7, col=1)
+        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow", opacity=0.2, row=7, col=1)
+        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green", opacity=0.2, row=7, col=1)
+        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2, row=7, col=2)
+        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange", opacity=0.2, row=7, col=2)
+        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow", opacity=0.2, row=7, col=2)
+        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green", opacity=0.2, row=7, col=2)
         marker = '2022-01-01'
         fig.add_vline(x=marker, line_width=3, line_color="black", row=1, col=1)
         fig.add_vline(x=marker, line_width=3, line_color="black", row=1, col=2)
@@ -1607,296 +1213,157 @@ class braillePanel(scrolled.ScrolledPanel):
         fig.add_vline(x=marker, line_width=3, line_color="black", row=7, col=1)
         fig.add_vline(x=marker, line_width=3, line_color="black", row=7, col=2)
         fig.update_xaxes(rangebreaks=[dict(
-                values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
-                        "2021-12-20", "2021-12-21", "2021-12-22",
-                        "2021-12-23", "2021-12-24", "2021-12-25", "2021-12-26",
-                        "2021-12-27", "2021-12-28", "2021-12-29",
-                        "2021-12-30"])], row=1, col=1)
+            values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19", "2021-12-20", "2021-12-21", "2021-12-22",
+                    "2021-12-23", "2021-12-24", "2021-12-25", "2021-12-26", "2021-12-27", "2021-12-28", "2021-12-29",
+                    "2021-12-30"])], row=1, col=1)
         fig.update_xaxes(rangebreaks=[dict(
-                values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
-                        "2021-12-20", "2021-12-21", "2021-12-22",
-                        "2021-12-23", "2021-12-24", "2021-12-25", "2021-12-26",
-                        "2021-12-27", "2021-12-28", "2021-12-29",
-                        "2021-12-30"])], row=1, col=2)
+            values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19", "2021-12-20", "2021-12-21", "2021-12-22",
+                    "2021-12-23", "2021-12-24", "2021-12-25", "2021-12-26", "2021-12-27", "2021-12-28", "2021-12-29",
+                    "2021-12-30"])], row=1, col=2)
         fig.update_xaxes(rangebreaks=[dict(
-                values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
-                        "2021-12-20", "2021-12-21", "2021-12-22",
-                        "2021-12-23", "2021-12-24", "2021-12-25", "2021-12-26",
-                        "2021-12-27", "2021-12-28", "2021-12-29",
-                        "2021-12-30"])], row=2, col=1)
+            values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19", "2021-12-20", "2021-12-21", "2021-12-22",
+                    "2021-12-23", "2021-12-24", "2021-12-25", "2021-12-26", "2021-12-27", "2021-12-28", "2021-12-29",
+                    "2021-12-30"])], row=2, col=1)
         fig.update_xaxes(rangebreaks=[dict(
-                values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
-                        "2021-12-20", "2021-12-21", "2021-12-22",
-                        "2021-12-23", "2021-12-24", "2021-12-25", "2021-12-26",
-                        "2021-12-27", "2021-12-28", "2021-12-29",
-                        "2021-12-30"])], row=3, col=1)
+            values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19", "2021-12-20", "2021-12-21", "2021-12-22",
+                    "2021-12-23", "2021-12-24", "2021-12-25", "2021-12-26", "2021-12-27", "2021-12-28", "2021-12-29",
+                    "2021-12-30"])], row=3, col=1)
         fig.update_xaxes(rangebreaks=[dict(
-                values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
-                        "2021-12-20", "2021-12-21", "2021-12-22",
-                        "2021-12-23", "2021-12-24", "2021-12-25", "2021-12-26",
-                        "2021-12-27", "2021-12-28", "2021-12-29",
-                        "2021-12-30"])], row=3, col=2)
+            values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19", "2021-12-20", "2021-12-21", "2021-12-22",
+                    "2021-12-23", "2021-12-24", "2021-12-25", "2021-12-26", "2021-12-27", "2021-12-28", "2021-12-29",
+                    "2021-12-30"])], row=3, col=2)
         fig.update_xaxes(rangebreaks=[dict(
-                values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
-                        "2021-12-20", "2021-12-21", "2021-12-22",
-                        "2021-12-23", "2021-12-24", "2021-12-25", "2021-12-26",
-                        "2021-12-27", "2021-12-28", "2021-12-29",
-                        "2021-12-30"])], row=5, col=1)
+            values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19", "2021-12-20", "2021-12-21", "2021-12-22",
+                    "2021-12-23", "2021-12-24", "2021-12-25", "2021-12-26", "2021-12-27", "2021-12-28", "2021-12-29",
+                    "2021-12-30"])], row=5, col=1)
         fig.update_xaxes(rangebreaks=[dict(
-                values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
-                        "2021-12-20", "2021-12-21", "2021-12-22",
-                        "2021-12-23", "2021-12-24", "2021-12-25", "2021-12-26",
-                        "2021-12-27", "2021-12-28", "2021-12-29",
-                        "2021-12-30"])], row=5, col=2)
+            values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19", "2021-12-20", "2021-12-21", "2021-12-22",
+                    "2021-12-23", "2021-12-24", "2021-12-25", "2021-12-26", "2021-12-27", "2021-12-28", "2021-12-29",
+                    "2021-12-30"])], row=5, col=2)
         fig.update_xaxes(rangebreaks=[dict(
-                values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
-                        "2021-12-20", "2021-12-21", "2021-12-22",
-                        "2021-12-23", "2021-12-24", "2021-12-25", "2021-12-26",
-                        "2021-12-27", "2021-12-28", "2021-12-29",
-                        "2021-12-30"])], row=7, col=1)
+            values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19", "2021-12-20", "2021-12-21", "2021-12-22",
+                    "2021-12-23", "2021-12-24", "2021-12-25", "2021-12-26", "2021-12-27", "2021-12-28", "2021-12-29",
+                    "2021-12-30"])], row=7, col=1)
         fig.update_xaxes(rangebreaks=[dict(
-                values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19",
-                        "2021-12-20", "2021-12-21", "2021-12-22",
-                        "2021-12-23", "2021-12-24", "2021-12-25", "2021-12-26",
-                        "2021-12-27", "2021-12-28", "2021-12-29",
-                        "2021-12-30"])], row=7, col=2)
-        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True,
-                         ticktext=["Unable", "Prompted", "Hesitated",
-                                   "Independent"],
+            values=["2021-12-16", "2021-12-17", "2021-12-18", "2021-12-19", "2021-12-20", "2021-12-21", "2021-12-22",
+                    "2021-12-23", "2021-12-24", "2021-12-25", "2021-12-26", "2021-12-27", "2021-12-28", "2021-12-29",
+                    "2021-12-30"])], row=7, col=2)
+        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True, ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
                          tickvals=[0.1, 1, 2, 3], row=1, col=1)
-        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True,
-                         ticktext=["Unable", "Prompted", "Hesitated",
-                                   "Independent"],
+        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True, ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
                          tickvals=[0.1, 1, 2, 3], row=2, col=1)
-        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True,
-                         ticktext=["Unable", "Prompted", "Hesitated",
-                                   "Independent"],
+        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True, ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
                          tickvals=[0.1, 1, 2, 3], row=1, col=2)
-        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True,
-                         ticktext=["Unable", "Prompted", "Hesitated",
-                                   "Independent"],
+        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True, ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
                          tickvals=[0.1, 1, 2, 3], row=3, col=1)
-        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True,
-                         ticktext=["Unable", "Prompted", "Hesitated",
-                                   "Independent"],
+        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True, ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
                          tickvals=[0.1, 1, 2, 3], row=3, col=2)
-        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True,
-                         ticktext=["Unable", "Prompted", "Hesitated",
-                                   "Independent"],
+        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True, ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
                          tickvals=[0.1, 1, 2, 3], row=5, col=1)
-        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True,
-                         ticktext=["Unable", "Prompted", "Hesitated",
-                                   "Independent"],
+        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True, ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
                          tickvals=[0.1, 1, 2, 3], row=5, col=2)
-        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True,
-                         ticktext=["Unable", "Prompted", "Hesitated",
-                                   "Independent"],
+        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True, ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
                          tickvals=[0.1, 1, 2, 3], row=5, col=2)
-        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True,
-                         ticktext=["Unable", "Prompted", "Hesitated",
-                                   "Independent"],
+        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True, ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
                          tickvals=[0.1, 1, 2, 3], row=7, col=2)
-        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True,
-                         ticktext=["Unable", "Prompted", "Hesitated",
-                                   "Independent"],
+        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True, ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
                          tickvals=[0.1, 1, 2, 3], row=7, col=2)
-        fig.update_layout(xaxis_tickformat='%d %b', xaxis2_tickformat='%d %b',
-                          xaxis3_tickformat='%d %b',
-                          xaxis4_tickformat='%d %b', xaxis5_tickformat='%d %b',
-                          xaxis6_tickformat='%d %b',
-                          xaxis7_tickformat='%d %b', xaxis8_tickformat='%d %b',
-                          xaxis9_tickformat='%d %b',
-                          template="simple_white",
-                          title_text=f"{studentname}: Literary UEB Skills Progression",
+        fig.update_layout(xaxis_tickformat='%d %b', xaxis2_tickformat='%d %b', xaxis3_tickformat='%d %b',
+                          xaxis4_tickformat='%d %b', xaxis5_tickformat='%d %b', xaxis6_tickformat='%d %b',
+                          xaxis7_tickformat='%d %b', xaxis8_tickformat='%d %b', xaxis9_tickformat='%d %b',
+                          template="simple_white", title_text=f"{studentname}: Literary UEB Skills Progression",
                           legend=dict(font=dict(size=10)))
-        tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles',
-                                          studentname,
+        tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', studentname,
                                           'UEBLiterarySkillsProgression.html')
         fig.write_html(tmpPath)
         fig.show()
-        fig = make_subplots(
-                rows=3, cols=1, subplot_titles=(
-                        "Phase 6: UEB Technical Basics",
-                        "Phase 7: Advanced UEB Technical",
-                        "Phase 8: Accellerated UEB Technical"), print_grid=True
-        )
+        fig = make_subplots(rows=3, cols=1, subplot_titles=(
+        "Phase 6: UEB Technical Basics", "Phase 7: Advanced UEB Technical", "Phase 8: Accellerated UEB Technical"),
+                            print_grid=True
+                            )
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P6_1'], mode="lines+markers",
+                                 name=" Operation and Comparison Signs", legendgroup="Phase 6",
+                                 legendgrouptitle_text="Phase 6"), row=1, col=1)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P6_2'], mode="lines+markers", name="Grade 1 Mode",
+                                 legendgroup="Phase 6", legendgrouptitle_text="Phase 6"), row=1, col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P6_1'],
-                           mode="lines+markers",
-                           name=" Operation and Comparison Signs",
-                           legendgroup="Phase 6",
-                           legendgrouptitle_text="Phase 6"),
-                row=1, col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P6_3'], mode="lines+markers", name="Special Print Symbols",
+                       legendgroup="Phase 6", legendgrouptitle_text="Phase 6"), row=1, col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P6_2'],
-                           mode="lines+markers", name="Grade 1 Mode",
-                           legendgroup="Phase 6",
-                           legendgrouptitle_text="Phase 6"), row=1, col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P6_4'], mode="lines+markers", name="Omission Marks",
+                       legendgroup="Phase 6", legendgrouptitle_text="Phase 6"), row=1, col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P6_3'],
-                           mode="lines+markers", name="Special Print Symbols",
-                           legendgroup="Phase 6",
-                           legendgrouptitle_text="Phase 6"), row=1, col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P6_5'], mode="lines+markers", name="Shape Indicators",
+                       legendgroup="Phase 6", legendgrouptitle_text="Phase 6"), row=1, col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P6_4'],
-                           mode="lines+markers", name="Omission Marks",
-                           legendgroup="Phase 6",
-                           legendgrouptitle_text="Phase 6"), row=1, col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P6_6'], mode="lines+markers", name="Roman Numerals",
+                       legendgroup="Phase 6", legendgrouptitle_text="Phase 6"), row=1, col=1)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P6_7'], mode="lines+markers", name="Fractions",
+                                 legendgroup="Phase 6", legendgrouptitle_text="Phase 6"), row=1, col=1)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P7_1'], mode="lines+markers",
+                                 name="Grade 1 Mode and Algebra", legendgroup="Phase 7",
+                                 legendgrouptitle_text="Phase 7"), row=2, col=1)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P7_2'], mode="lines+markers",
+                                 name="Grade 1 Mode and Fractions", legendgroup="Phase 7",
+                                 legendgrouptitle_text="Phase 7"), row=2, col=1)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P7_3'], mode="lines+markers",
+                                 name="Advanced Operation and Comparison Signs", legendgroup="Phase 7",
+                                 legendgrouptitle_text="Phase 7"), row=2, col=1)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P7_4'], mode="lines+markers", name="Indices",
+                                 legendgroup="Phase 7", legendgrouptitle_text="Phase 7"), row=2, col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P6_5'],
-                           mode="lines+markers", name="Shape Indicators",
-                           legendgroup="Phase 6",
-                           legendgrouptitle_text="Phase 6"), row=1, col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P7_5'], mode="lines+markers", name="Roots and Radicals",
+                       legendgroup="Phase 7", legendgrouptitle_text="Phase 7"), row=2, col=1)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P7_6'], mode="lines+markers",
+                                 name="Miscellaneous Shape Indicators", legendgroup="Phase 7",
+                                 legendgrouptitle_text="Phase 7"), row=2, col=1)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P7_7'], mode="lines+markers", name="Functions",
+                                 legendgroup="Phase 7", legendgrouptitle_text="Phase 7"), row=2, col=1)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P7_8'], mode="lines+markers", name="Greek letters",
+                                 legendgroup="Phase 7", legendgrouptitle_text="Phase 7"), row=2, col=1)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P8_1'], mode="lines+markers", name="Functions",
+                                 legendgroup="Phase 8", legendgrouptitle_text="Phase 8"), row=3, col=1)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P8_2'], mode="lines+markers",
+                                 name="Modifiers, Bars, and Dots", legendgroup="Phase 8",
+                                 legendgrouptitle_text="Phase 8"), row=3, col=1)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P8_3'], mode="lines+markers",
+                                 name="Modifiers, Arrows, and Limits", legendgroup="Phase 8",
+                                 legendgrouptitle_text="Phase 8"), row=3, col=1)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P8_4'], mode="lines+markers", name="Probability",
+                                 legendgroup="Phase 8", legendgrouptitle_text="Phase 8"), row=3, col=1)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P8_5'], mode="lines+markers",
+                                 name="Calculus: Differentiation", legendgroup="Phase 8",
+                                 legendgrouptitle_text="Phase 8"), row=3, col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P6_6'],
-                           mode="lines+markers", name="Roman Numerals",
-                           legendgroup="Phase 6",
-                           legendgrouptitle_text="Phase 6"), row=1, col=1)
-        fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P6_7'],
-                           mode="lines+markers", name="Fractions",
-                           legendgroup="Phase 6",
-                           legendgrouptitle_text="Phase 6"), row=1, col=1)
-        fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P7_1'],
-                           mode="lines+markers",
-                           name="Grade 1 Mode and Algebra",
-                           legendgroup="Phase 7",
-                           legendgrouptitle_text="Phase 7"), row=2,
-                col=1)
-        fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P7_2'],
-                           mode="lines+markers",
-                           name="Grade 1 Mode and Fractions",
-                           legendgroup="Phase 7",
-                           legendgrouptitle_text="Phase 7"),
-                row=2, col=1)
-        fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P7_3'],
-                           mode="lines+markers",
-                           name="Advanced Operation and Comparison Signs",
-                           legendgroup="Phase 7",
-                           legendgrouptitle_text="Phase 7"), row=2, col=1)
-        fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P7_4'],
-                           mode="lines+markers", name="Indices",
-                           legendgroup="Phase 7",
-                           legendgrouptitle_text="Phase 7"), row=2, col=1)
-        fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P7_5'],
-                           mode="lines+markers", name="Roots and Radicals",
-                           legendgroup="Phase 7",
-                           legendgrouptitle_text="Phase 7"), row=2, col=1)
-        fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P7_6'],
-                           mode="lines+markers",
-                           name="Miscellaneous Shape Indicators",
-                           legendgroup="Phase 7",
-                           legendgrouptitle_text="Phase 7"),
-                row=2, col=1)
-        fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P7_7'],
-                           mode="lines+markers", name="Functions",
-                           legendgroup="Phase 7",
-                           legendgrouptitle_text="Phase 7"), row=2, col=1)
-        fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P7_8'],
-                           mode="lines+markers", name="Greek letters",
-                           legendgroup="Phase 7",
-                           legendgrouptitle_text="Phase 7"), row=2, col=1)
-        fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P8_1'],
-                           mode="lines+markers", name="Functions",
-                           legendgroup="Phase 8",
-                           legendgrouptitle_text="Phase 8"), row=3, col=1)
-        fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P8_2'],
-                           mode="lines+markers",
-                           name="Modifiers, Bars, and Dots",
-                           legendgroup="Phase 8",
-                           legendgrouptitle_text="Phase 8"), row=3,
-                col=1)
-        fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P8_3'],
-                           mode="lines+markers",
-                           name="Modifiers, Arrows, and Limits",
-                           legendgroup="Phase 8",
-                           legendgrouptitle_text="Phase 8"),
-                row=3, col=1)
-        fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P8_4'],
-                           mode="lines+markers", name="Probability",
-                           legendgroup="Phase 8",
-                           legendgrouptitle_text="Phase 8"), row=3, col=1)
-        fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P8_5'],
-                           mode="lines+markers",
-                           name="Calculus: Differentiation",
-                           legendgroup="Phase 8",
-                           legendgrouptitle_text="Phase 8"), row=3,
-                col=1)
-        fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P8_6'],
-                           mode="lines+markers", name="Calculus: Integration",
-                           legendgroup="Phase 8",
-                           legendgrouptitle_text="Phase 8"), row=3, col=1)
-        fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P8_7'],
-                           mode="lines+markers", name="Vertical Bars",
-                           legendgroup="Phase 8",
-                           legendgrouptitle_text="Phase 8"), row=3, col=1)
-        fig.update_xaxes(
-            rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=1,
-            col=1)
-        fig.update_xaxes(
-            rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=2,
-            col=1)
-        fig.update_xaxes(
-            rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=3,
-            col=1)
-        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True,
-                         ticktext=["Unable", "Prompted", "Hesitated",
-                                   "Independent"],
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P8_6'], mode="lines+markers", name="Calculus: Integration",
+                       legendgroup="Phase 8", legendgrouptitle_text="Phase 8"), row=3, col=1)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P8_7'], mode="lines+markers", name="Vertical Bars",
+                                 legendgroup="Phase 8", legendgrouptitle_text="Phase 8"), row=3, col=1)
+        fig.update_xaxes(rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=1, col=1)
+        fig.update_xaxes(rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=2, col=1)
+        fig.update_xaxes(rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=3, col=1)
+        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True, ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
                          tickvals=[0.1, 1, 2, 3], row=1, col=1)
-        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True,
-                         ticktext=["Unable", "Prompted", "Hesitated",
-                                   "Independent"],
+        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True, ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
                          tickvals=[0.1, 1, 2, 3], row=2, col=1)
-        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True,
-                         ticktext=["Unable", "Prompted", "Hesitated",
-                                   "Independent"],
+        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True, ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
                          tickvals=[0.1, 1, 2, 3], row=3, col=1)
-        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2,
-                      row=1, col=1)
-        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange",
-                      opacity=0.2, row=1, col=1)
-        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow",
-                      opacity=0.2, row=1, col=1)
-        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green",
-                      opacity=0.2, row=1, col=1)
-        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2,
-                      row=2, col=1)
-        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange",
-                      opacity=0.2, row=2, col=1)
-        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow",
-                      opacity=0.2, row=2, col=1)
-        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green",
-                      opacity=0.2, row=2, col=1)
-        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2,
-                      row=3, col=1)
-        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange",
-                      opacity=0.2, row=3, col=1)
-        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow",
-                      opacity=0.2, row=3, col=1)
-        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green",
-                      opacity=0.2, row=3, col=1)
-        fig.update_layout(xaxis_tickformat='%d %b', xaxis2_tickformat='%d %b',
-                          xaxis3_tickformat='%d %b',
-                          template="simple_white",
-                          title_text=f"{studentname}: Technical UEB Skills Progression",
+        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2, row=1, col=1)
+        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange", opacity=0.2, row=1, col=1)
+        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow", opacity=0.2, row=1, col=1)
+        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green", opacity=0.2, row=1, col=1)
+        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2, row=2, col=1)
+        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange", opacity=0.2, row=2, col=1)
+        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow", opacity=0.2, row=2, col=1)
+        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green", opacity=0.2, row=2, col=1)
+        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2, row=3, col=1)
+        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange", opacity=0.2, row=3, col=1)
+        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow", opacity=0.2, row=3, col=1)
+        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green", opacity=0.2, row=3, col=1)
+        fig.update_layout(xaxis_tickformat='%d %b', xaxis2_tickformat='%d %b', xaxis3_tickformat='%d %b',
+                          template="simple_white", title_text=f"{studentname}: Technical UEB Skills Progression",
                           legend=dict(font=dict(size=10)))
-        tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles',
-                                          studentname,
+        tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', studentname,
                                           'UEBTechnicalSkillsProgression.html')
         fig.write_html(tmpPath)
         fig.show()
@@ -1912,28 +1379,19 @@ class screenreaderPanel(scrolled.ScrolledPanel):
         self.SetSizer(vbox)
         self.SetupScrolling()
         self.SetBackgroundColour(wx.Colour(215, 236, 217))
-        wx.StaticText(self, -1, "SCREENREADER SKILLS PROGRESSION",
-                      pos=(200, 20))
+        wx.StaticText(self, -1, "SCREENREADER SKILLS PROGRESSION", pos=(200, 20))
         wx.StaticText(self, -1, "Student Name", pos=(30, 50))
-        self.studentname1 = wx.Choice(self, -1, choices=students, pos=(650, 50),
-                                      size=(300, 20))
-        wx.StaticText(self, -1,
-                      "RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent",
-                      pos=(550, 20))
-        wx.StaticText(self, -1, "1.1 Turn on and off the screen reader",
-                      pos=(30, 80))
+        self.studentname1 = wx.Choice(self, -1, choices=students, pos=(650, 50), size=(300, 20))
+        wx.StaticText(self, -1, "RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent", pos=(550, 20))
+        wx.StaticText(self, -1, "1.1 Turn on and off the screen reader", pos=(30, 80))
         self.trial11 = wx.TextCtrl(self, -1, "", pos=(650, 80), size=(300, 20))
         wx.StaticText(self, -1,
                       "1.2 Utilize modifier keys such as ctrl, alt and shift to enter a modified key command. eg: Ctrl + Left Arrow",
                       pos=(30, 110))
         self.trial12 = wx.TextCtrl(self, -1, "", pos=(650, 110), size=(300, 20))
-        wx.StaticText(self, -1,
-                      "1.3 Read text using a variety of reading commands",
-                      pos=(30, 140))
+        wx.StaticText(self, -1, "1.3 Read text using a variety of reading commands", pos=(30, 140))
         self.trial13 = wx.TextCtrl(self, -1, "", pos=(650, 140), size=(300, 20))
-        wx.StaticText(self, -1,
-                      "1.4 Identify the titles and section titles of documents with Headings",
-                      pos=(30, 170))
+        wx.StaticText(self, -1, "1.4 Identify the titles and section titles of documents with Headings", pos=(30, 170))
         self.trial14 = wx.TextCtrl(self, -1, "", pos=(650, 170), size=(300, 20))
         wx.StaticText(self, -1,
                       "1.5 Access documents, open and close programs, and will be able to navigate easily to the desktop.",
@@ -1941,30 +1399,22 @@ class screenreaderPanel(scrolled.ScrolledPanel):
         self.trial15 = wx.TextCtrl(self, -1, "", pos=(650, 200), size=(300, 20))
         wx.StaticText(self, -1, "1.6 Switch program focus", pos=(30, 230))
         self.trial16 = wx.TextCtrl(self, -1, "", pos=(650, 230), size=(300, 20))
-        wx.StaticText(self, -1,
-                      "2.1 Type with all alphanumeric keys on the keyboard.",
-                      pos=(30, 260))
+        wx.StaticText(self, -1, "2.1 Type with all alphanumeric keys on the keyboard.", pos=(30, 260))
         self.trial21 = wx.TextCtrl(self, -1, "", pos=(650, 260), size=(300, 20))
-        wx.StaticText(self, -1,
-                      "2.2 Navigate to and change screen reader settings",
-                      pos=(30, 290))
+        wx.StaticText(self, -1, "2.2 Navigate to and change screen reader settings", pos=(30, 290))
         self.trial22 = wx.TextCtrl(self, -1, "", pos=(650, 290), size=(300, 20))
-        wx.StaticText(self, -1,
-                      "2.3 Write and edit documents using a basic understanding of cursor placement.",
+        wx.StaticText(self, -1, "2.3 Write and edit documents using a basic understanding of cursor placement.",
                       pos=(30, 320))
         self.trial23 = wx.TextCtrl(self, -1, "", pos=(650, 320), size=(300, 20))
-        wx.StaticText(self, -1, "2.4. Select, copy and paste text.",
-                      pos=(30, 350))
+        wx.StaticText(self, -1, "2.4. Select, copy and paste text.", pos=(30, 350))
         self.trial24 = wx.TextCtrl(self, -1, "", pos=(650, 350), size=(300, 20))
         wx.StaticText(self, -1,
                       "3.1 Define common element types on the internet such as Headings, Buttons, Links, Tables as well as text.",
                       pos=(30, 380))
         self.trial31 = wx.TextCtrl(self, -1, "", pos=(650, 380), size=(300, 20))
-        wx.StaticText(self, -1, "3.2 identify each element by type.",
-                      pos=(30, 410))
+        wx.StaticText(self, -1, "3.2 identify each element by type.", pos=(30, 410))
         self.trial32 = wx.TextCtrl(self, -1, "", pos=(650, 410), size=(300, 20))
-        wx.StaticText(self, -1, "3.3 navigate to the address bar",
-                      pos=(30, 440))
+        wx.StaticText(self, -1, "3.3 navigate to the address bar", pos=(30, 440))
         self.trial33 = wx.TextCtrl(self, -1, "", pos=(650, 440), size=(300, 20))
         wx.StaticText(self, -1,
                       "3.4 Use the “Tab” key to navigate to the next clickable object (Shift Tab for previous) (METHOD 1) ",
@@ -1974,12 +1424,10 @@ class screenreaderPanel(scrolled.ScrolledPanel):
                       "3.5 Navigate by “Quick Keys” (h for heading, b for button, v, and u for link) (METHOD 2)",
                       pos=(30, 500))
         self.trial35 = wx.TextCtrl(self, -1, "", pos=(650, 500), size=(300, 20))
-        wx.StaticText(self, -1,
-                      "3.6 Use Elements Lists on a website to navigate by element type (METHOD 3)",
+        wx.StaticText(self, -1, "3.6 Use Elements Lists on a website to navigate by element type (METHOD 3)",
                       pos=(30, 530))
         self.trial36 = wx.TextCtrl(self, -1, "", pos=(650, 530), size=(300, 20))
-        wx.StaticText(self, -1,
-                      "3.7 Justify why he/she/they selected a particular method for the situation.",
+        wx.StaticText(self, -1, "3.7 Justify why he/she/they selected a particular method for the situation.",
                       pos=(30, 560))
         self.trial37 = wx.TextCtrl(self, -1, "", pos=(650, 560), size=(300, 20))
         wx.StaticText(self, -1, "3.8 Switch tab focus", pos=(30, 590))
@@ -1989,20 +1437,12 @@ class screenreaderPanel(scrolled.ScrolledPanel):
                       pos=(30, 620))
         self.trial39 = wx.TextCtrl(self, -1, "", pos=(650, 620), size=(300, 20))
         wx.StaticText(self, -1, "3.10 Navigate a table.", pos=(30, 650))
-        self.trial310 = wx.TextCtrl(self, -1, "", pos=(650, 650),
-                                    size=(300, 20))
-        wx.StaticText(self, -1,
-                      "3.11 Develop a navigation sequence to access an unfamiliar website.",
-                      pos=(30, 680))
-        self.trial311 = wx.TextCtrl(self, -1, "", pos=(650, 680),
-                                    size=(300, 20))
-        wx.StaticText(self, -1,
-                      "4.1 Be able to save and open files using File Explorer.",
-                      pos=(30, 710))
+        self.trial310 = wx.TextCtrl(self, -1, "", pos=(650, 650), size=(300, 20))
+        wx.StaticText(self, -1, "3.11 Develop a navigation sequence to access an unfamiliar website.", pos=(30, 680))
+        self.trial311 = wx.TextCtrl(self, -1, "", pos=(650, 680), size=(300, 20))
+        wx.StaticText(self, -1, "4.1 Be able to save and open files using File Explorer.", pos=(30, 710))
         self.trial41 = wx.TextCtrl(self, -1, "", pos=(650, 710), size=(300, 20))
-        wx.StaticText(self, -1,
-                      "4.2 Create folders and move files in File Explorer.",
-                      pos=(30, 740))
+        wx.StaticText(self, -1, "4.2 Create folders and move files in File Explorer.", pos=(30, 740))
         self.trial42 = wx.TextCtrl(self, -1, "", pos=(650, 740), size=(300, 20))
         wx.StaticText(self, -1,
                       "4.3 Navigate a cloud-based file management system (eg: Google Drive, Microsoft OneDrive)",
@@ -2018,24 +1458,20 @@ class screenreaderPanel(scrolled.ScrolledPanel):
                       "4.6 Utilize the virtual cursor and mouse keys as a backup to access inaccessible elements.",
                       pos=(30, 860))
         self.trial46 = wx.TextCtrl(self, -1, "", pos=(650, 860), size=(300, 20))
-        wx.StaticText(self, -1,
-                      "4.7 To use OCR features to read inaccessible material.",
-                      pos=(30, 890))
+        wx.StaticText(self, -1, "4.7 To use OCR features to read inaccessible material.", pos=(30, 890))
         self.trial47 = wx.TextCtrl(self, -1, "", pos=(650, 890), size=(300, 20))
         self.btn = wx.Button(self, 201, "SAVE", pos=(450, 930), size=(70, 30))
         self.Bind(wx.EVT_BUTTON, self.save, id=201)
         self.btn1 = wx.Button(self, 202, "EXIT", pos=(550, 930), size=(70, 30))
         self.Bind(wx.EVT_BUTTON, self.exit, id=202)
-        self.btn = wx.Button(self, 203, "PRINT GRAPHS", pos=(450, 970),
-                             size=(170, 30))
+        self.btn = wx.Button(self, 203, "PRINT GRAPHS", pos=(450, 970), size=(170, 30))
         self.Bind(wx.EVT_BUTTON, self.graph, id=203)
 
     def exit(self, event):
         wx.Exit()
 
     def save(self, event):
-        studentname = self.studentname1.GetString(
-                self.studentname1.GetSelection())
+        studentname = self.studentname1.GetString(self.studentname1.GetSelection())
         dateNow = datetime.datetime.now().strftime("%Y_%m_%d-%H%M%S")
         simpleDate = datetime.datetime.now().strftime("%Y_%m_%d-%H%M")
         trial11 = self.trial11.GetValue()
@@ -2066,16 +1502,15 @@ class screenreaderPanel(scrolled.ScrolledPanel):
         trial45 = self.trial45.GetValue()
         trial46 = self.trial46.GetValue()
         trial47 = self.trial47.GetValue()
-        box = wx.TextEntryDialog(None, "Enter Address-Book name to save!",
-                                 "Title",
+        box = wx.TextEntryDialog(None, "Enter Address-Book name to save!", "Title",
                                  f"screenreader{studentname.title()}{dateNow}")
         if box.ShowModal() == wx.ID_OK:
             self.studentdatabasename = box.GetValue()
             if not os.path.exists(
                     f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\{self.studentdatabasename}.txt"):
                 self.filename = open(
-                        f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\{self.studentdatabasename}.txt",
-                        'w')
+                    f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\{self.studentdatabasename}.txt",
+                    'w')
                 self.filename.write('studentname' + ', ')
                 self.filename.write('simpleDate' + ', ')
                 self.filename.write('trial11' + ', ')
@@ -2137,19 +1572,14 @@ class screenreaderPanel(scrolled.ScrolledPanel):
                 self.filename.write(trial46 + ', ')
                 self.filename.write(trial47 + ', ')
                 self.filename.close()
-                self.filename = open(
-                        f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\Filenames.txt",
-                        'a')
+                self.filename = open(f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\Filenames.txt", 'a')
                 self.filename.write(
-                        f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\{self.studentdatabasename}.txt" + '\n')
+                    f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\{self.studentdatabasename}.txt" + '\n')
                 self.filename.close()
                 # list_names = ['date', 'P1_1', 'P1_2', 'P1_3', 'P1_4', 'P1_5', 'P1_6', 'P2_1', 'P2_2', 'P2_3', 'P2_4', 'P3_1', 'P3_2', 'P3_3', 'P3_4', 'P3_5', 'P3_6', 'P3_7', 'P3_8', 'P3_9', 'P3_10', 'P3_11', 'P4_1', 'P4_2', 'P4_3', 'P4_4', 'P4_5', 'P4_6', 'P4_7']
-                list_data = [dateNow, trial11, trial12, trial13, trial14,
-                             trial15, trial16, trial21, trial22, trial23,
-                             trial24, trial31, trial32, trial33, trial34,
-                             trial35, trial36, trial37, trial38, trial39,
-                             trial310, trial311, trial41, trial42, trial43,
-                             trial44, trial45, trial46, trial47]
+                list_data = [dateNow, trial11, trial12, trial13, trial14, trial15, trial16, trial21, trial22, trial23,
+                             trial24, trial31, trial32, trial33, trial34, trial35, trial36, trial37, trial38, trial39,
+                             trial310, trial311, trial41, trial42, trial43, trial44, trial45, trial46, trial47]
                 os.chdir(USER_DIR)
                 with open(
                         f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\ScreenReaderSkillsProgression.csv",
@@ -2157,329 +1587,183 @@ class screenreaderPanel(scrolled.ScrolledPanel):
                     writer_setup = writer(f_setup)
                     writer_setup.writerow(list_data)
                     f_setup.close()
-                self.dial = wx.MessageDialog(None, 'Saved successfully!',
-                                             'Info', wx.OK)
+                self.dial = wx.MessageDialog(None, 'Saved successfully!', 'Info', wx.OK)
                 self.dial.ShowModal()
             else:
-                self.dial = wx.MessageDialog(None, 'Name already exists',
-                                             'Info', wx.OK)
+                self.dial = wx.MessageDialog(None, 'Name already exists', 'Info', wx.OK)
                 self.dial.ShowModal()
         else:
             self.dial = wx.MessageDialog(None, 'Save cancelled', 'Info', wx.OK)
             self.dial.ShowModal()
 
         def data_entry():
-            conn = sqlite3.connect(
-                Path(USER_DIR / 'StudentDatabase' / 'students.db'))
+            conn = sqlite3.connect(dataBasePath)
             c = conn.cursor()
             c.execute(
-                    "INSERT INTO screenreaderProgress (studentname, date, P1_1, P1_2, P1_3, P1_4, P1_5, P1_6, P2_1, P2_2, P2_3, P2_4, P3_1, P3_2, P3_3, P3_4, P3_5, P3_6, P3_7, P3_8, P3_9, P3_10, P3_11, P4_1, P4_2, P4_3, P4_4, P4_5, P4_6, P4_7) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
-                    (studentname, dateNow, trial11, trial12, trial13, trial14,
-                     trial15, trial16, trial21, trial22, trial23,
-                     trial24, trial31, trial32, trial33, trial34, trial35,
-                     trial36, trial37, trial38, trial39, trial310,
-                     trial311, trial41, trial42, trial43, trial44, trial45,
-                     trial46, trial47))
+                "INSERT INTO screenreaderProgress (studentname, date, P1_1, P1_2, P1_3, P1_4, P1_5, P1_6, P2_1, P2_2, P2_3, P2_4, P3_1, P3_2, P3_3, P3_4, P3_5, P3_6, P3_7, P3_8, P3_9, P3_10, P3_11, P4_1, P4_2, P4_3, P4_4, P4_5, P4_6, P4_7) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                (studentname, dateNow, trial11, trial12, trial13, trial14, trial15, trial16, trial21, trial22, trial23,
+                 trial24, trial31, trial32, trial33, trial34, trial35, trial36, trial37, trial38, trial39, trial310,
+                 trial311, trial41, trial42, trial43, trial44, trial45, trial46, trial47))
             conn.commit()
 
         data_entry()
 
     def graph(self, event):
-        studentname = self.studentname1.GetString(
-                self.studentname1.GetSelection())
+        studentname = self.studentname1.GetString(self.studentname1.GetSelection())
         df = pd.read_csv(
-                f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\ScreenReaderSkillsProgression.csv",
-                sep=', ', index_col=[0], parse_dates=[0])
+            f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\ScreenReaderSkillsProgression.csv",
+            sep=', ', index_col=[0], parse_dates=[0])
         df = df.sort_values(by="date")
         mu, sigma = 0, 0.1
         noise = np.random.normal(mu, sigma, [len(df.index), len(df.columns)])
         df_noisy = df + noise
-        fig = make_subplots(
-                rows=5, cols=2,
-                specs=[[{}, {"rowspan": 2}], [{}, None], [{"rowspan": 2}, {}],
-                       [None, {}], [{}, {}]],
-                subplot_titles=(
-                        "Phase 1a: Reading", "Phase 2: Writing",
-                        "Phase 1b: Reading", "Phase 3a: Internet",
-                        "Phase 3b: Internet", "Phase 3c: Internet",
-                        "Phase 4a: File Management",
-                        "Phase 4b: File Management"),
-                print_grid=True
-        )
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1_1"],
-                                 mode="lines+markers", name="Turn ON/OFF",
-                                 legendgroup="Phase 1a",
-                                 legendgrouptitle_text="Phase 1a"), row=1,
-                      col=1)
+        fig = make_subplots(rows=5, cols=2,
+                            specs=[[{}, {"rowspan": 2}], [{}, None], [{"rowspan": 2}, {}], [None, {}], [{}, {}]],
+                            subplot_titles=(
+                            "Phase 1a: Reading", "Phase 2: Writing", "Phase 1b: Reading", "Phase 3a: Internet",
+                            "Phase 3b: Internet", "Phase 3c: Internet", "Phase 4a: File Management",
+                            "Phase 4b: File Management"), print_grid=True
+                            )
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1_1"], mode="lines+markers", name="Turn ON/OFF",
+                                 legendgroup="Phase 1a", legendgrouptitle_text="Phase 1a"), row=1, col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1_2"],
-                           mode="lines+markers", name="Use Modifier Keys",
-                           legendgroup="Phase 1a",
-                           legendgrouptitle_text="Phase 1a"), row=1, col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1_2"], mode="lines+markers", name="Use Modifier Keys",
+                       legendgroup="Phase 1a", legendgrouptitle_text="Phase 1a"), row=1, col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1_3"],
-                           mode="lines+markers", name="Use Reading Commands",
-                           legendgroup="Phase 1a",
-                           legendgrouptitle_text="Phase 1a"), row=1, col=1)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1_4"],
-                                 mode="lines+markers", name="ID Titles",
-                                 legendgroup="Phase 1b",
-                                 legendgrouptitle_text=" "), row=2, col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1_3"], mode="lines+markers", name="Use Reading Commands",
+                       legendgroup="Phase 1a", legendgrouptitle_text="Phase 1a"), row=1, col=1)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1_4"], mode="lines+markers", name="ID Titles",
+                                 legendgroup="Phase 1b", legendgrouptitle_text=" "), row=2, col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1_5"],
-                           mode="lines+markers", name="Access Documents",
-                           legendgroup="Phase 1b", legendgrouptitle_text=" "),
-                row=2, col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1_5"], mode="lines+markers", name="Access Documents",
+                       legendgroup="Phase 1b", legendgrouptitle_text=" "), row=2, col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1_6"],
-                           mode="lines+markers", name="Switch Program Focus",
-                           legendgroup="Phase 1b", legendgrouptitle_text=" "),
-                row=2, col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1_6"], mode="lines+markers", name="Switch Program Focus",
+                       legendgroup="Phase 1b", legendgrouptitle_text=" "), row=2, col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P2_1"],
-                           mode="lines+markers", name="Type with all keys",
-                           legendgroup="Phase 2",
-                           legendgrouptitle_text="Phase 2"), row=1, col=2)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P2_1"], mode="lines+markers", name="Type with all keys",
+                       legendgroup="Phase 2", legendgrouptitle_text="Phase 2"), row=1, col=2)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P2_2"], mode="lines+markers",
+                                 name="Change Screen Reader Settings", legendgroup="Phase 2",
+                                 legendgrouptitle_text="Phase 2"), row=1, col=2)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P2_2"],
-                           mode="lines+markers",
-                           name="Change Screen Reader Settings",
-                           legendgroup="Phase 2",
-                           legendgrouptitle_text="Phase 2"),
-                row=1, col=2)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P2_3"], mode="lines+markers", name="Write documents",
+                       legendgroup="Phase 2", legendgrouptitle_text="Phase 2"), row=1, col=2)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P2_3"],
-                           mode="lines+markers", name="Write documents",
-                           legendgroup="Phase 2",
-                           legendgrouptitle_text="Phase 2"), row=1, col=2)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P2_4"], mode="lines+markers", name="Copy/Paste Text",
+                       legendgroup="Phase 2", legendgrouptitle_text="Phase 2"), row=1, col=2)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P2_4"],
-                           mode="lines+markers", name="Copy/Paste Text",
-                           legendgroup="Phase 2",
-                           legendgrouptitle_text="Phase 2"), row=1, col=2)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_4"], mode="lines+markers", name="TAB Navigation",
+                       legendgroup="Phase 3a", legendgrouptitle_text="Phase 3a"), row=3, col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_4"],
-                           mode="lines+markers", name="TAB Navigation",
-                           legendgroup="Phase 3a",
-                           legendgrouptitle_text="Phase 3a"), row=3, col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_5"], mode="lines+markers", name="Quick Key Navigation",
+                       legendgroup="Phase 3a", legendgrouptitle_text="Phase 3a"), row=3, col=1)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_6"], mode="lines+markers",
+                                 name="Elements List Navigation", legendgroup="Phase 3a",
+                                 legendgrouptitle_text="Phase 3a"), row=3, col=1)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_7"], mode="lines+markers",
+                                 name="Justify Navigation Method", legendgroup="Phase 3a",
+                                 legendgrouptitle_text="Phase 3a"), row=3, col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_5"],
-                           mode="lines+markers", name="Quick Key Navigation",
-                           legendgroup="Phase 3a",
-                           legendgrouptitle_text="Phase 3a"), row=3, col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_1"], mode="lines+markers", name="Define HTML Elements",
+                       legendgroup="Phase 3b", legendgrouptitle_text="Phase 3b"), row=3, col=2)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_6"],
-                           mode="lines+markers",
-                           name="Elements List Navigation",
-                           legendgroup="Phase 3a",
-                           legendgrouptitle_text="Phase 3a"),
-                row=3, col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_2"], mode="lines+markers", name="ID HTML Elements",
+                       legendgroup="Phase 3b", legendgrouptitle_text="Phase 3b"), row=3, col=2)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_7"],
-                           mode="lines+markers",
-                           name="Justify Navigation Method",
-                           legendgroup="Phase 3a",
-                           legendgrouptitle_text="Phase 3a"),
-                row=3, col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_3"], mode="lines+markers", name="Navigate to Address Bar",
+                       legendgroup="Phase 3b", legendgrouptitle_text="Phase 3b"), row=3, col=2)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_8"], mode="lines+markers", name="ALT-TAB Focus",
+                                 legendgroup="Phase 3b", legendgrouptitle_text="Phase 3b"), row=3, col=2)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_9"], mode="lines+markers",
+                                 name="Toggle Screen Reader Mode", legendgroup="Phase 3c",
+                                 legendgrouptitle_text="Phase 3c"), row=4, col=2)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_1"],
-                           mode="lines+markers", name="Define HTML Elements",
-                           legendgroup="Phase 3b",
-                           legendgrouptitle_text="Phase 3b"), row=3, col=2)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_10"], mode="lines+markers", name="Navigate a Table",
+                       legendgroup="Phase 3c", legendgrouptitle_text="Phase 3c"), row=4, col=2)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_2"],
-                           mode="lines+markers", name="ID HTML Elements",
-                           legendgroup="Phase 3b",
-                           legendgrouptitle_text="Phase 3b"), row=3, col=2)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_11"], mode="lines+markers", name="Navigation Sequence",
+                       legendgroup="Phase 3c", legendgrouptitle_text="Phase 3c"), row=4, col=2)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_3"],
-                           mode="lines+markers", name="Navigate to Address Bar",
-                           legendgroup="Phase 3b",
-                           legendgrouptitle_text="Phase 3b"), row=3, col=2)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_8"],
-                                 mode="lines+markers", name="ALT-TAB Focus",
-                                 legendgroup="Phase 3b",
-                                 legendgrouptitle_text="Phase 3b"), row=3,
-                      col=2)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P4_1"], mode="lines+markers", name="Save and Open Files",
+                       legendgroup="Phase 4a", legendgrouptitle_text="Phase 4a"), row=5, col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_9"],
-                           mode="lines+markers",
-                           name="Toggle Screen Reader Mode",
-                           legendgroup="Phase 3c",
-                           legendgrouptitle_text="Phase 3c"),
-                row=4, col=2)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P4_2"], mode="lines+markers", name="Create Folders",
+                       legendgroup="Phase 4a", legendgrouptitle_text="Phase 4a"), row=5, col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_10"],
-                           mode="lines+markers", name="Navigate a Table",
-                           legendgroup="Phase 3c",
-                           legendgrouptitle_text="Phase 3c"), row=4, col=2)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P4_3"], mode="lines+markers", name="Navigate Cloud Storage",
+                       legendgroup="Phase 4a", legendgrouptitle_text="Phase 4a"), row=5, col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_11"],
-                           mode="lines+markers", name="Navigation Sequence",
-                           legendgroup="Phase 3c",
-                           legendgrouptitle_text="Phase 3c"), row=4, col=2)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P4_4"], mode="lines+markers", name="Download from Internet",
+                       legendgroup="Phase 4a", legendgrouptitle_text="Phase 4a"), row=5, col=1)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P4_5"], mode="lines+markers", name="UNZIP Folders",
+                                 legendgroup="Phase 4b", legendgrouptitle_text="Phase 4b"), row=5, col=2)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P4_1"],
-                           mode="lines+markers", name="Save and Open Files",
-                           legendgroup="Phase 4a",
-                           legendgrouptitle_text="Phase 4a"), row=5, col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P4_6"], mode="lines+markers", name="Use Virtual Cursor",
+                       legendgroup="Phase 4b", legendgrouptitle_text="Phase 4b"), row=5, col=2)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P4_2"],
-                           mode="lines+markers", name="Create Folders",
-                           legendgroup="Phase 4a",
-                           legendgrouptitle_text="Phase 4a"), row=5, col=1)
-        fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P4_3"],
-                           mode="lines+markers", name="Navigate Cloud Storage",
-                           legendgroup="Phase 4a",
-                           legendgrouptitle_text="Phase 4a"), row=5, col=1)
-        fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P4_4"],
-                           mode="lines+markers", name="Download from Internet",
-                           legendgroup="Phase 4a",
-                           legendgrouptitle_text="Phase 4a"), row=5, col=1)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P4_5"],
-                                 mode="lines+markers", name="UNZIP Folders",
-                                 legendgroup="Phase 4b",
-                                 legendgrouptitle_text="Phase 4b"), row=5,
-                      col=2)
-        fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P4_6"],
-                           mode="lines+markers", name="Use Virtual Cursor",
-                           legendgroup="Phase 4b",
-                           legendgrouptitle_text="Phase 4b"), row=5, col=2)
-        fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P4_7"],
-                           mode="lines+markers", name="Use Built-In OCR",
-                           legendgroup="Phase 4b",
-                           legendgrouptitle_text="Phase 4b"), row=5, col=2)
-        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2,
-                      row=1, col=1)
-        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange",
-                      opacity=0.2, row=1, col=1)
-        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow",
-                      opacity=0.2, row=1, col=1)
-        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green",
-                      opacity=0.2, row=1, col=1)
-        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2,
-                      row=2, col=1)
-        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange",
-                      opacity=0.2, row=2, col=1)
-        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow",
-                      opacity=0.2, row=2, col=1)
-        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green",
-                      opacity=0.2, row=2, col=1)
-        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2,
-                      row=1, col=2)
-        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange",
-                      opacity=0.2, row=1, col=2)
-        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow",
-                      opacity=0.2, row=1, col=2)
-        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green",
-                      opacity=0.2, row=1, col=2)
-        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2,
-                      row=3, col=1)
-        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange",
-                      opacity=0.2, row=3, col=1)
-        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow",
-                      opacity=0.2, row=3, col=1)
-        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green",
-                      opacity=0.2, row=3, col=1)
-        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2,
-                      row=3, col=2)
-        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange",
-                      opacity=0.2, row=3, col=2)
-        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow",
-                      opacity=0.2, row=3, col=2)
-        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green",
-                      opacity=0.2, row=3, col=2)
-        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2,
-                      row=4, col=2)
-        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange",
-                      opacity=0.2, row=4, col=2)
-        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow",
-                      opacity=0.2, row=4, col=2)
-        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green",
-                      opacity=0.2, row=4, col=2)
-        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2,
-                      row=5, col=1)
-        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange",
-                      opacity=0.2, row=5, col=1)
-        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow",
-                      opacity=0.2, row=5, col=1)
-        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green",
-                      opacity=0.2, row=5, col=1)
-        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2,
-                      row=5, col=2)
-        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange",
-                      opacity=0.2, row=5, col=2)
-        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow",
-                      opacity=0.2, row=5, col=2)
-        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green",
-                      opacity=0.2, row=5, col=2)
-        fig.update_xaxes(
-            rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=1,
-            col=1)
-        fig.update_xaxes(
-            rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=1,
-            col=2)
-        fig.update_xaxes(
-            rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=2,
-            col=1)
-        fig.update_xaxes(
-            rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=3,
-            col=1)
-        fig.update_xaxes(
-            rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=3,
-            col=1)
-        fig.update_xaxes(
-            rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=3,
-            col=2)
-        fig.update_xaxes(
-            rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=4,
-            col=2)
-        fig.update_xaxes(
-            rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=5,
-            col=1)
-        fig.update_xaxes(
-            rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=5,
-            col=2)
-        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True,
-                         ticktext=["Unable", "Prompted", "Hesitated",
-                                   "Independent"],
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P4_7"], mode="lines+markers", name="Use Built-In OCR",
+                       legendgroup="Phase 4b", legendgrouptitle_text="Phase 4b"), row=5, col=2)
+        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2, row=1, col=1)
+        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange", opacity=0.2, row=1, col=1)
+        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow", opacity=0.2, row=1, col=1)
+        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green", opacity=0.2, row=1, col=1)
+        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2, row=2, col=1)
+        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange", opacity=0.2, row=2, col=1)
+        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow", opacity=0.2, row=2, col=1)
+        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green", opacity=0.2, row=2, col=1)
+        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2, row=1, col=2)
+        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange", opacity=0.2, row=1, col=2)
+        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow", opacity=0.2, row=1, col=2)
+        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green", opacity=0.2, row=1, col=2)
+        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2, row=3, col=1)
+        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange", opacity=0.2, row=3, col=1)
+        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow", opacity=0.2, row=3, col=1)
+        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green", opacity=0.2, row=3, col=1)
+        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2, row=3, col=2)
+        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange", opacity=0.2, row=3, col=2)
+        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow", opacity=0.2, row=3, col=2)
+        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green", opacity=0.2, row=3, col=2)
+        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2, row=4, col=2)
+        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange", opacity=0.2, row=4, col=2)
+        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow", opacity=0.2, row=4, col=2)
+        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green", opacity=0.2, row=4, col=2)
+        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2, row=5, col=1)
+        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange", opacity=0.2, row=5, col=1)
+        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow", opacity=0.2, row=5, col=1)
+        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green", opacity=0.2, row=5, col=1)
+        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2, row=5, col=2)
+        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange", opacity=0.2, row=5, col=2)
+        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow", opacity=0.2, row=5, col=2)
+        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green", opacity=0.2, row=5, col=2)
+        fig.update_xaxes(rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=1, col=1)
+        fig.update_xaxes(rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=1, col=2)
+        fig.update_xaxes(rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=2, col=1)
+        fig.update_xaxes(rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=3, col=1)
+        fig.update_xaxes(rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=3, col=1)
+        fig.update_xaxes(rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=3, col=2)
+        fig.update_xaxes(rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=4, col=2)
+        fig.update_xaxes(rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=5, col=1)
+        fig.update_xaxes(rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=5, col=2)
+        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True, ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
                          tickvals=[0.1, 1, 2, 3], row=1, col=1)
-        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True,
-                         ticktext=["Unable", "Prompted", "Hesitated",
-                                   "Independent"],
+        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True, ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
                          tickvals=[0.1, 1, 2, 3], row=2, col=1)
-        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True,
-                         ticktext=["Unable", "Prompted", "Hesitated",
-                                   "Independent"],
+        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True, ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
                          tickvals=[0.1, 1, 2, 3], row=1, col=2)
-        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True,
-                         ticktext=["Unable", "Prompted", "Hesitated",
-                                   "Independent"],
+        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True, ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
                          tickvals=[0.1, 1, 2, 3], row=3, col=1)
-        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True,
-                         ticktext=["Unable", "Prompted", "Hesitated",
-                                   "Independent"],
+        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True, ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
                          tickvals=[0.1, 1, 2, 3], row=3, col=2)
-        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True,
-                         ticktext=["Unable", "Prompted", "Hesitated",
-                                   "Independent"],
+        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True, ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
                          tickvals=[0.1, 1, 2, 3], row=4, col=2)
-        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True,
-                         ticktext=["Unable", "Prompted", "Hesitated",
-                                   "Independent"],
+        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True, ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
                          tickvals=[0.1, 1, 2, 3], row=5, col=1)
-        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True,
-                         ticktext=["Unable", "Prompted", "Hesitated",
-                                   "Independent"],
+        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True, ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
                          tickvals=[0.1, 1, 2, 3], row=5, col=2)
-        fig.update_layout(template="simple_white",
-                          title_text=f"{studentname}: Screen Reader Skills Progression")
+        fig.update_layout(template="simple_white", title_text=f"{studentname}: Screen Reader Skills Progression")
         fig.write_html(
-                f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\ScreenReaderSkillsProgression.html")
+            f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\ScreenReaderSkillsProgression.html")
         fig.show()
 
 
@@ -2495,11 +1779,8 @@ class abacusPanel(scrolled.ScrolledPanel):
         self.SetBackgroundColour(wx.Colour(245, 213, 203))
         wx.StaticText(self, -1, "ABACUS SKILLS PROGRESSION", pos=(200, 20))
         wx.StaticText(self, -1, "Student Name", pos=(30, 50))
-        self.studentname1 = wx.Choice(self, -1, choices=students, pos=(650, 50),
-                                      size=(300, 20))
-        wx.StaticText(self, -1,
-                      "RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent",
-                      pos=(550, 20))
+        self.studentname1 = wx.Choice(self, -1, choices=students, pos=(650, 50), size=(300, 20))
+        wx.StaticText(self, -1, "RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent", pos=(550, 20))
         wx.StaticText(self, -1, "1.1 Setting NumbersNumbers", pos=(30, 80))
         self.trial11 = wx.TextCtrl(self, -1, "", pos=(650, 80), size=(300, 20))
         wx.StaticText(self, -1, "1.2 Clearing Beads", pos=(30, 110))
@@ -2508,42 +1789,25 @@ class abacusPanel(scrolled.ScrolledPanel):
         self.trial13 = wx.TextCtrl(self, -1, "", pos=(650, 140), size=(300, 20))
         wx.StaticText(self, -1, "1.4 Vocabulary", pos=(30, 170))
         self.trial14 = wx.TextCtrl(self, -1, "", pos=(650, 170), size=(300, 20))
-        wx.StaticText(self, -1, "2.1 Addition of Single Digit Numbers",
-                      pos=(30, 200))
+        wx.StaticText(self, -1, "2.1 Addition of Single Digit Numbers", pos=(30, 200))
         self.trial21 = wx.TextCtrl(self, -1, "", pos=(650, 200), size=(300, 20))
-        wx.StaticText(self, -1,
-                      "2.2 Addition of Multiple Digit Numbers – Direct",
-                      pos=(30, 230))
+        wx.StaticText(self, -1, "2.2 Addition of Multiple Digit Numbers – Direct", pos=(30, 230))
         self.trial22 = wx.TextCtrl(self, -1, "", pos=(650, 230), size=(300, 20))
-        wx.StaticText(self, -1,
-                      "2.3 Addition of Multiple Digit Numbers – Indirect",
-                      pos=(30, 260))
+        wx.StaticText(self, -1, "2.3 Addition of Multiple Digit Numbers – Indirect", pos=(30, 260))
         self.trial23 = wx.TextCtrl(self, -1, "", pos=(650, 260), size=(300, 20))
         wx.StaticText(self, -1, "3.1 Subtraction", pos=(30, 290))
         self.trial31 = wx.TextCtrl(self, -1, "", pos=(650, 290), size=(300, 20))
-        wx.StaticText(self, -1,
-                      "3.2 Subtraction of Multiple Digit Numbers – Direct",
-                      pos=(30, 320))
+        wx.StaticText(self, -1, "3.2 Subtraction of Multiple Digit Numbers – Direct", pos=(30, 320))
         self.trial32 = wx.TextCtrl(self, -1, "", pos=(650, 320), size=(300, 20))
-        wx.StaticText(self, -1,
-                      "3.3 Subtraction of Multiple Digit Numbers – Indirect",
-                      pos=(30, 350))
+        wx.StaticText(self, -1, "3.3 Subtraction of Multiple Digit Numbers – Indirect", pos=(30, 350))
         self.trial33 = wx.TextCtrl(self, -1, "", pos=(650, 350), size=(300, 20))
-        wx.StaticText(self, -1,
-                      "4.1 Multiplication – 2+ Digit Multiplicand, 1 Digit Multiplier",
-                      pos=(30, 380))
+        wx.StaticText(self, -1, "4.1 Multiplication – 2+ Digit Multiplicand, 1 Digit Multiplier", pos=(30, 380))
         self.trial41 = wx.TextCtrl(self, -1, "", pos=(650, 380), size=(300, 20))
-        wx.StaticText(self, -1,
-                      "4.2 Multiplication – 2+ Digit Multiplicand AND Multiplier",
-                      pos=(30, 410))
+        wx.StaticText(self, -1, "4.2 Multiplication – 2+ Digit Multiplicand AND Multiplier", pos=(30, 410))
         self.trial42 = wx.TextCtrl(self, -1, "", pos=(650, 410), size=(300, 20))
-        wx.StaticText(self, -1,
-                      "5.1 Division – 2+ Digit Dividend, 1 Digit Divisor ",
-                      pos=(30, 440))
+        wx.StaticText(self, -1, "5.1 Division – 2+ Digit Dividend, 1 Digit Divisor ", pos=(30, 440))
         self.trial51 = wx.TextCtrl(self, -1, "", pos=(650, 440), size=(300, 20))
-        wx.StaticText(self, -1,
-                      "5.2 Division – 2+ Digit Dividend AND 1 Digit Divisor ",
-                      pos=(30, 470))
+        wx.StaticText(self, -1, "5.2 Division – 2+ Digit Dividend AND 1 Digit Divisor ", pos=(30, 470))
         self.trial52 = wx.TextCtrl(self, -1, "", pos=(650, 470), size=(300, 20))
         wx.StaticText(self, -1, "6.1 Addition of Decimals", pos=(30, 500))
         self.trial61 = wx.TextCtrl(self, -1, "", pos=(650, 500), size=(300, 20))
@@ -2557,8 +1821,7 @@ class abacusPanel(scrolled.ScrolledPanel):
         self.trial71 = wx.TextCtrl(self, -1, "", pos=(650, 620), size=(300, 20))
         wx.StaticText(self, -1, "7.2 Subtraction of Fractions", pos=(30, 650))
         self.trial72 = wx.TextCtrl(self, -1, "", pos=(650, 650), size=(300, 20))
-        wx.StaticText(self, -1, "7.3 Multiplication of Fractions",
-                      pos=(30, 680))
+        wx.StaticText(self, -1, "7.3 Multiplication of Fractions", pos=(30, 680))
         self.trial73 = wx.TextCtrl(self, -1, "", pos=(650, 680), size=(300, 20))
         wx.StaticText(self, -1, "7.4 Division of Fractions", pos=(30, 710))
         self.trial74 = wx.TextCtrl(self, -1, "", pos=(650, 710), size=(300, 20))
@@ -2570,16 +1833,14 @@ class abacusPanel(scrolled.ScrolledPanel):
         self.Bind(wx.EVT_BUTTON, self.save, id=201)
         self.btn1 = wx.Button(self, 202, "EXIT", pos=(550, 830), size=(70, 30))
         self.Bind(wx.EVT_BUTTON, self.exit, id=202)
-        self.btn = wx.Button(self, 203, "PRINT GRAPHS", pos=(450, 870),
-                             size=(170, 30))
+        self.btn = wx.Button(self, 203, "PRINT GRAPHS", pos=(450, 870), size=(170, 30))
         self.Bind(wx.EVT_BUTTON, self.graph, id=203)
 
     def exit(self, event):
         wx.Exit()
 
     def save(self, event):
-        studentname = self.studentname1.GetString(
-                self.studentname1.GetSelection())
+        studentname = self.studentname1.GetString(self.studentname1.GetSelection())
         dateNow = datetime.datetime.now().strftime("%Y_%m_%d-%H%M%S")
         simpleDate = datetime.datetime.now().strftime("%Y_%m_%d-%H%M")
         trial11 = self.trial11.GetValue()
@@ -2606,17 +1867,13 @@ class abacusPanel(scrolled.ScrolledPanel):
         trial74 = self.trial74.GetValue()
         trial81 = self.trial81.GetValue()
         trial82 = self.trial82.GetValue()
-        box = wx.TextEntryDialog(None, "Enter Address-Book name to save!",
-                                 "Title",
+        box = wx.TextEntryDialog(None, "Enter Address-Book name to save!", "Title",
                                  f"abacus{studentname.title()}{dateNow}")
         if box.ShowModal() == wx.ID_OK:
             self.studentdatabasename = box.GetValue()
-            if not Path(USER_DIR).joinpath('StudentDatabase',
-                                           'StudentDataFiles', studentname,
+            if not Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', studentname,
                                            self.studentdatabasename + '.txt').exists():
-                tmpPath = Path(USER_DIR).joinpath('StudentDatabase',
-                                                  'StudentDataFiles',
-                                                  studentname,
+                tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', studentname,
                                                   self.studentdatabasename + '.txt')
                 self.filename = open(tmpPath, 'w')
                 self.filename.write('studentname' + ', ')
@@ -2671,41 +1928,29 @@ class abacusPanel(scrolled.ScrolledPanel):
                 self.filename.write(trial81 + ', ')
                 self.filename.write(trial82 + ', ')
                 self.filename.close()
-                tmpPath = Path(USER_DIR).joinpath('StudentDatabase',
-                                                  'StudentDataFiles',
-                                                  'Filenames.txt')
+                tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', 'Filenames.txt')
                 self.filename = open(tmpPath, 'a')
-                tmpPath = Path(USER_DIR).joinpath('StudentDatabase',
-                                                  'StudentDataFiles',
-                                                  studentname,
+                tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', studentname,
                                                   self.studentdatabasename + '.txt')
                 self.filename.write(f"{tmpPath}" + '\n')
                 self.filename.close()
-                list_names = ['date', 'P1_1', 'P1_2', 'P1_3', 'P1_4', 'P2_1',
-                              'P2_2', 'P2_3', 'P3_1', 'P3_2', 'P3_3',
-                              'P4_1', 'P4_2', 'P5_1', 'P5_2', 'P6_1', 'P6_2',
-                              'P6_3', 'P6_4', 'P7_1', 'P7_2', 'P7_3',
+                list_names = ['date', 'P1_1', 'P1_2', 'P1_3', 'P1_4', 'P2_1', 'P2_2', 'P2_3', 'P3_1', 'P3_2', 'P3_3',
+                              'P4_1', 'P4_2', 'P5_1', 'P5_2', 'P6_1', 'P6_2', 'P6_3', 'P6_4', 'P7_1', 'P7_2', 'P7_3',
                               'P7_4', 'P8_1', 'P8_2']
-                list_data = [dateNow, trial11, trial12, trial13, trial14,
-                             trial21, trial22, trial23, trial31, trial32,
-                             trial33, trial41, trial42, trial51, trial52,
-                             trial61, trial62, trial63, trial64, trial71,
+                list_data = [dateNow, trial11, trial12, trial13, trial14, trial21, trial22, trial23, trial31, trial32,
+                             trial33, trial41, trial42, trial51, trial52, trial61, trial62, trial63, trial64, trial71,
                              trial72, trial73, trial74, trial81, trial82]
                 os.chdir(USER_DIR)
-                tmpPath = Path(USER_DIR).joinpath('StudentDatabase',
-                                                  'StudentDataFiles',
-                                                  studentname,
+                tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', studentname,
                                                   'AbacusSkillsProgression.csv')
                 with open(tmpPath, 'a', newline='') as f_setup:
                     writer_setup = writer(f_setup)
                     writer_setup.writerow(list_data)
                     f_setup.close()
-                self.dial = wx.MessageDialog(None, 'Saved successfully!',
-                                             'Info', wx.OK)
+                self.dial = wx.MessageDialog(None, 'Saved successfully!', 'Info', wx.OK)
                 self.dial.ShowModal()
             else:
-                self.dial = wx.MessageDialog(None, 'Name already exists',
-                                             'Info', wx.OK)
+                self.dial = wx.MessageDialog(None, 'Name already exists', 'Info', wx.OK)
                 self.dial.ShowModal()
         else:
             self.dial = wx.MessageDialog(None, 'Save cancelled', 'Info', wx.OK)
@@ -2715,269 +1960,147 @@ class abacusPanel(scrolled.ScrolledPanel):
             conn = sqlite3.connect(dataBasePath)
             c = conn.cursor()
             c.execute(
-                    "INSERT INTO abacusProgress (studentname, date, P1_1, P1_2, P1_3, P1_4, P2_1, P2_2, P2_3, P3_1, P3_2, P3_3, P4_1, P4_2, P5_1, P5_2, P6_1, P6_2, P6_3, P6_4, P7_1, P7_2, P7_3, P7_4, P8_1, P8_2) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                    (studentname, dateNow, trial11, trial12, trial13, trial14,
-                     trial21, trial22, trial23, trial31, trial32,
-                     trial33, trial41, trial42, trial51, trial52, trial61,
-                     trial62, trial63, trial64, trial71, trial72,
-                     trial73, trial74, trial81, trial82))
+                "INSERT INTO abacusProgress (studentname, date, P1_1, P1_2, P1_3, P1_4, P2_1, P2_2, P2_3, P3_1, P3_2, P3_3, P4_1, P4_2, P5_1, P5_2, P6_1, P6_2, P6_3, P6_4, P7_1, P7_2, P7_3, P7_4, P8_1, P8_2) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                (studentname, dateNow, trial11, trial12, trial13, trial14, trial21, trial22, trial23, trial31, trial32,
+                 trial33, trial41, trial42, trial51, trial52, trial61, trial62, trial63, trial64, trial71, trial72,
+                 trial73, trial74, trial81, trial82))
             conn.commit()
 
         data_entry()
 
     def graph(self, event):
-        studentname = self.studentname1.GetString(
-            self.studentname1.GetSelection())
-        tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles',
-                                          studentname,
+        studentname = self.studentname1.GetString(self.studentname1.GetSelection())
+        tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', studentname,
                                           'AbacusSkillsProgression.csv')
         df = pd.read_csv(tmpPath, sep=', ', index_col=[0], parse_dates=[0])
         df = df.sort_values(by="date")
         mu, sigma = 0, 0.1
         noise = np.random.normal(mu, sigma, [len(df.index), len(df.columns)])
         df_noisy = df + noise
-        fig = make_subplots(
-                rows=4, cols=2, subplot_titles=(
-                        "Phase 1: Foundation", "Phase 2: Addition",
-                        "Phase 3: Subtraction", "Phase 4: Multiplication",
-                        "Phase 5: Division", "Phase 6: Decimals",
-                        "Phase 7: Fractions", "Phase 8: Special Functions"),
-                print_grid=True
-        )
+        fig = make_subplots(rows=4, cols=2, subplot_titles=(
+        "Phase 1: Foundation", "Phase 2: Addition", "Phase 3: Subtraction", "Phase 4: Multiplication",
+        "Phase 5: Division", "Phase 6: Decimals", "Phase 7: Fractions", "Phase 8: Special Functions"), print_grid=True
+                            )
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1_1"],
-                           mode="lines+markers", name="Setting Numbers",
-                           legendgroup="Phase 1",
-                           legendgrouptitle_text="Phase 1"), row=1, col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1_1"], mode="lines+markers", name="Setting Numbers",
+                       legendgroup="Phase 1", legendgrouptitle_text="Phase 1"), row=1, col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1_2"],
-                           mode="lines+markers", name="Clearing Beads",
-                           legendgroup="Phase 1",
-                           legendgrouptitle_text="Phase 1"), row=1, col=1)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1_3"],
-                                 mode="lines+markers", name="Place Value",
-                                 legendgroup="Phase 1",
-                                 legendgrouptitle_text="Phase 1"), row=1, col=1)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1_4"],
-                                 mode="lines+markers", name="Vocabulary",
-                                 legendgroup="Phase 1",
-                                 legendgrouptitle_text="Phase 1"), row=1, col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1_2"], mode="lines+markers", name="Clearing Beads",
+                       legendgroup="Phase 1", legendgrouptitle_text="Phase 1"), row=1, col=1)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1_3"], mode="lines+markers", name="Place Value",
+                                 legendgroup="Phase 1", legendgrouptitle_text="Phase 1"), row=1, col=1)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1_4"], mode="lines+markers", name="Vocabulary",
+                                 legendgroup="Phase 1", legendgrouptitle_text="Phase 1"), row=1, col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P2_1"],
-                           mode="lines+markers", name="Setting Numbers",
-                           legendgroup="Phase 2",
-                           legendgrouptitle_text="Phase 2"), row=1, col=2)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P2_1"], mode="lines+markers", name="Setting Numbers",
+                       legendgroup="Phase 2", legendgrouptitle_text="Phase 2"), row=1, col=2)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P2_2"],
-                           mode="lines+markers", name="Clearing Beads",
-                           legendgroup="Phase 2",
-                           legendgrouptitle_text="Phase 2"), row=1, col=2)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P2_3"],
-                                 mode="lines+markers", name="Place Value",
-                                 legendgroup="Phase 2",
-                                 legendgrouptitle_text="Phase 2"), row=1, col=2)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P2_2"], mode="lines+markers", name="Clearing Beads",
+                       legendgroup="Phase 2", legendgrouptitle_text="Phase 2"), row=1, col=2)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P2_3"], mode="lines+markers", name="Place Value",
+                                 legendgroup="Phase 2", legendgrouptitle_text="Phase 2"), row=1, col=2)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_1"],
-                           mode="lines+markers", name="Setting Numbers",
-                           legendgroup="Phase 3",
-                           legendgrouptitle_text="Phase 3"), row=2, col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_1"], mode="lines+markers", name="Setting Numbers",
+                       legendgroup="Phase 3", legendgrouptitle_text="Phase 3"), row=2, col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_2"],
-                           mode="lines+markers", name="Clearing Beads",
-                           legendgroup="Phase 3",
-                           legendgrouptitle_text="Phase 3"), row=2, col=1)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_3"],
-                                 mode="lines+markers", name="Place Value",
-                                 legendgroup="Phase 3",
-                                 legendgrouptitle_text="Phase 3"), row=2, col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_2"], mode="lines+markers", name="Clearing Beads",
+                       legendgroup="Phase 3", legendgrouptitle_text="Phase 3"), row=2, col=1)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_3"], mode="lines+markers", name="Place Value",
+                                 legendgroup="Phase 3", legendgrouptitle_text="Phase 3"), row=2, col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P4_1"],
-                           mode="lines+markers", name="Setting Numbers",
-                           legendgroup="Phase 4",
-                           legendgrouptitle_text="Phase 4"), row=2, col=2)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P4_1"], mode="lines+markers", name="Setting Numbers",
+                       legendgroup="Phase 4", legendgrouptitle_text="Phase 4"), row=2, col=2)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P4_2"],
-                           mode="lines+markers", name="Clearing Beads",
-                           legendgroup="Phase 4",
-                           legendgrouptitle_text="Phase 4"), row=2, col=2)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P5_1"],
-                                 mode="lines+markers", name="Place Value",
-                                 legendgroup="Phase 5",
-                                 legendgrouptitle_text="Phase 5"), row=3, col=1)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P5_2"],
-                                 mode="lines+markers", name="Vocabulary",
-                                 legendgroup="Phase 5",
-                                 legendgrouptitle_text="Phase 5"), row=3, col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P4_2"], mode="lines+markers", name="Clearing Beads",
+                       legendgroup="Phase 4", legendgrouptitle_text="Phase 4"), row=2, col=2)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P5_1"], mode="lines+markers", name="Place Value",
+                                 legendgroup="Phase 5", legendgrouptitle_text="Phase 5"), row=3, col=1)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P5_2"], mode="lines+markers", name="Vocabulary",
+                                 legendgroup="Phase 5", legendgrouptitle_text="Phase 5"), row=3, col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P6_1"],
-                           mode="lines+markers", name="Setting Numbers",
-                           legendgroup="Phase 6",
-                           legendgrouptitle_text="Phase 6"), row=3, col=2)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P6_1"], mode="lines+markers", name="Setting Numbers",
+                       legendgroup="Phase 6", legendgrouptitle_text="Phase 6"), row=3, col=2)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P6_2"],
-                           mode="lines+markers", name="Clearing Beads",
-                           legendgroup="Phase 6",
-                           legendgrouptitle_text="Phase 6"), row=3, col=2)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P6_3"],
-                                 mode="lines+markers", name="Place Value",
-                                 legendgroup="Phase 6",
-                                 legendgrouptitle_text="Phase 6"), row=3, col=2)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P6_4"],
-                                 mode="lines+markers", name="Vocabulary",
-                                 legendgroup="Phase 6",
-                                 legendgrouptitle_text="Phase 6"), row=3, col=2)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P6_2"], mode="lines+markers", name="Clearing Beads",
+                       legendgroup="Phase 6", legendgrouptitle_text="Phase 6"), row=3, col=2)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P6_3"], mode="lines+markers", name="Place Value",
+                                 legendgroup="Phase 6", legendgrouptitle_text="Phase 6"), row=3, col=2)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P6_4"], mode="lines+markers", name="Vocabulary",
+                                 legendgroup="Phase 6", legendgrouptitle_text="Phase 6"), row=3, col=2)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P7_1"],
-                           mode="lines+markers", name="Setting Numbers",
-                           legendgroup="Phase 7",
-                           legendgrouptitle_text="Phase 7"), row=4, col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P7_1"], mode="lines+markers", name="Setting Numbers",
+                       legendgroup="Phase 7", legendgrouptitle_text="Phase 7"), row=4, col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P7_2"],
-                           mode="lines+markers", name="Clearing Beads",
-                           legendgroup="Phase 7",
-                           legendgrouptitle_text="Phase 7"), row=4, col=1)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P7_3"],
-                                 mode="lines+markers", name="Place Value",
-                                 legendgroup="Phase 7",
-                                 legendgrouptitle_text="Phase 7"), row=4, col=1)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P7_4"],
-                                 mode="lines+markers", name="Vocabulary",
-                                 legendgroup="Phase 7",
-                                 legendgrouptitle_text="Phase 7"), row=4, col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P7_2"], mode="lines+markers", name="Clearing Beads",
+                       legendgroup="Phase 7", legendgrouptitle_text="Phase 7"), row=4, col=1)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P7_3"], mode="lines+markers", name="Place Value",
+                                 legendgroup="Phase 7", legendgrouptitle_text="Phase 7"), row=4, col=1)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P7_4"], mode="lines+markers", name="Vocabulary",
+                                 legendgroup="Phase 7", legendgrouptitle_text="Phase 7"), row=4, col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P8_1"],
-                           mode="lines+markers", name="Setting Numbers",
-                           legendgroup="Phase 8",
-                           legendgrouptitle_text="Phase 8"), row=4, col=2)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P8_1"], mode="lines+markers", name="Setting Numbers",
+                       legendgroup="Phase 8", legendgrouptitle_text="Phase 8"), row=4, col=2)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P8_2"],
-                           mode="lines+markers", name="Clearing Beads",
-                           legendgroup="Phase 8",
-                           legendgrouptitle_text="Phase 8"), row=4, col=2)
-        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2,
-                      row=1, col=1)
-        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange",
-                      opacity=0.2, row=1, col=1)
-        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow",
-                      opacity=0.2, row=1, col=1)
-        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green",
-                      opacity=0.2, row=1, col=1)
-        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2,
-                      row=1, col=2)
-        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange",
-                      opacity=0.2, row=1, col=2)
-        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow",
-                      opacity=0.2, row=1, col=2)
-        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green",
-                      opacity=0.2, row=1, col=2)
-        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2,
-                      row=2, col=1)
-        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange",
-                      opacity=0.2, row=2, col=1)
-        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow",
-                      opacity=0.2, row=2, col=1)
-        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green",
-                      opacity=0.2, row=2, col=1)
-        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2,
-                      row=2, col=2)
-        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange",
-                      opacity=0.2, row=2, col=2)
-        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow",
-                      opacity=0.2, row=2, col=2)
-        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green",
-                      opacity=0.2, row=2, col=2)
-        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2,
-                      row=3, col=1)
-        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange",
-                      opacity=0.2, row=3, col=1)
-        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow",
-                      opacity=0.2, row=3, col=1)
-        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green",
-                      opacity=0.2, row=3, col=1)
-        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2,
-                      row=3, col=2)
-        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange",
-                      opacity=0.2, row=3, col=2)
-        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow",
-                      opacity=0.2, row=3, col=2)
-        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green",
-                      opacity=0.2, row=3, col=2)
-        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2,
-                      row=4, col=1)
-        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange",
-                      opacity=0.2, row=4, col=1)
-        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow",
-                      opacity=0.2, row=4, col=1)
-        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green",
-                      opacity=0.2, row=4, col=1)
-        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2,
-                      row=4, col=2)
-        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange",
-                      opacity=0.2, row=4, col=2)
-        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow",
-                      opacity=0.2, row=4, col=2)
-        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green",
-                      opacity=0.2, row=4, col=2)
-        fig.update_xaxes(
-            rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=1,
-            col=1)
-        fig.update_xaxes(
-            rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=1,
-            col=2)
-        fig.update_xaxes(
-            rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=2,
-            col=1)
-        fig.update_xaxes(
-            rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=2,
-            col=2)
-        fig.update_xaxes(
-            rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=3,
-            col=1)
-        fig.update_xaxes(
-            rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=3,
-            col=2)
-        fig.update_xaxes(
-            rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=4,
-            col=1)
-        fig.update_xaxes(
-            rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=4,
-            col=2)
-        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True,
-                         ticktext=["Unable", "Prompted", "Hesitated",
-                                   "Independent"],
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P8_2"], mode="lines+markers", name="Clearing Beads",
+                       legendgroup="Phase 8", legendgrouptitle_text="Phase 8"), row=4, col=2)
+        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2, row=1, col=1)
+        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange", opacity=0.2, row=1, col=1)
+        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow", opacity=0.2, row=1, col=1)
+        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green", opacity=0.2, row=1, col=1)
+        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2, row=1, col=2)
+        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange", opacity=0.2, row=1, col=2)
+        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow", opacity=0.2, row=1, col=2)
+        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green", opacity=0.2, row=1, col=2)
+        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2, row=2, col=1)
+        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange", opacity=0.2, row=2, col=1)
+        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow", opacity=0.2, row=2, col=1)
+        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green", opacity=0.2, row=2, col=1)
+        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2, row=2, col=2)
+        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange", opacity=0.2, row=2, col=2)
+        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow", opacity=0.2, row=2, col=2)
+        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green", opacity=0.2, row=2, col=2)
+        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2, row=3, col=1)
+        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange", opacity=0.2, row=3, col=1)
+        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow", opacity=0.2, row=3, col=1)
+        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green", opacity=0.2, row=3, col=1)
+        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2, row=3, col=2)
+        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange", opacity=0.2, row=3, col=2)
+        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow", opacity=0.2, row=3, col=2)
+        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green", opacity=0.2, row=3, col=2)
+        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2, row=4, col=1)
+        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange", opacity=0.2, row=4, col=1)
+        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow", opacity=0.2, row=4, col=1)
+        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green", opacity=0.2, row=4, col=1)
+        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2, row=4, col=2)
+        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange", opacity=0.2, row=4, col=2)
+        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow", opacity=0.2, row=4, col=2)
+        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green", opacity=0.2, row=4, col=2)
+        fig.update_xaxes(rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=1, col=1)
+        fig.update_xaxes(rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=1, col=2)
+        fig.update_xaxes(rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=2, col=1)
+        fig.update_xaxes(rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=2, col=2)
+        fig.update_xaxes(rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=3, col=1)
+        fig.update_xaxes(rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=3, col=2)
+        fig.update_xaxes(rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=4, col=1)
+        fig.update_xaxes(rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=4, col=2)
+        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True, ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
                          tickvals=[0.1, 1, 2, 3], row=1, col=1)
-        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True,
-                         ticktext=["Unable", "Prompted", "Hesitated",
-                                   "Independent"],
+        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True, ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
                          tickvals=[0.1, 1, 2, 3], row=1, col=2)
-        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True,
-                         ticktext=["Unable", "Prompted", "Hesitated",
-                                   "Independent"],
+        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True, ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
                          tickvals=[0.1, 1, 2, 3], row=2, col=1)
-        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True,
-                         ticktext=["Unable", "Prompted", "Hesitated",
-                                   "Independent"],
+        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True, ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
                          tickvals=[0.1, 1, 2, 3], row=2, col=2)
-        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True,
-                         ticktext=["Unable", "Prompted", "Hesitated",
-                                   "Independent"],
+        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True, ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
                          tickvals=[0.1, 1, 2, 3], row=3, col=1)
-        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True,
-                         ticktext=["Unable", "Prompted", "Hesitated",
-                                   "Independent"],
+        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True, ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
                          tickvals=[0.1, 1, 2, 3], row=3, col=2)
-        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True,
-                         ticktext=["Unable", "Prompted", "Hesitated",
-                                   "Independent"],
+        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True, ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
                          tickvals=[0.1, 1, 2, 3], row=4, col=1)
-        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True,
-                         ticktext=["Unable", "Prompted", "Hesitated",
-                                   "Independent"],
+        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True, ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
                          tickvals=[0.1, 1, 2, 3], row=4, col=2)
-        fig.update_layout(template="simple_white",
-                          title_text=f"{studentname}: Abacus Skills Progression")
-        tmppath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles',
-                                          studentname,
+        fig.update_layout(template="simple_white", title_text=f"{studentname}: Abacus Skills Progression")
+        tmppath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', studentname,
                                           'AbacusSkillsProgression.html')
         fig.write_html(tmppath)
         fig.show()
@@ -2995,11 +2118,7 @@ class cviPanel(scrolled.ScrolledPanel):
         self.SetBackgroundColour(wx.Colour(246, 236, 245))
         wx.StaticText(self, -1, "CVI PROGRESSION", pos=(200, 20))
         wx.StaticText(self, -1, "Student Name", pos=(30, 50))
-        self.studentname1 = wx.Choice(self, -1, choices=students, pos=(650, 50),
-                                      size=(300, 20))
-        wx.StaticText(self, -1,
-                      "RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent",
-                      pos=(550, 20))
+        self.studentname1 = wx.Choice(self, -1, choices=students, pos=(650, 50), size=(300, 20))
         wx.StaticText(self, -1, "Color Preference", pos=(30, 80))
         self.trial11 = wx.TextCtrl(self, -1, "", pos=(650, 80), size=(300, 20))
         wx.StaticText(self, -1, "Need for Movement", pos=(30, 110))
@@ -3008,37 +2127,30 @@ class cviPanel(scrolled.ScrolledPanel):
         self.trial13 = wx.TextCtrl(self, -1, "", pos=(650, 140), size=(300, 20))
         wx.StaticText(self, -1, "Visual Field Preference", pos=(30, 170))
         self.trial14 = wx.TextCtrl(self, -1, "", pos=(650, 170), size=(300, 20))
-        wx.StaticText(self, -1, "Difficulty with Visual Complexity",
-                      pos=(30, 200))
+        wx.StaticText(self, -1, "Difficulty with Visual Complexity", pos=(30, 200))
         self.trial21 = wx.TextCtrl(self, -1, "", pos=(650, 200), size=(300, 20))
-        wx.StaticText(self, -1, "Light Gazing and Nonpurposeful Gaze",
-                      pos=(30, 230))
+        wx.StaticText(self, -1, "Light Gazing and Nonpurposeful Gaze", pos=(30, 230))
         self.trial22 = wx.TextCtrl(self, -1, "", pos=(650, 230), size=(300, 20))
-        wx.StaticText(self, -1, "Difficulty with Distance Viewing",
-                      pos=(30, 260))
+        wx.StaticText(self, -1, "Difficulty with Distance Viewing", pos=(30, 260))
         self.trial23 = wx.TextCtrl(self, -1, "", pos=(650, 260), size=(300, 20))
         wx.StaticText(self, -1, "Atypical Visual Reflexes", pos=(30, 290))
         self.trial31 = wx.TextCtrl(self, -1, "", pos=(650, 290), size=(300, 20))
         wx.StaticText(self, -1, "Difficulty with Visual Novelty", pos=(30, 320))
         self.trial32 = wx.TextCtrl(self, -1, "", pos=(650, 320), size=(300, 20))
-        wx.StaticText(self, -1, "Absence of Visually Guided Reach",
-                      pos=(30, 350))
+        wx.StaticText(self, -1, "Absence of Visually Guided Reach", pos=(30, 350))
         self.trial33 = wx.TextCtrl(self, -1, "", pos=(650, 350), size=(300, 20))
 
         self.btn = wx.Button(self, 201, "SAVE", pos=(300, 450), size=(70, 30))
         self.Bind(wx.EVT_BUTTON, self.save, id=201)
         self.btn1 = wx.Button(self, 202, "EXIT", pos=(600, 450), size=(70, 30))
         self.Bind(wx.EVT_BUTTON, self.exit, id=202)
-        self.btn2 = wx.Button(self, 203, "PRINT GRAPHS", pos=(400, 450),
-                              size=(170, 30))
+        self.btn2 = wx.Button(self, 203, "PRINT GRAPHS", pos=(400, 450), size=(170, 30))
         self.Bind(wx.EVT_BUTTON, self.graph, id=203)
-        self.btn3 = wx.Button(self, 204, "SHOW RUBRIC", pos=(30, 550),
-                              size=(170, 30))
+        self.btn3 = wx.Button(self, 204, "SHOW RUBRIC", pos=(30, 550), size=(170, 30))
         self.Bind(wx.EVT_BUTTON, self.rubric, id=204)
         wx.StaticText(self, -1, "RUBRIC DATA", pos=(30, 450))
         wx.StaticText(self, -1, "CVI DOMAIN", pos=(30, 500))
-        self.cviDomain1 = wx.Choice(self, -1, choices=cviDomains,
-                                    pos=(150, 500), size=(300, 20))
+        self.cviDomain1 = wx.Choice(self, -1, choices=cviDomains, pos=(150, 500), size=(300, 20))
 
     def rubric(self, event):
 
@@ -3137,8 +2249,7 @@ class cviPanel(scrolled.ScrolledPanel):
         wx.Exit()
 
     def save(self, event):
-        studentname = self.studentname1.GetString(
-                self.studentname1.GetSelection())
+        studentname = self.studentname1.GetString(self.studentname1.GetSelection())
         dateNow = datetime.datetime.now().strftime("%Y_%m_%d-%H%M%S")
         simpleDate = datetime.datetime.now().strftime("%Y_%m_%d-%H%M")
         trial11 = self.trial11.GetValue()
@@ -3151,17 +2262,13 @@ class cviPanel(scrolled.ScrolledPanel):
         trial31 = self.trial31.GetValue()
         trial32 = self.trial32.GetValue()
         trial33 = self.trial33.GetValue()
-        box = wx.TextEntryDialog(None, "Enter Address-Book name to save!",
-                                 "Title",
+        box = wx.TextEntryDialog(None, "Enter Address-Book name to save!", "Title",
                                  f"cvi{studentname.title()}{dateNow}")
         if box.ShowModal() == wx.ID_OK:
             self.studentdatabasename = box.GetValue()
-            if not Path(USER_DIR).joinpath('StudentDatabase',
-                                           'StudentDataFiles', studentname,
+            if not Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', studentname,
                                            self.studentdatabasename + '.txt').exists():
-                tmpPath = Path(USER_DIR).joinpath('StudentDatabase',
-                                                  'StudentDataFiles',
-                                                  studentname,
+                tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', studentname,
                                                   self.studentdatabasename + '.txt')
                 self.filename = open(tmpPath, 'w')
                 self.filename.write('studentname' + ', ')
@@ -3188,36 +2295,26 @@ class cviPanel(scrolled.ScrolledPanel):
                 self.filename.write(trial32 + ', ')
                 self.filename.write(trial33 + ', ')
                 self.filename.close()
-                tmpPath = Path(USER_DIR).joinpath('StudentDatabase',
-                                                  'StudentDataFiles',
-                                                  'Filenames.txt')
+                tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', 'Filenames.txt')
                 self.filename = open(tmpPath, 'a')
-                tmpPath = Path(USER_DIR).joinpath('StudentDatabase',
-                                                  'StudentDataFiles',
-                                                  studentname,
+                tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', studentname,
                                                   self.studentdatabasename + '.txt')
                 self.filename.write(f"{tmpPath}" + '\n')
                 self.filename.close()
-                list_names = ['date', 'P1_1', 'P1_2', 'P1_3', 'P1_4', 'P1_5',
-                              'P1_6', 'P2_1', 'P2_2', 'P2_3', 'P2_4']
-                list_data = [dateNow, trial11, trial12, trial13, trial14,
-                             trial21, trial22, trial23, trial31, trial32,
+                list_names = ['date', 'P1_1', 'P1_2', 'P1_3', 'P1_4', 'P1_5', 'P1_6', 'P2_1', 'P2_2', 'P2_3', 'P2_4']
+                list_data = [dateNow, trial11, trial12, trial13, trial14, trial21, trial22, trial23, trial31, trial32,
                              trial33]
                 os.chdir(USER_DIR)
-                tmpPath = Path(USER_DIR).joinpath('StudentDatabase',
-                                                  'StudentDataFiles',
-                                                  studentname,
+                tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', studentname,
                                                   'cviProgression.csv')
                 with open(tmpPath, 'a', newline='') as f_setup:
                     writer_setup = writer(f_setup)
                     writer_setup.writerow(list_data)
                     f_setup.close()
-                self.dial = wx.MessageDialog(None, 'Saved successfully!',
-                                             'Info', wx.OK)
+                self.dial = wx.MessageDialog(None, 'Saved successfully!', 'Info', wx.OK)
                 self.dial.ShowModal()
             else:
-                self.dial = wx.MessageDialog(None, 'Name already exists',
-                                             'Info', wx.OK)
+                self.dial = wx.MessageDialog(None, 'Name already exists', 'Info', wx.OK)
                 self.dial.ShowModal()
         else:
             self.dial = wx.MessageDialog(None, 'Save cancelled', 'Info', wx.OK)
@@ -3227,229 +2324,125 @@ class cviPanel(scrolled.ScrolledPanel):
             conn = sqlite3.connect(dataBasePath)
             c = conn.cursor()
             c.execute(
-                    "INSERT INTO cviProgress (studentname, date, P1_1, P1_2, P1_3, P1_4, P1_5, P1_6, P2_1, P2_2, P2_3, P2_4) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                    (studentname, dateNow, trial11, trial12, trial13, trial14,
-                     trial21, trial22, trial23, trial31, trial32,
-                     trial33))
+                "INSERT INTO cviProgress (studentname, date, P1_1, P1_2, P1_3, P1_4, P1_5, P1_6, P2_1, P2_2, P2_3, P2_4) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                (studentname, dateNow, trial11, trial12, trial13, trial14, trial21, trial22, trial23, trial31, trial32,
+                 trial33))
             conn.commit()
 
         data_entry()
 
     def graph(self, event):
-        studentname = self.studentname1.GetString(
-            self.studentname1.GetSelection())
-        tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles',
-                                          studentname, 'cviProgression.csv')
+        studentname = self.studentname1.GetString(self.studentname1.GetSelection())
+        tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', studentname, 'cviProgression.csv')
         df = pd.read_csv(tmpPath, sep=',', index_col=[0], parse_dates=['date'])
         # df['date']=pd.to_datetime(df['date'])
         df = df.sort_values(by="date")
         mu, sigma = 0, 0.1
         noise = np.random.normal(mu, sigma, [len(df.index), len(df.columns)])
         df_noisy = df + noise
-        fig = make_subplots(
-                rows=5, cols=2, subplot_titles=(
-                        "Color Preference", "Need for Movement", "Latency",
-                        "Field Preference", "Visual Complexity",
-                        "Nonpurposeful Gaze", "Distance Viewing",
-                        "Atypical Reflexes", "Visual Novelty", "Visual Reach"),
-                print_grid=True
-        )
+        fig = make_subplots(rows=5, cols=2, subplot_titles=(
+        "Color Preference", "Need for Movement", "Latency", "Field Preference", "Visual Complexity",
+        "Nonpurposeful Gaze", "Distance Viewing", "Atypical Reflexes", "Visual Novelty", "Visual Reach"),
+                            print_grid=True
+                            )
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1_1"],
-                           mode="lines+markers", name="Color Preference",
-                           legendgroup="Phase 1", legendgrouptitle_text=" "),
-                row=1, col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1_1"], mode="lines+markers", name="Color Preference",
+                       legendgroup="Phase 1", legendgrouptitle_text=" "), row=1, col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1_2"],
-                           mode="lines+markers", name="Need for Movement",
-                           legendgroup="Phase 1",
-                           legendgrouptitle_text="Phase 1"), row=1, col=2)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1_3"],
-                                 mode="lines+markers", name="Latency",
-                                 legendgroup=" ", legendgrouptitle_text=" "),
-                      row=2, col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1_2"], mode="lines+markers", name="Need for Movement",
+                       legendgroup="Phase 1", legendgrouptitle_text="Phase 1"), row=1, col=2)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1_3"], mode="lines+markers", name="Latency",
+                                 legendgroup=" ", legendgrouptitle_text=" "), row=2, col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1_4"],
-                           mode="lines+markers", name="Field Prefence",
-                           legendgroup="Phase 1", legendgrouptitle_text=" "),
-                row=2, col=2)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1_4"], mode="lines+markers", name="Field Prefence",
+                       legendgroup="Phase 1", legendgrouptitle_text=" "), row=2, col=2)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1_5"],
-                           mode="lines+markers", name="Visual Complexity",
-                           legendgroup="Phase 2", legendgrouptitle_text=" "),
-                row=3, col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1_5"], mode="lines+markers", name="Visual Complexity",
+                       legendgroup="Phase 2", legendgrouptitle_text=" "), row=3, col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1_5"],
-                           mode="lines+markers", name="Nonpurposeful Gaze",
-                           legendgroup="Phase 2", legendgrouptitle_text=" "),
-                row=3, col=2)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1_5"], mode="lines+markers", name="Nonpurposeful Gaze",
+                       legendgroup="Phase 2", legendgrouptitle_text=" "), row=3, col=2)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P2_1"],
-                           mode="lines+markers", name="Distance Viewing",
-                           legendgroup="Phase 2", legendgrouptitle_text=" "),
-                row=4, col=1)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P2_1"], mode="lines+markers", name="Distance Viewing",
+                       legendgroup="Phase 2", legendgrouptitle_text=" "), row=4, col=1)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P2_2"],
-                           mode="lines+markers", name="Atypical Reflexes",
-                           legendgroup="Phase 3", legendgrouptitle_text=" "),
-                row=4, col=2)
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P2_2"], mode="lines+markers", name="Atypical Reflexes",
+                       legendgroup="Phase 3", legendgrouptitle_text=" "), row=4, col=2)
         fig.add_trace(
-                go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P2_3"],
-                           mode="lines+markers", name="Visual Novelty",
-                           legendgroup="Phase 3", legendgrouptitle_text=" "),
-                row=5, col=1)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P2_4"],
-                                 mode="lines+markers", name="Visual Reach",
-                                 legendgroup="Phase 3",
-                                 legendgrouptitle_text=" "), row=5, col=2)
-        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2,
-                      row=1, col=1)
-        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange",
-                      opacity=0.2, row=1, col=1)
-        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow",
-                      opacity=0.2, row=1, col=1)
-        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green",
-                      opacity=0.2, row=1, col=1)
-        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2,
-                      row=1, col=2)
-        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange",
-                      opacity=0.2, row=1, col=2)
-        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow",
-                      opacity=0.2, row=1, col=2)
-        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green",
-                      opacity=0.2, row=1, col=2)
-        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2,
-                      row=2, col=1)
-        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange",
-                      opacity=0.2, row=2, col=1)
-        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow",
-                      opacity=0.2, row=2, col=1)
-        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green",
-                      opacity=0.2, row=2, col=1)
-        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2,
-                      row=2, col=2)
-        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange",
-                      opacity=0.2, row=2, col=2)
-        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow",
-                      opacity=0.2, row=2, col=2)
-        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green",
-                      opacity=0.2, row=2, col=2)
-        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2,
-                      row=3, col=1)
-        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange",
-                      opacity=0.2, row=3, col=1)
-        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow",
-                      opacity=0.2, row=3, col=1)
-        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green",
-                      opacity=0.2, row=3, col=1)
-        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2,
-                      row=3, col=2)
-        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange",
-                      opacity=0.2, row=3, col=2)
-        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow",
-                      opacity=0.2, row=3, col=2)
-        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green",
-                      opacity=0.2, row=3, col=2)
-        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2,
-                      row=4, col=1)
-        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange",
-                      opacity=0.2, row=4, col=1)
-        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow",
-                      opacity=0.2, row=4, col=1)
-        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green",
-                      opacity=0.2, row=4, col=1)
-        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2,
-                      row=4, col=2)
-        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange",
-                      opacity=0.2, row=4, col=2)
-        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow",
-                      opacity=0.2, row=4, col=2)
-        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green",
-                      opacity=0.2, row=4, col=2)
-        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2,
-                      row=5, col=1)
-        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange",
-                      opacity=0.2, row=5, col=1)
-        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow",
-                      opacity=0.2, row=5, col=1)
-        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green",
-                      opacity=0.2, row=5, col=1)
-        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2,
-                      row=5, col=2)
-        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange",
-                      opacity=0.2, row=5, col=2)
-        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow",
-                      opacity=0.2, row=5, col=2)
-        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green",
-                      opacity=0.2, row=5, col=2)
-        fig.update_xaxes(
-            rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[" "])],
-            row=1, col=1)
-        fig.update_xaxes(
-            rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=1,
-            col=2)
-        fig.update_xaxes(
-            rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=2,
-            col=1)
-        fig.update_xaxes(
-            rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=2,
-            col=2)
-        fig.update_xaxes(
-            rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=3,
-            col=1)
-        fig.update_xaxes(
-            rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=3,
-            col=2)
-        fig.update_xaxes(
-            rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=4,
-            col=1)
-        fig.update_xaxes(
-            rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=4,
-            col=2)
-        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True,
-                         ticktext=["Phase 1", "Phase 2", "Phase 3",
-                                   "Resolving"],
+            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P2_3"], mode="lines+markers", name="Visual Novelty",
+                       legendgroup="Phase 3", legendgrouptitle_text=" "), row=5, col=1)
+        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P2_4"], mode="lines+markers", name="Visual Reach",
+                                 legendgroup="Phase 3", legendgrouptitle_text=" "), row=5, col=2)
+        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2, row=1, col=1)
+        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange", opacity=0.2, row=1, col=1)
+        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow", opacity=0.2, row=1, col=1)
+        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green", opacity=0.2, row=1, col=1)
+        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2, row=1, col=2)
+        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange", opacity=0.2, row=1, col=2)
+        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow", opacity=0.2, row=1, col=2)
+        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green", opacity=0.2, row=1, col=2)
+        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2, row=2, col=1)
+        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange", opacity=0.2, row=2, col=1)
+        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow", opacity=0.2, row=2, col=1)
+        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green", opacity=0.2, row=2, col=1)
+        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2, row=2, col=2)
+        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange", opacity=0.2, row=2, col=2)
+        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow", opacity=0.2, row=2, col=2)
+        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green", opacity=0.2, row=2, col=2)
+        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2, row=3, col=1)
+        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange", opacity=0.2, row=3, col=1)
+        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow", opacity=0.2, row=3, col=1)
+        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green", opacity=0.2, row=3, col=1)
+        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2, row=3, col=2)
+        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange", opacity=0.2, row=3, col=2)
+        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow", opacity=0.2, row=3, col=2)
+        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green", opacity=0.2, row=3, col=2)
+        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2, row=4, col=1)
+        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange", opacity=0.2, row=4, col=1)
+        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow", opacity=0.2, row=4, col=1)
+        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green", opacity=0.2, row=4, col=1)
+        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2, row=4, col=2)
+        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange", opacity=0.2, row=4, col=2)
+        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow", opacity=0.2, row=4, col=2)
+        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green", opacity=0.2, row=4, col=2)
+        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2, row=5, col=1)
+        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange", opacity=0.2, row=5, col=1)
+        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow", opacity=0.2, row=5, col=1)
+        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green", opacity=0.2, row=5, col=1)
+        fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2, row=5, col=2)
+        fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange", opacity=0.2, row=5, col=2)
+        fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow", opacity=0.2, row=5, col=2)
+        fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green", opacity=0.2, row=5, col=2)
+        fig.update_xaxes(rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[" "])], row=1, col=1)
+        fig.update_xaxes(rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=1, col=2)
+        fig.update_xaxes(rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=2, col=1)
+        fig.update_xaxes(rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=2, col=2)
+        fig.update_xaxes(rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=3, col=1)
+        fig.update_xaxes(rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=3, col=2)
+        fig.update_xaxes(rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=4, col=1)
+        fig.update_xaxes(rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=4, col=2)
+        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True, ticktext=["Phase 1", "Phase 2", "Phase 3", "Resolving"],
                          tickvals=[0.1, 1, 2, 3], row=1, col=1)
-        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True,
-                         ticktext=["Phase 1", "Phase 2", "Phase 3",
-                                   "Resolving"],
+        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True, ticktext=["Phase 1", "Phase 2", "Phase 3", "Resolving"],
                          tickvals=[0.1, 1, 2, 3], row=1, col=2)
-        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True,
-                         ticktext=["Phase 1", "Phase 2", "Phase 3",
-                                   "Resolving"],
+        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True, ticktext=["Phase 1", "Phase 2", "Phase 3", "Resolving"],
                          tickvals=[0.1, 1, 2, 3], row=2, col=1)
-        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True,
-                         ticktext=["Phase 1", "Phase 2", "Phase 3",
-                                   "Resolving"],
+        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True, ticktext=["Phase 1", "Phase 2", "Phase 3", "Resolving"],
                          tickvals=[0.1, 1, 2, 3], row=2, col=2)
-        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True,
-                         ticktext=["Phase 1", "Phase 2", "Phase 3",
-                                   "Resolving"],
+        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True, ticktext=["Phase 1", "Phase 2", "Phase 3", "Resolving"],
                          tickvals=[0.1, 1, 2, 3], row=3, col=1)
-        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True,
-                         ticktext=["Phase 1", "Phase 2", "Phase 3",
-                                   "Resolving"],
+        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True, ticktext=["Phase 1", "Phase 2", "Phase 3", "Resolving"],
                          tickvals=[0.1, 1, 2, 3], row=3, col=2)
-        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True,
-                         ticktext=["Phase 1", "Phase 2", "Phase 3",
-                                   "Resolving"],
+        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True, ticktext=["Phase 1", "Phase 2", "Phase 3", "Resolving"],
                          tickvals=[0.1, 1, 2, 3], row=4, col=1)
-        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True,
-                         ticktext=["Phase 1", "Phase 2", "Phase 3",
-                                   "Resolving"],
+        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True, ticktext=["Phase 1", "Phase 2", "Phase 3", "Resolving"],
                          tickvals=[0.1, 1, 2, 3], row=4, col=2)
-        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True,
-                         ticktext=["Phase 1", "Phase 2", "Phase 3",
-                                   "Resolving"],
+        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True, ticktext=["Phase 1", "Phase 2", "Phase 3", "Resolving"],
                          tickvals=[0.1, 1, 2, 3], row=5, col=1)
-        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True,
-                         ticktext=["Phase 1", "Phase 2", "Phase 3",
-                                   "Resolving"],
+        fig.update_yaxes(range=[-.5, 3.5], fixedrange=True, ticktext=["Phase 1", "Phase 2", "Phase 3", "Resolving"],
                          tickvals=[0.1, 1, 2, 3], row=5, col=2)
-        fig.update_layout(template="simple_white",
-                          title_text=f"{studentname}: CVI Progression")
-        tmppath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles',
-                                          studentname, 'cviProgression.html')
+        fig.update_layout(template="simple_white", title_text=f"{studentname}: CVI Progression")
+        tmppath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', studentname, 'cviProgression.html')
         fig.write_html(tmppath)
         fig.show()
 
@@ -3473,8 +2466,7 @@ class iepIntro(scrolled.ScrolledPanel):
         self.SetupScrolling()
         wx.StaticText(self, -1, "2022-2023 IEP CASELOAD REPORT", pos=(170, 20))
         wx.StaticText(self, -1, "Student Name", pos=(30, 50))
-        self.studentname1 = wx.Choice(self, -1, choices=students, pos=(130, 50),
-                                      size=(300, 20))
+        self.studentname1 = wx.Choice(self, -1, choices=students, pos=(130, 50), size=(300, 20))
         self.btn = wx.Button(self, 401, "SUBMIT", pos=(450, 50), size=(70, 30))
         self.Bind(wx.EVT_BUTTON, self.submit, id=401)
         self.btn1 = wx.Button(self, 402, "EXIT", pos=(550, 50), size=(70, 30))
@@ -3487,8 +2479,7 @@ class iepIntro(scrolled.ScrolledPanel):
         self.Refresh()
 
     def submit(self, event):
-        studentname = self.studentname1.GetString(
-            self.studentname1.GetSelection())
+        studentname = self.studentname1.GetString(self.studentname1.GetSelection())
         ColeCooperIEP = ("""Cole  Cooper    30 min/month
 • When presented with 2 objects, Cole will be able to utilize his central vision to locate an object with 70% accuracy as measured by the TVI and classroom teacher over 3 consecutive data sessions.
     ◦ When presented with 2 objects, Cole will be able to utilize his central vision to locate an object with 50% accuracy as measured by the TVI and classroom teacher over 3 consecutive data sessions.
@@ -3602,19 +2593,16 @@ class meetingsPanel(scrolled.ScrolledPanel):
         self.SetBackgroundColour(wx.Colour(213, 214, 234))
         wx.StaticText(self, -1, "PLANNING MEETING", pos=(170, 20))
         wx.StaticText(self, -1, "Student Name", pos=(30, 50))
-        self.studentname1 = wx.Choice(self, -1, choices=students, pos=(130, 50),
-                                      size=(300, 20))
+        self.studentname1 = wx.Choice(self, -1, choices=students, pos=(130, 50), size=(300, 20))
         wx.StaticText(self, -1, f"Date: {date}", pos=(30, 80))
         wx.StaticText(self, -1, "Anecdotal Notes", pos=(30, 110))
-        self.notes1 = wx.TextCtrl(self, -1, "", pos=(170, 110), size=(700, 700),
-                                  style=wx.TE_MULTILINE)
+        self.notes1 = wx.TextCtrl(self, -1, "", pos=(170, 110), size=(700, 700), style=wx.TE_MULTILINE)
         self.btn = wx.Button(self, 201, "SAVE", pos=(450, 850), size=(70, 30))
         self.Bind(wx.EVT_BUTTON, self.save, id=201)
         self.btn1 = wx.Button(self, 202, "EXIT", pos=(550, 850), size=(70, 30))
         self.Bind(wx.EVT_BUTTON, self.exit, id=202)
         self.Bind(wx.EVT_BUTTON, self.save, id=201)
-        self.btn2 = wx.Button(self, 203, "UPLOAD FILE", pos=(450, 890),
-                              size=(170, 30))
+        self.btn2 = wx.Button(self, 203, "UPLOAD FILE", pos=(450, 890), size=(170, 30))
         self.Bind(wx.EVT_BUTTON, self.upload, id=203)
         os.chdir(USER_DIR)
 
@@ -3622,36 +2610,27 @@ class meetingsPanel(scrolled.ScrolledPanel):
         wx.Exit()
 
     def upload(self, event):
-        studentname = self.studentname1.GetString(
-            self.studentname1.GetSelection())
-        uploadLocation = Path(USER_DIR).joinpath('StudentDatabase',
-                                                 'StudentDataFiles',
-                                                 studentname)
-        openFileDialog = wx.FileDialog(frame, "Open", "", "", "",
-                                       wx.FD_OPEN | wx.FD_FILE_MUST_EXIST)
+        studentname = self.studentname1.GetString(self.studentname1.GetSelection())
+        uploadLocation = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', studentname)
+        openFileDialog = wx.FileDialog(frame, "Open", "", "", "", wx.FD_OPEN | wx.FD_FILE_MUST_EXIST)
         openFileDialog.ShowModal()
         uploadFile = openFileDialog.GetPath()
         openFileDialog.Destroy()
         shutil.copy2(uploadFile, uploadLocation)
 
     def save(self, event):
-        studentname = self.studentname1.GetString(
-                self.studentname1.GetSelection())
+        studentname = self.studentname1.GetString(self.studentname1.GetSelection())
         dateNow = datetime.datetime.now().strftime("%Y_%m_%d-%H%M%S")
         simpleDate = datetime.datetime.now().strftime("%Y_%m_%d-%H%M")
         notes = self.notes1.GetValue()
         if (len(studentname) and len(notes)) > 0:
-            box = wx.TextEntryDialog(None, "Enter Address-Book name to save!",
-                                     "Title",
+            box = wx.TextEntryDialog(None, "Enter Address-Book name to save!", "Title",
                                      f"meeting{studentname.title()}{dateNow}")
             if box.ShowModal() == wx.ID_OK:
                 self.studentdatabasename = box.GetValue()
-                if not Path(USER_DIR).joinpath('StudentDatabase',
-                                               'StudentDataFiles', studentname,
+                if not Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', studentname,
                                                self.studentdatabasename + '.txt').exists():
-                    tmpPath = Path(USER_DIR).joinpath('StudentDatabase',
-                                                      'StudentDataFiles',
-                                                      studentname,
+                    tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', studentname,
                                                       self.studentdatabasename + '.txt')
                     self.filename = open(tmpPath, 'w')
                     self.filename.write('studentname' + ', ')
@@ -3661,30 +2640,22 @@ class meetingsPanel(scrolled.ScrolledPanel):
                     self.filename.write(simpleDate + ', ')
                     self.filename.write(notes + ', ')
                     self.filename.close()
-                    tmpPath = Path(USER_DIR).joinpath('StudentDatabase',
-                                                      'StudentDataFiles',
-                                                      'Filenames.txt')
+                    tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', 'Filenames.txt')
                     self.filename = open(tmpPath, 'a')
-                    tmpPath = Path(USER_DIR).joinpath('StudentDatabase',
-                                                      'StudentDataFiles',
-                                                      studentname,
+                    tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', studentname,
                                                       self.studentdatabasename + '.txt')
                     self.filename.write(f"'{tmpPath}'" + '\n')
                     self.filename.close()
-                    self.dial = wx.MessageDialog(None, 'Saved successfully!',
-                                                 'Info', wx.OK)
+                    self.dial = wx.MessageDialog(None, 'Saved successfully!', 'Info', wx.OK)
                     self.dial.ShowModal()
                 else:
-                    self.dial = wx.MessageDialog(None, 'Name already exists',
-                                                 'Info', wx.OK)
+                    self.dial = wx.MessageDialog(None, 'Name already exists', 'Info', wx.OK)
                     self.dial.ShowModal()
             else:
-                self.dial = wx.MessageDialog(None, 'Save cancelled', 'Info',
-                                             wx.OK)
+                self.dial = wx.MessageDialog(None, 'Save cancelled', 'Info', wx.OK)
                 self.dial.ShowModal()
         else:
-            self.dial = wx.MessageDialog(None, 'Fill Required Fields!', 'Info',
-                                         wx.OK)
+            self.dial = wx.MessageDialog(None, 'Fill Required Fields!', 'Info', wx.OK)
             self.dial.ShowModal()
 
 
@@ -3700,19 +2671,16 @@ class observationsPanel(scrolled.ScrolledPanel):
         self.SetBackgroundColour(wx.Colour(246, 246, 235))
         wx.StaticText(self, -1, "VISION OBSERVATIONS", pos=(170, 20))
         wx.StaticText(self, -1, "Student Name", pos=(30, 50))
-        self.studentname1 = wx.Choice(self, -1, choices=students, pos=(130, 50),
-                                      size=(300, 20))
+        self.studentname1 = wx.Choice(self, -1, choices=students, pos=(130, 50), size=(300, 20))
         wx.StaticText(self, -1, f"Date: {date}", pos=(30, 80))
         wx.StaticText(self, -1, "Anecdotal Notes", pos=(30, 110))
-        self.notes1 = wx.TextCtrl(self, -1, "", pos=(170, 110), size=(700, 700),
-                                  style=wx.TE_MULTILINE)
+        self.notes1 = wx.TextCtrl(self, -1, "", pos=(170, 110), size=(700, 700), style=wx.TE_MULTILINE)
         self.btn = wx.Button(self, 201, "SAVE", pos=(450, 850), size=(70, 30))
         self.Bind(wx.EVT_BUTTON, self.save, id=201)
         self.btn1 = wx.Button(self, 202, "EXIT", pos=(550, 850), size=(70, 30))
         self.Bind(wx.EVT_BUTTON, self.exit, id=202)
         self.Bind(wx.EVT_BUTTON, self.save, id=201)
-        self.btn2 = wx.Button(self, 203, "UPLOAD FILE", pos=(450, 890),
-                              size=(170, 30))
+        self.btn2 = wx.Button(self, 203, "UPLOAD FILE", pos=(450, 890), size=(170, 30))
         self.Bind(wx.EVT_BUTTON, self.upload, id=203)
         os.chdir(USER_DIR)
 
@@ -3720,36 +2688,27 @@ class observationsPanel(scrolled.ScrolledPanel):
         wx.Exit()
 
     def upload(self, event):
-        studentname = self.studentname1.GetString(
-            self.studentname1.GetSelection())
-        uploadLocation = Path(USER_DIR).joinpath('StudentDatabase',
-                                                 'StudentDataFiles',
-                                                 studentname)
-        openFileDialog = wx.FileDialog(frame, "Open", "", "", "",
-                                       wx.FD_OPEN | wx.FD_FILE_MUST_EXIST)
+        studentname = self.studentname1.GetString(self.studentname1.GetSelection())
+        uploadLocation = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', studentname)
+        openFileDialog = wx.FileDialog(frame, "Open", "", "", "", wx.FD_OPEN | wx.FD_FILE_MUST_EXIST)
         openFileDialog.ShowModal()
         uploadFile = openFileDialog.GetPath()
         openFileDialog.Destroy()
         shutil.copy2(uploadFile, uploadLocation)
 
     def save(self, event):
-        studentname = self.studentname1.GetString(
-                self.studentname1.GetSelection())
+        studentname = self.studentname1.GetString(self.studentname1.GetSelection())
         dateNow = datetime.datetime.now().strftime("%Y_%m_%d-%H%M%S")
         simpleDate = datetime.datetime.now().strftime("%Y_%m_%d-%H%M")
         notes = self.notes1.GetValue()
         if (len(studentname) and len(notes)) > 0:
-            box = wx.TextEntryDialog(None, "Enter Address-Book name to save!",
-                                     "Title",
+            box = wx.TextEntryDialog(None, "Enter Address-Book name to save!", "Title",
                                      f"observation{studentname.title()}{dateNow}")
             if box.ShowModal() == wx.ID_OK:
                 self.studentdatabasename = box.GetValue()
-                if not Path(USER_DIR).joinpath('StudentDatabase',
-                                               'StudentDataFiles', studentname,
+                if not Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', studentname,
                                                self.studentdatabasename + '.txt').exists():
-                    tmpPath = Path(USER_DIR).joinpath('StudentDatabase',
-                                                      'StudentDataFiles',
-                                                      studentname,
+                    tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', studentname,
                                                       self.studentdatabasename + '.txt')
                     self.filename = open(tmpPath, 'w')
                     self.filename.write('studentname' + ', ')
@@ -3759,37 +2718,28 @@ class observationsPanel(scrolled.ScrolledPanel):
                     self.filename.write(simpleDate + ', ')
                     self.filename.write(notes + ', ')
                     self.filename.close()
-                    tmpPath = Path(USER_DIR).joinpath('StudentDatabase',
-                                                      'StudentDataFiles',
-                                                      'Filenames.txt')
+                    tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', 'Filenames.txt')
                     self.filename = open(tmpPath, 'a')
-                    tmpPath = Path(USER_DIR).joinpath('StudentDatabase',
-                                                      'StudentDataFiles',
-                                                      studentname,
+                    tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', studentname,
                                                       self.studentdatabasename + '.txt')
                     self.filename.write(f"'{tmpPath}'" + '\n')
                     self.filename.close()
-                    self.dial = wx.MessageDialog(None, 'Saved successfully!',
-                                                 'Info', wx.OK)
+                    self.dial = wx.MessageDialog(None, 'Saved successfully!', 'Info', wx.OK)
                     self.dial.ShowModal()
                 else:
-                    self.dial = wx.MessageDialog(None, 'Name already exists',
-                                                 'Info', wx.OK)
+                    self.dial = wx.MessageDialog(None, 'Name already exists', 'Info', wx.OK)
                     self.dial.ShowModal()
             else:
-                self.dial = wx.MessageDialog(None, 'Save cancelled', 'Info',
-                                             wx.OK)
+                self.dial = wx.MessageDialog(None, 'Save cancelled', 'Info', wx.OK)
                 self.dial.ShowModal()
         else:
-            self.dial = wx.MessageDialog(None, 'Fill Required Fields!', 'Info',
-                                         wx.OK)
+            self.dial = wx.MessageDialog(None, 'Fill Required Fields!', 'Info', wx.OK)
             self.dial.ShowModal()
 
 
 class StudentDataBook(wx.Frame, wx.Accessible):
     def __init__(self, parent, title):
-        super(StudentDataBook, self).__init__(parent, title="Data Entry Form",
-                                              size=(1130, 1000))
+        super(StudentDataBook, self).__init__(parent, title="Data Entry Form", size=(1130, 1000))
         self.SetBackgroundColour(wx.Colour(215, 236, 217))
         self.InitUI()
 

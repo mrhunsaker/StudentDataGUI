@@ -13,6 +13,7 @@ import wx.lib.scrolledpanel as scrolled
 import numpy as np
 from helpers import *
 from pathlib import Path
+import pathlib
 import shutil
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
@@ -22,9 +23,11 @@ if os.name == 'nt':
     USER_DIR = os.path.join(os.environ['USERPROFILE'], 'Documents')
 elif os.name == 'posix':
     tmpPath = Path(os.environ['HOME']).joinpath('Documents')
-    USER_DIR = Path.mkdir(tmpPath, parents=True, exist_ok=True)
+    Path.mkdir(tmpPath, parents=True, exist_ok=True)
+    USER_DIR=Path(tmpPath)
 else:
     print("Error! Cannot find HOME directory")
+print(USER_DIR)
 os.chdir(USER_DIR)
 for name in students:
     if not Path(USER_DIR).joinpath('StudentDatabase').exists():

@@ -20,14 +20,16 @@ os.chdir(os.path.dirname(os.path.abspath(__file__)))
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 USER_DIR = ""
 if os.name == 'nt':
-    USER_DIR = os.path.join(os.environ['USERPROFILE'], 'Documents')
+    tmpPath = Path(os.environ['USERPROFILE']).joinpath('Documents')
+    Path.mkdir(tmpPath, parents=True, exist_ok=True)
+    USER_DIR = Path(tmpPath)
 elif os.name == 'posix':
     tmpPath = Path(os.environ['HOME']).joinpath('Documents')
     Path.mkdir(tmpPath, parents=True, exist_ok=True)
-    USER_DIR=Path(tmpPath)
+    USER_DIR = Path(tmpPath)
 else:
     print("Error! Cannot find HOME directory")
-print(USER_DIR)
+
 os.chdir(USER_DIR)
 for name in students:
     if not Path(USER_DIR).joinpath('StudentDatabase').exists():
@@ -998,10 +1000,10 @@ class braillePanel(scrolled.ScrolledPanel):
         fig = make_subplots(rows=7, cols=2,
                             specs=[[{}, {"rowspan": 2}], [{}, None], [{"rowspan": 2}, {"rowspan": 2}], [None, None],
                                    [{"rowspan": 2}, {"rowspan": 2}], [None, None], [{}, {}]], subplot_titles=(
-            "Phase 1: Tracking Skills", "Phase 2: Braille Alphabet", "Phase 1: Tracking Skills",
-            "Phase 3a: Wordsigns, Numbers, Punctuation", "Phase 3b: Strong Contractions",
-            "Phase 3c: Lower Cell Contractions", "Phase 3d: Multiple Cell Contractions",
-            "Phase 4a: Braille Mode Indicators", "Phase 5: Document Formatting"), print_grid=True)
+                "Phase 1: Tracking Skills", "Phase 2: Braille Alphabet", "Phase 1: Tracking Skills",
+                "Phase 3a: Wordsigns, Numbers, Punctuation", "Phase 3b: Strong Contractions",
+                "Phase 3c: Lower Cell Contractions", "Phase 3d: Multiple Cell Contractions",
+                "Phase 4a: Braille Mode Indicators", "Phase 5: Document Formatting"), print_grid=True)
         fig.add_trace(
             go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P1_1'], mode="lines+markers", name="Track left to right",
                        legendgroup="Phase 1", legendgrouptitle_text="Phase 1"), row=1, col=1)
@@ -1281,7 +1283,7 @@ class braillePanel(scrolled.ScrolledPanel):
         fig.write_html(tmpPath)
         fig.show()
         fig = make_subplots(rows=3, cols=1, subplot_titles=(
-        "Phase 6: UEB Technical Basics", "Phase 7: Advanced UEB Technical", "Phase 8: Accellerated UEB Technical"),
+            "Phase 6: UEB Technical Basics", "Phase 7: Advanced UEB Technical", "Phase 8: Accellerated UEB Technical"),
                             print_grid=True
                             )
         fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P6_1'], mode="lines+markers",
@@ -1623,9 +1625,9 @@ class screenreaderPanel(scrolled.ScrolledPanel):
         fig = make_subplots(rows=5, cols=2,
                             specs=[[{}, {"rowspan": 2}], [{}, None], [{"rowspan": 2}, {}], [None, {}], [{}, {}]],
                             subplot_titles=(
-                            "Phase 1a: Reading", "Phase 2: Writing", "Phase 1b: Reading", "Phase 3a: Internet",
-                            "Phase 3b: Internet", "Phase 3c: Internet", "Phase 4a: File Management",
-                            "Phase 4b: File Management"), print_grid=True
+                                "Phase 1a: Reading", "Phase 2: Writing", "Phase 1b: Reading", "Phase 3a: Internet",
+                                "Phase 3b: Internet", "Phase 3c: Internet", "Phase 4a: File Management",
+                                "Phase 4b: File Management"), print_grid=True
                             )
         fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1_1"], mode="lines+markers", name="Turn ON/OFF",
                                  legendgroup="Phase 1a", legendgrouptitle_text="Phase 1a"), row=1, col=1)
@@ -1981,8 +1983,9 @@ class abacusPanel(scrolled.ScrolledPanel):
         noise = np.random.normal(mu, sigma, [len(df.index), len(df.columns)])
         df_noisy = df + noise
         fig = make_subplots(rows=4, cols=2, subplot_titles=(
-        "Phase 1: Foundation", "Phase 2: Addition", "Phase 3: Subtraction", "Phase 4: Multiplication",
-        "Phase 5: Division", "Phase 6: Decimals", "Phase 7: Fractions", "Phase 8: Special Functions"), print_grid=True
+            "Phase 1: Foundation", "Phase 2: Addition", "Phase 3: Subtraction", "Phase 4: Multiplication",
+            "Phase 5: Division", "Phase 6: Decimals", "Phase 7: Fractions", "Phase 8: Special Functions"),
+                            print_grid=True
                             )
         fig.add_trace(
             go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1_1"], mode="lines+markers", name="Setting Numbers",
@@ -2344,8 +2347,8 @@ class cviPanel(scrolled.ScrolledPanel):
         noise = np.random.normal(mu, sigma, [len(df.index), len(df.columns)])
         df_noisy = df + noise
         fig = make_subplots(rows=5, cols=2, subplot_titles=(
-        "Color Preference", "Need for Movement", "Latency", "Field Preference", "Visual Complexity",
-        "Nonpurposeful Gaze", "Distance Viewing", "Atypical Reflexes", "Visual Novelty", "Visual Reach"),
+            "Color Preference", "Need for Movement", "Latency", "Field Preference", "Visual Complexity",
+            "Nonpurposeful Gaze", "Distance Viewing", "Atypical Reflexes", "Visual Novelty", "Visual Reach"),
                             print_grid=True
                             )
         fig.add_trace(

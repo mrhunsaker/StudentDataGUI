@@ -29,6 +29,7 @@ elif os.name == 'posix':
     USER_DIR = Path(tmpPath)
 else:
     print("Error! Cannot find HOME directory")
+    break
 
 os.chdir(USER_DIR)
 for name in students:
@@ -1005,171 +1006,171 @@ class braillePanel(scrolled.ScrolledPanel):
                 "Phase 3c: Lower Cell Contractions", "Phase 3d: Multiple Cell Contractions",
                 "Phase 4a: Braille Mode Indicators", "Phase 5: Document Formatting"), print_grid=True)
         fig.add_trace(
-            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P1_1'], mode="lines+markers", name="Track left to right",
+            go.Scatter(x=df_noisy.index, y=df_noisy['P1_1'], mode="lines+markers", name="Track left to right",
                        legendgroup="Phase 1", legendgrouptitle_text="Phase 1"), row=1, col=1)
         fig.add_trace(
-            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P1_2'], mode="lines+markers", name="Track top to bottom",
+            go.Scatter(x=df_noisy.index, y=df_noisy['P1_2'], mode="lines+markers", name="Track top to bottom",
                        legendgroup="Phase 1", legendgrouptitle_text="Phase 1"), row=1, col=1)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P1_3'].iloc[[-1]], mode="lines+markers",
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy['P1_3'].iloc[[-1]], mode="lines+markers",
                                  name="Discriminate shapes", legendgroup="Phase 1", legendgrouptitle_text="Phase 1"),
                       row=2, col=1)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P1_4'], mode="lines+markers",
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy['P1_4'], mode="lines+markers",
                                  name="Discriminate braille characters", legendgroup="Phase 1",
                                  legendgrouptitle_text="Phase 1"), row=2, col=1)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_1'], mode="lines+markers+text", name="Alphabet",
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy['P2_1'], mode="lines+markers+text", name="Alphabet",
                                  legendgroup="Phase 2", legendgrouptitle_text="Phase 2", showlegend=True), row=1, col=2)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_1'].iloc[[-1]], mode="text", text=[" G C L"],
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy['P2_1'].iloc[[-1]], mode="text", text=[" G C L"],
                                  textposition="middle right", legendgroup="Phase 2", legendgrouptitle_text="Phase 2",
                                  showlegend=False), row=1, col=2)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_2'], mode="lines+markers+text", name="D Y",
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy['P2_2'], mode="lines+markers+text", name="D Y",
                                  legendgroup="Phase 2", legendgrouptitle_text="Phase 2", showlegend=False), row=1,
                       col=2)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_2'].iloc[[-1]], mode="text", text=[" D Y"],
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy['P2_2'].iloc[[-1]], mode="text", text=[" D Y"],
                                  textposition="middle right", legendgroup="Phase 2", legendgrouptitle_text="Phase 2",
                                  showlegend=False), row=1, col=2)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_3'], mode="lines+markers+text", name="A B",
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy['P2_3'], mode="lines+markers+text", name="A B",
                                  legendgroup="Phase 2", legendgrouptitle_text="Phase 2", showlegend=False), row=1,
                       col=2)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_3'].iloc[[-1]], mode="text", text=[" A B"],
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy['P2_3'].iloc[[-1]], mode="text", text=[" A B"],
                                  textposition="middle right", legendgroup="Phase 2", legendgrouptitle_text="Phase 2",
                                  showlegend=False), row=1, col=2)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_4'], mode="lines+markers+text", name="S",
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy['P2_4'], mode="lines+markers+text", name="S",
                                  legendgroup="Phase 2", legendgrouptitle_text="Phase 2", showlegend=False), row=1,
                       col=2)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_4'].iloc[[-1]], mode="text", text=[" S"],
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy['P2_4'].iloc[[-1]], mode="text", text=[" S"],
                                  textposition="middle right", legendgroup="Phase 2", legendgrouptitle_text="Phase 2",
                                  showlegend=False), row=1, col=2)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_5'], mode="lines+markers+text", name="W",
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy['P2_5'], mode="lines+markers+text", name="W",
                                  legendgroup="Phase 2", legendgrouptitle_text="Phase 2", showlegend=False), row=1,
                       col=2)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_5'].iloc[[-1]], mode="text", text=[" W"],
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy['P2_5'].iloc[[-1]], mode="text", text=[" W"],
                                  textposition="middle right", legendgroup="Phase 2", legendgrouptitle_text="Phase 2",
                                  showlegend=False), row=1, col=2)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_6'], mode="lines+markers+text", name="P O",
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy['P2_6'], mode="lines+markers+text", name="P O",
                                  legendgroup="Phase 2", legendgrouptitle_text="Phase 2", showlegend=False), row=1,
                       col=2)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_6'].iloc[[-1]], mode="text", text=[" P O"],
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy['P2_6'].iloc[[-1]], mode="text", text=[" P O"],
                                  textposition="middle right", legendgroup="Phase 2", legendgrouptitle_text="Phase 2",
                                  showlegend=False), row=1, col=2)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_7'], mode="lines+markers+text", name="K",
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy['P2_7'], mode="lines+markers+text", name="K",
                                  legendgroup="Phase 2", legendgrouptitle_text="Phase 2", showlegend=False), row=1,
                       col=2)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_7'].iloc[[-1]], mode="text", text=[" K"],
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy['P2_7'].iloc[[-1]], mode="text", text=[" K"],
                                  textposition="middle right", legendgroup="Phase 2", legendgrouptitle_text="Phase 2",
                                  showlegend=False), row=1, col=2)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_8'], mode="lines+markers+text", name="R",
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy['P2_8'], mode="lines+markers+text", name="R",
                                  legendgroup="Phase 2", legendgrouptitle_text="Phase 2", showlegend=False), row=1,
                       col=2)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_8'].iloc[[-1]], mode="text", text=[" R"],
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy['P2_8'].iloc[[-1]], mode="text", text=[" R"],
                                  textposition="middle right", legendgroup="Phase 2", legendgrouptitle_text="Phase 2",
                                  showlegend=False), row=1, col=2)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_9'], mode="lines+markers+text", name="M E",
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy['P2_9'], mode="lines+markers+text", name="M E",
                                  legendgroup="Phase 2", legendgrouptitle_text="Phase 2", showlegend=False), row=1,
                       col=2)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_9'].iloc[[-1]], mode="text", text=[" M E"],
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy['P2_9'].iloc[[-1]], mode="text", text=[" M E"],
                                  textposition="middle right", legendgroup="Phase 2", legendgrouptitle_text="Phase 2",
                                  showlegend=False), row=1, col=2)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_10'], mode="lines+markers+text", name="H",
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy['P2_10'], mode="lines+markers+text", name="H",
                                  legendgroup="Phase 2", legendgrouptitle_text="Phase 2", showlegend=False), row=1,
                       col=2)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_10'].iloc[[-1]], mode="text", text=[" H"],
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy['P2_10'].iloc[[-1]], mode="text", text=[" H"],
                                  textposition="middle right", legendgroup="Phase 2", legendgrouptitle_text="Phase 2",
                                  showlegend=False), row=1, col=2)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_11'], mode="lines+markers+text", name="N X",
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy['P2_11'], mode="lines+markers+text", name="N X",
                                  legendgroup="Phase 2", legendgrouptitle_text="Phase 2", showlegend=False), row=1,
                       col=2)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_11'].iloc[[-1]], mode="text", text=[" N X"],
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy['P2_11'].iloc[[-1]], mode="text", text=[" N X"],
                                  textposition="middle right", legendgroup="Phase 2", legendgrouptitle_text="Phase 2",
                                  showlegend=False), row=1, col=2)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_12'], mode="lines+markers+text", name="Z F",
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy['P2_12'], mode="lines+markers+text", name="Z F",
                                  legendgroup="Phase 2", legendgrouptitle_text="Phase 2", showlegend=False), row=1,
                       col=2)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_12'].iloc[[-1]], mode="text", text=[" Z F"],
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy['P2_12'].iloc[[-1]], mode="text", text=[" Z F"],
                                  textposition="middle right", legendgroup="Phase 2", legendgrouptitle_text="Phase 2",
                                  showlegend=False), row=1, col=2)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_13'], mode="lines+markers+text", name="U T",
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy['P2_13'], mode="lines+markers+text", name="U T",
                                  legendgroup="Phase 2", legendgrouptitle_text="Phase 2", showlegend=False), row=1,
                       col=2)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_13'].iloc[[-1]], mode="text", text=[" U T"],
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy['P2_13'].iloc[[-1]], mode="text", text=[" U T"],
                                  textposition="middle right", legendgroup="Phase 2", legendgrouptitle_text="Phase 2",
                                  showlegend=False), row=1, col=2)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_14'], mode="lines+markers+text", name="Q I",
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy['P2_14'], mode="lines+markers+text", name="Q I",
                                  legendgroup="Phase 2", legendgrouptitle_text="Phase 2", showlegend=False), row=1,
                       col=2)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_14'].iloc[[-1]], mode="text", text=[" Q I"],
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy['P2_14'].iloc[[-1]], mode="text", text=[" Q I"],
                                  textposition="middle right", legendgroup="Phase 2", legendgrouptitle_text="Phase 2",
                                  showlegend=False), row=1, col=2)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_15'], mode="lines+markers+text", name="V J ",
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy['P2_15'], mode="lines+markers+text", name="V J ",
                                  legendgroup="Phase 2", legendgrouptitle_text="Phase 2", showlegend=False), row=1,
                       col=2)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P2_15'].iloc[[-1]], mode="text", text=[" V J"],
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy['P2_15'].iloc[[-1]], mode="text", text=[" V J"],
                                  textposition="middle right", legendgroup="Phase 2", legendgrouptitle_text="Phase 2",
                                  showlegend=False), row=1, col=2)
         fig.update_layout(showlegend=True)
         fig.add_trace(
-            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_1'], mode="lines+markers", name="Alphabetic Wordsigns",
+            go.Scatter(x=df_noisy.index, y=df_noisy['P3_1'], mode="lines+markers", name="Alphabetic Wordsigns",
                        legendgroup="Phase 3a", legendgrouptitle_text="Phase 3a"), row=3, col=1)
         fig.add_trace(
-            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_2'], mode="lines+markers", name="Braille Numbers",
+            go.Scatter(x=df_noisy.index, y=df_noisy['P3_2'], mode="lines+markers", name="Braille Numbers",
                        legendgroup="Phase 3a", legendgrouptitle_text="Phase 3a"), row=3, col=1)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_3'], mode="lines+markers", name="Punctuation",
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy['P3_3'], mode="lines+markers", name="Punctuation",
                                  legendgroup="Phase 3a", legendgrouptitle_text="Phase 3a"), row=3, col=1)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_4'], mode="lines+markers",
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy['P3_4'], mode="lines+markers",
                                  name="Strong Contractions <br>(AND OF FOR WITH THE)", legendgroup="Phase 3b",
                                  legendgrouptitle_text="Phase 3b"), row=3, col=2)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_5'], mode="lines+markers",
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy['P3_5'], mode="lines+markers",
                                  name="Strong Groupsigns <br>(CH GH SH TH WH ED ER OU OW ST AR ING)",
                                  legendgroup="Phase 3b", legendgrouptitle_text="Phase 3b"), row=3, col=2)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_6'], mode="lines+markers",
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy['P3_6'], mode="lines+markers",
                                  name="Strong Wordsigns <br>(CH SH TH WH OU ST)", legendgroup="Phase 3b",
                                  legendgrouptitle_text="Phase 3b"), row=3, col=2)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_7'], mode="lines+markers",
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy['P3_7'], mode="lines+markers",
                                  name="Lower Groupsigns <br>(BE CON DIS)", legendgroup="Phase 3c",
                                  legendgrouptitle_text="Phase 3c"), row=5, col=1)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_8'], mode="lines+markers",
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy['P3_8'], mode="lines+markers",
                                  name="Lower Groupsigns <br>(EA BB CC FF GG)", legendgroup="Phase 3c",
                                  legendgrouptitle_text="Phase 3c"), row=5, col=1)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_9'], mode="lines+markers",
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy['P3_9'], mode="lines+markers",
                                  name="Lower Groupsigns/Wordsigns <br>(EN IN)", legendgroup="Phase 3c",
                                  legendgrouptitle_text="Phase 3c"), row=5, col=1)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_10'], mode="lines+markers",
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy['P3_10'], mode="lines+markers",
                                  name="Lower Wordsigns <br>(BE HIS WAS WERE)", legendgroup="Phase 3c",
                                  legendgrouptitle_text="Phase 3c"), row=5, col=1)
         fig.add_trace(
-            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_11'], mode="lines+markers", name="Dot 5 Contractions",
+            go.Scatter(x=df_noisy.index, y=df_noisy['P3_11'], mode="lines+markers", name="Dot 5 Contractions",
                        legendgroup="Phase 3d", legendgrouptitle_text="Phase 3d"), row=5, col=2)
         fig.add_trace(
-            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_12'], mode="lines+markers", name="Dot 45 Contractions",
+            go.Scatter(x=df_noisy.index, y=df_noisy['P3_12'], mode="lines+markers", name="Dot 45 Contractions",
                        legendgroup="Phase 3d", legendgrouptitle_text="Phase 3d"), row=5, col=2)
         fig.add_trace(
-            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_13'], mode="lines+markers", name="Dot 456 Contractions",
+            go.Scatter(x=df_noisy.index, y=df_noisy['P3_13'], mode="lines+markers", name="Dot 456 Contractions",
                        legendgroup="Phase 3d", legendgrouptitle_text="Phase 3d"), row=5, col=2)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_14'], mode="lines+markers",
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy['P3_14'], mode="lines+markers",
                                  name="Final Letter Groupsigns", legendgroup="Phase 3d",
                                  legendgrouptitle_text="Phase 3d"), row=5, col=2)
         fig.add_trace(
-            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P3_15'], mode="lines+markers", name="Shortform Words",
+            go.Scatter(x=df_noisy.index, y=df_noisy['P3_15'], mode="lines+markers", name="Shortform Words",
                        legendgroup="Phase 3d", legendgrouptitle_text="Phase 3d"), row=5, col=2)
         fig.add_trace(
-            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P4_1'], mode="lines+markers", name="Grade 1 Indicators",
+            go.Scatter(x=df_noisy.index, y=df_noisy['P4_1'], mode="lines+markers", name="Grade 1 Indicators",
                        legendgroup="Phase 4", legendgrouptitle_text="Phase 4"), row=7, col=1)
         fig.add_trace(
-            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P4_2'], mode="lines+markers", name="Capitals Indicators",
+            go.Scatter(x=df_noisy.index, y=df_noisy['P4_2'], mode="lines+markers", name="Capitals Indicators",
                        legendgroup="Phase 4", legendgrouptitle_text="Phase 4"), row=7, col=1)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P4_3'], mode="lines+markers",
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy['P4_3'], mode="lines+markers",
                                  name="Numeric Mode and Spatial math", legendgroup="Phase 4",
                                  legendgrouptitle_text="Phase 4"), row=7, col=1)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P4_4'], mode="lines+markers",
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy['P4_4'], mode="lines+markers",
                                  name="Typeform Indicators <br>(ITALIC, SCRIPT, UNDERLINE, BOLDFACE)",
                                  legendgroup="Phase 4", legendgrouptitle_text="Phase 4"), row=7, col=1)
         fig.add_trace(
-            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P5_1'], mode="lines+markers", name="Page Numbering",
+            go.Scatter(x=df_noisy.index, y=df_noisy['P5_1'], mode="lines+markers", name="Page Numbering",
                        legendgroup="Phase 5", legendgrouptitle_text="Phase 5"), row=7, col=2)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P5_2'], mode="lines+markers", name="Headings",
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy['P5_2'], mode="lines+markers", name="Headings",
                                  legendgroup="Phase 5", legendgrouptitle_text="Phase 5"), row=7, col=2)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P5_3'], mode="lines+markers", name="Lists",
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy['P5_3'], mode="lines+markers", name="Lists",
                                  legendgroup="Phase 5", legendgrouptitle_text="Phase 5"), row=7, col=2)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P5_4'], mode="lines+markers", name="Poety / Drama",
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy['P5_4'], mode="lines+markers", name="Poety / Drama",
                                  legendgroup="Phase 5", legendgrouptitle_text="Phase 5"), row=7, col=2)
         fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2, row=1, col=1)
         fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange", opacity=0.2, row=1, col=1)
@@ -1286,63 +1287,63 @@ class braillePanel(scrolled.ScrolledPanel):
             "Phase 6: UEB Technical Basics", "Phase 7: Advanced UEB Technical", "Phase 8: Accellerated UEB Technical"),
                             print_grid=True
                             )
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P6_1'], mode="lines+markers",
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy['P6_1'], mode="lines+markers",
                                  name=" Operation and Comparison Signs", legendgroup="Phase 6",
                                  legendgrouptitle_text="Phase 6"), row=1, col=1)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P6_2'], mode="lines+markers", name="Grade 1 Mode",
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy['P6_2'], mode="lines+markers", name="Grade 1 Mode",
                                  legendgroup="Phase 6", legendgrouptitle_text="Phase 6"), row=1, col=1)
         fig.add_trace(
-            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P6_3'], mode="lines+markers", name="Special Print Symbols",
+            go.Scatter(x=df_noisy.index, y=df_noisy['P6_3'], mode="lines+markers", name="Special Print Symbols",
                        legendgroup="Phase 6", legendgrouptitle_text="Phase 6"), row=1, col=1)
         fig.add_trace(
-            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P6_4'], mode="lines+markers", name="Omission Marks",
+            go.Scatter(x=df_noisy.index, y=df_noisy['P6_4'], mode="lines+markers", name="Omission Marks",
                        legendgroup="Phase 6", legendgrouptitle_text="Phase 6"), row=1, col=1)
         fig.add_trace(
-            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P6_5'], mode="lines+markers", name="Shape Indicators",
+            go.Scatter(x=df_noisy.index, y=df_noisy['P6_5'], mode="lines+markers", name="Shape Indicators",
                        legendgroup="Phase 6", legendgrouptitle_text="Phase 6"), row=1, col=1)
         fig.add_trace(
-            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P6_6'], mode="lines+markers", name="Roman Numerals",
+            go.Scatter(x=df_noisy.index, y=df_noisy['P6_6'], mode="lines+markers", name="Roman Numerals",
                        legendgroup="Phase 6", legendgrouptitle_text="Phase 6"), row=1, col=1)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P6_7'], mode="lines+markers", name="Fractions",
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy['P6_7'], mode="lines+markers", name="Fractions",
                                  legendgroup="Phase 6", legendgrouptitle_text="Phase 6"), row=1, col=1)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P7_1'], mode="lines+markers",
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy['P7_1'], mode="lines+markers",
                                  name="Grade 1 Mode and Algebra", legendgroup="Phase 7",
                                  legendgrouptitle_text="Phase 7"), row=2, col=1)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P7_2'], mode="lines+markers",
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy['P7_2'], mode="lines+markers",
                                  name="Grade 1 Mode and Fractions", legendgroup="Phase 7",
                                  legendgrouptitle_text="Phase 7"), row=2, col=1)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P7_3'], mode="lines+markers",
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy['P7_3'], mode="lines+markers",
                                  name="Advanced Operation and Comparison Signs", legendgroup="Phase 7",
                                  legendgrouptitle_text="Phase 7"), row=2, col=1)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P7_4'], mode="lines+markers", name="Indices",
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy['P7_4'], mode="lines+markers", name="Indices",
                                  legendgroup="Phase 7", legendgrouptitle_text="Phase 7"), row=2, col=1)
         fig.add_trace(
-            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P7_5'], mode="lines+markers", name="Roots and Radicals",
+            go.Scatter(x=df_noisy.index, y=df_noisy['P7_5'], mode="lines+markers", name="Roots and Radicals",
                        legendgroup="Phase 7", legendgrouptitle_text="Phase 7"), row=2, col=1)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P7_6'], mode="lines+markers",
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy['P7_6'], mode="lines+markers",
                                  name="Miscellaneous Shape Indicators", legendgroup="Phase 7",
                                  legendgrouptitle_text="Phase 7"), row=2, col=1)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P7_7'], mode="lines+markers", name="Functions",
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy['P7_7'], mode="lines+markers", name="Functions",
                                  legendgroup="Phase 7", legendgrouptitle_text="Phase 7"), row=2, col=1)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P7_8'], mode="lines+markers", name="Greek letters",
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy['P7_8'], mode="lines+markers", name="Greek letters",
                                  legendgroup="Phase 7", legendgrouptitle_text="Phase 7"), row=2, col=1)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P8_1'], mode="lines+markers", name="Functions",
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy['P8_1'], mode="lines+markers", name="Functions",
                                  legendgroup="Phase 8", legendgrouptitle_text="Phase 8"), row=3, col=1)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P8_2'], mode="lines+markers",
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy['P8_2'], mode="lines+markers",
                                  name="Modifiers, Bars, and Dots", legendgroup="Phase 8",
                                  legendgrouptitle_text="Phase 8"), row=3, col=1)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P8_3'], mode="lines+markers",
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy['P8_3'], mode="lines+markers",
                                  name="Modifiers, Arrows, and Limits", legendgroup="Phase 8",
                                  legendgrouptitle_text="Phase 8"), row=3, col=1)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P8_4'], mode="lines+markers", name="Probability",
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy['P8_4'], mode="lines+markers", name="Probability",
                                  legendgroup="Phase 8", legendgrouptitle_text="Phase 8"), row=3, col=1)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P8_5'], mode="lines+markers",
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy['P8_5'], mode="lines+markers",
                                  name="Calculus: Differentiation", legendgroup="Phase 8",
                                  legendgrouptitle_text="Phase 8"), row=3, col=1)
         fig.add_trace(
-            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P8_6'], mode="lines+markers", name="Calculus: Integration",
+            go.Scatter(x=df_noisy.index, y=df_noisy['P8_6'], mode="lines+markers", name="Calculus: Integration",
                        legendgroup="Phase 8", legendgrouptitle_text="Phase 8"), row=3, col=1)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy['P8_7'], mode="lines+markers", name="Vertical Bars",
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy['P8_7'], mode="lines+markers", name="Vertical Bars",
                                  legendgroup="Phase 8", legendgrouptitle_text="Phase 8"), row=3, col=1)
         fig.update_xaxes(rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=1, col=1)
         fig.update_xaxes(rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=2, col=1)
@@ -1629,85 +1630,85 @@ class screenreaderPanel(scrolled.ScrolledPanel):
                                 "Phase 3b: Internet", "Phase 3c: Internet", "Phase 4a: File Management",
                                 "Phase 4b: File Management"), print_grid=True
                             )
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1_1"], mode="lines+markers", name="Turn ON/OFF",
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy["P1_1"], mode="lines+markers", name="Turn ON/OFF",
                                  legendgroup="Phase 1a", legendgrouptitle_text="Phase 1a"), row=1, col=1)
         fig.add_trace(
-            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1_2"], mode="lines+markers", name="Use Modifier Keys",
+            go.Scatter(x=df_noisy.index, y=df_noisy["P1_2"], mode="lines+markers", name="Use Modifier Keys",
                        legendgroup="Phase 1a", legendgrouptitle_text="Phase 1a"), row=1, col=1)
         fig.add_trace(
-            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1_3"], mode="lines+markers", name="Use Reading Commands",
+            go.Scatter(x=df_noisy.index, y=df_noisy["P1_3"], mode="lines+markers", name="Use Reading Commands",
                        legendgroup="Phase 1a", legendgrouptitle_text="Phase 1a"), row=1, col=1)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1_4"], mode="lines+markers", name="ID Titles",
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy["P1_4"], mode="lines+markers", name="ID Titles",
                                  legendgroup="Phase 1b", legendgrouptitle_text=" "), row=2, col=1)
         fig.add_trace(
-            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1_5"], mode="lines+markers", name="Access Documents",
+            go.Scatter(x=df_noisy.index, y=df_noisy["P1_5"], mode="lines+markers", name="Access Documents",
                        legendgroup="Phase 1b", legendgrouptitle_text=" "), row=2, col=1)
         fig.add_trace(
-            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1_6"], mode="lines+markers", name="Switch Program Focus",
+            go.Scatter(x=df_noisy.index, y=df_noisy["P1_6"], mode="lines+markers", name="Switch Program Focus",
                        legendgroup="Phase 1b", legendgrouptitle_text=" "), row=2, col=1)
         fig.add_trace(
-            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P2_1"], mode="lines+markers", name="Type with all keys",
+            go.Scatter(x=df_noisy.index, y=df_noisy["P2_1"], mode="lines+markers", name="Type with all keys",
                        legendgroup="Phase 2", legendgrouptitle_text="Phase 2"), row=1, col=2)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P2_2"], mode="lines+markers",
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy["P2_2"], mode="lines+markers",
                                  name="Change Screen Reader Settings", legendgroup="Phase 2",
                                  legendgrouptitle_text="Phase 2"), row=1, col=2)
         fig.add_trace(
-            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P2_3"], mode="lines+markers", name="Write documents",
+            go.Scatter(x=df_noisy.index, y=df_noisy["P2_3"], mode="lines+markers", name="Write documents",
                        legendgroup="Phase 2", legendgrouptitle_text="Phase 2"), row=1, col=2)
         fig.add_trace(
-            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P2_4"], mode="lines+markers", name="Copy/Paste Text",
+            go.Scatter(x=df_noisy.index, y=df_noisy["P2_4"], mode="lines+markers", name="Copy/Paste Text",
                        legendgroup="Phase 2", legendgrouptitle_text="Phase 2"), row=1, col=2)
         fig.add_trace(
-            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_4"], mode="lines+markers", name="TAB Navigation",
+            go.Scatter(x=df_noisy.index, y=df_noisy["P3_4"], mode="lines+markers", name="TAB Navigation",
                        legendgroup="Phase 3a", legendgrouptitle_text="Phase 3a"), row=3, col=1)
         fig.add_trace(
-            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_5"], mode="lines+markers", name="Quick Key Navigation",
+            go.Scatter(x=df_noisy.index, y=df_noisy["P3_5"], mode="lines+markers", name="Quick Key Navigation",
                        legendgroup="Phase 3a", legendgrouptitle_text="Phase 3a"), row=3, col=1)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_6"], mode="lines+markers",
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy["P3_6"], mode="lines+markers",
                                  name="Elements List Navigation", legendgroup="Phase 3a",
                                  legendgrouptitle_text="Phase 3a"), row=3, col=1)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_7"], mode="lines+markers",
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy["P3_7"], mode="lines+markers",
                                  name="Justify Navigation Method", legendgroup="Phase 3a",
                                  legendgrouptitle_text="Phase 3a"), row=3, col=1)
         fig.add_trace(
-            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_1"], mode="lines+markers", name="Define HTML Elements",
+            go.Scatter(x=df_noisy.index, y=df_noisy["P3_1"], mode="lines+markers", name="Define HTML Elements",
                        legendgroup="Phase 3b", legendgrouptitle_text="Phase 3b"), row=3, col=2)
         fig.add_trace(
-            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_2"], mode="lines+markers", name="ID HTML Elements",
+            go.Scatter(x=df_noisy.index, y=df_noisy["P3_2"], mode="lines+markers", name="ID HTML Elements",
                        legendgroup="Phase 3b", legendgrouptitle_text="Phase 3b"), row=3, col=2)
         fig.add_trace(
-            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_3"], mode="lines+markers", name="Navigate to Address Bar",
+            go.Scatter(x=df_noisy.index, y=df_noisy["P3_3"], mode="lines+markers", name="Navigate to Address Bar",
                        legendgroup="Phase 3b", legendgrouptitle_text="Phase 3b"), row=3, col=2)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_8"], mode="lines+markers", name="ALT-TAB Focus",
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy["P3_8"], mode="lines+markers", name="ALT-TAB Focus",
                                  legendgroup="Phase 3b", legendgrouptitle_text="Phase 3b"), row=3, col=2)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_9"], mode="lines+markers",
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy["P3_9"], mode="lines+markers",
                                  name="Toggle Screen Reader Mode", legendgroup="Phase 3c",
                                  legendgrouptitle_text="Phase 3c"), row=4, col=2)
         fig.add_trace(
-            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_10"], mode="lines+markers", name="Navigate a Table",
+            go.Scatter(x=df_noisy.index, y=df_noisy["P3_10"], mode="lines+markers", name="Navigate a Table",
                        legendgroup="Phase 3c", legendgrouptitle_text="Phase 3c"), row=4, col=2)
         fig.add_trace(
-            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_11"], mode="lines+markers", name="Navigation Sequence",
+            go.Scatter(x=df_noisy.index, y=df_noisy["P3_11"], mode="lines+markers", name="Navigation Sequence",
                        legendgroup="Phase 3c", legendgrouptitle_text="Phase 3c"), row=4, col=2)
         fig.add_trace(
-            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P4_1"], mode="lines+markers", name="Save and Open Files",
+            go.Scatter(x=df_noisy.index, y=df_noisy["P4_1"], mode="lines+markers", name="Save and Open Files",
                        legendgroup="Phase 4a", legendgrouptitle_text="Phase 4a"), row=5, col=1)
         fig.add_trace(
-            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P4_2"], mode="lines+markers", name="Create Folders",
+            go.Scatter(x=df_noisy.index, y=df_noisy["P4_2"], mode="lines+markers", name="Create Folders",
                        legendgroup="Phase 4a", legendgrouptitle_text="Phase 4a"), row=5, col=1)
         fig.add_trace(
-            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P4_3"], mode="lines+markers", name="Navigate Cloud Storage",
+            go.Scatter(x=df_noisy.index, y=df_noisy["P4_3"], mode="lines+markers", name="Navigate Cloud Storage",
                        legendgroup="Phase 4a", legendgrouptitle_text="Phase 4a"), row=5, col=1)
         fig.add_trace(
-            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P4_4"], mode="lines+markers", name="Download from Internet",
+            go.Scatter(x=df_noisy.index, y=df_noisy["P4_4"], mode="lines+markers", name="Download from Internet",
                        legendgroup="Phase 4a", legendgrouptitle_text="Phase 4a"), row=5, col=1)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P4_5"], mode="lines+markers", name="UNZIP Folders",
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy["P4_5"], mode="lines+markers", name="UNZIP Folders",
                                  legendgroup="Phase 4b", legendgrouptitle_text="Phase 4b"), row=5, col=2)
         fig.add_trace(
-            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P4_6"], mode="lines+markers", name="Use Virtual Cursor",
+            go.Scatter(x=df_noisy.index, y=df_noisy["P4_6"], mode="lines+markers", name="Use Virtual Cursor",
                        legendgroup="Phase 4b", legendgrouptitle_text="Phase 4b"), row=5, col=2)
         fig.add_trace(
-            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P4_7"], mode="lines+markers", name="Use Built-In OCR",
+            go.Scatter(x=df_noisy.index, y=df_noisy["P4_7"], mode="lines+markers", name="Use Built-In OCR",
                        legendgroup="Phase 4b", legendgrouptitle_text="Phase 4b"), row=5, col=2)
         fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2, row=1, col=1)
         fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange", opacity=0.2, row=1, col=1)
@@ -1988,66 +1989,66 @@ class abacusPanel(scrolled.ScrolledPanel):
                             print_grid=True
                             )
         fig.add_trace(
-            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1_1"], mode="lines+markers", name="Setting Numbers",
+            go.Scatter(x=df_noisy.index, y=df_noisy["P1_1"], mode="lines+markers", name="Setting Numbers",
                        legendgroup="Phase 1", legendgrouptitle_text="Phase 1"), row=1, col=1)
         fig.add_trace(
-            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1_2"], mode="lines+markers", name="Clearing Beads",
+            go.Scatter(x=df_noisy.index, y=df_noisy["P1_2"], mode="lines+markers", name="Clearing Beads",
                        legendgroup="Phase 1", legendgrouptitle_text="Phase 1"), row=1, col=1)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1_3"], mode="lines+markers", name="Place Value",
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy["P1_3"], mode="lines+markers", name="Place Value",
                                  legendgroup="Phase 1", legendgrouptitle_text="Phase 1"), row=1, col=1)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1_4"], mode="lines+markers", name="Vocabulary",
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy["P1_4"], mode="lines+markers", name="Vocabulary",
                                  legendgroup="Phase 1", legendgrouptitle_text="Phase 1"), row=1, col=1)
         fig.add_trace(
-            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P2_1"], mode="lines+markers", name="Setting Numbers",
+            go.Scatter(x=df_noisy.index, y=df_noisy["P2_1"], mode="lines+markers", name="Setting Numbers",
                        legendgroup="Phase 2", legendgrouptitle_text="Phase 2"), row=1, col=2)
         fig.add_trace(
-            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P2_2"], mode="lines+markers", name="Clearing Beads",
+            go.Scatter(x=df_noisy.index, y=df_noisy["P2_2"], mode="lines+markers", name="Clearing Beads",
                        legendgroup="Phase 2", legendgrouptitle_text="Phase 2"), row=1, col=2)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P2_3"], mode="lines+markers", name="Place Value",
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy["P2_3"], mode="lines+markers", name="Place Value",
                                  legendgroup="Phase 2", legendgrouptitle_text="Phase 2"), row=1, col=2)
         fig.add_trace(
-            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_1"], mode="lines+markers", name="Setting Numbers",
+            go.Scatter(x=df_noisy.index, y=df_noisy["P3_1"], mode="lines+markers", name="Setting Numbers",
                        legendgroup="Phase 3", legendgrouptitle_text="Phase 3"), row=2, col=1)
         fig.add_trace(
-            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_2"], mode="lines+markers", name="Clearing Beads",
+            go.Scatter(x=df_noisy.index, y=df_noisy["P3_2"], mode="lines+markers", name="Clearing Beads",
                        legendgroup="Phase 3", legendgrouptitle_text="Phase 3"), row=2, col=1)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P3_3"], mode="lines+markers", name="Place Value",
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy["P3_3"], mode="lines+markers", name="Place Value",
                                  legendgroup="Phase 3", legendgrouptitle_text="Phase 3"), row=2, col=1)
         fig.add_trace(
-            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P4_1"], mode="lines+markers", name="Setting Numbers",
+            go.Scatter(x=df_noisy.index, y=df_noisy["P4_1"], mode="lines+markers", name="Setting Numbers",
                        legendgroup="Phase 4", legendgrouptitle_text="Phase 4"), row=2, col=2)
         fig.add_trace(
-            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P4_2"], mode="lines+markers", name="Clearing Beads",
+            go.Scatter(x=df_noisy.index, y=df_noisy["P4_2"], mode="lines+markers", name="Clearing Beads",
                        legendgroup="Phase 4", legendgrouptitle_text="Phase 4"), row=2, col=2)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P5_1"], mode="lines+markers", name="Place Value",
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy["P5_1"], mode="lines+markers", name="Place Value",
                                  legendgroup="Phase 5", legendgrouptitle_text="Phase 5"), row=3, col=1)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P5_2"], mode="lines+markers", name="Vocabulary",
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy["P5_2"], mode="lines+markers", name="Vocabulary",
                                  legendgroup="Phase 5", legendgrouptitle_text="Phase 5"), row=3, col=1)
         fig.add_trace(
-            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P6_1"], mode="lines+markers", name="Setting Numbers",
+            go.Scatter(x=df_noisy.index, y=df_noisy["P6_1"], mode="lines+markers", name="Setting Numbers",
                        legendgroup="Phase 6", legendgrouptitle_text="Phase 6"), row=3, col=2)
         fig.add_trace(
-            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P6_2"], mode="lines+markers", name="Clearing Beads",
+            go.Scatter(x=df_noisy.index, y=df_noisy["P6_2"], mode="lines+markers", name="Clearing Beads",
                        legendgroup="Phase 6", legendgrouptitle_text="Phase 6"), row=3, col=2)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P6_3"], mode="lines+markers", name="Place Value",
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy["P6_3"], mode="lines+markers", name="Place Value",
                                  legendgroup="Phase 6", legendgrouptitle_text="Phase 6"), row=3, col=2)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P6_4"], mode="lines+markers", name="Vocabulary",
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy["P6_4"], mode="lines+markers", name="Vocabulary",
                                  legendgroup="Phase 6", legendgrouptitle_text="Phase 6"), row=3, col=2)
         fig.add_trace(
-            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P7_1"], mode="lines+markers", name="Setting Numbers",
+            go.Scatter(x=df_noisy.index, y=df_noisy["P7_1"], mode="lines+markers", name="Setting Numbers",
                        legendgroup="Phase 7", legendgrouptitle_text="Phase 7"), row=4, col=1)
         fig.add_trace(
-            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P7_2"], mode="lines+markers", name="Clearing Beads",
+            go.Scatter(x=df_noisy.index, y=df_noisy["P7_2"], mode="lines+markers", name="Clearing Beads",
                        legendgroup="Phase 7", legendgrouptitle_text="Phase 7"), row=4, col=1)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P7_3"], mode="lines+markers", name="Place Value",
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy["P7_3"], mode="lines+markers", name="Place Value",
                                  legendgroup="Phase 7", legendgrouptitle_text="Phase 7"), row=4, col=1)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P7_4"], mode="lines+markers", name="Vocabulary",
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy["P7_4"], mode="lines+markers", name="Vocabulary",
                                  legendgroup="Phase 7", legendgrouptitle_text="Phase 7"), row=4, col=1)
         fig.add_trace(
-            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P8_1"], mode="lines+markers", name="Setting Numbers",
+            go.Scatter(x=df_noisy.index, y=df_noisy["P8_1"], mode="lines+markers", name="Setting Numbers",
                        legendgroup="Phase 8", legendgrouptitle_text="Phase 8"), row=4, col=2)
         fig.add_trace(
-            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P8_2"], mode="lines+markers", name="Clearing Beads",
+            go.Scatter(x=df_noisy.index, y=df_noisy["P8_2"], mode="lines+markers", name="Clearing Beads",
                        legendgroup="Phase 8", legendgrouptitle_text="Phase 8"), row=4, col=2)
         fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2, row=1, col=1)
         fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange", opacity=0.2, row=1, col=1)
@@ -2340,9 +2341,10 @@ class cviPanel(scrolled.ScrolledPanel):
     def graph(self, event):
         studentname = self.studentname1.GetString(self.studentname1.GetSelection())
         tmpPath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', studentname, 'cviProgression.csv')
-        df = pd.read_csv(tmpPath, sep=',', index_col=[0], parse_dates=['date'])
+        df = pd.read_csv(tmpPath, sep=',', index_col=[0], parse_dates=[0])
         # df['date']=pd.to_datetime(df['date'])
         df = df.sort_values(by="date")
+        print(df)
         mu, sigma = 0, 0.1
         noise = np.random.normal(mu, sigma, [len(df.index), len(df.columns)])
         df_noisy = df + noise
@@ -2352,32 +2354,32 @@ class cviPanel(scrolled.ScrolledPanel):
                             print_grid=True
                             )
         fig.add_trace(
-            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1_1"], mode="lines+markers", name="Color Preference",
-                       legendgroup="Phase 1", legendgrouptitle_text=" "), row=1, col=1)
+            go.Scatter(x=df_noisy.index, y=df_noisy["P1_1"], mode="lines+markers", name="Color Preference",
+                       legendgroup="", legendgrouptitle_text=" "), row=1, col=1)
         fig.add_trace(
-            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1_2"], mode="lines+markers", name="Need for Movement",
+            go.Scatter(x=df_noisy.index, y=df_noisy["P1_2"], mode="lines+markers", name="Need for Movement",
                        legendgroup="Phase 1", legendgrouptitle_text="Phase 1"), row=1, col=2)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1_3"], mode="lines+markers", name="Latency",
-                                 legendgroup=" ", legendgrouptitle_text=" "), row=2, col=1)
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy["P1_3"], mode="lines+markers", name="Latency",
+                       legendgroup="", legendgrouptitle_text=" "), row=2, col=1)
         fig.add_trace(
-            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1_4"], mode="lines+markers", name="Field Prefence",
-                       legendgroup="Phase 1", legendgrouptitle_text=" "), row=2, col=2)
+            go.Scatter(x=df_noisy.index, y=df_noisy["P1_4"], mode="lines+markers", name="Field Prefence",
+                       legendgroup="", legendgrouptitle_text=" "), row=2, col=2)
         fig.add_trace(
-            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1_5"], mode="lines+markers", name="Visual Complexity",
-                       legendgroup="Phase 2", legendgrouptitle_text=" "), row=3, col=1)
+            go.Scatter(x=df_noisy.index, y=df_noisy["P1_5"], mode="lines+markers", name="Visual Complexity",
+                       legendgroup="", legendgrouptitle_text=" "), row=3, col=1)
         fig.add_trace(
-            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P1_5"], mode="lines+markers", name="Nonpurposeful Gaze",
-                       legendgroup="Phase 2", legendgrouptitle_text=" "), row=3, col=2)
+            go.Scatter(x=df_noisy.index, y=df_noisy["P1_6"], mode="lines+markers", name="Nonpurposeful Gaze",
+                       legendgroup="", legendgrouptitle_text=" "), row=3, col=2)
         fig.add_trace(
-            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P2_1"], mode="lines+markers", name="Distance Viewing",
-                       legendgroup="Phase 2", legendgrouptitle_text=" "), row=4, col=1)
+            go.Scatter(x=df_noisy.index, y=df_noisy["P2_1"], mode="lines+markers", name="Distance Viewing",
+                       legendgroup="", legendgrouptitle_text=" "), row=4, col=1)
         fig.add_trace(
-            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P2_2"], mode="lines+markers", name="Atypical Reflexes",
-                       legendgroup="Phase 3", legendgrouptitle_text=" "), row=4, col=2)
+            go.Scatter(x=df_noisy.index, y=df_noisy["P2_2"], mode="lines+markers", name="Atypical Reflexes",
+                       legendgroup="", legendgrouptitle_text=" "), row=4, col=2)
         fig.add_trace(
-            go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P2_3"], mode="lines+markers", name="Visual Novelty",
-                       legendgroup="Phase 3", legendgrouptitle_text=" "), row=5, col=1)
-        fig.add_trace(go.Scatter(x=df_noisy.index[[-1]], y=df_noisy["P2_4"], mode="lines+markers", name="Visual Reach",
+            go.Scatter(x=df_noisy.index, y=df_noisy["P2_3"], mode="lines+markers", name="Visual Novelty",
+                       legendgroup="", legendgrouptitle_text=" "), row=5, col=1)
+        fig.add_trace(go.Scatter(x=df_noisy.index, y=df_noisy["P2_4"], mode="lines+markers", name="Visual Reach",
                                  legendgroup="Phase 3", legendgrouptitle_text=" "), row=5, col=2)
         fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2, row=1, col=1)
         fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange", opacity=0.2, row=1, col=1)

@@ -29,7 +29,7 @@ elif os.name == 'posix':
     USER_DIR = Path(tmpPath)
 else:
     print("Error! Cannot find HOME directory")
-    break
+
 
 os.chdir(USER_DIR)
 for name in students:
@@ -2749,6 +2749,7 @@ class StudentDataBook(wx.Frame, wx.Accessible):
     def __init__(self, parent, title):
         super(StudentDataBook, self).__init__(parent, title="Data Entry Form", size=(1130, 1000))
         self.SetBackgroundColour(wx.Colour(215, 236, 217))
+        self.SetFont(wx.Font(wx.FontInfo(8) ))
         self.InitUI()
 
     def InitUI(self):

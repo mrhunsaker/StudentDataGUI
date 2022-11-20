@@ -1057,7 +1057,7 @@ class dataPanel(wx.Panel):
         notes = self.notes1.GetValue()
 
         if (len(studentname) and len(date) and len(task) and len(notes)) > 0:
-            box = wx.TextEntryDialog(None, "Enter Address-Book name to save!",
+            box = wx.TextEntryDialog(None, "Enter File Name",
                                      "Title",
                                      f"{studentname.title()}{dateNow}")
             if box.ShowModal() == wx.ID_OK:
@@ -1492,7 +1492,7 @@ class braillePanel(scrolled.ScrolledPanel):
         trial85 = self.trial85.GetValue()
         trial86 = self.trial86.GetValue()
         trial87 = self.trial87.GetValue()
-        box = wx.TextEntryDialog(None, "Enter Address-Book name to save!",
+        box = wx.TextEntryDialog(None, "Enter File Name",
                                  "Title",
                                  f"braille{studentname.title()}{dateNow}")
         if box.ShowModal() == wx.ID_OK:
@@ -1870,18 +1870,72 @@ class braillePanel(scrolled.ScrolledPanel):
                  trial87))
             conn.commit()
             data_entry()
-            list_names = ['date', 'P1_1', 'P1_2', 'P1_3', 'P1_4', 'P2_1',
-                          'P2_2', 'P2_3', 'P2_4', 'P2_5', 'P2_6',
-                          'P2_7', 'P2_8', 'P2_9', 'P2_10', 'P2_11', 'P2_12',
-                          'P2_13', 'P2_14', 'P2_15', 'P3_1', 'P3_2',
-                          'P3_3', 'P3_4', 'P3_5', 'P3_6', 'P3_7', 'P3_8',
-                          'P3_9', 'P3_10', 'P3_11', 'P3_12', 'P3_13',
-                          'P3_14', 'P3_15', 'P4_1', 'P4_2', 'P4_3', 'P4_4',
-                          'P5_1', 'P5_2', 'P5_3', 'P5_4', 'P6_1',
-                          'P6_2', 'P6_3', 'P6_4', 'P6_5', 'P6_6', 'P6_7',
-                          'P7_1', 'P7_2', 'P7_3', 'P7_4', 'P7_5',
-                          'P7_6', 'P7_7', 'P7_8', 'P8_1', 'P8_2', 'P8_3',
-                          'P8_4', 'P8_5', 'P8_6', 'P8_7']
+            list_names =    ['date',
+                             'P1_1',
+                             'P1_2',
+                             'P1_3',
+                             'P1_4',
+                             'P2_1',
+                             'P2_2',
+                             'P2_3',
+                             'P2_4',
+                             'P2_5',
+                             'P2_6',
+                             'P2_7',
+                             'P2_8',
+                             'P2_9',
+                             'P2_10',
+                             'P2_11',
+                             'P2_12',
+                             'P2_13',
+                             'P2_14',
+                             'P2_15',
+                             'P3_1',
+                             'P3_2',
+                             'P3_3',
+                             'P3_4',
+                             'P3_5',
+                             'P3_6',
+                             'P3_7',
+                             'P3_8',
+                             'P3_9',
+                             'P3_10',
+                             'P3_11',
+                             'P3_12',
+                             'P3_13',
+                             'P3_14',
+                             'P3_15',
+                             'P4_1',
+                             'P4_2',
+                             'P4_3',
+                             'P4_4',
+                             'P5_1',
+                             'P5_2',
+                             'P5_3',
+                             'P5_4',
+                             'P6_1',
+                             'P6_2',
+                             'P6_3',
+                             'P6_4',
+                             'P6_5',
+                             'P6_6',
+                             'P6_7',
+                             'P7_1',
+                             'P7_2',
+                             'P7_3',
+                             'P7_4',
+                             'P7_5',
+                             'P7_6',
+                             'P7_7',
+                             'P7_8',
+                             'P8_1',
+                             'P8_2',
+                             'P8_3',
+                             'P8_4',
+                             'P8_5',
+                             'P8_6',
+                             'P8_7'
+                             ]
 
     def graph(self, event):
         studentname = self.studentname1.GetString(
@@ -1945,8 +1999,7 @@ class braillePanel(scrolled.ScrolledPanel):
                                  mode="lines+markers+text", name="D Y",
                                  legendgroup="Phase 2",
                                  legendgrouptitle_text="Phase 2",
-                                 showlegend=False), row=1,
-                      col=2)
+                                 showlegend=False), row=1, col=2)
         fig.add_trace(
             go.Scatter(x=df_noisy.index, y=df_noisy['P2_2'].iloc[[-1]],
                        mode="text", text=[" D Y"],
@@ -1957,8 +2010,7 @@ class braillePanel(scrolled.ScrolledPanel):
                                  mode="lines+markers+text", name="A B",
                                  legendgroup="Phase 2",
                                  legendgrouptitle_text="Phase 2",
-                                 showlegend=False), row=1,
-                      col=2)
+                                 showlegend=False), row=1, col=2)
         fig.add_trace(
             go.Scatter(x=df_noisy.index, y=df_noisy['P2_3'].iloc[[-1]],
                        mode="text", text=[" A B"],
@@ -1969,8 +2021,7 @@ class braillePanel(scrolled.ScrolledPanel):
                                  mode="lines+markers+text", name="S",
                                  legendgroup="Phase 2",
                                  legendgrouptitle_text="Phase 2",
-                                 showlegend=False), row=1,
-                      col=2)
+                                 showlegend=False), row=1, col=2)
         fig.add_trace(
             go.Scatter(x=df_noisy.index, y=df_noisy['P2_4'].iloc[[-1]],
                        mode="text", text=[" S"],
@@ -1981,8 +2032,7 @@ class braillePanel(scrolled.ScrolledPanel):
                                  mode="lines+markers+text", name="W",
                                  legendgroup="Phase 2",
                                  legendgrouptitle_text="Phase 2",
-                                 showlegend=False), row=1,
-                      col=2)
+                                 showlegend=False), row=1, col=2)
         fig.add_trace(
             go.Scatter(x=df_noisy.index, y=df_noisy['P2_5'].iloc[[-1]],
                        mode="text", text=[" W"],
@@ -1993,8 +2043,7 @@ class braillePanel(scrolled.ScrolledPanel):
                                  mode="lines+markers+text", name="P O",
                                  legendgroup="Phase 2",
                                  legendgrouptitle_text="Phase 2",
-                                 showlegend=False), row=1,
-                      col=2)
+                                 showlegend=False), row=1, col=2)
         fig.add_trace(
             go.Scatter(x=df_noisy.index, y=df_noisy['P2_6'].iloc[[-1]],
                        mode="text", text=[" P O"],
@@ -2005,8 +2054,7 @@ class braillePanel(scrolled.ScrolledPanel):
                                  mode="lines+markers+text", name="K",
                                  legendgroup="Phase 2",
                                  legendgrouptitle_text="Phase 2",
-                                 showlegend=False), row=1,
-                      col=2)
+                                 showlegend=False), row=1, col=2)
         fig.add_trace(
             go.Scatter(x=df_noisy.index, y=df_noisy['P2_7'].iloc[[-1]],
                        mode="text", text=[" K"],
@@ -2017,8 +2065,7 @@ class braillePanel(scrolled.ScrolledPanel):
                                  mode="lines+markers+text", name="R",
                                  legendgroup="Phase 2",
                                  legendgrouptitle_text="Phase 2",
-                                 showlegend=False), row=1,
-                      col=2)
+                                 showlegend=False), row=1, col=2)
         fig.add_trace(
             go.Scatter(x=df_noisy.index, y=df_noisy['P2_8'].iloc[[-1]],
                        mode="text", text=[" R"],
@@ -2029,8 +2076,7 @@ class braillePanel(scrolled.ScrolledPanel):
                                  mode="lines+markers+text", name="M E",
                                  legendgroup="Phase 2",
                                  legendgrouptitle_text="Phase 2",
-                                 showlegend=False), row=1,
-                      col=2)
+                                 showlegend=False), row=1, col=2)
         fig.add_trace(
             go.Scatter(x=df_noisy.index, y=df_noisy['P2_9'].iloc[[-1]],
                        mode="text", text=[" M E"],
@@ -2041,8 +2087,7 @@ class braillePanel(scrolled.ScrolledPanel):
                                  mode="lines+markers+text", name="H",
                                  legendgroup="Phase 2",
                                  legendgrouptitle_text="Phase 2",
-                                 showlegend=False), row=1,
-                      col=2)
+                                 showlegend=False), row=1, col=2)
         fig.add_trace(
             go.Scatter(x=df_noisy.index, y=df_noisy['P2_10'].iloc[[-1]],
                        mode="text", text=[" H"],
@@ -2053,8 +2098,7 @@ class braillePanel(scrolled.ScrolledPanel):
                                  mode="lines+markers+text", name="N X",
                                  legendgroup="Phase 2",
                                  legendgrouptitle_text="Phase 2",
-                                 showlegend=False), row=1,
-                      col=2)
+                                 showlegend=False), row=1, col=2)
         fig.add_trace(
             go.Scatter(x=df_noisy.index, y=df_noisy['P2_11'].iloc[[-1]],
                        mode="text", text=[" N X"],
@@ -2065,8 +2109,7 @@ class braillePanel(scrolled.ScrolledPanel):
                                  mode="lines+markers+text", name="Z F",
                                  legendgroup="Phase 2",
                                  legendgrouptitle_text="Phase 2",
-                                 showlegend=False), row=1,
-                      col=2)
+                                 showlegend=False), row=1, col=2)
         fig.add_trace(
             go.Scatter(x=df_noisy.index, y=df_noisy['P2_12'].iloc[[-1]],
                        mode="text", text=[" Z F"],
@@ -2077,8 +2120,7 @@ class braillePanel(scrolled.ScrolledPanel):
                                  mode="lines+markers+text", name="U T",
                                  legendgroup="Phase 2",
                                  legendgrouptitle_text="Phase 2",
-                                 showlegend=False), row=1,
-                      col=2)
+                                 showlegend=False), row=1, col=2)
         fig.add_trace(
             go.Scatter(x=df_noisy.index, y=df_noisy['P2_13'].iloc[[-1]],
                        mode="text", text=[" U T"],
@@ -2089,8 +2131,7 @@ class braillePanel(scrolled.ScrolledPanel):
                                  mode="lines+markers+text", name="Q I",
                                  legendgroup="Phase 2",
                                  legendgrouptitle_text="Phase 2",
-                                 showlegend=False), row=1,
-                      col=2)
+                                 showlegend=False), row=1, col=2)
         fig.add_trace(
             go.Scatter(x=df_noisy.index, y=df_noisy['P2_14'].iloc[[-1]],
                        mode="text", text=[" Q I"],
@@ -2101,8 +2142,7 @@ class braillePanel(scrolled.ScrolledPanel):
                                  mode="lines+markers+text", name="V J ",
                                  legendgroup="Phase 2",
                                  legendgrouptitle_text="Phase 2",
-                                 showlegend=False), row=1,
-                      col=2)
+                                 showlegend=False), row=1, col=2)
         fig.add_trace(
             go.Scatter(x=df_noisy.index, y=df_noisy['P2_15'].iloc[[-1]],
                        mode="text", text=[" V J"],
@@ -2795,7 +2835,7 @@ class screenreaderPanel(scrolled.ScrolledPanel):
         trial45 = self.trial45.GetValue()
         trial46 = self.trial46.GetValue()
         trial47 = self.trial47.GetValue()
-        box = wx.TextEntryDialog(None, "Enter Address-Book name to save!",
+        box = wx.TextEntryDialog(None, "Enter File Name",
                                  "Title",
                                  f"screenreader{studentname.title()}{dateNow}")
         if box.ShowModal() == wx.ID_OK:
@@ -3353,7 +3393,7 @@ class abacusPanel(scrolled.ScrolledPanel):
         trial74 = self.trial74.GetValue()
         trial81 = self.trial81.GetValue()
         trial82 = self.trial82.GetValue()
-        box = wx.TextEntryDialog(None, "Enter Address-Book name to save!",
+        box = wx.TextEntryDialog(None, "Enter File Name",
                                  "Title",
                                  f"abacus{studentname.title()}{dateNow}")
         if box.ShowModal() == wx.ID_OK:
@@ -3915,7 +3955,7 @@ class cviPanel(scrolled.ScrolledPanel):
         trial31 = self.trial31.GetValue()
         trial32 = self.trial32.GetValue()
         trial33 = self.trial33.GetValue()
-        box = wx.TextEntryDialog(None, "Enter Address-Book name to save!",
+        box = wx.TextEntryDialog(None, "Enter File Name",
                                  "Title",
                                  f"cvi{studentname.title()}{dateNow}")
         if box.ShowModal() == wx.ID_OK:
@@ -4409,7 +4449,7 @@ class meetingsPanel(scrolled.ScrolledPanel):
         simpleDate = datetime.datetime.now().strftime("%Y_%m_%d-%H%M")
         notes = self.notes1.GetValue()
         if (len(studentname) and len(notes)) > 0:
-            box = wx.TextEntryDialog(None, "Enter Address-Book name to save!",
+            box = wx.TextEntryDialog(None, "Enter File Name",
                                      "Title",
                                      f"meeting{studentname.title()}{dateNow}")
             if box.ShowModal() == wx.ID_OK:
@@ -4508,7 +4548,7 @@ class observationsPanel(scrolled.ScrolledPanel):
         simpleDate = datetime.datetime.now().strftime("%Y_%m_%d-%H%M")
         notes = self.notes1.GetValue()
         if (len(studentname) and len(notes)) > 0:
-            box = wx.TextEntryDialog(None, "Enter Address-Book name to save!",
+            box = wx.TextEntryDialog(None, "Enter File Name",
                                      "Title",
                                      f"observation{studentname.title()}{dateNow}")
             if box.ShowModal() == wx.ID_OK:
@@ -4538,27 +4578,22 @@ class observationsPanel(scrolled.ScrolledPanel):
                                                       self.studentdatabasename + '.txt')
                     self.filename.write(f"'{tmpPath}'" + '\n')
                     self.filename.close()
-                    self.dial = wx.MessageDialog(None, 'Saved successfully!',
-                                                 'Info', wx.OK)
+                    self.dial = wx.MessageDialog(None, 'Saved successfully!', 'Info', wx.OK)
                     self.dial.ShowModal()
                 else:
-                    self.dial = wx.MessageDialog(None, 'Name already exists',
-                                                 'Info', wx.OK)
+                    self.dial = wx.MessageDialog(None, 'Name already exists', 'Info', wx.OK)
                     self.dial.ShowModal()
             else:
-                self.dial = wx.MessageDialog(None, 'Save cancelled', 'Info',
-                                             wx.OK)
+                self.dial = wx.MessageDialog(None, 'Save cancelled', 'Info', wx.OK)
                 self.dial.ShowModal()
         else:
-            self.dial = wx.MessageDialog(None, 'Fill Required Fields!', 'Info',
-                                         wx.OK)
+            self.dial = wx.MessageDialog(None, 'Fill Required Fields!', 'Info', wx.OK)
             self.dial.ShowModal()
 
 
 class StudentDataBook(wx.Frame, wx.Accessible):
     def __init__(self, parent, title):
-        super(StudentDataBook, self).__init__(parent, title="Data Entry Form",
-                                              size=(1130, 1000))
+        super(StudentDataBook, self).__init__(parent, title="Data Entry Form", size=(1130, 1000))
         self.SetBackgroundColour(wx.Colour(215, 236, 217))
         self.SetFont(wx.Font(wx.FontInfo(8)))
         self.InitUI()

@@ -926,8 +926,7 @@ class dataPanel(wx.Panel):
         os.chdir(USER_DIR)
 
     def submit(self, event):
-        studentname = self.studentname1.GetString(
-            self.studentname1.GetSelection())
+        studentname = self.studentname1.GetString(self.studentname1.GetSelection())
         ColeCooperIEP = ("""Cole  Cooper    30 min/month
     • When presented with 2 objects, Cole will be able to utilize his central vision to locate an object with 70% accuracy as measured by the TVI and classroom teacher over 3 consecutive data sessions.
         ◦ When presented with 2 objects, Cole will be able to utilize his central vision to locate an object with 50% accuracy as measured by the TVI and classroom teacher over 3 consecutive data sessions.
@@ -1034,8 +1033,6 @@ class dataPanel(wx.Panel):
     def save(self, event):
         studentname = self.studentname1.GetString(
             self.studentname1.GetSelection())
-        dateNow = datetime.datetime.now().strftime("%Y_%m_%d-%H%M%S")
-        simpleDate = datetime.datetime.now().strftime("%Y_%m_%d-%H%M")
         item = self.lesson1.GetSelection()
         task = self.lesson1.GetItemText(self.lesson1.GetItemParent(item))
         lesson = self.lesson1.GetItemText(self.lesson1.GetSelection())
@@ -1413,12 +1410,13 @@ class braillePanel(scrolled.ScrolledPanel):
                                    size=(300, 20))
         self.btn = wx.Button(self, 201, "SAVE", pos=(450, 2000), size=(70, 30))
         self.Bind(wx.EVT_BUTTON, self.save, id=201)
-        self.btn1 = wx.Button(self, 202, "EXIT", pos=(550, 2000),
-                              size=(70, 30))
-        self.Bind(wx.EVT_BUTTON, self.exit, id=202)
         self.btn = wx.Button(self, 203, "PRINT GRAPHS", pos=(450, 2040),
                              size=(170, 30))
         self.Bind(wx.EVT_BUTTON, self.graph, id=203)
+        self.btn1 = wx.Button(self, 202, "EXIT", pos=(550, 2000),
+                              size=(70, 30))
+        self.Bind(wx.EVT_BUTTON, self.exit, id=202)
+
 
     def exit(self, event):
         wx.Exit()

@@ -1,18 +1,20 @@
 import wx
 import os
-import datetime
+from csv import writer
 import sqlite3
 from sqlite3 import Error
+import shutil
+
+import datetime
 import wx.html2
 import statistics
-from csv import writer
 import pandas as pd
 from plotly.subplots import make_subplots
 import plotly.graph_objects as go
 import wx.lib.scrolledpanel as scrolled
 import numpy as np
 from pathlib import Path
-import shutil
+
 
 ##############################################################################
 # Begin Student Variables
@@ -456,7 +458,7 @@ os.chdir(os.path.dirname(os.path.abspath(__file__)))
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 USER_DIR = ""
 
-# Set User DIrectory based on OS
+# Set User Directory based on OS
 
 if os.name == 'nt':
     tmpPath = Path(os.environ['USERPROFILE']).joinpath('Documents')
@@ -917,11 +919,12 @@ class dataPanel(wx.Panel):
                                   size=(300, 375), style=wx.TE_MULTILINE)
         self.btn = wx.Button(self, 201, "SAVE", pos=(725, 850), size=(70, 30))
         self.Bind(wx.EVT_BUTTON, self.save, id=201)
-        self.btn1 = wx.Button(self, 202, "EXIT", pos=(825, 850), size=(70, 30))
-        self.Bind(wx.EVT_BUTTON, self.exit, id=202)
         self.btn2 = wx.Button(self, 203, "Check IEP Goals", pos=(135, 850),
                               size=(150, 30))
         self.Bind(wx.EVT_BUTTON, self.submit, id=203)
+        self.btn1 = wx.Button(self, 202, "EXIT", pos=(825, 850), size=(70, 30))
+        self.Bind(wx.EVT_BUTTON, self.exit, id=202)
+
 
         os.chdir(USER_DIR)
 
@@ -2791,11 +2794,12 @@ class screenreaderPanel(scrolled.ScrolledPanel):
                                    size=(300, 20))
         self.btn = wx.Button(self, 201, "SAVE", pos=(450, 930), size=(70, 30))
         self.Bind(wx.EVT_BUTTON, self.save, id=201)
-        self.btn1 = wx.Button(self, 202, "EXIT", pos=(550, 930), size=(70, 30))
-        self.Bind(wx.EVT_BUTTON, self.exit, id=202)
         self.btn = wx.Button(self, 203, "PRINT GRAPHS", pos=(450, 970),
                              size=(170, 30))
         self.Bind(wx.EVT_BUTTON, self.graph, id=203)
+        self.btn1 = wx.Button(self, 202, "EXIT", pos=(550, 930), size=(70, 30))
+        self.Bind(wx.EVT_BUTTON, self.exit, id=202)
+
 
     def exit(self, event):
         wx.Exit()
@@ -3353,11 +3357,12 @@ class abacusPanel(scrolled.ScrolledPanel):
                                    size=(300, 20))
         self.btn = wx.Button(self, 201, "SAVE", pos=(450, 830), size=(70, 30))
         self.Bind(wx.EVT_BUTTON, self.save, id=201)
-        self.btn1 = wx.Button(self, 202, "EXIT", pos=(550, 830), size=(70, 30))
-        self.Bind(wx.EVT_BUTTON, self.exit, id=202)
         self.btn = wx.Button(self, 203, "PRINT GRAPHS", pos=(450, 870),
                              size=(170, 30))
         self.Bind(wx.EVT_BUTTON, self.graph, id=203)
+        self.btn1 = wx.Button(self, 202, "EXIT", pos=(550, 830), size=(70, 30))
+        self.Bind(wx.EVT_BUTTON, self.exit, id=202)
+
 
     def exit(self, event):
         wx.Exit()
@@ -3829,11 +3834,12 @@ class cviPanel(scrolled.ScrolledPanel):
 
         self.btn = wx.Button(self, 201, "SAVE", pos=(300, 450), size=(70, 30))
         self.Bind(wx.EVT_BUTTON, self.save, id=201)
-        self.btn1 = wx.Button(self, 202, "EXIT", pos=(600, 450), size=(70, 30))
-        self.Bind(wx.EVT_BUTTON, self.exit, id=202)
         self.btn2 = wx.Button(self, 203, "PRINT GRAPHS", pos=(400, 450),
                               size=(170, 30))
         self.Bind(wx.EVT_BUTTON, self.graph, id=203)
+        self.btn1 = wx.Button(self, 202, "EXIT", pos=(600, 450), size=(70, 30))
+        self.Bind(wx.EVT_BUTTON, self.exit, id=202)
+
         self.btn3 = wx.Button(self, 204, "SHOW RUBRIC", pos=(30, 550),
                               size=(170, 30))
         self.Bind(wx.EVT_BUTTON, self.rubric, id=204)
@@ -4416,12 +4422,13 @@ class meetingsPanel(scrolled.ScrolledPanel):
                                   size=(700, 700), style=wx.TE_MULTILINE)
         self.btn = wx.Button(self, 201, "SAVE", pos=(450, 850), size=(70, 30))
         self.Bind(wx.EVT_BUTTON, self.save, id=201)
-        self.btn1 = wx.Button(self, 202, "EXIT", pos=(550, 850), size=(70, 30))
-        self.Bind(wx.EVT_BUTTON, self.exit, id=202)
-        self.Bind(wx.EVT_BUTTON, self.save, id=201)
         self.btn2 = wx.Button(self, 203, "UPLOAD FILE", pos=(450, 890),
                               size=(170, 30))
         self.Bind(wx.EVT_BUTTON, self.upload, id=203)
+        self.btn1 = wx.Button(self, 202, "EXIT", pos=(550, 850), size=(70, 30))
+        self.Bind(wx.EVT_BUTTON, self.exit, id=202)
+        self.Bind(wx.EVT_BUTTON, self.save, id=201)
+
         os.chdir(USER_DIR)
 
     def exit(self, event):
@@ -4515,12 +4522,13 @@ class observationsPanel(scrolled.ScrolledPanel):
                                   size=(700, 700), style=wx.TE_MULTILINE)
         self.btn = wx.Button(self, 201, "SAVE", pos=(450, 850), size=(70, 30))
         self.Bind(wx.EVT_BUTTON, self.save, id=201)
-        self.btn1 = wx.Button(self, 202, "EXIT", pos=(550, 850), size=(70, 30))
-        self.Bind(wx.EVT_BUTTON, self.exit, id=202)
-        self.Bind(wx.EVT_BUTTON, self.save, id=201)
         self.btn2 = wx.Button(self, 203, "UPLOAD FILE", pos=(450, 890),
                               size=(170, 30))
         self.Bind(wx.EVT_BUTTON, self.upload, id=203)
+        self.btn1 = wx.Button(self, 202, "EXIT", pos=(550, 850), size=(70, 30))
+        self.Bind(wx.EVT_BUTTON, self.exit, id=202)
+        self.Bind(wx.EVT_BUTTON, self.save, id=201)
+
         os.chdir(USER_DIR)
 
     def exit(self, event):

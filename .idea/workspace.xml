@@ -7,11 +7,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa304d23-fe14-4dd1-9cb8-16c0a72e419f" name="Changes" comment="Updating program to allow report file uploads">
-      <change beforePath="$PROJECT_DIR$/.idea/StudentDataGUI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/StudentDataGUI.iml" afterDir="false" />
+    <list default="true" id="fa304d23-fe14-4dd1-9cb8-16c0a72e419f" name="Changes" comment="Miscellaneous fixes">
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2022-08-29_10_54.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2022-08-29_10_54.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_9_6_2022_11_07_AM.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_9_6_2022_11_07_AM.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
@@ -27,11 +25,26 @@
       </list>
     </option>
   </component>
+  <component name="FormatOnSaveOptions">
+    <option name="myRunOnSave" value="true" />
+  </component>
   <component name="Git.Settings">
+    <option name="PUSH_TAGS">
+      <GitPushTagMode>
+        <option name="argument" value="--tags" />
+        <option name="title" value="All" />
+      </GitPushTagMode>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="NamedScopeManager">
+    <scope name="Default" pattern="" />
+  </component>
+  <component name="OptimizeOnSaveOptions">
+    <option name="myRunOnSave" value="true" />
   </component>
   <component name="ProjectId" id="2E2O2pbSedJICC80fP1Um2NV6hF" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -50,7 +63,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "last_opened_file_path": "C:/Users/ryhunsaker/PycharmProjects/StudentDataGUI",
     "run.code.analysis.last.selected.profile": "aDefault",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+    "settings.editor.selected.configurable": "indent.rainbow.settings.IrConfigurable"
   },
   "keyToStringList": {
     "GitStage.ChangesTree.GroupingKeys": [
@@ -96,13 +109,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1661790007548</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Updated code">
-      <created>1661875331063</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1661875331063</updated>
     </task>
     <task id="LOCAL-00003" summary="Updated code">
       <created>1661876827340</created>
@@ -440,7 +446,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667927821156</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="Miscellaneous fixes">
+      <created>1673121549893</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1673121549893</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -465,6 +478,7 @@
     <MESSAGE value="Updated code" />
     <MESSAGE value="Updating program to allow report file uploads" />
     <MESSAGE value="Migrating from using os to pathlib" />
-    <option name="LAST_COMMIT_MESSAGE" value="Migrating from using os to pathlib" />
+    <MESSAGE value="Miscellaneous fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Miscellaneous fixes" />
   </component>
 </project>

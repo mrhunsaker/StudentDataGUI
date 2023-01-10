@@ -1,3 +1,4 @@
+# coding=utf-8
 import datetime
 import os
 import shutil
@@ -19,20 +20,18 @@ from plotly.subplots import make_subplots
 # Begin Student Variables
 ##############################################################################
 students = ['ColeCooper',
-            'LandonGraham',
-            'TarelLewis',
-            'DynPenalozaDiaz',
+            'DylanPenalozaDiaz',
+            'GrantChristensen'
+            'AustinDenney'
+            'KayleeVimahi'
             'CarterCostello',
             'MadelineCostello',
             'SuttonBuell',
-            'MargaretWalker',
-            'TysonGraham',
             'AddisonBooker',
             'AmiRito',
             'AshlynneNelson',
             'CarstonTalbot',
             'CelestialNeilson',
-            'LanedonLee',
             'NoahPalmer',
             'PaulaSackett'
             ]
@@ -1015,12 +1014,14 @@ class dataPanel(wx.Panel):
         iepData = locals()[lookupID]
         wx.MessageBox(iepData, caption=f"IEP Summary for {studentname}")
 
-    def exit(self, event):
+    @staticmethod
+    def exit(event):
         wx.Exit()
 
     def save(self, event):
         studentname = self.studentname1.GetString(
             self.studentname1.GetSelection())
+        dateNow = datetime.datetime.now().strftime("%Y_%m_%d-%H%M%S")
         item = self.lesson1.GetSelection()
         task = self.lesson1.GetItemText(self.lesson1.GetItemParent(item))
         lesson = self.lesson1.GetItemText(self.lesson1.GetSelection())
@@ -1405,7 +1406,8 @@ class braillePanel(scrolled.ScrolledPanel):
                               size=(70, 30))
         self.Bind(wx.EVT_BUTTON, self.exit, id=202)
 
-    def exit(self, event):
+    @staticmethod
+    def exit(event):
         wx.Exit()
 
     def save(self, event):
@@ -2784,7 +2786,8 @@ class screenreaderPanel(scrolled.ScrolledPanel):
         self.btn1 = wx.Button(self, 202, "EXIT", pos=(550, 930), size=(70, 30))
         self.Bind(wx.EVT_BUTTON, self.exit, id=202)
 
-    def exit(self, event):
+    @staticmethod
+    def exit(event):
         wx.Exit()
 
     def save(self, event):
@@ -3346,7 +3349,8 @@ class abacusPanel(scrolled.ScrolledPanel):
         self.btn1 = wx.Button(self, 202, "EXIT", pos=(550, 830), size=(70, 30))
         self.Bind(wx.EVT_BUTTON, self.exit, id=202)
 
-    def exit(self, event):
+    @staticmethod
+    def exit(event):
         wx.Exit()
 
     def save(self, event):
@@ -3923,7 +3927,8 @@ class cviPanel(scrolled.ScrolledPanel):
         rubricData = locals()[cviDomain]
         wx.MessageBox(rubricData, caption="CVI RUBRICS")
 
-    def exit(self, event):
+    @staticmethod
+    def exit(event):
         wx.Exit()
 
     def save(self, event):
@@ -4273,7 +4278,8 @@ class iepIntro(scrolled.ScrolledPanel):
         self.btn1 = wx.Button(self, 402, "EXIT", pos=(550, 50), size=(70, 30))
         self.Bind(wx.EVT_BUTTON, self.exit, id=402)
 
-    def exit(self, event):
+    @staticmethod
+    def exit(event):
         wx.Exit()
 
     def clear(self, event):
@@ -4398,7 +4404,8 @@ class meetingsPanel(scrolled.ScrolledPanel):
 
         os.chdir(USER_DIR)
 
-    def exit(self, event):
+    @staticmethod
+    def exit(event):
         wx.Exit()
 
     def upload(self, event):
@@ -4498,7 +4505,8 @@ class observationsPanel(scrolled.ScrolledPanel):
 
         os.chdir(USER_DIR)
 
-    def exit(self, event):
+    @staticmethod
+    def exit(event):
         wx.Exit()
 
     def upload(self, event):

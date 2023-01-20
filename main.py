@@ -23,8 +23,8 @@ students = [
     'ColeCooper',
     'DylanPenalozaDiaz',
     'GrantChristensen'
-    'AustinDenney'
-    'KayleeVimahi'
+    'AustinDenney',
+    'KayleeVimahi',
     'CarterCostello',
     'MadelineCostello',
     'SuttonBuell',
@@ -498,7 +498,7 @@ for name in students:
                                    'omnibusDatabase.csv').exists():
         tmpPath = Path(USER_DIR).joinpath('StudentDatabase/StudentDataFiles',
                                           name, 'omnibusDatabase.csv')
-        filename = Path.touch(tmpPath)
+        Path.touch(tmpPath)
         list_names = [
             'student',
             'date',
@@ -528,7 +528,7 @@ for name in students:
         tmpPath = Path(USER_DIR).joinpath('StudentDatabase',
                                           'StudentDataFiles', name,
                                           'BrailleSkillsProgression.csv')
-        filename = Path.touch(tmpPath)
+        Path.touch(tmpPath)
         list_names = [
             'date',
             'P1_1',
@@ -605,19 +605,19 @@ for name in students:
         tmpPath = Path(USER_DIR).joinpath('StudentDatabase',
                                           'StudentDataFiles', name,
                                           'UEBLiterarySkillsProgression.html')
-        filename = Path.touch(tmpPath)
+        Path.touch(tmpPath)
     if not Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', name,
                                    'UEBTechnicalSkillsProgression.html').exists():
         tmpPath = Path(USER_DIR).joinpath('StudentDatabase',
                                           'StudentDataFiles', name,
                                           'UEBTechnicalSkillsProgression.html')
-        filename = Path.touch(tmpPath)
+        Path.touch(tmpPath)
     if not Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', name,
                                    'ScreenReaderSkillsProgression.csv').exists():
         tmpPath = Path(USER_DIR).joinpath('StudentDatabase',
                                           'StudentDataFiles', name,
                                           'ScreenReaderSkillsProgression.csv')
-        filename = Path.touch(tmpPath)
+        Path.touch(tmpPath)
         list_names = [
             'date',
             'P1_1',
@@ -658,13 +658,13 @@ for name in students:
         tmpPath = Path(USER_DIR).joinpath('StudentDatabase',
                                           'StudentDataFiles', name,
                                           'ScreenReaderSkillsProgression.html')
-        filename = Path.touch(tmpPath)
+        Path.touch(tmpPath)
     if not Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', name,
                                    'AbacusSkillsProgression.csv').exists():
         tmpPath = Path(USER_DIR).joinpath('StudentDatabase',
                                           'StudentDataFiles', name,
                                           'AbacusSkillsProgression.csv')
-        filename = Path.touch(tmpPath)
+        Path.touch(tmpPath)
         list_names = [
             'date',
             'P1_1',
@@ -701,13 +701,13 @@ for name in students:
         tmpPath = Path(USER_DIR).joinpath('StudentDatabase',
                                           'StudentDataFiles', name,
                                           'AbacusSkillsProgression.html')
-        filename = Path.touch(tmpPath)
+        Path.touch(tmpPath)
     if not Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', name,
                                    'cviProgression.csv').exists():
         tmpPath = Path(USER_DIR).joinpath('StudentDatabase',
                                           'StudentDataFiles', name,
                                           'cviProgression.csv')
-        filename = Path.touch(tmpPath)
+        Path.touch(tmpPath)
         list_names = [
             'date',
             'P1_1',
@@ -730,10 +730,15 @@ for name in students:
         tmpPath = Path(USER_DIR).joinpath('StudentDatabase',
                                           'StudentDataFiles', name,
                                           'cviProgression.html')
-        filename = Path.touch(tmpPath)
+        Path.touch(tmpPath)
 
 
 def create_connection(db_file):
+    """
+
+    :param db_file:
+    :type db_file:
+    """
     conn = None
     try:
         conn = sqlite3.connect(db_file)
@@ -751,6 +756,13 @@ if __name__ == '__main__':
 
 
 def create_connection(db_file):
+    """
+
+    :param db_file:
+    :type db_file:
+    :return:
+    :rtype:
+    """
     conn = None
     try:
         conn = sqlite3.connect(db_file)
@@ -761,6 +773,13 @@ def create_connection(db_file):
 
 
 def create_table(conn, sql_create_sql_table):
+    """
+
+    :param conn:
+    :type conn:
+    :param sql_create_sql_table:
+    :type sql_create_sql_table:
+    """
     try:
         c = conn.cursor()
         c.execute(sql_create_sql_table)
@@ -770,6 +789,9 @@ def create_table(conn, sql_create_sql_table):
 
 
 def main():
+    """
+
+    """
     sql_create_studentdata_table = """CREATE TABLE IF NOT EXISTS studentdata (
         id INTEGER PRIMARY KEY AUTOINCREMENT, 
         studentname TEXT NOT NULL, 
@@ -979,6 +1001,10 @@ date = datetime.datetime.now().strftime("%Y_%m_%d-%H%M%S_%p")
 
 
 class dataPanel(wx.Panel):
+    """
+
+    """
+
     def __init__(self, parent):
         super(dataPanel, self).__init__(parent)
         self.ln = wx.StaticLine(self, -1, pos=(465, 0), style=wx.LI_VERTICAL)
@@ -1104,6 +1130,11 @@ class dataPanel(wx.Panel):
         os.chdir(USER_DIR)
 
     def submit(self, event):
+        """
+
+        :param event:
+        :type event:
+        """
         studentname = self.studentname1.GetString(self.studentname1.GetSelection())
 
         AddisonBookerIEP = """Addison Booker  	20 min / quarter
@@ -1194,9 +1225,19 @@ class dataPanel(wx.Panel):
 
     @staticmethod
     def exit(event):
+        """
+
+        :param event:
+        :type event:
+        """
         wx.Exit()
 
     def save(self, event):
+        """
+
+        :param event:
+        :type event:
+        """
         studentname = self.studentname1.GetString(
             self.studentname1.GetSelection())
         dateNow = datetime.datetime.now().strftime("%Y_%m_%d-%H%M%S")
@@ -1323,6 +1364,9 @@ class dataPanel(wx.Panel):
             self.dial.ShowModal()
 
         def data_entry():
+            """
+
+            """
             conn = sqlite3.connect(dataBasePath)
             c = conn.cursor()
             c.execute(
@@ -1353,6 +1397,10 @@ class dataPanel(wx.Panel):
 
 
 class braillePanel(scrolled.ScrolledPanel):
+    """
+
+    """
+
     def __init__(self, parent):
         scrolled.ScrolledPanel.__init__(self, parent, -1)
         vbox = wx.BoxSizer(wx.VERTICAL)
@@ -1594,9 +1642,19 @@ class braillePanel(scrolled.ScrolledPanel):
 
     @staticmethod
     def exit(event):
+        """
+
+        :param event:
+        :type event:
+        """
         wx.Exit()
 
     def save(self, event):
+        """
+
+        :param event:
+        :type event:
+        """
         studentname = self.studentname1.GetString(
             self.studentname1.GetSelection())
         dateNow = datetime.datetime.now().strftime("%Y_%m_%d-%H%M%S")
@@ -1972,6 +2030,9 @@ class braillePanel(scrolled.ScrolledPanel):
             self.dial.ShowModal()
 
         def data_entry():
+            """
+
+            """
             conn = sqlite3.connect(dataBasePath)
             c = conn.cursor()
             c.execute(
@@ -2113,6 +2174,7 @@ class braillePanel(scrolled.ScrolledPanel):
             ]
 
     def graph(self, event):
+        """Graphing"""
         studentname = self.studentname1.GetString(
             self.studentname1.GetSelection())
         tmpPath = Path(USER_DIR).joinpath('StudentDatabase',
@@ -2821,6 +2883,10 @@ class braillePanel(scrolled.ScrolledPanel):
 
 
 class screenreaderPanel(scrolled.ScrolledPanel):
+    """
+
+    """
+
     def __init__(self, parent):
         scrolled.ScrolledPanel.__init__(self, parent, -1)
         vbox = wx.BoxSizer(wx.VERTICAL)
@@ -2976,9 +3042,19 @@ class screenreaderPanel(scrolled.ScrolledPanel):
 
     @staticmethod
     def exit(event):
+        """
+
+        :param event:
+        :type event:
+        """
         wx.Exit()
 
     def save(self, event):
+        """
+
+        :param event:
+        :type event:
+        """
         studentname = self.studentname1.GetString(
             self.studentname1.GetSelection())
         dateNow = datetime.datetime.now().strftime("%Y_%m_%d-%H%M%S")
@@ -3139,6 +3215,9 @@ class screenreaderPanel(scrolled.ScrolledPanel):
             self.dial.ShowModal()
 
         def data_entry():
+            """
+
+            """
             conn = sqlite3.connect(dataBasePath)
             c = conn.cursor()
             c.execute(
@@ -3178,6 +3257,11 @@ class screenreaderPanel(scrolled.ScrolledPanel):
         data_entry()
 
     def graph(self, event):
+        """
+
+        :param event:
+        :type event:
+        """
         studentname = self.studentname1.GetString(
             self.studentname1.GetSelection())
         df = pd.read_csv(
@@ -3471,6 +3555,10 @@ class screenreaderPanel(scrolled.ScrolledPanel):
 
 
 class abacusPanel(scrolled.ScrolledPanel):
+    """
+
+    """
+
     def __init__(self, parent):
         scrolled.ScrolledPanel.__init__(self, parent, -1)
         vbox = wx.BoxSizer(wx.VERTICAL)
@@ -3588,9 +3676,19 @@ class abacusPanel(scrolled.ScrolledPanel):
 
     @staticmethod
     def exit(event):
+        """
+
+        :param event:
+        :type event:
+        """
         wx.Exit()
 
     def save(self, event):
+        """
+
+        :param event:
+        :type event:
+        """
         studentname = self.studentname1.GetString(
             self.studentname1.GetSelection())
         dateNow = datetime.datetime.now().strftime("%Y_%m_%d-%H%M%S")
@@ -3725,6 +3823,9 @@ class abacusPanel(scrolled.ScrolledPanel):
             self.dial.ShowModal()
 
         def data_entry():
+            """
+
+            """
             conn = sqlite3.connect(dataBasePath)
             c = conn.cursor()
             c.execute(
@@ -3739,6 +3840,11 @@ class abacusPanel(scrolled.ScrolledPanel):
         data_entry()
 
     def graph(self, event):
+        """
+
+        :param event:
+        :type event:
+        """
         studentname = self.studentname1.GetString(
             self.studentname1.GetSelection())
         tmpPath = Path(USER_DIR).joinpath('StudentDatabase',
@@ -4006,6 +4112,10 @@ class abacusPanel(scrolled.ScrolledPanel):
 
 
 class cviPanel(scrolled.ScrolledPanel):
+    """
+
+    """
+
     def __init__(self, parent):
         scrolled.ScrolledPanel.__init__(self, parent, -1)
         vbox = wx.BoxSizer(wx.VERTICAL)
@@ -4072,7 +4182,11 @@ class cviPanel(scrolled.ScrolledPanel):
                                     pos=(150, 500), size=(300, 20))
 
     def rubric(self, event):
+        """
 
+        :param event:
+        :type event:
+        """
         colorPreference = ("""
         COLOR PREFERENCE
         0.........Range 1-2:  Objects viewed are generally single color
@@ -4166,9 +4280,19 @@ class cviPanel(scrolled.ScrolledPanel):
 
     @staticmethod
     def exit(event):
+        """
+
+        :param event:
+        :type event:
+        """
         wx.Exit()
 
     def save(self, event):
+        """
+
+        :param event:
+        :type event:
+        """
         studentname = self.studentname1.GetString(
             self.studentname1.GetSelection())
         dateNow = datetime.datetime.now().strftime("%Y_%m_%d-%H%M%S")
@@ -4256,6 +4380,9 @@ class cviPanel(scrolled.ScrolledPanel):
             self.dial.ShowModal()
 
         def data_entry():
+            """
+
+            """
             conn = sqlite3.connect(dataBasePath)
             c = conn.cursor()
             c.execute(
@@ -4268,6 +4395,11 @@ class cviPanel(scrolled.ScrolledPanel):
         data_entry()
 
     def graph(self, event):
+        """
+
+        :param event:
+        :type event:
+        """
         studentname = self.studentname1.GetString(
             self.studentname1.GetSelection())
         tmpPath = Path(USER_DIR).joinpath('StudentDatabase',
@@ -4489,6 +4621,10 @@ class cviPanel(scrolled.ScrolledPanel):
 
 
 class iepIntro(scrolled.ScrolledPanel):
+    """
+
+    """
+
     def __init__(self, parent):
         scrolled.ScrolledPanel.__init__(self, parent, -1)
         vbox = wx.BoxSizer(wx.VERTICAL)
@@ -4517,12 +4653,27 @@ class iepIntro(scrolled.ScrolledPanel):
 
     @staticmethod
     def exit(event):
+        """
+
+        :param event:
+        :type event:
+        """
         wx.Exit()
 
     def clear(self, event):
+        """
+
+        :param event:
+        :type event:
+        """
         self.Refresh()
 
     def submit(self, event):
+        """
+
+        :param event:
+        :type event:
+        """
         studentname = self.studentname1.GetString(
             self.studentname1.GetSelection())
         AddisonBookerIEP = """Addison Booker  	20 min / quarter
@@ -4612,6 +4763,10 @@ class iepIntro(scrolled.ScrolledPanel):
 
 
 class meetingsPanel(scrolled.ScrolledPanel):
+    """
+
+    """
+
     def __init__(self, parent):
         scrolled.ScrolledPanel.__init__(self, parent, -1)
         vbox = wx.BoxSizer(wx.VERTICAL)
@@ -4643,9 +4798,19 @@ class meetingsPanel(scrolled.ScrolledPanel):
 
     @staticmethod
     def exit(event):
+        """
+
+        :param event:
+        :type event:
+        """
         wx.Exit()
 
     def upload(self, event):
+        """
+
+        :param event:
+        :type event:
+        """
         studentname = self.studentname1.GetString(
             self.studentname1.GetSelection())
         uploadLocation = Path(USER_DIR).joinpath('StudentDatabase',
@@ -4659,6 +4824,11 @@ class meetingsPanel(scrolled.ScrolledPanel):
         shutil.copy2(uploadFile, uploadLocation)
 
     def save(self, event):
+        """
+
+        :param event:
+        :type event:
+        """
         studentname = self.studentname1.GetString(
             self.studentname1.GetSelection())
         dateNow = datetime.datetime.now().strftime("%Y_%m_%d-%H%M%S")
@@ -4713,6 +4883,10 @@ class meetingsPanel(scrolled.ScrolledPanel):
 
 
 class observationsPanel(scrolled.ScrolledPanel):
+    """
+
+    """
+
     def __init__(self, parent):
         scrolled.ScrolledPanel.__init__(self, parent, -1)
         vbox = wx.BoxSizer(wx.VERTICAL)
@@ -4744,9 +4918,19 @@ class observationsPanel(scrolled.ScrolledPanel):
 
     @staticmethod
     def exit(event):
+        """
+
+        :param event:
+        :type event:
+        """
         wx.Exit()
 
     def upload(self, event):
+        """
+
+        :param event:
+        :type event:
+        """
         studentname = self.studentname1.GetString(
             self.studentname1.GetSelection())
         uploadLocation = Path(USER_DIR).joinpath('StudentDatabase',
@@ -4760,6 +4944,11 @@ class observationsPanel(scrolled.ScrolledPanel):
         shutil.copy2(uploadFile, uploadLocation)
 
     def save(self, event):
+        """
+
+        :param event:
+        :type event:
+        """
         studentname = self.studentname1.GetString(
             self.studentname1.GetSelection())
         dateNow = datetime.datetime.now().strftime("%Y_%m_%d-%H%M%S")
@@ -4810,6 +4999,10 @@ class observationsPanel(scrolled.ScrolledPanel):
 
 
 class StudentDataBook(wx.Frame, wx.Accessible):
+    """
+
+    """
+
     def __init__(self, parent, title):
         super(StudentDataBook, self).__init__(parent, title="Data Entry Form", size=(1130, 1000))
         self.SetBackgroundColour(wx.Colour(215, 236, 217))
@@ -4817,6 +5010,9 @@ class StudentDataBook(wx.Frame, wx.Accessible):
         self.InitUI()
 
     def InitUI(self):
+        """
+
+        """
         # nb = wx.Notebook(self, style=wx.NB_LEFT)
         nb = wx.Notebook(self)
         nb.AddPage(iepIntro(nb), "CASELOAD SUMMARY")

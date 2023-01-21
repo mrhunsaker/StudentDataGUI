@@ -10,7 +10,6 @@
   <component name="ChangeListManager">
     <list default="true" id="fa304d23-fe14-4dd1-9cb8-16c0a72e419f" name="Changes" comment="Miscellaneous fixes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="true" />
@@ -74,7 +73,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "run.code.analysis.last.selected.profile": "aDefault",
-    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable",
+    "settings.editor.selected.configurable": "preferences.sourceCode.Python",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -163,14 +162,7 @@
       <workItem from="1674238561584" duration="1326000" />
       <workItem from="1674240875591" duration="240000" />
       <workItem from="1674241602672" duration="323000" />
-      <workItem from="1674245391188" duration="3745000" />
-    </task>
-    <task id="LOCAL-00008" summary="Updated code">
-      <created>1661973039324</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1661973039324</updated>
+      <workItem from="1674245391188" duration="5741000" />
     </task>
     <task id="LOCAL-00009" summary="Updated code">
       <created>1661974470176</created>
@@ -508,7 +500,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674239753117</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="Miscellaneous fixes">
+      <created>1674252265502</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1674252265502</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

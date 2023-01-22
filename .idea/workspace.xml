@@ -8,7 +8,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa304d23-fe14-4dd1-9cb8-16c0a72e419f" name="Changes" comment="Miscellaneous fixes">
+    <list default="true" id="fa304d23-fe14-4dd1-9cb8-16c0a72e419f" name="Changes" comment="Code Formatting">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
@@ -50,6 +50,7 @@
   </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
+    <option name="showPreview" value="true" />
   </component>
   <component name="ProjectId" id="2E2O2pbSedJICC80fP1Um2NV6hF" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -73,7 +74,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "run.code.analysis.last.selected.profile": "aDefault",
-    "settings.editor.selected.configurable": "preferences.sourceCode.Python",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -162,14 +163,8 @@
       <workItem from="1674238561584" duration="1326000" />
       <workItem from="1674240875591" duration="240000" />
       <workItem from="1674241602672" duration="323000" />
-      <workItem from="1674245391188" duration="5741000" />
-    </task>
-    <task id="LOCAL-00009" summary="Updated code">
-      <created>1661974470176</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1661974470176</updated>
+      <workItem from="1674245391188" duration="5864000" />
+      <workItem from="1674401224568" duration="1738000" />
     </task>
     <task id="LOCAL-00010" summary="Updated code">
       <created>1661975591148</created>
@@ -507,7 +502,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674252265502</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="Miscellaneous fixes">
+      <created>1674320369809</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1674320369809</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -541,7 +543,8 @@
     <MESSAGE value="Updating program to allow report file uploads" />
     <MESSAGE value="Migrating from using os to pathlib" />
     <MESSAGE value="Miscellaneous fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Miscellaneous fixes" />
+    <MESSAGE value="Code Formatting" />
+    <option name="LAST_COMMIT_MESSAGE" value="Code Formatting" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />

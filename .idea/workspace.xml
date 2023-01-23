@@ -8,11 +8,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa304d23-fe14-4dd1-9cb8-16c0a72e419f" name="Changes" comment="Code Formatting">
-      <change afterPath="$PROJECT_DIR$/.idea/copyright/MIT.xml" afterDir="false" />
+    <list default="true" id="fa304d23-fe14-4dd1-9cb8-16c0a72e419f" name="Changes" comment="Code Formatting and added form for accessing student specific worksheets and datasheets">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/variables.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="true" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -167,14 +165,7 @@
       <workItem from="1674241602672" duration="323000" />
       <workItem from="1674245391188" duration="5864000" />
       <workItem from="1674401224568" duration="10659000" />
-      <workItem from="1674486058398" duration="13522000" />
-    </task>
-    <task id="LOCAL-00014" summary="Linted Code">
-      <created>1662754281946</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1662754281946</updated>
+      <workItem from="1674486058398" duration="14029000" />
     </task>
     <task id="LOCAL-00015" summary="Linted Code">
       <created>1662754889826</created>
@@ -512,7 +503,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674418239836</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="Code Formatting">
+      <created>1674501093494</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1674501093497</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -548,7 +546,8 @@
     <MESSAGE value="Miscellaneous fixes" />
     <MESSAGE value="Code Formatting and moved variables prior to class definitions into variables.py" />
     <MESSAGE value="Code Formatting" />
-    <option name="LAST_COMMIT_MESSAGE" value="Code Formatting" />
+    <MESSAGE value="Code Formatting and added form for accessing student specific worksheets and datasheets" />
+    <option name="LAST_COMMIT_MESSAGE" value="Code Formatting and added form for accessing student specific worksheets and datasheets" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -558,12 +557,12 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/main.py</url>
-          <line>10952</line>
+          <line>10951</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/main.py</url>
-          <line>11049</line>
+          <line>11048</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>

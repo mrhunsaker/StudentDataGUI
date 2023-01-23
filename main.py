@@ -10272,7 +10272,7 @@ class iepIntro(scrolled.ScrolledPanel):
                 502,
                 "OPEN DATASHEETS",
                 pos = (450,
-                       80),
+                       100),
                 size = (170,
                         30)
                 )
@@ -10280,6 +10280,21 @@ class iepIntro(scrolled.ScrolledPanel):
                 wx.EVT_BUTTON,
                 self.datasheet,
                 id = 502
+                )
+
+        self.btn4 = wx.Button(
+                self,
+                602,
+                "UPLOAD DATASHEETS",
+                pos = (450,
+                       150),
+                size = (170,
+                        30)
+                )
+        self.Bind(
+                wx.EVT_BUTTON,
+                self.upload,
+                id = 602
                 )
 
     @staticmethod
@@ -10303,23 +10318,23 @@ class iepIntro(scrolled.ScrolledPanel):
         studentname = self.studentname1.GetString(
                 self.studentname1.GetSelection()
                 )
-        uploadLocation = Path(USER_DIR).joinpath(
+        uploadlocation = Path(USER_DIR).joinpath(
                 'StudentDatabase',
                 'StudentDataFiles',
                 studentname
                 )
-        openFileDialog = wx.FileDialog(
+        openfiledialog = wx.FileDialog(
                 frame,
                 "Open Student Datasheet",
-                f"{uploadLocation}",
+                f"{uploadlocation}",
                 "",
                 "PDF files (*.pdf)|*.pdf",
                 wx.FD_OPEN | wx.FD_FILE_MUST_EXIST
                 )
 
-        openFileDialog.ShowModal()
-        print(openFileDialog.GetPath())
-        openFileDialog.Destroy()
+        openfiledialog.ShowModal()
+        print(openfiledialog.GetPath())
+        openfiledialog.Destroy()
 
     def clear(
             self,
@@ -10471,6 +10486,39 @@ class iepIntro(scrolled.ScrolledPanel):
         wx.MessageBox(
                 iepdata,
                 caption = f"IEP Summary for {studentname}"
+                )
+
+    def upload(
+            self,
+            event
+            ):
+        """
+
+        :param event:
+        :type event:
+        """
+        studentname = self.studentname1.GetString(
+                self.studentname1.GetSelection()
+                )
+        uploadlocation = Path(USER_DIR).joinpath(
+                'StudentDatabase',
+                'StudentDataFiles',
+                studentname
+                )
+        openfiledialog = wx.FileDialog(
+                frame,
+                "Open",
+                "",
+                "",
+                "",
+                wx.FD_OPEN | wx.FD_FILE_MUST_EXIST
+                )
+        openfiledialog.ShowModal()
+        uploadfile = openfiledialog.GetPath()
+        openfiledialog.Destroy()
+        shutil.copy2(
+                uploadfile,
+                uploadlocation
                 )
 
 
@@ -10643,12 +10691,12 @@ class meetingsPanel(scrolled.ScrolledPanel):
         studentname = self.studentname1.GetString(
                 self.studentname1.GetSelection()
                 )
-        uploadLocation = Path(USER_DIR).joinpath(
+        uploadlocation = Path(USER_DIR).joinpath(
                 'StudentDatabase',
                 'StudentDataFiles',
                 studentname
                 )
-        openFileDialog = wx.FileDialog(
+        openfiledialog = wx.FileDialog(
                 frame,
                 "Open",
                 "",
@@ -10656,12 +10704,12 @@ class meetingsPanel(scrolled.ScrolledPanel):
                 "",
                 wx.FD_OPEN | wx.FD_FILE_MUST_EXIST
                 )
-        openFileDialog.ShowModal()
-        uploadFile = openFileDialog.GetPath()
-        openFileDialog.Destroy()
+        openfiledialog.ShowModal()
+        uploadfile = openfiledialog.GetPath()
+        openfiledialog.Destroy()
         shutil.copy2(
-                uploadFile,
-                uploadLocation
+                uploadfile,
+                uploadlocation
                 )
 
     def save(
@@ -10928,12 +10976,12 @@ class observationsPanel(scrolled.ScrolledPanel):
         studentname = self.studentname1.GetString(
                 self.studentname1.GetSelection()
                 )
-        uploadLocation = Path(USER_DIR).joinpath(
+        uploadlocation = Path(USER_DIR).joinpath(
                 'StudentDatabase',
                 'StudentDataFiles',
                 studentname
                 )
-        openFileDialog = wx.FileDialog(
+        openfiledialog = wx.FileDialog(
                 frame,
                 "Open",
                 "",
@@ -10941,12 +10989,12 @@ class observationsPanel(scrolled.ScrolledPanel):
                 "",
                 wx.FD_OPEN | wx.FD_FILE_MUST_EXIST
                 )
-        openFileDialog.ShowModal()
-        uploadFile = openFileDialog.GetPath()
-        openFileDialog.Destroy()
+        openfiledialog.ShowModal()
+        uploadfile = openfiledialog.GetPath()
+        openfiledialog.Destroy()
         shutil.copy2(
-                uploadFile,
-                uploadLocation
+                uploadfile,
+                uploadlocation
                 )
 
     def save(

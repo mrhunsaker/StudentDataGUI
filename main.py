@@ -705,7 +705,7 @@ class dataPanel(wx.Panel):
                         234
                         )
                 )
-        self.SetFont(wx.Font(wx.FontInfo(8)))
+        self.SetFont(wx.Font(8, wx.MODERN, wx.NORMAL, wx.NORMAL, False, u'Atkinson Hyperlegible'))
         wx.StaticText(
                 self,
                 -1,
@@ -936,7 +936,7 @@ class dataPanel(wx.Panel):
         wx.StaticText(
                 self,
                 -1,
-                "Trial 1",
+                "Trial 1" + '.' * (20 - len("Trial 1")),
                 pos = (500,
                        80)
                 )
@@ -952,7 +952,7 @@ class dataPanel(wx.Panel):
         wx.StaticText(
                 self,
                 -1,
-                "Trial 2",
+                "Trial 2" + '.' * (20 - len("Trial 2")),
                 pos = (500,
                        110)
                 )
@@ -968,7 +968,7 @@ class dataPanel(wx.Panel):
         wx.StaticText(
                 self,
                 -1,
-                "Trial 3",
+                "Trial 3" + '.' * (20 - len("Trial 3")),
                 pos = (500,
                        140)
                 )
@@ -984,7 +984,7 @@ class dataPanel(wx.Panel):
         wx.StaticText(
                 self,
                 -1,
-                "Trial 4",
+                "Trial 4" + '.' * (20 - len("Trial 4")),
                 pos = (500,
                        170)
                 )
@@ -1000,7 +1000,7 @@ class dataPanel(wx.Panel):
         wx.StaticText(
                 self,
                 -1,
-                "Trial 5",
+                "Trial 5" + '.' * (20 - len("Trial 5")),
                 pos = (500,
                        200)
                 )
@@ -1016,7 +1016,7 @@ class dataPanel(wx.Panel):
         wx.StaticText(
                 self,
                 -1,
-                "Trial 6",
+                "Trial 6" + '.' * (20 - len("Trial 6")),
                 pos = (500,
                        230)
                 )
@@ -1032,7 +1032,7 @@ class dataPanel(wx.Panel):
         wx.StaticText(
                 self,
                 -1,
-                "Trial 7",
+                "Trial 7" + '.' * (20 - len("Trial 7")),
                 pos = (500,
                        260)
                 )
@@ -1048,7 +1048,7 @@ class dataPanel(wx.Panel):
         wx.StaticText(
                 self,
                 -1,
-                "Trial 8",
+                "Trial 8" + '.' * (20 - len("Trial 8")),
                 pos = (500,
                        290)
                 )
@@ -1064,7 +1064,7 @@ class dataPanel(wx.Panel):
         wx.StaticText(
                 self,
                 -1,
-                "Trial 9",
+                "Trial 9" + '.' * (20 - len("Trial 9")),
                 pos = (500,
                        320)
                 )
@@ -1080,7 +1080,7 @@ class dataPanel(wx.Panel):
         wx.StaticText(
                 self,
                 -1,
-                "Trial 10",
+                "Trial 10" + '.' * (20 - len("Trial 10")),
                 pos = (500,
                        350)
                 )
@@ -1096,7 +1096,7 @@ class dataPanel(wx.Panel):
         wx.StaticText(
                 self,
                 -1,
-                "Trial 11",
+                "Trial 11" + '.' * (20 - len("Trial 11")),
                 pos = (500,
                        380)
                 )
@@ -1626,7 +1626,7 @@ class braillePanel(scrolled.ScrolledPanel):
                         235
                         )
                 )
-        self.SetFont(wx.Font(wx.FontInfo(8)))
+        self.SetFont(wx.Font(8, wx.MODERN, wx.NORMAL, wx.NORMAL, False, u'Atkinson Hyperlegible'))
         wx.StaticText(
                 self,
                 -1,
@@ -1645,7 +1645,7 @@ class braillePanel(scrolled.ScrolledPanel):
                 self,
                 -1,
                 choices = students,
-                pos = (650,
+                pos = (130,
                        50),
                 size = (300,
                         30)
@@ -1660,7 +1660,7 @@ class braillePanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "1.1 Track Left to Right",
+                "1.1 Track Left to Right" + '.' * (90 - len("1.1 Track Left to Right")),
                 pos = (30,
                        80)
                 )
@@ -1676,7 +1676,7 @@ class braillePanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "1.2 Track Top to Bottom",
+                "1.2 Track Top to Bottom" + '.' * (90 - len("1.2 Track Top to Bottom")),
                 pos = (30,
                        110)
                 )
@@ -1692,7 +1692,7 @@ class braillePanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "1.3 Discriminate Shapes",
+                "1.3 Discriminate Shapes" + '.' * (90 - len("1.3 Discriminate Shapes")),
                 pos = (30,
                        140)
                 )
@@ -1708,7 +1708,7 @@ class braillePanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "1.4 Discriminate Braille Characters",
+                "1.4 Discriminate Braille Characters" + '.' * (90 - len("1.4 Discriminate Braille Characters")),
                 pos = (30,
                        170)
                 )
@@ -1724,7 +1724,7 @@ class braillePanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "2.1 Mangold Progression: G C L",
+                "2.1 Mangold Progression: G C L" + '.' * (90 - len("2.1 Mangold Progression: G C L")),
                 pos = (30,
                        200)
                 )
@@ -1740,7 +1740,7 @@ class braillePanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "2.2 Mangold Progression: D Y",
+                "2.2 Mangold Progression: D Y" + '.' * (90 - len("2.2 Mangold Progression: D Y")),
                 pos = (30,
                        230)
                 )
@@ -1756,7 +1756,7 @@ class braillePanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "2.3 Mangold Progression: A B",
+                "2.3 Mangold Progression: A B" + '.' * (90 - len("2.3 Mangold Progression: A B")),
                 pos = (30,
                        260)
                 )
@@ -1772,7 +1772,7 @@ class braillePanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "2.4 Mangold Progression: S",
+                "2.4 Mangold Progression: S" + '.' * (90 - len("2.4 Mangold Progression: S")),
                 pos = (30,
                        290)
                 )
@@ -1788,7 +1788,7 @@ class braillePanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "2.5 Mangold Progression: W",
+                "2.5 Mangold Progression: W" + '.' * (90 - len("2.5 Mangold Progression: W")),
                 pos = (30,
                        320)
                 )
@@ -1804,7 +1804,7 @@ class braillePanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "2.6 Mangold Progression: P O",
+                "2.6 Mangold Progression: P O" + '.' * (90 - len("2.6 Mangold Progression: P O")),
                 pos = (30,
                        350)
                 )
@@ -1820,7 +1820,7 @@ class braillePanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "2.7 Mangold Progression: K",
+                "2.7 Mangold Progression: K" + '.' * (90 - len("2.7 Mangold Progression: K")),
                 pos = (30,
                        380)
                 )
@@ -1836,7 +1836,7 @@ class braillePanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "2.8 Mangold Progression: R",
+                "2.8 Mangold Progression: R" + '.' * (90 - len("2.8 Mangold Progression: R")),
                 pos = (30,
                        410)
                 )
@@ -1852,7 +1852,7 @@ class braillePanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "2.9 Mangold Progression: M E",
+                "2.9 Mangold Progression: M E" + '.' * (90 - len("2.9 Mangold Progression: M E")),
                 pos = (30,
                        440)
                 )
@@ -1868,7 +1868,7 @@ class braillePanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "2.10 Mangold Progression: H",
+                "2.10 Mangold Progression: H" + '.' * (90 - len("2.10 Mangold Progression: H")),
                 pos = (30,
                        470)
                 )
@@ -1884,7 +1884,7 @@ class braillePanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "2.11 Mangold Progression: N X",
+                "2.11 Mangold Progression: N X" + '.' * (90 - len("2.11 Mangold Progression: N X")),
                 pos = (30,
                        500)
                 )
@@ -1900,7 +1900,7 @@ class braillePanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "2.12 Mangold Progression: Z F",
+                "2.12 Mangold Progression: Z F" + '.' * (90 - len("2.12 Mangold Progression: Z F")),
                 pos = (30,
                        530)
                 )
@@ -1916,7 +1916,7 @@ class braillePanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "2.13 Mangold Progression: U T",
+                "2.13 Mangold Progression: U T" + '.' * (90 - len("2.13 Mangold Progression: U T")),
                 pos = (30,
                        560)
                 )
@@ -1932,7 +1932,7 @@ class braillePanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "2.14 Mangold Progression: Q I",
+                "2.14 Mangold Progression: Q I" + '.' * (90 - len("2.14 Mangold Progression: Q I")),
                 pos = (30,
                        590)
                 )
@@ -1948,7 +1948,7 @@ class braillePanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "2.15 Mangold Progression: V J",
+                "2.15 Mangold Progression: V J" + '.' * (90 - len("2.15 Mangold Progression: V J")),
                 pos = (30,
                        620)
                 )
@@ -1964,7 +1964,7 @@ class braillePanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "3.1 Alphabetic Wordsigns",
+                "3.1 Alphabetic Wordsigns" + '.' * (90 - len("3.1 Alphabetic Wordsigns")),
                 pos = (30,
                        650)
                 )
@@ -1980,7 +1980,7 @@ class braillePanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "3.2 Braille Numbers",
+                "3.2 Braille Numbers" + '.' * (90 - len("3.2 Braille Numbers")),
                 pos = (30,
                        680)
                 )
@@ -1996,7 +1996,7 @@ class braillePanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "3.3 Punctuation",
+                "3.3 Punctuation" + '.' * (90 - len("3.3 Punctuation")),
                 pos = (30,
                        710)
                 )
@@ -2012,7 +2012,7 @@ class braillePanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "3.4 Strong Contractions - AND OF FOR WITH THE",
+                "3.4 Strong Contractions - AND OF FOR WITH THE" + '.' * (90 - len("3.4 Strong Contractions - AND OF FOR WITH THE")),
                 pos = (30,
                        740)
                 )
@@ -2028,7 +2028,7 @@ class braillePanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "3.5 Strong Groupsigns - CH GH SH TH WH ED ER OU OW ST AR ING",
+                "3.5 Strong Groupsigns - CH GH SH TH WH ED ER OU OW ST AR ING" + '.' * (90 - len("3.5 Strong Groupsigns - CH GH SH TH WH ED ER OU OW ST AR ING")),
                 pos = (30,
                        770)
                 )
@@ -2044,7 +2044,7 @@ class braillePanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "3.6 Strong Wordsigns - CH SH TH WH OU ST",
+                "3.6 Strong Wordsigns - CH SH TH WH OU ST" + '.' * (90 - len("3.6 Strong Wordsigns - CH SH TH WH OU ST")),
                 pos = (30,
                        800)
                 )
@@ -2060,7 +2060,7 @@ class braillePanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "3.7 Lower Groupsigns - BE CON DIS",
+                "3.7 Lower Groupsigns - BE CON DIS" + '.' * (90 - len("3.7 Lower Groupsigns - BE CON DIS")),
                 pos = (30,
                        830)
                 )
@@ -2076,7 +2076,7 @@ class braillePanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "3.8 Lower Groupsigns - EA BB CC FF GG",
+                "3.8 Lower Groupsigns - EA BB CC FF GG" + '.' * (90 - len("3.8 Lower Groupsigns - EA BB CC FF GG")),
                 pos = (30,
                        860)
                 )
@@ -2092,7 +2092,7 @@ class braillePanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "3.9 Lower Group/Wordsigns - EN IN",
+                "3.9 Lower Group/Wordsigns - EN IN" + '.' * (90 - len("3.9 Lower Group/Wordsigns - EN IN")),
                 pos = (30,
                        890)
                 )
@@ -2108,7 +2108,7 @@ class braillePanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "3.10 Lower Wordsigns - BE HIS WAS WERE",
+                "3.10 Lower Wordsigns - BE HIS WAS WERE" + '.' * (90 - len("3.10 Lower Wordsigns - BE HIS WAS WERE")),
                 pos = (30,
                        920)
                 )
@@ -2124,7 +2124,7 @@ class braillePanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "3.11 Dot 5 Contractions",
+                "3.11 Dot 5 Contractions" + '.' * (90 - len("3.11 Dot 5 Contractions")),
                 pos = (30,
                        950)
                 )
@@ -2140,7 +2140,7 @@ class braillePanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "3.12 Dot 45 Contractions",
+                "3.12 Dot 45 Contractions" + '.' * (90 - len("3.12 Dot 45 Contractions")),
                 pos = (30,
                        980)
                 )
@@ -2156,7 +2156,7 @@ class braillePanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "3.13 Dot 456 Contractions",
+                "3.13 Dot 456 Contractions" + '.' * (90 - len("3.13 Dot 456 Contractions")),
                 pos = (30,
                        1010)
                 )
@@ -2172,7 +2172,7 @@ class braillePanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "3.14 Final Letter Groupsigns",
+                "3.14 Final Letter Groupsigns" + '.' * (90 - len("3.14 Final Letter Groupsigns")),
                 pos = (30,
                        1040)
                 )
@@ -2188,7 +2188,7 @@ class braillePanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "3.15 Shortform Words",
+                "3.15 Shortform Words" + '.' * (90 - len("3.15 Shortform Words")),
                 pos = (30,
                        1070)
                 )
@@ -2204,7 +2204,7 @@ class braillePanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "4.1 Grade 1 Indicators",
+                "4.1 Grade 1 Indicators" + '.' * (90 - len("4.1 Grade 1 Indicators")),
                 pos = (30,
                        1100)
                 )
@@ -2220,7 +2220,7 @@ class braillePanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "4.2 Capitals Indicators",
+                "4.2 Capitals Indicators" + '.' * (90 - len("4.2 Capitals Indicators")),
                 pos = (30,
                        1130)
                 )
@@ -2236,7 +2236,7 @@ class braillePanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "4.3 Numeric Mode and Spatial Math",
+                "4.3 Numeric Mode and Spatial Math" + '.' * (90 - len("4.3 Numeric Mode and Spatial Math")),
                 pos = (30,
                        1160)
                 )
@@ -2252,7 +2252,7 @@ class braillePanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "4.4 Typeform Indicators - ITALIC BOLD UNDERLINE SCRIPT",
+                "4.4 Typeform Indicators - ITALIC BOLD UNDERLINE SCRIPT" + '.' * (90 - len("4.4 Typeform Indicators - ITALIC BOLD UNDERLINE SCRIPT")),
                 pos = (30,
                        1190)
                 )
@@ -2268,7 +2268,7 @@ class braillePanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "5.1 Page Numbering",
+                "5.1 Page Numbering" + '.' * (90 - len("5.1 Page Numbering")),
                 pos = (30,
                        1220)
                 )
@@ -2284,7 +2284,7 @@ class braillePanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "5.2 Headings",
+                "5.2 Headings" + '.' * (90 - len("5.2 Headings")),
                 pos = (30,
                        1250)
                 )
@@ -2300,7 +2300,7 @@ class braillePanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "5.3 Lists",
+                "5.3 Lists" + '.' * (90 - len("5.3 Lists")),
                 pos = (30,
                        1280)
                 )
@@ -2316,7 +2316,7 @@ class braillePanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "5.4 Poetry / Drama",
+                "5.4 Poetry / Drama" + '.' * (90 - len("5.4 Poetry / Drama")),
                 pos = (30,
                        1310)
                 )
@@ -2332,7 +2332,7 @@ class braillePanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "6.1 Operation and Comparison Signs",
+                "6.1 Operation and Comparison Signs" + '.' * (90 - len("6.1 Operation and Comparison Signs")),
                 pos = (30,
                        1340)
                 )
@@ -2348,7 +2348,7 @@ class braillePanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "6.2 Grade 1 Mode",
+                "6.2 Grade 1 Mode" + '.' * (90 - len("6.2 Grade 1 Mode")),
                 pos = (30,
                        1370)
                 )
@@ -2364,7 +2364,7 @@ class braillePanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "6.3 Special Print Symbols",
+                "6.3 Special Print Symbols" + '.' * (90 - len("6.3 Special Print Symbols")),
                 pos = (30,
                        1400)
                 )
@@ -2380,7 +2380,7 @@ class braillePanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "6.4 Omission Marks",
+                "6.4 Omission Marks" + '.' * (90 - len("6.4 Omission Marks")),
                 pos = (30,
                        1430)
                 )
@@ -2396,7 +2396,7 @@ class braillePanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "6.5 Shape Indicators",
+                "6.5 Shape Indicators" + '.' * (90 - len("6.5 Shape Indicators")),
                 pos = (30,
                        1460)
                 )
@@ -2412,7 +2412,7 @@ class braillePanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "6.6 Roman Numerals",
+                "6.6 Roman Numerals" + '.' * (90 - len("6.6 Roman Numerals")),
                 pos = (30,
                        1490)
                 )
@@ -2428,7 +2428,7 @@ class braillePanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "6.7 Fractions",
+                "6.7 Fractions" + '.' * (90 - len("6.7 Fractions")),
                 pos = (30,
                        1520)
                 )
@@ -2444,7 +2444,7 @@ class braillePanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "7.1 Grade 1 Mode and algebra",
+                "7.1 Grade 1 Mode and algebra" + '.' * (90 - len("7.1 Grade 1 Mode and algebra")),
                 pos = (30,
                        1550)
                 )
@@ -2460,7 +2460,7 @@ class braillePanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "7.2 Grade 1 Mode and Fractions",
+                "7.2 Grade 1 Mode and Fractions" + '.' * (90 - len("7.2 Grade 1 Mode and Fractions")),
                 pos = (30,
                        1580)
                 )
@@ -2476,7 +2476,7 @@ class braillePanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "7.3 Advanced Operation and Comparison Signs",
+                "7.3 Advanced Operation and Comparison Signs" + '.' * (90 - len("7.3 Advanced Operation and Comparison Signs")),
                 pos = (30,
                        1610)
                 )
@@ -2492,7 +2492,7 @@ class braillePanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "7.4 Indices",
+                "7.4 Indices" + '.' * (90 - len("7.4 Indices")),
                 pos = (30,
                        1640)
                 )
@@ -2508,7 +2508,7 @@ class braillePanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "7.5 Roots and Radicals",
+                "7.5 Roots and Radicals" + '.' * (90 - len("7.5 Roots and Radicals")),
                 pos = (30,
                        1670)
                 )
@@ -2524,7 +2524,7 @@ class braillePanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "7.6 Miscellaneous Shape Indicators",
+                "7.6 Miscellaneous Shape Indicators" + '.' * (90 - len("7.6 Miscellaneous Shape Indicators")),
                 pos = (30,
                        1700)
                 )
@@ -2540,7 +2540,7 @@ class braillePanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "7.7 Functions",
+                "7.7 Functions" + '.' * (90 - len("7.7 Functions")),
                 pos = (30,
                        1730)
                 )
@@ -2556,7 +2556,7 @@ class braillePanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "7.8 Greek Letters",
+                "7.8 Greek Letters" + '.' * (90 - len("7.8 Greek Letters")),
                 pos = (30,
                        1760)
                 )
@@ -2572,7 +2572,7 @@ class braillePanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "8.1 Functions",
+                "8.1 Functions" + '.' * (90 - len("8.1 Functions")),
                 pos = (30,
                        1790)
                 )
@@ -2588,7 +2588,7 @@ class braillePanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "8.2 Modifiers: Bars and Dots",
+                "8.2 Modifiers: Bars and Dots" + '.' * (90 - len("8.2 Modifiers: Bars and Dots")),
                 pos = (30,
                        1820)
                 )
@@ -2604,7 +2604,7 @@ class braillePanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "8.3 Modifiers: Arrows and Limits",
+                "8.3 Modifiers: Arrows and Limits" + '.' * (90 - len("8.3 Modifiers: Arrows and Limits")),
                 pos = (30,
                        1850)
                 )
@@ -2620,7 +2620,7 @@ class braillePanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "8.4 Probability",
+                "8.4 Probability" + '.' * (90 - len("8.4 Probability")),
                 pos = (30,
                        1880)
                 )
@@ -2636,7 +2636,7 @@ class braillePanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "8.5 Calculus: Differentiation",
+                "8.5 Calculus: Differentiation" + '.' * (90 - len("8.5 Calculus: Differentiation")),
                 pos = (30,
                        1910)
                 )
@@ -2652,7 +2652,7 @@ class braillePanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "8.6 Calculus: Integration",
+                "8.6 Calculus: Integration" + '.' * (90 - len("8.6 Calculus: Integration")),
                 pos = (30,
                        1940)
                 )
@@ -2668,7 +2668,7 @@ class braillePanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "8.7 Vertical Bars",
+                "8.7 Vertical Bars" + '.' * (90 - len("8.7 Vertical Bars")),
                 pos = (30,
                        1970)
                 )
@@ -3230,71 +3230,71 @@ class braillePanel(scrolled.ScrolledPanel):
                 P8_7 
                 ) 
                 VALUES (?,
-?,
-?,
-?,
-?,
-?,
-?,
-?,
-?,
-?,
-?,
-?,
-?,
-?,
-?,
-?,
-?,
-?,
-?,
-?,
-?,
-?,
-?,
-?,
-?,
-?,
-?,
-?,
-?,
-?,
-?,
-?,
-?,
-?,
-?,
-?,
-?,
-?,
-?,
-?,
-?,
-?,
-?,
-?,
-?,
-?,
-?,
-?,
-?,
-?,
-?,
-?,
-?,
-?,
-?,
-?,
-?,
-?,
-?,
-?,
-?,
-?,
-?, 
                 ?,
-?,
-?)""",
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?, 
+                ?,
+                ?,
+                ?)""",
                     (studentname,
                      datenow,
                      trial11,
@@ -5255,7 +5255,7 @@ class screenreaderPanel(scrolled.ScrolledPanel):
                         217
                         )
                 )
-        self.SetFont(wx.Font(wx.FontInfo(8)))
+        self.SetFont(wx.Font(8, wx.MODERN, wx.NORMAL, wx.NORMAL, False, u'Atkinson Hyperlegible'))
         wx.StaticText(
                 self,
                 -1,
@@ -5274,7 +5274,7 @@ class screenreaderPanel(scrolled.ScrolledPanel):
                 self,
                 -1,
                 choices = students,
-                pos = (650,
+                pos = (130,
                        50),
                 size = (300,
                         30)
@@ -5288,7 +5288,7 @@ class screenreaderPanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "1.1 Turn on and off the screen reader",
+                "1.1 Turn on and off the screen reader" + '.' * (90 - len("1.1 Turn on and off the screen reader")),
                 pos = (30,
                        80)
                 )
@@ -5304,7 +5304,8 @@ class screenreaderPanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "1.2 Utilize modifier keys such as ctrl alt and shift to enter a modified key command. eg: Ctrl + Left  Arrow",
+                "1.2 Utilize modifier keys such as ctrl alt and shift to enter a modified key command" + '.' * (
+                        90 - len("1.2 Utilize modifier keys such as ctrl alt and shift to enter a modified key command")),
                 pos = (30,
                        110)
                 )
@@ -5320,7 +5321,7 @@ class screenreaderPanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "1.3 Read text using a variety of reading commands",
+                "1.3 Read text using a variety of reading commands" + '.' * (90 - len("1.3 Read text using a variety of reading commands")),
                 pos = (30,
                        140)
                 )
@@ -5336,7 +5337,7 @@ class screenreaderPanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "1.4 Identify the titles and section titles of documents with Headings",
+                "1.4 Identify the titles and section titles of documents with Headings" + '.' * (90 - len("1.4 Identify the titles and section titles of documents with Headings")),
                 pos = (30,
                        170)
                 )
@@ -5352,7 +5353,8 @@ class screenreaderPanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "1.5 Access documents open and close programs and will be able to navigate easily to the  desktop",
+                "1.5 Access documents open and close programs  navigate to the  desktop" + '.' * (
+                        90 - len("1.5 Access documents open and close programs  navigate to the  desktop")),
                 pos = (30,
                        200)
                 )
@@ -5368,7 +5370,7 @@ class screenreaderPanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "1.6 Switch program focus",
+                "1.6 Switch program focus" + '.' * (90 - len("1.6 Switch program focus")),
                 pos = (30,
                        230)
                 )
@@ -5384,7 +5386,7 @@ class screenreaderPanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "2.1 Type with all alphanumeric keys on the keyboard.",
+                "2.1 Type with all alphanumeric keys on the keyboard." + '.' * (90 - len("2.1 Type with all alphanumeric keys on the keyboard.")),
                 pos = (30,
                        260)
                 )
@@ -5400,7 +5402,7 @@ class screenreaderPanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "2.2 Navigate to and change screen reader settings",
+                "2.2 Navigate to and change screen reader settings" + '.' * (90 - len("2.2 Navigate to and change screen reader settings")),
                 pos = (30,
                        290)
                 )
@@ -5416,7 +5418,7 @@ class screenreaderPanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "2.3 Write and edit documents using a basic understanding of cursor placement.",
+                "2.3 Write and edit documents using a basic understanding of cursor placement." + '.' * (90 - len("2.3 Write and edit documents using a basic understanding of cursor placement.")),
                 pos = (30,
                        320)
                 )
@@ -5432,7 +5434,7 @@ class screenreaderPanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "2.4. Select copy and paste text",
+                "2.4. Select copy and paste text" + '.' * (90 - len("2.4. Select copy and paste text")),
                 pos = (30,
                        350)
                 )
@@ -5448,7 +5450,8 @@ class screenreaderPanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "3.1 Define common element types on the internet such as Headings Buttons Links Tables as well as text",
+                "3.1 Define common element types on the internet such as Headings Buttons Links" + '.' * (
+                        90 - len("3.1 Define common element types on the internet such as Headings Buttons Links")),
                 pos = (30,
                        380)
                 )
@@ -5464,7 +5467,7 @@ class screenreaderPanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "3.2 identify each element by type.",
+                "3.2 identify each element by type." + '.' * (90 - len("3.2 identify each element by type.")),
                 pos = (30,
                        410)
                 )
@@ -5480,7 +5483,7 @@ class screenreaderPanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "3.3 navigate to the address bar",
+                "3.3 navigate to the address bar" + '.' * (90 - len("3.3 navigate to the address bar")),
                 pos = (30,
                        440)
                 )
@@ -5496,7 +5499,8 @@ class screenreaderPanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "3.4 Use the “Tab” key to navigate to the next clickable object (Shift Tab for previous) (METHOD 1) ",
+                "3.4 Use the “Tab” key to navigate to the next clickable object (METHOD 1) " + '.' * (
+                        90 - len("3.4 Use the “Tab” key to navigate to the next clickable object (METHOD 1) ")),
                 pos = (30,
                        470)
                 )
@@ -5512,7 +5516,7 @@ class screenreaderPanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "3.5 Navigate by “Quick Keys” (h for heading b for button and u for link) (METHOD 2)",
+                "3.5 Navigate by “Quick Keys” (h for heading b for button and u for link) (METHOD 2)" + '.' * (90 - len("3.5 Navigate by “Quick Keys” (h for heading b for button and u for link) (METHOD 2)")),
                 pos = (30,
                        500)
                 )
@@ -5528,7 +5532,7 @@ class screenreaderPanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "3.6 Use Elements Lists on a website to navigate by element type (METHOD 3)",
+                "3.6 Use Elements Lists on a website to navigate by element type (METHOD 3)" + '.' * (90 - len("3.6 Use Elements Lists on a website to navigate by element type (METHOD 3)")),
                 pos = (30,
                        530)
                 )
@@ -5544,7 +5548,7 @@ class screenreaderPanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "3.7 Justify why he/she/they selected a particular method for the situation.",
+                "3.7 Justify why he/she/they selected a particular method for the situation." + '.' * (90 - len("3.7 Justify why he/she/they selected a particular method for the situation.")),
                 pos = (30,
                        560)
                 )
@@ -5560,7 +5564,7 @@ class screenreaderPanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "3.8 Switch tab focus",
+                "3.8 Switch tab focus" + '.' * (90 - len("3.8 Switch tab focus")),
                 pos = (30,
                        590)
                 )
@@ -5576,7 +5580,8 @@ class screenreaderPanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "3.9 Switch between screen reader modes. (Forms Mode in JAWS or Browse/Focus Mode in NVDA)",
+                "3.9 Switch between screen reader modes. (Forms Mode in JAWS or Browse Mode in NVDA)" + '.' * (
+                        90 - len("3.9 Switch between screen reader modes. (Forms Mode in JAWS or Browse Mode in NVDA)")),
                 pos = (30,
                        620)
                 )
@@ -5592,7 +5597,7 @@ class screenreaderPanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "3.10 Navigate a table.",
+                "3.10 Navigate a table." + '.' * (90 - len("3.10 Navigate a table.")),
                 pos = (30,
                        650)
                 )
@@ -5608,7 +5613,7 @@ class screenreaderPanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "3.11 Develop a navigation sequence to access an unfamiliar website.",
+                "3.11 Develop a navigation sequence to access an unfamiliar website." + '.' * (90 - len("3.11 Develop a navigation sequence to access an unfamiliar website.")),
                 pos = (30,
                        680)
                 )
@@ -5624,7 +5629,7 @@ class screenreaderPanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "4.1 Be able to save and open files using File Explorer.",
+                "4.1 Be able to save and open files using File Explorer." + '.' * (90 - len("4.1 Be able to save and open files using File Explorer.")),
                 pos = (30,
                        710)
                 )
@@ -5640,7 +5645,7 @@ class screenreaderPanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "4.2 Create folders and move files in File Explorer.",
+                "4.2 Create folders and move files in File Explorer." + '.' * (90 - len("4.2 Create folders and move files in File Explorer.")),
                 pos = (30,
                        740)
                 )
@@ -5656,7 +5661,8 @@ class screenreaderPanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "4.3 Navigate a cloud-based file management system (eg: Google Drive Microsoft OneDrive)",
+                "4.3 Navigate a cloud-based file management system (eg: Google Drive Microsoft OneDrive)" + '.' * (
+                        90 - len("4.3 Navigate a cloud-based file management system (eg: Google Drive Microsoft OneDrive)")),
                 pos = (30,
                        770)
                 )
@@ -5672,7 +5678,8 @@ class screenreaderPanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "4.4 Download material from the internet and place that material in a location on the computer.",
+                "4.4 Download and save material from the internet." + '.' * (
+                        90 - len("4.4 Download and save material from the internet.")),
                 pos = (30,
                        800)
                 )
@@ -5688,7 +5695,7 @@ class screenreaderPanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "4.5 Extract zipped folders.",
+                "4.5 Extract zipped folders." + '.' * (90 - len("4.5 Extract zipped folders.")),
                 pos = (30,
                        830)
                 )
@@ -5704,7 +5711,8 @@ class screenreaderPanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "4.6 Utilize the virtual cursor and mouse keys as a backup to access inaccessible elements.",
+                "4.6 Utilize the virtual cursor and mouse keys." + '.' * (
+                        90 - len("4.6 Utilize the virtual cursor and mouse keys.")),
                 pos = (30,
                        860)
                 )
@@ -5720,7 +5728,7 @@ class screenreaderPanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "4.7 To use OCR features to read inaccessible material.",
+                "4.7 To use OCR features to read inaccessible material." + '.' * (90 - len("4.7 To use OCR features to read inaccessible material.")),
                 pos = (30,
                        890)
                 )
@@ -6907,7 +6915,7 @@ class abacusPanel(scrolled.ScrolledPanel):
                         203
                         )
                 )
-        self.SetFont(wx.Font(wx.FontInfo(8)))
+        self.SetFont(wx.Font(8, wx.MODERN, wx.NORMAL, wx.NORMAL, False, u'Atkinson Hyperlegible'))
         wx.StaticText(
                 self,
                 -1,
@@ -6926,7 +6934,7 @@ class abacusPanel(scrolled.ScrolledPanel):
                 self,
                 -1,
                 choices = students,
-                pos = (650,
+                pos = (130,
                        50),
                 size = (300,
                         30)
@@ -6941,7 +6949,7 @@ class abacusPanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "1.1 Setting NumbersNumbers",
+                "1.1 Setting NumbersNumbers" + '.' * (90 - len("1.1 Setting NumbersNumbers")),
                 pos = (30,
                        80)
                 )
@@ -6957,7 +6965,7 @@ class abacusPanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "1.2 Clearing Beads",
+                "1.2 Clearing Beads" + '.' * (90 - len("1.2 Clearing Beads")),
                 pos = (30,
                        110)
                 )
@@ -6973,7 +6981,7 @@ class abacusPanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "1.3 Place Value",
+                "1.3 Place Value" + '.' * (90 - len("1.3 Place Value")),
                 pos = (30,
                        140)
                 )
@@ -6989,7 +6997,7 @@ class abacusPanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "1.4 Vocabulary",
+                "1.4 Vocabulary" + '.' * (90 - len("1.4 Vocabulary")),
                 pos = (30,
                        170)
                 )
@@ -7005,7 +7013,7 @@ class abacusPanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "2.1 Addition of Single Digit Numbers",
+                "2.1 Addition of Single Digit Numbers" + '.' * (90 - len("2.1 Addition of Single Digit Numbers")),
                 pos = (30,
                        200)
                 )
@@ -7021,7 +7029,7 @@ class abacusPanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "2.2 Addition of Multiple Digit Numbers – Direct",
+                "2.2 Addition of Multiple Digit Numbers – Direct" + '.' * (90 - len("2.2 Addition of Multiple Digit Numbers – Direct")),
                 pos = (30,
                        230)
                 )
@@ -7037,7 +7045,7 @@ class abacusPanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "2.3 Addition of Multiple Digit Numbers – Indirect",
+                "2.3 Addition of Multiple Digit Numbers – Indirect" + '.' * (90 - len("2.3 Addition of Multiple Digit Numbers – Indirect")),
                 pos = (30,
                        260)
                 )
@@ -7053,7 +7061,7 @@ class abacusPanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "3.1 Subtraction",
+                "3.1 Subtraction" + '.' * (90 - len("3.1 Subtraction")),
                 pos = (30,
                        290)
                 )
@@ -7069,7 +7077,7 @@ class abacusPanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "3.2 Subtraction of Multiple Digit Numbers – Direct",
+                "3.2 Subtraction of Multiple Digit Numbers – Direct" + '.' * (90 - len("3.2 Subtraction of Multiple Digit Numbers – Direct")),
                 pos = (30,
                        320)
                 )
@@ -7085,7 +7093,7 @@ class abacusPanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "3.3 Subtraction of Multiple Digit Numbers – Indirect",
+                "3.3 Subtraction of Multiple Digit Numbers – Indirect" + '.' * (90 - len("3.3 Subtraction of Multiple Digit Numbers – Indirect")),
                 pos = (30,
                        350)
                 )
@@ -7101,7 +7109,7 @@ class abacusPanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "4.1 Multiplication – 2+ Digit Multiplicand 1-Digit Multiplier",
+                "4.1 Multiplication – 2+ Digit Multiplicand 1-Digit Multiplier" + '.' * (90 - len("4.1 Multiplication – 2+ Digit Multiplicand 1-Digit Multiplier")),
                 pos = (30,
                        380)
                 )
@@ -7117,7 +7125,7 @@ class abacusPanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "4.2 Multiplication – 2+ Digit Multiplicand AND Multiplier",
+                "4.2 Multiplication – 2+ Digit Multiplicand AND Multiplier" + '.' * (90 - len("4.2 Multiplication – 2+ Digit Multiplicand AND Multiplier")),
                 pos = (30,
                        410)
                 )
@@ -7133,7 +7141,7 @@ class abacusPanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "5.1 Division – 2+ Digit Dividend 1-Digit Divisor",
+                "5.1 Division – 2+ Digit Dividend 1-Digit Divisor" + '.' * (90 - len("5.1 Division – 2+ Digit Dividend 1-Digit Divisor")),
                 pos = (30,
                        440)
                 )
@@ -7149,7 +7157,7 @@ class abacusPanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "5.2 Division – 2+ Digit Dividend AND 1 Digit Divisor ",
+                "5.2 Division – 2+ Digit Dividend AND 1 Digit Divisor " + '.' * (90 - len("5.2 Division – 2+ Digit Dividend AND 1 Digit Divisor ")),
                 pos = (30,
                        470)
                 )
@@ -7165,7 +7173,7 @@ class abacusPanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "6.1 Addition of Decimals",
+                "6.1 Addition of Decimals" + '.' * (90 - len("6.1 Addition of Decimals")),
                 pos = (30,
                        500)
                 )
@@ -7181,7 +7189,7 @@ class abacusPanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "6.2 Subtraction of Decimals",
+                "6.2 Subtraction of Decimals" + '.' * (90 - len("6.2 Subtraction of Decimals")),
                 pos = (30,
                        530)
                 )
@@ -7197,7 +7205,7 @@ class abacusPanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "6.3 Multiplication of Decimals",
+                "6.3 Multiplication of Decimals" + '.' * (90 - len("6.3 Multiplication of Decimals")),
                 pos = (30,
                        560)
                 )
@@ -7213,7 +7221,7 @@ class abacusPanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "6.4 Division of Decimals",
+                "6.4 Division of Decimals" + '.' * (90 - len("6.4 Division of Decimals")),
                 pos = (30,
                        590)
                 )
@@ -7229,7 +7237,7 @@ class abacusPanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "7.1 Addition of Fractions",
+                "7.1 Addition of Fractions" + '.' * (90 - len("7.1 Addition of Fractions")),
                 pos = (30,
                        620)
                 )
@@ -7245,7 +7253,7 @@ class abacusPanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "7.2 Subtraction of Fractions",
+                "7.2 Subtraction of Fractions" + '.' * (90 - len("7.2 Subtraction of Fractions")),
                 pos = (30,
                        650)
                 )
@@ -7261,7 +7269,7 @@ class abacusPanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "7.3 Multiplication of Fractions",
+                "7.3 Multiplication of Fractions" + '.' * (90 - len("7.3 Multiplication of Fractions")),
                 pos = (30,
                        680)
                 )
@@ -7277,7 +7285,7 @@ class abacusPanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "7.4 Division of Fractions",
+                "7.4 Division of Fractions" + '.' * (90 - len("7.4 Division of Fractions")),
                 pos = (30,
                        710)
                 )
@@ -7293,7 +7301,7 @@ class abacusPanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "8.1 Percent",
+                "8.1 Percent" + '.' * (90 - len("8.1 Percent")),
                 pos = (30,
                        740)
                 )
@@ -7309,7 +7317,7 @@ class abacusPanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "8.2 Square Root",
+                "8.2 Square Root" + '.' * (90 - len("8.2 Square Root")),
                 pos = (30,
                        770)
                 )
@@ -8446,7 +8454,7 @@ class cviPanel(scrolled.ScrolledPanel):
                         245
                         )
                 )
-        self.SetFont(wx.Font(wx.FontInfo(8)))
+        self.SetFont(wx.Font(8, wx.MODERN, wx.NORMAL, wx.NORMAL, False, u'Atkinson Hyperlegible'))
         wx.StaticText(
                 self,
                 -1,
@@ -8465,7 +8473,7 @@ class cviPanel(scrolled.ScrolledPanel):
                 self,
                 -1,
                 choices = students,
-                pos = (650,
+                pos = (130,
                        50),
                 size = (300,
                         30)
@@ -8473,7 +8481,7 @@ class cviPanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "Color Preference",
+                "Color Preference" + '.' * (90 - len("Color Preference")),
                 pos = (30,
                        80)
                 )
@@ -8489,7 +8497,7 @@ class cviPanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "Need for Movement",
+                "Need for Movement" + '.' * (90 - len("Need for Movement")),
                 pos = (30,
                        110)
                 )
@@ -8505,7 +8513,7 @@ class cviPanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "Visual Latency",
+                "Visual Latency" + '.' * (90 - len("Visual Latency")),
                 pos = (30,
                        140)
                 )
@@ -8521,7 +8529,7 @@ class cviPanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "Visual Field Preference",
+                "Visual Field Preference" + '.' * (90 - len("Visual Field Preference")),
                 pos = (30,
                        170)
                 )
@@ -8537,7 +8545,7 @@ class cviPanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "Difficulty with Visual Complexity",
+                "Difficulty with Visual Complexity" + '.' * (90 - len("Difficulty with Visual Complexity")),
                 pos = (30,
                        200)
                 )
@@ -8553,7 +8561,7 @@ class cviPanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "Light Gazing and Nonpurposeful Gaze",
+                "Light Gazing and Nonpurposeful Gaze" + '.' * (90 - len("Light Gazing and Nonpurposeful Gaze")),
                 pos = (30,
                        230)
                 )
@@ -8569,7 +8577,7 @@ class cviPanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "Difficulty with Distance Viewing",
+                "Difficulty with Distance Viewing" + '.' * (90 - len("Difficulty with Distance Viewing")),
                 pos = (30,
                        260)
                 )
@@ -8585,7 +8593,7 @@ class cviPanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "Atypical Visual Reflexes",
+                "Atypical Visual Reflexes" + '.' * (90 - len("Atypical Visual Reflexes")),
                 pos = (30,
                        290)
                 )
@@ -8601,7 +8609,7 @@ class cviPanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "Difficulty with Visual Novelty",
+                "Difficulty with Visual Novelty" + '.' * (90 - len("Difficulty with Visual Novelty")),
                 pos = (30,
                        320)
                 )
@@ -8617,7 +8625,7 @@ class cviPanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "Absence of Visually Guided Reach",
+                "Absence of Visually Guided Reach" + '.' * (90 - len("Absence of Visually Guided Reach")),
                 pos = (30,
                        350)
                 )
@@ -8630,13 +8638,49 @@ class cviPanel(scrolled.ScrolledPanel):
                 size = (300,
                         20)
                 )
-
+        wx.StaticText(
+                self,
+                -1,
+                "RUBRIC DATA",
+                pos = (200,
+                       400)
+                )
+        self.btn3 = wx.Button(
+                self,
+                204,
+                "SHOW RUBRIC",
+                pos = (500,
+                       450),
+                size = (170,
+                        30)
+                )
+        self.Bind(
+                wx.EVT_BUTTON,
+                self.rubric,
+                id = 204
+                )
+        wx.StaticText(
+                self,
+                -1,
+                "CVI DOMAIN",
+                pos = (30,
+                       450)
+                )
+        self.cviDomain1 = wx.Choice(
+                self,
+                -1,
+                choices = cviDomains,
+                pos = (150,
+                       450),
+                size = (300,
+                        20)
+                )
         self.btn = wx.Button(
                 self,
                 201,
                 "SAVE",
                 pos = (300,
-                       450),
+                       500),
                 size = (70,
                         30)
                 )
@@ -8650,7 +8694,7 @@ class cviPanel(scrolled.ScrolledPanel):
                 203,
                 "PRINT GRAPHS",
                 pos = (400,
-                       450),
+                       500),
                 size = (170,
                         30)
                 )
@@ -8664,7 +8708,7 @@ class cviPanel(scrolled.ScrolledPanel):
                 202,
                 "EXIT",
                 pos = (600,
-                       450),
+                       500),
                 size = (70,
                         30)
                 )
@@ -8672,44 +8716,6 @@ class cviPanel(scrolled.ScrolledPanel):
                 wx.EVT_BUTTON,
                 self.exit,
                 id = 202
-                )
-
-        self.btn3 = wx.Button(
-                self,
-                204,
-                "SHOW RUBRIC",
-                pos = (30,
-                       550),
-                size = (170,
-                        30)
-                )
-        self.Bind(
-                wx.EVT_BUTTON,
-                self.rubric,
-                id = 204
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "RUBRIC DATA",
-                pos = (30,
-                       450)
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "CVI DOMAIN",
-                pos = (30,
-                       500)
-                )
-        self.cviDomain1 = wx.Choice(
-                self,
-                -1,
-                choices = cviDomains,
-                pos = (150,
-                       500),
-                size = (300,
-                        20)
                 )
 
     def rubric(self, event):
@@ -9046,7 +9052,7 @@ class cviPanel(scrolled.ScrolledPanel):
                 studentname,
                 'cviProgression.csv'
                 )
-        df = pd.read_csv(tmppath, sep = ' ', index_col = [0], parse_dates = [0])
+        df = pd.read_csv(tmppath, sep = ',', index_col = [0], parse_dates = [0])
         # df['date']=pd.to_datetime(df['date'])
         df = df.sort_values(by = "date")
         print(df)
@@ -9721,7 +9727,7 @@ class iepIntro(scrolled.ScrolledPanel):
                         242
                         )
                 )
-        self.SetFont(wx.Font(wx.FontInfo(8)))
+        self.SetFont(wx.Font(8, wx.MODERN, wx.NORMAL, wx.NORMAL, False, u'Atkinson Hyperlegible'))
         scrolled.ScrolledPanel.__init__(
                 self,
                 parent,
@@ -9783,9 +9789,9 @@ class iepIntro(scrolled.ScrolledPanel):
                 self,
                 401,
                 "IEP GOALS",
-                pos = (450,
-                       50),
-                size = (70,
+                pos = (130,
+                       100),
+                size = (170,
                         30)
                 )
         self.Bind(
@@ -9797,9 +9803,9 @@ class iepIntro(scrolled.ScrolledPanel):
                 self,
                 402,
                 "EXIT",
-                pos = (550,
-                       50),
-                size = (70,
+                pos = (330,
+                       100),
+                size = (170,
                         30)
                 )
         self.Bind(
@@ -9811,8 +9817,8 @@ class iepIntro(scrolled.ScrolledPanel):
                 self,
                 502,
                 "OPEN DATASHEETS",
-                pos = (450,
-                       100),
+                pos = (130,
+                       150),
                 size = (170,
                         30)
                 )
@@ -9821,12 +9827,11 @@ class iepIntro(scrolled.ScrolledPanel):
                 self.datasheet,
                 id = 502
                 )
-
         self.btn4 = wx.Button(
                 self,
                 602,
-                "UPLOAD DATASHEETS",
-                pos = (450,
+                "UPLOAD DATASHEET",
+                pos = (330,
                        150),
                 size = (170,
                         30)
@@ -9835,6 +9840,34 @@ class iepIntro(scrolled.ScrolledPanel):
                 wx.EVT_BUTTON,
                 self.upload,
                 id = 602
+                )
+        self.btn5 = wx.Button(
+                self,
+                702,
+                "UPLOAD VISION REPORT",
+                pos = (130,
+                       200),
+                size = (170,
+                        30)
+                )
+        self.Bind(
+                wx.EVT_BUTTON,
+                self.report,
+                id = 702
+                )
+        self.btn5 = wx.Button(
+                self,
+                702,
+                "UPLOAD IEP",
+                pos = (330,
+                       200),
+                size = (170,
+                        30)
+                )
+        self.Bind(
+                wx.EVT_BUTTON,
+                self.iep,
+                id = 702
                 )
 
     @staticmethod
@@ -10060,6 +10093,93 @@ class iepIntro(scrolled.ScrolledPanel):
                 uploadfile,
                 uploadlocation
                 )
+        self.dial = wx.MessageDialog(
+                None,
+                'Datasheet Uploaded Successfully!',
+                'Info',
+                wx.OK
+                )
+        self.dial.ShowModal()
+
+    def report(
+            self,
+            event
+            ):
+        """
+
+        :param event:
+        :type event:
+        """
+        studentname = self.studentname1.GetString(
+                self.studentname1.GetSelection()
+                )
+        uploadlocation = Path(USER_DIR).joinpath(
+                'StudentDatabase',
+                'StudentDataFiles',
+                studentname
+                )
+        openfiledialog = wx.FileDialog(
+                frame,
+                "Open",
+                "",
+                "",
+                "",
+                wx.FD_OPEN | wx.FD_FILE_MUST_EXIST
+                )
+        openfiledialog.ShowModal()
+        uploadfile = openfiledialog.GetPath()
+        openfiledialog.Destroy()
+        shutil.copy2(
+                uploadfile,
+                uploadlocation
+                )
+        self.dial = wx.MessageDialog(
+                None,
+                'Vision Report Uploaded Ssuccessfully!',
+                'Info',
+                wx.OK
+                )
+        self.dial.ShowModal()
+
+    def iep(
+            self,
+            event
+            ):
+        """
+
+        :param event:
+        :type event:
+        """
+        studentname = self.studentname1.GetString(
+                self.studentname1.GetSelection()
+                )
+        uploadlocation = Path(USER_DIR).joinpath(
+                'StudentDatabase',
+                'StudentDataFiles',
+                studentname
+                )
+        openfiledialog = wx.FileDialog(
+                frame,
+                "Open",
+                "",
+                "",
+                "",
+                wx.FD_OPEN | wx.FD_FILE_MUST_EXIST
+                )
+        openfiledialog.ShowModal()
+        uploadfile = openfiledialog.GetPath()
+        openfiledialog.Destroy()
+        shutil.copy2(
+                uploadfile,
+                uploadlocation
+                )
+        self.dial = wx.MessageDialog(
+                None,
+                'IEP Uploaded Successfully!',
+                'Info',
+                wx.OK
+                )
+        self.dial.ShowModal()
 
 
 class meetingsPanel(scrolled.ScrolledPanel):
@@ -10112,7 +10232,7 @@ class meetingsPanel(scrolled.ScrolledPanel):
                         234
                         )
                 )
-        self.SetFont(wx.Font(wx.FontInfo(8)))
+        self.SetFont(wx.Font(8, wx.MODERN, wx.NORMAL, wx.NORMAL, False, u'Atkinson Hyperlegible'))
         wx.StaticText(
                 self,
                 -1,
@@ -10251,6 +10371,13 @@ class meetingsPanel(scrolled.ScrolledPanel):
                 uploadfile,
                 uploadlocation
                 )
+        self.dial = wx.MessageDialog(
+                None,
+                'Uploaded successfully!',
+                'Info',
+                wx.OK
+                )
+        self.dial.ShowModal()
 
     def save(
             self,
@@ -10397,7 +10524,7 @@ class observationsPanel(scrolled.ScrolledPanel):
                         235
                         )
                 )
-        self.SetFont(wx.Font(wx.FontInfo(8)))
+        self.SetFont(wx.Font(8, wx.MODERN, wx.NORMAL, wx.NORMAL, False, u'Atkinson Hyperlegible'))
         wx.StaticText(
                 self,
                 -1,
@@ -10536,6 +10663,13 @@ class observationsPanel(scrolled.ScrolledPanel):
                 uploadfile,
                 uploadlocation
                 )
+        self.dial = wx.MessageDialog(
+                None,
+                'Observation Uploaded Successfully!',
+                'Info',
+                wx.OK
+                )
+        self.dial.ShowModal()
 
     def save(
             self,
@@ -10665,7 +10799,7 @@ class StudentDataBook(
                         217
                         )
                 )
-        self.SetFont(wx.Font(wx.FontInfo(8)))
+        self.SetFont(wx.Font(8, wx.MODERN, wx.NORMAL, wx.NORMAL, False, u'Atkinson Hyperlegible'))
         self.initui()
 
     def initui(self):

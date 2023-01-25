@@ -705,7 +705,7 @@ class dataPanel(wx.Panel):
                         234
                         )
                 )
-        self.SetFont(wx.Font(8, wx.MODERN, wx.NORMAL, wx.NORMAL, False, u'Atkinson Hyperlegible'))
+        self.SetFont(wx.Font(10, wx.MODERN, wx.NORMAL, wx.NORMAL, False, u'Atkinson Hyperlegible'))
         wx.StaticText(
                 self,
                 -1,
@@ -1279,7 +1279,13 @@ class dataPanel(wx.Panel):
                 ◦ Given verbal support, Noah will solve math money problems using the dollar more strategy for amounts up to $17.00 dollars using 1, 5 and 10 dollar bills, on 4/5 daily trials over 3 consecutive  
                 weeks.
             """
-        paulasackettiep = """
+        paulasackettiep = """Paula Sackett      30 min / month
+            • When given moderate support, Paula will participate in two separate leisure skill activities (crafts,games, books, etc.) throughout the school week, then when shown a 3D item associated with each 
+            activity, she will choose (by looking at and grabbing) the 3D item associated with the activity that she preferred, on 2x weekly trials, as measured over 12 consecutive weeks (staff will keep a 
+            running list of activities she enjoys to add to her interest inventory).
+                ◦ When given maximal support, Paula will participate in two separate leisure skill activities (crafts, games, books, etc.) throughout the school week, then when shown a 3D item associated with 
+                each activity, she will choose (by looking at and grabbing) the 3D item associated with the activity that she preferred, on 2x weekly trials, as measured over 12 consecutive weeks (staff will keep 
+                a running list of activities she enjoys to add to her interest inventory)..
             """
         suttonbuelliep = """Sutton Buell    	20 min / month
             • Sutton will independently point to and label shapes, numbers, and count by rote and objects to 10, with a 80% accuracy over 3 consecutive data sessions.
@@ -1626,7 +1632,7 @@ class braillePanel(scrolled.ScrolledPanel):
                         235
                         )
                 )
-        self.SetFont(wx.Font(8, wx.MODERN, wx.NORMAL, wx.NORMAL, False, u'Atkinson Hyperlegible'))
+        self.SetFont(wx.Font(10, wx.MODERN, wx.NORMAL, wx.NORMAL, False, u'Atkinson Hyperlegible'))
         wx.StaticText(
                 self,
                 -1,
@@ -5224,7 +5230,7 @@ class screenreaderPanel(scrolled.ScrolledPanel):
                 wx.StaticLine(
                         self,
                         -1,
-                        size = (1500,
+                        size = (1000,
                                 -1)
                         ),
                 0,
@@ -5236,7 +5242,7 @@ class screenreaderPanel(scrolled.ScrolledPanel):
                         self,
                         -1,
                         size = (-1,
-                                2100)
+                                1000)
                         ),
                 0,
                 wx.ALL,
@@ -5255,7 +5261,7 @@ class screenreaderPanel(scrolled.ScrolledPanel):
                         217
                         )
                 )
-        self.SetFont(wx.Font(8, wx.MODERN, wx.NORMAL, wx.NORMAL, False, u'Atkinson Hyperlegible'))
+        self.SetFont(wx.Font(10, wx.MODERN, wx.NORMAL, wx.NORMAL, False, u'Atkinson Hyperlegible'))
         wx.StaticText(
                 self,
                 -1,
@@ -5304,8 +5310,8 @@ class screenreaderPanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "1.2 Utilize modifier keys such as ctrl alt and shift to enter a modified key command" + '.' * (
-                        90 - len("1.2 Utilize modifier keys such as ctrl alt and shift to enter a modified key command")),
+                "1.2 Utilize modifier keys such as ctrl alt and shift" + '.' * (
+                        90 - len("1.2 Utilize modifier keys such as ctrl alt and shift")),
                 pos = (30,
                        110)
                 )
@@ -5450,8 +5456,8 @@ class screenreaderPanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "3.1 Define common element types on the internet such as Headings Buttons Links" + '.' * (
-                        90 - len("3.1 Define common element types on the internet such as Headings Buttons Links")),
+                "3.1 Define common element types on the internet such as Headings Buttons" + '.' * (
+                        90 - len("3.1 Define common element types on the internet such as Headings Buttons")),
                 pos = (30,
                        380)
                 )
@@ -5499,8 +5505,8 @@ class screenreaderPanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "3.4 Use the “Tab” key to navigate to the next clickable object (METHOD 1) " + '.' * (
-                        90 - len("3.4 Use the “Tab” key to navigate to the next clickable object (METHOD 1) ")),
+                "3.4 Use the “Tab” key to navigate to the next clickable object " + '.' * (
+                        90 - len("3.4 Use the “Tab” key to navigate to the next clickable object")),
                 pos = (30,
                        470)
                 )
@@ -5516,7 +5522,7 @@ class screenreaderPanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "3.5 Navigate by “Quick Keys” (h for heading b for button and u for link) (METHOD 2)" + '.' * (90 - len("3.5 Navigate by “Quick Keys” (h for heading b for button and u for link) (METHOD 2)")),
+                "3.5 Navigate by “Quick Keys” (h for heading b for button and u for link)" + '.' * (90 - len("3.5 Navigate by “Quick Keys” (h for heading b for button and u for link)")),
                 pos = (30,
                        500)
                 )
@@ -5532,7 +5538,7 @@ class screenreaderPanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "3.6 Use Elements Lists on a website to navigate by element type (METHOD 3)" + '.' * (90 - len("3.6 Use Elements Lists on a website to navigate by element type (METHOD 3)")),
+                "3.6 Use Elements Lists on a website to navigate by element type" + '.' * (90 - len("3.6 Use Elements Lists on a website to navigate by element type")),
                 pos = (30,
                        530)
                 )
@@ -5580,8 +5586,8 @@ class screenreaderPanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "3.9 Switch between screen reader modes. (Forms Mode in JAWS or Browse Mode in NVDA)" + '.' * (
-                        90 - len("3.9 Switch between screen reader modes. (Forms Mode in JAWS or Browse Mode in NVDA)")),
+                "3.9 Switch between screen reader modes" + '.' * (
+                        90 - len("3.9 Switch between screen reader modes")),
                 pos = (30,
                        620)
                 )
@@ -5661,8 +5667,8 @@ class screenreaderPanel(scrolled.ScrolledPanel):
         wx.StaticText(
                 self,
                 -1,
-                "4.3 Navigate a cloud-based file management system (eg: Google Drive Microsoft OneDrive)" + '.' * (
-                        90 - len("4.3 Navigate a cloud-based file management system (eg: Google Drive Microsoft OneDrive)")),
+                "4.3 Navigate a cloud-based file management system (eg: Google Drive)" + '.' * (
+                        90 - len("4.3 Navigate a cloud-based file management system (eg: Google Drive)")),
                 pos = (30,
                        770)
                 )
@@ -6884,7 +6890,7 @@ class abacusPanel(scrolled.ScrolledPanel):
                 wx.StaticLine(
                         self,
                         -1,
-                        size = (1500,
+                        size = (7500,
                                 -1)
                         ),
                 0,
@@ -6896,7 +6902,7 @@ class abacusPanel(scrolled.ScrolledPanel):
                         self,
                         -1,
                         size = (-1,
-                                2100)
+                                750)
                         ),
                 0,
                 wx.ALL,
@@ -6915,7 +6921,7 @@ class abacusPanel(scrolled.ScrolledPanel):
                         203
                         )
                 )
-        self.SetFont(wx.Font(8, wx.MODERN, wx.NORMAL, wx.NORMAL, False, u'Atkinson Hyperlegible'))
+        self.SetFont(wx.Font(10, wx.MODERN, wx.NORMAL, wx.NORMAL, False, u'Atkinson Hyperlegible'))
         wx.StaticText(
                 self,
                 -1,
@@ -8423,7 +8429,7 @@ class cviPanel(scrolled.ScrolledPanel):
                 wx.StaticLine(
                         self,
                         -1,
-                        size = (1500,
+                        size = (750,
                                 -1)
                         ),
                 0,
@@ -8435,7 +8441,7 @@ class cviPanel(scrolled.ScrolledPanel):
                         self,
                         -1,
                         size = (-1,
-                                2100)
+                                750)
                         ),
                 0,
                 wx.ALL,
@@ -8454,7 +8460,7 @@ class cviPanel(scrolled.ScrolledPanel):
                         245
                         )
                 )
-        self.SetFont(wx.Font(8, wx.MODERN, wx.NORMAL, wx.NORMAL, False, u'Atkinson Hyperlegible'))
+        self.SetFont(wx.Font(10, wx.MODERN, wx.NORMAL, wx.NORMAL, False, u'Atkinson Hyperlegible'))
         wx.StaticText(
                 self,
                 -1,
@@ -8679,8 +8685,8 @@ class cviPanel(scrolled.ScrolledPanel):
                 self,
                 201,
                 "SAVE",
-                pos = (300,
-                       500),
+                pos = (450,
+                       830),
                 size = (70,
                         30)
                 )
@@ -8689,12 +8695,12 @@ class cviPanel(scrolled.ScrolledPanel):
                 self.save,
                 id = 201
                 )
-        self.btn2 = wx.Button(
+        self.btn = wx.Button(
                 self,
                 203,
                 "PRINT GRAPHS",
-                pos = (400,
-                       500),
+                pos = (450,
+                       870),
                 size = (170,
                         30)
                 )
@@ -8707,8 +8713,8 @@ class cviPanel(scrolled.ScrolledPanel):
                 self,
                 202,
                 "EXIT",
-                pos = (600,
-                       500),
+                pos = (550,
+                       830),
                 size = (70,
                         30)
                 )
@@ -9696,7 +9702,7 @@ class iepIntro(scrolled.ScrolledPanel):
                 wx.StaticLine(
                         self,
                         -1,
-                        size = (1500,
+                        size = (750,
                                 -1)
                         ),
                 0,
@@ -9708,7 +9714,7 @@ class iepIntro(scrolled.ScrolledPanel):
                         self,
                         -1,
                         size = (-1,
-                                2100)
+                                750)
                         ),
                 0,
                 wx.ALL,
@@ -9727,7 +9733,7 @@ class iepIntro(scrolled.ScrolledPanel):
                         242
                         )
                 )
-        self.SetFont(wx.Font(8, wx.MODERN, wx.NORMAL, wx.NORMAL, False, u'Atkinson Hyperlegible'))
+        self.SetFont(wx.Font(10, wx.MODERN, wx.NORMAL, wx.NORMAL, False, u'Atkinson Hyperlegible'))
         scrolled.ScrolledPanel.__init__(
                 self,
                 parent,
@@ -10047,8 +10053,14 @@ class iepIntro(scrolled.ScrolledPanel):
                         consecutive  
                         weeks.
                     """
-        paulasackettiep = """
-                    """
+        paulasackettiep = """Paula Sackett      30 min / month
+                    • When given moderate support, Paula will participate in two separate leisure skill activities (crafts,games, books, etc.) throughout the school week, then when shown a 3D item associated with 
+                    each activity, she will choose (by looking at and grabbing) the 3D item associated with the activity that she preferred, on 2x weekly trials, as measured over 12 consecutive weeks (staff will 
+                    keep a running list of activities she enjoys to add to her interest inventory).
+                        ◦ When given maximal support, Paula will participate in two separate leisure skill activities (crafts, games, books, etc.) throughout the school week, then when shown a 3D item associated 
+                        with each activity, she will choose (by looking at and grabbing) the 3D item associated with the activity that she preferred, on 2x weekly trials, as measured over 12 consecutive weeks (
+                        staff will keep a running list of activities she enjoys to add to her interest inventory)..
+                     """
         suttonbuelliep = """Sutton Buell    	20 min / month
                     • Sutton will independently point to and label shapes, numbers, and count by rote and objects to 10, with a 80% accuracy over 3 consecutive data sessions.
                     • Sutton will recognize and label 15 letters and sounds starting with those in her name with 100% accuracy across 4 data sessions as recorded by teacher collected data.
@@ -10201,7 +10213,7 @@ class meetingsPanel(scrolled.ScrolledPanel):
                 wx.StaticLine(
                         self,
                         -1,
-                        size = (1500,
+                        size = (750,
                                 -1)
                         ),
                 0,
@@ -10213,7 +10225,7 @@ class meetingsPanel(scrolled.ScrolledPanel):
                         self,
                         -1,
                         size = (-1,
-                                2100)
+                                750)
                         ),
                 0,
                 wx.ALL,
@@ -10232,7 +10244,7 @@ class meetingsPanel(scrolled.ScrolledPanel):
                         234
                         )
                 )
-        self.SetFont(wx.Font(8, wx.MODERN, wx.NORMAL, wx.NORMAL, False, u'Atkinson Hyperlegible'))
+        self.SetFont(wx.Font(10, wx.MODERN, wx.NORMAL, wx.NORMAL, False, u'Atkinson Hyperlegible'))
         wx.StaticText(
                 self,
                 -1,
@@ -10493,7 +10505,7 @@ class observationsPanel(scrolled.ScrolledPanel):
                 wx.StaticLine(
                         self,
                         -1,
-                        size = (1500,
+                        size = (750,
                                 -1)
                         ),
                 0,
@@ -10505,7 +10517,7 @@ class observationsPanel(scrolled.ScrolledPanel):
                         self,
                         -1,
                         size = (-1,
-                                2100)
+                                750)
                         ),
                 0,
                 wx.ALL,
@@ -10524,7 +10536,7 @@ class observationsPanel(scrolled.ScrolledPanel):
                         235
                         )
                 )
-        self.SetFont(wx.Font(8, wx.MODERN, wx.NORMAL, wx.NORMAL, False, u'Atkinson Hyperlegible'))
+        self.SetFont(wx.Font(10, wx.MODERN, wx.NORMAL, wx.NORMAL, False, u'Atkinson Hyperlegible'))
         wx.StaticText(
                 self,
                 -1,
@@ -10799,7 +10811,7 @@ class StudentDataBook(
                         217
                         )
                 )
-        self.SetFont(wx.Font(8, wx.MODERN, wx.NORMAL, wx.NORMAL, False, u'Atkinson Hyperlegible'))
+        self.SetFont(wx.Font(10, wx.MODERN, wx.NORMAL, wx.NORMAL, False, u'Atkinson Hyperlegible'))
         self.initui()
 
     def initui(self):

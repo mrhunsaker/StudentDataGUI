@@ -624,16 +624,16 @@ def main():
         ID INTEGER PRIMARY KEY AUTOINCREMENT, 
         STUDENTNAME TEXT NOT NULL, 
         DATE TEXT NOT NULL, 
-        P1_1 INTEGER, 
-        P1_2 INTEGER, 
-        P1_3 INTEGER, 
-        P1_4 INTEGER, 
-        P1_5 INTEGER, 
-        P1_6 INTEGER, 
-        P2_1 INTEGER, 
-        P2_2 INTEGER, 
-        P2_3 INTEGER, 
-        P2_4 INTEGER 
+        P1_1 INTEGER NOT NULL, 
+        P1_2 INTEGER NOT NULL, 
+        P1_3 INTEGER NOT NULL, 
+        P1_4 INTEGER NOT NULL, 
+        P1_5 INTEGER NOT NULL, 
+        P1_6 INTEGER NOT NULL, 
+        P2_1 INTEGER NOT NULL, 
+        P2_2 INTEGER NOT NULL, 
+        P2_3 INTEGER NOT NULL, 
+        P2_4 INTEGER NOT NULL
     );"""
 
     conn = create_connection(dataBasePath)

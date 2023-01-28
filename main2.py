@@ -700,9 +700,9 @@ class dataPanel(wx.Panel):
         self.ln.IsVertical()
         self.SetBackgroundColour(
                 wx.Colour(
-                        224,
-                        224,
-                        224
+                        213,
+                        214,
+                        234
                         )
                 )
         self.SetFont(wx.Font(10, wx.MODERN, wx.NORMAL, wx.NORMAL, False, u'Atkinson Hyperlegible'))
@@ -1627,9 +1627,9 @@ class braillePanel(scrolled.ScrolledPanel):
         self.SetupScrolling()
         self.SetBackgroundColour(
                 wx.Colour(
-                        224,
-                        224,
-                        224
+                        246,
+                        246,
+                        235
                         )
                 )
         self.SetFont(wx.Font(10, wx.MODERN, wx.NORMAL, wx.NORMAL, False, u'Atkinson Hyperlegible'))
@@ -3370,7 +3370,74 @@ class braillePanel(scrolled.ScrolledPanel):
                     )
             conn.commit()
 
-        data_entry()
+            data_entry()
+            list_names = [
+                    'date',
+                    'P1_1',
+                    'P1_2',
+                    'P1_3',
+                    'P1_4',
+                    'P2_1',
+                    'P2_2',
+                    'P2_3',
+                    'P2_4',
+                    'P2_5',
+                    'P2_6',
+                    'P2_7',
+                    'P2_8',
+                    'P2_9',
+                    'P2_10',
+                    'P2_11',
+                    'P2_12',
+                    'P2_13',
+                    'P2_14',
+                    'P2_15',
+                    'P3_1',
+                    'P3_2',
+                    'P3_3',
+                    'P3_4',
+                    'P3_5',
+                    'P3_6',
+                    'P3_7',
+                    'P3_8',
+                    'P3_9',
+                    'P3_10',
+                    'P3_11',
+                    'P3_12',
+                    'P3_13',
+                    'P3_14',
+                    'P3_15',
+                    'P4_1',
+                    'P4_2',
+                    'P4_3',
+                    'P4_4',
+                    'P5_1',
+                    'P5_2',
+                    'P5_3',
+                    'P5_4',
+                    'P6_1',
+                    'P6_2',
+                    'P6_3',
+                    'P6_4',
+                    'P6_5',
+                    'P6_6',
+                    'P6_7',
+                    'P7_1',
+                    'P7_2',
+                    'P7_3',
+                    'P7_4',
+                    'P7_5',
+                    'P7_6',
+                    'P7_7',
+                    'P7_8',
+                    'P8_1',
+                    'P8_2',
+                    'P8_3',
+                    'P8_4',
+                    'P8_5',
+                    'P8_6',
+                    'P8_7'
+                    ]
 
     def graph(
             self,
@@ -3384,14 +3451,6 @@ class braillePanel(scrolled.ScrolledPanel):
         studentname = self.studentname1.GetString(
                 self.studentname1.GetSelection()
                 )
-        #################################################################################
-        # TO DO: Set up import for databases for printing instead of relying on csv files
-        #################################################################################
-        conn = sqlite3.connect(dataBasePath)
-        dfSQL = pd.read_sql_query(f"SELECT * FROM BRAILLEPROGRESS", conn)
-        dfStudent = dfSQL[dfSQL.studentname == studentname]
-        print(dfStudent)
-        conn.close()
         tmppath = Path(USER_DIR).joinpath(
                 'StudentDatabase',
                 'StudentDataFiles',
@@ -5199,9 +5258,9 @@ class screenreaderPanel(scrolled.ScrolledPanel):
         self.SetupScrolling()
         self.SetBackgroundColour(
                 wx.Colour(
-                        224,
-                        224,
-                        224
+                        215,
+                        236,
+                        217
                         )
                 )
         self.SetFont(wx.Font(10, wx.MODERN, wx.NORMAL, wx.NORMAL, False, u'Atkinson Hyperlegible'))
@@ -5860,39 +5919,13 @@ class screenreaderPanel(scrolled.ScrolledPanel):
                 self.filename.write(trial46 + ', ')
                 self.filename.write(trial47 + ', ')
                 self.filename.close()
-                tmppath = Path(USER_DIR).joinpath(
-                        'StudentDatabase',
-                        'StudentDataFiles',
-                        'Filenames.txt'
-                        )
                 self.filename = open(
-                        tmppath,
+                        f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\Filenames.txt",
                         'a'
                         )
-                tmppath = Path(USER_DIR).joinpath(
-                        'StudentDatabase',
-                        'StudentDataFiles',
-                        studentname,
-                        self.studentdatabasename + '.txt'
+                self.filename.write(
+                        f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\{self.studentdatabasename}.txt" + '\n'
                         )
-                self.filename.write(f"'{tmppath}'" + '\n')
-                self.filename.close()
-                tmppath = Path(USER_DIR).joinpath(
-                        'StudentDatabase',
-                        'StudentDataFiles',
-                        'Filenames.txt'
-                        )
-                self.filename = open(
-                        tmppath,
-                        'a'
-                        )
-                tmppath = Path(USER_DIR).joinpath(
-                        'StudentDatabase',
-                        'StudentDataFiles',
-                        studentname,
-                        self.studentdatabasename + '.txt'
-                        )
-                self.filename.write(f"'{tmppath}'" + '\n')
                 self.filename.close()
                 list_names = [
                         'date',
@@ -6105,6 +6138,7 @@ class screenreaderPanel(scrolled.ScrolledPanel):
         studentname = self.studentname1.GetString(
                 self.studentname1.GetSelection()
                 )
+
         df = pd.read_csv(
                 f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\ScreenReaderSkillsProgression.csv",
                 sep = ',', index_col = [0], parse_dates = [0]
@@ -6885,9 +6919,9 @@ class abacusPanel(scrolled.ScrolledPanel):
         self.SetupScrolling()
         self.SetBackgroundColour(
                 wx.Colour(
-                        224,
-                        224,
-                        224
+                        245,
+                        213,
+                        203
                         )
                 )
         self.SetFont(wx.Font(10, wx.MODERN, wx.NORMAL, wx.NORMAL, False, u'Atkinson Hyperlegible'))
@@ -8424,9 +8458,9 @@ class cviPanel(scrolled.ScrolledPanel):
         self.SetupScrolling()
         self.SetBackgroundColour(
                 wx.Colour(
-                        224,
-                        224,
-                        224
+                        246,
+                        236,
+                        245
                         )
                 )
         self.SetFont(wx.Font(10, wx.MODERN, wx.NORMAL, wx.NORMAL, False, u'Atkinson Hyperlegible'))
@@ -9697,9 +9731,9 @@ class iepIntro(scrolled.ScrolledPanel):
         self.SetupScrolling()
         self.SetBackgroundColour(
                 wx.Colour(
-                        224,
-                        224,
-                        224
+                        243,
+                        221,
+                        242
                         )
                 )
         self.SetFont(wx.Font(10, wx.MODERN, wx.NORMAL, wx.NORMAL, False, u'Atkinson Hyperlegible'))
@@ -10208,9 +10242,9 @@ class meetingsPanel(scrolled.ScrolledPanel):
         self.SetupScrolling()
         self.SetBackgroundColour(
                 wx.Colour(
-                        224,
-                        224,
-                        224
+                        213,
+                        214,
+                        234
                         )
                 )
         self.SetFont(wx.Font(10, wx.MODERN, wx.NORMAL, wx.NORMAL, False, u'Atkinson Hyperlegible'))
@@ -10500,9 +10534,9 @@ class observationsPanel(scrolled.ScrolledPanel):
         self.SetupScrolling()
         self.SetBackgroundColour(
                 wx.Colour(
-                        224,
-                        224,
-                        224
+                        246,
+                        246,
+                        235
                         )
                 )
         self.SetFont(wx.Font(10, wx.MODERN, wx.NORMAL, wx.NORMAL, False, u'Atkinson Hyperlegible'))
@@ -10775,9 +10809,9 @@ class StudentDataBook(
                 )
         self.SetBackgroundColour(
                 wx.Colour(
-                        224,
-                        224,
-                        224
+                        215,
+                        236,
+                        217
                         )
                 )
         self.SetFont(wx.Font(10, wx.MODERN, wx.NORMAL, wx.NORMAL, False, u'Atkinson Hyperlegible'))

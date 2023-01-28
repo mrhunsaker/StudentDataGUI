@@ -23,21 +23,22 @@ date = datetime.datetime.now().strftime("%Y_%m_%d-%H%M%S_%p")
 # Current Students for Project
 ##############################################################################
 students = [
-        'ColeCooper',
-        'DylanPenalozaDiaz',
-        'GrantChristensen',
+        'DonaldChamberlain',
         'AustinDenney',
-        'KayleeVimahi',
-        'CarterCostello',
-        'MadelineCostello',
-        'SuttonBuell',
         'AddisonBooker',
         'AmiRito',
         'AshlynneNelson',
         'CarstonTalbot',
+        'CarterCostello',
         'CelestialNeilson',
+        'ColeCooper',
+        'DylanPenalozaDiaz',
+        'GrantChristensen',
+        'KayleeVimahi',
+        'MadelineCostello',
         'NoahPalmer',
-        'PaulaSackett'
+        'PaulaSackett',
+        'SuttonBuell'
         ]
 ##############################################################################
 # All DSD Students
@@ -236,7 +237,7 @@ ECC_SensoryEfficiency = [
         'Auditory function: localization  aural discrimination and presentation  and sound pattern use',
         'Tactile function: tactile discrimination  scanning  manipulation and dexterity',
         'Gustatory (taste) function: appreciation for food  discrimination of food types and recognition of various tastes',
-        'Olfactory (smell) function: localization of smellsdiscrimination of odors and recognition of pleasant and unpleasant odors.'
+        'Olfactory (smell) function: localization of smells discrimination of odors and recognition of pleasant and unpleasant odors.'
         ]
 
 ECC_AssistiveTechnology = [
@@ -250,25 +251,22 @@ ECC_OrientationMobility = [
         'Environmental concepts:  understanding concepts related to the home environment (such as windows and doors) and to buildings  residential and business areas  schools  and streets and intersections.',
         'Spatial concepts: understanding self-to-object relationships  spatial terminology (such as right  left and next to)  landmarks and cues and cardinal directions',
         'Perceptual/sensory skills: interpreting environmental sounds  applying meaning to tasks and determining the nature of sensory information',
-        'Mobility skills: noticing and negotiating unexpected drop-offs  using systematic search techniques  and knowing built elements such as block distances  corners  intersection types',
-        'streets and road structures.',
+        'Mobility skills: noticing and negotiating unexpected drop-offs  using systematic search techniques  and knowing built elements such as block distances  corners  intersection types streets and road '
+        'structures.',
         'Orientation skills: knowing routes and understanding layouts',
         'Interpersonal skills: requesting directions  arranging for rides; soliciting information from individuals such as dispatchers  drivers  and store personnel; and using appropriate telephone manners',
         'Decision-making skills: altering travel in response to inclement weather choosing appropriate clothing and gear choosing between routes knowing the advantage and disadvantage of different modes of travel '
-        'and '
-        'making back up plans.'
+        'and making back up plans.'
         ]
 
 ECC_RecreationLeisure = [
         'Play: interacting through play with peers and siblings  entertaining oneself for various periods of time',
         'Physical activity: participating in physical education or other active play activities  taking part in recreation and leisure activities enjoyed by the family',
         'Health  fitness and individual sports: developing a regimen of physical exercise that leads to improvement or maintenance of strength  stamina and endurance; developing skills for engaging in such '
-        'activities',
-        ' as track  wrestling and weight-lifting.',
+        'activities as track  wrestling and weight-lifting.',
         'Team and spectator sports: learning  to enjoy competitive and noncompetitive sports activities such as football  baseball  soccer  golf baseball or goalball  as a participant or as a spectator',
-        'Leisure activities and hobbies: being exposed to opportunities for choosing a favorite game or book experiencing arts and crafts activities appreciating and enjoying fine arts in such forms as museum '
-        'visits '
-        'theater dance opera and music.'
+        'Leisure activities and hobbies: being exposed to opportunities for choosing a favorite game or book experiencing arts and crafts activities appreciating and enjoying fine arts in such forms as museum  '
+        'visits theater dance opera and music.'
         ]
 
 ECC_SelfDetermination = [
@@ -288,7 +286,7 @@ ECC_IndependentLivingSkills = [
         'Clothing care: labeling  clothing  selecting appropriate clothing for events  doing laundry and performing related tasks',
         'Time management: establishing a routine of sleeping at appropriate times  recognizing how long it takes to complete a task  using watches and clocks and maintaining a calendar',
         'Eating: eating with utensils   locating food on a plate  using condiments and using tableware',
-        'Cooking: preparing and cooking meals pouring liquids retrieving utensils  stirring and mixing  spreading and spooning  helping with dishes  using a stove  cleaning up  learning food-related concepts',
+        'Cooking: preparing and cooking meals pouring liquids retrieving utensils  stirring and mixing  spreading and spooning  helping with dishes  using a stove  cleaning up  learning food-related concepts '
         'involved in gardening  visiting grocery stores  applying food nutrition  and opening and closing different kinds of packages.',
         'Cleaning and general household tasks: participating in responsibilities at home and school  retrieving and replacing toys and games  and using cleaning supplies and equipment.',
         'Telephone use: calling friends  knowing how to make emergency calls and having a system of phone number retrieval',
@@ -296,8 +294,8 @@ ECC_IndependentLivingSkills = [
         ]
 
 ECC_SocialInteractionSkills = [
-        'Appropriate body language: knowing when to lean forward to hear a secret from a friend  maintaining appropriate eye contact  facing a person who is speaking  standing up to greet a new friend',
-        'keeping hands to oneself during a group conversation',
+        'Appropriate body language: knowing when to lean forward to hear a secret from a friend  maintaining appropriate eye contact  facing a person who is speaking  standing up to greet a new friend keeping '
+        'hands to oneself during a group conversation',
         'Social communication: engaging in appropriate verbal and nonverbal interaction with others  initiating conversations  expressing needs and wants',
         'Effective conversation patterns:  asking for help; initiating  maintaining and end ending conversations; extending invitations',
         'Cooperative skills: working  with another to accomplish a goal  volunteering to help in the classroom  helping with home chores',

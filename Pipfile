@@ -13,6 +13,7 @@ plotly = "*"
 numpy = "*"
 matplotlib = "*"
 pathlib = "*"
+sqlalchemy = "*"
 
 [dev-packages]
 

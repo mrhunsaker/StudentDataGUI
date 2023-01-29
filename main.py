@@ -19,6 +19,8 @@ import os
 import shutil
 import sqlite3
 import statistics
+import sys
+import traceback
 from csv import writer
 from pathlib import Path
 from sqlite3 import Error
@@ -671,6 +673,19 @@ if __name__ == '__main__':
     main()
 
 date = datetime.datetime.now().strftime("%Y_%m_%d-%H%M%S_%p")
+
+
+def warningMessage(exception_type, exception_value, exception_traceback):
+    message = "Please make sure all fields are selected / filled out properly\n\n"
+    tb = traceback.format_exception(exception_type, exception_value, exception_traceback)
+    for i in tb:
+        message += i
+    messageDialog = wx.MessageDialog(None, message, str(exception_type), wx.OK | wx.ICON_ERROR)
+    messageDialog.ShowModal()
+    messageDialog.Destroy()
+
+
+sys.excepthook = warningMessage
 
 
 class dataPanel(wx.Panel):

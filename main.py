@@ -779,7 +779,6 @@ date = datetime.datetime.now().strftime("%Y_%m_%d-%H%M%S_%p")
 ##############################################################################
 # Error Logging
 ##############################################################################
-
 def warningMessage(exception_type, exception_value, exception_traceback):
     message = "Please make sure all fields are selected / filled out properly\n\n"
     tb = traceback.format_exception(exception_type, exception_value, exception_traceback)

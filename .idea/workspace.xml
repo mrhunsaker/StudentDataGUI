@@ -9,8 +9,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fa304d23-fe14-4dd1-9cb8-16c0a72e419f" name="Changes" comment="Added in warning dialogs">
-      <change afterPath="$PROJECT_DIR$/datasheets/Blank Vision Template.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/visionAssessments/EducationVisionAssessments.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
@@ -185,14 +183,7 @@
       <workItem from="1674921784391" duration="4178000" />
       <workItem from="1674949641663" duration="492000" />
       <workItem from="1674951374502" duration="140000" />
-      <workItem from="1675016952995" duration="6828000" />
-    </task>
-    <task id="LOCAL-00025" summary="Updated code">
-      <created>1663343677773</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1663343677774</updated>
+      <workItem from="1675016952995" duration="8644000" />
     </task>
     <task id="LOCAL-00026" summary="Updated code">
       <created>1663343937207</created>
@@ -530,7 +521,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675018471807</updated>
     </task>
-    <option name="localTasksCounter" value="74" />
+    <task id="LOCAL-00074" summary="Added in warning dialogs">
+      <created>1675083393748</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1675083393748</updated>
+    </task>
+    <option name="localTasksCounter" value="75" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

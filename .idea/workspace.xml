@@ -8,8 +8,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa304d23-fe14-4dd1-9cb8-16c0a72e419f" name="Changes" comment="Added in warning dialogs">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="fa304d23-fe14-4dd1-9cb8-16c0a72e419f" name="Changes" comment="Plots now made from SQLite database rather than local csv files">
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="true" />
@@ -183,14 +182,7 @@
       <workItem from="1674921784391" duration="4178000" />
       <workItem from="1674949641663" duration="492000" />
       <workItem from="1674951374502" duration="140000" />
-      <workItem from="1675016952995" duration="13351000" />
-    </task>
-    <task id="LOCAL-00027" summary="Updated code">
-      <created>1663357679411</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1663357679411</updated>
+      <workItem from="1675016952995" duration="14086000" />
     </task>
     <task id="LOCAL-00028" summary="Updated code">
       <created>1663614930253</created>
@@ -528,7 +520,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675095983706</updated>
     </task>
-    <option name="localTasksCounter" value="76" />
+    <task id="LOCAL-00076" summary="Plots now made from SQLite database rather than local csv files">
+      <created>1675101123026</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1675101123026</updated>
+    </task>
+    <option name="localTasksCounter" value="77" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -566,12 +565,13 @@
     <MESSAGE value="Code Formatting" />
     <MESSAGE value="Code Formatting and added form for accessing student specific worksheets and datasheets" />
     <MESSAGE value="Added in warning dialogs" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added in warning dialogs" />
+    <MESSAGE value="Plots now made from SQLite database rather than local csv files" />
+    <option name="LAST_COMMIT_MESSAGE" value="Plots now made from SQLite database rather than local csv files" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/StudentDataGUI$main.coverage" NAME="main Coverage Results" MODIFIED="1675100996032" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/StudentDataGUI$main.coverage" NAME="main Coverage Results" MODIFIED="1675101790735" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

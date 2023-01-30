@@ -93,17 +93,6 @@ for name in students:
                 )
     if not Path(USER_DIR).joinpath(
             'StudentDatabase',
-            'errorLogs',
-            'logfile.txt'
-            ).exists():
-        tmppath = Path(USER_DIR).joinpath(
-                'StudentDatabase',
-                'errorLogs',
-                'logfile.txt'
-                )
-        Path.touch(tmppath)
-    if not Path(USER_DIR).joinpath(
-            'StudentDatabase',
             'StudentDataFiles'
             ).exists():
         tmppath = Path(USER_DIR).joinpath(
@@ -803,24 +792,25 @@ date = datetime.datetime.now().strftime("%Y_%m_%d-%H%M%S_%p")
 ##############################################################################
 # Error Logging
 ##############################################################################
-def warningMessage(exception_type, exception_value, exception_traceback):
+def warningmessage(exception_type, exception_value, exception_traceback):
     message = "Please make sure all fields are selected / filled out properly\n\n"
     tb = traceback.format_exception(exception_type, exception_value, exception_traceback)
     logPath = Path(USER_DIR).joinpath(
             'StudentDatabase',
             'errorLogs',
-            'logfile.txt'
+            f"logfile_{date}.log"
             )
+    Path.touch(logPath)
     for i in tb:
         message += i
         with open(logPath, "a") as logFile:
-            logFile.write(i + '\n')
+            logFile.write(f"{date}\n{i}" + '\n')
     messageDialog = wx.MessageDialog(None, message, str(exception_type), wx.OK | wx.ICON_ERROR)
     messageDialog.ShowModal()
     messageDialog.Destroy()
 
 
-sys.excepthook = warningMessage
+sys.excepthook = warningmessage
 
 
 ##############################################################################

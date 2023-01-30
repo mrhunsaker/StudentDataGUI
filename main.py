@@ -75,6 +75,30 @@ for name in students:
                 )
     if not Path(USER_DIR).joinpath(
             'StudentDatabase',
+            'errorLogs'
+            ).exists():
+        tmppath = Path(USER_DIR).joinpath(
+                'StudentDatabase',
+                'errorLogs'
+                )
+        Path.mkdir(
+                tmppath,
+                parents = True,
+                exist_ok = True
+                )
+    if not Path(USER_DIR).joinpath(
+            'StudentDatabase',
+            'errorLogs',
+            'logfile.txt'
+            ).exists():
+        tmppath = Path(USER_DIR).joinpath(
+                'StudentDatabase',
+                'errorLogs',
+                'logfile.txt'
+                )
+        Path.touch(tmppath)
+    if not Path(USER_DIR).joinpath(
+            'StudentDatabase',
             'StudentDataFiles'
             ).exists():
         tmppath = Path(USER_DIR).joinpath('StudentDatabase/StudentDataFiles')
@@ -89,9 +113,48 @@ for name in students:
             name
             ).exists():
         tmppath = Path(USER_DIR).joinpath(
-                'StudentDatabase/StudentDataFiles',
+                'StudentDatabase',
+                'StudentDataFiles',
                 name
                 )
+        Path.mkdir(tmppath, parents = True, exist_ok = True)
+    if not Path(USER_DIR).joinpath(
+            'StudentDatabase',
+            'StudentDataFiles',
+            name,
+            'StudentDataSheets'
+            ).exists():
+        tmppath = Path(USER_DIR).joinpath(
+                'StudentDatabase',
+                'StudentDataFiles',
+                name,
+                'StudentDataSheets'
+                )
+        Path.mkdir(tmppath, parents = True, exist_ok = True)
+    if not Path(USER_DIR).joinpath(
+            'StudentDatabase',
+            'StudentDataFiles',
+            name,
+            'StudentInstructionMaterials'
+            ).exists():
+        tmppath = Path(USER_DIR).joinpath(
+                'StudentDatabase',
+                'StudentDataFiles',
+                name,
+                'StudentInstructionMaterials'
+                )
+        if not Path(USER_DIR).joinpath(
+                'StudentDatabase',
+                'StudentDataFiles',
+                name,
+                'StudentVisionAssessments'
+                ).exists():
+            tmppath = Path(USER_DIR).joinpath(
+                    'StudentDatabase',
+                    'StudentDataFiles',
+                    name,
+                    'StudentVisionAssessments'
+                    )
         Path.mkdir(tmppath, parents = True, exist_ok = True)
     if not Path(USER_DIR).joinpath(
             'StudentDatabase',
@@ -401,6 +464,44 @@ for name in students:
                 )
         Path.touch(tmppath)
 
+    sourceDir = Path(ROOT_DIR).joinpath(
+            'datasheets'
+            )
+    destinationDir = Path(USER_DIR).joinpath(
+            'StudentDatabase',
+            'StudentDataFiles',
+            name,
+            'StudentDataSheets'
+            )
+    files = os.listdir(sourceDir)
+    for fileName in files:
+        shutil.copy2(os.path.join(sourceDir, fileName), destinationDir)
+
+    sourceDir = Path(ROOT_DIR).joinpath(
+            'instructionMaterials'
+            )
+    destinationDir = Path(USER_DIR).joinpath(
+            'StudentDatabase',
+            'StudentDataFiles',
+            name,
+            'StudentInstructionMaterials'
+            )
+    files = os.listdir(sourceDir)
+    for fileName in files:
+        shutil.copy2(os.path.join(sourceDir, fileName), destinationDir)
+
+    sourceDir = Path(ROOT_DIR).joinpath(
+            'visionAssessments'
+            )
+    destinationDir = Path(USER_DIR).joinpath(
+            'StudentDatabase',
+            'StudentDataFiles',
+            name,
+            'StudentVisionAssessments'
+            )
+    files = os.listdir(sourceDir)
+    for fileName in files:
+        shutil.copy2(os.path.join(sourceDir, fileName), destinationDir)
 ##############################################################################
 # Create SQL database with SQLite and create data tables
 ##############################################################################
@@ -675,11 +776,22 @@ if __name__ == '__main__':
 date = datetime.datetime.now().strftime("%Y_%m_%d-%H%M%S_%p")
 
 
+##############################################################################
+# Error Logging
+##############################################################################
+
 def warningMessage(exception_type, exception_value, exception_traceback):
     message = "Please make sure all fields are selected / filled out properly\n\n"
     tb = traceback.format_exception(exception_type, exception_value, exception_traceback)
+    logPath = Path(USER_DIR).joinpath(
+            'StudentDatabase',
+            'errorLogs',
+            'logfile.txt'
+            )
     for i in tb:
         message += i
+        with open(logPath, "a") as logFile:
+            logFile.write(i + '\n')
     messageDialog = wx.MessageDialog(None, message, str(exception_type), wx.OK | wx.ICON_ERROR)
     messageDialog.ShowModal()
     messageDialog.Destroy()
@@ -687,6 +799,10 @@ def warningMessage(exception_type, exception_value, exception_traceback):
 
 sys.excepthook = warningMessage
 
+
+##############################################################################
+# Begin Classes
+##############################################################################
 
 class dataPanel(wx.Panel):
     """

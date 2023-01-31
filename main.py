@@ -63,7 +63,7 @@ else:
 os.chdir(USER_DIR)
 
 ##############################################################################
-# Set User Folders in ~/Documents for each Student
+# Set User Folders and necessary files in ~/Documents for each Student
 ##############################################################################
 
 for name in students:

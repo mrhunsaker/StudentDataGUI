@@ -1404,17 +1404,11 @@ class dataPanel(wx.Panel):
             in 3 of 4 probes and measured by TVI created data sheets.
             """
         madelinecostelloiep = """Madeline Costello	    	120 min / month
-            • When given 2 sets of textured items, Maddie will identify same and different by separating all the same items into a box with 80% accuracy in 4/5 trials as measured by classroom data. (EE.4.MD.6)
-                ◦ When given 2 sets of textured items, Maddie will identify the set that is either the same or different with 60% accuracy in 4/5 trials as measured by classroom data.
-                ◦ When given 2 sets of textured items, Maddie will identify the set that is either the same or different with 70% accuracy in 4/5 trials as measured by classroom data.
-            • When read a story by an adult, Maddie will determine the meaning of words in text by identifying the object or tactile drawing that goes with the story with 70% accuracy in 4/5 trials as measured by
-            classroom data. (EE.RL.4.4)
-                ◦ When given an actual object, Maddie will be able to identify the tactile drawing version of the object with 70% accuracy in 4/5 trials as measured by classroom data.
-                ◦ When given an actual object, Maddie will be able to identify the tactile drawing version of the object with 60% accuracy in 4/5 trials as measured by classroom data.
-            • With guidance and support, Maddie will use the braille writer to braille her name with 80% accuracy in 4/5 trials as measured by classroom data. (EE.W.4.6)
-                ◦ When presented with a braille swing cell, Maddie independently will learn cell placement (1, 2,3, 4,5, 6) with 40% accuracy in 4/5 trials as measured by classroom data. (EE.W.4.6)
-                ◦ When asked to braille up to 3 specified braille cell numbers (such as 1, 2,3) Maddie will braille them independently with 40% accuracy in 4/5 trials as measured by classroom data
-                ◦ When presented with a braille swing cell, Maddie independently will learn cell placement with 60% accuracy in 4/5 trials as measured by classroom data
+            • Maddie will, with guidance and support, use a QWERTY keyboard with screenreader, to type her name with 80% accuracy in 4/5 trials as measured by classroom data.
+            • Maddie will explore, locate and identify a tactile object or tactile drawing, based on being read to or listening to instructions, during one on one instruction or small group instruction in 4/5 
+            tries with decreasing amount of physical assistance, for 3 consecutive days. ELA.EE.RI.5.3 C
+            • Maddie will, follow a tactile sequenced schedule, with objects that are different but have similar attributes, in order to anticipate transitions , with full physical assistance fading to 
+            independent, 4 out of 5 tries per day, 4 out of 5 days per week. This goal is done in conjunction with the TVI specialist.
             """
         noahpalmeriep = """Noah Palmer	    	20 min / month
             • Given verbal support, Noah will solve math money problems using the dollar more strategy for amounts up to $20.00 dollars using 1, 5 and 10 dollar bills, on 4/5 daily trials over 3 consecutive weeks.
@@ -10148,20 +10142,12 @@ class iepIntro(scrolled.ScrolledPanel):
                     in 3 of 4 probes and measured by TVI created data sheets.
                     """
         madelinecostelloiep = """Madeline Costello	    	120 min / month
-                    • When given 2 sets of textured items, Maddie will identify same and different by separating all the same items into a box with 80% accuracy in 4/5 trials as measured by classroom data. (
-                    EE.4.MD.6)
-                        ◦ When given 2 sets of textured items, Maddie will identify the set that is either the same or different with 60% accuracy in 4/5 trials as measured by classroom data.
-                        ◦ When given 2 sets of textured items, Maddie will identify the set that is either the same or different with 70% accuracy in 4/5 trials as measured by classroom data.
-                    • When read a story by an adult, Maddie will determine the meaning of words in text by identifying the object or tactile drawing that goes with the story with 70% accuracy in 4/5 trials as
-                    measured by
-                    classroom data. (EE.RL.4.4)
-                        ◦ When given an actual object, Maddie will be able to identify the tactile drawing version of the object with 70% accuracy in 4/5 trials as measured by classroom data.
-                        ◦ When given an actual object, Maddie will be able to identify the tactile drawing version of the object with 60% accuracy in 4/5 trials as measured by classroom data.
-                    • With guidance and support, Maddie will use the braille writer to braille her name with 80% accuracy in 4/5 trials as measured by classroom data. (EE.W.4.6)
-                        ◦ When presented with a braille swing cell, Maddie independently will learn cell placement (1, 2,3, 4,5, 6) with 40% accuracy in 4/5 trials as measured by classroom data. (EE.W.4.6)
-                        ◦ When asked to braille up to 3 specified braille cell numbers (such as 1, 2,3) Maddie will braille them independently with 40% accuracy in 4/5 trials as measured by classroom data
-                        ◦ When presented with a braille swing cell, Maddie independently will learn cell placement with 60% accuracy in 4/5 trials as measured by classroom data
-                    """
+            • Maddie will, with guidance and support, use a QWERTY keyboard with screenreader, to type her name with 80% accuracy in 4/5 trials as measured by classroom data.
+            • Maddie will explore, locate and identify a tactile object or tactile drawing, based on being read to or listening to instructions, during one on one instruction or small group instruction in 4/5 
+            tries with decreasing amount of physical assistance, for 3 consecutive days. ELA.EE.RI.5.3 C
+            • Maddie will, follow a tactile sequenced schedule, with objects that are different but have similar attributes, in order to anticipate transitions , with full physical assistance fading to 
+            independent, 4 out of 5 tries per day, 4 out of 5 days per week. This goal is done in conjunction with the TVI specialist.
+            """
         noahpalmeriep = """Noah Palmer	    	20 min / month
                     • Given verbal support, Noah will solve math money problems using the dollar more strategy for amounts up to $20.00 dollars using 1, 5 and 10 dollar bills, on 4/5 daily trials over 3
                     consecutive weeks.

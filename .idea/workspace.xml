@@ -10,7 +10,6 @@
   <component name="ChangeListManager">
     <list default="true" id="fa304d23-fe14-4dd1-9cb8-16c0a72e419f" name="Changes" comment="Plots now made from SQLite database rather than local csv files">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="true" />
@@ -189,14 +188,8 @@
       <workItem from="1675175746953" duration="1277000" />
       <workItem from="1675185654919" duration="596000" />
       <workItem from="1675191233538" duration="724000" />
-      <workItem from="1675198706981" duration="488000" />
-    </task>
-    <task id="LOCAL-00029" summary="Updated code">
-      <created>1663615239493</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1663615239493</updated>
+      <workItem from="1675198706981" duration="588000" />
+      <workItem from="1675272237808" duration="1130000" />
     </task>
     <task id="LOCAL-00030" summary="Updated code">
       <created>1664295395261</created>
@@ -534,7 +527,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675102022566</updated>
     </task>
-    <option name="localTasksCounter" value="78" />
+    <task id="LOCAL-00078" summary="Plots now made from SQLite database rather than local csv files">
+      <created>1675199282992</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1675199282992</updated>
+    </task>
+    <option name="localTasksCounter" value="79" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

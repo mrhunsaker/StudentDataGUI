@@ -8,9 +8,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa304d23-fe14-4dd1-9cb8-16c0a72e419f" name="Changes" comment="Plots now made from SQLite database rather than local csv files">
+    <list default="true" id="fa304d23-fe14-4dd1-9cb8-16c0a72e419f" name="Changes" comment="Variables stores in helpers.py as much as possible and called via globals() rather than locals()">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="true" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -192,13 +191,8 @@
       <workItem from="1675272237808" duration="1890000" />
       <workItem from="1675281006180" duration="770000" />
       <workItem from="1675294355557" duration="27000" />
-    </task>
-    <task id="LOCAL-00032" summary="Updated code">
-      <created>1664582890234</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1664582890234</updated>
+      <workItem from="1675294438037" duration="365000" />
+      <workItem from="1675294992607" duration="5000" />
     </task>
     <task id="LOCAL-00033" summary="Migrating from using os to pathlib">
       <created>1664910298711</created>
@@ -536,7 +530,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675281598039</updated>
     </task>
-    <option name="localTasksCounter" value="81" />
+    <task id="LOCAL-00081" summary="Variables stores in helpers.py as much as possible and called via globals() rather than locals()">
+      <created>1675294798499</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1675294798514</updated>
+    </task>
+    <option name="localTasksCounter" value="82" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -575,7 +576,8 @@
     <MESSAGE value="Code Formatting and added form for accessing student specific worksheets and datasheets" />
     <MESSAGE value="Added in warning dialogs" />
     <MESSAGE value="Plots now made from SQLite database rather than local csv files" />
-    <option name="LAST_COMMIT_MESSAGE" value="Plots now made from SQLite database rather than local csv files" />
+    <MESSAGE value="Variables stores in helpers.py as much as possible and called via globals() rather than locals()" />
+    <option name="LAST_COMMIT_MESSAGE" value="Variables stores in helpers.py as much as possible and called via globals() rather than locals()" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />

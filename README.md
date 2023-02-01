@@ -39,14 +39,12 @@ requirements.txt file as well for those who just want to install required module
 $ python3 -m pip install --user pipenv
 ```
 
-Enter the project repository and install from Pipfile and Pipfile.lock
+Enter the project repository and set up the virtual environment using the information in Pipfile and Pipfile.lock
 
 ```bash
 $ cd </path/to/project>
 $ pipenv install
 ```
-
-It will create the virtual environment and install all modules and necessary dependencies
 
 #### To run program
 

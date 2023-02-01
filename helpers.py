@@ -41,6 +41,111 @@ students = [
         'SuttonBuell'
         ]
 ##############################################################################
+# Current Student IEPs
+##############################################################################
+addisonbbookeriep = """Addison Booker  	20 min / quarter
+    • When Addi is read a short story from a book with pictures, she will use eye gaze or touch to identify people or objects from the story or answer yes/no comprehension questions with 60% accuracy 2x
+    weekly, across 3/5 data sessions.
+        ◦ When Addi is read a short story from a book with pictures, she will use eye gaze or touch to identify people or objects from the story or answer yes/no comprehension questions with 20% accuracy
+        2x weekly, across 3/5 data sessions.
+        ◦ When Addi is read a short story from a book with pictures, she will use eye gaze or touch to identify people or objects from the story or answer yes/no comprehension questions with 40% accuracy
+        2x weekly, across 3/5 data sessions.
+    """
+amiritoiep = """Ami Rito    20 min / month
+    • When presented with a 3D household or classroom item, Ami will find its match using eye gaze or touch selection, matching a total of 3 items, on 4/5 daily trials, over 3 consecutive weeks.
+        ◦ When presented with a 3D household or classroom item, Ami will find its match using eye gaze or touch selection, matching a total of 1 item, on 4/5 daily trials, over 3 consecutive weeks.
+        ◦ When presented with a 3D household or classroom item, Ami will find its match using eye gaze or touch selection, matching a total of 2 items, on 4/5 daily trials, over 3 consecutive weeks.
+    """
+ashlynnenelsoniep = """Ashlynn Nelson  	20 min / month
+    • When given partial physical support, Ashylnn will be shown a selected musical instrument (xylophone, bells, drum, tambourine), and be shown a video (4-6ft away) of someone playing the selected
+    musical instrument, then will focus her attention on the video for 3 seconds or more on 4/5 twice weekly trials, over 3 consecutive weeks.
+        ◦ When given partial physical support, Ashylnn will be shown a selected musical instrument (xylophone, bells, drum, tambourine), and be shown a video (4-6ft away) of someone playing the selected
+        musical instrument, then will focus her attention on the video for 1 second on 4/5 twice weekly trials, over 3 consecutive weeks.
+        ◦ When given partial physical support, Ashylnn will be shown a selected musical instrument (xylophone, bells, drum, tambourine), and be shown a video (4-6ft away) of someone playing the selected
+        musical instrument, then will focus her attention on the video for 2 second or more on 4/5 twice weekly trials, over 3 consecutive weeks.
+    """
+austindenneyiep = """Austin Denney  60 min/month
+    •  Within one year Austin will independently utilize 10 keyboard shortcuts 8/10 times at 80% accuracy over 4 data sessions as observed by the teacher of students with visual impairments.
+    • Within one year Austin will independently type 30wpm 4/5 times at 80% accuracy over 4 data sessions as observed by the teacher of students with visual impairments.
+        """
+cartercostelloiep = """Carter Costello	    	120 min / month
+    • Carter will identify the braille letters of his name with 80% accuracy in 4/5 trials as measured by classroom data. (EE.RF.1.3)
+        ◦ Carter will identify 2/6 braille letters of his name with 80% accuracy in 4/5 trials as measured by classroom data.
+        ◦ Carter will identify 4/6 braille letters of his name with 80% accuracy in 4/5 trails as measured by classroom data.
+    • Carter will independently indicate the number that results when adding one more using manipulatives and/or the abacus with 80% accuracy in 4/5 trials as measured by classroom data. (EE.1.OA.5.a)
+        ◦ With assistance from staff, Carter will indicate the number that results when adding one more using manipulatives or the abacus with 80% accuracy in 4/5 trials as measured by classroom data
+        ◦ Carter will independently identify the different parts of the abacus: the one beads, five beads and the reckoning bar with 80% accuracy unprompted in 4/5 trials as measured by classroom data.
+    • Carter will braille his name independently with 80% accuracy and no more than one prompt per probe on 5 probes as measured by classroom data. (EE.W.1.6)
+        ◦ Carter will independently learn to braille the letters in his name with 60% accuracy with less than 3 physical prompts as measured by classroom data.
+        ◦ Carter will use a braille writer to braille his name with limited physical assistance with 60% accuracy and no more than one prompt per probe on 5 probes as measured by classroom data.
+    """
+carstontalbotiep = """Carston Talbot  	30 min / month
+    • When given a choice between two pictures, Carston will visually locate and chose the picture that represents the object/activity he would like with 4 out of 5 trials over 3 consecutive data sessions
+    as evidenced by vision and classroom data.
+        ◦ Carston will visually locate and chose the picture that represents the activity he would like with 4 out of 5 trials over 3 consecutive data sessions as evidenced by vision and classroom data.
+        ◦ Carston will visually locate and chose a picture that represents a preferred object that he would like with 4 out of 5 trials over 3 consecutive data sessions as evidenced by vision and
+        classroom data.
+    """
+celestialneilsoniep = """Celestial  Nelson   	30 min / month
+    • Given the opportunity, in a variety of school-based locations, CD will, with minimal prompting, using her vision, make choices about academic and preferred activities within a class period in
+    addition to 2 topics of conversation per location with a variety of people 70% of opportunities across 3 consecutive data session, as measured by classroom data and observation.
+        ◦ Given the opportunity, in a variety of school-based locations, CD will, with maximum prompting, using her vision, make choices about academic and preferred activities within a class period in
+        addition to 1 topic of conversation per location with a variety of people 70% of opportunities across 3 consecutive data session, as measured by classroom data and observation.
+        ◦ Given the opportunity, in a variety of school-based locations, CD will, with maximum prompting, using her vision, make choices about academic and preferred activities within a class period in
+        addition to 2 topics of conversation per location with a variety of people 70% of opportunities across 3 consecutive data session, as measured by classroom data and observation.
+    """
+colecooperiep = """Cole  Cooper    30 min/month
+    • When presented with 2 objects, Cole will be able to utilize his central vision to locate an object with 70% accuracy as measured by the TVI and classroom teacher over 3 consecutive data sessions.
+        ◦ When presented with 2 objects, Cole will be able to utilize his central vision to locate an object with 50% accuracy as measured by the TVI and classroom teacher over 3 consecutive data sessions.
+        ◦ When presented with 2 objects, Cole will be able to utilize his central vision to locate an object with 60% accuracy as measured by the TVI and classroom teacher over 3 consecutive data sessions.
+    """
+diegopenalozadiaziep = """Dylan Penaloza-Diaz	    	40 min / month
+    • Dylan will independently complete eye-hand coordination matching activities and/or locating a specific letter, word, or icon on a communication board with 70% accuracy on by completing 4/5 requests
+    across 3 data sessions.
+        ◦ Dylan will independently complete eye-hand coordination matching activities and/or locating a specific letter, word, or icon on a communication board with 30% accuracy on by completing 4/5
+        requests across 3 data sessions.
+        ◦ Dylan will independently complete eye-hand coordination matching activities and/or locating a specific letter, word, or icon on a communication board with 50% accuracy on by completing 4/5
+        requests across 3 data sessions.
+    """
+grantchristenseniep = """Grant Christensen	    	800 min/month
+    • Grant, through monthly assessments, will read braille at grade level text with a consistent speed of 65 cwpm with 95% accuracy or better with 100% comprehension in 4/5 trials as measured by his TVI.
+    • Grant, through monthly assessments, will produce complete sentences and passages using UEB contractions and proper braille writing techniques with 3 errors or less per writing assignment in 4 of 5
+    trials as measured by his TVI.
+    • Grant, through monthly assessments, will demonstrate proficiency in technology for the visually impaired with at least 95% accuracy on required tasks indicated on a checklist of skills from a
+    Teacher's rubric in 3 of 4 evaluated sessions.
+    """
+kayleevimahiiep = """Kaylee Vimahi	    	60 min/month
+    • When given access to an accessible reading library, Kaylee will independently download 3 audio/eBooks and increase her reading speed and stamina from 143wpm and 10 minutes, to 200wpm and 30 minutes
+    in 3 of 4 probes and measured by TVI created data sheets.
+    """
+madelinecostelloiep = """Madeline Costello	    	120 min / month
+    • Maddie will, with guidance and support, use a QWERTY keyboard with screenreader, to type her name with 80% accuracy in 4/5 trials as measured by classroom data.
+    • Maddie will explore, locate and identify a tactile object or tactile drawing, based on being read to or listening to instructions, during one on one instruction or small group instruction in 4/5 
+    tries with decreasing amount of physical assistance, for 3 consecutive days. ELA.EE.RI.5.3 C
+    • Maddie will, follow a tactile sequenced schedule, with objects that are different but have similar attributes, in order to anticipate transitions , with full physical assistance fading to 
+    independent, 4 out of 5 tries per day, 4 out of 5 days per week. This goal is done in conjunction with the TVI specialist.
+    """
+noahpalmeriep = """Noah Palmer	    	20 min / month
+    • Given verbal support, Noah will solve math money problems using the dollar more strategy for amounts up to $20.00 dollars using 1, 5 and 10 dollar bills, on 4/5 daily trials over 3 consecutive weeks.
+        ◦ Given verbal support, Noah will solve math money problems using the dollar more strategy for amounts up to $15.00 dollars using 1, 5 and 10 dollar bills, on 4/5 daily trials over 3 consecutive
+        weeks.
+        ◦ Given verbal support, Noah will solve math money problems using the dollar more strategy for amounts up to $17.00 dollars using 1, 5 and 10 dollar bills, on 4/5 daily trials over 3 consecutive
+        weeks.
+    """
+paulasackettiep = """Paula Sackett      30 min / month
+    • When given moderate support, Paula will participate in two separate leisure skill activities (crafts,games, books, etc.) throughout the school week, then when shown a 3D item associated with each
+    activity, she will choose (by looking at and grabbing) the 3D item associated with the activity that she preferred, on 2x weekly trials, as measured over 12 consecutive weeks (staff will keep a
+    running list of activities she enjoys to add to her interest inventory).
+        ◦ When given maximal support, Paula will participate in two separate leisure skill activities (crafts, games, books, etc.) throughout the school week, then when shown a 3D item associated with
+        each activity, she will choose (by looking at and grabbing) the 3D item associated with the activity that she preferred, on 2x weekly trials, as measured over 12 consecutive weeks (staff will keep
+        a running list of activities she enjoys to add to her interest inventory)..
+    """
+suttonbuelliep = """Sutton Buell    	20 min / month
+    • Sutton will independently point to and label shapes, numbers, and count by rote and objects to 10, with a 80% accuracy over 3 consecutive data sessions.
+    • Sutton will recognize and label 15 letters and sounds starting with those in her name with 100% accuracy across 4 data sessions as recorded by teacher collected data.
+    """
+
+##############################################################################
 # All DSD Students
 ##############################################################################
 students_all = [
@@ -473,6 +578,94 @@ cviDomains = [
         'visualNovelty',
         'visuallyGuidedReach'
         ]
+
+needformovement = ("""
+NEED FOR MOVEMENT
+0.........Range 1-2:  Objects viewed generally have movement/reflective properties
+1.........Range 3-4:  More consistent localization, brief fixations on movement & reflective materials
+2.........Range 5-6:  Movement continues to be an important factor to initiate visual attention
+3.........Range 7-8:  Movement not required for attention at near
+4.........Range 9-10: Typical responses to moving targets
+""")
+visuallatency = ("""
+VISUAL LATENCY
+0.........Range 1-2:  Prolonged periods of visual latency
+1.........Range 3-4:  Latency slightly decreases after periods of consistent viewing
+2.........Range 5-6:  Latency present only when student is tired, stressed, or over stimulated
+3.........Range 7-8:  Latency rarely present
+4.........Range 9-10: Latency resolved
+""")
+visualfieldpreference = ("""
+VISUAL FIELD LATENCY
+0.........Range 1-2:  Distinct field dependency
+1.........Range 3-4:  Shows visual field preferences
+2.........Range 5-6:  Field preferences decreasing with familiar inputs
+3.........Range 7-8:  May alternate use of right and left fields
+4.........Range 9-10: Visual fields unrestricted
+""")
+visualcomplexity = ("""
+DIFFICULTY WITH VISUAL COMPLEXITY
+0.........Range 1-2:  Responds only in strictly controlled environments
+1.........Range 3-4:  Visually fixates when environment is controlled
+2.........Range 5-6:  Student tolerates low levels of familiar background noise
+                         Regards familiar faces when voice does not compete
+3.........Range 7-8:  Competing auditory stimuli tolerated during periods of viewing
+                         Views simple books/ symbols & Smiles at/regards familiar and new faces
+4.........Range 9-10: Only the most complex visual environments affect visual response
+                         Views books or other 2-dimensional materials & Typical visual- social responses
+""")
+nonpurposefulgaze = ("""
+LIGHT GAZING AND NONPURPOSEFUL GAZE
+0.........Range 1-2:  May localize briefly but no prolonged fixations on objects or faces
+                         Overly attentive to lights or perhaps ceiling fans
+1.........Range 3-4:  Less attracted to lights - can be redirected to other targets
+2.........Range 5-6:  Light is no longer a distractor
+3.........Range 7-8:  Light is no longer a distractor
+4.........Range 9-10: Light is no longer a distractor
+""")
+distanceviewing = ("""
+DIFFICULTY WITH DISTANCE VIEWING
+0.........Range 1-2:  Visually attends in near space only
+1.........Range 3-4:  Occasional visual attention on familiar, moving or large targets at 2-3 feet
+2.........Range 5-6:  Visual attention extends beyond near space, up to 4-6 feet
+3.........Range 7-8:  Visual attention extends to 10 feet with targets that produce movement
+4.........Range 9-10: Visual attention extends beyond 20 feet & Demonstrates memory of visual events
+""")
+visualreflexes = ("""
+ATYPICAL VISUAL REFLEXES
+0......... Range 1-2:  No blink in response to touch and/or visual threat
+1.........Range 3-4:  Blinks in response to touch but response may be latent
+2.........Range 5-6:  Blink response to touch consistently present
+                         Visual threat response intermittently present
+3.........Range 7-8:  Visual threat response consistently present (both near 90% resolved)
+4.........Range 9-10: Visual reflexes always present, resolved
+""")
+visualnovelty = ("""
+DIFFICULTY WITH VISUAL NOVELTY
+0.........Range 1-2:  Only favorite or known objects solicit visual attention
+1.........Range 3-4:  May tolerate novel objects if the novel objects share characteristics of familiar objects
+2.........Range 5-6:  Use of “known” objects to initiate looking sequence
+3.........Range 7-8:  Selection of objects less restricted, requires 1-2 sessions of “warm up” time
+4.........Range 9-10: Selection of objects not restricted
+""")
+visuallyguidedreach = ("""
+ABSENCE OF VISUALLY GUIDED REACH
+0.........Range 1-2:  Look & touch occur as separate functions
+                     Large &/or moving targets
+1.........Range 3-4:  Look & touch on smaller objects that are familiar, lighted, or reflective
+                     Look and touch are still separate
+2.........Range 5-6:  Visually guided reach with familiar objects or “favorite” color
+3.........Range 7-8:  Look and touch occur in rapid sequence but not always together
+4.........Range 9-10: Look and touch consistently
+""")
+colorpreference = ("""
+COLOR PREFERENCE
+0.........Range 1-2:  Objects viewed are generally single color
+1.........Range 3-4:  Has “favorite” color
+2.........Range 5-6:  Objects may have 2- 3 colors
+3.........Range 7-8:  More colors, familiar patterns regarded
+4.........Range 9-10: No color or pattern preference
+""")
 
 ##############################################################################
 # End Variables

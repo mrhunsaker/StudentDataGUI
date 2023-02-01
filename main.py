@@ -1622,6 +1622,17 @@ class dataPanel(wx.Panel):
                             wx.OK
                             )
                     self.dial.ShowModal()
+                    self.trial011.Clear()
+                    self.trial021.Clear()
+                    self.trial031.Clear()
+                    self.trial041.Clear()
+                    self.trial051.Clear()
+                    self.trial061.Clear()
+                    self.trial071.Clear()
+                    self.trial081.Clear()
+                    self.trial091.Clear()
+                    self.trial101.Clear()
+                    self.trial111.Clear()
                 else:
                     self.dial = wx.MessageDialog(
                             None,
@@ -3282,6 +3293,70 @@ class braillePanel(scrolled.ScrolledPanel):
                         wx.OK
                         )
                 self.dial.ShowModal()
+                self.trial11.Clear()
+                self.trial12.Clear()
+                self.trial13.Clear()
+                self.trial14.Clear()
+                self.trial21.Clear()
+                self.trial22.Clear()
+                self.trial23.Clear()
+                self.trial24.Clear()
+                self.trial25.Clear()
+                self.trial26.Clear()
+                self.trial27.Clear()
+                self.trial28.Clear()
+                self.trial29.Clear()
+                self.trial210.Clear()
+                self.trial211.Clear()
+                self.trial212.Clear()
+                self.trial213.Clear()
+                self.trial214.Clear()
+                self.trial215.Clear()
+                self.trial31.Clear()
+                self.trial32.Clear()
+                self.trial33.Clear()
+                self.trial34.Clear()
+                self.trial35.Clear()
+                self.trial36.Clear()
+                self.trial37.Clear()
+                self.trial38.Clear()
+                self.trial39.Clear()
+                self.trial310.Clear()
+                self.trial311.Clear()
+                self.trial312.Clear()
+                self.trial313.Clear()
+                self.trial314.Clear()
+                self.trial315.Clear()
+                self.trial41.Clear()
+                self.trial42.Clear()
+                self.trial43.Clear()
+                self.trial44.Clear()
+                self.trial51.Clear()
+                self.trial52.Clear()
+                self.trial53.Clear()
+                self.trial54.Clear()
+                self.trial61.Clear()
+                self.trial62.Clear()
+                self.trial63.Clear()
+                self.trial64.Clear()
+                self.trial65.Clear()
+                self.trial66.Clear()
+                self.trial67.Clear()
+                self.trial71.Clear()
+                self.trial72.Clear()
+                self.trial73.Clear()
+                self.trial74.Clear()
+                self.trial75.Clear()
+                self.trial76.Clear()
+                self.trial77.Clear()
+                self.trial78.Clear()
+                self.trial81.Clear()
+                self.trial82.Clear()
+                self.trial83.Clear()
+                self.trial84.Clear()
+                self.trial85.Clear()
+                self.trial86.Clear()
+                self.trial87.Clear()
             else:
                 self.dial = wx.MessageDialog(
                         None,
@@ -6062,6 +6137,34 @@ class screenreaderPanel(scrolled.ScrolledPanel):
                         wx.OK
                         )
                 self.dial.ShowModal()
+                self.trial11.Clear()
+                self.trial12.Clear()
+                self.trial13.Clear()
+                self.trial14.Clear()
+                self.trial15.Clear()
+                self.trial16.Clear()
+                self.trial21.Clear()
+                self.trial22.Clear()
+                self.trial23.Clear()
+                self.trial24.Clear()
+                self.trial31.Clear()
+                self.trial32.Clear()
+                self.trial33.Clear()
+                self.trial34.Clear()
+                self.trial35.Clear()
+                self.trial36.Clear()
+                self.trial37.Clear()
+                self.trial38.Clear()
+                self.trial39.Clear()
+                self.trial310.Clear()
+                self.trial311.Clear()
+                self.trial41.Clear()
+                self.trial42.Clear()
+                self.trial43.Clear()
+                self.trial44.Clear()
+                self.trial45.Clear()
+                self.trial46.Clear()
+                self.trial47.Clear()
             else:
                 self.dial = wx.MessageDialog(
                         None,
@@ -7674,6 +7777,30 @@ class abacusPanel(scrolled.ScrolledPanel):
                         wx.OK
                         )
                 self.dial.ShowModal()
+                self.trial11.Clear()
+                self.trial12.Clear()
+                self.trial13.Clear()
+                self.trial14.Clear()
+                self.trial21.Clear()
+                self.trial22.Clear()
+                self.trial23.Clear()
+                self.trial31.Clear()
+                self.trial32.Clear()
+                self.trial33.Clear()
+                self.trial41.Clear()
+                self.trial42.Clear()
+                self.trial51.Clear()
+                self.trial52.Clear()
+                self.trial61.Clear()
+                self.trial62.Clear()
+                self.trial63.Clear()
+                self.trial64.Clear()
+                self.trial71.Clear()
+                self.trial72.Clear()
+                self.trial73.Clear()
+                self.trial74.Clear()
+                self.trial81.Clear()
+                self.trial82.Clear()
             else:
                 self.dial = wx.MessageDialog(
                         None,
@@ -7725,32 +7852,33 @@ class abacusPanel(scrolled.ScrolledPanel):
                 P8_1,
                 P8_2
                 )
-                VALUES (?,
-?,
-?,
-?,
-?,
-?,
-?,
-?,
-?,
-?,
-?,
-?,
-?,
-?,
-?,
-?,
-?,
-?,
-?,
-?,
-?,
-?,
-?,
-?,
-?,
-?)""",
+                VALUES (
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?)""",
                     (studentname,
                      datenow,
                      trial11,
@@ -9068,6 +9196,16 @@ class cviPanel(scrolled.ScrolledPanel):
                         wx.OK
                         )
                 self.dial.ShowModal()
+                self.trial11.Clear()
+                self.trial12.Clear()
+                self.trial13.Clear()
+                self.trial14.Clear()
+                self.trial21.Clear()
+                self.trial22.Clear()
+                self.trial23.Clear()
+                self.trial31.Clear()
+                self.trial32.Clear()
+                self.trial33.Clear()
             else:
                 self.dial = wx.MessageDialog(
                         None,
@@ -10567,6 +10705,7 @@ class meetingsPanel(scrolled.ScrolledPanel):
                             wx.OK
                             )
                     self.dial.ShowModal()
+                    self.notes1.Clear()
                 else:
                     self.dial = wx.MessageDialog(
                             None,
@@ -10859,6 +10998,7 @@ class observationsPanel(scrolled.ScrolledPanel):
                             wx.OK
                             )
                     self.dial.ShowModal()
+                    self.notes1.Clear()
                 else:
                     self.dial = wx.MessageDialog(
                             None,

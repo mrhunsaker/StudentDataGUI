@@ -8,10 +8,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa304d23-fe14-4dd1-9cb8-16c0a72e419f" name="Changes" comment="Plots now made from SQLite database rather than local csv files">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-    </list>
+    <list default="true" id="fa304d23-fe14-4dd1-9cb8-16c0a72e419f" name="Changes" comment="Plots now made from SQLite database rather than local csv files" />
     <option name="SHOW_DIALOG" value="true" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="true" />
@@ -189,14 +186,7 @@
       <workItem from="1675185654919" duration="596000" />
       <workItem from="1675191233538" duration="724000" />
       <workItem from="1675198706981" duration="588000" />
-      <workItem from="1675272237808" duration="1130000" />
-    </task>
-    <task id="LOCAL-00030" summary="Updated code">
-      <created>1664295395261</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1664295395261</updated>
+      <workItem from="1675272237808" duration="1890000" />
     </task>
     <task id="LOCAL-00031" summary="Migrating from using os to pathlib">
       <created>1664566800468</created>
@@ -534,7 +524,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675199282992</updated>
     </task>
-    <option name="localTasksCounter" value="79" />
+    <task id="LOCAL-00079" summary="Plots now made from SQLite database rather than local csv files">
+      <created>1675273837626</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1675273837626</updated>
+    </task>
+    <option name="localTasksCounter" value="80" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

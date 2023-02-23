@@ -1,20 +1,20 @@
 ﻿# coding=utf-8
-#################################################################################
-#    Copyright 2023 Michael Ryan Hunsaker, M.Ed., Ph.D.                         #
-#    email: hunsakerconsulting@gmail.com                                        #
-#                                                                               #
-#    Licensed under the Apache License, Version 2.0 (the "License");            #
-#    you may not use this file except in compliance with the License.           #
-#    You may obtain a copy of the License at                                    #
-#                                                                               #
-#        http://www.apache.org/licenses/LICENSE-2.0                             #
-#                                                                               #
-#    Unless required by applicable law or agreed to in writing, software        #
-#    distributed under the License is distributed on an "AS IS" BASIS,          #
-#    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.   #
-#    See the License for the specific language governing permissions and        #
-#    limitations under the License.                                             #
-#################################################################################
+###############################################################################
+#    Copyright 2023 Michael Ryan Hunsaker, M.Ed., Ph.D.                       #
+#    email: hunsakerconsulting@gmail.com                                      #
+#                                                                             #
+#    Licensed under the Apache License, Version 2.0 (the "License");          #
+#    you may not use this file except in compliance with the License.         #
+#    You may obtain a copy of the License at                                  #
+#                                                                             #
+#        http://www.apache.org/licenses/LICENSE-2.0                           #
+#                                                                             #
+#    Unless required by applicable law or agreed to in writing, software      #
+#    distributed under the License is distributed on an "AS IS" BASIS,        #
+#    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. #
+#    See the License for the specific language governing permissions and      #
+#    limitations under the License.                                           #
+###############################################################################
 
 import os
 import shutil
@@ -30,6 +30,7 @@ import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
 import wx
+import wx.grid
 import wx.html2
 import wx.lib.scrolledpanel as scrolled
 from plotly.subplots import make_subplots
@@ -37,8 +38,6 @@ from plotly.subplots import make_subplots
 from helpers import *
 
 date = datetime.datetime.now().strftime("%Y_%m_%d-%H%M%S_%p")
-
-
 
 ##############################################################################
 # Define Paths
@@ -540,7 +539,11 @@ def create_connection(db_file):
             conn.close()
 
 
-dataBasePath = Path(USER_DIR).joinpath('StudentDatabase/students.db')
+dataBasePath = Path(USER_DIR).joinpath(
+        'StudentDatabase',
+        'students.db'
+        )
+
 if __name__ == '__main__':
     create_connection(dataBasePath)
 
@@ -851,7 +854,16 @@ class dataPanel(wx.Panel):
                         224
                         )
                 )
-        self.SetFont(wx.Font(10, wx.MODERN, wx.NORMAL, wx.NORMAL, False, u'Atkinson Hyperlegible'))
+        self.SetFont(
+                wx.Font(
+                        10,
+                        wx.MODERN,
+                        wx.NORMAL,
+                        wx.NORMAL,
+                        False,
+                        u'Atkinson Hyperlegible'
+                        )
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -1328,7 +1340,9 @@ class dataPanel(wx.Panel):
         :param event:
         :type event:
         """
-        studentname = self.studentname1.GetString(self.studentname1.GetSelection())
+        studentname = self.studentname1.GetString(
+                self.studentname1.GetSelection()
+                )
         studentname = studentname.lower()
 
         lookupid = f"{studentname}iep"
@@ -1361,9 +1375,15 @@ class dataPanel(wx.Panel):
                 )
         datenow = datetime.datetime.now().strftime("%Y_%m_%d-%H%M%S")
         item = self.lesson1.GetSelection()
-        task = self.lesson1.GetItemText(self.lesson1.GetItemParent(item))
-        lesson = self.lesson1.GetItemText(self.lesson1.GetSelection())
-        session = self.session1.GetString(self.session1.GetSelection())
+        task = self.lesson1.GetItemText(
+                self.lesson1.GetItemParent(item)
+                )
+        lesson = self.lesson1.GetItemText(
+                self.lesson1.GetSelection()
+                )
+        session = self.session1.GetString(
+                self.session1.GetSelection()
+                )
         trial01 = self.trial011.GetValue()
         trial02 = self.trial021.GetValue()
         trial03 = self.trial031.GetValue()
@@ -10472,7 +10492,16 @@ class observationsPanel(scrolled.ScrolledPanel):
                         224
                         )
                 )
-        self.SetFont(wx.Font(10, wx.MODERN, wx.NORMAL, wx.NORMAL, False, u'Atkinson Hyperlegible'))
+        self.SetFont(
+                wx.Font(
+                        10,
+                        wx.MODERN,
+                        wx.NORMAL,
+                        wx.NORMAL,
+                        False,
+                        u'Atkinson Hyperlegible'
+                        )
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -10717,6 +10746,46 @@ class observationsPanel(scrolled.ScrolledPanel):
             self.dial.ShowModal()
 
 
+class DataTable(wx.grid.GridTableBase):
+    def __init__(self, data = None):
+        wx.grid.GridTableBase.__init__(self)
+        self.headerRows = 1
+        if data is None:
+            data = pd.DataFrame()
+        self.data = data
+
+    def GetNumberRows(self):
+        return len(self.data)
+
+    def GetNumberCols(self):
+        return len(self.data.columns) + 1
+
+    def GetValue(self, row, col):
+        if col == 0:
+            return self.data.index[row]
+        return self.data.iloc[row, col - 1]
+
+    def SetValue(self, row, col, value):
+        self.data.iloc[row, col - 1] = value
+
+    def GetColLabelValue(self, col):
+        if col == 0:
+            if self.data.index.name is None:
+                return 'Index'
+            else:
+                return self.data.index.name
+        return str(self.data.columns[col - 1])
+
+    def GetTypeName(self, row, col):
+        return wx.grid.GRID_VALUE_STRING
+
+    def GetAttr(self, row, col, prop):
+        attr = wx.grid.GridCellAttr()
+        if row % 2 == 1:
+            attr.SetBackgroundColour(EVEN_ROW_COLOUR)
+        return attr
+
+
 class StudentDataBook(
         wx.Frame,
         wx.Accessible
@@ -10748,7 +10817,16 @@ class StudentDataBook(
                         224
                         )
                 )
-        self.SetFont(wx.Font(10, wx.MODERN, wx.NORMAL, wx.NORMAL, False, u'Atkinson Hyperlegible'))
+        self.SetFont(
+                wx.Font(
+                        10,
+                        wx.MODERN,
+                        wx.NORMAL,
+                        wx.NORMAL,
+                        False,
+                        u'Atkinson Hyperlegible'
+                        )
+                )
         self.initui()
 
     def initui(self):

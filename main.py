@@ -10746,6 +10746,22 @@ class observationsPanel(scrolled.ScrolledPanel):
             self.dial.ShowModal()
 
 
+class visualScan(scrolled.ScrolledPanel):
+    def __init__(self, *args, **kwds):
+        scrolled.ScrolledPanel.__init__(self, *args, **kwds)
+        sizer = wx.BoxSizer(wx.VERTICAL)
+        self.browser = wx.html2.WebView.New(self)
+        sizer.Add(self.browser, 1, wx.EXPAND, 10)
+        self.SetSizer(sizer)
+        self.SetSize((1600, 1200))
+        URL = Path(ROOT_DIR).joinpath(
+                'visualScan',
+                'VisualScanHeatMap',
+                'fieldmap.html'
+                )
+        self.browser.LoadURL(f"{URL}")
+
+
 class StudentDataBook(
         wx.Frame,
         wx.Accessible
@@ -10821,6 +10837,10 @@ class StudentDataBook(
         nb.AddPage(
                 observationsPanel(nb),
                 "VISION OBSERVATIONS"
+                )
+        nb.AddPage(
+                visualScan(nb),
+                "Visual Scan Mapping (alpha)"
                 )
         nb.AddPage(
                 meetingsPanel(nb),

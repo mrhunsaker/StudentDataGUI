@@ -9,12 +9,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fa304d23-fe14-4dd1-9cb8-16c0a72e419f" name="Changes" comment="Variables stores in helpers.py as much as possible and called via globals() rather than locals()">
-      <change afterPath="$PROJECT_DIR$/visualScan/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/visualScan/VisualScanHeatMap/fieldMap.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/visualScan/cviheatmap.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualScan/VisualScanHeatMap/fieldMap.html" beforeDir="false" afterPath="$PROJECT_DIR$/visualScan/VisualScanHeatMap/fieldMap.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="true" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -221,14 +216,7 @@
       <workItem from="1677195393946" duration="1700000" />
       <workItem from="1677266183166" duration="928000" />
       <workItem from="1677464274903" duration="1132000" />
-      <workItem from="1677512754154" duration="1645000" />
-    </task>
-    <task id="LOCAL-00037" summary="Migrating from using os to pathlib">
-      <created>1665346419064</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1665346419064</updated>
+      <workItem from="1677512754154" duration="2039000" />
     </task>
     <task id="LOCAL-00038" summary="Updating program to allow report file uploads">
       <created>1665425214262</created>
@@ -566,7 +554,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677200062363</updated>
     </task>
-    <option name="localTasksCounter" value="86" />
+    <task id="LOCAL-00086" summary="Variables stores in helpers.py as much as possible and called via globals() rather than locals()">
+      <created>1677522481947</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1677522481947</updated>
+    </task>
+    <option name="localTasksCounter" value="87" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

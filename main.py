@@ -822,6 +822,34 @@ sys.excepthook = warningmessage
 # Begin Classes
 ##############################################################################
 
+class MyBrowser(wx.Dialog):
+    def __init__(self, *args, **kwds):
+        wx.Dialog.__init__(self, *args, **kwds)
+        vbox = wx.BoxSizer(wx.VERTICAL)
+        # self.SetupScrolling()
+        self.SetBackgroundColour(
+                wx.Colour(
+                        255,
+                        153,
+                        153
+                        )
+                )
+        self.SetFont(
+                wx.Font(
+                        12,
+                        wx.MODERN,
+                        wx.NORMAL,
+                        wx.NORMAL,
+                        False,
+                        u'JetBrains Mono NL'
+                        )
+                )
+        self.browser = wx.html2.WebView.New(self)
+        vbox.Add(self.browser, 1, wx.EXPAND, 10)
+        self.SetSizer(vbox)
+        self.SetSize((1200, 800))
+
+
 class dataPanel(wx.Panel):
     """
 
@@ -5237,6 +5265,12 @@ class braillePanel(scrolled.ScrolledPanel):
                 'UEBTechnicalSkillsProgression.html'
                 )
         fig.write_html(tmppath)
+
+        dfAsString = df.to_html(index = True)
+
+        dialog = MyBrowser(None, -1)
+        dialog.browser.SetPage(dfAsString, "")
+        dialog.Show()
         fig.show()
 
 
@@ -6968,9 +7002,19 @@ class screenreaderPanel(scrolled.ScrolledPanel):
                 template = "simple_white",
                 title_text = f"{studentname}: Screen Reader Skills Progression"
                 )
-        fig.write_html(
-                f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\ScreenReaderSkillsProgression.html"
+
+        tmppath = Path(USER_DIR).joinpath(
+                'StudentDatabase',
+                'StudentDataFiles', studentname,
+                'ScreenReaderSkillsProgression.html'
                 )
+        fig.write_html(tmppath)
+
+        dfAsString = df.to_html(index = True)
+
+        dialog = MyBrowser(None, -1)
+        dialog.browser.SetPage(dfAsString, "")
+        dialog.Show()
         fig.show()
 
 
@@ -8552,6 +8596,11 @@ class abacusPanel(scrolled.ScrolledPanel):
                 'AbacusSkillsProgression.html'
                 )
         fig.write_html(tmppath)
+        dfAsString = df.to_html(index = True)
+
+        dialog = MyBrowser(None, -1)
+        dialog.browser.SetPage(dfAsString, "")
+        dialog.Show()
         fig.show()
 
 
@@ -9766,6 +9815,11 @@ class cviPanel(scrolled.ScrolledPanel):
                 'cviProgression.html'
                 )
         fig.write_html(tmppath)
+        dfAsString = df.to_html(index = True)
+
+        dialog = MyBrowser(None, -1)
+        dialog.browser.SetPage(dfAsString, "")
+        dialog.Show()
         fig.show()
 
 

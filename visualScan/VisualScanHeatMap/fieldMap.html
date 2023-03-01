@@ -19,6 +19,10 @@ Copyright 2023 Michael Ryan Hunsaker, M.Ed., Ph.D.
 <head>
     <title>Visual Field Mapping</title>
     <script src="../cviheatmap.js" type="text/javascript"></script>
+    <script>generateCoordMap();</script>
+    <script>window.onload = function (event) {
+        document.getElementById("RandomVid").src = Math.floor(Math.random() * 4 + 1).toString() + ".mp4";
+    } </script>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -105,14 +109,13 @@ Copyright 2023 Michael Ryan Hunsaker, M.Ed., Ph.D.
 <body>
 <main>
     <header>
-        <button id="generateHeatMap" onclick="generateCoordMap();">Start Recording Mouse Recording</button>
     </header>
     <article>
     </article>
     <span class="playground">
                 <div class="center">
-                <video autoplay controls disablepictureinpicture height="720" muted width="1280">
-                    <source src="video.mp4" type="video/mp4">
+                <video autoplay="autoplay" controls disablepictureinpicture height="720" muted width="1280">
+                    <source id="RandomVid" src="1.mp4" type="video/mp4">
                 </video>
                 </div>
             </span>

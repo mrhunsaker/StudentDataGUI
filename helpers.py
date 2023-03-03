@@ -34,7 +34,9 @@ students = [
         'ColeCooper',
         'DylanPenalozaDiaz',
         'GrantChristensen',
+        'KahvonFord',
         'KayleeVimahi',
+        'JacksonWhitear',
         'MadelineCostello',
         'NoahPalmer',
         'PaulaSackett',
@@ -109,11 +111,20 @@ diegopenalozadiaziep = """Dylan Penaloza-Diaz	    	40 min / month
     """
 grantchristenseniep = """Grant Christensen	    	800 min/month
     • Grant, through monthly assessments, will read braille at grade level text with a consistent speed of 65 cwpm with 95% accuracy or better with 100% comprehension in 4/5 trials as measured by his TVI.
-    • Grant, through monthly assessments, will produce complete sentences and passages using UEB contractions and proper braille writing techniques with 3 errors or less per writing assignment in 4 of 5
-    trials as measured by his TVI.
-    • Grant, through monthly assessments, will demonstrate proficiency in technology for the visually impaired with at least 95% accuracy on required tasks indicated on a checklist of skills from a
-    Teacher's rubric in 3 of 4 evaluated sessions.
+    • Grant, through monthly assessments, will produce complete sentences and passages using UEB contractions and proper braille writing techniques with 3 errors or less per writing assignment in 4 of 5 trials as 
+    measured by his TVI.
+    • Grant, through monthly assessments, will demonstrate proficiency in technology for the visually impaired with at least 95% accuracy on required tasks indicated on a checklist of skills from a Teacher's 
+    rubric in 3 of 4 evaluated sessions.
     """
+jacksonwhiteariep = """Jackson Whitear           20 min/month
+    • Jackson will use accessibility features to magnify text, adjust the settings to increase the text/icon/cursor size on a computer with 60% accuracy across 4 of 4 sessions according to TVI rubric.
+    • Jackson will using accessibility features to magnify text, adjust the settings to increase the text/icon/cursor size ona computer with 70% accuracy across 3 of 4 sessions according to TVI rubric. 
+"""
+kahvonfordiep = """Kahvon Ford            120 min/month
+    • When presented with text within multiple environments, Kahvon will use his phone to enlarge print and utilize the text to speech feature on his phone to access print with 80% accuracy iun 3 of 4 trials 
+    • When presetned with text within multiple environments, Kahvon will be able to demonstrate his ability to utilize the speech to text feature on his phone to create notes, calendar reminders and texts with 
+    70% accuracy in 3 out of 4 trials.
+"""
 kayleevimahiiep = """Kaylee Vimahi	    	60 min/month
     • When given access to an accessible reading library, Kaylee will independently download 3 audio/eBooks and increase her reading speed and stamina from 143wpm and 10 minutes, to 200wpm and 30 minutes
     in 3 of 4 probes and measured by TVI created data sheets.

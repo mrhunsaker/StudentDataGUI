@@ -10,7 +10,7 @@
   <component name="ChangeListManager">
     <list default="true" id="fa304d23-fe14-4dd1-9cb8-16c0a72e419f" name="Changes" comment="Variables stores in helpers.py as much as possible and called via globals() rather than locals()">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visualScan/VisualScanHeatMap/fieldMap.html" beforeDir="false" afterPath="$PROJECT_DIR$/visualScan/VisualScanHeatMap/fieldMap.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/helpers.py" beforeDir="false" afterPath="$PROJECT_DIR$/helpers.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="true" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -223,14 +223,9 @@
       <workItem from="1677549174189" duration="22000" />
       <workItem from="1677595050594" duration="1895000" />
       <workItem from="1677600942901" duration="5663000" />
-      <workItem from="1677688007424" duration="1708000" />
-    </task>
-    <task id="LOCAL-00040" summary="Updating program to allow report file uploads">
-      <created>1665432214827</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1665432214828</updated>
+      <workItem from="1677688007424" duration="2140000" />
+      <workItem from="1677703032580" duration="86000" />
+      <workItem from="1677867101352" duration="661000" />
     </task>
     <task id="LOCAL-00041" summary="Migrating from using os to pathlib">
       <created>1665501835596</created>
@@ -568,7 +563,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677605558928</updated>
     </task>
-    <option name="localTasksCounter" value="89" />
+    <task id="LOCAL-00089" summary="Variables stores in helpers.py as much as possible and called via globals() rather than locals()">
+      <created>1677696963606</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1677696963606</updated>
+    </task>
+    <option name="localTasksCounter" value="90" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

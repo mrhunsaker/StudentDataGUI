@@ -10804,7 +10804,13 @@ class visualScan(scrolled.ScrolledPanel):
     def __init__(self, *args, **kwds):
         scrolled.ScrolledPanel.__init__(self, *args, **kwds)
         sizer = wx.BoxSizer(wx.VERTICAL)
-        self.browser = wx.html2.WebView.New(self)
+        self.browser = wx.html2.WebView.New(
+                self,
+                pos = (
+                        30,
+                        30
+                        )
+                )
         sizer.Add(self.browser, 1, wx.EXPAND, 10)
         self.SetSizer(sizer)
         self.SetSize((1600, 1200))

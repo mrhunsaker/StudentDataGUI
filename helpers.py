@@ -116,11 +116,11 @@ grantchristenseniep = """Grant Christensen	    	800 min/month
     • Grant, through monthly assessments, will demonstrate proficiency in technology for the visually impaired with at least 95% accuracy on required tasks indicated on a checklist of skills from a Teacher's 
     rubric in 3 of 4 evaluated sessions.
     """
-jacksonwhiteariep = """Jackson Whitear           20 min/month
+jacksonwhiteariep = """Jackson Whitear                  20 min/month
     • Jackson will use accessibility features to magnify text, adjust the settings to increase the text/icon/cursor size on a computer with 60% accuracy across 4 of 4 sessions according to TVI rubric.
     • Jackson will using accessibility features to magnify text, adjust the settings to increase the text/icon/cursor size ona computer with 70% accuracy across 3 of 4 sessions according to TVI rubric. 
 """
-kahvonfordiep = """Kahvon Ford            120 min/month
+kahvonfordiep = """Kahvon Ford                          120 min/month
     • When presented with text within multiple environments, Kahvon will use his phone to enlarge print and utilize the text to speech feature on his phone to access print with 80% accuracy iun 3 of 4 trials 
     • When presetned with text within multiple environments, Kahvon will be able to demonstrate his ability to utilize the speech to text feature on his phone to create notes, calendar reminders and texts with 
     70% accuracy in 3 out of 4 trials.

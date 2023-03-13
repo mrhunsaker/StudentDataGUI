@@ -10,8 +10,8 @@
   <component name="ChangeListManager">
     <list default="true" id="fa304d23-fe14-4dd1-9cb8-16c0a72e419f" name="Changes" comment="Variables stores in helpers.py as much as possible and called via globals() rather than locals()">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helpers.py" beforeDir="false" afterPath="$PROJECT_DIR$/helpers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualScan/VisualScanHeatMap/fieldMap.html" beforeDir="false" afterPath="$PROJECT_DIR$/visualScan/VisualScanHeatMap/fieldMap.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="true" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -228,14 +228,9 @@
       <workItem from="1677703032580" duration="86000" />
       <workItem from="1677867101352" duration="1473000" />
       <workItem from="1678112694746" duration="1413000" />
-      <workItem from="1678198332086" duration="494000" />
-    </task>
-    <task id="LOCAL-00042" summary="Migrating from using os to pathlib">
-      <created>1666019094750</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1666019094750</updated>
+      <workItem from="1678198332086" duration="804000" />
+      <workItem from="1678309375558" duration="78000" />
+      <workItem from="1678722471227" duration="8667000" />
     </task>
     <task id="LOCAL-00043" summary="Migrating from using os to pathlib">
       <created>1666121278342</created>
@@ -573,7 +568,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677870068549</updated>
     </task>
-    <option name="localTasksCounter" value="91" />
+    <task id="LOCAL-00091" summary="Variables stores in helpers.py as much as possible and called via globals() rather than locals()">
+      <created>1678199035061</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1678199035061</updated>
+    </task>
+    <option name="localTasksCounter" value="92" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -620,6 +622,6 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/StudentDataGUI$main.coverage" NAME="main Coverage Results" MODIFIED="1677268629456" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/main_py$main.coverage" NAME="main Coverage Results" MODIFIED="1677465225732" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/main_py$main.coverage" NAME="main Coverage Results" MODIFIED="1678728749119" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

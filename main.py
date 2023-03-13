@@ -45,7 +45,9 @@ date = datetime.datetime.now().strftime("%Y_%m_%d-%H%M%S_%p")
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 USER_DIR = ""
-
+IMAGE_DIR = Path(ROOT_DIR).joinpath(
+        'images'
+        )
 ##############################################################################
 # Set User Directory based on OS
 ##############################################################################
@@ -821,6 +823,7 @@ sys.excepthook = warningmessage
 ##############################################################################
 # Begin Classes
 ##############################################################################
+
 
 class MyBrowser(wx.Dialog):
     def __init__(self, *args, **kwds):
@@ -10869,6 +10872,19 @@ class StudentDataBook(
         """
 
         """
+        menubar = wx.MenuBar()
+        fileMenu = wx.Menu()
+        fileItem = fileMenu.Append(wx.ID_EXIT, 'Quit\t\tCtrl+Q')
+        menubar.Append(fileMenu, '&File')
+        editMenu = wx.Menu()
+        editItem = editMenu.Append(wx.ID_EXIT, 'Quit\t\tCtrl+Q')
+        menubar.Append(editMenu, '\t&Edit')
+        helpMenu = wx.Menu()
+        helpItem = helpMenu.Append(wx.ID_EXIT, 'Q uit\t\tCtrl+Q')
+        menubar.Append(helpMenu, '\t&Help')
+        self.SetMenuBar(menubar)
+        self.Bind(wx.EVT_MENU, self.OnQuit, fileItem)
+
         nb = wx.Notebook(self)
         nb.AddPage(
                 iepIntro(nb),
@@ -10908,6 +10924,9 @@ class StudentDataBook(
                 )
         self.Centre()
         self.Show(True)
+
+    def OnQuit(self, e):
+        self.Close()
 
 
 app = wx.App()

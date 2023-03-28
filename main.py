@@ -17,6 +17,7 @@
 ###############################################################################
 
 import os
+import random
 import shutil
 import sqlite3
 import statistics
@@ -74,6 +75,7 @@ for name in students:
             'StudentDatabase'
             ).exists():
         tmppath = Path(USER_DIR).joinpath(
+                'StudentDatabase'
                 'StudentDatabase'
                 )
         Path.mkdir(
@@ -795,7 +797,18 @@ if __name__ == '__main__':
 
 date = datetime.datetime.now().strftime("%Y_%m_%d-%H%M%S_%p")
 
+justRight = wx.Colour(239, 214, 192)
+whiteRock = wx.Colour(241, 240, 226)
+khaki = wx.Colour(238, 231, 142)
+poloBlue = wx.Colour(136, 150, 198)
+downy = wx.Colour(107, 205, 156)
+twilight = wx.Colour(224, 199, 215)
+coral = wx.Colour(255, 140, 85)
+heather = wx.Colour(191, 202, 214)
+colorList = [justRight, whiteRock, khaki, poloBlue, downy, twilight, coral, heather]
 
+
+# print(colorList)
 ##############################################################################
 # Error Logging
 ##############################################################################
@@ -822,21 +835,13 @@ sys.excepthook = warningmessage
 
 ##############################################################################
 # Begin Classes
-##############################################################################
-
+############################################################################
 
 class MyBrowser(wx.Dialog):
     def __init__(self, *args, **kwds):
         wx.Dialog.__init__(self, *args, **kwds)
         vbox = wx.BoxSizer(wx.VERTICAL)
         # self.SetupScrolling()
-        self.SetBackgroundColour(
-                wx.Colour(
-                        255,
-                        153,
-                        153
-                        )
-                )
         self.SetFont(
                 wx.Font(
                         12,
@@ -847,6 +852,7 @@ class MyBrowser(wx.Dialog):
                         u'JetBrains Mono NL'
                         )
                 )
+        self.SetBackgroundColour(random.choice(colorList))
         self.browser = wx.html2.WebView.New(self)
         vbox.Add(self.browser, 1, wx.EXPAND, 10)
         self.SetSizer(vbox)
@@ -879,10 +885,8 @@ class dataPanel(wx.Panel):
                 )
         self.ln.IsVertical()
         self.SetBackgroundColour(
-                wx.Colour(
-                        224,
-                        224,
-                        224
+                random.choice(
+                        colorList
                         )
                 )
         self.SetFont(
@@ -1727,13 +1731,20 @@ class braillePanel(scrolled.ScrolledPanel):
         self.SetSizer(vbox)
         self.SetupScrolling()
         self.SetBackgroundColour(
-                wx.Colour(
-                        224,
-                        224,
-                        224
+                random.choice(
+                        colorList
                         )
                 )
-        self.SetFont(wx.Font(10, wx.MODERN, wx.NORMAL, wx.NORMAL, False, u'Atkinson Hyperlegible'))
+        self.SetFont(
+                wx.Font(
+                        10,
+                        wx.MODERN,
+                        wx.NORMAL,
+                        wx.NORMAL,
+                        False,
+                        u'Atkinson Hyperlegible'
+                        )
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -5321,13 +5332,20 @@ class screenreaderPanel(scrolled.ScrolledPanel):
         self.SetSizer(vbox)
         self.SetupScrolling()
         self.SetBackgroundColour(
-                wx.Colour(
-                        224,
-                        224,
-                        224
+                random.choice(
+                        colorList
                         )
                 )
-        self.SetFont(wx.Font(10, wx.MODERN, wx.NORMAL, wx.NORMAL, False, u'Atkinson Hyperlegible'))
+        self.SetFont(
+                wx.Font(
+                        10,
+                        wx.MODERN,
+                        wx.NORMAL,
+                        wx.NORMAL,
+                        False,
+                        u'Atkinson Hyperlegible'
+                        )
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -7065,13 +7083,20 @@ class abacusPanel(scrolled.ScrolledPanel):
         self.SetSizer(vbox)
         self.SetupScrolling()
         self.SetBackgroundColour(
-                wx.Colour(
-                        224,
-                        224,
-                        224
+                random.choice(
+                        colorList
                         )
                 )
-        self.SetFont(wx.Font(10, wx.MODERN, wx.NORMAL, wx.NORMAL, False, u'Atkinson Hyperlegible'))
+        self.SetFont(
+                wx.Font(
+                        10,
+                        wx.MODERN,
+                        wx.NORMAL,
+                        wx.NORMAL,
+                        False,
+                        u'Atkinson Hyperlegible'
+                        )
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -8651,13 +8676,20 @@ class cviPanel(scrolled.ScrolledPanel):
         self.SetSizer(vbox)
         self.SetupScrolling()
         self.SetBackgroundColour(
-                wx.Colour(
-                        224,
-                        224,
-                        224
+                random.choice(
+                        colorList
                         )
                 )
-        self.SetFont(wx.Font(10, wx.MODERN, wx.NORMAL, wx.NORMAL, False, u'Atkinson Hyperlegible'))
+        self.SetFont(
+                wx.Font(
+                        10,
+                        wx.MODERN,
+                        wx.NORMAL,
+                        wx.NORMAL,
+                        False,
+                        u'Atkinson Hyperlegible'
+                        )
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -9870,13 +9902,20 @@ class iepIntro(scrolled.ScrolledPanel):
         self.SetSizer(vbox)
         self.SetupScrolling()
         self.SetBackgroundColour(
-                wx.Colour(
-                        224,
-                        224,
-                        224
+                random.choice(
+                        colorList
                         )
                 )
-        self.SetFont(wx.Font(10, wx.MODERN, wx.NORMAL, wx.NORMAL, False, u'Atkinson Hyperlegible'))
+        self.SetFont(
+                wx.Font(
+                        10,
+                        wx.MODERN,
+                        wx.NORMAL,
+                        wx.NORMAL,
+                        False,
+                        u'Atkinson Hyperlegible'
+                        )
+                )
         scrolled.ScrolledPanel.__init__(
                 self,
                 parent,
@@ -10250,13 +10289,20 @@ class meetingsPanel(scrolled.ScrolledPanel):
         self.SetSizer(vbox)
         self.SetupScrolling()
         self.SetBackgroundColour(
-                wx.Colour(
-                        224,
-                        224,
-                        224
+                random.choice(
+                        colorList
                         )
                 )
-        self.SetFont(wx.Font(10, wx.MODERN, wx.NORMAL, wx.NORMAL, False, u'Atkinson Hyperlegible'))
+        self.SetFont(
+                wx.Font(
+                        10,
+                        wx.MODERN,
+                        wx.NORMAL,
+                        wx.NORMAL,
+                        False,
+                        u'Atkinson Hyperlegible'
+                        )
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -10542,13 +10588,7 @@ class observationsPanel(scrolled.ScrolledPanel):
                 )
         self.SetSizer(vbox)
         self.SetupScrolling()
-        self.SetBackgroundColour(
-                wx.Colour(
-                        224,
-                        224,
-                        224
-                        )
-                )
+        self.SetBackgroundColour(random.choice(colorList))
         self.SetFont(
                 wx.Font(
                         10,
@@ -10849,11 +10889,19 @@ class StudentDataBook(
                         1000
                         )
                 )
+        justRight = wx.Colour(239, 214, 192)
+        whiteRock = wx.Colour(241, 240, 226)
+        khaki = wx.Colour(238, 231, 142)
+        poloBlue = wx.Colour(136, 150, 198)
+        downy = wx.Colour(107, 205, 156)
+        twilight = wx.Colour(224, 199, 215)
+        coral = wx.Colour(255, 140, 85)
+        heather = wx.Colour(191, 202, 214)
+        colorList = [justRight, whiteRock, khaki, poloBlue, downy, twilight, coral, heather]
+        print(colorList)
         self.SetBackgroundColour(
-                wx.Colour(
-                        224,
-                        224,
-                        224
+                random.choice(
+                        colorList
                         )
                 )
         self.SetFont(

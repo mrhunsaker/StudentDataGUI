@@ -24,6 +24,7 @@ date = datetime.datetime.now().strftime("%Y_%m_%d-%H%M%S_%p")
 # Current Students for Project
 ##############################################################################
 students = [
+        'SELECT STUDENT FROM DROPDOWN',
         'DonaldChamberlain',
         'AustinDenney',
         'AddisonBooker',
@@ -293,6 +294,7 @@ taskType = [
         ]
 
 sessionType = [
+        'SELECT SESSION TYPE FROM DROPDOWN',
         'ProgressMonitor',
         'Instruction',
         'Assessment'
@@ -579,6 +581,7 @@ brailleSkills = [
         ]
 
 cviDomains = [
+        'SELECT DOMAIN FROM DROPDOWN',
         'colorPreference',
         'needForMovement',
         'visualLatency',

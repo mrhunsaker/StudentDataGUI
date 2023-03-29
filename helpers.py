@@ -14,8 +14,9 @@
 #    See the License for the specific language governing permissions and        #
 #    limitations under the License.                                             #
 #################################################################################
-
 import datetime
+
+import wx
 
 date = datetime.datetime.now().strftime("%Y_%m_%d-%H%M%S_%p")
 
@@ -677,6 +678,16 @@ COLOR PREFERENCE
 3.........Range 7-8:  More colors, familiar patterns regarded
 4.........Range 9-10: No color or pattern preference
 """)
+
+justRight = wx.Colour(239, 214, 192)
+whiteRock = wx.Colour(241, 240, 226)
+khaki = wx.Colour(238, 231, 142)
+poloBlue = wx.Colour(136, 150, 198)
+downy = wx.Colour(107, 205, 156)
+twilight = wx.Colour(224, 199, 215)
+coral = wx.Colour(255, 140, 85)
+heather = wx.Colour(191, 202, 214)
+colorList = [justRight, whiteRock, khaki, poloBlue, downy, twilight, coral, heather]
 
 ##############################################################################
 # End Variables

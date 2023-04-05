@@ -1232,7 +1232,7 @@ class dataPanel(
                         300,
                         30
                         )
-                ).SetSelection(0)
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -1272,7 +1272,7 @@ class dataPanel(
                         300,
                         30
                         )
-                ).SetSelection(0)
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -1716,7 +1716,7 @@ class dataPanel(
                 )
         self.notes1 = wx.TextCtrl(
                 self,
-                -1,
+                111,
                 "",
                 pos = (
                         650,
@@ -1726,8 +1726,10 @@ class dataPanel(
                         450,
                         375
                         ),
-                style = wx.TE_MULTILINE
-                ).SetHint('Type Anecdotal Notes, do not use the TAB key')
+                style = wx.TE_MULTILINE | wx.TE_WORDWRAP | wx.TE_PROCESS_TAB
+                ).SetHint('Type Anecdotal Notes, Press Control to move to next field')
+        # self.Bind(wx.EVT_KEY_DOWN, self.virtualTab, id=111)
+        self.Bind(wx.EVT_CHAR_HOOK, self.virtualTab, id = 111)
         self.btn2 = wx.Button(
                 self,
                 203,
@@ -1784,6 +1786,14 @@ class dataPanel(
                 )
 
         os.chdir(USER_DIR)
+
+    def virtualTab(self, event):
+        keycode = event.GetKeyCode()
+        print(keycode)
+        if keycode == 308:
+            event.EventObject.Navigate()
+        else:
+            event.Skip()
 
     def submit(
             self,
@@ -2198,7 +2208,7 @@ class braillePanel(scrolled.ScrolledPanel):
                         300,
                         30
                         )
-                ).SetSelection(0)
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -4387,10 +4397,7 @@ class braillePanel(scrolled.ScrolledPanel):
         Graphing
 
         """
-        studentname = self.studentname1.GetString(
-                self.studentname1.GetSelection()
-                )
-
+        studentname = self.studentname1.GetString(self.studentname1.GetSelection())
         conn = sqlite3.connect(dataBasePath)
         dfSQL = pd.read_sql_query(f"SELECT * FROM BRAILLEPROGRESS", conn)
         dfStudent = dfSQL[dfSQL.STUDENTNAME == studentname]
@@ -6220,7 +6227,7 @@ class screenreaderPanel(scrolled.ScrolledPanel):
                         300,
                         30
                         )
-                ).SetSelection(0)
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -8167,7 +8174,7 @@ class abacusPanel(scrolled.ScrolledPanel):
                         300,
                         30
                         )
-                ).SetSelection(0)
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -9932,7 +9939,7 @@ class cviPanel(scrolled.ScrolledPanel):
                         300,
                         30
                         )
-                ).SetSelection(0)
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -10201,7 +10208,7 @@ class cviPanel(scrolled.ScrolledPanel):
                         300,
                         30
                         )
-                ).SetSelection(0)
+                )
         self.btn = wx.Button(
                 self,
                 201,
@@ -11294,7 +11301,7 @@ class iepIntro(scrolled.ScrolledPanel):
                         300,
                         30
                         )
-                ).SetSelection(0)
+                )
         self.btn = wx.Button(
                 self,
                 401,
@@ -11685,7 +11692,7 @@ class meetingsPanel(scrolled.ScrolledPanel):
                         300,
                         30
                         )
-                ).SetSelection(0)
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -11706,7 +11713,7 @@ class meetingsPanel(scrolled.ScrolledPanel):
                 )
         self.notes1 = wx.TextCtrl(
                 self,
-                -1,
+                111,
                 "",
                 pos = (
                         170,
@@ -11716,8 +11723,10 @@ class meetingsPanel(scrolled.ScrolledPanel):
                         700,
                         700
                         ),
-                style = wx.TE_MULTILINE
-                ).SetHint('Type Anecdotal Notes, do not use the TAB key')
+                style = wx.TE_MULTILINE | wx.TE_WORDWRAP | wx.TE_PROCESS_TAB
+                ).SetHint('Type Anecdotal Notes, Press Control + N to move to next field')
+        # self.notes1.Bind(wx.EVT_KEY_DOWN, self.virtualTab)
+        self.Bind(wx.EVT_CHAR_HOOK, self.virtualTab, id = 111)
         self.btn = wx.Button(
                 self,
                 201,
@@ -11779,6 +11788,14 @@ class meetingsPanel(scrolled.ScrolledPanel):
                 )
 
         os.chdir(USER_DIR)
+
+    def virtualTab(self, event):
+        keycode = event.GetKeyCode()
+        print(keycode)
+        if keycode == 78:
+            event.EventObject.Navigate()
+        else:
+            event.Skip()
 
     @staticmethod
     def exit(event):
@@ -12055,7 +12072,7 @@ class observationsPanel(
                         300,
                         30
                         )
-                ).SetSelection(0)
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -12076,7 +12093,7 @@ class observationsPanel(
                 )
         self.notes1 = wx.TextCtrl(
                 self,
-                -1,
+                111,
                 "",
                 pos = (
                         170,
@@ -12086,8 +12103,10 @@ class observationsPanel(
                         700,
                         700
                         ),
-                style = wx.TE_MULTILINE
-                ).SetHint('Type Anecdotal Notes, do not use the TAB key')
+                style = wx.TE_MULTILINE | wx.TE_WORDWRAP | wx.TE_PROCESS_TAB
+                ).SetHint('Type Anecdotal Notes, Press Control + N to move to next field')
+        # self.notes1.Bind(wx.EVT_KEY_DOWN, self.virtualTab)
+        self.Bind(wx.EVT_CHAR_HOOK, self.virtualTab, id = 111)
         self.btn = wx.Button(
                 self,
                 201,
@@ -12151,6 +12170,14 @@ class observationsPanel(
         os.chdir(
                 USER_DIR
                 )
+
+    def virtualTab(self, event):
+        keycode = event.GetKeyCode()
+        print(keycode)
+        if keycode == 78:
+            event.EventObject.Navigate()
+        else:
+            event.Skip()
 
     @staticmethod
     def exit(event):

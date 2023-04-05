@@ -24,7 +24,6 @@ date = datetime.datetime.now().strftime("%Y_%m_%d-%H%M%S_%p")
 # Current Students for Project
 ##############################################################################
 students = [
-        'SELECT STUDENT FROM DROPDOWN',
         'DonaldChamberlain',
         'AustinDenney',
         'AddisonBooker',

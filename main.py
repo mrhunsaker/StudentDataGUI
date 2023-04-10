@@ -1484,7 +1484,7 @@ class dataPanel(
                         450,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -1506,7 +1506,7 @@ class dataPanel(
                         450,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -1528,7 +1528,7 @@ class dataPanel(
                         450,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -1550,7 +1550,7 @@ class dataPanel(
                         450,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -1572,7 +1572,7 @@ class dataPanel(
                         450,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -1594,7 +1594,7 @@ class dataPanel(
                         450,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -1616,7 +1616,7 @@ class dataPanel(
                         450,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -1638,7 +1638,7 @@ class dataPanel(
                         450,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -1660,7 +1660,7 @@ class dataPanel(
                         450,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -1682,7 +1682,7 @@ class dataPanel(
                         450,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -1704,7 +1704,7 @@ class dataPanel(
                         450,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -1727,7 +1727,7 @@ class dataPanel(
                         375
                         ),
                 style = wx.TE_MULTILINE | wx.TE_WORDWRAP | wx.TE_PROCESS_TAB
-                ).SetHint('Type Anecdotal Notes, Press Control to move to next field')
+                )
         # self.Bind(wx.EVT_KEY_DOWN, self.virtualTab, id=111)
         self.Bind(wx.EVT_CHAR_HOOK, self.virtualTab, id = 111)
         self.btn2 = wx.Button(
@@ -2239,7 +2239,7 @@ class braillePanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -2261,7 +2261,7 @@ class braillePanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -2283,7 +2283,7 @@ class braillePanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -2305,7 +2305,7 @@ class braillePanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -2327,7 +2327,7 @@ class braillePanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -2349,7 +2349,7 @@ class braillePanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -2371,7 +2371,7 @@ class braillePanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -2393,7 +2393,7 @@ class braillePanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -2415,7 +2415,7 @@ class braillePanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -2437,7 +2437,7 @@ class braillePanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -2459,7 +2459,7 @@ class braillePanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -2481,7 +2481,7 @@ class braillePanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -2503,7 +2503,7 @@ class braillePanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -2525,7 +2525,7 @@ class braillePanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -2547,7 +2547,7 @@ class braillePanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -2569,7 +2569,7 @@ class braillePanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -2591,7 +2591,7 @@ class braillePanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -2613,7 +2613,7 @@ class braillePanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -2635,7 +2635,7 @@ class braillePanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -2657,7 +2657,7 @@ class braillePanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -2679,7 +2679,7 @@ class braillePanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -2701,7 +2701,7 @@ class braillePanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -2723,7 +2723,7 @@ class braillePanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -2745,7 +2745,7 @@ class braillePanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -2767,7 +2767,7 @@ class braillePanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -2789,7 +2789,7 @@ class braillePanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -2811,7 +2811,7 @@ class braillePanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -2833,7 +2833,7 @@ class braillePanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -2855,7 +2855,7 @@ class braillePanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -2877,7 +2877,7 @@ class braillePanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -2899,7 +2899,7 @@ class braillePanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -2921,7 +2921,7 @@ class braillePanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -2943,7 +2943,7 @@ class braillePanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -2965,7 +2965,7 @@ class braillePanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -2987,7 +2987,7 @@ class braillePanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -3009,7 +3009,7 @@ class braillePanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -3031,7 +3031,7 @@ class braillePanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -3053,7 +3053,7 @@ class braillePanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -3075,7 +3075,7 @@ class braillePanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -3097,7 +3097,7 @@ class braillePanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -3119,7 +3119,7 @@ class braillePanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -3141,7 +3141,7 @@ class braillePanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -3163,7 +3163,7 @@ class braillePanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -3185,7 +3185,7 @@ class braillePanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -3207,7 +3207,7 @@ class braillePanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -3229,7 +3229,7 @@ class braillePanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -3251,7 +3251,7 @@ class braillePanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -3273,7 +3273,7 @@ class braillePanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -3295,7 +3295,7 @@ class braillePanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -3317,7 +3317,7 @@ class braillePanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -3339,7 +3339,7 @@ class braillePanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -3361,7 +3361,7 @@ class braillePanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -3383,7 +3383,7 @@ class braillePanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -3405,7 +3405,7 @@ class braillePanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -3427,7 +3427,7 @@ class braillePanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -3449,7 +3449,7 @@ class braillePanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -3471,7 +3471,7 @@ class braillePanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -3493,7 +3493,7 @@ class braillePanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -3515,7 +3515,7 @@ class braillePanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -3537,7 +3537,7 @@ class braillePanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -3559,7 +3559,7 @@ class braillePanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -3581,7 +3581,7 @@ class braillePanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -3603,7 +3603,7 @@ class braillePanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -3625,7 +3625,7 @@ class braillePanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         self.btn = wx.Button(
                 self,
                 201,
@@ -6257,7 +6257,7 @@ class screenreaderPanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -6280,7 +6280,7 @@ class screenreaderPanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -6302,7 +6302,7 @@ class screenreaderPanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -6324,7 +6324,7 @@ class screenreaderPanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -6347,7 +6347,7 @@ class screenreaderPanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -6369,7 +6369,7 @@ class screenreaderPanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -6391,7 +6391,7 @@ class screenreaderPanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -6413,7 +6413,7 @@ class screenreaderPanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -6435,7 +6435,7 @@ class screenreaderPanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -6457,7 +6457,7 @@ class screenreaderPanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -6480,7 +6480,7 @@ class screenreaderPanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -6502,7 +6502,7 @@ class screenreaderPanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -6524,7 +6524,7 @@ class screenreaderPanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -6547,7 +6547,7 @@ class screenreaderPanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -6569,7 +6569,7 @@ class screenreaderPanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -6591,7 +6591,7 @@ class screenreaderPanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -6613,7 +6613,7 @@ class screenreaderPanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -6635,7 +6635,7 @@ class screenreaderPanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -6658,7 +6658,7 @@ class screenreaderPanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -6680,7 +6680,7 @@ class screenreaderPanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -6702,7 +6702,7 @@ class screenreaderPanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -6724,7 +6724,7 @@ class screenreaderPanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -6746,7 +6746,7 @@ class screenreaderPanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -6769,7 +6769,7 @@ class screenreaderPanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -6792,7 +6792,7 @@ class screenreaderPanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -6814,7 +6814,7 @@ class screenreaderPanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -6837,7 +6837,7 @@ class screenreaderPanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -6859,7 +6859,7 @@ class screenreaderPanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         self.btn = wx.Button(
                 self,
                 201,
@@ -8205,7 +8205,7 @@ class abacusPanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -8227,7 +8227,7 @@ class abacusPanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -8249,7 +8249,7 @@ class abacusPanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -8271,7 +8271,7 @@ class abacusPanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -8293,7 +8293,7 @@ class abacusPanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -8315,7 +8315,7 @@ class abacusPanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -8337,7 +8337,7 @@ class abacusPanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -8359,7 +8359,7 @@ class abacusPanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -8381,7 +8381,7 @@ class abacusPanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -8403,7 +8403,7 @@ class abacusPanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -8425,7 +8425,7 @@ class abacusPanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -8447,7 +8447,7 @@ class abacusPanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -8469,7 +8469,7 @@ class abacusPanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -8491,7 +8491,7 @@ class abacusPanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -8513,7 +8513,7 @@ class abacusPanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -8535,7 +8535,7 @@ class abacusPanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -8557,7 +8557,7 @@ class abacusPanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -8579,7 +8579,7 @@ class abacusPanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -8601,7 +8601,7 @@ class abacusPanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -8623,7 +8623,7 @@ class abacusPanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -8645,7 +8645,7 @@ class abacusPanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -8667,7 +8667,7 @@ class abacusPanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -8689,7 +8689,7 @@ class abacusPanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -8711,7 +8711,7 @@ class abacusPanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         self.btn = wx.Button(
                 self,
                 201,
@@ -9961,7 +9961,7 @@ class cviPanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -9983,7 +9983,7 @@ class cviPanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -10005,7 +10005,7 @@ class cviPanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -10027,7 +10027,7 @@ class cviPanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -10049,7 +10049,7 @@ class cviPanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -10071,7 +10071,7 @@ class cviPanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -10093,7 +10093,7 @@ class cviPanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -10115,7 +10115,7 @@ class cviPanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -10137,7 +10137,7 @@ class cviPanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -10159,7 +10159,7 @@ class cviPanel(scrolled.ScrolledPanel):
                         500,
                         20
                         )
-                ).SetHint('0 = No Attempt, 1 = Require Assistance, 2 = Hesitated, 3 = Independent')
+                )
         wx.StaticText(
                 self,
                 -1,
@@ -11724,7 +11724,7 @@ class meetingsPanel(scrolled.ScrolledPanel):
                         700
                         ),
                 style = wx.TE_MULTILINE | wx.TE_WORDWRAP | wx.TE_PROCESS_TAB
-                ).SetHint('Type Anecdotal Notes, Press Control + N to move to next field')
+                )
         # self.notes1.Bind(wx.EVT_KEY_DOWN, self.virtualTab)
         self.Bind(wx.EVT_CHAR_HOOK, self.virtualTab, id = 111)
         self.btn = wx.Button(
@@ -12104,7 +12104,7 @@ class observationsPanel(
                         700
                         ),
                 style = wx.TE_MULTILINE | wx.TE_WORDWRAP | wx.TE_PROCESS_TAB
-                ).SetHint('Type Anecdotal Notes, Press Control + N to move to next field')
+                )
         # self.notes1.Bind(wx.EVT_KEY_DOWN, self.virtualTab)
         self.Bind(wx.EVT_CHAR_HOOK, self.virtualTab, id = 111)
         self.btn = wx.Button(

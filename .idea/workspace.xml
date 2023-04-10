@@ -10,7 +10,6 @@
   <component name="ChangeListManager">
     <list default="true" id="fa304d23-fe14-4dd1-9cb8-16c0a72e419f" name="Changes" comment="Random Colors">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helpers.py" beforeDir="false" afterPath="$PROJECT_DIR$/helpers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="true" />
@@ -244,14 +243,9 @@
       <workItem from="1680225173605" duration="155000" />
       <workItem from="1680277630562" duration="6970000" />
       <workItem from="1680634237382" duration="13000" />
-      <workItem from="1680724558705" duration="372000" />
-    </task>
-    <task id="LOCAL-00046" summary="Migrating from using os to pathlib">
-      <created>1666193171944</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1666193171944</updated>
+      <workItem from="1680724558705" duration="494000" />
+      <workItem from="1680729386922" duration="34000" />
+      <workItem from="1681149450485" duration="166000" />
     </task>
     <task id="LOCAL-00047" summary="Migrating from using os to pathlib">
       <created>1666193326206</created>
@@ -589,7 +583,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680129254921</updated>
     </task>
-    <option name="localTasksCounter" value="95" />
+    <task id="LOCAL-00095" summary="Random Colors">
+      <created>1680725053203</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1680725053203</updated>
+    </task>
+    <option name="localTasksCounter" value="96" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -1049,7 +1049,6 @@ date = datetime.datetime.now().strftime(
         )
 
 
-# print(colorList)
 ##############################################################################
 # Error Logging
 ##############################################################################
@@ -1058,7 +1057,7 @@ def warningmessage(
         exception_value,
         exception_traceback
         ):
-    message = "Please make sure all fields are selected / filled out properly\n\n"
+    message = "Please make sure all fields are selected/filled out properly\n"
     tb = traceback.format_exception(
             exception_type,
             exception_value,
@@ -11792,7 +11791,7 @@ class meetingsPanel(scrolled.ScrolledPanel):
     def virtualTab(self, event):
         keycode = event.GetKeyCode()
         print(keycode)
-        if keycode == 78:
+        if keycode == 308:
             event.EventObject.Navigate()
         else:
             event.Skip()
@@ -12174,7 +12173,7 @@ class observationsPanel(
     def virtualTab(self, event):
         keycode = event.GetKeyCode()
         print(keycode)
-        if keycode == 78:
+        if keycode == 308:
             event.EventObject.Navigate()
         else:
             event.Skip()

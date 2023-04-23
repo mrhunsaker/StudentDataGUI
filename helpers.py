@@ -689,8 +689,29 @@ downy = wx.Colour(107, 205, 156)
 twilight = wx.Colour(224, 199, 215)
 coral = wx.Colour(255, 140, 85)
 heather = wx.Colour(191, 202, 214)
-colorList = [justRight, whiteRock, khaki, poloBlue, downy, twilight, coral, heather]
+colorList = [
+        justRight,
+        whiteRock,
+        khaki,
+        poloBlue,
+        downy,
+        twilight,
+        coral,
+        heather
+        ]
 
+passiveHtmlList = [
+        'fieldMap_1.html',
+        'fieldMap_2.html',
+        'fieldMap_3.html',
+        'fieldMap_4.html',
+        'fieldMap_5.html',
+        'fieldMap_6.html'
+        ]
+activeHtmlList = [
+        'fieldMap_7VT.html',
+        'fieldMap_8VT.html'
+        ]
 ##############################################################################
 # End Variables
 ##############################################################################

@@ -8,19 +8,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa304d23-fe14-4dd1-9cb8-16c0a72e419f" name="Changes" comment="Random Colors">
-      <change afterPath="$PROJECT_DIR$/visualScan/VisualScanHeatMap/fieldMap_1.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/visualScan/VisualScanHeatMap/fieldMap_2.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/visualScan/VisualScanHeatMap/fieldMap_3.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/visualScan/VisualScanHeatMap/fieldMap_4.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/visualScan/VisualScanHeatMap/fieldMap_5.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/visualScan/VisualScanHeatMap/fieldMap_6.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/visualScan/VisualScanHeatMap/fieldMap_7VT.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/visualScan/VisualScanHeatMap/fieldMap_8VT.html" afterDir="false" />
+    <list default="true" id="fa304d23-fe14-4dd1-9cb8-16c0a72e419f" name="Changes" comment="Increasing Functionality and fixing to force out of protected text boxed with CTRL and not &quot;N&quot;">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helpers.py" beforeDir="false" afterPath="$PROJECT_DIR$/helpers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visualScan/VisualScanHeatMap/fieldMap.html" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="true" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -261,14 +251,8 @@
       <workItem from="1682027792170" duration="597000" />
       <workItem from="1682275093905" duration="103000" />
       <workItem from="1682277589488" duration="22000" />
-      <workItem from="1682277713448" duration="178000" />
-    </task>
-    <task id="LOCAL-00049" summary="Migrating from using os to pathlib">
-      <created>1667927260182</created>
-      <option name="number" value="00049" />
-      <option name="presentableId" value="LOCAL-00049" />
-      <option name="project" value="LOCAL" />
-      <updated>1667927260182</updated>
+      <workItem from="1682277713448" duration="620000" />
+      <workItem from="1682360477408" duration="397000" />
     </task>
     <task id="LOCAL-00050" summary="Migrating from using os to pathlib">
       <created>1667927821156</created>
@@ -606,7 +590,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681846791663</updated>
     </task>
-    <option name="localTasksCounter" value="98" />
+    <task id="LOCAL-00098" summary="Increasing Functionality and fixing to force out of protected text boxed with CTRL and not &quot;N&quot;">
+      <created>1682278317901</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
+      <option name="project" value="LOCAL" />
+      <updated>1682278317901</updated>
+    </task>
+    <option name="localTasksCounter" value="99" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -647,13 +638,25 @@
     <MESSAGE value="Plots now made from SQLite database rather than local csv files" />
     <MESSAGE value="Variables stores in helpers.py as much as possible and called via globals() rather than locals()" />
     <MESSAGE value="Random Colors" />
-    <option name="LAST_COMMIT_MESSAGE" value="Random Colors" />
+    <MESSAGE value="Increasing Functionality and fixing to force out of protected text boxed with CTRL and not &quot;N&quot;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Increasing Functionality and fixing to force out of protected text boxed with CTRL and not &quot;N&quot;" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/main.py</url>
+          <line>1162</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/StudentDataGUI$main.coverage" NAME="main Coverage Results" MODIFIED="1677268629456" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/main_py$main.coverage" NAME="main Coverage Results" MODIFIED="1682277811705" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/main_py$main.coverage" NAME="main Coverage Results" MODIFIED="1682360768279" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

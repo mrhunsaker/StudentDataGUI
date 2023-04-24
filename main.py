@@ -1102,9 +1102,7 @@ sys.excepthook = warningmessage
 # Begin Classes
 ############################################################################
 
-class MyBrowser(
-        wx.Dialog
-        ):
+class MyBrowser(wx.Dialog):
     def __init__(
             self,
             *args,
@@ -1154,9 +1152,7 @@ class MyBrowser(
                 )
 
 
-class dataPanel(
-        wx.Panel
-        ):
+class dataPanel(scrolled.ScrolledPanel):
     """
 
     """
@@ -1165,11 +1161,10 @@ class dataPanel(
             self,
             parent
             ):
-        super(
-                dataPanel,
-                self
-                ).__init__(
-                parent
+        scrolled.ScrolledPanel.__init__(
+                self,
+                parent,
+                -1
                 )
         self.ln = wx.StaticLine(
                 self,
@@ -11974,9 +11969,7 @@ class meetingsPanel(scrolled.ScrolledPanel):
             self.dial.ShowModal()
 
 
-class observationsPanel(
-        scrolled.ScrolledPanel
-        ):
+class observationsPanel(scrolled.ScrolledPanel):
     """
 
     """

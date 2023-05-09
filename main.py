@@ -1,4 +1,4 @@
-﻿# coding=utf-8
+# coding=utf-8
 ###############################################################################
 #    Copyright 2023 Michael Ryan Hunsaker, M.Ed., Ph.D.                       #
 #    email: hunsakerconsulting@gmail.com                                      #
@@ -7,7 +7,7 @@
 #    you may not use this file except in compliance with the License.         #
 #    You may obtain a copy of the License at                                  #
 #                                                                             #
-#        http://www.apache.org/licenses/LICENSE-2.0                           #
+#    http://www.apache.org/licenses/LICENSE-2.0                               #
 #                                                                             #
 #    Unless required by applicable law or agreed to in writing, software      #
 #    distributed under the License is distributed on an "AS IS" BASIS,        #
@@ -17,10 +17,8 @@
 ###############################################################################
 
 import os
-import random
 import shutil
 import sqlite3
-import statistics
 import sys
 import traceback
 from csv import writer
@@ -30,16 +28,10 @@ from sqlite3 import Error
 import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
-import wx.grid
-import wx.html2
-import wx.lib.scrolledpanel as scrolled
+from nicegui import app, ui
 from plotly.subplots import make_subplots
 
 from helpers import *
-
-date = datetime.datetime.now().strftime(
-        "%Y_%m_%d-%H%M%S_%p"
-        )
 
 ##############################################################################
 # Define Paths
@@ -212,22 +204,22 @@ for name in students:
                 name,
                 'StudentInstructionMaterials'
                 )
-        if not Path(
+    if not Path(
+            USER_DIR
+            ).joinpath(
+            'StudentDatabase',
+            'StudentDataFiles',
+            name,
+            'StudentVisionAssessments'
+            ).exists():
+        tmppath = Path(
                 USER_DIR
                 ).joinpath(
                 'StudentDatabase',
                 'StudentDataFiles',
                 name,
                 'StudentVisionAssessments'
-                ).exists():
-            tmppath = Path(
-                    USER_DIR
-                    ).joinpath(
-                    'StudentDatabase',
-                    'StudentDataFiles',
-                    name,
-                    'StudentVisionAssessments'
-                    )
+                )
         Path.mkdir(
                 tmppath,
                 parents = True,
@@ -1044,12 +1036,11 @@ def main():
 if __name__ == '__main__':
     main()
 
-date = datetime.datetime.now().strftime(
+datenow = datetime.datetime.now().strftime(
         "%Y_%m_%d-%H%M%S_%p"
         )
 
 
-# print(colorList)
 ##############################################################################
 # Error Logging
 ##############################################################################
@@ -1076,2914 +1067,1486 @@ def warningmessage(
             )
     for i in tb:
         message += i
-        with open(
-                logPath,
-                "a"
-                ) as logFile:
-            logFile.write(
-                    f"{date}\n{i}" + '\n'
-                    )
-    messageDialog = wx.MessageDialog(
-            None,
-            message,
-            str(
-                    exception_type
-                    ),
-            wx.OK | wx.ICON_ERROR
-            )
-    messageDialog.ShowModal()
-    messageDialog.Destroy()
+    with open(
+            logPath,
+            "a"
+            ) as logFile:
+        logFile.write(
+                f"{date}\n{i}" + '\n'
+                )
+        errortype = str(exception_type)
+    ui.notify(f'{message}\n{errortype}', close_button = 'OK')
 
 
 sys.excepthook = warningmessage
 
-
 ##############################################################################
-# Begin Classes
+# Begin GUI
 ############################################################################
-
-class MyBrowser(wx.Dialog):
-    def __init__(
-            self,
-            *args,
-            **kwds
-            ):
-        wx.Dialog.__init__(
-                self,
-                *args,
-                **kwds
-                )
-        vbox = wx.BoxSizer(
-                wx.VERTICAL
-                )
-        # self.SetupScrolling()
-        self.SetFont(
-                wx.Font(
-                        12,
-                        wx.MODERN,
-                        wx.NORMAL,
-                        wx.NORMAL,
-                        False,
-                        u'JetBrains Mono NL'
-                        )
-                )
-        self.SetBackgroundColour(
-                random.choice(
-                        colorList
-                        )
-                )
-        self.browser = wx.html2.WebView.New(
-                self
-                )
-        vbox.Add(
-                self.browser,
-                1,
-                wx.EXPAND,
-                10
-                )
-        self.SetSizer(
-                vbox
-                )
-        self.SetSize(
-                (
-                        1200,
-                        800
-                        )
-                )
+with ui.header().classes(replace = 'row items-center') as header:
+    ui.button(on_click = lambda: left_drawer.toggle()).props('flat color=white icon=menu')
+    ui.label('ACADEMIC SKILL PROGRESSIONS').classes('text-2xl justify-center')
+    with ui.row().classes('w-full no-wrap'):
+        with ui.tabs() as tabs:
+            ui.tab('ABACUS SKILLS')
+            ui.tab('BRAILLE SKILLS')
+            ui.tab('BRAILLENOTE TOUCH SKILLS')
+            ui.tab('iOS/iPadOS VOICEOVER SKILLS')
+            ui.tab('SCREENREADER SKILLS')
+# ABACUS SKILLS PROGRESSION
+with ui.tab_panels(tabs, value = 'ABACUS SKILLS PROGRESSION'):
+    with ui.tab_panel('ABACUS SKILLS PROGRESSION'):
+        u_studentname = ui.select(options = students, value = 'DonaldChamberlain').classes('hidden')
+        date = ui.date().classes('hidden')
+        u_trial11 = ui.number().classes('hidden')
+        u_trial12 = ui.number().classes('hidden')
+        u_trial13 = ui.number().classes('hidden')
+        u_trial14 = ui.number().classes('hidden')
+        u_trial21 = ui.number().classes('hidden')
+        u_trial22 = ui.number().classes('hidden')
+        u_trial23 = ui.number().classes('hidden')
+        u_trial31 = ui.number().classes('hidden')
+        u_trial32 = ui.number().classes('hidden')
+        u_trial33 = ui.number().classes('hidden')
+        u_trial41 = ui.number().classes('hidden')
+        u_trial42 = ui.number().classes('hidden')
+        u_trial51 = ui.number().classes('hidden')
+        u_trial52 = ui.number().classes('hidden')
+        u_trial61 = ui.number().classes('hidden')
+        u_trial62 = ui.number().classes('hidden')
+        u_trial63 = ui.number().classes('hidden')
+        u_trial64 = ui.number().classes('hidden')
+        u_trial71 = ui.number().classes('hidden')
+        u_trial72 = ui.number().classes('hidden')
+        u_trial73 = ui.number().classes('hidden')
+        u_trial74 = ui.number().classes('hidden')
+        u_trial81 = ui.number().classes('hidden')
+        u_trial82 = ui.number().classes('hidden')
 
 
-class dataPanel(scrolled.ScrolledPanel):
-    """
+        def save(event):
+            """
+            :param event:
+            :type event:
+            """
+            studentname = u_studentname.value
+            date = datenow
+            trial11 = int(u_trial11.value)
+            trial12 = int(u_trial12.value)
+            trial13 = int(u_trial13.value)
+            trial14 = int(u_trial14.value)
+            trial21 = int(u_trial21.value)
+            trial22 = int(u_trial22.value)
+            trial23 = int(u_trial23.value)
+            trial31 = int(u_trial31.value)
+            trial32 = int(u_trial32.value)
+            trial33 = int(u_trial33.value)
+            trial41 = int(u_trial41.value)
+            trial42 = int(u_trial42.value)
+            trial51 = int(u_trial51.value)
+            trial52 = int(u_trial52.value)
+            trial61 = int(u_trial61.value)
+            trial62 = int(u_trial62.value)
+            trial63 = int(u_trial63.value)
+            trial64 = int(u_trial64.value)
+            trial71 = int(u_trial71.value)
+            trial72 = int(u_trial72.value)
+            trial73 = int(u_trial73.value)
+            trial74 = int(u_trial74.value)
+            trial81 = int(u_trial81.value)
+            trial82 = int(u_trial82.value)
+            studentdatabasename = f"abacus{studentname.title()}{datenow}"
+            with open(
+                    f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\{studentdatabasename}.txt",
+                    'w'
+                    ) as filename:
+                filename.write('studentname' + ', ')
+                filename.write('date' + ', ')
+                filename.write('trial11' + ', ')
+                filename.write('trial12' + ', ')
+                filename.write('trial13' + ', ')
+                filename.write('trial14' + ', ')
+                filename.write('trial21' + ', ')
+                filename.write('trial22' + ', ')
+                filename.write('trial23' + ', ')
+                filename.write('trial31' + ', ')
+                filename.write('trial32' + ', ')
+                filename.write('trial33' + ', ')
+                filename.write('trial41' + ', ')
+                filename.write('trial42' + ', ')
+                filename.write('trial51' + ', ')
+                filename.write('trial52' + ', ')
+                filename.write('trial61' + ', ')
+                filename.write('trial62' + ', ')
+                filename.write('trial63' + ', ')
+                filename.write('trial64' + ', ')
+                filename.write('trial71' + ', ')
+                filename.write('trial72' + ', ')
+                filename.write('trial73' + ', ')
+                filename.write('trial74' + ', ')
+                filename.write('trial81' + ', ')
+                filename.write('trial82' + ', ')
+                filename.write(studentname + ', ')
+                filename.write(date + ', ')
+                filename.write(str(trial11) + ', ')
+                filename.write(str(trial12) + ', ')
+                filename.write(str(trial13) + ', ')
+                filename.write(str(trial14) + ', ')
+                filename.write(str(trial21) + ', ')
+                filename.write(str(trial22) + ', ')
+                filename.write(str(trial23) + ', ')
+                filename.write(str(trial31) + ', ')
+                filename.write(str(trial32) + ', ')
+                filename.write(str(trial33) + ', ')
+                filename.write(str(trial41) + ', ')
+                filename.write(str(trial42) + ', ')
+                filename.write(str(trial51) + ', ')
+                filename.write(str(trial52) + ', ')
+                filename.write(str(trial61) + ', ')
+                filename.write(str(trial62) + ', ')
+                filename.write(str(trial63) + ', ')
+                filename.write(str(trial64) + ', ')
+                filename.write(str(trial71) + ', ')
+                filename.write(str(trial72) + ', ')
+                filename.write(str(trial73) + ', ')
+                filename.write(str(trial74) + ', ')
+                filename.write(str(trial81) + ', ')
+                filename.write(str(trial82) + ', ')
+                filename.close()
 
-    """
-
-    def __init__(
-            self,
-            parent
-            ):
-        scrolled.ScrolledPanel.__init__(
-                self,
-                parent,
-                -1
-                )
-        self.ln = wx.StaticLine(
-                self,
-                -1,
-                pos = (
-                        465,
-                        0
-                        ),
-                style = wx.LI_VERTICAL
-                )
-        self.ln.SetSize(
-                (
-                        5,
-                        900
-                        )
-                )
-        self.ln.IsVertical()
-        self.SetBackgroundColour(
-                random.choice(
-                        colorList
-                        )
-                )
-        self.SetFont(
-                wx.Font(
-                        10,
-                        wx.MODERN,
-                        wx.NORMAL,
-                        wx.NORMAL,
-                        False,
-                        u'Atkinson Hyperlegible'
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "INDIVIDUAL SESSION DATA ENTRY",
-                pos = (
-                        170,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "Student Name",
-                pos = (
-                        30,
-                        50
-                        )
-                )
-        self.studentname1 = wx.Choice(
-                self,
-                -1,
-                choices = students,
-                pos = (
-                        130,
-                        50
-                        ),
-                size = (
-                        300,
-                        30
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "Date",
-                pos = (
-                        30,
-                        80
-                        )
-                )
-        self.date1 = wx.StaticText(
-                self,
-                -1,
-                date,
-                pos = (
-                        200,
-                        80
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "Session Type",
-                pos = (
-                        30,
-                        110
-                        )
-                )
-        self.session1 = wx.Choice(
-                self,
-                -1,
-                choices = sessionType,
-                pos = (
-                        130,
-                        110
-                        ),
-                size = (
-                        300,
-                        30
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "Domain and Lesson",
-                pos = (
-                        30,
-                        140
-                        )
-                )
-        self.lesson1 = wx.TreeCtrl(
-                self,
-                301,
-                pos = (
-                        30,
-                        170
-                        ),
-                size = (
-                        400,
-                        650
-                        )
-                )
-        self.root = self.lesson1.AddRoot(
-                'Lesson Type '
-                )
-        self.item1 = self.lesson1.AppendItem(
-                self.root,
-                'Abacus'
-                )
-        for name in abacusSkills:
-            self.lesson1.AppendItem(
-                    self.item1,
-                    name
-                    )
-        self.item2 = self.lesson1.AppendItem(
-                self.root,
-                'ScreenReader'
-                )
-        for name in screenreaderSkills:
-            self.lesson1.AppendItem(
-                    self.item2,
-                    name
-                    )
-        self.item3 = self.lesson1.AppendItem(
-                self.root,
-                'Braille'
-                )
-        for name in brailleSkills:
-            self.lesson1.AppendItem(
-                    self.item3,
-                    name
-                    )
-        self.item4 = self.lesson1.AppendItem(
-                self.root,
-                'Magnification'
-                )
-        for name in magnifierSkills:
-            self.lesson1.AppendItem(
-                    self.item4,
-                    name
-                    )
-        self.item5 = self.lesson1.AppendItem(
-                self.root,
-                'iOS'
-                )
-        for name in iOSSkills:
-            self.lesson1.AppendItem(
-                    self.item5,
-                    name
-                    )
-        self.item15 = self.lesson1.AppendItem(
-                self.root,
-                'Cortical Vision Impairment'
-                )
-        for name in cviDomains:
-            self.lesson1.AppendItem(
-                    self.item15,
-                    name
-                    )
-        self.item6 = self.lesson1.AppendItem(
-                self.root,
-                'ECC_CompensatorySkills'
-                )
-        for name in ECC_CompensatorySkills:
-            self.lesson1.AppendItem(
-                    self.item6,
-                    name
-                    )
-        self.item7 = self.lesson1.AppendItem(
-                self.root,
-                'ECC_AssistiveTechnology'
-                )
-        for name in ECC_AssistiveTechnology:
-            self.lesson1.AppendItem(
-                    self.item7,
-                    name
-                    )
-        self.item8 = self.lesson1.AppendItem(
-                self.root,
-                'ECC_SensoryEfficiency'
-                )
-        for name in ECC_SensoryEfficiency:
-            self.lesson1.AppendItem(
-                    self.item8,
-                    name
-                    )
-        self.item9 = self.lesson1.AppendItem(
-                self.root,
-                'ECC_OrientationMobility'
-                )
-        for name in magnifierSkills:
-            self.lesson1.AppendItem(
-                    self.item9,
-                    name
-                    )
-        self.item10 = self.lesson1.AppendItem(
-                self.root,
-                'ECC_RecreationLeisure'
-                )
-        for name in ECC_RecreationLeisure:
-            self.lesson1.AppendItem(
-                    self.item10,
-                    name
-                    )
-        self.item11 = self.lesson1.AppendItem(
-                self.root,
-                'ECC_SelfDetermination'
-                )
-        for name in ECC_SelfDetermination:
-            self.lesson1.AppendItem(
-                    self.item11,
-                    name
-                    )
-        self.item12 = self.lesson1.AppendItem(
-                self.root,
-                'ECC_IndependentLivingSkills'
-                )
-        for name in ECC_IndependentLivingSkills:
-            self.lesson1.AppendItem(
-                    self.item12,
-                    name
-                    )
-        self.item13 = self.lesson1.AppendItem(
-                self.root,
-                'ECC_SocialInteractionSkills'
-                )
-        for name in ECC_SocialInteractionSkills:
-            self.lesson1.AppendItem(
-                    self.item13,
-                    name
-                    )
-        self.item14 = self.lesson1.AppendItem(
-                self.root,
-                'ECC_CareerEducation'
-                )
-        for name in ECC_CareerEducation:
-            self.lesson1.AppendItem(
-                    self.item14,
-                    name
-                    )
-        wx.StaticText(
-                self,
-                -1,
-                "Performance",
-                pos = (
-                        665,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent",
-                pos = (
-                        490,
-                        50
-                        )
-                )
-        self.blank = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        490,
-                        50
-                        ),
-                size = (
-                        0,
-                        0
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "Trial 1" + '.' * (80 - len("Trial 1")),
-                pos = (
-                        500,
-                        80
-                        )
-                )
-        self.trial011 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        80
-                        ),
-                size = (
-                        450,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "Trial 2" + '.' * (80 - len("Trial 2")),
-                pos = (
-                        500,
-                        110
-                        )
-                )
-        self.trial021 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        110
-                        ),
-                size = (
-                        450,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "Trial 3" + '.' * (80 - len("Trial 3")),
-                pos = (
-                        500,
-                        140
-                        )
-                )
-        self.trial031 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        140
-                        ),
-                size = (
-                        450,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "Trial 4" + '.' * (80 - len("Trial 4")),
-                pos = (
-                        500,
-                        170
-                        )
-                )
-        self.trial041 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        170
-                        ),
-                size = (
-                        450,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "Trial 5" + '.' * (80 - len("Trial 5")),
-                pos = (
-                        500,
-                        200
-                        )
-                )
-        self.trial051 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        200
-                        ),
-                size = (
-                        450,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "Trial 6" + '.' * (80 - len("Trial 6")),
-                pos = (
-                        500,
-                        230
-                        )
-                )
-        self.trial061 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        230
-                        ),
-                size = (
-                        450,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "Trial 7" + '.' * (80 - len("Trial 7")),
-                pos = (
-                        500,
-                        260
-                        )
-                )
-        self.trial071 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        260
-                        ),
-                size = (
-                        450,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "Trial 8" + '.' * (80 - len("Trial 8")),
-                pos = (
-                        500,
-                        290
-                        )
-                )
-        self.trial081 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        290
-                        ),
-                size = (
-                        450,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "Trial 9" + '.' * (80 - len("Trial 9")),
-                pos = (
-                        500,
-                        320
-                        )
-                )
-        self.trial091 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        320
-                        ),
-                size = (
-                        450,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "Trial 10" + '.' * (80 - len("Trial 10")),
-                pos = (
-                        500,
-                        350
-                        )
-                )
-        self.trial101 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        350
-                        ),
-                size = (
-                        450,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "Trial 11" + '.' * (80 - len("Trial 11")),
-                pos = (
-                        500,
-                        380
-                        )
-                )
-        self.trial111 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        380
-                        ),
-                size = (
-                        450,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "Anecdotal Notes",
-                pos = (
-                        500,
-                        410
-                        )
-                )
-        self.notes1 = wx.TextCtrl(
-                self,
-                111,
-                "",
-                pos = (
-                        650,
-                        440
-                        ),
-                size = (
-                        450,
-                        375
-                        ),
-                style = wx.TE_MULTILINE | wx.TE_WORDWRAP | wx.TE_PROCESS_TAB
-                )
-        # self.Bind(wx.EVT_KEY_DOWN, self.virtualTab, id=111)
-        self.Bind(wx.EVT_CHAR_HOOK, self.virtualTab, id = 111)
-        self.btn2 = wx.Button(
-                self,
-                203,
-                "Check IEP Goals",
-                pos = (
-                        135,
-                        850
-                        ),
-                size = (
-                        150,
-                        30
-                        )
-                )
-        self.btn = wx.Button(
-                self,
-                201,
-                "SAVE",
-                pos = (
-                        725,
-                        850
-                        ),
-                size = (
-                        70,
-                        30
-                        )
-                )
-        self.Bind(
-                wx.EVT_BUTTON,
-                self.save,
-                id = 201
-                )
-        self.Bind(
-                wx.EVT_BUTTON,
-                self.submit,
-                id = 203
-                )
-        self.btn1 = wx.Button(
-                self,
-                202,
-                "EXIT",
-                pos = (
-                        825,
-                        850
-                        ),
-                size = (
-                        70,
-                        30
-                        )
-                )
-        self.Bind(
-                wx.EVT_BUTTON,
-                self.exit,
-                id = 202
-                )
-
-        os.chdir(USER_DIR)
-
-    def virtualTab(self, event):
-        keycode = event.GetKeyCode()
-        print(keycode)
-        if keycode == 308:
-            event.EventObject.Navigate()
-        else:
-            event.Skip()
-
-    def submit(
-            self,
-            event
-            ):
-        """
-
-        :param event:
-        :type event:
-        """
-        studentname = self.studentname1.GetString(
-                self.studentname1.GetSelection()
-                )
-        studentname = studentname.lower()
-
-        lookupid = f"{studentname}iep"
-        iepdata = globals()[lookupid]
-        wx.MessageBox(
-                iepdata,
-                caption = f"IEP Summary for {studentname}"
-                )
-
-    @staticmethod
-    def exit(event):
-        """
-
-        :param event:
-        :type event:
-        """
-        wx.Exit()
-
-    def save(
-            self,
-            event
-            ):
-        """
-
-        :param event:
-        :type event:
-        """
-        studentname = self.studentname1.GetString(
-                self.studentname1.GetSelection()
-                )
-        datenow = datetime.datetime.now().strftime("%Y_%m_%d-%H%M%S")
-        item = self.lesson1.GetSelection()
-        task = self.lesson1.GetItemText(
-                self.lesson1.GetItemParent(item)
-                )
-        lesson = self.lesson1.GetItemText(
-                self.lesson1.GetSelection()
-                )
-        session = self.session1.GetString(
-                self.session1.GetSelection()
-                )
-        trial01 = self.trial011.GetValue()
-        trial02 = self.trial021.GetValue()
-        trial03 = self.trial031.GetValue()
-        trial04 = self.trial041.GetValue()
-        trial05 = self.trial051.GetValue()
-        trial06 = self.trial061.GetValue()
-        trial07 = self.trial071.GetValue()
-        trial08 = self.trial081.GetValue()
-        trial09 = self.trial091.GetValue()
-        trial10 = self.trial101.GetValue()
-        trial11 = self.trial111.GetValue()
-        trials = [
-                trial01,
-                trial02,
-                trial03,
-                trial04,
-                trial05,
-                trial06,
-                trial07,
-                trial08,
-                trial09,
-                trial10,
-                trial11
-                ]
-        trialmedian = statistics.median(trials)
-        notes = self.notes1.GetValue()
-
-        if (len(studentname) and len(date) and len(task) and len(notes)) > 0:
-            box = wx.TextEntryDialog(
-                    None,
-                    "Enter File Name",
-                    "Title",
-                    f"{studentname.title()}{datenow}"
-                    )
-            if box.ShowModal() == wx.ID_OK:
-                self.studentdatabasename = box.GetValue()
-                if not Path(USER_DIR).joinpath(
+                tmppath = Path(USER_DIR).joinpath(
                         'StudentDatabase',
                         'StudentDataFiles',
-                        studentname,
-                        self.studentdatabasename + '.txt'
-                        ).exists():
-                    tmppath = Path(USER_DIR).joinpath(
-                            'StudentDatabase',
-                            'StudentDataFiles',
-                            studentname,
-                            self.studentdatabasename + '.txt'
-                            )
-                    Path.touch(
-                            tmppath,
-                            mode = 0o666,
-                            exist_ok = True
-                            )
-                    self.filename = open(
-                            tmppath,
-                            'w'
-                            )
-                    self.filename.write(
-                            'studentname' +
-                            ', '
-                            )
-                    self.filename.write(
-                            'simpledate' +
-                            ', '
-                            )
-                    self.filename.write('task' + ', ')
-                    self.filename.write('lesson' + ', ')
-                    self.filename.write('session' + ', ')
-                    self.filename.write('trial01' + ', ')
-                    self.filename.write('trial02' + ', ')
-                    self.filename.write('trial03' + ', ')
-                    self.filename.write('trial04' + ', ')
-                    self.filename.write('trial05' + ', ')
-                    self.filename.write('trial06' + ', ')
-                    self.filename.write('trial07' + ', ')
-                    self.filename.write('trial08' + ', ')
-                    self.filename.write('trial09' + ', ')
-                    self.filename.write('trial10' + ', ')
-                    self.filename.write('trial11' + ', ')
-                    self.filename.write('median' + ', ')
-                    self.filename.write('notes' + ',\n')
-                    self.filename.write(studentname + ', ')
-                    self.filename.write(datenow + ', ')
-                    self.filename.write(task + ', ')
-                    self.filename.write(lesson + ', ')
-                    self.filename.write(session + ', ')
-                    self.filename.write(trial01 + ', ')
-                    self.filename.write(trial02 + ', ')
-                    self.filename.write(trial03 + ', ')
-                    self.filename.write(trial04 + ', ')
-                    self.filename.write(trial05 + ', ')
-                    self.filename.write(trial06 + ', ')
-                    self.filename.write(trial07 + ', ')
-                    self.filename.write(trial08 + ', ')
-                    self.filename.write(trial09 + ', ')
-                    self.filename.write(trial10 + ', ')
-                    self.filename.write(trial11 + ', ')
-                    self.filename.write(trialmedian + ', ')
-                    self.filename.write(notes + ', ')
-                    self.filename.close()
-                    tmppath = Path(USER_DIR).joinpath(
-                            'StudentDatabase',
-                            'StudentDataFiles',
-                            'Filenames.txt'
-                            )
-                    self.filename = open(
-                            tmppath,
-                            'a'
-                            )
-                    tmppath = Path(USER_DIR).joinpath(
-                            'StudentDatabase',
-                            'StudentDataFiles',
-                            studentname,
-                            self.studentdatabasename + '.txt'
-                            )
-                    self.filename.write(f"'{tmppath}'" + '\n')
-                    self.filename.close()
-                    list_data = [
-                            studentname,
-                            datenow,
-                            task,
-                            lesson,
-                            session,
-                            trial01,
-                            trial02,
-                            trial03,
-                            trial04,
-                            trial05,
-                            trial06,
-                            trial07,
-                            trial08,
-                            trial09,
-                            trial10,
-                            trial11,
-                            trialmedian,
-                            notes
-                            ]
-                    os.chdir(USER_DIR)
-                    tmppath = Path(USER_DIR).joinpath(
-                            'StudentDatabase',
-                            'StudentDataFiles',
-                            studentname,
-                            'omnibusDatabase.csv'
-                            )
-                    with open(
-                            tmppath,
-                            'a',
-                            newline = ''
-                            ) as f_setup:
-                        writer_setup = writer(f_setup)
-                        writer_setup.writerow(list_data)
-                        f_setup.close()
-                    self.dial = wx.MessageDialog(
-                            None,
-                            'Saved successfully!',
-                            'Info',
-                            wx.OK
-                            )
-                    self.dial.ShowModal()
-                    self.trial011.Clear()
-                    self.trial021.Clear()
-                    self.trial031.Clear()
-                    self.trial041.Clear()
-                    self.trial051.Clear()
-                    self.trial061.Clear()
-                    self.trial071.Clear()
-                    self.trial081.Clear()
-                    self.trial091.Clear()
-                    self.trial101.Clear()
-                    self.trial111.Clear()
-                else:
-                    self.dial = wx.MessageDialog(
-                            None,
-                            'Name already exists',
-                            'Info',
-                            wx.OK
-                            )
-                    self.dial.ShowModal()
-            else:
-                self.dial = wx.MessageDialog(
-                        None,
-                        'Save cancelled',
-                        'Info',
-                        wx.OK
+                        'Filenames.txt'
                         )
-                self.dial.ShowModal()
-        else:
-            self.dial = wx.MessageDialog(
-                    None,
-                    'Fill Required Fields!',
-                    'Info',
-                    wx.OK
-                    )
-            self.dial.ShowModal()
-
-        def data_entry():
-            """
-
-            """
-            conn = sqlite3.connect(dataBasePath)
-            c = conn.cursor()
-            c.execute(
-                    """INSERT INTO STUDENTDATA (
-                STUDENTNAME,
-                DATE,
-                TASK,
-                LESSON,
-                SESSION,
-                TRIAL01,
-                TRIAL02,
-                TRIAL03,
-                TRIAL04,
-                TRIAL05,
-                TRIAL06,
-                TRIAL07,
-                TRIAL08,
-                TRIAL09,
-                TRIAL10,
-                TRIAL11,
-                MEDIAN,
-                NOTES
-                )
-                VALUES (
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?
-                )""",
-                    (studentname,
-                     datenow,
-                     task,
-                     lesson,
-                     session,
-                     trial01,
-                     trial02,
-                     trial03,
-                     trial04,
-                     trial05,
-                     trial06,
-                     trial07,
-                     trial08,
-                     trial09,
-                     trial10,
-                     trial11,
-                     trialmedian,
-                     notes)
-                    )
-            conn.commit()
-            c.close()
-            conn.close()
-
-        data_entry()
-
-
-class braillePanel(scrolled.ScrolledPanel):
-    """
-
-    """
-
-    def __init__(
-            self,
-            parent
-            ):
-        scrolled.ScrolledPanel.__init__(
-                self,
-                parent,
-                -1
-                )
-        vbox = wx.BoxSizer(wx.VERTICAL)
-        vbox.Add(
-                wx.StaticLine(
-                        self,
-                        -1,
-                        size = (
-                                1500,
-                                -1
-                                )
-                        ),
-                0,
-                wx.ALL,
-                5
-                )
-        vbox.Add(
-                wx.StaticLine(
-                        self,
-                        -1,
-                        size = (-1,
-                                2100
-                                )
-                        ),
-                0,
-                wx.ALL,
-                5
-                )
-        vbox.Add(
-                (20,
-                 20
-                 )
-                )
-        self.SetSizer(vbox)
-        self.SetupScrolling()
-        self.SetBackgroundColour(
-                random.choice(
-                        colorList
+                filename = open(
+                        tmppath,
+                        'a'
                         )
-                )
-        self.SetFont(
-                wx.Font(
-                        10,
-                        wx.MODERN,
-                        wx.NORMAL,
-                        wx.NORMAL,
-                        False,
-                        u'Atkinson Hyperlegible'
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "BRAILLE SKILLS PROGRESSION",
-                pos = (
-                        200,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "Student Name",
-                pos = (
-                        30,
-                        50
-                        )
-                )
-        self.studentname1 = wx.Choice(
-                self,
-                -1,
-                choices = students,
-                pos = (
-                        130,
-                        50
-                        ),
-                size = (
-                        300,
-                        30
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent",
-                pos = (
-                        550,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "1.1 Track Left to Right" + '.' * (200 - len("1.1 Track Left to Right")),
-                pos = (
-                        30,
-                        80
-                        )
-                )
-        self.trial11 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        80
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "1.2 Track Top to Bottom" + '.' * (200 - len("1.2 Track Top to Bottom")),
-                pos = (
-                        30,
-                        110
-                        )
-                )
-        self.trial12 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        110
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "1.3 Discriminate Shapes" + '.' * (200 - len("1.3 Discriminate Shapes")),
-                pos = (
-                        30,
-                        140
-                        )
-                )
-        self.trial13 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        140
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "1.4 Discriminate Braille Characters" + '.' * (200 - len("1.4 Discriminate Braille Characters")),
-                pos = (
-                        30,
-                        170
-                        )
-                )
-        self.trial14 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        170
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "2.1 Mangold Progression: G C L" + '.' * (200 - len("2.1 Mangold Progression: G C L")),
-                pos = (
-                        30,
-                        200
-                        )
-                )
-        self.trial21 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        200
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "2.2 Mangold Progression: D Y" + '.' * (200 - len("2.2 Mangold Progression: D Y")),
-                pos = (
-                        30,
-                        230
-                        )
-                )
-        self.trial22 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        230
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "2.3 Mangold Progression: A B" + '.' * (200 - len("2.3 Mangold Progression: A B")),
-                pos = (
-                        30,
-                        260
-                        )
-                )
-        self.trial23 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        260
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "2.4 Mangold Progression: S" + '.' * (200 - len("2.4 Mangold Progression: S")),
-                pos = (
-                        30,
-                        290
-                        )
-                )
-        self.trial24 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        290
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "2.5 Mangold Progression: W" + '.' * (200 - len("2.5 Mangold Progression: W")),
-                pos = (
-                        30,
-                        320
-                        )
-                )
-        self.trial25 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        320
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "2.6 Mangold Progression: P O" + '.' * (200 - len("2.6 Mangold Progression: P O")),
-                pos = (
-                        30,
-                        350
-                        )
-                )
-        self.trial26 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        350
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "2.7 Mangold Progression: K" + '.' * (200 - len("2.7 Mangold Progression: K")),
-                pos = (
-                        30,
-                        380
-                        )
-                )
-        self.trial27 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        380
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "2.8 Mangold Progression: R" + '.' * (200 - len("2.8 Mangold Progression: R")),
-                pos = (
-                        30,
-                        410
-                        )
-                )
-        self.trial28 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        410
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "2.9 Mangold Progression: M E" + '.' * (200 - len("2.9 Mangold Progression: M E")),
-                pos = (
-                        30,
-                        440
-                        )
-                )
-        self.trial29 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        440
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "2.10 Mangold Progression: H" + '.' * (200 - len("2.10 Mangold Progression: H")),
-                pos = (
-                        30,
-                        470
-                        )
-                )
-        self.trial210 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        470
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "2.11 Mangold Progression: N X" + '.' * (200 - len("2.11 Mangold Progression: N X")),
-                pos = (
-                        30,
-                        500
-                        )
-                )
-        self.trial211 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        500
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "2.12 Mangold Progression: Z F" + '.' * (200 - len("2.12 Mangold Progression: Z F")),
-                pos = (
-                        30,
-                        530
-                        )
-                )
-        self.trial212 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        530
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "2.13 Mangold Progression: U T" + '.' * (200 - len("2.13 Mangold Progression: U T")),
-                pos = (
-                        30,
-                        560
-                        )
-                )
-        self.trial213 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        560
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "2.14 Mangold Progression: Q I" + '.' * (200 - len("2.14 Mangold Progression: Q I")),
-                pos = (
-                        30,
-                        590
-                        )
-                )
-        self.trial214 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        590
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "2.15 Mangold Progression: V J" + '.' * (200 - len("2.15 Mangold Progression: V J")),
-                pos = (
-                        30,
-                        620
-                        )
-                )
-        self.trial215 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        620
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "3.1 Alphabetic Wordsigns" + '.' * (200 - len("3.1 Alphabetic Wordsigns")),
-                pos = (
-                        30,
-                        650
-                        )
-                )
-        self.trial31 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        650
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "3.2 Braille Numbers" + '.' * (200 - len("3.2 Braille Numbers")),
-                pos = (
-                        30,
-                        680
-                        )
-                )
-        self.trial32 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        680
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "3.3 Punctuation" + '.' * (200 - len("3.3 Punctuation")),
-                pos = (
-                        30,
-                        710
-                        )
-                )
-        self.trial33 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        710
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "3.4 Strong Contractions - AND OF FOR WITH THE" + '.' * (200 - len("3.4 Strong Contractions - AND OF FOR WITH THE")),
-                pos = (
-                        30,
-                        740
-                        )
-                )
-        self.trial34 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        740
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "3.5 Strong Groupsigns - CH GH SH TH WH ED ER OU OW ST AR ING" + '.' * (200 - len("3.5 Strong Groupsigns - CH GH SH TH WH ED ER OU OW ST AR ING")),
-                pos = (
-                        30,
-                        770
-                        )
-                )
-        self.trial35 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        770
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "3.6 Strong Wordsigns - CH SH TH WH OU ST" + '.' * (200 - len("3.6 Strong Wordsigns - CH SH TH WH OU ST")),
-                pos = (
-                        30,
-                        800
-                        )
-                )
-        self.trial36 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        800
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "3.7 Lower Groupsigns - BE CON DIS" + '.' * (200 - len("3.7 Lower Groupsigns - BE CON DIS")),
-                pos = (
-                        30,
-                        830
-                        )
-                )
-        self.trial37 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        830
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "3.8 Lower Groupsigns - EA BB CC FF GG" + '.' * (200 - len("3.8 Lower Groupsigns - EA BB CC FF GG")),
-                pos = (
-                        30,
-                        860
-                        )
-                )
-        self.trial38 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        860
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "3.9 Lower Group/Wordsigns - EN IN" + '.' * (200 - len("3.9 Lower Group/Wordsigns - EN IN")),
-                pos = (
-                        30,
-                        890
-                        )
-                )
-        self.trial39 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        890
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "3.10 Lower Wordsigns - BE HIS WAS WERE" + '.' * (200 - len("3.10 Lower Wordsigns - BE HIS WAS WERE")),
-                pos = (
-                        30,
-                        920
-                        )
-                )
-        self.trial310 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        920
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "3.11 Dot 5 Contractions" + '.' * (200 - len("3.11 Dot 5 Contractions")),
-                pos = (
-                        30,
-                        950
-                        )
-                )
-        self.trial311 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        950
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "3.12 Dot 45 Contractions" + '.' * (200 - len("3.12 Dot 45 Contractions")),
-                pos = (
-                        30,
-                        980
-                        )
-                )
-        self.trial312 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        980
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "3.13 Dot 456 Contractions" + '.' * (200 - len("3.13 Dot 456 Contractions")),
-                pos = (
-                        30,
-                        1010
-                        )
-                )
-        self.trial313 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        1010
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "3.14 Final Letter Groupsigns" + '.' * (200 - len("3.14 Final Letter Groupsigns")),
-                pos = (
-                        30,
-                        1040
-                        )
-                )
-        self.trial314 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        1040
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "3.15 Shortform Words" + '.' * (200 - len("3.15 Shortform Words")),
-                pos = (
-                        30,
-                        1070
-                        )
-                )
-        self.trial315 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        1070
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "4.1 Grade 1 Indicators" + '.' * (200 - len("4.1 Grade 1 Indicators")),
-                pos = (
-                        30,
-                        1100
-                        )
-                )
-        self.trial41 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        1100
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "4.2 Capitals Indicators" + '.' * (200 - len("4.2 Capitals Indicators")),
-                pos = (
-                        30,
-                        1130
-                        )
-                )
-        self.trial42 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        1130
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "4.3 Numeric Mode and Spatial Math" + '.' * (200 - len("4.3 Numeric Mode and Spatial Math")),
-                pos = (
-                        30,
-                        1160
-                        )
-                )
-        self.trial43 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        1160
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "4.4 Typeform Indicators - ITALIC BOLD UNDERLINE SCRIPT" + '.' * (200 - len("4.4 Typeform Indicators - ITALIC BOLD UNDERLINE SCRIPT")),
-                pos = (
-                        30,
-                        1190
-                        )
-                )
-        self.trial44 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        1190
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "5.1 Page Numbering" + '.' * (200 - len("5.1 Page Numbering")),
-                pos = (
-                        30,
-                        1220
-                        )
-                )
-        self.trial51 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        1220
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "5.2 Headings" + '.' * (200 - len("5.2 Headings")),
-                pos = (
-                        30,
-                        1250
-                        )
-                )
-        self.trial52 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        1250
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "5.3 Lists" + '.' * (200 - len("5.3 Lists")),
-                pos = (
-                        30,
-                        1280
-                        )
-                )
-        self.trial53 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        1280
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "5.4 Poetry / Drama" + '.' * (200 - len("5.4 Poetry / Drama")),
-                pos = (
-                        30,
-                        1310
-                        )
-                )
-        self.trial54 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        1310
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "6.1 Operation and Comparison Signs" + '.' * (200 - len("6.1 Operation and Comparison Signs")),
-                pos = (
-                        30,
-                        1340
-                        )
-                )
-        self.trial61 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        1340
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "6.2 Grade 1 Mode" + '.' * (200 - len("6.2 Grade 1 Mode")),
-                pos = (
-                        30,
-                        1370
-                        )
-                )
-        self.trial62 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        1370
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "6.3 Special Print Symbols" + '.' * (200 - len("6.3 Special Print Symbols")),
-                pos = (
-                        30,
-                        1400
-                        )
-                )
-        self.trial63 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        1400
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "6.4 Omission Marks" + '.' * (200 - len("6.4 Omission Marks")),
-                pos = (
-                        30,
-                        1430
-                        )
-                )
-        self.trial64 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        1430
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "6.5 Shape Indicators" + '.' * (200 - len("6.5 Shape Indicators")),
-                pos = (
-                        30,
-                        1460
-                        )
-                )
-        self.trial65 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        1460
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "6.6 Roman Numerals" + '.' * (200 - len("6.6 Roman Numerals")),
-                pos = (
-                        30,
-                        1490
-                        )
-                )
-        self.trial66 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        1490
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "6.7 Fractions" + '.' * (200 - len("6.7 Fractions")),
-                pos = (
-                        30,
-                        1520
-                        )
-                )
-        self.trial67 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        1520
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "7.1 Grade 1 Mode and algebra" + '.' * (200 - len("7.1 Grade 1 Mode and algebra")),
-                pos = (
-                        30,
-                        1550
-                        )
-                )
-        self.trial71 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        1550
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "7.2 Grade 1 Mode and Fractions" + '.' * (200 - len("7.2 Grade 1 Mode and Fractions")),
-                pos = (
-                        30,
-                        1580
-                        )
-                )
-        self.trial72 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        1580
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "7.3 Advanced Operation and Comparison Signs" + '.' * (200 - len("7.3 Advanced Operation and Comparison Signs")),
-                pos = (
-                        30,
-                        1610
-                        )
-                )
-        self.trial73 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        1610
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "7.4 Indices" + '.' * (200 - len("7.4 Indices")),
-                pos = (
-                        30,
-                        1640
-                        )
-                )
-        self.trial74 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        1640
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "7.5 Roots and Radicals" + '.' * (200 - len("7.5 Roots and Radicals")),
-                pos = (
-                        30,
-                        1670
-                        )
-                )
-        self.trial75 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        1670
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "7.6 Miscellaneous Shape Indicators" + '.' * (200 - len("7.6 Miscellaneous Shape Indicators")),
-                pos = (
-                        30,
-                        1700
-                        )
-                )
-        self.trial76 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        1700
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "7.7 Functions" + '.' * (200 - len("7.7 Functions")),
-                pos = (
-                        30,
-                        1730
-                        )
-                )
-        self.trial77 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        1730
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "7.8 Greek Letters" + '.' * (200 - len("7.8 Greek Letters")),
-                pos = (
-                        30,
-                        1760
-                        )
-                )
-        self.trial78 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        1760
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "8.1 Functions" + '.' * (200 - len("8.1 Functions")),
-                pos = (
-                        30,
-                        1790
-                        )
-                )
-        self.trial81 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        1790
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "8.2 Modifiers: Bars and Dots" + '.' * (200 - len("8.2 Modifiers: Bars and Dots")),
-                pos = (
-                        30,
-                        1820
-                        )
-                )
-        self.trial82 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        1820
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "8.3 Modifiers: Arrows and Limits" + '.' * (200 - len("8.3 Modifiers: Arrows and Limits")),
-                pos = (
-                        30,
-                        1850
-                        )
-                )
-        self.trial83 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        1850
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "8.4 Probability" + '.' * (200 - len("8.4 Probability")),
-                pos = (
-                        30,
-                        1880
-                        )
-                )
-        self.trial84 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        1880
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "8.5 Calculus: Differentiation" + '.' * (200 - len("8.5 Calculus: Differentiation")),
-                pos = (
-                        30,
-                        1910
-                        )
-                )
-        self.trial85 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        1910
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "8.6 Calculus: Integration" + '.' * (200 - len("8.6 Calculus: Integration")),
-                pos = (
-                        30,
-                        1940
-                        )
-                )
-        self.trial86 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        1940
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "8.7 Vertical Bars" + '.' * (200 - len("8.7 Vertical Bars")),
-                pos = (
-                        30,
-                        1970
-                        )
-                )
-        self.trial87 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        1970
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        self.btn = wx.Button(
-                self,
-                201,
-                "SAVE",
-                pos = (
-                        450,
-                        2000
-                        ),
-                size = (
-                        70,
-                        30
-                        )
-                )
-        self.Bind(
-                wx.EVT_BUTTON,
-                self.save,
-                id = 201
-                )
-        self.btn = wx.Button(
-                self,
-                203,
-                "PRINT GRAPHS",
-                pos = (
-                        450,
-                        2040
-                        ),
-                size = (
-                        170,
-                        30
-                        )
-                )
-        self.Bind(
-                wx.EVT_BUTTON,
-                self.graph,
-                id = 203
-                )
-        self.btn1 = wx.Button(
-                self,
-                202,
-                "EXIT",
-                pos = (
-                        550,
-                        2000
-                        ),
-                size = (
-                        70,
-                        30
-                        )
-                )
-        self.Bind(
-                wx.EVT_BUTTON,
-                self.exit,
-                id = 202
-                )
-
-    @staticmethod
-    def exit(event):
-        """
-
-        :param event:
-        :type event:
-        """
-        wx.Exit()
-
-    def save(
-            self,
-            event
-            ):
-        """
-
-        :param event:
-        :type event:
-        """
-        studentname = self.studentname1.GetString(
-                self.studentname1.GetSelection()
-                )
-        datenow = datetime.datetime.now().strftime("%Y_%m_%d-%H%M%S")
-        simpledate = datetime.datetime.now().strftime("%Y_%m_%d-%H%M")
-        trial11 = self.trial11.GetValue()
-        trial12 = self.trial12.GetValue()
-        trial13 = self.trial13.GetValue()
-        trial14 = self.trial14.GetValue()
-        trial21 = self.trial21.GetValue()
-        trial22 = self.trial22.GetValue()
-        trial23 = self.trial23.GetValue()
-        trial24 = self.trial24.GetValue()
-        trial25 = self.trial25.GetValue()
-        trial26 = self.trial26.GetValue()
-        trial27 = self.trial27.GetValue()
-        trial28 = self.trial28.GetValue()
-        trial29 = self.trial29.GetValue()
-        trial210 = self.trial210.GetValue()
-        trial211 = self.trial211.GetValue()
-        trial212 = self.trial212.GetValue()
-        trial213 = self.trial213.GetValue()
-        trial214 = self.trial214.GetValue()
-        trial215 = self.trial215.GetValue()
-        trial31 = self.trial31.GetValue()
-        trial32 = self.trial32.GetValue()
-        trial33 = self.trial33.GetValue()
-        trial34 = self.trial34.GetValue()
-        trial35 = self.trial35.GetValue()
-        trial36 = self.trial36.GetValue()
-        trial37 = self.trial37.GetValue()
-        trial38 = self.trial38.GetValue()
-        trial39 = self.trial39.GetValue()
-        trial310 = self.trial310.GetValue()
-        trial311 = self.trial311.GetValue()
-        trial312 = self.trial312.GetValue()
-        trial313 = self.trial313.GetValue()
-        trial314 = self.trial314.GetValue()
-        trial315 = self.trial315.GetValue()
-        trial41 = self.trial41.GetValue()
-        trial42 = self.trial42.GetValue()
-        trial43 = self.trial43.GetValue()
-        trial44 = self.trial44.GetValue()
-        trial51 = self.trial51.GetValue()
-        trial52 = self.trial52.GetValue()
-        trial53 = self.trial53.GetValue()
-        trial54 = self.trial54.GetValue()
-        trial61 = self.trial61.GetValue()
-        trial62 = self.trial62.GetValue()
-        trial63 = self.trial63.GetValue()
-        trial64 = self.trial64.GetValue()
-        trial65 = self.trial65.GetValue()
-        trial66 = self.trial66.GetValue()
-        trial67 = self.trial67.GetValue()
-        trial71 = self.trial71.GetValue()
-        trial72 = self.trial72.GetValue()
-        trial73 = self.trial73.GetValue()
-        trial74 = self.trial74.GetValue()
-        trial75 = self.trial75.GetValue()
-        trial76 = self.trial76.GetValue()
-        trial77 = self.trial77.GetValue()
-        trial78 = self.trial78.GetValue()
-        trial81 = self.trial81.GetValue()
-        trial82 = self.trial82.GetValue()
-        trial83 = self.trial83.GetValue()
-        trial84 = self.trial84.GetValue()
-        trial85 = self.trial85.GetValue()
-        trial86 = self.trial86.GetValue()
-        trial87 = self.trial87.GetValue()
-        box = wx.TextEntryDialog(
-                None,
-                "Enter File Name",
-                "Title",
-                f"braille{studentname.title()}{datenow}"
-                )
-        if box.ShowModal() == wx.ID_OK:
-            self.studentdatabasename = box.GetValue()
-            if not Path(USER_DIR).joinpath(
-                    'StudentDatabase',
-                    'StudentDataFiles',
-                    studentname,
-                    self.studentdatabasename + '.txt'
-                    ).exists():
                 tmppath = Path(USER_DIR).joinpath(
                         'StudentDatabase',
                         'StudentDataFiles',
                         studentname,
-                        self.studentdatabasename + '.txt'
+                        studentdatabasename + '.txt'
                         )
-                Path.touch(tmppath)
-                self.filename = open(
-                        tmppath,
-                        'w'
+                filename.write(f"{tmppath}" + '\n')
+                filename.close()
+                list_names = [
+                        'date',
+                        'P1_1',
+                        'P1_2',
+                        'P1_3',
+                        'P1_4',
+                        'P2_1',
+                        'P2_2',
+                        'P2_3',
+                        'P3_1',
+                        'P3_2',
+                        'P3_3',
+                        'P4_1',
+                        'P4_2',
+                        'P5_1',
+                        'P5_2',
+                        'P6_1',
+                        'P6_2',
+                        'P6_3',
+                        'P6_4',
+                        'P7_1',
+                        'P7_2',
+                        'P7_3',
+                        'P7_4',
+                        'P8_1',
+                        'P8_2'
+                        ]
+                list_data = [
+                        datenow,
+                        trial11,
+                        trial12,
+                        trial13,
+                        trial14,
+                        trial21,
+                        trial22,
+                        trial23,
+                        trial31,
+                        trial32,
+                        trial33,
+                        trial41,
+                        trial42,
+                        trial51,
+                        trial52,
+                        trial61,
+                        trial62,
+                        trial63,
+                        trial64,
+                        trial71,
+                        trial72,
+                        trial73,
+                        trial74,
+                        trial81,
+                        trial82
+                        ]
+                os.chdir(USER_DIR)
+                with open(
+                        f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\ScreenReaderSkillsProgression.csv",
+                        'a',
+                        newline = ''
+                        ) as f_setup:
+                    writer_setup = writer(f_setup)
+                    writer_setup.writerow(list_data)
+                    f_setup.close()
+                ui.notify('Saved successfully!', close_button = 'OK')
+
+            def data_entry():
+                """
+
+                """
+                conn = sqlite3.connect(dataBasePath)
+                c = conn.cursor()
+                c.execute(
+                        """INSERT INTO ABACUSPROGRESS (
+                    STUDENTNAME,
+                    DATE,
+                    P1_1,
+                    P1_2,
+                    P1_3,
+                    P1_4,
+                    P2_1,
+                    P2_2,
+                    P2_3,
+                    P3_1,
+                    P3_2,
+                    P3_3,
+                    P4_1,
+                    P4_2,
+                    P5_1,
+                    P5_2,
+                    P6_1,
+                    P6_2,
+                    P6_3,
+                    P6_4,
+                    P7_1,
+                    P7_2,
+                    P7_3,
+                    P7_4,
+                    P8_1,
+                    P8_2
+                    )
+                    VALUES (
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?)""",
+                        (studentname,
+                         datenow,
+                         trial11,
+                         trial12,
+                         trial13,
+                         trial14,
+                         trial21,
+                         trial22,
+                         trial23,
+                         trial31,
+                         trial32,
+                         trial33,
+                         trial41,
+                         trial42,
+                         trial51,
+                         trial52,
+                         trial61,
+                         trial62,
+                         trial63,
+                         trial64,
+                         trial71,
+                         trial72,
+                         trial73,
+                         trial74,
+                         trial81,
+                         trial82
+                         )
                         )
-                self.filename.write('studentname' + ', ')
-                self.filename.write('simpledate' + ', ')
-                self.filename.write('trial11' + ', ')
-                self.filename.write('trial12' + ', ')
-                self.filename.write('trial13' + ', ')
-                self.filename.write('trial14' + ', ')
-                self.filename.write('trial21' + ', ')
-                self.filename.write('trial22' + ', ')
-                self.filename.write('trial23' + ', ')
-                self.filename.write('trial24' + ', ')
-                self.filename.write('trial25' + ', ')
-                self.filename.write('trial26' + ', ')
-                self.filename.write('trial27' + ', ')
-                self.filename.write('trial28' + ', ')
-                self.filename.write('trial29' + ', ')
-                self.filename.write('trial210' + ', ')
-                self.filename.write('trial211' + ', ')
-                self.filename.write('trial212' + ', ')
-                self.filename.write('trial213' + ', ')
-                self.filename.write('trial214' + ', ')
-                self.filename.write('trial215' + ', ')
-                self.filename.write('trial31' + ', ')
-                self.filename.write('trial32' + ', ')
-                self.filename.write('trial33' + ', ')
-                self.filename.write('trial34' + ', ')
-                self.filename.write('trial35' + ', ')
-                self.filename.write('trial36' + ', ')
-                self.filename.write('trial37' + ', ')
-                self.filename.write('trial38' + ', ')
-                self.filename.write('trial39' + ', ')
-                self.filename.write('trial310' + ', ')
-                self.filename.write('trial311' + ', ')
-                self.filename.write('trial312' + ', ')
-                self.filename.write('trial313' + ', ')
-                self.filename.write('trial314' + ', ')
-                self.filename.write('trial315' + ', ')
-                self.filename.write('trial41' + ', ')
-                self.filename.write('trial42' + ', ')
-                self.filename.write('trial43' + ', ')
-                self.filename.write('trial44' + ', ')
-                self.filename.write('trial51' + ', ')
-                self.filename.write('trial52' + ', ')
-                self.filename.write('trial53' + ', ')
-                self.filename.write('trial54' + ', ')
-                self.filename.write('trial61' + ', ')
-                self.filename.write('trial62' + ', ')
-                self.filename.write('trial63' + ', ')
-                self.filename.write('trial64' + ', ')
-                self.filename.write('trial65' + ', ')
-                self.filename.write('trial66' + ', ')
-                self.filename.write('trial67' + ', ')
-                self.filename.write('trial71' + ', ')
-                self.filename.write('trial72' + ', ')
-                self.filename.write('trial73' + ', ')
-                self.filename.write('trial74' + ', ')
-                self.filename.write('trial75' + ', ')
-                self.filename.write('trial76' + ', ')
-                self.filename.write('trial77' + ', ')
-                self.filename.write('trial78' + ', ')
-                self.filename.write('trial81' + ', ')
-                self.filename.write('trial82' + ', ')
-                self.filename.write('trial83' + ', ')
-                self.filename.write('trial84' + ', ')
-                self.filename.write('trial85' + ', ')
-                self.filename.write('trial86' + ', ')
-                self.filename.write('trial87' + ', ')
-                self.filename.write(studentname + ', ')
-                self.filename.write(simpledate + ', ')
-                self.filename.write(trial11 + ', ')
-                self.filename.write(trial12 + ', ')
-                self.filename.write(trial13 + ', ')
-                self.filename.write(trial14 + ', ')
-                self.filename.write(trial21 + ', ')
-                self.filename.write(trial22 + ', ')
-                self.filename.write(trial23 + ', ')
-                self.filename.write(trial24 + ', ')
-                self.filename.write(trial25 + ', ')
-                self.filename.write(trial26 + ', ')
-                self.filename.write(trial27 + ', ')
-                self.filename.write(trial28 + ', ')
-                self.filename.write(trial29 + ', ')
-                self.filename.write(trial210 + ', ')
-                self.filename.write(trial211 + ', ')
-                self.filename.write(trial212 + ', ')
-                self.filename.write(trial213 + ', ')
-                self.filename.write(trial214 + ', ')
-                self.filename.write(trial215 + ', ')
-                self.filename.write(trial31 + ', ')
-                self.filename.write(trial32 + ', ')
-                self.filename.write(trial33 + ', ')
-                self.filename.write(trial34 + ', ')
-                self.filename.write(trial35 + ', ')
-                self.filename.write(trial36 + ', ')
-                self.filename.write(trial37 + ', ')
-                self.filename.write(trial38 + ', ')
-                self.filename.write(trial39 + ', ')
-                self.filename.write(trial310 + ', ')
-                self.filename.write(trial311 + ', ')
-                self.filename.write(trial312 + ', ')
-                self.filename.write(trial313 + ', ')
-                self.filename.write(trial314 + ', ')
-                self.filename.write(trial315 + ', ')
-                self.filename.write(trial41 + ', ')
-                self.filename.write(trial42 + ', ')
-                self.filename.write(trial43 + ', ')
-                self.filename.write(trial44 + ', ')
-                self.filename.write(trial51 + ', ')
-                self.filename.write(trial52 + ', ')
-                self.filename.write(trial53 + ', ')
-                self.filename.write(trial54 + ', ')
-                self.filename.write(trial61 + ', ')
-                self.filename.write(trial62 + ', ')
-                self.filename.write(trial63 + ', ')
-                self.filename.write(trial64 + ', ')
-                self.filename.write(trial65 + ', ')
-                self.filename.write(trial66 + ', ')
-                self.filename.write(trial67 + ', ')
-                self.filename.write(trial71 + ', ')
-                self.filename.write(trial72 + ', ')
-                self.filename.write(trial73 + ', ')
-                self.filename.write(trial74 + ', ')
-                self.filename.write(trial75 + ', ')
-                self.filename.write(trial76 + ', ')
-                self.filename.write(trial77 + ', ')
-                self.filename.write(trial78 + ', ')
-                self.filename.write(trial81 + ', ')
-                self.filename.write(trial82 + ', ')
-                self.filename.write(trial83 + ', ')
-                self.filename.write(trial84 + ', ')
-                self.filename.write(trial85 + ', ')
-                self.filename.write(trial86 + ', ')
-                self.filename.write(trial87 + ', ')
-                self.filename.write(trial12 + ', ')
-                self.filename.write(trial13 + ', ')
-                self.filename.write(trial14 + ', ')
-                self.filename.write(trial21 + ', ')
-                self.filename.write(trial22 + ', ')
-                self.filename.write(trial23 + ', ')
-                self.filename.write(trial24 + ', ')
-                self.filename.write(trial25 + ', ')
-                self.filename.write(trial26 + ', ')
-                self.filename.write(trial27 + ', ')
-                self.filename.write(trial28 + ', ')
-                self.filename.write(trial29 + ', ')
-                self.filename.write(trial210 + ', ')
-                self.filename.write(trial211 + ', ')
-                self.filename.write(trial212 + ', ')
-                self.filename.write(trial213 + ', ')
-                self.filename.write(trial214 + ', ')
-                self.filename.write(trial215 + ', ')
-                self.filename.write(trial31 + ', ')
-                self.filename.write(trial32 + ', ')
-                self.filename.write(trial33 + ', ')
-                self.filename.write(trial34 + ', ')
-                self.filename.write(trial35 + ', ')
-                self.filename.write(trial36 + ', ')
-                self.filename.write(trial37 + ', ')
-                self.filename.write(trial38 + ', ')
-                self.filename.write(trial39 + ', ')
-                self.filename.write(trial310 + ', ')
-                self.filename.write(trial311 + ', ')
-                self.filename.write(trial312 + ', ')
-                self.filename.write(trial313 + ', ')
-                self.filename.write(trial314 + ', ')
-                self.filename.write(trial315 + ', ')
-                self.filename.write(trial41 + ', ')
-                self.filename.write(trial42 + ', ')
-                self.filename.write(trial43 + ', ')
-                self.filename.write(trial44 + ', ')
-                self.filename.write(trial51 + ', ')
-                self.filename.write(trial52 + ', ')
-                self.filename.write(trial53 + ', ')
-                self.filename.write(trial54 + ', ')
-                self.filename.write(trial61 + ', ')
-                self.filename.write(trial62 + ', ')
-                self.filename.write(trial63 + ', ')
-                self.filename.write(trial64 + ', ')
-                self.filename.write(trial65 + ', ')
-                self.filename.write(trial66 + ', ')
-                self.filename.write(trial67 + ', ')
-                self.filename.write(trial71 + ', ')
-                self.filename.write(trial72 + ', ')
-                self.filename.write(trial73 + ', ')
-                self.filename.write(trial74 + ', ')
-                self.filename.write(trial75 + ', ')
-                self.filename.write(trial76 + ', ')
-                self.filename.write(trial77 + ', ')
-                self.filename.write(trial78 + ', ')
-                self.filename.write(trial81 + ', ')
-                self.filename.write(trial82 + ', ')
-                self.filename.write(trial83 + ', ')
-                self.filename.write(trial84 + ', ')
-                self.filename.write(trial85 + ', ')
-                self.filename.write(trial86 + ', ')
-                self.filename.write(trial87 + ', ')
-                self.filename.close()
+                conn.commit()
+
+            data_entry()
+
+
+        def graph(
+                self,
+                event
+                ):
+            """
+
+            :param event:
+            :type event:
+            """
+            studentname = u_studentname.value
+            conn = sqlite3.connect(dataBasePath)
+            dfSQL = pd.read_sql_query(f"SELECT * FROM ABACUSPROGRESS", conn)
+            dfStudent = dfSQL[dfSQL.STUDENTNAME == studentname]
+            print(dfStudent)
+            conn.close()
+            df = dfStudent.drop(columns = ['ID', 'STUDENTNAME'])
+            print(df)
+            df = df.rename(columns = {'DATE': 'date'})
+            df = df.set_index('date')
+            print(df)
+            df = df.sort_values(by = "date")
+            mu, sigma = 0, 0.1
+            noise = np.random.normal(mu, sigma, [len(df.index), len(df.columns)])
+            df_noisy = df + noise
+            fig = make_subplots(
+                    rows = 4,
+                    cols = 2,
+                    subplot_titles = (
+                            "Phase 1: Foundation",
+                            "Phase 2: Addition",
+                            "Phase 3: Subtraction",
+                            "Phase 4: Multiplication",
+                            "Phase 5: Division",
+                            "Phase 6: Decimals",
+                            "Phase 7: Fractions",
+                            "Phase 8: Special Functions"),
+                    print_grid = True
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy["P1_1"],
+                            mode = "lines+markers",
+                            name = "Setting Numbers",
+                            legendgroup = "Phase 1",
+                            legendgrouptitle_text = "Phase 1"
+                            ),
+                    row = 1,
+                    col = 1
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy["P1_2"],
+                            mode = "lines+markers",
+                            name = "Clearing Beads",
+                            legendgroup = "Phase 1",
+                            legendgrouptitle_text = "Phase 1"
+                            ),
+                    row = 1,
+                    col = 1
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy["P1_3"],
+                            mode = "lines+markers",
+                            name = "Place Value",
+                            legendgroup = "Phase 1",
+                            legendgrouptitle_text = "Phase 1"
+                            ),
+                    row = 1,
+                    col = 1
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy["P1_4"],
+                            mode = "lines+markers",
+                            name = "Vocabulary",
+                            legendgroup = "Phase 1",
+                            legendgrouptitle_text = "Phase 1"
+                            ),
+                    row = 1,
+                    col = 1
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy["P2_1"],
+                            mode = "lines+markers",
+                            name = "Setting Numbers",
+                            legendgroup = "Phase 2",
+                            legendgrouptitle_text = "Phase 2"
+                            ),
+                    row = 1,
+                    col = 2
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy["P2_2"],
+                            mode = "lines+markers",
+                            name = "Clearing Beads",
+                            legendgroup = "Phase 2",
+                            legendgrouptitle_text = "Phase 2"
+                            ),
+                    row = 1,
+                    col = 2
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy["P2_3"],
+                            mode = "lines+markers",
+                            name = "Place Value",
+                            legendgroup = "Phase 2",
+                            legendgrouptitle_text = "Phase 2"
+                            ),
+                    row = 1,
+                    col = 2
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy["P3_1"],
+                            mode = "lines+markers",
+                            name = "Setting Numbers",
+                            legendgroup = "Phase 3",
+                            legendgrouptitle_text = "Phase 3"
+                            ),
+                    row = 2,
+                    col = 1
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy["P3_2"],
+                            mode = "lines+markers",
+                            name = "Clearing Beads",
+                            legendgroup = "Phase 3",
+                            legendgrouptitle_text = "Phase 3"
+                            ),
+                    row = 2,
+                    col = 1
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy["P3_3"],
+                            mode = "lines+markers",
+                            name = "Place Value",
+                            legendgroup = "Phase 3",
+                            legendgrouptitle_text = "Phase 3"
+                            ),
+                    row = 2,
+                    col = 1
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy["P4_1"],
+                            mode = "lines+markers",
+                            name = "Setting Numbers",
+                            legendgroup = "Phase 4",
+                            legendgrouptitle_text = "Phase 4"
+                            ),
+                    row = 2,
+                    col = 2
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy["P4_2"],
+                            mode = "lines+markers",
+                            name = "Clearing Beads",
+                            legendgroup = "Phase 4",
+                            legendgrouptitle_text = "Phase 4"
+                            ),
+                    row = 2,
+                    col = 2
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy["P5_1"],
+                            mode = "lines+markers",
+                            name = "Place Value",
+                            legendgroup = "Phase 5",
+                            legendgrouptitle_text = "Phase 5"
+                            ),
+                    row = 3,
+                    col = 1
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy["P5_2"],
+                            mode = "lines+markers",
+                            name = "Vocabulary",
+                            legendgroup = "Phase 5",
+                            legendgrouptitle_text = "Phase 5"
+                            ),
+                    row = 3,
+                    col = 1
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy["P6_1"],
+                            mode = "lines+markers",
+                            name = "Setting Numbers",
+                            legendgroup = "Phase 6",
+                            legendgrouptitle_text = "Phase 6"
+                            ),
+                    row = 3,
+                    col = 2
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy["P6_2"],
+                            mode = "lines+markers",
+                            name = "Clearing Beads",
+                            legendgroup = "Phase 6",
+                            legendgrouptitle_text = "Phase 6"
+                            ),
+                    row = 3,
+                    col = 2
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy["P6_3"],
+                            mode = "lines+markers",
+                            name = "Place Value",
+                            legendgroup = "Phase 6",
+                            legendgrouptitle_text = "Phase 6"
+                            ),
+                    row = 3,
+                    col = 2
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy["P6_4"],
+                            mode = "lines+markers",
+                            name = "Vocabulary",
+                            legendgroup = "Phase 6",
+                            legendgrouptitle_text = "Phase 6"
+                            ),
+                    row = 3,
+                    col = 2
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy["P7_1"],
+                            mode = "lines+markers",
+                            name = "Setting Numbers",
+                            legendgroup = "Phase 7",
+                            legendgrouptitle_text = "Phase 7"
+                            ),
+                    row = 4,
+                    col = 1
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy["P7_2"],
+                            mode = "lines+markers",
+                            name = "Clearing Beads",
+                            legendgroup = "Phase 7",
+                            legendgrouptitle_text = "Phase 7"
+                            ),
+                    row = 4,
+                    col = 1
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy["P7_3"],
+                            mode = "lines+markers",
+                            name = "Place Value",
+                            legendgroup = "Phase 7",
+                            legendgrouptitle_text = "Phase 7"
+                            ),
+                    row = 4,
+                    col = 1
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy["P7_4"],
+                            mode = "lines+markers",
+                            name = "Vocabulary",
+                            legendgroup = "Phase 7",
+                            legendgrouptitle_text = "Phase 7"
+                            ),
+                    row = 4,
+                    col = 1
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy["P8_1"],
+                            mode = "lines+markers",
+                            name = "Setting Numbers",
+                            legendgroup = "Phase 8",
+                            legendgrouptitle_text = "Phase 8"
+                            ),
+                    row = 4,
+                    col = 2
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy["P8_2"],
+                            mode = "lines+markers",
+                            name = "Clearing Beads",
+                            legendgroup = "Phase 8",
+                            legendgrouptitle_text = "Phase 8"
+                            ),
+                    row = 4,
+                    col = 2
+                    )
+            fig.add_hrect(
+                    y0 = -.5,
+                    y1 = .5,
+                    line_width = 0,
+                    fillcolor = "red",
+                    opacity = 0.2,
+                    row = 1,
+                    col = 1
+                    )
+            fig.add_hrect(
+                    y0 = .5,
+                    y1 = 1.5,
+                    line_width = 0,
+                    fillcolor = "orange",
+                    opacity = 0.2,
+                    row = 1,
+                    col = 1
+                    )
+            fig.add_hrect(
+                    y0 = 1.5,
+                    y1 = 2.5,
+                    line_width = 0,
+                    fillcolor = "yellow",
+                    opacity = 0.2,
+                    row = 1,
+                    col = 1
+                    )
+            fig.add_hrect(
+                    y0 = 2.5,
+                    y1 = 3.5,
+                    line_width = 0,
+                    fillcolor = "green",
+                    opacity = 0.2,
+                    row = 1,
+                    col = 1
+                    )
+            fig.add_hrect(
+                    y0 = -.5,
+                    y1 = .5,
+                    line_width = 0,
+                    fillcolor = "red",
+                    opacity = 0.2,
+                    row = 1,
+                    col = 2
+                    )
+            fig.add_hrect(
+                    y0 = .5,
+                    y1 = 1.5,
+                    line_width = 0,
+                    fillcolor = "orange",
+                    opacity = 0.2,
+                    row = 1,
+                    col = 2
+                    )
+            fig.add_hrect(
+                    y0 = 1.5,
+                    y1 = 2.5,
+                    line_width = 0,
+                    fillcolor = "yellow",
+                    opacity = 0.2,
+                    row = 1,
+                    col = 2
+                    )
+            fig.add_hrect(
+                    y0 = 2.5,
+                    y1 = 3.5,
+                    line_width = 0,
+                    fillcolor = "green",
+                    opacity = 0.2,
+                    row = 1,
+                    col = 2
+                    )
+            fig.add_hrect(
+                    y0 = -.5,
+                    y1 = .5,
+                    line_width = 0,
+                    fillcolor = "red",
+                    opacity = 0.2,
+                    row = 2,
+                    col = 1
+                    )
+            fig.add_hrect(
+                    y0 = .5,
+                    y1 = 1.5,
+                    line_width = 0,
+                    fillcolor = "orange",
+                    opacity = 0.2,
+                    row = 2,
+                    col = 1
+                    )
+            fig.add_hrect(
+                    y0 = 1.5,
+                    y1 = 2.5,
+                    line_width = 0,
+                    fillcolor = "yellow",
+                    opacity = 0.2,
+                    row = 2,
+                    col = 1
+                    )
+            fig.add_hrect(
+                    y0 = 2.5,
+                    y1 = 3.5,
+                    line_width = 0,
+                    fillcolor = "green",
+                    opacity = 0.2,
+                    row = 2,
+                    col = 1
+                    )
+            fig.add_hrect(
+                    y0 = -.5,
+                    y1 = .5,
+                    line_width = 0,
+                    fillcolor = "red",
+                    opacity = 0.2,
+                    row = 2,
+                    col = 2
+                    )
+            fig.add_hrect(
+                    y0 = .5,
+                    y1 = 1.5,
+                    line_width = 0,
+                    fillcolor = "orange",
+                    opacity = 0.2,
+                    row = 2,
+                    col = 2
+                    )
+            fig.add_hrect(
+                    y0 = 1.5,
+                    y1 = 2.5,
+                    line_width = 0,
+                    fillcolor = "yellow",
+                    opacity = 0.2,
+                    row = 2,
+                    col = 2
+                    )
+            fig.add_hrect(
+                    y0 = 2.5,
+                    y1 = 3.5,
+                    line_width = 0,
+                    fillcolor = "green",
+                    opacity = 0.2,
+                    row = 2,
+                    col = 2
+                    )
+            fig.add_hrect(
+                    y0 = -.5,
+                    y1 = .5,
+                    line_width = 0,
+                    fillcolor = "red",
+                    opacity = 0.2,
+                    row = 3,
+                    col = 1
+                    )
+            fig.add_hrect(
+                    y0 = .5,
+                    y1 = 1.5,
+                    line_width = 0,
+                    fillcolor = "orange",
+                    opacity = 0.2,
+                    row = 3,
+                    col = 1
+                    )
+            fig.add_hrect(
+                    y0 = 1.5,
+                    y1 = 2.5,
+                    line_width = 0,
+                    fillcolor = "yellow",
+                    opacity = 0.2,
+                    row = 3,
+                    col = 1
+                    )
+            fig.add_hrect(
+                    y0 = 2.5,
+                    y1 = 3.5,
+                    line_width = 0,
+                    fillcolor = "green",
+                    opacity = 0.2,
+                    row = 3,
+                    col = 1
+                    )
+            fig.add_hrect(
+                    y0 = -.5,
+                    y1 = .5,
+                    line_width = 0,
+                    fillcolor = "red",
+                    opacity = 0.2,
+                    row = 3,
+                    col = 2
+                    )
+            fig.add_hrect(
+                    y0 = .5,
+                    y1 = 1.5,
+                    line_width = 0,
+                    fillcolor = "orange",
+                    opacity = 0.2,
+                    row = 3,
+                    col = 2
+                    )
+            fig.add_hrect(
+                    y0 = 1.5,
+                    y1 = 2.5,
+                    line_width = 0,
+                    fillcolor = "yellow",
+                    opacity = 0.2,
+                    row = 3,
+                    col = 2
+                    )
+            fig.add_hrect(
+                    y0 = 2.5,
+                    y1 = 3.5,
+                    line_width = 0,
+                    fillcolor = "green",
+                    opacity = 0.2,
+                    row = 3,
+                    col = 2
+                    )
+            fig.add_hrect(
+                    y0 = -.5,
+                    y1 = .5,
+                    line_width = 0,
+                    fillcolor = "red",
+                    opacity = 0.2,
+                    row = 4,
+                    col = 1
+                    )
+            fig.add_hrect(
+                    y0 = .5,
+                    y1 = 1.5,
+                    line_width = 0,
+                    fillcolor = "orange",
+                    opacity = 0.2,
+                    row = 4,
+                    col = 1
+                    )
+            fig.add_hrect(
+                    y0 = 1.5,
+                    y1 = 2.5,
+                    line_width = 0,
+                    fillcolor = "yellow",
+                    opacity = 0.2,
+                    row = 4,
+                    col = 1
+                    )
+            fig.add_hrect(
+                    y0 = 2.5,
+                    y1 = 3.5,
+                    line_width = 0,
+                    fillcolor = "green",
+                    opacity = 0.2,
+                    row = 4,
+                    col = 1
+                    )
+            fig.add_hrect(
+                    y0 = -.5,
+                    y1 = .5,
+                    line_width = 0,
+                    fillcolor = "red",
+                    opacity = 0.2,
+                    row = 4,
+                    col = 2
+                    )
+            fig.add_hrect(
+                    y0 = .5,
+                    y1 = 1.5,
+                    line_width = 0,
+                    fillcolor = "orange",
+                    opacity = 0.2,
+                    row = 4,
+                    col = 2
+                    )
+            fig.add_hrect(
+                    y0 = 1.5,
+                    y1 = 2.5,
+                    line_width = 0,
+                    fillcolor = "yellow",
+                    opacity = 0.2,
+                    row = 4,
+                    col = 2
+                    )
+            fig.add_hrect(
+                    y0 = 2.5,
+                    y1 = 3.5,
+                    line_width = 0,
+                    fillcolor = "green",
+                    opacity = 0.2,
+                    row = 4,
+                    col = 2
+                    )
+            fig.update_xaxes(
+                    rangebreaks = [dict(bounds = ["sat", "mon"]), dict(values = [])],
+                    row = 1,
+                    col = 1
+                    )
+            fig.update_xaxes(
+                    rangebreaks = [dict(bounds = ["sat", "mon"]), dict(values = [])],
+                    row = 1,
+                    col = 2
+                    )
+            fig.update_xaxes(
+                    rangebreaks = [dict(bounds = ["sat", "mon"]), dict(values = [])],
+                    row = 2,
+                    col = 1
+                    )
+            fig.update_xaxes(
+                    rangebreaks = [dict(bounds = ["sat", "mon"]), dict(values = [])],
+                    row = 2,
+                    col = 2
+                    )
+            fig.update_xaxes(
+                    rangebreaks = [dict(bounds = ["sat", "mon"]), dict(values = [])],
+                    row = 3,
+                    col = 1
+                    )
+            fig.update_xaxes(
+                    rangebreaks = [dict(bounds = ["sat", "mon"]), dict(values = [])],
+                    row = 3,
+                    col = 2
+                    )
+            fig.update_xaxes(
+                    rangebreaks = [dict(bounds = ["sat", "mon"]), dict(values = [])],
+                    row = 4,
+                    col = 1
+                    )
+            fig.update_xaxes(
+                    rangebreaks = [dict(bounds = ["sat", "mon"]), dict(values = [])],
+                    row = 4,
+                    col = 2
+                    )
+            fig.update_yaxes(
+                    range = [-.5, 3.5], fixedrange = True,
+                    ticktext = ["Unable", "Prompted", "Hesitated",
+                                "Independent"],
+                    tickvals = [0.1, 1, 2, 3],
+                    row = 1,
+                    col = 1
+                    )
+            fig.update_yaxes(
+                    range = [-.5, 3.5], fixedrange = True,
+                    ticktext = ["Unable", "Prompted", "Hesitated",
+                                "Independent"],
+                    tickvals = [0.1, 1, 2, 3],
+                    row = 1,
+                    col = 2
+                    )
+            fig.update_yaxes(
+                    range = [-.5, 3.5], fixedrange = True,
+                    ticktext = ["Unable", "Prompted", "Hesitated",
+                                "Independent"],
+                    tickvals = [0.1, 1, 2, 3],
+                    row = 2,
+                    col = 1
+                    )
+            fig.update_yaxes(
+                    range = [-.5, 3.5], fixedrange = True,
+                    ticktext = ["Unable", "Prompted", "Hesitated",
+                                "Independent"],
+                    tickvals = [0.1, 1, 2, 3],
+                    row = 2,
+                    col = 2
+                    )
+            fig.update_yaxes(
+                    range = [-.5, 3.5], fixedrange = True,
+                    ticktext = ["Unable", "Prompted", "Hesitated",
+                                "Independent"],
+                    tickvals = [0.1, 1, 2, 3],
+                    row = 3,
+                    col = 1
+                    )
+            fig.update_yaxes(
+                    range = [-.5, 3.5], fixedrange = True,
+                    ticktext = ["Unable", "Prompted", "Hesitated",
+                                "Independent"],
+                    tickvals = [0.1, 1, 2, 3],
+                    row = 3,
+                    col = 2
+                    )
+            fig.update_yaxes(
+                    range = [-.5, 3.5], fixedrange = True,
+                    ticktext = ["Unable", "Prompted", "Hesitated",
+                                "Independent"],
+                    tickvals = [0.1, 1, 2, 3],
+                    row = 4,
+                    col = 1
+                    )
+            fig.update_yaxes(
+                    range = [-.5, 3.5], fixedrange = True,
+                    ticktext = ["Unable", "Prompted", "Hesitated",
+                                "Independent"],
+                    tickvals = [0.1, 1, 2, 3],
+                    row = 4,
+                    col = 2
+                    )
+            fig.update_layout(
+                    template = "simple_white",
+                    title_text = f"{studentname}: Abacus Skills Progression"
+                    )
+            tmppath = Path(USER_DIR).joinpath(
+                    'StudentDatabase',
+                    'StudentDataFiles', studentname,
+                    'ScreenReaderSkillsProgression.html'
+                    )
+            fig.write_html(tmppath)
+            fig.show()
+
+
+        # ABACUS SKILLS PROGRESSION TAB
+        with ui.row().classes('w-full no-wrap'):
+            ui.label('ABACUS SKILLS PROGRESSION').classes('justify-center items-center')
+        with ui.row().classes('w-full no-wrap py-4'):
+            ui.select(options = students, with_input = True, on_change = lambda e: ui.notify(e.value)).bind_value(u_studentname, 'value').classes('w-1/2').props(
+                    'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
+                    ).tooltip('Type Student Name, it will autocomplete AS you type')
+            with ui.input('Date').classes('w-1/2').props('aria-label="Date. Please type in date using the YYYY-MM-DD format"').tooltip('Date. Please type in date using the YYYY-MM-DD format') as date:
+                with date.add_slot('append'):
+                    ui.icon('edit_calendar').on('click', lambda: menu.open()).classes('cursor-pointer')
+                with ui.menu() as menu:
+                    ui.date().bind_value(date)
+        with ui.row().classes('w-full no-wrap py-4 justify-center items-center'):
+            ui.label('RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent').props('aria-label="RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent" content-center')
+            ui.input().props('aria-label="RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent" content-center').classes('sr-only')
+        with ui.row().classes('w-full no-wrap py-4 justify-center items-center'):
+            ui.label('PHASE 1: Setting and Clearing Numbers').classes('justify-center items-center')
+            ui.input().props('aria-label="PHASE 1: Setting and Clearing Numbers" content-center').classes('sr-only')
+        with ui.row().classes('w-full no-wrap py-4 justify-center items-center'):
+            ui.number(label = "1.1", value = "", on_change = lambda e: u_trial11.set_value(e.value)).classes('w-1/4').props('aria-label="1.1 Setting Numbers"').tooltip('1.1 Setting Numbers')
+            ui.number(label = "1.2", value = "", on_change = lambda e: u_trial12.set_value(e.value)).classes('w-1/4').props('aria-label="1.2 Clearing Numbers"').tooltip('1.2 Clearing Numbers')
+            ui.number(label = "1.3", value = "", on_change = lambda e: u_trial13.set_value(e.value)).classes('w-1/4').props('aria-label="1.3 Place Value"').tooltip('1.3 Place Value')
+            ui.number(label = "1.4", value = "", on_change = lambda e: u_trial14.set_value(e.value)).classes('w-1/4').props('aria-label="1.4 Vocabulary"').tooltip('1.4 Vocabulary')
+        with ui.row().classes('w-full no-wrap py-4 justify-center items-center'):
+            ui.label('PHASE 2: Addition').classes('justify-center items-center')
+            ui.input().props('aria-label="PHASE 2: Addition" content-center').classes('sr-only')
+        with ui.row().classes('w-full no-wrap py-4 justify-center items-center'):
+            ui.number(label = "2.1", value = "", on_change = lambda e: u_trial21.set_value(e.value)).classes('w-1/4').props('aria-label="2.1 Addition of Single Digit Numbers"').tooltip(
+                    '2.1 Addition of Single Digit Numbers'
+                    )
+            ui.number(label = "2.2", value = "", on_change = lambda e: u_trial22.set_value(e.value)).classes('w-1/4').props('aria-label="2.2 Addition of Multiple Digit Numbers – Direct"').tooltip(
+                    '2.2 Addition of Multiple Digit Numbers – Direct'
+                    )
+            ui.number(label = "2.3", value = "", on_change = lambda e: u_trial23.set_value(e.value)).classes('w-1/4').props('aria-label="2.3 Addition of Multiple Digit Numbers – Indirect"').tooltip(
+                    '2.3 Addition of Multiple Digit Numbers – Indirect'
+                    )
+            ui.label(' ').classes('w-1/4')
+        with ui.row().classes('w-full no-wrap py-4 justify-center items-center'):
+            ui.label('PHASE 3: Subtraction').classes('justify-center items-center')
+            ui.input().props('aria-label="PHASE 3: Subtraction" content-center').classes('sr-only')
+        with ui.row().classes('w-full no-wrap py-4 justify-center items-center'):
+            ui.number(label = "3.1", value = "", on_change = lambda e: u_trial31.set_value(e.value)).classes('w-1/4').props('aria-label="3.1 Subtraction"').tooltip('3.1 Subtraction')
+            ui.number(label = "3.2", value = "", on_change = lambda e: u_trial32.set_value(e.value)).classes('w-1/4').props('aria-label="3.2 Subtraction of Multiple Digit Numbers – Direct"').tooltip(
+                    '3.2 Subtraction of Multiple Digit Numbers – Direct'
+                    )
+            ui.number(label = "3.3", value = "", on_change = lambda e: u_trial33.set_value(e.value)).classes('w-1/4').props('aria-label="3.3 Subtraction of Multiple Digit Numbers – Indirect"').tooltip(
+                    '3.3 Subtraction of Multiple Digit Numbers – Indirect'
+                    )
+            ui.label(' ').classes('w-1/4')
+        with ui.row().classes('w-full no-wrap py-4 justify-center items-center'):
+            ui.label('PHASE 4: Multiplication').classes('justify-center items-center')
+            ui.input().props('aria-label="PHASE 4: Multiplication" content-center').classes('sr-only')
+        with ui.row().classes('w-full no-wrap py-4 justify-center items-center'):
+            ui.number(label = "4.1", value = "", on_change = lambda e: u_trial41.set_value(e.value)).classes('w-1/4').props('aria-label="4.1 Multiplication – 2+ Digit Multiplicand 1-Digit Multiplier"').tooltip(
+                    '4.1 Multiplication – 2+ Digit Multiplicand 1-Digit Multiplier'
+                    )
+            ui.number(label = "4.2", value = "", on_change = lambda e: u_trial42.set_value(e.value)).classes('w-1/4').props('aria-label="4.2 Multiplication – 2+ Digit Multiplicand AND Multiplier"').tooltip(
+                    '4.2 Multiplication – 2+ Digit Multiplicand AND Multiplier'
+                    )
+            ui.label(' ').classes('w-1/4')
+            ui.label(' ').classes('w-1/4')
+        with ui.row().classes('w-full no-wrap py-4 justify-center items-center'):
+            ui.label('PHASE 5: Division').classes('justify-center items-center')
+            ui.input().props('aria-label="PHASE 5: Division" content-center').classes('sr-only')
+        with ui.row().classes('w-full no-wrap py-4 justify-center items-center'):
+            ui.number(label = "5.1", value = "", on_change = lambda e: u_trial51.set_value(e.value)).classes('w-1/4').props('aria-label="5.1 Division – 2+ Digit Dividend 1-Digit Divisor"').tooltip(
+                    '5.1 Division – 2+ Digit Dividend 1-Digit Divisor'
+                    )
+            ui.number(label = "5.2", value = "", on_change = lambda e: u_trial52.set_value(e.value)).classes('w-1/4').props('aria-label="5.2 Division – 2+ Digit Dividend AND 1 Digit Divisor"').tooltip(
+                    '5.2 Division – 2+ Digit Dividend AND 1 Digit Divisor'
+                    )
+            ui.label(' ').classes('w-1/4')
+            ui.label(' ').classes('w-1/4')
+        with ui.row().classes('w-full no-wrap py-4 justify-center items-center'):
+            ui.label('PHASE 6: Decimals').classes('justify-center items-center')
+            ui.input().props('aria-label="PHASE 6: Decimals" content-center').classes('sr-only')
+        with ui.row().classes('w-full no-wrap py-4 justify-center items-center'):
+            ui.number(label = "6.1", value = "", on_change = lambda e: u_trial61.set_value(e.value)).classes('w-1/4').props('aria-label="6.1 Addition of Decimals"').tooltip('6.1 Addition of Decimals')
+            ui.number(label = "6.2", value = "", on_change = lambda e: u_trial62.set_value(e.value)).classes('w-1/4').props('aria-label="6.2 Subtraction of Decimals"').tooltip('6.2 Subtraction of Decimals')
+            ui.number(label = "6.3", value = "", on_change = lambda e: u_trial63.set_value(e.value)).classes('w-1/4').props('aria-label="6.3 Multiplication of Decimals"').tooltip('6.3 Multiplication of Decimals')
+            ui.number(label = "6.4", value = "", on_change = lambda e: u_trial64.set_value(e.value)).classes('w-1/4').props('aria-label="6.4 Division of Decimals"').tooltip('6.4 Division of Decimals')
+        with ui.row().classes('w-full no-wrap py-4 justify-center items-center'):
+            ui.label('PHASE 7: Fractions').classes('justify-center items-center')
+            ui.input().props('aria-label="PHASE 7: Fractions" content-center').classes('sr-only')
+        with ui.row().classes('w-full no-wrap py-4 justify-center items-center'):
+            ui.number(label = "7.1", value = "", on_change = lambda e: u_trial71.set_value(e.value)).classes('w-1/4').props('aria-label="7.1 Addition of Fractions"').tooltip('7.1 Addition of Fractions')
+            ui.number(label = "7.2", value = "", on_change = lambda e: u_trial72.set_value(e.value)).classes('w-1/4').props('aria-label="7.2 Subtraction of Fractions"').tooltip('7.2 Subtraction of Fractions')
+            ui.number(label = "7.3", value = "", on_change = lambda e: u_trial73.set_value(e.value)).classes('w-1/4').props('aria-label="7.3 Multiplication of Fractions"').tooltip('7.3 Multiplication of Fractions')
+            ui.number(label = "7.4", value = "", on_change = lambda e: u_trial74.set_value(e.value)).classes('w-1/4').props('aria-label="7.4 Division of Fractions"').tooltip('7.4 Division of Fractions')
+        with ui.row().classes('w-full no-wrap py-4 justify-center items-center'):
+            ui.label('PHASE 8: Roots and Percents').classes('justify-center items-center')
+            ui.input().props('aria-label="HASE 8: Roots and Percents" content-center').classes('sr-only')
+        with ui.row().classes('w-full no-wrap py-4 justify-center items-center'):
+            ui.number(label = "8.1", value = "", on_change = lambda e: u_trial81.set_value(e.value)).classes('w-1/4').props('aria-label="8.1 Percent"').tooltip('8.1 Percent')
+            ui.number(label = "8.2", value = "", on_change = lambda e: u_trial82.set_value(e.value)).classes('w-1/4').props('aria-label="8.2 Square Root"').tooltip('8.2 Square Root')
+            ui.label(' ').classes('w-1/4')
+            ui.label(' ').classes('w-1/4')
+        with ui.row().classes('w-full no-wrap py-4'):
+            ui.button('SAVE', on_click = save)
+            ui.button('GRAPH', on_click = graph)
+            ui.button('EXIT', on_click = app.shutdown)
+
+# BRAILLE SKILLS PROGRESSION
+with ui.tab_panels(tabs, value = 'BRAILLE SKILLS PROGRESSION'):
+    with ui.tab_panel('BRAILLE SKILLS PROGRESSION'):
+        u_studentname = ui.select(options = students, value = 'DonaldChamberlain').classes('hidden')
+        date = ui.date().classes('hidden')
+        u_trial11 = ui.number().classes('hidden')
+        u_trial12 = ui.number().classes('hidden')
+        u_trial13 = ui.number().classes('hidden')
+        u_trial14 = ui.number().classes('hidden')
+        u_trial21 = ui.number().classes('hidden')
+        u_trial22 = ui.number().classes('hidden')
+        u_trial23 = ui.number().classes('hidden')
+        u_trial24 = ui.number().classes('hidden')
+        u_trial25 = ui.number().classes('hidden')
+        u_trial26 = ui.number().classes('hidden')
+        u_trial27 = ui.number().classes('hidden')
+        u_trial28 = ui.number().classes('hidden')
+        u_trial29 = ui.number().classes('hidden')
+        u_trial210 = ui.number().classes('hidden')
+        u_trial211 = ui.number().classes('hidden')
+        u_trial212 = ui.number().classes('hidden')
+        u_trial213 = ui.number().classes('hidden')
+        u_trial214 = ui.number().classes('hidden')
+        u_trial215 = ui.number().classes('hidden')
+        u_trial31 = ui.number().classes('hidden')
+        u_trial32 = ui.number().classes('hidden')
+        u_trial33 = ui.number().classes('hidden')
+        u_trial34 = ui.number().classes('hidden')
+        u_trial35 = ui.number().classes('hidden')
+        u_trial36 = ui.number().classes('hidden')
+        u_trial37 = ui.number().classes('hidden')
+        u_trial38 = ui.number().classes('hidden')
+        u_trial39 = ui.number().classes('hidden')
+        u_trial310 = ui.number().classes('hidden')
+        u_trial311 = ui.number().classes('hidden')
+        u_trial312 = ui.number().classes('hidden')
+        u_trial313 = ui.number().classes('hidden')
+        u_trial314 = ui.number().classes('hidden')
+        u_trial315 = ui.number().classes('hidden')
+        u_trial41 = ui.number().classes('hidden')
+        u_trial42 = ui.number().classes('hidden')
+        u_trial43 = ui.number().classes('hidden')
+        u_trial44 = ui.number().classes('hidden')
+        u_trial51 = ui.number().classes('hidden')
+        u_trial52 = ui.number().classes('hidden')
+        u_trial53 = ui.number().classes('hidden')
+        u_trial54 = ui.number().classes('hidden')
+        u_trial61 = ui.number().classes('hidden')
+        u_trial62 = ui.number().classes('hidden')
+        u_trial63 = ui.number().classes('hidden')
+        u_trial64 = ui.number().classes('hidden')
+        u_trial65 = ui.number().classes('hidden')
+        u_trial66 = ui.number().classes('hidden')
+        u_trial67 = ui.number().classes('hidden')
+        u_trial71 = ui.number().classes('hidden')
+        u_trial72 = ui.number().classes('hidden')
+        u_trial73 = ui.number().classes('hidden')
+        u_trial74 = ui.number().classes('hidden')
+        u_trial75 = ui.number().classes('hidden')
+        u_trial76 = ui.number().classes('hidden')
+        u_trial77 = ui.number().classes('hidden')
+        u_trial78 = ui.number().classes('hidden')
+        u_trial81 = ui.number().classes('hidden')
+        u_trial82 = ui.number().classes('hidden')
+        u_trial83 = ui.number().classes('hidden')
+        u_trial84 = ui.number().classes('hidden')
+        u_trial85 = ui.number().classes('hidden')
+        u_trial86 = ui.number().classes('hidden')
+        u_trial87 = ui.number().classes('hidden')
+
+
+        def save(
+                self,
+                event
+                ):
+            """
+
+            :param event:
+            :type event:
+            """
+            studentname = u_studentname.value
+            date = datenow
+            trial11 = int(u_trial11.value)
+            trial12 = int(u_trial12.value)
+            trial13 = int(u_trial13.value)
+            trial14 = int(u_trial14.value)
+            trial21 = int(u_trial21.value)
+            trial22 = int(u_trial22.value)
+            trial23 = int(u_trial23.value)
+            trial24 = int(u_trial24.value)
+            trial25 = int(u_trial25.value)
+            trial26 = int(u_trial26.value)
+            trial27 = int(u_trial27.value)
+            trial28 = int(u_trial28.value)
+            trial29 = int(u_trial29.value)
+            trial210 = int(u_trial210.value)
+            trial211 = int(u_trial211.value)
+            trial212 = int(u_trial212.value)
+            trial213 = int(u_trial213.value)
+            trial214 = int(u_trial214.value)
+            trial215 = int(u_trial215.value)
+            trial31 = int(u_trial31.value)
+            trial32 = int(u_trial32.value)
+            trial33 = int(u_trial33.value)
+            trial34 = int(u_trial34.value)
+            trial35 = int(u_trial35.value)
+            trial36 = int(u_trial36.value)
+            trial37 = int(u_trial37.value)
+            trial38 = int(u_trial38.value)
+            trial39 = int(u_trial39.value)
+            trial310 = int(u_trial310.value)
+            trial311 = int(u_trial311.value)
+            trial312 = int(u_trial312.value)
+            trial313 = int(u_trial313.value)
+            trial314 = int(u_trial314.value)
+            trial315 = int(u_trial315.value)
+            trial41 = int(u_trial41.value)
+            trial42 = int(u_trial42.value)
+            trial43 = int(u_trial43.value)
+            trial44 = int(u_trial44.value)
+            trial51 = int(u_trial51.value)
+            trial52 = int(u_trial52.value)
+            trial53 = int(u_trial53.value)
+            trial54 = int(u_trial54.value)
+            trial61 = int(u_trial61.value)
+            trial62 = int(u_trial62.value)
+            trial63 = int(u_trial63.value)
+            trial64 = int(u_trial64.value)
+            trial65 = int(u_trial65.value)
+            trial66 = int(u_trial66.value)
+            trial67 = int(u_trial67.value)
+            trial71 = int(u_trial71.value)
+            trial72 = int(u_trial72.value)
+            trial73 = int(u_trial73.value)
+            trial74 = int(u_trial74.value)
+            trial75 = int(u_trial75.value)
+            trial76 = int(u_trial76.value)
+            trial77 = int(u_trial77.value)
+            trial78 = int(u_trial78.value)
+            trial81 = int(u_trial81.value)
+            trial82 = int(u_trial82.value)
+            trial83 = int(u_trial83.value)
+            trial84 = int(u_trial84.value)
+            trial85 = int(u_trial85.value)
+            trial86 = int(u_trial86.value)
+            trial87 = int(u_trial87.value)
+            studentdatabasename = f"braille{studentname.title()}{datenow}"
+            with open(
+                    f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\{studentdatabasename}.txt",
+                    'w'
+                    ) as filename:
+                filename.write('studentname' + ', ')
+                filename.write('date' + ', ')
+                filename.write('trial11' + ', ')
+                filename.write('trial12' + ', ')
+                filename.write('trial13' + ', ')
+                filename.write('trial14' + ', ')
+                filename.write('trial21' + ', ')
+                filename.write('trial22' + ', ')
+                filename.write('trial23' + ', ')
+                filename.write('trial24' + ', ')
+                filename.write('trial25' + ', ')
+                filename.write('trial26' + ', ')
+                filename.write('trial27' + ', ')
+                filename.write('trial28' + ', ')
+                filename.write('trial29' + ', ')
+                filename.write('trial210' + ', ')
+                filename.write('trial211' + ', ')
+                filename.write('trial212' + ', ')
+                filename.write('trial213' + ', ')
+                filename.write('trial214' + ', ')
+                filename.write('trial215' + ', ')
+                filename.write('trial31' + ', ')
+                filename.write('trial32' + ', ')
+                filename.write('trial33' + ', ')
+                filename.write('trial34' + ', ')
+                filename.write('trial35' + ', ')
+                filename.write('trial36' + ', ')
+                filename.write('trial37' + ', ')
+                filename.write('trial38' + ', ')
+                filename.write('trial39' + ', ')
+                filename.write('trial310' + ', ')
+                filename.write('trial311' + ', ')
+                filename.write('trial312' + ', ')
+                filename.write('trial313' + ', ')
+                filename.write('trial314' + ', ')
+                filename.write('trial315' + ', ')
+                filename.write('trial41' + ', ')
+                filename.write('trial42' + ', ')
+                filename.write('trial43' + ', ')
+                filename.write('trial44' + ', ')
+                filename.write('trial51' + ', ')
+                filename.write('trial52' + ', ')
+                filename.write('trial53' + ', ')
+                filename.write('trial54' + ', ')
+                filename.write('trial61' + ', ')
+                filename.write('trial62' + ', ')
+                filename.write('trial63' + ', ')
+                filename.write('trial64' + ', ')
+                filename.write('trial65' + ', ')
+                filename.write('trial66' + ', ')
+                filename.write('trial67' + ', ')
+                filename.write('trial71' + ', ')
+                filename.write('trial72' + ', ')
+                filename.write('trial73' + ', ')
+                filename.write('trial74' + ', ')
+                filename.write('trial75' + ', ')
+                filename.write('trial76' + ', ')
+                filename.write('trial77' + ', ')
+                filename.write('trial78' + ', ')
+                filename.write('trial81' + ', ')
+                filename.write('trial82' + ', ')
+                filename.write('trial83' + ', ')
+                filename.write('trial84' + ', ')
+                filename.write('trial85' + ', ')
+                filename.write('trial86' + ', ')
+                filename.write('trial87' + ', ')
+                filename.write(studentname + ', ')
+                filename.write(date + ', ')
+                filename.write(trial11 + ', ')
+                filename.write(trial12 + ', ')
+                filename.write(trial13 + ', ')
+                filename.write(trial14 + ', ')
+                filename.write(trial21 + ', ')
+                filename.write(trial22 + ', ')
+                filename.write(trial23 + ', ')
+                filename.write(trial24 + ', ')
+                filename.write(trial25 + ', ')
+                filename.write(trial26 + ', ')
+                filename.write(trial27 + ', ')
+                filename.write(trial28 + ', ')
+                filename.write(trial29 + ', ')
+                filename.write(trial210 + ', ')
+                filename.write(trial211 + ', ')
+                filename.write(trial212 + ', ')
+                filename.write(trial213 + ', ')
+                filename.write(trial214 + ', ')
+                filename.write(trial215 + ', ')
+                filename.write(trial31 + ', ')
+                filename.write(trial32 + ', ')
+                filename.write(trial33 + ', ')
+                filename.write(trial34 + ', ')
+                filename.write(trial35 + ', ')
+                filename.write(trial36 + ', ')
+                filename.write(trial37 + ', ')
+                filename.write(trial38 + ', ')
+                filename.write(trial39 + ', ')
+                filename.write(trial310 + ', ')
+                filename.write(trial311 + ', ')
+                filename.write(trial312 + ', ')
+                filename.write(trial313 + ', ')
+                filename.write(trial314 + ', ')
+                filename.write(trial315 + ', ')
+                filename.write(trial41 + ', ')
+                filename.write(trial42 + ', ')
+                filename.write(trial43 + ', ')
+                filename.write(trial44 + ', ')
+                filename.write(trial51 + ', ')
+                filename.write(trial52 + ', ')
+                filename.write(trial53 + ', ')
+                filename.write(trial54 + ', ')
+                filename.write(trial61 + ', ')
+                filename.write(trial62 + ', ')
+                filename.write(trial63 + ', ')
+                filename.write(trial64 + ', ')
+                filename.write(trial65 + ', ')
+                filename.write(trial66 + ', ')
+                filename.write(trial67 + ', ')
+                filename.write(trial71 + ', ')
+                filename.write(trial72 + ', ')
+                filename.write(trial73 + ', ')
+                filename.write(trial74 + ', ')
+                filename.write(trial75 + ', ')
+                filename.write(trial76 + ', ')
+                filename.write(trial77 + ', ')
+                filename.write(trial78 + ', ')
+                filename.write(trial81 + ', ')
+                filename.write(trial82 + ', ')
+                filename.write(trial83 + ', ')
+                filename.write(trial84 + ', ')
+                filename.write(trial85 + ', ')
+                filename.write(trial86 + ', ')
+                filename.write(trial87 + ', ')
+                filename.write(trial12 + ', ')
+                filename.write(trial13 + ', ')
+                filename.write(trial14 + ', ')
+                filename.write(trial21 + ', ')
+                filename.write(trial22 + ', ')
+                filename.write(trial23 + ', ')
+                filename.write(trial24 + ', ')
+                filename.write(trial25 + ', ')
+                filename.write(trial26 + ', ')
+                filename.write(trial27 + ', ')
+                filename.write(trial28 + ', ')
+                filename.write(trial29 + ', ')
+                filename.write(trial210 + ', ')
+                filename.write(trial211 + ', ')
+                filename.write(trial212 + ', ')
+                filename.write(trial213 + ', ')
+                filename.write(trial214 + ', ')
+                filename.write(trial215 + ', ')
+                filename.write(trial31 + ', ')
+                filename.write(trial32 + ', ')
+                filename.write(trial33 + ', ')
+                filename.write(trial34 + ', ')
+                filename.write(trial35 + ', ')
+                filename.write(trial36 + ', ')
+                filename.write(trial37 + ', ')
+                filename.write(trial38 + ', ')
+                filename.write(trial39 + ', ')
+                filename.write(trial310 + ', ')
+                filename.write(trial311 + ', ')
+                filename.write(trial312 + ', ')
+                filename.write(trial313 + ', ')
+                filename.write(trial314 + ', ')
+                filename.write(trial315 + ', ')
+                filename.write(trial41 + ', ')
+                filename.write(trial42 + ', ')
+                filename.write(trial43 + ', ')
+                filename.write(trial44 + ', ')
+                filename.write(trial51 + ', ')
+                filename.write(trial52 + ', ')
+                filename.write(trial53 + ', ')
+                filename.write(trial54 + ', ')
+                filename.write(trial61 + ', ')
+                filename.write(trial62 + ', ')
+                filename.write(trial63 + ', ')
+                filename.write(trial64 + ', ')
+                filename.write(trial65 + ', ')
+                filename.write(trial66 + ', ')
+                filename.write(trial67 + ', ')
+                filename.write(trial71 + ', ')
+                filename.write(trial72 + ', ')
+                filename.write(trial73 + ', ')
+                filename.write(trial74 + ', ')
+                filename.write(trial75 + ', ')
+                filename.write(trial76 + ', ')
+                filename.write(trial77 + ', ')
+                filename.write(trial78 + ', ')
+                filename.write(trial81 + ', ')
+                filename.write(trial82 + ', ')
+                filename.write(trial83 + ', ')
+                filename.write(trial84 + ', ')
+                filename.write(trial85 + ', ')
+                filename.write(trial86 + ', ')
+                filename.write(trial87 + ', ')
+                filename.close()
                 tmppath = Path(USER_DIR).joinpath(
                         'StudentDatabase',
                         'StudentDataFiles',
@@ -4083,2966 +2646,2169 @@ class braillePanel(scrolled.ScrolledPanel):
                     writer_setup = writer(f_setup)
                     writer_setup.writerow(list_data)
                     f_setup.close()
-                self.dial = wx.MessageDialog(
-                        None,
-                        'Saved successfully!',
-                        'Info',
-                        wx.OK
-                        )
-                self.dial.ShowModal()
-                self.trial11.Clear()
-                self.trial12.Clear()
-                self.trial13.Clear()
-                self.trial14.Clear()
-                self.trial21.Clear()
-                self.trial22.Clear()
-                self.trial23.Clear()
-                self.trial24.Clear()
-                self.trial25.Clear()
-                self.trial26.Clear()
-                self.trial27.Clear()
-                self.trial28.Clear()
-                self.trial29.Clear()
-                self.trial210.Clear()
-                self.trial211.Clear()
-                self.trial212.Clear()
-                self.trial213.Clear()
-                self.trial214.Clear()
-                self.trial215.Clear()
-                self.trial31.Clear()
-                self.trial32.Clear()
-                self.trial33.Clear()
-                self.trial34.Clear()
-                self.trial35.Clear()
-                self.trial36.Clear()
-                self.trial37.Clear()
-                self.trial38.Clear()
-                self.trial39.Clear()
-                self.trial310.Clear()
-                self.trial311.Clear()
-                self.trial312.Clear()
-                self.trial313.Clear()
-                self.trial314.Clear()
-                self.trial315.Clear()
-                self.trial41.Clear()
-                self.trial42.Clear()
-                self.trial43.Clear()
-                self.trial44.Clear()
-                self.trial51.Clear()
-                self.trial52.Clear()
-                self.trial53.Clear()
-                self.trial54.Clear()
-                self.trial61.Clear()
-                self.trial62.Clear()
-                self.trial63.Clear()
-                self.trial64.Clear()
-                self.trial65.Clear()
-                self.trial66.Clear()
-                self.trial67.Clear()
-                self.trial71.Clear()
-                self.trial72.Clear()
-                self.trial73.Clear()
-                self.trial74.Clear()
-                self.trial75.Clear()
-                self.trial76.Clear()
-                self.trial77.Clear()
-                self.trial78.Clear()
-                self.trial81.Clear()
-                self.trial82.Clear()
-                self.trial83.Clear()
-                self.trial84.Clear()
-                self.trial85.Clear()
-                self.trial86.Clear()
-                self.trial87.Clear()
-            else:
-                self.dial = wx.MessageDialog(
-                        None,
-                        'Name already exists',
-                        'Info',
-                        wx.OK
-                        )
-                self.dial.ShowModal()
-        else:
-            self.dial = wx.MessageDialog(
-                    None,
-                    'Save cancelled'  'Info',
-                    wx.OK
+                os.chdir(USER_DIR)
+                with open(
+                        f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\ScreenReaderSkillsProgression.csv",
+                        'a',
+                        newline = ''
+                        ) as f_setup:
+                    writer_setup = writer(f_setup)
+                    writer_setup.writerow(list_data)
+                    f_setup.close()
+                ui.notify('Saved successfully!', close_button = 'OK')
+
+                def data_entry():
+                    """
+
+                    """
+                    conn = sqlite3.connect(dataBasePath)
+                    c = conn.cursor()
+                    c.execute(
+                            """INSERT INTO BRAILLEPROGRESS (
+                    STUDENTNAME,
+                    DATE,
+                    P1_1,
+                    P1_2,
+                    P1_3,
+                    P1_4,
+                    P2_1,
+                    P2_2,
+                    P2_3,
+                    P2_4,
+                    P2_5,
+                    P2_6,
+                    P2_7,
+                    P2_8,
+                    P2_9,
+                    P2_10,
+                    P2_11,
+                    P2_12,
+                    P2_13,
+                    P2_14,
+                    P2_15,
+                    P3_1,
+                    P3_2,
+                    P3_3,
+                    P3_4,
+                    P3_5,
+                    P3_6,
+                    P3_7,
+                    P3_8,
+                    P3_9,
+                    P3_10,
+                    P3_11,
+                    P3_12,
+                    P3_13,
+                    P3_14,
+                    P3_15,
+                    P4_1,
+                    P4_2,
+                    P4_3,
+                    P4_4,
+                    P5_1,
+                    P5_2,
+                    P5_3,
+                    P5_4,
+                    P6_1,
+                    P6_2,
+                    P6_3,
+                    P6_4,
+                    P6_5,
+                    P6_6,
+                    P6_7,
+                    P7_1,
+                    P7_2,
+                    P7_3,
+                    P7_4,
+                    P7_5,
+                    P7_6,
+                    P7_7,
+                    P7_8,
+                    P8_1,
+                    P8_2,
+                    P8_3,
+                    P8_4,
+                    P8_5,
+                    P8_6,
+                    P8_7
                     )
-            self.dial.ShowModal()
+                    VALUES (?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?)""",
+                            (studentname,
+                             datenow,
+                             trial11,
+                             trial12,
+                             trial13,
+                             trial14,
+                             trial21,
+                             trial22,
+                             trial23,
+                             trial24,
+                             trial25,
+                             trial26,
+                             trial27,
+                             trial28,
+                             trial29,
+                             trial210,
+                             trial211,
+                             trial212,
+                             trial213,
+                             trial214,
+                             trial215,
+                             trial31,
+                             trial32,
+                             trial33,
+                             trial34,
+                             trial35,
+                             trial36,
+                             trial37,
+                             trial38,
+                             trial39,
+                             trial310,
+                             trial311,
+                             trial312,
+                             trial313,
+                             trial314,
+                             trial315,
+                             trial41,
+                             trial42,
+                             trial43,
+                             trial44,
+                             trial51,
+                             trial52,
+                             trial53,
+                             trial54,
+                             trial61,
+                             trial62,
+                             trial63,
+                             trial64,
+                             trial65,
+                             trial66,
+                             trial67,
+                             trial71,
+                             trial72,
+                             trial73,
+                             trial74,
+                             trial75,
+                             trial76,
+                             trial77,
+                             trial78,
+                             trial81,
+                             trial82,
+                             trial83,
+                             trial84,
+                             trial85,
+                             trial86,
+                             trial87
+                             )
+                            )
+                    conn.commit()
 
-        def data_entry():
+                data_entry()
+
+
+        def graph(
+                self,
+                event
+                ):
             """
 
+            Graphing
+
             """
+            studentname = self.studentname1.GetString(self.studentname1.GetSelection())
             conn = sqlite3.connect(dataBasePath)
-            c = conn.cursor()
-            c.execute(
-                    """INSERT INTO BRAILLEPROGRESS (
-                STUDENTNAME,
-                DATE,
-                P1_1,
-                P1_2,
-                P1_3,
-                P1_4,
-                P2_1,
-                P2_2,
-                P2_3,
-                P2_4,
-                P2_5,
-                P2_6,
-                P2_7,
-                P2_8,
-                P2_9,
-                P2_10,
-                P2_11,
-                P2_12,
-                P2_13,
-                P2_14,
-                P2_15,
-                P3_1,
-                P3_2,
-                P3_3,
-                P3_4,
-                P3_5,
-                P3_6,
-                P3_7,
-                P3_8,
-                P3_9,
-                P3_10,
-                P3_11,
-                P3_12,
-                P3_13,
-                P3_14,
-                P3_15,
-                P4_1,
-                P4_2,
-                P4_3,
-                P4_4,
-                P5_1,
-                P5_2,
-                P5_3,
-                P5_4,
-                P6_1,
-                P6_2,
-                P6_3,
-                P6_4,
-                P6_5,
-                P6_6,
-                P6_7,
-                P7_1,
-                P7_2,
-                P7_3,
-                P7_4,
-                P7_5,
-                P7_6,
-                P7_7,
-                P7_8,
-                P8_1,
-                P8_2,
-                P8_3,
-                P8_4,
-                P8_5,
-                P8_6,
-                P8_7
-                )
-                VALUES (?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?)""",
-                    (studentname,
-                     datenow,
-                     trial11,
-                     trial12,
-                     trial13,
-                     trial14,
-                     trial21,
-                     trial22,
-                     trial23,
-                     trial24,
-                     trial25,
-                     trial26,
-                     trial27,
-                     trial28,
-                     trial29,
-                     trial210,
-                     trial211,
-                     trial212,
-                     trial213,
-                     trial214,
-                     trial215,
-                     trial31,
-                     trial32,
-                     trial33,
-                     trial34,
-                     trial35,
-                     trial36,
-                     trial37,
-                     trial38,
-                     trial39,
-                     trial310,
-                     trial311,
-                     trial312,
-                     trial313,
-                     trial314,
-                     trial315,
-                     trial41,
-                     trial42,
-                     trial43,
-                     trial44,
-                     trial51,
-                     trial52,
-                     trial53,
-                     trial54,
-                     trial61,
-                     trial62,
-                     trial63,
-                     trial64,
-                     trial65,
-                     trial66,
-                     trial67,
-                     trial71,
-                     trial72,
-                     trial73,
-                     trial74,
-                     trial75,
-                     trial76,
-                     trial77,
-                     trial78,
-                     trial81,
-                     trial82,
-                     trial83,
-                     trial84,
-                     trial85,
-                     trial86,
-                     trial87
-                     )
+            dfSQL = pd.read_sql_query(f"SELECT * FROM BRAILLEPROGRESS", conn)
+            dfStudent = dfSQL[dfSQL.STUDENTNAME == studentname]
+            print(dfStudent)
+            conn.close()
+            df = ""
+            df = dfStudent.drop(columns = ['ID', 'STUDENTNAME'])
+            print(df)
+            df = df.rename(columns = {'DATE': 'date'})
+            df = df.set_index('date')
+            print(df)
+            df = df.sort_values(by = "date")
+            mu, sigma = 0, 0.1
+            noise = np.random.normal(
+                    mu,
+                    sigma,
+                    [len(df.index), len(df.columns)]
                     )
-            conn.commit()
-
-        data_entry()
-
-    def graph(
-            self,
-            event
-            ):
-        """
-
-        Graphing
-
-        """
-        studentname = self.studentname1.GetString(self.studentname1.GetSelection())
-        conn = sqlite3.connect(dataBasePath)
-        dfSQL = pd.read_sql_query(f"SELECT * FROM BRAILLEPROGRESS", conn)
-        dfStudent = dfSQL[dfSQL.STUDENTNAME == studentname]
-        print(dfStudent)
-        conn.close()
-        df = ""
-        df = dfStudent.drop(columns = ['ID', 'STUDENTNAME'])
-        print(df)
-        df = df.rename(columns = {'DATE': 'date'})
-        df = df.set_index('date')
-        print(df)
-
-        # tmppath=Path(USER_DIR).joinpath(
-        #        'StudentDatabase',
-        #        'StudentDataFiles',
-        #        studentname,
-        #        'BrailleSkillsProgression.csv'
-        #        )
-
-        # df=pd.read_csv(
-        #        tmppath,
-        #        sep=',',
-        #        index_col=[0],
-        #        parse_dates=[0]
-        #        )
-        df = df.sort_values(by = "date")
-        mu, sigma = 0, 0.1
-        noise = np.random.normal(
-                mu,
-                sigma,
-                [len(df.index), len(df.columns)]
-                )
-        df_noisy = df + noise
-
-        fig = make_subplots(
-                rows = 7,
-                cols = 2,
-                specs = [[{}, {"rowspan": 2}], [{}, None],
-                         [{"rowspan": 2}, {"rowspan": 2}],
-                         [None, None],
-                         [{"rowspan": 2}, {"rowspan": 2}],
-                         [None, None], [{}, {}]],
-                subplot_titles = (
-                        "Phase 1: Tracking Skills",
-                        "Phase 2: Braille Alphabet",
-                        "Phase 1: Tracking Skills",
-                        "Phase 3a: Wordsigns, Numbers, Punctuation",
-                        "Phase 3b: Strong Contractions",
-                        "Phase 3c: Lower Cell Contractions",
-                        "Phase 3d: Multiple Cell Contractions",
-                        "Phase 4a: Braille Mode Indicators",
-                        "Phase 5: Document Formatting"),
-                print_grid = True
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index,
-                        y = df_noisy['P1_1'],
-                        mode = "lines+markers",
-                        name = "Track left to right",
-                        legendgroup = "Phase 1",
-                        legendgrouptitle_text = "Phase 1"
-                        ),
-                row = 1,
-                col = 1
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index,
-                        y = df_noisy['P1_2'],
-                        mode = "lines+markers",
-                        name = "Track top to bottom",
-                        legendgroup = "Phase 1",
-                        legendgrouptitle_text = "Phase 1"
-                        ),
-                row = 1,
-                col = 1
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index,
-                        y = df_noisy['P1_3'].iloc[[-1]],
-                        mode = "lines+markers",
-                        name = "Discriminate shapes",
-                        legendgroup = "Phase 1",
-                        legendgrouptitle_text = "Phase 1"
-                        ),
-                row = 2,
-                col = 1
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index,
-                        y = df_noisy['P1_4'],
-                        mode = "lines+markers",
-                        name = "Discriminate braille characters",
-                        legendgroup = "Phase 1",
-                        legendgrouptitle_text = "Phase 1"
-                        ),
-                row = 2,
-                col = 1
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index,
-                        y = df_noisy['P2_1'],
-                        mode = "lines+markers+text",
-                        name = "Alphabet",
-                        legendgroup = "Phase 2",
-                        legendgrouptitle_text = "Phase 2",
-                        showlegend = True
-                        ),
-                row = 1,
-                col = 2
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index,
-                        y = df_noisy['P2_1'].iloc[[-1]],
-                        mode = "text",
-                        text = [" G C L"],
-                        textposition = "middle right",
-                        legendgroup = "Phase 2",
-                        legendgrouptitle_text = "Phase 2",
-                        showlegend = False
-                        ),
-                row = 1,
-                col = 2
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index,
-                        y = df_noisy['P2_2'],
-                        mode = "lines+markers+text",
-                        name = "D Y",
-                        legendgroup = "Phase 2",
-                        legendgrouptitle_text = "Phase 2",
-                        showlegend = False
-                        ),
-                row = 1,
-                col = 2
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index,
-                        y = df_noisy['P2_2'].iloc[[-1]],
-                        mode = "text",
-                        text = [" D Y"],
-                        textposition = "middle right",
-                        legendgroup = "Phase 2",
-                        legendgrouptitle_text = "Phase 2",
-                        showlegend = False
-                        ),
-                row = 1,
-                col = 2
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index,
-                        y = df_noisy['P2_3'],
-                        mode = "lines+markers+text",
-                        name = "A B",
-                        legendgroup = "Phase 2",
-                        legendgrouptitle_text = "Phase 2",
-                        showlegend = False
-                        ),
-                row = 1,
-                col = 2
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index,
-                        y = df_noisy['P2_3'].iloc[[-1]],
-                        mode = "text",
-                        text = [" A B"],
-                        textposition = "middle right",
-                        legendgroup = "Phase 2",
-                        legendgrouptitle_text = "Phase 2",
-                        showlegend = False
-                        ),
-                row = 1,
-                col = 2
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index,
-                        y = df_noisy['P2_4'],
-                        mode = "lines+markers+text",
-                        name = "S",
-                        legendgroup = "Phase 2",
-                        legendgrouptitle_text = "Phase 2",
-                        showlegend = False
-                        ),
-                row = 1,
-                col = 2
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index,
-                        y = df_noisy['P2_4'].iloc[[-1]],
-                        mode = "text",
-                        text = [" S"],
-                        textposition = "middle right",
-                        legendgroup = "Phase 2",
-                        legendgrouptitle_text = "Phase 2",
-                        showlegend = False
-                        ),
-                row = 1,
-                col = 2
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index,
-                        y = df_noisy['P2_5'],
-                        mode = "lines+markers+text",
-                        name = "W",
-                        legendgroup = "Phase 2",
-                        legendgrouptitle_text = "Phase 2",
-                        showlegend = False
-                        ),
-                row = 1,
-                col = 2
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index,
-                        y = df_noisy['P2_5'].iloc[[-1]],
-                        mode = "text",
-                        text = [" W"],
-                        textposition = "middle right",
-                        legendgroup = "Phase 2",
-                        legendgrouptitle_text = "Phase 2",
-                        showlegend = False
-                        ),
-                row = 1,
-                col = 2
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index,
-                        y = df_noisy['P2_6'],
-                        mode = "lines+markers+text",
-                        name = "P O",
-                        legendgroup = "Phase 2",
-                        legendgrouptitle_text = "Phase 2",
-                        showlegend = False
-                        ),
-                row = 1,
-                col = 2
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index,
-                        y = df_noisy['P2_6'].iloc[[-1]],
-                        mode = "text",
-                        text = [" P O"],
-                        textposition = "middle right",
-                        legendgroup = "Phase 2",
-                        legendgrouptitle_text = "Phase 2",
-                        showlegend = False
-                        ),
-                row = 1,
-                col = 2
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index,
-                        y = df_noisy['P2_7'],
-                        mode = "lines+markers+text",
-                        name = "K",
-                        legendgroup = "Phase 2",
-                        legendgrouptitle_text = "Phase 2",
-                        showlegend = False
-                        ),
-                row = 1,
-                col = 2
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index,
-                        y = df_noisy['P2_7'].iloc[[-1]],
-                        mode = "text",
-                        text = [" K"],
-                        textposition = "middle right",
-                        legendgroup = "Phase 2",
-                        legendgrouptitle_text = "Phase 2",
-                        showlegend = False
-                        ),
-                row = 1,
-                col = 2
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index,
-                        y = df_noisy['P2_8'],
-                        mode = "lines+markers+text",
-                        name = "R",
-                        legendgroup = "Phase 2",
-                        legendgrouptitle_text = "Phase 2",
-                        showlegend = False
-                        ),
-                row = 1,
-                col = 2
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index,
-                        y = df_noisy['P2_8'].iloc[[-1]],
-                        mode = "text",
-                        text = [" R"],
-                        textposition = "middle right",
-                        legendgroup = "Phase 2",
-                        legendgrouptitle_text = "Phase 2",
-                        showlegend = False
-                        ),
-                row = 1,
-                col = 2
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index,
-                        y = df_noisy['P2_9'],
-                        mode = "lines+markers+text",
-                        name = "M E",
-                        legendgroup = "Phase 2",
-                        legendgrouptitle_text = "Phase 2",
-                        showlegend = False
-                        ),
-                row = 1,
-                col = 2
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index,
-                        y = df_noisy['P2_9'].iloc[[-1]],
-                        mode = "text",
-                        text = [" M E"],
-                        textposition = "middle right",
-                        legendgroup = "Phase 2",
-                        legendgrouptitle_text = "Phase 2",
-                        showlegend = False
-                        ),
-                row = 1,
-                col = 2
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index,
-                        y = df_noisy['P2_10'],
-                        mode = "lines+markers+text",
-                        name = "H",
-                        legendgroup = "Phase 2",
-                        legendgrouptitle_text = "Phase 2",
-                        showlegend = False
-                        ),
-                row = 1,
-                col = 2
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index,
-                        y = df_noisy['P2_10'].iloc[[-1]],
-                        mode = "text",
-                        text = [" H"],
-                        textposition = "middle right",
-                        legendgroup = "Phase 2",
-                        legendgrouptitle_text = "Phase 2",
-                        showlegend = False
-                        ),
-                row = 1,
-                col = 2
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index,
-                        y = df_noisy['P2_11'],
-                        mode = "lines+markers+text",
-                        name = "N X",
-                        legendgroup = "Phase 2",
-                        legendgrouptitle_text = "Phase 2",
-                        showlegend = False
-                        ),
-                row = 1,
-                col = 2
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index,
-                        y = df_noisy['P2_11'].iloc[[-1]],
-                        mode = "text",
-                        text = [" N X"],
-                        textposition = "middle right",
-                        legendgroup = "Phase 2",
-                        legendgrouptitle_text = "Phase 2",
-                        showlegend = False
-                        ),
-                row = 1,
-                col = 2
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index,
-                        y = df_noisy['P2_12'],
-                        mode = "lines+markers+text",
-                        name = "Z F",
-                        legendgroup = "Phase 2",
-                        legendgrouptitle_text = "Phase 2",
-                        showlegend = False
-                        ),
-                row = 1,
-                col = 2
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index,
-                        y = df_noisy['P2_12'].iloc[[-1]],
-                        mode = "text",
-                        text = [" Z F"],
-                        textposition = "middle right",
-                        legendgroup = "Phase 2",
-                        legendgrouptitle_text = "Phase 2",
-                        showlegend = False
-                        ),
-                row = 1,
-                col = 2
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index,
-                        y = df_noisy['P2_13'],
-                        mode = "lines+markers+text",
-                        name = "U T",
-                        legendgroup = "Phase 2",
-                        legendgrouptitle_text = "Phase 2",
-                        showlegend = False
-                        ),
-                row = 1,
-                col = 2
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index,
-                        y = df_noisy['P2_13'].iloc[[-1]],
-                        mode = "text",
-                        text = [" U T"],
-                        textposition = "middle right",
-                        legendgroup = "Phase 2",
-                        legendgrouptitle_text = "Phase 2",
-                        showlegend = False
-                        ),
-                row = 1,
-                col = 2
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index,
-                        y = df_noisy['P2_14'],
-                        mode = "lines+markers+text",
-                        name = "Q I",
-                        legendgroup = "Phase 2",
-                        legendgrouptitle_text = "Phase 2",
-                        showlegend = False
-                        ),
-                row = 1,
-                col = 2
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index,
-                        y = df_noisy['P2_14'].iloc[[-1]],
-                        mode = "text",
-                        text = [" Q I"],
-                        textposition = "middle right",
-                        legendgroup = "Phase 2",
-                        legendgrouptitle_text = "Phase 2",
-                        showlegend = False
-                        ),
-                row = 1,
-                col = 2
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index,
-                        y = df_noisy['P2_15'],
-                        mode = "lines+markers+text",
-                        name = "V J ",
-                        legendgroup = "Phase 2",
-                        legendgrouptitle_text = "Phase 2",
-                        showlegend = False
-                        ),
-                row = 1,
-                col = 2
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index,
-                        y = df_noisy['P2_15'].iloc[[-1]],
-                        mode = "text",
-                        text = [" V J"],
-                        textposition = "middle right",
-                        legendgroup = "Phase 2",
-                        legendgrouptitle_text = "Phase 2",
-                        showlegend = False
-                        ),
-                row = 1,
-                col = 2
-                )
-        fig.update_layout(showlegend = True)
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index,
-                        y = df_noisy['P3_1'],
-                        mode = "lines+markers",
-                        name = "Alphabetic Wordsigns",
-                        legendgroup = "Phase 3a",
-                        legendgrouptitle_text = "Phase 3a"
-                        ),
-                row = 3,
-                col = 1
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index,
-                        y = df_noisy['P3_2'],
-                        mode = "lines+markers",
-                        name = "Braille Numbers",
-                        legendgroup = "Phase 3a",
-                        legendgrouptitle_text = "Phase 3a"
-                        ),
-                row = 3,
-                col = 1
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index,
-                        y = df_noisy['P3_3'],
-                        mode = "lines+markers",
-                        name = "Punctuation",
-                        legendgroup = "Phase 3a",
-                        legendgrouptitle_text = "Phase 3a"
-                        ),
-                row = 3,
-                col = 1
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index,
-                        y = df_noisy['P3_4'],
-                        mode = "lines+markers",
-                        name = "Strong Contractions <br>(AND OF FOR WITH THE)",
-                        legendgroup = "Phase 3b",
-                        legendgrouptitle_text = "Phase 3b"
-                        ),
-                row = 3,
-                col = 2
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index,
-                        y = df_noisy['P3_5'],
-                        mode = "lines+markers",
-                        name = "Strong Groupsigns <br>(CH GH SH TH WH ED ER OU OW ST AR ING)",
-                        legendgroup = "Phase 3b",
-                        legendgrouptitle_text = "Phase 3b"
-                        ),
-                row = 3,
-                col = 2
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index,
-                        y = df_noisy['P3_6'],
-                        mode = "lines+markers",
-                        name = "Strong Wordsigns <br>(CH SH TH WH OU ST)",
-                        legendgroup = "Phase 3b",
-                        legendgrouptitle_text = "Phase 3b"
-                        ),
-                row = 3,
-                col = 2
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index,
-                        y = df_noisy['P3_7'],
-                        mode = "lines+markers",
-                        name = "Lower Groupsigns <br>(BE CON DIS)",
-                        legendgroup = "Phase 3c",
-                        legendgrouptitle_text = "Phase 3c"
-                        ),
-                row = 5,
-                col = 1
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index,
-                        y = df_noisy['P3_8'],
-                        mode = "lines+markers",
-                        name = "Lower Groupsigns <br>(EA BB CC FF GG)",
-                        legendgroup = "Phase 3c",
-                        legendgrouptitle_text = "Phase 3c"
-                        ),
-                row = 5,
-                col = 1
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index,
-                        y = df_noisy['P3_9'],
-                        mode = "lines+markers",
-                        name = "Lower Groupsigns/Wordsigns <br>(EN IN)",
-                        legendgroup = "Phase 3c",
-                        legendgrouptitle_text = "Phase 3c"
-                        ),
-                row = 5,
-                col = 1
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index,
-                        y = df_noisy['P3_10'],
-                        mode = "lines+markers",
-                        name = "Lower Wordsigns <br>(BE HIS WAS WERE)",
-                        legendgroup = "Phase 3c",
-                        legendgrouptitle_text = "Phase 3c"
-                        ),
-                row = 5,
-                col = 1
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index,
-                        y = df_noisy['P3_11'],
-                        mode = "lines+markers",
-                        name = "Dot 5 Contractions",
-                        legendgroup = "Phase 3d",
-                        legendgrouptitle_text = "Phase 3d"
-                        ),
-                row = 5,
-                col = 2
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index,
-                        y = df_noisy['P3_12'],
-                        mode = "lines+markers",
-                        name = "Dot 45 Contractions",
-                        legendgroup = "Phase 3d",
-                        legendgrouptitle_text = "Phase 3d"
-                        ),
-                row = 5,
-                col = 2
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index,
-                        y = df_noisy['P3_13'],
-                        mode = "lines+markers",
-                        name = "Dot 456 Contractions",
-                        legendgroup = "Phase 3d",
-                        legendgrouptitle_text = "Phase 3d"
-                        ),
-                row = 5,
-                col = 2
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index,
-                        y = df_noisy['P3_14'],
-                        mode = "lines+markers",
-                        name = "Final Letter Groupsigns",
-                        legendgroup = "Phase 3d",
-                        legendgrouptitle_text = "Phase 3d"
-                        ),
-                row = 5,
-                col = 2
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index,
-                        y = df_noisy['P3_15'],
-                        mode = "lines+markers",
-                        name = "Shortform Words",
-                        legendgroup = "Phase 3d",
-                        legendgrouptitle_text = "Phase 3d"
-                        ),
-                row = 5,
-                col = 2
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index,
-                        y = df_noisy['P4_1'],
-                        mode = "lines+markers",
-                        name = "Grade 1 Indicators",
-                        legendgroup = "Phase 4",
-                        legendgrouptitle_text = "Phase 4"
-                        ),
-                row = 7,
-                col = 1
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index,
-                        y = df_noisy['P4_2'],
-                        mode = "lines+markers",
-                        name = "Capitals Indicators",
-                        legendgroup = "Phase 4",
-                        legendgrouptitle_text = "Phase 4"
-                        ),
-                row = 7,
-                col = 1
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy['P4_3'],
-                        mode = "lines+markers",
-                        name = "Numeric Mode and Spatial math",
-                        legendgroup = "Phase 4",
-                        legendgrouptitle_text = "Phase 4"
-                        ),
-                row = 7,
-                col = 1
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy['P4_4'],
-                        mode = "lines+markers",
-                        name = "Typeform Indicators <br>(ITALIC, SCRIPT, UNDERLINE, BOLDFACE)",
-                        legendgroup = "Phase 4",
-                        legendgrouptitle_text = "Phase 4"
-                        ),
-                row = 7,
-                col = 1
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy['P5_1'],
-                        mode = "lines+markers",
-                        name = "Page Numbering",
-                        legendgroup = "Phase 5",
-                        legendgrouptitle_text = "Phase 5"
-                        ),
-                row = 7,
-                col = 2
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy['P5_2'],
-                        mode = "lines+markers",
-                        name = "Headings",
-                        legendgroup = "Phase 5",
-                        legendgrouptitle_text = "Phase 5"
-                        ),
-                row = 7,
-                col = 2
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy['P5_3'],
-                        mode = "lines+markers",
-                        name = "Lists",
-                        legendgroup = "Phase 5",
-                        legendgrouptitle_text = "Phase 5"
-                        ),
-                row = 7,
-                col = 2
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy['P5_4'],
-                        mode = "lines+markers",
-                        name = "Poety / Drama",
-                        legendgroup = "Phase 5",
-                        legendgrouptitle_text = "Phase 5"
-                        ),
-                row = 7,
-                col = 2
-                )
-        fig.add_hrect(
-                y0 = -.5,
-                y1 = .5,
-                line_width = 0,
-                fillcolor = "red",
-                opacity = 0.2,
-                row = 1,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = .5,
-                y1 = 1.5,
-                line_width = 0,
-                fillcolor = "orange",
-                opacity = 0.2,
-                row = 1,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = 1.5,
-                y1 = 2.5,
-                line_width = 0,
-                fillcolor = "yellow",
-                opacity = 0.2,
-                row = 1,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = 2.5,
-                y1 = 3.5,
-                line_width = 0,
-                fillcolor = "green",
-                opacity = 0.2,
-                row = 1,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = -.5,
-                y1 = .5,
-                line_width = 0,
-                fillcolor = "red",
-                opacity = 0.2,
-                row = 1,
-                col = 2
-                )
-        fig.add_hrect(
-                y0 = .5,
-                y1 = 1.5,
-                line_width = 0,
-                fillcolor = "orange",
-                opacity = 0.2,
-                row = 1,
-                col = 2
-                )
-        fig.add_hrect(
-                y0 = 1.5,
-                y1 = 2.5,
-                line_width = 0,
-                fillcolor = "yellow",
-                opacity = 0.2,
-                row = 1,
-                col = 2
-                )
-        fig.add_hrect(
-                y0 = 2.5,
-                y1 = 3.5,
-                line_width = 0,
-                fillcolor = "green",
-                opacity = 0.2,
-                row = 1,
-                col = 2
-                )
-        fig.add_hrect(
-                y0 = -.5,
-                y1 = .5,
-                line_width = 0,
-                fillcolor = "red",
-                opacity = 0.2,
-                row = 2,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = .5,
-                y1 = 1.5,
-                line_width = 0,
-                fillcolor = "orange",
-                opacity = 0.2,
-                row = 2,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = 1.5,
-                y1 = 2.5,
-                line_width = 0,
-                fillcolor = "yellow",
-                opacity = 0.2,
-                row = 2,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = 2.5,
-                y1 = 3.5,
-                line_width = 0,
-                fillcolor = "green",
-                opacity = 0.2,
-                row = 2,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = -.5,
-                y1 = .5,
-                line_width = 0,
-                fillcolor = "red",
-                opacity = 0.2,
-                row = 3,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = .5,
-                y1 = 1.5,
-                line_width = 0,
-                fillcolor = "orange",
-                opacity = 0.2,
-                row = 3,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = 1.5,
-                y1 = 2.5,
-                line_width = 0,
-                fillcolor = "yellow",
-                opacity = 0.2,
-                row = 3,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = 2.5,
-                y1 = 3.5,
-                line_width = 0,
-                fillcolor = "green",
-                opacity = 0.2,
-                row = 3,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = -.5,
-                y1 = .5,
-                line_width = 0,
-                fillcolor = "red",
-                opacity = 0.2,
-                row = 3,
-                col = 2
-                )
-        fig.add_hrect(
-                y0 = .5,
-                y1 = 1.5,
-                line_width = 0,
-                fillcolor = "orange",
-                opacity = 0.2,
-                row = 3,
-                col = 2
-                )
-        fig.add_hrect(
-                y0 = 1.5,
-                y1 = 2.5,
-                line_width = 0,
-                fillcolor = "yellow",
-                opacity = 0.2,
-                row = 3,
-                col = 2
-                )
-        fig.add_hrect(
-                y0 = 2.5,
-                y1 = 3.5,
-                line_width = 0,
-                fillcolor = "green",
-                opacity = 0.2,
-                row = 3,
-                col = 2
-                )
-        fig.add_hrect(
-                y0 = -.5,
-                y1 = .5,
-                line_width = 0,
-                fillcolor = "red",
-                opacity = 0.2,
-                row = 5,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = .5,
-                y1 = 1.5,
-                line_width = 0,
-                fillcolor = "orange",
-                opacity = 0.2,
-                row = 5,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = 1.5,
-                y1 = 2.5,
-                line_width = 0,
-                fillcolor = "yellow",
-                opacity = 0.2,
-                row = 5,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = 2.5,
-                y1 = 3.5,
-                line_width = 0,
-                fillcolor = "green",
-                opacity = 0.2,
-                row = 5,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = -.5,
-                y1 = .5,
-                line_width = 0,
-                fillcolor = "red",
-                opacity = 0.2,
-                row = 5,
-                col = 2
-                )
-        fig.add_hrect(
-                y0 = .5,
-                y1 = 1.5,
-                line_width = 0,
-                fillcolor = "orange",
-                opacity = 0.2,
-                row = 5,
-                col = 2
-                )
-        fig.add_hrect(
-                y0 = 1.5,
-                y1 = 2.5,
-                line_width = 0,
-                fillcolor = "yellow",
-                opacity = 0.2,
-                row = 5,
-                col = 2
-                )
-        fig.add_hrect(
-                y0 = 2.5,
-                y1 = 3.5,
-                line_width = 0,
-                fillcolor = "green",
-                opacity = 0.2,
-                row = 5,
-                col = 2
-                )
-        fig.add_hrect(
-                y0 = -.5,
-                y1 = .5,
-                line_width = 0,
-                fillcolor = "red",
-                opacity = 0.2,
-                row = 7,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = .5,
-                y1 = 1.5,
-                line_width = 0,
-                fillcolor = "orange",
-                opacity = 0.2,
-                row = 7,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = 1.5,
-                y1 = 2.5,
-                line_width = 0,
-                fillcolor = "yellow",
-                opacity = 0.2,
-                row = 7,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = 2.5,
-                y1 = 3.5,
-                line_width = 0,
-                fillcolor = "green",
-                opacity = 0.2,
-                row = 7,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = -.5,
-                y1 = .5,
-                line_width = 0,
-                fillcolor = "red",
-                opacity = 0.2,
-                row = 7,
-                col = 2
-                )
-        fig.add_hrect(
-                y0 = .5,
-                y1 = 1.5,
-                line_width = 0,
-                fillcolor = "orange",
-                opacity = 0.2,
-                row = 7,
-                col = 2
-                )
-        fig.add_hrect(
-                y0 = 1.5,
-                y1 = 2.5,
-                line_width = 0,
-                fillcolor = "yellow",
-                opacity = 0.2,
-                row = 7,
-                col = 2
-                )
-        fig.add_hrect(
-                y0 = 2.5,
-                y1 = 3.5,
-                line_width = 0,
-                fillcolor = "green",
-                opacity = 0.2,
-                row = 7,
-                col = 2
-                )
-        marker = '2022-01-01'
-        fig.add_vline(
-                x = marker,
-                line_width = 3,
-                line_color = "black",
-                row = 1,
-                col = 1
-                )
-        fig.add_vline(
-                x = marker,
-                line_width = 3,
-                line_color = "black",
-                row = 1,
-                col = 2
-                )
-        fig.add_vline(
-                x = marker,
-                line_width = 3,
-                line_color = "black",
-                row = 2,
-                col = 1
-                )
-        fig.add_vline(
-                x = marker,
-                line_width = 3,
-                line_color = "black",
-                row = 3,
-                col = 1
-                )
-        fig.add_vline(
-                x = marker,
-                line_width = 3,
-                line_color = "black",
-                row = 3,
-                col = 2
-                )
-        fig.add_vline(
-                x = marker,
-                line_width = 3,
-                line_color = "black",
-                row = 5,
-                col = 1
-                )
-        fig.add_vline(
-                x = marker,
-                line_width = 3,
-                line_color = "black",
-                row = 5,
-                col = 2
-                )
-        fig.add_vline(
-                x = marker,
-                line_width = 3,
-                line_color = "black",
-                row = 7,
-                col = 1
-                )
-        fig.add_vline(
-                x = marker,
-                line_width = 3,
-                line_color = "black",
-                row = 7,
-                col = 2
-                )
-        fig.update_xaxes(
-                rangebreaks = [dict(bounds = ["sat", "mon"]), dict(values = [" "])],
-                row = 1,
-                col = 1
-                )
-        fig.update_xaxes(
-                rangebreaks = [dict(bounds = ["sat", "mon"]), dict(values = [" "])],
-                row = 1,
-                col = 2
-                )
-        fig.update_xaxes(
-                rangebreaks = [dict(bounds = ["sat", "mon"]), dict(values = [" "])],
-                row = 2,
-                col = 1
-                )
-        fig.update_xaxes(
-                rangebreaks = [dict(bounds = ["sat", "mon"]), dict(values = [" "])],
-                row = 3,
-                col = 1
-                )
-        fig.update_xaxes(
-                rangebreaks = [dict(bounds = ["sat", "mon"]), dict(values = [" "])],
-                row = 3,
-                col = 2
-                )
-        fig.update_xaxes(
-                rangebreaks = [dict(bounds = ["sat", "mon"]), dict(values = [" "])],
-                row = 5,
-                col = 1
-                )
-        fig.update_xaxes(
-                rangebreaks = [dict(bounds = ["sat", "mon"]), dict(values = [" "])],
-                row = 5,
-                col = 2
-                )
-        fig.update_xaxes(
-                rangebreaks = [dict(bounds = ["sat", "mon"]), dict(values = [" "])],
-                row = 7,
-                col = 1
-                )
-        fig.update_xaxes(
-                rangebreaks = [dict(bounds = ["sat", "mon"]), dict(values = [" "])],
-                row = 7,
-                col = 2
-                )
-        fig.update_yaxes(
-                range = [-.5, 3.5], fixedrange = True,
-                ticktext = ["Unable", "Prompted", "Hesitated",
-                            "Independent"],
-                tickvals = [0.1, 1, 2, 3],
-                row = 1,
-                col = 1
-                )
-        fig.update_yaxes(
-                range = [-.5, 3.5], fixedrange = True,
-                ticktext = ["Unable", "Prompted", "Hesitated",
-                            "Independent"],
-                tickvals = [0.1, 1, 2, 3],
-                row = 2,
-                col = 1
-                )
-        fig.update_yaxes(
-                range = [-.5, 3.5], fixedrange = True,
-                ticktext = ["Unable", "Prompted", "Hesitated",
-                            "Independent"],
-                tickvals = [0.1, 1, 2, 3],
-                row = 1,
-                col = 2
-                )
-        fig.update_yaxes(
-                range = [-.5, 3.5], fixedrange = True,
-                ticktext = ["Unable", "Prompted", "Hesitated",
-                            "Independent"],
-                tickvals = [0.1, 1, 2, 3],
-                row = 3,
-                col = 1
-                )
-        fig.update_yaxes(
-                range = [-.5, 3.5], fixedrange = True,
-                ticktext = ["Unable", "Prompted", "Hesitated",
-                            "Independent"],
-                tickvals = [0.1, 1, 2, 3],
-                row = 3,
-                col = 2
-                )
-        fig.update_yaxes(
-                range = [-.5, 3.5], fixedrange = True,
-                ticktext = ["Unable", "Prompted", "Hesitated",
-                            "Independent"],
-                tickvals = [0.1, 1, 2, 3],
-                row = 5,
-                col = 1
-                )
-        fig.update_yaxes(
-                range = [-.5, 3.5], fixedrange = True,
-                ticktext = ["Unable", "Prompted", "Hesitated",
-                            "Independent"],
-                tickvals = [0.1, 1, 2, 3],
-                row = 5,
-                col = 2
-                )
-        fig.update_yaxes(
-                range = [-.5, 3.5], fixedrange = True,
-                ticktext = ["Unable", "Prompted", "Hesitated",
-                            "Independent"],
-                tickvals = [0.1, 1, 2, 3],
-                row = 5,
-                col = 2
-                )
-        fig.update_yaxes(
-                range = [-.5, 3.5], fixedrange = True,
-                ticktext = ["Unable", "Prompted", "Hesitated",
-                            "Independent"],
-                tickvals = [0.1, 1, 2, 3],
-                row = 7,
-                col = 2
-                )
-        fig.update_yaxes(
-                range = [-.5, 3.5], fixedrange = True,
-                ticktext = ["Unable", "Prompted", "Hesitated",
-                            "Independent"],
-                tickvals = [0.1, 1, 2, 3],
-                row = 7,
-                col = 2
-                )
-        fig.update_layout(
-                xaxis_tickformat = '%d %b', xaxis2_tickformat = '%d %b',
-                xaxis3_tickformat = '%d %b',
-                xaxis4_tickformat = '%d %b', xaxis5_tickformat = '%d %b',
-                xaxis6_tickformat = '%d %b',
-                xaxis7_tickformat = '%d %b', xaxis8_tickformat = '%d %b',
-                xaxis9_tickformat = '%d %b',
-                template = "simple_white",
-                title_text = f"{studentname}: Literary UEB Skills Progression",
-                legend = dict(
-                        font = dict(
-                                size = 10
-                                )
-                        )
-                )
-        tmppath = Path(USER_DIR).joinpath(
-                'StudentDatabase',
-                'StudentDataFiles', studentname,
-                'UEBLiterarySkillsProgression.html'
-                )
-        fig.write_html(tmppath)
-        fig.show()
-        fig = make_subplots(
-                rows = 3,
-                cols = 1, subplot_titles = (
-                        "Phase 6: UEB Technical Basics", "Phase 7: Advanced UEB Technical",
-                        "Phase 8: Accelerated UEB Technical"),
-                print_grid = True
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy['P6_1'],
-                        mode = "lines+markers",
-                        name = " Operation and Comparison Signs",
-                        legendgroup = "Phase 6",
-                        legendgrouptitle_text = "Phase 6"
-                        ),
-                row = 1,
-                col = 1
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy['P6_2'],
-                        mode = "lines+markers",
-                        name = "Grade 1 Mode",
-                        legendgroup = "Phase 6",
-                        legendgrouptitle_text = "Phase 6"
-                        ),
-                row = 1,
-                col = 1
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy['P6_3'],
-                        mode = "lines+markers",
-                        name = "Special Print Symbols",
-                        legendgroup = "Phase 6",
-                        legendgrouptitle_text = "Phase 6"
-                        ),
-                row = 1,
-                col = 1
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy['P6_4'],
-                        mode = "lines+markers",
-                        name = "Omission Marks",
-                        legendgroup = "Phase 6",
-                        legendgrouptitle_text = "Phase 6"
-                        ),
-                row = 1,
-                col = 1
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy['P6_5'],
-                        mode = "lines+markers",
-                        name = "Shape Indicators",
-                        legendgroup = "Phase 6",
-                        legendgrouptitle_text = "Phase 6"
-                        ),
-                row = 1,
-                col = 1
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy['P6_6'],
-                        mode = "lines+markers",
-                        name = "Roman Numerals",
-                        legendgroup = "Phase 6",
-                        legendgrouptitle_text = "Phase 6"
-                        ),
-                row = 1,
-                col = 1
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy['P6_7'],
-                        mode = "lines+markers",
-                        name = "Fractions",
-                        legendgroup = "Phase 6",
-                        legendgrouptitle_text = "Phase 6"
-                        ),
-                row = 1,
-                col = 1
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy['P7_1'],
-                        mode = "lines+markers",
-                        name = "Grade 1 Mode and Algebra",
-                        legendgroup = "Phase 7",
-                        legendgrouptitle_text = "Phase 7"
-                        ),
-                row = 2,
-                col = 1
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy['P7_2'],
-                        mode = "lines+markers",
-                        name = "Grade 1 Mode and Fractions",
-                        legendgroup = "Phase 7",
-                        legendgrouptitle_text = "Phase 7"
-                        ),
-                row = 2,
-                col = 1
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy['P7_3'],
-                        mode = "lines+markers",
-                        name = "Advanced Operation and Comparison Signs",
-                        legendgroup = "Phase 7",
-                        legendgrouptitle_text = "Phase 7"
-                        ),
-                row = 2,
-                col = 1
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy['P7_4'],
-                        mode = "lines+markers",
-                        name = "Indices",
-                        legendgroup = "Phase 7",
-                        legendgrouptitle_text = "Phase 7"
-                        ),
-                row = 2,
-                col = 1
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy['P7_5'],
-                        mode = "lines+markers",
-                        name = "Roots and Radicals",
-                        legendgroup = "Phase 7",
-                        legendgrouptitle_text = "Phase 7"
-                        ),
-                row = 2,
-                col = 1
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy['P7_6'],
-                        mode = "lines+markers",
-                        name = "Miscellaneous Shape Indicators",
-                        legendgroup = "Phase 7",
-                        legendgrouptitle_text = "Phase 7"
-                        ),
-                row = 2,
-                col = 1
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy['P7_7'],
-                        mode = "lines+markers",
-                        name = "Functions",
-                        legendgroup = "Phase 7",
-                        legendgrouptitle_text = "Phase 7"
-                        ),
-                row = 2,
-                col = 1
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy['P7_8'],
-                        mode = "lines+markers",
-                        name = "Greek letters",
-                        legendgroup = "Phase 7",
-                        legendgrouptitle_text = "Phase 7"
-                        ),
-                row = 2,
-                col = 1
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy['P8_1'],
-                        mode = "lines+markers",
-                        name = "Functions",
-                        legendgroup = "Phase 8",
-                        legendgrouptitle_text = "Phase 8"
-                        ),
-                row = 3,
-                col = 1
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy['P8_2'],
-                        mode = "lines+markers",
-                        name = "Modifiers, Bars, and Dots",
-                        legendgroup = "Phase 8",
-                        legendgrouptitle_text = "Phase 8"
-                        ),
-                row = 3,
-                col = 1
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy['P8_3'],
-                        mode = "lines+markers",
-                        name = "Modifiers, Arrows, and Limits",
-                        legendgroup = "Phase 8",
-                        legendgrouptitle_text = "Phase 8"
-                        ),
-                row = 3,
-                col = 1
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy['P8_4'],
-                        mode = "lines+markers",
-                        name = "Probability",
-                        legendgroup = "Phase 8",
-                        legendgrouptitle_text = "Phase 8"
-                        ),
-                row = 3,
-                col = 1
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy['P8_5'],
-                        mode = "lines+markers",
-                        name = "Calculus: Differentiation",
-                        legendgroup = "Phase 8",
-                        legendgrouptitle_text = "Phase 8"
-                        ),
-                row = 3,
-                col = 1
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy['P8_6'],
-                        mode = "lines+markers",
-                        name = "Calculus: Integration",
-                        legendgroup = "Phase 8",
-                        legendgrouptitle_text = "Phase 8"
-                        ),
-                row = 3,
-                col = 1
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy['P8_7'],
-                        mode = "lines+markers",
-                        name = "Vertical Bars",
-                        legendgroup = "Phase 8",
-                        legendgrouptitle_text = "Phase 8"
-                        ),
-                row = 3,
-                col = 1
-                )
-        fig.update_xaxes(
-                rangebreaks = [dict(bounds = ["sat", "mon"]), dict(values = [])],
-                row = 1,
-                col = 1
-                )
-        fig.update_xaxes(
-                rangebreaks = [dict(bounds = ["sat", "mon"]), dict(values = [])],
-                row = 2,
-                col = 1
-                )
-        fig.update_xaxes(
-                rangebreaks = [dict(bounds = ["sat", "mon"]), dict(values = [])],
-                row = 3,
-                col = 1
-                )
-        fig.update_yaxes(
-                range = [-.5, 3.5], fixedrange = True,
-                ticktext = ["Unable", "Prompted", "Hesitated",
-                            "Independent"],
-                tickvals = [0.1, 1, 2, 3],
-                row = 1,
-                col = 1
-                )
-        fig.update_yaxes(
-                range = [-.5, 3.5], fixedrange = True,
-                ticktext = ["Unable", "Prompted", "Hesitated",
-                            "Independent"],
-                tickvals = [0.1, 1, 2, 3],
-                row = 2,
-                col = 1
-                )
-        fig.update_yaxes(
-                range = [-.5, 3.5], fixedrange = True,
-                ticktext = ["Unable", "Prompted", "Hesitated",
-                            "Independent"],
-                tickvals = [0.1, 1, 2, 3],
-                row = 3,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = -.5,
-                y1 = .5,
-                line_width = 0,
-                fillcolor = "red",
-                opacity = 0.2,
-                row = 1,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = .5,
-                y1 = 1.5,
-                line_width = 0,
-                fillcolor = "orange",
-                opacity = 0.2,
-                row = 1,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = 1.5,
-                y1 = 2.5,
-                line_width = 0,
-                fillcolor = "yellow",
-                opacity = 0.2,
-                row = 1,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = 2.5,
-                y1 = 3.5,
-                line_width = 0,
-                fillcolor = "green",
-                opacity = 0.2,
-                row = 1,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = -.5,
-                y1 = .5,
-                line_width = 0,
-                fillcolor = "red",
-                opacity = 0.2,
-                row = 2,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = .5,
-                y1 = 1.5,
-                line_width = 0,
-                fillcolor = "orange",
-                opacity = 0.2,
-                row = 2,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = 1.5,
-                y1 = 2.5,
-                line_width = 0,
-                fillcolor = "yellow",
-                opacity = 0.2,
-                row = 2,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = 2.5,
-                y1 = 3.5,
-                line_width = 0,
-                fillcolor = "green",
-                opacity = 0.2,
-                row = 2,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = -.5,
-                y1 = .5,
-                line_width = 0,
-                fillcolor = "red",
-                opacity = 0.2,
-                row = 3,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = .5,
-                y1 = 1.5,
-                line_width = 0,
-                fillcolor = "orange",
-                opacity = 0.2,
-                row = 3,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = 1.5,
-                y1 = 2.5,
-                line_width = 0,
-                fillcolor = "yellow",
-                opacity = 0.2,
-                row = 3,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = 2.5,
-                y1 = 3.5,
-                line_width = 0,
-                fillcolor = "green",
-                opacity = 0.2,
-                row = 3,
-                col = 1
-                )
-        fig.update_layout(
-                xaxis_tickformat = '%d %b', xaxis2_tickformat = '%d %b',
-                xaxis3_tickformat = '%d %b',
-                template = "simple_white",
-                title_text = f"{studentname}: Technical UEB Skills Progression",
-                legend = dict(
-                        font = dict(
-                                size = 10
-                                )
-                        )
-                )
-        tmppath = Path(USER_DIR).joinpath(
-                'StudentDatabase',
-                'StudentDataFiles', studentname,
-                'UEBTechnicalSkillsProgression.html'
-                )
-        fig.write_html(tmppath)
-
-        dfAsString = df.to_html(index = True)
-
-        dialog = MyBrowser(
-                None, -1
-                )
-        dialog.browser.SetPage(dfAsString, "")
-        dialog.Show()
-        fig.show()
+            df_noisy = df + noise
+            fig = make_subplots(
+                    rows = 7,
+                    cols = 2,
+                    specs = [[{}, {"rowspan": 2}], [{}, None],
+                             [{"rowspan": 2}, {"rowspan": 2}],
+                             [None, None],
+                             [{"rowspan": 2}, {"rowspan": 2}],
+                             [None, None], [{}, {}]],
+                    subplot_titles = (
+                            "Phase 1: Tracking Skills",
+                            "Phase 2: Braille Alphabet",
+                            "Phase 1: Tracking Skills",
+                            "Phase 3a: Wordsigns, Numbers, Punctuation",
+                            "Phase 3b: Strong Contractions",
+                            "Phase 3c: Lower Cell Contractions",
+                            "Phase 3d: Multiple Cell Contractions",
+                            "Phase 4a: Braille Mode Indicators",
+                            "Phase 5: Document Formatting"),
+                    print_grid = True
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index,
+                            y = df_noisy['P1_1'],
+                            mode = "lines+markers",
+                            name = "Track left to right",
+                            legendgroup = "Phase 1",
+                            legendgrouptitle_text = "Phase 1"
+                            ),
+                    row = 1,
+                    col = 1
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index,
+                            y = df_noisy['P1_2'],
+                            mode = "lines+markers",
+                            name = "Track top to bottom",
+                            legendgroup = "Phase 1",
+                            legendgrouptitle_text = "Phase 1"
+                            ),
+                    row = 1,
+                    col = 1
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index,
+                            y = df_noisy['P1_3'].iloc[[-1]],
+                            mode = "lines+markers",
+                            name = "Discriminate shapes",
+                            legendgroup = "Phase 1",
+                            legendgrouptitle_text = "Phase 1"
+                            ),
+                    row = 2,
+                    col = 1
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index,
+                            y = df_noisy['P1_4'],
+                            mode = "lines+markers",
+                            name = "Discriminate braille characters",
+                            legendgroup = "Phase 1",
+                            legendgrouptitle_text = "Phase 1"
+                            ),
+                    row = 2,
+                    col = 1
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index,
+                            y = df_noisy['P2_1'],
+                            mode = "lines+markers+text",
+                            name = "Alphabet",
+                            legendgroup = "Phase 2",
+                            legendgrouptitle_text = "Phase 2",
+                            showlegend = True
+                            ),
+                    row = 1,
+                    col = 2
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index,
+                            y = df_noisy['P2_1'].iloc[[-1]],
+                            mode = "text",
+                            text = [" G C L"],
+                            textposition = "middle right",
+                            legendgroup = "Phase 2",
+                            legendgrouptitle_text = "Phase 2",
+                            showlegend = False
+                            ),
+                    row = 1,
+                    col = 2
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index,
+                            y = df_noisy['P2_2'],
+                            mode = "lines+markers+text",
+                            name = "D Y",
+                            legendgroup = "Phase 2",
+                            legendgrouptitle_text = "Phase 2",
+                            showlegend = False
+                            ),
+                    row = 1,
+                    col = 2
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index,
+                            y = df_noisy['P2_2'].iloc[[-1]],
+                            mode = "text",
+                            text = [" D Y"],
+                            textposition = "middle right",
+                            legendgroup = "Phase 2",
+                            legendgrouptitle_text = "Phase 2",
+                            showlegend = False
+                            ),
+                    row = 1,
+                    col = 2
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index,
+                            y = df_noisy['P2_3'],
+                            mode = "lines+markers+text",
+                            name = "A B",
+                            legendgroup = "Phase 2",
+                            legendgrouptitle_text = "Phase 2",
+                            showlegend = False
+                            ),
+                    row = 1,
+                    col = 2
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index,
+                            y = df_noisy['P2_3'].iloc[[-1]],
+                            mode = "text",
+                            text = [" A B"],
+                            textposition = "middle right",
+                            legendgroup = "Phase 2",
+                            legendgrouptitle_text = "Phase 2",
+                            showlegend = False
+                            ),
+                    row = 1,
+                    col = 2
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index,
+                            y = df_noisy['P2_4'],
+                            mode = "lines+markers+text",
+                            name = "S",
+                            legendgroup = "Phase 2",
+                            legendgrouptitle_text = "Phase 2",
+                            showlegend = False
+                            ),
+                    row = 1,
+                    col = 2
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index,
+                            y = df_noisy['P2_4'].iloc[[-1]],
+                            mode = "text",
+                            text = [" S"],
+                            textposition = "middle right",
+                            legendgroup = "Phase 2",
+                            legendgrouptitle_text = "Phase 2",
+                            showlegend = False
+                            ),
+                    row = 1,
+                    col = 2
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index,
+                            y = df_noisy['P2_5'],
+                            mode = "lines+markers+text",
+                            name = "W",
+                            legendgroup = "Phase 2",
+                            legendgrouptitle_text = "Phase 2",
+                            showlegend = False
+                            ),
+                    row = 1,
+                    col = 2
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index,
+                            y = df_noisy['P2_5'].iloc[[-1]],
+                            mode = "text",
+                            text = [" W"],
+                            textposition = "middle right",
+                            legendgroup = "Phase 2",
+                            legendgrouptitle_text = "Phase 2",
+                            showlegend = False
+                            ),
+                    row = 1,
+                    col = 2
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index,
+                            y = df_noisy['P2_6'],
+                            mode = "lines+markers+text",
+                            name = "P O",
+                            legendgroup = "Phase 2",
+                            legendgrouptitle_text = "Phase 2",
+                            showlegend = False
+                            ),
+                    row = 1,
+                    col = 2
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index,
+                            y = df_noisy['P2_6'].iloc[[-1]],
+                            mode = "text",
+                            text = [" P O"],
+                            textposition = "middle right",
+                            legendgroup = "Phase 2",
+                            legendgrouptitle_text = "Phase 2",
+                            showlegend = False
+                            ),
+                    row = 1,
+                    col = 2
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index,
+                            y = df_noisy['P2_7'],
+                            mode = "lines+markers+text",
+                            name = "K",
+                            legendgroup = "Phase 2",
+                            legendgrouptitle_text = "Phase 2",
+                            showlegend = False
+                            ),
+                    row = 1,
+                    col = 2
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index,
+                            y = df_noisy['P2_7'].iloc[[-1]],
+                            mode = "text",
+                            text = [" K"],
+                            textposition = "middle right",
+                            legendgroup = "Phase 2",
+                            legendgrouptitle_text = "Phase 2",
+                            showlegend = False
+                            ),
+                    row = 1,
+                    col = 2
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index,
+                            y = df_noisy['P2_8'],
+                            mode = "lines+markers+text",
+                            name = "R",
+                            legendgroup = "Phase 2",
+                            legendgrouptitle_text = "Phase 2",
+                            showlegend = False
+                            ),
+                    row = 1,
+                    col = 2
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index,
+                            y = df_noisy['P2_8'].iloc[[-1]],
+                            mode = "text",
+                            text = [" R"],
+                            textposition = "middle right",
+                            legendgroup = "Phase 2",
+                            legendgrouptitle_text = "Phase 2",
+                            showlegend = False
+                            ),
+                    row = 1,
+                    col = 2
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index,
+                            y = df_noisy['P2_9'],
+                            mode = "lines+markers+text",
+                            name = "M E",
+                            legendgroup = "Phase 2",
+                            legendgrouptitle_text = "Phase 2",
+                            showlegend = False
+                            ),
+                    row = 1,
+                    col = 2
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index,
+                            y = df_noisy['P2_9'].iloc[[-1]],
+                            mode = "text",
+                            text = [" M E"],
+                            textposition = "middle right",
+                            legendgroup = "Phase 2",
+                            legendgrouptitle_text = "Phase 2",
+                            showlegend = False
+                            ),
+                    row = 1,
+                    col = 2
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index,
+                            y = df_noisy['P2_10'],
+                            mode = "lines+markers+text",
+                            name = "H",
+                            legendgroup = "Phase 2",
+                            legendgrouptitle_text = "Phase 2",
+                            showlegend = False
+                            ),
+                    row = 1,
+                    col = 2
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index,
+                            y = df_noisy['P2_10'].iloc[[-1]],
+                            mode = "text",
+                            text = [" H"],
+                            textposition = "middle right",
+                            legendgroup = "Phase 2",
+                            legendgrouptitle_text = "Phase 2",
+                            showlegend = False
+                            ),
+                    row = 1,
+                    col = 2
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index,
+                            y = df_noisy['P2_11'],
+                            mode = "lines+markers+text",
+                            name = "N X",
+                            legendgroup = "Phase 2",
+                            legendgrouptitle_text = "Phase 2",
+                            showlegend = False
+                            ),
+                    row = 1,
+                    col = 2
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index,
+                            y = df_noisy['P2_11'].iloc[[-1]],
+                            mode = "text",
+                            text = [" N X"],
+                            textposition = "middle right",
+                            legendgroup = "Phase 2",
+                            legendgrouptitle_text = "Phase 2",
+                            showlegend = False
+                            ),
+                    row = 1,
+                    col = 2
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index,
+                            y = df_noisy['P2_12'],
+                            mode = "lines+markers+text",
+                            name = "Z F",
+                            legendgroup = "Phase 2",
+                            legendgrouptitle_text = "Phase 2",
+                            showlegend = False
+                            ),
+                    row = 1,
+                    col = 2
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index,
+                            y = df_noisy['P2_12'].iloc[[-1]],
+                            mode = "text",
+                            text = [" Z F"],
+                            textposition = "middle right",
+                            legendgroup = "Phase 2",
+                            legendgrouptitle_text = "Phase 2",
+                            showlegend = False
+                            ),
+                    row = 1,
+                    col = 2
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index,
+                            y = df_noisy['P2_13'],
+                            mode = "lines+markers+text",
+                            name = "U T",
+                            legendgroup = "Phase 2",
+                            legendgrouptitle_text = "Phase 2",
+                            showlegend = False
+                            ),
+                    row = 1,
+                    col = 2
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index,
+                            y = df_noisy['P2_13'].iloc[[-1]],
+                            mode = "text",
+                            text = [" U T"],
+                            textposition = "middle right",
+                            legendgroup = "Phase 2",
+                            legendgrouptitle_text = "Phase 2",
+                            showlegend = False
+                            ),
+                    row = 1,
+                    col = 2
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index,
+                            y = df_noisy['P2_14'],
+                            mode = "lines+markers+text",
+                            name = "Q I",
+                            legendgroup = "Phase 2",
+                            legendgrouptitle_text = "Phase 2",
+                            showlegend = False
+                            ),
+                    row = 1,
+                    col = 2
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index,
+                            y = df_noisy['P2_14'].iloc[[-1]],
+                            mode = "text",
+                            text = [" Q I"],
+                            textposition = "middle right",
+                            legendgroup = "Phase 2",
+                            legendgrouptitle_text = "Phase 2",
+                            showlegend = False
+                            ),
+                    row = 1,
+                    col = 2
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index,
+                            y = df_noisy['P2_15'],
+                            mode = "lines+markers+text",
+                            name = "V J ",
+                            legendgroup = "Phase 2",
+                            legendgrouptitle_text = "Phase 2",
+                            showlegend = False
+                            ),
+                    row = 1,
+                    col = 2
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index,
+                            y = df_noisy['P2_15'].iloc[[-1]],
+                            mode = "text",
+                            text = [" V J"],
+                            textposition = "middle right",
+                            legendgroup = "Phase 2",
+                            legendgrouptitle_text = "Phase 2",
+                            showlegend = False
+                            ),
+                    row = 1,
+                    col = 2
+                    )
+            fig.update_layout(showlegend = True)
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index,
+                            y = df_noisy['P3_1'],
+                            mode = "lines+markers",
+                            name = "Alphabetic Wordsigns",
+                            legendgroup = "Phase 3a",
+                            legendgrouptitle_text = "Phase 3a"
+                            ),
+                    row = 3,
+                    col = 1
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index,
+                            y = df_noisy['P3_2'],
+                            mode = "lines+markers",
+                            name = "Braille Numbers",
+                            legendgroup = "Phase 3a",
+                            legendgrouptitle_text = "Phase 3a"
+                            ),
+                    row = 3,
+                    col = 1
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index,
+                            y = df_noisy['P3_3'],
+                            mode = "lines+markers",
+                            name = "Punctuation",
+                            legendgroup = "Phase 3a",
+                            legendgrouptitle_text = "Phase 3a"
+                            ),
+                    row = 3,
+                    col = 1
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index,
+                            y = df_noisy['P3_4'],
+                            mode = "lines+markers",
+                            name = "Strong Contractions <br>(AND OF FOR WITH THE)",
+                            legendgroup = "Phase 3b",
+                            legendgrouptitle_text = "Phase 3b"
+                            ),
+                    row = 3,
+                    col = 2
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index,
+                            y = df_noisy['P3_5'],
+                            mode = "lines+markers",
+                            name = "Strong Groupsigns <br>(CH GH SH TH WH ED ER OU OW ST AR ING)",
+                            legendgroup = "Phase 3b",
+                            legendgrouptitle_text = "Phase 3b"
+                            ),
+                    row = 3,
+                    col = 2
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index,
+                            y = df_noisy['P3_6'],
+                            mode = "lines+markers",
+                            name = "Strong Wordsigns <br>(CH SH TH WH OU ST)",
+                            legendgroup = "Phase 3b",
+                            legendgrouptitle_text = "Phase 3b"
+                            ),
+                    row = 3,
+                    col = 2
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index,
+                            y = df_noisy['P3_7'],
+                            mode = "lines+markers",
+                            name = "Lower Groupsigns <br>(BE CON DIS)",
+                            legendgroup = "Phase 3c",
+                            legendgrouptitle_text = "Phase 3c"
+                            ),
+                    row = 5,
+                    col = 1
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index,
+                            y = df_noisy['P3_8'],
+                            mode = "lines+markers",
+                            name = "Lower Groupsigns <br>(EA BB CC FF GG)",
+                            legendgroup = "Phase 3c",
+                            legendgrouptitle_text = "Phase 3c"
+                            ),
+                    row = 5,
+                    col = 1
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index,
+                            y = df_noisy['P3_9'],
+                            mode = "lines+markers",
+                            name = "Lower Groupsigns/Wordsigns <br>(EN IN)",
+                            legendgroup = "Phase 3c",
+                            legendgrouptitle_text = "Phase 3c"
+                            ),
+                    row = 5,
+                    col = 1
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index,
+                            y = df_noisy['P3_10'],
+                            mode = "lines+markers",
+                            name = "Lower Wordsigns <br>(BE HIS WAS WERE)",
+                            legendgroup = "Phase 3c",
+                            legendgrouptitle_text = "Phase 3c"
+                            ),
+                    row = 5,
+                    col = 1
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index,
+                            y = df_noisy['P3_11'],
+                            mode = "lines+markers",
+                            name = "Dot 5 Contractions",
+                            legendgroup = "Phase 3d",
+                            legendgrouptitle_text = "Phase 3d"
+                            ),
+                    row = 5,
+                    col = 2
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index,
+                            y = df_noisy['P3_12'],
+                            mode = "lines+markers",
+                            name = "Dot 45 Contractions",
+                            legendgroup = "Phase 3d",
+                            legendgrouptitle_text = "Phase 3d"
+                            ),
+                    row = 5,
+                    col = 2
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index,
+                            y = df_noisy['P3_13'],
+                            mode = "lines+markers",
+                            name = "Dot 456 Contractions",
+                            legendgroup = "Phase 3d",
+                            legendgrouptitle_text = "Phase 3d"
+                            ),
+                    row = 5,
+                    col = 2
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index,
+                            y = df_noisy['P3_14'],
+                            mode = "lines+markers",
+                            name = "Final Letter Groupsigns",
+                            legendgroup = "Phase 3d",
+                            legendgrouptitle_text = "Phase 3d"
+                            ),
+                    row = 5,
+                    col = 2
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index,
+                            y = df_noisy['P3_15'],
+                            mode = "lines+markers",
+                            name = "Shortform Words",
+                            legendgroup = "Phase 3d",
+                            legendgrouptitle_text = "Phase 3d"
+                            ),
+                    row = 5,
+                    col = 2
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index,
+                            y = df_noisy['P4_1'],
+                            mode = "lines+markers",
+                            name = "Grade 1 Indicators",
+                            legendgroup = "Phase 4",
+                            legendgrouptitle_text = "Phase 4"
+                            ),
+                    row = 7,
+                    col = 1
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index,
+                            y = df_noisy['P4_2'],
+                            mode = "lines+markers",
+                            name = "Capitals Indicators",
+                            legendgroup = "Phase 4",
+                            legendgrouptitle_text = "Phase 4"
+                            ),
+                    row = 7,
+                    col = 1
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy['P4_3'],
+                            mode = "lines+markers",
+                            name = "Numeric Mode and Spatial math",
+                            legendgroup = "Phase 4",
+                            legendgrouptitle_text = "Phase 4"
+                            ),
+                    row = 7,
+                    col = 1
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy['P4_4'],
+                            mode = "lines+markers",
+                            name = "Typeform Indicators <br>(ITALIC, SCRIPT, UNDERLINE, BOLDFACE)",
+                            legendgroup = "Phase 4",
+                            legendgrouptitle_text = "Phase 4"
+                            ),
+                    row = 7,
+                    col = 1
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy['P5_1'],
+                            mode = "lines+markers",
+                            name = "Page Numbering",
+                            legendgroup = "Phase 5",
+                            legendgrouptitle_text = "Phase 5"
+                            ),
+                    row = 7,
+                    col = 2
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy['P5_2'],
+                            mode = "lines+markers",
+                            name = "Headings",
+                            legendgroup = "Phase 5",
+                            legendgrouptitle_text = "Phase 5"
+                            ),
+                    row = 7,
+                    col = 2
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy['P5_3'],
+                            mode = "lines+markers",
+                            name = "Lists",
+                            legendgroup = "Phase 5",
+                            legendgrouptitle_text = "Phase 5"
+                            ),
+                    row = 7,
+                    col = 2
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy['P5_4'],
+                            mode = "lines+markers",
+                            name = "Poety / Drama",
+                            legendgroup = "Phase 5",
+                            legendgrouptitle_text = "Phase 5"
+                            ),
+                    row = 7,
+                    col = 2
+                    )
+            fig.add_hrect(
+                    y0 = -.5,
+                    y1 = .5,
+                    line_width = 0,
+                    fillcolor = "red",
+                    opacity = 0.2,
+                    row = 1,
+                    col = 1
+                    )
+            fig.add_hrect(
+                    y0 = .5,
+                    y1 = 1.5,
+                    line_width = 0,
+                    fillcolor = "orange",
+                    opacity = 0.2,
+                    row = 1,
+                    col = 1
+                    )
+            fig.add_hrect(
+                    y0 = 1.5,
+                    y1 = 2.5,
+                    line_width = 0,
+                    fillcolor = "yellow",
+                    opacity = 0.2,
+                    row = 1,
+                    col = 1
+                    )
+            fig.add_hrect(
+                    y0 = 2.5,
+                    y1 = 3.5,
+                    line_width = 0,
+                    fillcolor = "green",
+                    opacity = 0.2,
+                    row = 1,
+                    col = 1
+                    )
+            fig.add_hrect(
+                    y0 = -.5,
+                    y1 = .5,
+                    line_width = 0,
+                    fillcolor = "red",
+                    opacity = 0.2,
+                    row = 1,
+                    col = 2
+                    )
+            fig.add_hrect(
+                    y0 = .5,
+                    y1 = 1.5,
+                    line_width = 0,
+                    fillcolor = "orange",
+                    opacity = 0.2,
+                    row = 1,
+                    col = 2
+                    )
+            fig.add_hrect(
+                    y0 = 1.5,
+                    y1 = 2.5,
+                    line_width = 0,
+                    fillcolor = "yellow",
+                    opacity = 0.2,
+                    row = 1,
+                    col = 2
+                    )
+            fig.add_hrect(
+                    y0 = 2.5,
+                    y1 = 3.5,
+                    line_width = 0,
+                    fillcolor = "green",
+                    opacity = 0.2,
+                    row = 1,
+                    col = 2
+                    )
+            fig.add_hrect(
+                    y0 = -.5,
+                    y1 = .5,
+                    line_width = 0,
+                    fillcolor = "red",
+                    opacity = 0.2,
+                    row = 2,
+                    col = 1
+                    )
+            fig.add_hrect(
+                    y0 = .5,
+                    y1 = 1.5,
+                    line_width = 0,
+                    fillcolor = "orange",
+                    opacity = 0.2,
+                    row = 2,
+                    col = 1
+                    )
+            fig.add_hrect(
+                    y0 = 1.5,
+                    y1 = 2.5,
+                    line_width = 0,
+                    fillcolor = "yellow",
+                    opacity = 0.2,
+                    row = 2,
+                    col = 1
+                    )
+            fig.add_hrect(
+                    y0 = 2.5,
+                    y1 = 3.5,
+                    line_width = 0,
+                    fillcolor = "green",
+                    opacity = 0.2,
+                    row = 2,
+                    col = 1
+                    )
+            fig.add_hrect(
+                    y0 = -.5,
+                    y1 = .5,
+                    line_width = 0,
+                    fillcolor = "red",
+                    opacity = 0.2,
+                    row = 3,
+                    col = 1
+                    )
+            fig.add_hrect(
+                    y0 = .5,
+                    y1 = 1.5,
+                    line_width = 0,
+                    fillcolor = "orange",
+                    opacity = 0.2,
+                    row = 3,
+                    col = 1
+                    )
+            fig.add_hrect(
+                    y0 = 1.5,
+                    y1 = 2.5,
+                    line_width = 0,
+                    fillcolor = "yellow",
+                    opacity = 0.2,
+                    row = 3,
+                    col = 1
+                    )
+            fig.add_hrect(
+                    y0 = 2.5,
+                    y1 = 3.5,
+                    line_width = 0,
+                    fillcolor = "green",
+                    opacity = 0.2,
+                    row = 3,
+                    col = 1
+                    )
+            fig.add_hrect(
+                    y0 = -.5,
+                    y1 = .5,
+                    line_width = 0,
+                    fillcolor = "red",
+                    opacity = 0.2,
+                    row = 3,
+                    col = 2
+                    )
+            fig.add_hrect(
+                    y0 = .5,
+                    y1 = 1.5,
+                    line_width = 0,
+                    fillcolor = "orange",
+                    opacity = 0.2,
+                    row = 3,
+                    col = 2
+                    )
+            fig.add_hrect(
+                    y0 = 1.5,
+                    y1 = 2.5,
+                    line_width = 0,
+                    fillcolor = "yellow",
+                    opacity = 0.2,
+                    row = 3,
+                    col = 2
+                    )
+            fig.add_hrect(
+                    y0 = 2.5,
+                    y1 = 3.5,
+                    line_width = 0,
+                    fillcolor = "green",
+                    opacity = 0.2,
+                    row = 3,
+                    col = 2
+                    )
+            fig.add_hrect(
+                    y0 = -.5,
+                    y1 = .5,
+                    line_width = 0,
+                    fillcolor = "red",
+                    opacity = 0.2,
+                    row = 5,
+                    col = 1
+                    )
+            fig.add_hrect(
+                    y0 = .5,
+                    y1 = 1.5,
+                    line_width = 0,
+                    fillcolor = "orange",
+                    opacity = 0.2,
+                    row = 5,
+                    col = 1
+                    )
+            fig.add_hrect(
+                    y0 = 1.5,
+                    y1 = 2.5,
+                    line_width = 0,
+                    fillcolor = "yellow",
+                    opacity = 0.2,
+                    row = 5,
+                    col = 1
+                    )
+            fig.add_hrect(
+                    y0 = 2.5,
+                    y1 = 3.5,
+                    line_width = 0,
+                    fillcolor = "green",
+                    opacity = 0.2,
+                    row = 5,
+                    col = 1
+                    )
+            fig.add_hrect(
+                    y0 = -.5,
+                    y1 = .5,
+                    line_width = 0,
+                    fillcolor = "red",
+                    opacity = 0.2,
+                    row = 5,
+                    col = 2
+                    )
+            fig.add_hrect(
+                    y0 = .5,
+                    y1 = 1.5,
+                    line_width = 0,
+                    fillcolor = "orange",
+                    opacity = 0.2,
+                    row = 5,
+                    col = 2
+                    )
+            fig.add_hrect(
+                    y0 = 1.5,
+                    y1 = 2.5,
+                    line_width = 0,
+                    fillcolor = "yellow",
+                    opacity = 0.2,
+                    row = 5,
+                    col = 2
+                    )
+            fig.add_hrect(
+                    y0 = 2.5,
+                    y1 = 3.5,
+                    line_width = 0,
+                    fillcolor = "green",
+                    opacity = 0.2,
+                    row = 5,
+                    col = 2
+                    )
+            fig.add_hrect(
+                    y0 = -.5,
+                    y1 = .5,
+                    line_width = 0,
+                    fillcolor = "red",
+                    opacity = 0.2,
+                    row = 7,
+                    col = 1
+                    )
+            fig.add_hrect(
+                    y0 = .5,
+                    y1 = 1.5,
+                    line_width = 0,
+                    fillcolor = "orange",
+                    opacity = 0.2,
+                    row = 7,
+                    col = 1
+                    )
+            fig.add_hrect(
+                    y0 = 1.5,
+                    y1 = 2.5,
+                    line_width = 0,
+                    fillcolor = "yellow",
+                    opacity = 0.2,
+                    row = 7,
+                    col = 1
+                    )
+            fig.add_hrect(
+                    y0 = 2.5,
+                    y1 = 3.5,
+                    line_width = 0,
+                    fillcolor = "green",
+                    opacity = 0.2,
+                    row = 7,
+                    col = 1
+                    )
+            fig.add_hrect(
+                    y0 = -.5,
+                    y1 = .5,
+                    line_width = 0,
+                    fillcolor = "red",
+                    opacity = 0.2,
+                    row = 7,
+                    col = 2
+                    )
+            fig.add_hrect(
+                    y0 = .5,
+                    y1 = 1.5,
+                    line_width = 0,
+                    fillcolor = "orange",
+                    opacity = 0.2,
+                    row = 7,
+                    col = 2
+                    )
+            fig.add_hrect(
+                    y0 = 1.5,
+                    y1 = 2.5,
+                    line_width = 0,
+                    fillcolor = "yellow",
+                    opacity = 0.2,
+                    row = 7,
+                    col = 2
+                    )
+            fig.add_hrect(
+                    y0 = 2.5,
+                    y1 = 3.5,
+                    line_width = 0,
+                    fillcolor = "green",
+                    opacity = 0.2,
+                    row = 7,
+                    col = 2
+                    )
+            fig.update_yaxes(
+                    range = [-.5, 3.5], fixedrange = True,
+                    ticktext = ["Unable", "Prompted", "Hesitated",
+                                "Independent"],
+                    tickvals = [0.1, 1, 2, 3],
+                    row = 1,
+                    col = 1
+                    )
+            fig.update_yaxes(
+                    range = [-.5, 3.5], fixedrange = True,
+                    ticktext = ["Unable", "Prompted", "Hesitated",
+                                "Independent"],
+                    tickvals = [0.1, 1, 2, 3],
+                    row = 2,
+                    col = 1
+                    )
+            fig.update_yaxes(
+                    range = [-.5, 3.5], fixedrange = True,
+                    ticktext = ["Unable", "Prompted", "Hesitated",
+                                "Independent"],
+                    tickvals = [0.1, 1, 2, 3],
+                    row = 1,
+                    col = 2
+                    )
+            fig.update_yaxes(
+                    range = [-.5, 3.5], fixedrange = True,
+                    ticktext = ["Unable", "Prompted", "Hesitated",
+                                "Independent"],
+                    tickvals = [0.1, 1, 2, 3],
+                    row = 3,
+                    col = 1
+                    )
+            fig.update_yaxes(
+                    range = [-.5, 3.5], fixedrange = True,
+                    ticktext = ["Unable", "Prompted", "Hesitated",
+                                "Independent"],
+                    tickvals = [0.1, 1, 2, 3],
+                    row = 3,
+                    col = 2
+                    )
+            fig.update_yaxes(
+                    range = [-.5, 3.5], fixedrange = True,
+                    ticktext = ["Unable", "Prompted", "Hesitated",
+                                "Independent"],
+                    tickvals = [0.1, 1, 2, 3],
+                    row = 5,
+                    col = 1
+                    )
+            fig.update_yaxes(
+                    range = [-.5, 3.5], fixedrange = True,
+                    ticktext = ["Unable", "Prompted", "Hesitated",
+                                "Independent"],
+                    tickvals = [0.1, 1, 2, 3],
+                    row = 5,
+                    col = 2
+                    )
+            fig.update_yaxes(
+                    range = [-.5, 3.5], fixedrange = True,
+                    ticktext = ["Unable", "Prompted", "Hesitated",
+                                "Independent"],
+                    tickvals = [0.1, 1, 2, 3],
+                    row = 5,
+                    col = 2
+                    )
+            fig.update_yaxes(
+                    range = [-.5, 3.5], fixedrange = True,
+                    ticktext = ["Unable", "Prompted", "Hesitated",
+                                "Independent"],
+                    tickvals = [0.1, 1, 2, 3],
+                    row = 7,
+                    col = 2
+                    )
+            fig.update_yaxes(
+                    range = [-.5, 3.5], fixedrange = True,
+                    ticktext = ["Unable", "Prompted", "Hesitated",
+                                "Independent"],
+                    tickvals = [0.1, 1, 2, 3],
+                    row = 7,
+                    col = 2
+                    )
+            fig.update_layout(
+                    xaxis_tickformat = '%d %b', xaxis2_tickformat = '%d %b',
+                    xaxis3_tickformat = '%d %b',
+                    xaxis4_tickformat = '%d %b', xaxis5_tickformat = '%d %b',
+                    xaxis6_tickformat = '%d %b',
+                    xaxis7_tickformat = '%d %b', xaxis8_tickformat = '%d %b',
+                    xaxis9_tickformat = '%d %b',
+                    template = "simple_white",
+                    title_text = f"{studentname}: Literary UEB Skills Progression",
+                    legend = dict(
+                            font = dict(
+                                    size = 10
+                                    )
+                            )
+                    )
+            tmppath = Path(USER_DIR).joinpath(
+                    'StudentDatabase',
+                    'StudentDataFiles', studentname,
+                    'UEBLiterarySkillsProgression.html'
+                    )
+            fig.write_html(tmppath)
+            fig.show()
+            fig = make_subplots(
+                    rows = 3,
+                    cols = 1, subplot_titles = (
+                            "Phase 6: UEB Technical Basics", "Phase 7: Advanced UEB Technical",
+                            "Phase 8: Accelerated UEB Technical"),
+                    print_grid = True
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy['P6_1'],
+                            mode = "lines+markers",
+                            name = " Operation and Comparison Signs",
+                            legendgroup = "Phase 6",
+                            legendgrouptitle_text = "Phase 6"
+                            ),
+                    row = 1,
+                    col = 1
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy['P6_2'],
+                            mode = "lines+markers",
+                            name = "Grade 1 Mode",
+                            legendgroup = "Phase 6",
+                            legendgrouptitle_text = "Phase 6"
+                            ),
+                    row = 1,
+                    col = 1
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy['P6_3'],
+                            mode = "lines+markers",
+                            name = "Special Print Symbols",
+                            legendgroup = "Phase 6",
+                            legendgrouptitle_text = "Phase 6"
+                            ),
+                    row = 1,
+                    col = 1
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy['P6_4'],
+                            mode = "lines+markers",
+                            name = "Omission Marks",
+                            legendgroup = "Phase 6",
+                            legendgrouptitle_text = "Phase 6"
+                            ),
+                    row = 1,
+                    col = 1
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy['P6_5'],
+                            mode = "lines+markers",
+                            name = "Shape Indicators",
+                            legendgroup = "Phase 6",
+                            legendgrouptitle_text = "Phase 6"
+                            ),
+                    row = 1,
+                    col = 1
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy['P6_6'],
+                            mode = "lines+markers",
+                            name = "Roman Numerals",
+                            legendgroup = "Phase 6",
+                            legendgrouptitle_text = "Phase 6"
+                            ),
+                    row = 1,
+                    col = 1
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy['P6_7'],
+                            mode = "lines+markers",
+                            name = "Fractions",
+                            legendgroup = "Phase 6",
+                            legendgrouptitle_text = "Phase 6"
+                            ),
+                    row = 1,
+                    col = 1
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy['P7_1'],
+                            mode = "lines+markers",
+                            name = "Grade 1 Mode and Algebra",
+                            legendgroup = "Phase 7",
+                            legendgrouptitle_text = "Phase 7"
+                            ),
+                    row = 2,
+                    col = 1
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy['P7_2'],
+                            mode = "lines+markers",
+                            name = "Grade 1 Mode and Fractions",
+                            legendgroup = "Phase 7",
+                            legendgrouptitle_text = "Phase 7"
+                            ),
+                    row = 2,
+                    col = 1
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy['P7_3'],
+                            mode = "lines+markers",
+                            name = "Advanced Operation and Comparison Signs",
+                            legendgroup = "Phase 7",
+                            legendgrouptitle_text = "Phase 7"
+                            ),
+                    row = 2,
+                    col = 1
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy['P7_4'],
+                            mode = "lines+markers",
+                            name = "Indices",
+                            legendgroup = "Phase 7",
+                            legendgrouptitle_text = "Phase 7"
+                            ),
+                    row = 2,
+                    col = 1
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy['P7_5'],
+                            mode = "lines+markers",
+                            name = "Roots and Radicals",
+                            legendgroup = "Phase 7",
+                            legendgrouptitle_text = "Phase 7"
+                            ),
+                    row = 2,
+                    col = 1
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy['P7_6'],
+                            mode = "lines+markers",
+                            name = "Miscellaneous Shape Indicators",
+                            legendgroup = "Phase 7",
+                            legendgrouptitle_text = "Phase 7"
+                            ),
+                    row = 2,
+                    col = 1
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy['P7_7'],
+                            mode = "lines+markers",
+                            name = "Functions",
+                            legendgroup = "Phase 7",
+                            legendgrouptitle_text = "Phase 7"
+                            ),
+                    row = 2,
+                    col = 1
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy['P7_8'],
+                            mode = "lines+markers",
+                            name = "Greek letters",
+                            legendgroup = "Phase 7",
+                            legendgrouptitle_text = "Phase 7"
+                            ),
+                    row = 2,
+                    col = 1
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy['P8_1'],
+                            mode = "lines+markers",
+                            name = "Functions",
+                            legendgroup = "Phase 8",
+                            legendgrouptitle_text = "Phase 8"
+                            ),
+                    row = 3,
+                    col = 1
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy['P8_2'],
+                            mode = "lines+markers",
+                            name = "Modifiers, Bars, and Dots",
+                            legendgroup = "Phase 8",
+                            legendgrouptitle_text = "Phase 8"
+                            ),
+                    row = 3,
+                    col = 1
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy['P8_3'],
+                            mode = "lines+markers",
+                            name = "Modifiers, Arrows, and Limits",
+                            legendgroup = "Phase 8",
+                            legendgrouptitle_text = "Phase 8"
+                            ),
+                    row = 3,
+                    col = 1
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy['P8_4'],
+                            mode = "lines+markers",
+                            name = "Probability",
+                            legendgroup = "Phase 8",
+                            legendgrouptitle_text = "Phase 8"
+                            ),
+                    row = 3,
+                    col = 1
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy['P8_5'],
+                            mode = "lines+markers",
+                            name = "Calculus: Differentiation",
+                            legendgroup = "Phase 8",
+                            legendgrouptitle_text = "Phase 8"
+                            ),
+                    row = 3,
+                    col = 1
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy['P8_6'],
+                            mode = "lines+markers",
+                            name = "Calculus: Integration",
+                            legendgroup = "Phase 8",
+                            legendgrouptitle_text = "Phase 8"
+                            ),
+                    row = 3,
+                    col = 1
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy['P8_7'],
+                            mode = "lines+markers",
+                            name = "Vertical Bars",
+                            legendgroup = "Phase 8",
+                            legendgrouptitle_text = "Phase 8"
+                            ),
+                    row = 3,
+                    col = 1
+                    )
+            fig.update_xaxes(
+                    rangebreaks = [dict(bounds = ["sat", "mon"]), dict(values = [])],
+                    row = 1,
+                    col = 1
+                    )
+            fig.update_xaxes(
+                    rangebreaks = [dict(bounds = ["sat", "mon"]), dict(values = [])],
+                    row = 2,
+                    col = 1
+                    )
+            fig.update_xaxes(
+                    rangebreaks = [dict(bounds = ["sat", "mon"]), dict(values = [])],
+                    row = 3,
+                    col = 1
+                    )
+            fig.update_yaxes(
+                    range = [-.5, 3.5], fixedrange = True,
+                    ticktext = ["Unable", "Prompted", "Hesitated",
+                                "Independent"],
+                    tickvals = [0.1, 1, 2, 3],
+                    row = 1,
+                    col = 1
+                    )
+            fig.update_yaxes(
+                    range = [-.5, 3.5], fixedrange = True,
+                    ticktext = ["Unable", "Prompted", "Hesitated",
+                                "Independent"],
+                    tickvals = [0.1, 1, 2, 3],
+                    row = 2,
+                    col = 1
+                    )
+            fig.update_yaxes(
+                    range = [-.5, 3.5], fixedrange = True,
+                    ticktext = ["Unable", "Prompted", "Hesitated",
+                                "Independent"],
+                    tickvals = [0.1, 1, 2, 3],
+                    row = 3,
+                    col = 1
+                    )
+            fig.add_hrect(
+                    y0 = -.5,
+                    y1 = .5,
+                    line_width = 0,
+                    fillcolor = "red",
+                    opacity = 0.2,
+                    row = 1,
+                    col = 1
+                    )
+            fig.add_hrect(
+                    y0 = .5,
+                    y1 = 1.5,
+                    line_width = 0,
+                    fillcolor = "orange",
+                    opacity = 0.2,
+                    row = 1,
+                    col = 1
+                    )
+            fig.add_hrect(
+                    y0 = 1.5,
+                    y1 = 2.5,
+                    line_width = 0,
+                    fillcolor = "yellow",
+                    opacity = 0.2,
+                    row = 1,
+                    col = 1
+                    )
+            fig.add_hrect(
+                    y0 = 2.5,
+                    y1 = 3.5,
+                    line_width = 0,
+                    fillcolor = "green",
+                    opacity = 0.2,
+                    row = 1,
+                    col = 1
+                    )
+            fig.add_hrect(
+                    y0 = -.5,
+                    y1 = .5,
+                    line_width = 0,
+                    fillcolor = "red",
+                    opacity = 0.2,
+                    row = 2,
+                    col = 1
+                    )
+            fig.add_hrect(
+                    y0 = .5,
+                    y1 = 1.5,
+                    line_width = 0,
+                    fillcolor = "orange",
+                    opacity = 0.2,
+                    row = 2,
+                    col = 1
+                    )
+            fig.add_hrect(
+                    y0 = 1.5,
+                    y1 = 2.5,
+                    line_width = 0,
+                    fillcolor = "yellow",
+                    opacity = 0.2,
+                    row = 2,
+                    col = 1
+                    )
+            fig.add_hrect(
+                    y0 = 2.5,
+                    y1 = 3.5,
+                    line_width = 0,
+                    fillcolor = "green",
+                    opacity = 0.2,
+                    row = 2,
+                    col = 1
+                    )
+            fig.add_hrect(
+                    y0 = -.5,
+                    y1 = .5,
+                    line_width = 0,
+                    fillcolor = "red",
+                    opacity = 0.2,
+                    row = 3,
+                    col = 1
+                    )
+            fig.add_hrect(
+                    y0 = .5,
+                    y1 = 1.5,
+                    line_width = 0,
+                    fillcolor = "orange",
+                    opacity = 0.2,
+                    row = 3,
+                    col = 1
+                    )
+            fig.add_hrect(
+                    y0 = 1.5,
+                    y1 = 2.5,
+                    line_width = 0,
+                    fillcolor = "yellow",
+                    opacity = 0.2,
+                    row = 3,
+                    col = 1
+                    )
+            fig.add_hrect(
+                    y0 = 2.5,
+                    y1 = 3.5,
+                    line_width = 0,
+                    fillcolor = "green",
+                    opacity = 0.2,
+                    row = 3,
+                    col = 1
+                    )
+            fig.update_layout(
+                    xaxis_tickformat = '%d %b', xaxis2_tickformat = '%d %b',
+                    xaxis3_tickformat = '%d %b',
+                    template = "simple_white",
+                    title_text = f"{studentname}: Technical UEB Skills Progression",
+                    legend = dict(
+                            font = dict(
+                                    size = 10
+                                    )
+                            )
+                    )
+            tmppath = Path(USER_DIR).joinpath(
+                    'StudentDatabase',
+                    'StudentDataFiles', studentname,
+                    'UEBTechnicalSkillsProgression.html'
+                    )
+            fig.write_html(tmppath)
+            fig.show()
 
 
-class screenreaderPanel(scrolled.ScrolledPanel):
-    """
+        with ui.row().classes('w-full no-wrap py-4'):
+            ui.select(options = students, with_input = True, on_change = lambda e: ui.notify(e.value)).bind_value(u_studentname, 'value').classes('w-1/2').props(
+                    'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
+                    ).tooltip('Type Student Name, it will autocomplete AS you type')
+            with ui.input('Date').classes('w-1/2').props('aria-label="Date. Please type in date using the YYYY-MM-DD format"').tooltip('Date. Please type in date using the YYYY-MM-DD format') as date:
+                with date.add_slot('append'):
+                    ui.icon('edit_calendar').on('click', lambda: menu.open()).classes('cursor-pointer')
+                with ui.menu() as menu:
+                    ui.date().bind_value(date)
+        with ui.row().classes('w-full no-wrap py-4 justify-center items-center'):
+            ui.label('RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent').props('aria-label="RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent" content-center')
+            ui.input().props('aria-label="RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent" content-center').classes('sr-only')
+        with ui.row().classes('w-full no-wrap py-4 justify-center items-center'):
+            ui.label('PHASE 1: ').classes('justify-center items-center')
+            ui.input().props('aria-label="PHASE 1: ').classes('sr-only')
+        with ui.row().classes('w-full no-wrap py-4 justify-center items-center'):
+            ui.number(label = "1.1", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial11.set_value(e.value)).classes('w-1/5').props('aria-label="1.1 Track Left to Right"').tooltip(
+                    '1.1 Track Left to Right'
+                    )
+            ui.number(label = "1.2", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial12.set_value(e.value)).classes('w-1/5').props('aria-label="1.2 Track Top to Bottom"')
+            ui.number(label = "1.3", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial13.set_value(e.value)).classes('w-1/5').props('aria-label="1.3 Discriminate Shapes"')
+            ui.number(label = "1.4", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial14.set_value(e.value)).classes('w-1/5').props('aria-label="1.4 Discriminate Braille Characters"')
+            ui.label(' ').classes('w-1/5')
+        with ui.row().classes('w-full no-wrap py-4 justify-center items-center'):
+            ui.label('PHASE 2: ').classes('justify-center items-center')
+            ui.input().props('aria-label="PHASE 2: ').classes('sr-only')
+        with ui.row().classes('w-full no-wrap py-4 justify-center items-center'):
+            ui.number(label = "2.1", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial21.set_value(e.value)).classes('w-1/5').props('aria-label="2.1 Mangold Progression: G C L"')
+            ui.number(label = "2.2", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial22.set_value(e.value)).classes('w-1/5').props('aria-label="2.2 Mangold Progression: D Y"')
+            ui.number(label = "2.3", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial23.set_value(e.value)).classes('w-1/5').props('aria-label="2.3 Mangold Progression: A B"')
+            ui.number(label = "2.4", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial24.set_value(e.value)).classes('w-1/5').props('aria-label="2.4 Mangold Progression: S"')
+            ui.number(label = "2.5", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial25.set_value(e.value)).classes('w-1/5').props('aria-label="2.5 Mangold Progression: W"')
+        with ui.row().classes('w-full no-wrap py-4 justify-center items-center'):
+            ui.number(label = "2.6", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial26.set_value(e.value)).classes('w-1/5').props('aria-label="2.6 Mangold Progression: P O"')
+            ui.number(label = "2.7", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial27.set_value(e.value)).classes('w-1/5').props('aria-label="2.7 Mangold Progression: K"')
+            ui.number(label = "2.8", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial28.set_value(e.value)).classes('w-1/5').props('aria-label="2.8 Mangold Progression: R"')
+            ui.number(label = "2.9", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial29.set_value(e.value)).classes('w-1/5').props('aria-label="2.9 Mangold Progression: M E"')
+            ui.number(label = "2.10", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial210.set_value(e.value)).classes('w-1/5').props('aria-label="2.10 Mangold Progression: H"')
+        with ui.row().classes('w-full no-wrap py-4 justify-center items-center'):
+            ui.number(label = "2.11", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial211.set_value(e.value)).classes('w-1/5').props('aria-label="2.11 Mangold Progression: N X"')
+            ui.number(label = "2.12", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial212.set_value(e.value)).classes('w-1/5').props('aria-label="2.12 Mangold Progression: Z F"')
+            ui.number(label = "2.13", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial213.set_value(e.value)).classes('w-1/5').props('aria-label="2.13 Mangold Progression: U T"')
+            ui.number(label = "2.14", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial214.set_value(e.value)).classes('w-1/5').props('aria-label="2.14 Mangold Progression: Q I"')
+            ui.number(label = "2.15", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial215.set_value(e.value)).classes('w-1/5').props('aria-label="2.15 Mangold Progression: V J"')
+        with ui.row().classes('w-full no-wrap py-4 justify-center items-center'):
+            ui.label('PHASE 3: ').classes('justify-center items-center')
+            ui.input().props('aria-label="PHASE 3: ').classes('sr-only')
+        with ui.row().classes('w-full no-wrap py-4 justify-center items-center'):
+            ui.number(label = "3.1", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial31.set_value(e.value)).classes('w-1/5').props('aria-label="3.1 Alphabetic Wordsigns"')
+            ui.number(label = "3.2", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial32.set_value(e.value)).classes('w-1/5').props('aria-label="3.2 Braille Numbers"')
+            ui.number(label = "3.3", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial33.set_value(e.value)).classes('w-1/5').props('aria-label="3.3 Punctuation"')
+            ui.number(label = "3.4", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial34.set_value(e.value)).classes('w-1/5').props('aria-label="3.4 Strong Contractions - AND OF FOR WITH THE"')
+            ui.number(label = "3.5", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial35.set_value(e.value)).classes('w-1/5').props(
+                    'aria-label="3.5 Strong Groupsigns - CH GH SH TH WH ED ER OU OW ST AR ING"'
+                    )
+        with ui.row().classes('w-full no-wrap py-4 justify-center items-center'):
+            ui.number(label = "3.6", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial36.set_value(e.value)).classes('w-1/5').props('aria-label="3.6 Strong Wordsigns - CH SH TH WH OU ST"')
+            ui.number(label = "3.7", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial37.set_value(e.value)).classes('w-1/5').props('aria-label="3.7 Lower Groupsigns - BE CON DIS"')
+            ui.number(label = "3.8", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial38.set_value(e.value)).classes('w-1/5').props('aria-label="3.8 Lower Groupsigns - EA BB CC FF GG"')
+            ui.number(label = "3.9", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial39.set_value(e.value)).classes('w-1/5').props('aria-label="3.9 Lower Group/Wordsigns - EN IN"')
+            ui.number(label = "3.10", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial310.set_value(e.value)).classes('w-1/5').props('aria-label="3.10 Lower Wordsigns - BE HIS WAS WERE"').tooltip(
+                    '3.10 Lower Wordsigns - BE HIS WAS WERE'
+                    )
+        with ui.row().classes('w-full no-wrap py-4 justify-center items-center'):
+            ui.number(label = "3.11", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial311.set_value(e.value)).classes('w-1/5').props('aria-label="3.11 Dot 5 Contractions"').tooltip(
+                    '3.11 Dot 5 Contractions'
+                    )
+            ui.number(label = "3.12", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial312.set_value(e.value)).classes('w-1/5').props('aria-label="3.12 Dot 45 Contractions"').tooltip(
+                    '3.12 Dot 45 Contractions'
+                    )
+            ui.number(label = "3.13", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial313.set_value(e.value)).classes('w-1/5').props('aria-label="3.13 Dot 456 Contractions"').tooltip(
+                    '3.13 Dot 456 Contractions'
+                    )
+            ui.number(label = "3.14", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial314.set_value(e.value)).classes('w-1/5').props('aria-label="3.14 Final Letter Groupsigns"').tooltip(
+                    '3.14 Final Letter Groupsigns'
+                    )
+            ui.number(label = "3.15", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial315.set_value(e.value)).classes('w-1/5').props('aria-label="3.15 Shortform Words"').tooltip(
+                    '3.15 Shortform Words'
+                    )
+        with ui.row().classes('w-full no-wrap py-4 justify-center items-center'):
+            ui.label('PHASE 4: ').classes('justify-center items-center')
+            ui.input().props('aria-label="PHASE 4: ').classes('sr-only')
+        with ui.row().classes('w-full no-wrap py-4 justify-center items-center'):
+            ui.number(label = "4.1", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial41.set_value(e.value)).classes('w-1/5').props('aria-label="4.1 Grade 1 Indicators"').tooltip(
+                    '4.1 Grade 1 Indicators'
+                    )
+            ui.number(label = "4.2", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial42.set_value(e.value)).classes('w-1/5').props('aria-label="4.2 Capitals Indicators"').tooltip(
+                    '4.2 Capitals Indicators'
+                    )
+            ui.number(label = "4.3", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial43.set_value(e.value)).classes('w-1/5').props('aria-label="4.3 Numeric Mode and Spatial Math"').tooltip(
+                    '4.3 Numeric Mode and Spatial Math'
+                    )
+            ui.number(label = "4.4", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial44.set_value(e.value)).classes('w-1/5').props(
+                    'aria-label="4.4 Typeform Indicators - ITALIC BOLD UNDERLINE SCRIPT"'
+                    ).tooltip('4.4 Typeform Indicators - ITALIC BOLD UNDERLINE SCRIPT')
+            ui.label(' ').classes('w-1/5')
+        with ui.row().classes('w-full no-wrap py-4 justify-center items-center'):
+            ui.label('PHASE 5: ').classes('justify-center items-center')
+            ui.input().props('aria-label="PHASE 5: ').classes('sr-only')
+        with ui.row().classes('w-full no-wrap py-4 justify-center items-center'):
+            ui.number(label = "5.1", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial51.set_value(e.value)).classes('w-1/5').props('aria-label="5.1 Page Numbering"').tooltip('5.1 Page Numbering')
+            ui.number(label = "5.2", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial52.set_value(e.value)).classes('w-1/5').props('aria-label="5.2 Headings"').tooltip('5.2 Headings')
+            ui.number(label = "5.3", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial53.set_value(e.value)).classes('w-1/5').props('aria-label="5.3 Lists"').tooltip('5.3 Lists')
+            ui.number(label = "5.4", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial54.set_value(e.value)).classes('w-1/5').props('aria-label="5.4 Poetry / Drama"').tooltip('5.4 Poetry / Drama')
+            ui.label(' ').classes('w-1/5')
+        with ui.row().classes('w-full no-wrap py-4 justify-center items-center'):
+            ui.label('PHASE 6: ').classes('justify-center items-center')
+            ui.input().props('aria-label="PHASE 6: ').classes('sr-only')
+        with ui.row().classes('w-full no-wrap py-4 justify-center items-center'):
+            ui.number(label = "6.1", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial61.set_value(e.value)).classes('w-1/5').props('aria-label="6.1 Operation and Comparison Signs"').tooltip(
+                    '6.1 Operation and Comparison Signs'
+                    )
+            ui.number(label = "6.2", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial62.set_value(e.value)).classes('w-1/5').props('aria-label="6.2 Grade 1 Mode"').tooltip('6.2 Grade 1 Mode')
+            ui.number(label = "6.3", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial63.set_value(e.value)).classes('w-1/5').props('aria-label="6.3 Special Print Symbols"').tooltip(
+                    '6.3 Special Print Symbols'
+                    )
+            ui.number(label = "6.4", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial64.set_value(e.value)).classes('w-1/5').props('aria-label="6.4 Omission Marks"').tooltip('6.4 Omission Marks')
+            ui.number(label = "6.5", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial65.set_value(e.value)).classes('w-1/5').props('aria-label="6.5 Shape Indicators"').tooltip('6.5 Shape Indicators')
+        with ui.row().classes('w-full no-wrap py-4 justify-center items-center'):
+            ui.number(label = "6.6", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial66.set_value(e.value)).classes('w-1/5').props('aria-label="6.6 Roman Numerals"').tooltip('6.6 Roman Numerals')
+            ui.number(label = "6.7", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial67.set_value(e.value)).classes('w-1/5').props('aria-label="6.7 Fractions"').tooltip('6.7 Fractions')
+            ui.label(' ').classes('w-1/5')
+            ui.label(' ').classes(' w-1/5')
+            ui.label(' ').classes('w-1/5')
+        with ui.row().classes('w-full no-wrap py-4 justify-center items-center'):
+            ui.label('PHASE 7: ').classes('justify-center items-center')
+            ui.input().props('aria-label="PHASE 7: ').classes('sr-only')
+        with ui.row().classes('w-full no-wrap py-4 justify-center items-center'):
+            ui.number(label = "7.1", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial71.set_value(e.value)).classes('w-1/5').props('aria-label="7.1 Grade 1 Mode and algebra"').tooltip(
+                    '7.1 Grade 1 Mode and algebra'
+                    )
+            ui.number(label = "7.2", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial72.set_value(e.value)).classes('w-1/5').props('aria-label="7.2 Grade 1 Mode and Fractions"').tooltip(
+                    '7.2 Grade 1 Mode and Fractions'
+                    )
+            ui.number(label = "7.3", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial73.set_value(e.value)).classes('w-1/5').props('aria-label="7.3 Advanced Operation and Comparison Signs"').tooltip(
+                    '7.3 Advanced Operation and Comparison Signs'
+                    )
+            ui.number(label = "7.4", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial74.set_value(e.value)).classes('w-1/5').props('aria-label="7.4 Indices"').tooltip('7.4 Indices')
+            ui.number(label = "7.5", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial75.set_value(e.value)).classes('w-1/5').props('aria-label="7.5 Roots and Radicals"').tooltip(
+                    '7.5 Roots and Radicals'
+                    )
+        with ui.row().classes('w-full no-wrap py-4 justify-center items-center'):
+            ui.number(label = "7.6", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial76.set_value(e.value)).classes('w-1/5').props('aria-label="7.6 Miscellaneous Shape Indicators"').tooltip(
+                    '7.6 Miscellaneous Shape Indicators'
+                    )
+            ui.number(label = "7.7", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial77.set_value(e.value)).classes('w-1/5').props('aria-label="7.7 Functions"').tooltip('7.7 Functions')
+            ui.number(label = "7.8", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial78.set_value(e.value)).classes('w-1/5').props('aria-label="7.8 Greek Letters"').tooltip('7.8 Greek Letters')
+            ui.label(' ').classes('w-1/5')
+            ui.label(' ').classes('w-1/5')
+        with ui.row().classes('w-full no-wrap py-4 justify-center items-center'):
+            ui.label('PHASE 8: ').classes('justify-center items-center')
+            ui.input().props('aria-label="PHASE 8:"').classes('sr-only')
+        with ui.row().classes('w-full no-wrap py-4 justify-center items-center'):
+            ui.number(label = "8.1", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial81.set_value(e.value)).classes('w-1/5').props('aria-label="8.1 Functions"')
+            ui.number(label = "8.2", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial82.set_value(e.value)).classes('w-1/5').props('aria-label="8.2 Modifiers: Bars and Dots"').tooltip(
+                    '8.2 Modifiers: Bars and Dots'
+                    )
+            ui.number(label = "8.3", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial83.set_value(e.value)).classes('w-1/5').props('aria-label="8.3 Modifiers: Arrows and Limits"').tooltip(
+                    '8.3 Modifiers: Arrows and Limits'
+                    )
+            ui.number(label = "8.4", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial84.set_value(e.value)).classes('w-1/5').props('aria-label="8.4 Probability"').tooltip('8.4 Probability')
+            ui.number(label = "8.5", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial85.set_value(e.value)).classes('w-1/5').props('aria-label="8.5 Calculus: Differentiation"').tooltip(
+                    '8.5 Calculus: Differentiation'
+                    )
+        with ui.row().classes('w-full no-wrap py-4 justify-center items-center'):
+            ui.number(label = "8.6", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial86.set_value(e.value)).classes('w-1/5').props('aria-label="8.6 Calculus: Integration"').tooltip(
+                    '8.6 Calculus: Integration'
+                    )
+            ui.number(label = "8.7", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial87.set_value(e.value)).classes('w-1/5').props('aria-label="8.7 Vertical Bars"').tooltip('8.7 Vertical Bars')
+            ui.label(' ').classes('w-1/5')
+            ui.label(' ').classes('w-1/5')
+            ui.label(' ').classes('w-1/5')
+        with ui.row().classes('w-full no-wrap py-4'):
+            ui.button('SAVE', on_click = save)
+            ui.button('GRAPH', on_click = graph)
+            ui.button('EXIT', on_click = app.shutdown)
 
-    """
+# SCREENREADER SKILLS PROGRESSION
+with ui.tab_panels(tabs, value = 'SCREENREADER SKILLS PROGRESSION'):
+    with ui.tab_panel('SCREENREADER SKILLS PROGRESSION'):
+        u_studentname = ui.select(options = students, value = 'DonaldChamberlain').classes('hidden')
+        # ASSIGN VARIABLES
+        date = ui.date().classes('hidden')
+        u_trial11 = ui.number().classes('hidden')
+        u_trial12 = ui.number().classes('hidden')
+        u_trial13 = ui.number().classes('hidden')
+        u_trial14 = ui.number().classes('hidden')
+        u_trial15 = ui.number().classes('hidden')
+        u_trial16 = ui.number().classes('hidden')
+        u_trial21 = ui.number().classes('hidden')
+        u_trial22 = ui.number().classes('hidden')
+        u_trial23 = ui.number().classes('hidden')
+        u_trial24 = ui.number().classes('hidden')
+        u_trial31 = ui.number().classes('hidden')
+        u_trial32 = ui.number().classes('hidden')
+        u_trial33 = ui.number().classes('hidden')
+        u_trial34 = ui.number().classes('hidden')
+        u_trial35 = ui.number().classes('hidden')
+        u_trial36 = ui.number().classes('hidden')
+        u_trial37 = ui.number().classes('hidden')
+        u_trial38 = ui.number().classes('hidden')
+        u_trial39 = ui.number().classes('hidden')
+        u_trial310 = ui.number().classes('hidden')
+        u_trial311 = ui.number().classes('hidden')
+        u_trial41 = ui.number().classes('hidden')
+        u_trial42 = ui.number().classes('hidden')
+        u_trial43 = ui.number().classes('hidden')
+        u_trial44 = ui.number().classes('hidden')
+        u_trial45 = ui.number().classes('hidden')
+        u_trial46 = ui.number().classes('hidden')
+        u_trial47 = ui.number().classes('hidden')
 
-    def __init__(
-            self,
-            parent
-            ):
-        scrolled.ScrolledPanel.__init__(
-                self,
-                parent,
-                -1
-                )
-        vbox = wx.BoxSizer(wx.VERTICAL)
-        vbox.Add(
-                wx.StaticLine(
-                        self,
-                        -1,
-                        size = (
-                                1000,
-                                -1
-                                )
-                        ),
-                0,
-                wx.ALL,
-                5
-                )
-        vbox.Add(
-                wx.StaticLine(
-                        self,
-                        -1,
-                        size = (-1,
-                                1000
-                                )
-                        ),
-                0,
-                wx.ALL,
-                5
-                )
-        vbox.Add(
-                (20,
-                 20
-                 )
-                )
-        self.SetSizer(vbox)
-        self.SetupScrolling()
-        self.SetBackgroundColour(
-                random.choice(
-                        colorList
-                        )
-                )
-        self.SetFont(
-                wx.Font(
-                        10,
-                        wx.MODERN,
-                        wx.NORMAL,
-                        wx.NORMAL,
-                        False,
-                        u'Atkinson Hyperlegible'
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "SCREENREADER SKILLS PROGRESSION",
-                pos = (
-                        200,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "Student Name",
-                pos = (
-                        30,
-                        50
-                        )
-                )
-        self.studentname1 = wx.Choice(
-                self,
-                -1,
-                choices = students,
-                pos = (
-                        130,
-                        50
-                        ),
-                size = (
-                        300,
-                        30
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent",
-                pos = (
-                        550, 20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "1.1 Turn on and off the screen reader" + '.' * (200 - len("1.1 Turn on and off the screen reader")),
-                pos = (
-                        30,
-                        80
-                        )
-                )
-        self.trial11 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        80
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "1.2 Utilize modifier keys such as ctrl alt and shift" + '.' * (
-                        200 - len("1.2 Utilize modifier keys such as ctrl alt and shift")),
-                pos = (
-                        30,
-                        110
-                        )
-                )
-        self.trial12 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        110
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "1.3 Read text using a variety of reading commands" + '.' * (200 - len("1.3 Read text using a variety of reading commands")),
-                pos = (
-                        30,
-                        140
-                        )
-                )
-        self.trial13 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        140
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "1.4 Identify the titles and section titles of documents with Headings" + '.' * (200 - len("1.4 Identify the titles and section titles of documents with Headings")),
-                pos = (
-                        30,
-                        170
-                        )
-                )
-        self.trial14 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        170
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "1.5 Access documents open and close programs  navigate to the  desktop" + '.' * (
-                        200 - len("1.5 Access documents open and close programs  navigate to the  desktop")),
-                pos = (
-                        30,
-                        200
-                        )
-                )
-        self.trial15 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        200
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "1.6 Switch program focus" + '.' * (200 - len("1.6 Switch program focus")),
-                pos = (
-                        30,
-                        230
-                        )
-                )
-        self.trial16 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        230
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "2.1 Type with all alphanumeric keys on the keyboard." + '.' * (200 - len("2.1 Type with all alphanumeric keys on the keyboard.")),
-                pos = (
-                        30,
-                        260
-                        )
-                )
-        self.trial21 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        260
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "2.2 Navigate to and change screen reader settings" + '.' * (200 - len("2.2 Navigate to and change screen reader settings")),
-                pos = (
-                        30,
-                        290
-                        )
-                )
-        self.trial22 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        290
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "2.3 Write and edit documents using a basic understanding of cursor placement." + '.' * (200 - len("2.3 Write and edit documents using a basic understanding of cursor placement.")),
-                pos = (
-                        30,
-                        320
-                        )
-                )
-        self.trial23 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        320
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "2.4. Select copy and paste text" + '.' * (200 - len("2.4. Select copy and paste text")),
-                pos = (
-                        30,
-                        350
-                        )
-                )
-        self.trial24 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        350
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "3.1 Define common element types on the internet such as Headings Buttons" + '.' * (
-                        200 - len("3.1 Define common element types on the internet such as Headings Buttons")),
-                pos = (
-                        30,
-                        380
-                        )
-                )
-        self.trial31 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        380
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "3.2 identify each element by type." + '.' * (200 - len("3.2 identify each element by type.")),
-                pos = (
-                        30,
-                        410
-                        )
-                )
-        self.trial32 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        410
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "3.3 navigate to the address bar" + '.' * (200 - len("3.3 navigate to the address bar")),
-                pos = (
-                        30,
-                        440
-                        )
-                )
-        self.trial33 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        440
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "3.4 Use the “Tab” key to navigate to the next clickable object " + '.' * (
-                        200 - len("3.4 Use the “Tab” key to navigate to the next clickable object")),
-                pos = (
-                        30,
-                        470
-                        )
-                )
-        self.trial34 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        470
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "3.5 Navigate by “Quick Keys” (h for heading b for button and u for link)" + '.' * (200 - len("3.5 Navigate by “Quick Keys” (h for heading b for button and u for link)")),
-                pos = (
-                        30,
-                        500
-                        )
-                )
-        self.trial35 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        500
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "3.6 Use Elements Lists on a website to navigate by element type" + '.' * (200 - len("3.6 Use Elements Lists on a website to navigate by element type")),
-                pos = (
-                        30,
-                        530
-                        )
-                )
-        self.trial36 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        530
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "3.7 Justify why he/she/they selected a particular method for the situation." + '.' * (200 - len("3.7 Justify why he/she/they selected a particular method for the situation.")),
-                pos = (
-                        30,
-                        560
-                        )
-                )
-        self.trial37 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        560
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "3.8 Switch tab focus" + '.' * (200 - len("3.8 Switch tab focus")),
-                pos = (
-                        30,
-                        590
-                        )
-                )
-        self.trial38 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        590
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "3.9 Switch between screen reader modes" + '.' * (
-                        200 - len("3.9 Switch between screen reader modes")),
-                pos = (
-                        30,
-                        620
-                        )
-                )
-        self.trial39 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        620
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "3.10 Navigate a table." + '.' * (200 - len("3.10 Navigate a table.")),
-                pos = (
-                        30,
-                        650
-                        )
-                )
-        self.trial310 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        650
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "3.11 Develop a navigation sequence to access an unfamiliar website." + '.' * (200 - len("3.11 Develop a navigation sequence to access an unfamiliar website.")),
-                pos = (
-                        30,
-                        680
-                        )
-                )
-        self.trial311 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        680
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "4.1 Be able to save and open files using File Explorer." + '.' * (200 - len("4.1 Be able to save and open files using File Explorer.")),
-                pos = (
-                        30,
-                        710
-                        )
-                )
-        self.trial41 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        710
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "4.2 Create folders and move files in File Explorer." + '.' * (200 - len("4.2 Create folders and move files in File Explorer.")),
-                pos = (
-                        30,
-                        740
-                        )
-                )
-        self.trial42 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        740
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "4.3 Navigate a cloud-based file management system (eg: Google Drive)" + '.' * (
-                        200 - len("4.3 Navigate a cloud-based file management system (eg: Google Drive)")),
-                pos = (
-                        30,
-                        770
-                        )
-                )
-        self.trial43 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        770
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "4.4 Download and save material from the internet." + '.' * (
-                        200 - len("4.4 Download and save material from the internet.")),
-                pos = (
-                        30,
-                        800
-                        )
-                )
-        self.trial44 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        800
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "4.5 Extract zipped folders." + '.' * (200 - len("4.5 Extract zipped folders.")),
-                pos = (
-                        30,
-                        830
-                        )
-                )
-        self.trial45 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        830
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "4.6 Utilize the virtual cursor and mouse keys." + '.' * (
-                        200 - len("4.6 Utilize the virtual cursor and mouse keys.")),
-                pos = (
-                        30,
-                        860
-                        )
-                )
-        self.trial46 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        860
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "4.7 To use OCR features to read inaccessible material." + '.' * (200 - len("4.7 To use OCR features to read inaccessible material.")),
-                pos = (
-                        30,
-                        890
-                        )
-                )
-        self.trial47 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        890
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        self.btn = wx.Button(
-                self,
-                201,
-                "SAVE",
-                pos = (
-                        450,
-                        930
-                        ),
-                size = (
-                        70,
-                        30
-                        )
-                )
-        self.Bind(
-                wx.EVT_BUTTON,
-                self.save,
-                id = 201
-                )
-        self.btn = wx.Button(
-                self,
-                203,
-                "PRINT GRAPHS",
-                pos = (
-                        450,
-                        970
-                        ),
-                size = (
-                        170,
-                        30
-                        )
-                )
-        self.Bind(
-                wx.EVT_BUTTON,
-                self.graph,
-                id = 203
-                )
-        self.btn1 = wx.Button(
-                self,
-                202,
-                "EXIT",
-                pos = (
-                        550,
-                        930
-                        ),
-                size = (
-                        70,
-                        30
-                        )
-                )
-        self.Bind(
-                wx.EVT_BUTTON,
-                self.exit,
-                id = 202
-                )
 
-    @staticmethod
-    def exit(event):
-        """
+        # SAVE FUNCTION (USED BELOW)
+        def save(event):
+            """
+            :param event:
+            :type event:
+            """
+            studentname = u_studentname.value
+            date = datenow
+            trial11 = int(u_trial11.value)
+            trial12 = int(u_trial12.value)
+            trial13 = int(u_trial13.value)
+            trial14 = int(u_trial14.value)
+            trial15 = int(u_trial15.value)
+            trial16 = int(u_trial16.value)
+            trial21 = int(u_trial21.value)
+            trial22 = int(u_trial22.value)
+            trial23 = int(u_trial23.value)
+            trial24 = int(u_trial24.value)
+            trial31 = int(u_trial31.value)
+            trial32 = int(u_trial32.value)
+            trial33 = int(u_trial33.value)
+            trial34 = int(u_trial34.value)
+            trial35 = int(u_trial35.value)
+            trial36 = int(u_trial36.value)
+            trial37 = int(u_trial37.value)
+            trial38 = int(u_trial38.value)
+            trial39 = int(u_trial39.value)
+            trial310 = int(u_trial310.value)
+            trial311 = int(u_trial311.value)
+            trial41 = int(u_trial41.value)
+            trial42 = int(u_trial42.value)
+            trial43 = int(u_trial43.value)
+            trial44 = int(u_trial44.value)
+            trial45 = int(u_trial45.value)
+            trial46 = int(u_trial46.value)
+            trial47 = int(u_trial47.value)
 
-        :param event:
-        :type event:
-        """
-        wx.Exit()
+            studentdatabasename = f"screenreader{studentname.title()}{datenow}"
+            with open(
+                    f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\{studentdatabasename}.txt",
+                    'w'
+                    ) as filename:
+                filename.write('studentname' + ', ')
+                filename.write('date' + ', ')
+                filename.write('trial11' + ', ')
+                filename.write('trial12' + ', ')
+                filename.write('trial13' + ', ')
+                filename.write('trial14' + ', ')
+                filename.write('trial15' + ', ')
+                filename.write('trial16' + ', ')
+                filename.write('trial21' + ', ')
+                filename.write('trial22' + ', ')
+                filename.write('trial23' + ', ')
+                filename.write('trial24' + ', ')
+                filename.write('trial31' + ', ')
+                filename.write('trial32' + ', ')
+                filename.write('trial33' + ', ')
+                filename.write('trial34' + ', ')
+                filename.write('trial35' + ', ')
+                filename.write('trial36' + ', ')
+                filename.write('trial37' + ', ')
+                filename.write('trial38' + ', ')
+                filename.write('trial39' + ', ')
+                filename.write('trial310' + ', ')
+                filename.write('trial311' + ', ')
+                filename.write('trial41' + ', ')
+                filename.write('trial42' + ', ')
+                filename.write('trial43' + ', ')
+                filename.write('trial44' + ', ')
+                filename.write('trial45' + ', ')
+                filename.write('trial46' + ', ')
+                filename.write('trial47' + ', ')
+                filename.write(studentname + ', ')
+                filename.write(date + ', ')
+                filename.write(str(trial11) + ', ')
+                filename.write(str(trial12) + ', ')
+                filename.write(str(trial13) + ', ')
+                filename.write(str(trial14) + ', ')
+                filename.write(str(trial15) + ', ')
+                filename.write(str(trial16) + ', ')
+                filename.write(str(trial21) + ', ')
+                filename.write(str(trial22) + ', ')
+                filename.write(str(trial23) + ', ')
+                filename.write(str(trial24) + ', ')
+                filename.write(str(trial31) + ', ')
+                filename.write(str(trial32) + ', ')
+                filename.write(str(trial33) + ', ')
+                filename.write(str(trial34) + ', ')
+                filename.write(str(trial35) + ', ')
+                filename.write(str(trial36) + ', ')
+                filename.write(str(trial37) + ', ')
+                filename.write(str(trial38) + ', ')
+                filename.write(str(trial39) + ', ')
+                filename.write(str(trial310) + ', ')
+                filename.write(str(trial311) + ', ')
+                filename.write(str(trial41) + ', ')
+                filename.write(str(trial42) + ', ')
+                filename.write(str(trial43) + ', ')
+                filename.write(str(trial44) + ', ')
+                filename.write(str(trial45) + ', ')
+                filename.write(str(trial46) + ', ')
+                filename.write(str(trial47) + ', ')
+                filename.close()
 
-    def save(
-            self,
-            event
-            ):
-        """
-
-        :param event:
-        :type event:
-        """
-        studentname = self.studentname1.GetString(
-                self.studentname1.GetSelection()
-                )
-        datenow = datetime.datetime.now().strftime("%Y_%m_%d-%H%M%S")
-        simpledate = datetime.datetime.now().strftime("%Y_%m_%d-%H%M")
-        trial11 = self.trial11.GetValue()
-        trial12 = self.trial12.GetValue()
-        trial13 = self.trial13.GetValue()
-        trial14 = self.trial14.GetValue()
-        trial15 = self.trial15.GetValue()
-        trial16 = self.trial16.GetValue()
-        trial21 = self.trial21.GetValue()
-        trial22 = self.trial22.GetValue()
-        trial23 = self.trial23.GetValue()
-        trial24 = self.trial24.GetValue()
-        trial31 = self.trial31.GetValue()
-        trial32 = self.trial32.GetValue()
-        trial33 = self.trial33.GetValue()
-        trial34 = self.trial34.GetValue()
-        trial35 = self.trial35.GetValue()
-        trial36 = self.trial36.GetValue()
-        trial37 = self.trial37.GetValue()
-        trial38 = self.trial38.GetValue()
-        trial39 = self.trial39.GetValue()
-        trial310 = self.trial310.GetValue()
-        trial311 = self.trial311.GetValue()
-        trial41 = self.trial41.GetValue()
-        trial42 = self.trial42.GetValue()
-        trial43 = self.trial43.GetValue()
-        trial44 = self.trial44.GetValue()
-        trial45 = self.trial45.GetValue()
-        trial46 = self.trial46.GetValue()
-        trial47 = self.trial47.GetValue()
-        box = wx.TextEntryDialog(
-                None,
-                "Enter File Name",
-                "Title",
-                f"screenreader{studentname.title()}{datenow}"
-                )
-        if box.ShowModal() == wx.ID_OK:
-            self.studentdatabasename = box.GetValue()
-            if not os.path.exists(
-                    f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\{self.studentdatabasename}.txt"
-                    ):
-                self.filename = open(
-                        f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\{self.studentdatabasename}.txt",
-                        'w'
-                        )
-                self.filename.write('studentname' + ', ')
-                self.filename.write('simpledate' + ', ')
-                self.filename.write('trial11' + ', ')
-                self.filename.write('trial12' + ', ')
-                self.filename.write('trial13' + ', ')
-                self.filename.write('trial14' + ', ')
-                self.filename.write('trial15' + ', ')
-                self.filename.write('trial16' + ', ')
-                self.filename.write('trial21' + ', ')
-                self.filename.write('trial22' + ', ')
-                self.filename.write('trial23' + ', ')
-                self.filename.write('trial24' + ', ')
-                self.filename.write('trial31' + ', ')
-                self.filename.write('trial32' + ', ')
-                self.filename.write('trial33' + ', ')
-                self.filename.write('trial34' + ', ')
-                self.filename.write('trial35' + ', ')
-                self.filename.write('trial36' + ', ')
-                self.filename.write('trial37' + ', ')
-                self.filename.write('trial38' + ', ')
-                self.filename.write('trial39' + ', ')
-                self.filename.write('trial310' + ', ')
-                self.filename.write('trial311' + ', ')
-                self.filename.write('trial41' + ', ')
-                self.filename.write('trial42' + ', ')
-                self.filename.write('trial43' + ', ')
-                self.filename.write('trial44' + ', ')
-                self.filename.write('trial45' + ', ')
-                self.filename.write('trial46' + ', ')
-                self.filename.write('trial47' + ', ')
-                self.filename.write(studentname + ', ')
-                self.filename.write(simpledate + ', ')
-                self.filename.write(trial11 + ', ')
-                self.filename.write(trial12 + ', ')
-                self.filename.write(trial13 + ', ')
-                self.filename.write(trial14 + ', ')
-                self.filename.write(trial15 + ', ')
-                self.filename.write(trial16 + ', ')
-                self.filename.write(trial21 + ', ')
-                self.filename.write(trial22 + ', ')
-                self.filename.write(trial23 + ', ')
-                self.filename.write(trial24 + ', ')
-                self.filename.write(trial31 + ', ')
-                self.filename.write(trial32 + ', ')
-                self.filename.write(trial33 + ', ')
-                self.filename.write(trial34 + ', ')
-                self.filename.write(trial35 + ', ')
-                self.filename.write(trial36 + ', ')
-                self.filename.write(trial37 + ', ')
-                self.filename.write(trial38 + ', ')
-                self.filename.write(trial39 + ', ')
-                self.filename.write(trial310 + ', ')
-                self.filename.write(trial311 + ', ')
-                self.filename.write(trial41 + ', ')
-                self.filename.write(trial42 + ', ')
-                self.filename.write(trial43 + ', ')
-                self.filename.write(trial44 + ', ')
-                self.filename.write(trial45 + ', ')
-                self.filename.write(trial46 + ', ')
-                self.filename.write(trial47 + ', ')
-                self.filename.close()
                 tmppath = Path(USER_DIR).joinpath(
                         'StudentDatabase',
                         'StudentDataFiles',
                         'Filenames.txt'
                         )
-                self.filename = open(
+                filename = open(
                         tmppath,
                         'a'
                         )
@@ -7050,16 +4816,16 @@ class screenreaderPanel(scrolled.ScrolledPanel):
                         'StudentDatabase',
                         'StudentDataFiles',
                         studentname,
-                        self.studentdatabasename + '.txt'
+                        studentdatabasename + '.txt'
                         )
-                self.filename.write(f"'{tmppath}'" + '\n')
-                self.filename.close()
+                filename.write(f"'{tmppath}'" + '\n')
+                filename.close()
                 tmppath = Path(USER_DIR).joinpath(
                         'StudentDatabase',
                         'StudentDataFiles',
                         'Filenames.txt'
                         )
-                self.filename = open(
+                filename = open(
                         tmppath,
                         'a'
                         )
@@ -7067,10 +4833,10 @@ class screenreaderPanel(scrolled.ScrolledPanel):
                         'StudentDatabase',
                         'StudentDataFiles',
                         studentname,
-                        self.studentdatabasename + '.txt'
+                        studentdatabasename + '.txt'
                         )
-                self.filename.write(f"'{tmppath}'" + '\n')
-                self.filename.close()
+                filename.write(f"'{tmppath}'" + '\n')
+                filename.close()
                 list_names = [
                         'date',
                         'P1_1',
@@ -7142,5416 +4908,1021 @@ class screenreaderPanel(scrolled.ScrolledPanel):
                     writer_setup = writer(f_setup)
                     writer_setup.writerow(list_data)
                     f_setup.close()
-                self.dial = wx.MessageDialog(
-                        None,
-                        'Saved successfully!',
-                        'Info',
-                        wx.OK
-                        )
-                self.dial.ShowModal()
-                self.trial11.Clear()
-                self.trial12.Clear()
-                self.trial13.Clear()
-                self.trial14.Clear()
-                self.trial15.Clear()
-                self.trial16.Clear()
-                self.trial21.Clear()
-                self.trial22.Clear()
-                self.trial23.Clear()
-                self.trial24.Clear()
-                self.trial31.Clear()
-                self.trial32.Clear()
-                self.trial33.Clear()
-                self.trial34.Clear()
-                self.trial35.Clear()
-                self.trial36.Clear()
-                self.trial37.Clear()
-                self.trial38.Clear()
-                self.trial39.Clear()
-                self.trial310.Clear()
-                self.trial311.Clear()
-                self.trial41.Clear()
-                self.trial42.Clear()
-                self.trial43.Clear()
-                self.trial44.Clear()
-                self.trial45.Clear()
-                self.trial46.Clear()
-                self.trial47.Clear()
-            else:
-                self.dial = wx.MessageDialog(
-                        None,
-                        'Name already exists',
-                        'Info',
-                        wx.OK
-                        )
-                self.dial.ShowModal()
-        else:
-            self.dial = wx.MessageDialog(
-                    None,
-                    'Save cancelled',
-                    'Info',
-                    wx.OK
-                    )
-            self.dial.ShowModal()
+                ui.notify('Saved successfully!', close_button = 'OK')
 
-        def data_entry():
+            def data_entry():
+                """
+                """
+                conn = sqlite3.connect(dataBasePath)
+                c = conn.cursor()
+                c.execute(
+                        """INSERT INTO SCREENREADERPROGRESS (
+                        STUDENTNAME,
+                        DATE,
+                        P1_1,
+                        P1_2,
+                        P1_3,
+                        P1_4,
+                        P1_5,
+                        P1_6,
+                        P2_1,
+                        P2_2,
+                        P2_3,
+                        P2_4,
+                        P3_1,
+                        P3_2,
+                        P3_3,
+                        P3_4,
+                        P3_5,
+                        P3_6,
+                        P3_7,
+                        P3_8,
+                        P3_9,
+                        P3_10,
+                        P3_11,
+                        P4_1,
+                        P4_2,
+                        P4_3,
+                        P4_4,
+                        P4_5,
+                        P4_6,
+                        P4_7
+                        )
+                        VALUES (
+                            ?,
+                            ?,
+                            ?,
+                            ?,
+                            ?,
+                            ?,
+                            ?,
+                            ?,
+                            ?,
+                            ?,
+                            ?,
+                            ?,
+                            ?,
+                            ?,
+                            ?,
+                            ?,
+                            ?,
+                            ?,
+                            ?,
+                            ?,
+                            ?,
+                            ?,
+                            ?,
+                            ?,
+                            ?,
+                            ?,
+                            ?,
+                            ?,
+                            ?,
+                            ?
+                            )""",
+                        (
+                                studentname,
+                                datenow,
+                                trial11,
+                                trial12,
+                                trial13,
+                                trial14,
+                                trial15,
+                                trial16,
+                                trial21,
+                                trial22,
+                                trial23,
+                                trial24,
+                                trial31,
+                                trial32,
+                                trial33,
+                                trial34,
+                                trial35,
+                                trial36,
+                                trial37,
+                                trial38,
+                                trial39,
+                                trial310,
+                                trial311,
+                                trial41,
+                                trial42,
+                                trial43,
+                                trial44,
+                                trial45,
+                                trial46,
+                                trial47
+                                )
+                        )
+                conn.commit()
+
+            data_entry()
+
+
+        def graph(event):
             """
 
+            :param event:
+            :type event:
             """
+            studentname = u_studentname.value
             conn = sqlite3.connect(dataBasePath)
-            c = conn.cursor()
-            c.execute(
-                    """INSERT INTO SCREENREADERPROGRESS (
-                STUDENTNAME,
-                DATE,
-                P1_1,
-                P1_2,
-                P1_3,
-                P1_4,
-                P1_5,
-                P1_6,
-                P2_1,
-                P2_2,
-                P2_3,
-                P2_4,
-                P3_1,
-                P3_2,
-                P3_3,
-                P3_4,
-                P3_5,
-                P3_6,
-                P3_7,
-                P3_8,
-                P3_9,
-                P3_10,
-                P3_11,
-                P4_1,
-                P4_2,
-                P4_3,
-                P4_4,
-                P4_5,
-                P4_6,
-                P4_7
-                )
-                VALUES (
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?)""",
-                    (
-                            studentname,
-                            datenow,
-                            trial11,
-                            trial12,
-                            trial13,
-                            trial14,
-                            trial15,
-                            trial16,
-                            trial21,
-                            trial22,
-                            trial23,
-                            trial24,
-                            trial31,
-                            trial32,
-                            trial33,
-                            trial34,
-                            trial35,
-                            trial36,
-                            trial37,
-                            trial38,
-                            trial39,
-                            trial310,
-                            trial311,
-                            trial41,
-                            trial42,
-                            trial43,
-                            trial44,
-                            trial45,
-                            trial46,
-                            trial47
-                            )
+            dfSQL = pd.read_sql_query(f"SELECT * FROM SCREENREADERPROGRESS", conn)
+            dfStudent = dfSQL[dfSQL.STUDENTNAME == studentname]
+            print(dfStudent)
+            conn.close()
+            df = dfStudent.drop(columns = ['ID', 'STUDENTNAME'])
+            print(df)
+            df = df.rename(columns = {'DATE': 'date'})
+            df = df.set_index('date')
+            print(df)
+            df = df.sort_values(by = "date")
+            mu, sigma = 0, 0.1
+            noise = np.random.normal(mu, sigma, [len(df.index), len(df.columns)])
+            df_noisy = df + noise
+            fig = make_subplots(
+                    rows = 5,
+                    cols = 2,
+                    specs = [[{}, {"rowspan": 2}], [{}, None],
+                             [{"rowspan": 2}, {}], [None, {}], [{}, {}]],
+                    subplot_titles = (
+                            "Phase 1a: Reading", "Phase 2: Writing",
+                            "Phase 1b: Reading", "Phase 3a: Internet",
+                            "Phase 3b: Internet", "Phase 3c: Internet",
+                            "Phase 4a: File Management",
+                            "Phase 4b: File Management"), print_grid = True
                     )
-            conn.commit()
-
-        data_entry()
-
-    def graph(self, event):
-        """
-
-        :param event:
-        :type event:
-        """
-        studentname = self.studentname1.GetString(
-                self.studentname1.GetSelection()
-                )
-        conn = sqlite3.connect(dataBasePath)
-        dfSQL = pd.read_sql_query(f"SELECT * FROM SCREENREADERPROGRESS", conn)
-        dfStudent = dfSQL[dfSQL.STUDENTNAME == studentname]
-        print(dfStudent)
-        conn.close()
-        df = dfStudent.drop(columns = ['ID', 'STUDENTNAME'])
-        print(df)
-        df = df.rename(columns = {'DATE': 'date'})
-        df = df.set_index('date')
-        print(df)
-
-        # tmppath=Path(USER_DIR).joinpath(
-        #        'StudentDatabase',
-        #        'StudentDataFiles',
-        #        studentname,
-        #        'BrailleSkillsProgression.csv'
-        #        )
-
-        # df=pd.read_csv(
-        #        tmppath,
-        #        sep=',',
-        #        index_col=[0],
-        #        parse_dates=[0]
-        #        )
-        df = df.sort_values(by = "date")
-        mu, sigma = 0, 0.1
-        noise = np.random.normal(mu, sigma, [len(df.index), len(df.columns)])
-        df_noisy = df + noise
-        fig = make_subplots(
-                rows = 5,
-                cols = 2,
-                specs = [[{}, {"rowspan": 2}], [{}, None],
-                         [{"rowspan": 2}, {}], [None, {}], [{}, {}]],
-                subplot_titles = (
-                        "Phase 1a: Reading", "Phase 2: Writing",
-                        "Phase 1b: Reading", "Phase 3a: Internet",
-                        "Phase 3b: Internet", "Phase 3c: Internet",
-                        "Phase 4a: File Management",
-                        "Phase 4b: File Management"), print_grid = True
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy["P1_1"],
-                        mode = "lines+markers",
-                        name = "Turn ON/OFF",
-                        legendgroup = "Phase 1a",
-                        legendgrouptitle_text = "Phase 1a"
-                        ),
-                row = 1,
-                col = 1
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy["P1_2"],
-                        mode = "lines+markers",
-                        name = "Use Modifier Keys",
-                        legendgroup = "Phase 1a",
-                        legendgrouptitle_text = "Phase 1a"
-                        ),
-                row = 1,
-                col = 1
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy["P1_3"],
-                        mode = "lines+markers",
-                        name = "Use Reading Commands",
-                        legendgroup = "Phase 1a",
-                        legendgrouptitle_text = "Phase 1a"
-                        ),
-                row = 1,
-                col = 1
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy["P1_4"],
-                        mode = "lines+markers",
-                        name = "ID Titles",
-                        legendgroup = "Phase 1b",
-                        legendgrouptitle_text = " "
-                        ),
-                row = 2,
-                col = 1
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy["P1_5"],
-                        mode = "lines+markers",
-                        name = "Access Documents",
-                        legendgroup = "Phase 1b",
-                        legendgrouptitle_text = " "
-                        ),
-                row = 2,
-                col = 1
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy["P1_6"],
-                        mode = "lines+markers",
-                        name = "Switch Program Focus",
-                        legendgroup = "Phase 1b",
-                        legendgrouptitle_text = " "
-                        ),
-                row = 2,
-                col = 1
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy["P2_1"],
-                        mode = "lines+markers",
-                        name = "Type with all keys",
-                        legendgroup = "Phase 2",
-                        legendgrouptitle_text = "Phase 2"
-                        ),
-                row = 1,
-                col = 2
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy["P2_2"],
-                        mode = "lines+markers",
-                        name = "Change Screen Reader Settings",
-                        legendgroup = "Phase 2",
-                        legendgrouptitle_text = "Phase 2"
-                        ),
-                row = 1,
-                col = 2
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy["P2_3"],
-                        mode = "lines+markers",
-                        name = "Write documents",
-                        legendgroup = "Phase 2",
-                        legendgrouptitle_text = "Phase 2"
-                        ),
-                row = 1,
-                col = 2
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy["P2_4"],
-                        mode = "lines+markers",
-                        name = "Copy/Paste Text",
-                        legendgroup = "Phase 2",
-                        legendgrouptitle_text = "Phase 2"
-                        ),
-                row = 1,
-                col = 2
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy["P3_4"],
-                        mode = "lines+markers",
-                        name = "TAB Navigation",
-                        legendgroup = "Phase 3a",
-                        legendgrouptitle_text = "Phase 3a"
-                        ),
-                row = 3,
-                col = 1
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy["P3_5"],
-                        mode = "lines+markers",
-                        name = "Quick Key Navigation",
-                        legendgroup = "Phase 3a",
-                        legendgrouptitle_text = "Phase 3a"
-                        ),
-                row = 3,
-                col = 1
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy["P3_6"],
-                        mode = "lines+markers",
-                        name = "Elements List Navigation",
-                        legendgroup = "Phase 3a",
-                        legendgrouptitle_text = "Phase 3a"
-                        ),
-                row = 3,
-                col = 1
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy["P3_7"],
-                        mode = "lines+markers",
-                        name = "Justify Navigation Method",
-                        legendgroup = "Phase 3a",
-                        legendgrouptitle_text = "Phase 3a"
-                        ),
-                row = 3,
-                col = 1
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy["P3_1"],
-                        mode = "lines+markers",
-                        name = "Define HTML Elements",
-                        legendgroup = "Phase 3b",
-                        legendgrouptitle_text = "Phase 3b"
-                        ),
-                row = 3,
-                col = 2
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy["P3_2"],
-                        mode = "lines+markers",
-                        name = "ID HTML Elements",
-                        legendgroup = "Phase 3b",
-                        legendgrouptitle_text = "Phase 3b"
-                        ),
-                row = 3,
-                col = 2
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy["P3_3"],
-                        mode = "lines+markers",
-                        name = "Navigate to Address Bar",
-                        legendgroup = "Phase 3b",
-                        legendgrouptitle_text = "Phase 3b"
-                        ),
-                row = 3,
-                col = 2
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy["P3_8"],
-                        mode = "lines+markers",
-                        name = "ALT-TAB Focus",
-                        legendgroup = "Phase 3b",
-                        legendgrouptitle_text = "Phase 3b"
-                        ),
-                row = 3,
-                col = 2
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy["P3_9"],
-                        mode = "lines+markers",
-                        name = "Toggle Screen Reader Mode",
-                        legendgroup = "Phase 3c",
-                        legendgrouptitle_text = "Phase 3c"
-                        ),
-                row = 4,
-                col = 2
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy["P3_10"],
-                        mode = "lines+markers",
-                        name = "Navigate a Table",
-                        legendgroup = "Phase 3c",
-                        legendgrouptitle_text = "Phase 3c"
-                        ),
-                row = 4,
-                col = 2
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy["P3_11"],
-                        mode = "lines+markers",
-                        name = "Navigation Sequence",
-                        legendgroup = "Phase 3c",
-                        legendgrouptitle_text = "Phase 3c"
-                        ),
-                row = 4,
-                col = 2
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy["P4_1"],
-                        mode = "lines+markers",
-                        name = "Save and Open Files",
-                        legendgroup = "Phase 4a",
-                        legendgrouptitle_text = "Phase 4a"
-                        ),
-                row = 5,
-                col = 1
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy["P4_2"],
-                        mode = "lines+markers",
-                        name = "Create Folders",
-                        legendgroup = "Phase 4a",
-                        legendgrouptitle_text = "Phase 4a"
-                        ),
-                row = 5,
-                col = 1
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy["P4_3"],
-                        mode = "lines+markers",
-                        name = "Navigate Cloud Storage",
-                        legendgroup = "Phase 4a",
-                        legendgrouptitle_text = "Phase 4a"
-                        ),
-                row = 5,
-                col = 1
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy["P4_4"],
-                        mode = "lines+markers",
-                        name = "Download from Internet",
-                        legendgroup = "Phase 4a",
-                        legendgrouptitle_text = "Phase 4a"
-                        ),
-                row = 5,
-                col = 1
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy["P4_5"],
-                        mode = "lines+markers",
-                        name = "UNZIP Folders",
-                        legendgroup = "Phase 4b",
-                        legendgrouptitle_text = "Phase 4b"
-                        ),
-                row = 5,
-                col = 2
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy["P4_6"],
-                        mode = "lines+markers",
-                        name = "Use Virtual Cursor",
-                        legendgroup = "Phase 4b",
-                        legendgrouptitle_text = "Phase 4b"
-                        ),
-                row = 5,
-                col = 2
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy["P4_7"],
-                        mode = "lines+markers",
-                        name = "Use Built-In OCR",
-                        legendgroup = "Phase 4b",
-                        legendgrouptitle_text = "Phase 4b"
-                        ),
-                row = 5,
-                col = 2
-                )
-        fig.add_hrect(
-                y0 = -.5,
-                y1 = .5,
-                line_width = 0,
-                fillcolor = "red",
-                opacity = 0.2,
-                row = 1,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = .5,
-                y1 = 1.5,
-                line_width = 0,
-                fillcolor = "orange",
-                opacity = 0.2,
-                row = 1,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = 1.5,
-                y1 = 2.5,
-                line_width = 0,
-                fillcolor = "yellow",
-                opacity = 0.2,
-                row = 1,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = 2.5,
-                y1 = 3.5,
-                line_width = 0,
-                fillcolor = "green",
-                opacity = 0.2,
-                row = 1,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = -.5,
-                y1 = .5,
-                line_width = 0,
-                fillcolor = "red",
-                opacity = 0.2,
-                row = 2,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = .5,
-                y1 = 1.5,
-                line_width = 0,
-                fillcolor = "orange",
-                opacity = 0.2,
-                row = 2,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = 1.5,
-                y1 = 2.5,
-                line_width = 0,
-                fillcolor = "yellow",
-                opacity = 0.2,
-                row = 2,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = 2.5,
-                y1 = 3.5,
-                line_width = 0,
-                fillcolor = "green",
-                opacity = 0.2,
-                row = 2,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = -.5,
-                y1 = .5,
-                line_width = 0,
-                fillcolor = "red",
-                opacity = 0.2,
-                row = 1,
-                col = 2
-                )
-        fig.add_hrect(
-                y0 = .5,
-                y1 = 1.5,
-                line_width = 0,
-                fillcolor = "orange",
-                opacity = 0.2,
-                row = 1,
-                col = 2
-                )
-        fig.add_hrect(
-                y0 = 1.5,
-                y1 = 2.5,
-                line_width = 0,
-                fillcolor = "yellow",
-                opacity = 0.2,
-                row = 1,
-                col = 2
-                )
-        fig.add_hrect(
-                y0 = 2.5,
-                y1 = 3.5,
-                line_width = 0,
-                fillcolor = "green",
-                opacity = 0.2,
-                row = 1,
-                col = 2
-                )
-        fig.add_hrect(
-                y0 = -.5,
-                y1 = .5,
-                line_width = 0,
-                fillcolor = "red",
-                opacity = 0.2,
-                row = 3,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = .5,
-                y1 = 1.5,
-                line_width = 0,
-                fillcolor = "orange",
-                opacity = 0.2,
-                row = 3,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = 1.5,
-                y1 = 2.5,
-                line_width = 0,
-                fillcolor = "yellow",
-                opacity = 0.2,
-                row = 3,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = 2.5,
-                y1 = 3.5,
-                line_width = 0,
-                fillcolor = "green",
-                opacity = 0.2,
-                row = 3,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = -.5,
-                y1 = .5,
-                line_width = 0,
-                fillcolor = "red",
-                opacity = 0.2,
-                row = 3,
-                col = 2
-                )
-        fig.add_hrect(
-                y0 = .5,
-                y1 = 1.5,
-                line_width = 0,
-                fillcolor = "orange",
-                opacity = 0.2,
-                row = 3,
-                col = 2
-                )
-        fig.add_hrect(
-                y0 = 1.5,
-                y1 = 2.5,
-                line_width = 0,
-                fillcolor = "yellow",
-                opacity = 0.2,
-                row = 3,
-                col = 2
-                )
-        fig.add_hrect(
-                y0 = 2.5,
-                y1 = 3.5,
-                line_width = 0,
-                fillcolor = "green",
-                opacity = 0.2,
-                row = 3,
-                col = 2
-                )
-        fig.add_hrect(
-                y0 = -.5,
-                y1 = .5,
-                line_width = 0,
-                fillcolor = "red",
-                opacity = 0.2,
-                row = 4,
-                col = 2
-                )
-        fig.add_hrect(
-                y0 = .5,
-                y1 = 1.5,
-                line_width = 0,
-                fillcolor = "orange",
-                opacity = 0.2,
-                row = 4,
-                col = 2
-                )
-        fig.add_hrect(
-                y0 = 1.5,
-                y1 = 2.5,
-                line_width = 0,
-                fillcolor = "yellow",
-                opacity = 0.2,
-                row = 4,
-                col = 2
-                )
-        fig.add_hrect(
-                y0 = 2.5,
-                y1 = 3.5,
-                line_width = 0,
-                fillcolor = "green",
-                opacity = 0.2,
-                row = 4,
-                col = 2
-                )
-        fig.add_hrect(
-                y0 = -.5,
-                y1 = .5,
-                line_width = 0,
-                fillcolor = "red",
-                opacity = 0.2,
-                row = 5,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = .5,
-                y1 = 1.5,
-                line_width = 0,
-                fillcolor = "orange",
-                opacity = 0.2,
-                row = 5,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = 1.5,
-                y1 = 2.5,
-                line_width = 0,
-                fillcolor = "yellow",
-                opacity = 0.2,
-                row = 5,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = 2.5,
-                y1 = 3.5,
-                line_width = 0,
-                fillcolor = "green",
-                opacity = 0.2,
-                row = 5,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = -.5,
-                y1 = .5,
-                line_width = 0,
-                fillcolor = "red",
-                opacity = 0.2,
-                row = 5,
-                col = 2
-                )
-        fig.add_hrect(
-                y0 = .5,
-                y1 = 1.5,
-                line_width = 0,
-                fillcolor = "orange",
-                opacity = 0.2,
-                row = 5,
-                col = 2
-                )
-        fig.add_hrect(
-                y0 = 1.5,
-                y1 = 2.5,
-                line_width = 0,
-                fillcolor = "yellow",
-                opacity = 0.2,
-                row = 5,
-                col = 2
-                )
-        fig.add_hrect(
-                y0 = 2.5,
-                y1 = 3.5,
-                line_width = 0,
-                fillcolor = "green",
-                opacity = 0.2,
-                row = 5,
-                col = 2
-                )
-        fig.update_xaxes(
-                rangebreaks = [dict(bounds = ["sat", "mon"]), dict(values = [])],
-                row = 1,
-                col = 1
-                )
-        fig.update_xaxes(
-                rangebreaks = [dict(bounds = ["sat", "mon"]), dict(values = [])],
-                row = 1,
-                col = 2
-                )
-        fig.update_xaxes(
-                rangebreaks = [dict(bounds = ["sat", "mon"]), dict(values = [])],
-                row = 2,
-                col = 1
-                )
-        fig.update_xaxes(
-                rangebreaks = [dict(bounds = ["sat", "mon"]), dict(values = [])],
-                row = 3,
-                col = 1
-                )
-        fig.update_xaxes(
-                rangebreaks = [dict(bounds = ["sat", "mon"]), dict(values = [])],
-                row = 3,
-                col = 1
-                )
-        fig.update_xaxes(
-                rangebreaks = [dict(bounds = ["sat", "mon"]), dict(values = [])],
-                row = 3,
-                col = 2
-                )
-        fig.update_xaxes(
-                rangebreaks = [dict(bounds = ["sat", "mon"]), dict(values = [])],
-                row = 4,
-                col = 2
-                )
-        fig.update_xaxes(
-                rangebreaks = [dict(bounds = ["sat", "mon"]), dict(values = [])],
-                row = 5,
-                col = 1
-                )
-        fig.update_xaxes(
-                rangebreaks = [dict(bounds = ["sat", "mon"]), dict(values = [])],
-                row = 5,
-                col = 2
-                )
-        fig.update_yaxes(
-                range = [-.5, 3.5], fixedrange = True,
-                ticktext = ["Unable", "Prompted", "Hesitated",
-                            "Independent"],
-                tickvals = [0.1, 1, 2, 3],
-                row = 1,
-                col = 1
-                )
-        fig.update_yaxes(
-                range = [-.5, 3.5], fixedrange = True,
-                ticktext = ["Unable", "Prompted", "Hesitated",
-                            "Independent"],
-                tickvals = [0.1, 1, 2, 3],
-                row = 2,
-                col = 1
-                )
-        fig.update_yaxes(
-                range = [-.5, 3.5], fixedrange = True,
-                ticktext = ["Unable", "Prompted", "Hesitated",
-                            "Independent"],
-                tickvals = [0.1, 1, 2, 3],
-                row = 1,
-                col = 2
-                )
-        fig.update_yaxes(
-                range = [-.5, 3.5], fixedrange = True,
-                ticktext = ["Unable", "Prompted", "Hesitated",
-                            "Independent"],
-                tickvals = [0.1, 1, 2, 3],
-                row = 3,
-                col = 1
-                )
-        fig.update_yaxes(
-                range = [-.5, 3.5], fixedrange = True,
-                ticktext = ["Unable", "Prompted", "Hesitated",
-                            "Independent"],
-                tickvals = [0.1, 1, 2, 3],
-                row = 3,
-                col = 2
-                )
-        fig.update_yaxes(
-                range = [-.5, 3.5], fixedrange = True,
-                ticktext = ["Unable", "Prompted", "Hesitated",
-                            "Independent"],
-                tickvals = [0.1, 1, 2, 3],
-                row = 4,
-                col = 2
-                )
-        fig.update_yaxes(
-                range = [-.5, 3.5], fixedrange = True,
-                ticktext = ["Unable", "Prompted", "Hesitated",
-                            "Independent"],
-                tickvals = [0.1, 1, 2, 3],
-                row = 5,
-                col = 1
-                )
-        fig.update_yaxes(
-                range = [-.5, 3.5], fixedrange = True,
-                ticktext = ["Unable", "Prompted", "Hesitated",
-                            "Independent"],
-                tickvals = [0.1, 1, 2, 3],
-                row = 5,
-                col = 2
-                )
-        fig.update_layout(
-                template = "simple_white",
-                title_text = f"{studentname}: Screen Reader Skills Progression"
-                )
-
-        tmppath = Path(USER_DIR).joinpath(
-                'StudentDatabase',
-                'StudentDataFiles', studentname,
-                'ScreenReaderSkillsProgression.html'
-                )
-        fig.write_html(tmppath)
-
-        dfAsString = df.to_html(index = True)
-
-        dialog = MyBrowser(
-                None, -1
-                )
-        dialog.browser.SetPage(dfAsString, "")
-        dialog.Show()
-        fig.show()
-
-
-class abacusPanel(scrolled.ScrolledPanel):
-    """
-
-    """
-
-    def __init__(
-            self,
-            parent
-            ):
-        scrolled.ScrolledPanel.__init__(
-                self,
-                parent,
-                -1
-                )
-        vbox = wx.BoxSizer(wx.VERTICAL)
-        vbox.Add(
-                wx.StaticLine(
-                        self,
-                        -1,
-                        size = (
-                                7500,
-                                -1
-                                )
-                        ),
-                0,
-                wx.ALL,
-                5
-                )
-        vbox.Add(
-                wx.StaticLine(
-                        self,
-                        -1,
-                        size = (-1,
-                                750
-                                )
-                        ),
-                0,
-                wx.ALL,
-                5
-                )
-        vbox.Add(
-                (20,
-                 20
-                 )
-                )
-        self.SetSizer(vbox)
-        self.SetupScrolling()
-        self.SetBackgroundColour(
-                random.choice(
-                        colorList
-                        )
-                )
-        self.SetFont(
-                wx.Font(
-                        10,
-                        wx.MODERN,
-                        wx.NORMAL,
-                        wx.NORMAL,
-                        False,
-                        u'Atkinson Hyperlegible'
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "ABACUS SKILLS PROGRESSION",
-                pos = (
-                        200,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "Student Name",
-                pos = (
-                        30,
-                        50
-                        )
-                )
-        self.studentname1 = wx.Choice(
-                self,
-                -1,
-                choices = students,
-                pos = (
-                        130,
-                        50
-                        ),
-                size = (
-                        300,
-                        30
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent",
-                pos = (
-                        550,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "1.1 Setting NumbersNumbers" + '.' * (200 - len("1.1 Setting NumbersNumbers")),
-                pos = (
-                        30,
-                        80
-                        )
-                )
-        self.trial11 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        80
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "1.2 Clearing Beads" + '.' * (200 - len("1.2 Clearing Beads")),
-                pos = (
-                        30,
-                        110
-                        )
-                )
-        self.trial12 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        110
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "1.3 Place Value" + '.' * (200 - len("1.3 Place Value")),
-                pos = (
-                        30,
-                        140
-                        )
-                )
-        self.trial13 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        140
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "1.4 Vocabulary" + '.' * (200 - len("1.4 Vocabulary")),
-                pos = (
-                        30,
-                        170
-                        )
-                )
-        self.trial14 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        170
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "2.1 Addition of Single Digit Numbers" + '.' * (200 - len("2.1 Addition of Single Digit Numbers")),
-                pos = (
-                        30,
-                        200
-                        )
-                )
-        self.trial21 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        200
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "2.2 Addition of Multiple Digit Numbers – Direct" + '.' * (200 - len("2.2 Addition of Multiple Digit Numbers – Direct")),
-                pos = (
-                        30,
-                        230
-                        )
-                )
-        self.trial22 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        230
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "2.3 Addition of Multiple Digit Numbers – Indirect" + '.' * (200 - len("2.3 Addition of Multiple Digit Numbers – Indirect")),
-                pos = (
-                        30,
-                        260
-                        )
-                )
-        self.trial23 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        260
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "3.1 Subtraction" + '.' * (200 - len("3.1 Subtraction")),
-                pos = (
-                        30,
-                        290
-                        )
-                )
-        self.trial31 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        290
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "3.2 Subtraction of Multiple Digit Numbers – Direct" + '.' * (200 - len("3.2 Subtraction of Multiple Digit Numbers – Direct")),
-                pos = (
-                        30,
-                        320
-                        )
-                )
-        self.trial32 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        320
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "3.3 Subtraction of Multiple Digit Numbers – Indirect" + '.' * (200 - len("3.3 Subtraction of Multiple Digit Numbers – Indirect")),
-                pos = (
-                        30,
-                        350
-                        )
-                )
-        self.trial33 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        350
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "4.1 Multiplication – 2+ Digit Multiplicand 1-Digit Multiplier" + '.' * (200 - len("4.1 Multiplication – 2+ Digit Multiplicand 1-Digit Multiplier")),
-                pos = (
-                        30,
-                        380
-                        )
-                )
-        self.trial41 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        380
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "4.2 Multiplication – 2+ Digit Multiplicand AND Multiplier" + '.' * (200 - len("4.2 Multiplication – 2+ Digit Multiplicand AND Multiplier")),
-                pos = (
-                        30,
-                        410
-                        )
-                )
-        self.trial42 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        410
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "5.1 Division – 2+ Digit Dividend 1-Digit Divisor" + '.' * (200 - len("5.1 Division – 2+ Digit Dividend 1-Digit Divisor")),
-                pos = (
-                        30,
-                        440
-                        )
-                )
-        self.trial51 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        440
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "5.2 Division – 2+ Digit Dividend AND 1 Digit Divisor " + '.' * (200 - len("5.2 Division – 2+ Digit Dividend AND 1 Digit Divisor ")),
-                pos = (
-                        30,
-                        470
-                        )
-                )
-        self.trial52 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        470
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "6.1 Addition of Decimals" + '.' * (200 - len("6.1 Addition of Decimals")),
-                pos = (
-                        30,
-                        500
-                        )
-                )
-        self.trial61 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        500
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "6.2 Subtraction of Decimals" + '.' * (200 - len("6.2 Subtraction of Decimals")),
-                pos = (
-                        30,
-                        530
-                        )
-                )
-        self.trial62 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        530
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "6.3 Multiplication of Decimals" + '.' * (200 - len("6.3 Multiplication of Decimals")),
-                pos = (
-                        30,
-                        560
-                        )
-                )
-        self.trial63 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        560
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "6.4 Division of Decimals" + '.' * (200 - len("6.4 Division of Decimals")),
-                pos = (
-                        30,
-                        590
-                        )
-                )
-        self.trial64 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        590
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "7.1 Addition of Fractions" + '.' * (200 - len("7.1 Addition of Fractions")),
-                pos = (
-                        30,
-                        620
-                        )
-                )
-        self.trial71 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        620
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "7.2 Subtraction of Fractions" + '.' * (200 - len("7.2 Subtraction of Fractions")),
-                pos = (
-                        30,
-                        650
-                        )
-                )
-        self.trial72 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        650
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "7.3 Multiplication of Fractions" + '.' * (200 - len("7.3 Multiplication of Fractions")),
-                pos = (
-                        30,
-                        680
-                        )
-                )
-        self.trial73 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        680
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "7.4 Division of Fractions" + '.' * (200 - len("7.4 Division of Fractions")),
-                pos = (
-                        30,
-                        710
-                        )
-                )
-        self.trial74 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        710
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "8.1 Percent" + '.' * (200 - len("8.1 Percent")),
-                pos = (
-                        30,
-                        740
-                        )
-                )
-        self.trial81 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        740
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "8.2 Square Root" + '.' * (200 - len("8.2 Square Root")),
-                pos = (
-                        30,
-                        770
-                        )
-                )
-        self.trial82 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        770
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        self.btn = wx.Button(
-                self,
-                201,
-                "SAVE",
-                pos = (
-                        450,
-                        830
-                        ),
-                size = (
-                        70,
-                        30
-                        )
-                )
-        self.Bind(
-                wx.EVT_BUTTON,
-                self.save,
-                id = 201
-                )
-        self.btn = wx.Button(
-                self,
-                203,
-                "PRINT GRAPHS",
-                pos = (
-                        450,
-                        870
-                        ),
-                size = (
-                        170,
-                        30
-                        )
-                )
-        self.Bind(
-                wx.EVT_BUTTON,
-                self.graph,
-                id = 203
-                )
-        self.btn1 = wx.Button(
-                self,
-                202,
-                "EXIT",
-                pos = (
-                        550,
-                        830
-                        ),
-                size = (
-                        70,
-                        30
-                        )
-                )
-        self.Bind(
-                wx.EVT_BUTTON,
-                self.exit,
-                id = 202
-                )
-
-    @staticmethod
-    def exit(event):
-        """
-
-        :param event:
-        :type event:
-        """
-        wx.Exit()
-
-    def save(
-            self,
-            event
-            ):
-        """
-
-        :param event:
-        :type event:
-        """
-        studentname = self.studentname1.GetString(
-                self.studentname1.GetSelection()
-                )
-        datenow = datetime.datetime.now().strftime("%Y_%m_%d-%H%M%S")
-        simpledate = datetime.datetime.now().strftime("%Y_%m_%d-%H%M")
-        trial11 = self.trial11.GetValue()
-        trial12 = self.trial12.GetValue()
-        trial13 = self.trial13.GetValue()
-        trial14 = self.trial14.GetValue()
-        trial21 = self.trial21.GetValue()
-        trial22 = self.trial22.GetValue()
-        trial23 = self.trial23.GetValue()
-        trial31 = self.trial31.GetValue()
-        trial32 = self.trial32.GetValue()
-        trial33 = self.trial33.GetValue()
-        trial41 = self.trial41.GetValue()
-        trial42 = self.trial42.GetValue()
-        trial51 = self.trial51.GetValue()
-        trial52 = self.trial52.GetValue()
-        trial61 = self.trial61.GetValue()
-        trial62 = self.trial62.GetValue()
-        trial63 = self.trial63.GetValue()
-        trial64 = self.trial64.GetValue()
-        trial71 = self.trial71.GetValue()
-        trial72 = self.trial72.GetValue()
-        trial73 = self.trial73.GetValue()
-        trial74 = self.trial74.GetValue()
-        trial81 = self.trial81.GetValue()
-        trial82 = self.trial82.GetValue()
-        box = wx.TextEntryDialog(
-                None,
-                "Enter File Name",
-                "Title",
-                f"abacus{studentname.title()}{datenow}"
-                )
-        if box.ShowModal() == wx.ID_OK:
-            self.studentdatabasename = box.GetValue()
-            if not Path(USER_DIR).joinpath(
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy["P1_1"],
+                            mode = "lines+markers",
+                            name = "Turn ON/OFF",
+                            legendgroup = "Phase 1a",
+                            legendgrouptitle_text = "Phase 1a"
+                            ),
+                    row = 1,
+                    col = 1
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy["P1_2"],
+                            mode = "lines+markers",
+                            name = "Use Modifier Keys",
+                            legendgroup = "Phase 1a",
+                            legendgrouptitle_text = "Phase 1a"
+                            ),
+                    row = 1,
+                    col = 1
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy["P1_3"],
+                            mode = "lines+markers",
+                            name = "Use Reading Commands",
+                            legendgroup = "Phase 1a",
+                            legendgrouptitle_text = "Phase 1a"
+                            ),
+                    row = 1,
+                    col = 1
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy["P1_4"],
+                            mode = "lines+markers",
+                            name = "ID Titles",
+                            legendgroup = "Phase 1b",
+                            legendgrouptitle_text = " "
+                            ),
+                    row = 2,
+                    col = 1
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy["P1_5"],
+                            mode = "lines+markers",
+                            name = "Access Documents",
+                            legendgroup = "Phase 1b",
+                            legendgrouptitle_text = " "
+                            ),
+                    row = 2,
+                    col = 1
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy["P1_6"],
+                            mode = "lines+markers",
+                            name = "Switch Program Focus",
+                            legendgroup = "Phase 1b",
+                            legendgrouptitle_text = " "
+                            ),
+                    row = 2,
+                    col = 1
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy["P2_1"],
+                            mode = "lines+markers",
+                            name = "Type with all keys",
+                            legendgroup = "Phase 2",
+                            legendgrouptitle_text = "Phase 2"
+                            ),
+                    row = 1,
+                    col = 2
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy["P2_2"],
+                            mode = "lines+markers",
+                            name = "Change Screen Reader Settings",
+                            legendgroup = "Phase 2",
+                            legendgrouptitle_text = "Phase 2"
+                            ),
+                    row = 1,
+                    col = 2
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy["P2_3"],
+                            mode = "lines+markers",
+                            name = "Write documents",
+                            legendgroup = "Phase 2",
+                            legendgrouptitle_text = "Phase 2"
+                            ),
+                    row = 1,
+                    col = 2
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy["P2_4"],
+                            mode = "lines+markers",
+                            name = "Copy/Paste Text",
+                            legendgroup = "Phase 2",
+                            legendgrouptitle_text = "Phase 2"
+                            ),
+                    row = 1,
+                    col = 2
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy["P3_4"],
+                            mode = "lines+markers",
+                            name = "TAB Navigation",
+                            legendgroup = "Phase 3a",
+                            legendgrouptitle_text = "Phase 3a"
+                            ),
+                    row = 3,
+                    col = 1
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy["P3_5"],
+                            mode = "lines+markers",
+                            name = "Quick Key Navigation",
+                            legendgroup = "Phase 3a",
+                            legendgrouptitle_text = "Phase 3a"
+                            ),
+                    row = 3,
+                    col = 1
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy["P3_6"],
+                            mode = "lines+markers",
+                            name = "Elements List Navigation",
+                            legendgroup = "Phase 3a",
+                            legendgrouptitle_text = "Phase 3a"
+                            ),
+                    row = 3,
+                    col = 1
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy["P3_7"],
+                            mode = "lines+markers",
+                            name = "Justify Navigation Method",
+                            legendgroup = "Phase 3a",
+                            legendgrouptitle_text = "Phase 3a"
+                            ),
+                    row = 3,
+                    col = 1
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy["P3_1"],
+                            mode = "lines+markers",
+                            name = "Define HTML Elements",
+                            legendgroup = "Phase 3b",
+                            legendgrouptitle_text = "Phase 3b"
+                            ),
+                    row = 3,
+                    col = 2
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy["P3_2"],
+                            mode = "lines+markers",
+                            name = "ID HTML Elements",
+                            legendgroup = "Phase 3b",
+                            legendgrouptitle_text = "Phase 3b"
+                            ),
+                    row = 3,
+                    col = 2
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy["P3_3"],
+                            mode = "lines+markers",
+                            name = "Navigate to Address Bar",
+                            legendgroup = "Phase 3b",
+                            legendgrouptitle_text = "Phase 3b"
+                            ),
+                    row = 3,
+                    col = 2
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy["P3_8"],
+                            mode = "lines+markers",
+                            name = "ALT-TAB Focus",
+                            legendgroup = "Phase 3b",
+                            legendgrouptitle_text = "Phase 3b"
+                            ),
+                    row = 3,
+                    col = 2
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy["P3_9"],
+                            mode = "lines+markers",
+                            name = "Toggle Screen Reader Mode",
+                            legendgroup = "Phase 3c",
+                            legendgrouptitle_text = "Phase 3c"
+                            ),
+                    row = 4,
+                    col = 2
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy["P3_10"],
+                            mode = "lines+markers",
+                            name = "Navigate a Table",
+                            legendgroup = "Phase 3c",
+                            legendgrouptitle_text = "Phase 3c"
+                            ),
+                    row = 4,
+                    col = 2
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy["P3_11"],
+                            mode = "lines+markers",
+                            name = "Navigation Sequence",
+                            legendgroup = "Phase 3c",
+                            legendgrouptitle_text = "Phase 3c"
+                            ),
+                    row = 4,
+                    col = 2
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy["P4_1"],
+                            mode = "lines+markers",
+                            name = "Save and Open Files",
+                            legendgroup = "Phase 4a",
+                            legendgrouptitle_text = "Phase 4a"
+                            ),
+                    row = 5,
+                    col = 1
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy["P4_2"],
+                            mode = "lines+markers",
+                            name = "Create Folders",
+                            legendgroup = "Phase 4a",
+                            legendgrouptitle_text = "Phase 4a"
+                            ),
+                    row = 5,
+                    col = 1
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy["P4_3"],
+                            mode = "lines+markers",
+                            name = "Navigate Cloud Storage",
+                            legendgroup = "Phase 4a",
+                            legendgrouptitle_text = "Phase 4a"
+                            ),
+                    row = 5,
+                    col = 1
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy["P4_4"],
+                            mode = "lines+markers",
+                            name = "Download from Internet",
+                            legendgroup = "Phase 4a",
+                            legendgrouptitle_text = "Phase 4a"
+                            ),
+                    row = 5,
+                    col = 1
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy["P4_5"],
+                            mode = "lines+markers",
+                            name = "UNZIP Folders",
+                            legendgroup = "Phase 4b",
+                            legendgrouptitle_text = "Phase 4b"
+                            ),
+                    row = 5,
+                    col = 2
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy["P4_6"],
+                            mode = "lines+markers",
+                            name = "Use Virtual Cursor",
+                            legendgroup = "Phase 4b",
+                            legendgrouptitle_text = "Phase 4b"
+                            ),
+                    row = 5,
+                    col = 2
+                    )
+            fig.add_trace(
+                    go.Scatter(
+                            x = df_noisy.index, y = df_noisy["P4_7"],
+                            mode = "lines+markers",
+                            name = "Use Built-In OCR",
+                            legendgroup = "Phase 4b",
+                            legendgrouptitle_text = "Phase 4b"
+                            ),
+                    row = 5,
+                    col = 2
+                    )
+            fig.add_hrect(
+                    y0 = -.5,
+                    y1 = .5,
+                    line_width = 0,
+                    fillcolor = "red",
+                    opacity = 0.2,
+                    row = 1,
+                    col = 1
+                    )
+            fig.add_hrect(
+                    y0 = .5,
+                    y1 = 1.5,
+                    line_width = 0,
+                    fillcolor = "orange",
+                    opacity = 0.2,
+                    row = 1,
+                    col = 1
+                    )
+            fig.add_hrect(
+                    y0 = 1.5,
+                    y1 = 2.5,
+                    line_width = 0,
+                    fillcolor = "yellow",
+                    opacity = 0.2,
+                    row = 1,
+                    col = 1
+                    )
+            fig.add_hrect(
+                    y0 = 2.5,
+                    y1 = 3.5,
+                    line_width = 0,
+                    fillcolor = "green",
+                    opacity = 0.2,
+                    row = 1,
+                    col = 1
+                    )
+            fig.add_hrect(
+                    y0 = -.5,
+                    y1 = .5,
+                    line_width = 0,
+                    fillcolor = "red",
+                    opacity = 0.2,
+                    row = 2,
+                    col = 1
+                    )
+            fig.add_hrect(
+                    y0 = .5,
+                    y1 = 1.5,
+                    line_width = 0,
+                    fillcolor = "orange",
+                    opacity = 0.2,
+                    row = 2,
+                    col = 1
+                    )
+            fig.add_hrect(
+                    y0 = 1.5,
+                    y1 = 2.5,
+                    line_width = 0,
+                    fillcolor = "yellow",
+                    opacity = 0.2,
+                    row = 2,
+                    col = 1
+                    )
+            fig.add_hrect(
+                    y0 = 2.5,
+                    y1 = 3.5,
+                    line_width = 0,
+                    fillcolor = "green",
+                    opacity = 0.2,
+                    row = 2,
+                    col = 1
+                    )
+            fig.add_hrect(
+                    y0 = -.5,
+                    y1 = .5,
+                    line_width = 0,
+                    fillcolor = "red",
+                    opacity = 0.2,
+                    row = 1,
+                    col = 2
+                    )
+            fig.add_hrect(
+                    y0 = .5,
+                    y1 = 1.5,
+                    line_width = 0,
+                    fillcolor = "orange",
+                    opacity = 0.2,
+                    row = 1,
+                    col = 2
+                    )
+            fig.add_hrect(
+                    y0 = 1.5,
+                    y1 = 2.5,
+                    line_width = 0,
+                    fillcolor = "yellow",
+                    opacity = 0.2,
+                    row = 1,
+                    col = 2
+                    )
+            fig.add_hrect(
+                    y0 = 2.5,
+                    y1 = 3.5,
+                    line_width = 0,
+                    fillcolor = "green",
+                    opacity = 0.2,
+                    row = 1,
+                    col = 2
+                    )
+            fig.add_hrect(
+                    y0 = -.5,
+                    y1 = .5,
+                    line_width = 0,
+                    fillcolor = "red",
+                    opacity = 0.2,
+                    row = 3,
+                    col = 1
+                    )
+            fig.add_hrect(
+                    y0 = .5,
+                    y1 = 1.5,
+                    line_width = 0,
+                    fillcolor = "orange",
+                    opacity = 0.2,
+                    row = 3,
+                    col = 1
+                    )
+            fig.add_hrect(
+                    y0 = 1.5,
+                    y1 = 2.5,
+                    line_width = 0,
+                    fillcolor = "yellow",
+                    opacity = 0.2,
+                    row = 3,
+                    col = 1
+                    )
+            fig.add_hrect(
+                    y0 = 2.5,
+                    y1 = 3.5,
+                    line_width = 0,
+                    fillcolor = "green",
+                    opacity = 0.2,
+                    row = 3,
+                    col = 1
+                    )
+            fig.add_hrect(
+                    y0 = -.5,
+                    y1 = .5,
+                    line_width = 0,
+                    fillcolor = "red",
+                    opacity = 0.2,
+                    row = 3,
+                    col = 2
+                    )
+            fig.add_hrect(
+                    y0 = .5,
+                    y1 = 1.5,
+                    line_width = 0,
+                    fillcolor = "orange",
+                    opacity = 0.2,
+                    row = 3,
+                    col = 2
+                    )
+            fig.add_hrect(
+                    y0 = 1.5,
+                    y1 = 2.5,
+                    line_width = 0,
+                    fillcolor = "yellow",
+                    opacity = 0.2,
+                    row = 3,
+                    col = 2
+                    )
+            fig.add_hrect(
+                    y0 = 2.5,
+                    y1 = 3.5,
+                    line_width = 0,
+                    fillcolor = "green",
+                    opacity = 0.2,
+                    row = 3,
+                    col = 2
+                    )
+            fig.add_hrect(
+                    y0 = -.5,
+                    y1 = .5,
+                    line_width = 0,
+                    fillcolor = "red",
+                    opacity = 0.2,
+                    row = 4,
+                    col = 2
+                    )
+            fig.add_hrect(
+                    y0 = .5,
+                    y1 = 1.5,
+                    line_width = 0,
+                    fillcolor = "orange",
+                    opacity = 0.2,
+                    row = 4,
+                    col = 2
+                    )
+            fig.add_hrect(
+                    y0 = 1.5,
+                    y1 = 2.5,
+                    line_width = 0,
+                    fillcolor = "yellow",
+                    opacity = 0.2,
+                    row = 4,
+                    col = 2
+                    )
+            fig.add_hrect(
+                    y0 = 2.5,
+                    y1 = 3.5,
+                    line_width = 0,
+                    fillcolor = "green",
+                    opacity = 0.2,
+                    row = 4,
+                    col = 2
+                    )
+            fig.add_hrect(
+                    y0 = -.5,
+                    y1 = .5,
+                    line_width = 0,
+                    fillcolor = "red",
+                    opacity = 0.2,
+                    row = 5,
+                    col = 1
+                    )
+            fig.add_hrect(
+                    y0 = .5,
+                    y1 = 1.5,
+                    line_width = 0,
+                    fillcolor = "orange",
+                    opacity = 0.2,
+                    row = 5,
+                    col = 1
+                    )
+            fig.add_hrect(
+                    y0 = 1.5,
+                    y1 = 2.5,
+                    line_width = 0,
+                    fillcolor = "yellow",
+                    opacity = 0.2,
+                    row = 5,
+                    col = 1
+                    )
+            fig.add_hrect(
+                    y0 = 2.5,
+                    y1 = 3.5,
+                    line_width = 0,
+                    fillcolor = "green",
+                    opacity = 0.2,
+                    row = 5,
+                    col = 1
+                    )
+            fig.add_hrect(
+                    y0 = -.5,
+                    y1 = .5,
+                    line_width = 0,
+                    fillcolor = "red",
+                    opacity = 0.2,
+                    row = 5,
+                    col = 2
+                    )
+            fig.add_hrect(
+                    y0 = .5,
+                    y1 = 1.5,
+                    line_width = 0,
+                    fillcolor = "orange",
+                    opacity = 0.2,
+                    row = 5,
+                    col = 2
+                    )
+            fig.add_hrect(
+                    y0 = 1.5,
+                    y1 = 2.5,
+                    line_width = 0,
+                    fillcolor = "yellow",
+                    opacity = 0.2,
+                    row = 5,
+                    col = 2
+                    )
+            fig.add_hrect(
+                    y0 = 2.5,
+                    y1 = 3.5,
+                    line_width = 0,
+                    fillcolor = "green",
+                    opacity = 0.2,
+                    row = 5,
+                    col = 2
+                    )
+            fig.update_xaxes(
+                    rangebreaks = [dict(bounds = ["sat", "mon"]), dict(values = [])],
+                    row = 1,
+                    col = 1
+                    )
+            fig.update_xaxes(
+                    rangebreaks = [dict(bounds = ["sat", "mon"]), dict(values = [])],
+                    row = 1,
+                    col = 2
+                    )
+            fig.update_xaxes(
+                    rangebreaks = [dict(bounds = ["sat", "mon"]), dict(values = [])],
+                    row = 2,
+                    col = 1
+                    )
+            fig.update_xaxes(
+                    rangebreaks = [dict(bounds = ["sat", "mon"]), dict(values = [])],
+                    row = 3,
+                    col = 1
+                    )
+            fig.update_xaxes(
+                    rangebreaks = [dict(bounds = ["sat", "mon"]), dict(values = [])],
+                    row = 3,
+                    col = 1
+                    )
+            fig.update_xaxes(
+                    rangebreaks = [dict(bounds = ["sat", "mon"]), dict(values = [])],
+                    row = 3,
+                    col = 2
+                    )
+            fig.update_xaxes(
+                    rangebreaks = [dict(bounds = ["sat", "mon"]), dict(values = [])],
+                    row = 4,
+                    col = 2
+                    )
+            fig.update_xaxes(
+                    rangebreaks = [dict(bounds = ["sat", "mon"]), dict(values = [])],
+                    row = 5,
+                    col = 1
+                    )
+            fig.update_xaxes(
+                    rangebreaks = [dict(bounds = ["sat", "mon"]), dict(values = [])],
+                    row = 5,
+                    col = 2
+                    )
+            fig.update_yaxes(
+                    range = [-.5, 3.5], fixedrange = True,
+                    ticktext = ["Unable", "Prompted", "Hesitated",
+                                "Independent"],
+                    tickvals = [0.1, 1, 2, 3],
+                    row = 1,
+                    col = 1
+                    )
+            fig.update_yaxes(
+                    range = [-.5, 3.5], fixedrange = True,
+                    ticktext = ["Unable", "Prompted", "Hesitated",
+                                "Independent"],
+                    tickvals = [0.1, 1, 2, 3],
+                    row = 2,
+                    col = 1
+                    )
+            fig.update_yaxes(
+                    range = [-.5, 3.5], fixedrange = True,
+                    ticktext = ["Unable", "Prompted", "Hesitated",
+                                "Independent"],
+                    tickvals = [0.1, 1, 2, 3],
+                    row = 1,
+                    col = 2
+                    )
+            fig.update_yaxes(
+                    range = [-.5, 3.5], fixedrange = True,
+                    ticktext = ["Unable", "Prompted", "Hesitated",
+                                "Independent"],
+                    tickvals = [0.1, 1, 2, 3],
+                    row = 3,
+                    col = 1
+                    )
+            fig.update_yaxes(
+                    range = [-.5, 3.5], fixedrange = True,
+                    ticktext = ["Unable", "Prompted", "Hesitated",
+                                "Independent"],
+                    tickvals = [0.1, 1, 2, 3],
+                    row = 3,
+                    col = 2
+                    )
+            fig.update_yaxes(
+                    range = [-.5, 3.5], fixedrange = True,
+                    ticktext = ["Unable", "Prompted", "Hesitated",
+                                "Independent"],
+                    tickvals = [0.1, 1, 2, 3],
+                    row = 4,
+                    col = 2
+                    )
+            fig.update_yaxes(
+                    range = [-.5, 3.5], fixedrange = True,
+                    ticktext = ["Unable", "Prompted", "Hesitated",
+                                "Independent"],
+                    tickvals = [0.1, 1, 2, 3],
+                    row = 5,
+                    col = 1
+                    )
+            fig.update_yaxes(
+                    range = [-.5, 3.5], fixedrange = True,
+                    ticktext = ["Unable", "Prompted", "Hesitated",
+                                "Independent"],
+                    tickvals = [0.1, 1, 2, 3],
+                    row = 5,
+                    col = 2
+                    )
+            fig.update_layout(
+                    template = "simple_white",
+                    title_text = f"{studentname}: Screen Reader Skills Progression"
+                    )
+            tmppath = Path(USER_DIR).joinpath(
                     'StudentDatabase',
-                    'StudentDataFiles',
-                    studentname,
-                    self.studentdatabasename + '.txt'
-                    ).exists():
-                tmppath = Path(USER_DIR).joinpath(
-                        'StudentDatabase',
-                        'StudentDataFiles',
-                        studentname,
-                        self.studentdatabasename + '.txt'
-                        )
-                self.filename = open(
-                        tmppath,
-                        'w'
-                        )
-                self.filename.write('studentname' + ', ')
-                self.filename.write('simpledate' + ', ')
-                self.filename.write('trial11' + ', ')
-                self.filename.write('trial12' + ', ')
-                self.filename.write('trial13' + ', ')
-                self.filename.write('trial14' + ', ')
-                self.filename.write('trial21' + ', ')
-                self.filename.write('trial22' + ', ')
-                self.filename.write('trial23' + ', ')
-                self.filename.write('trial31' + ', ')
-                self.filename.write('trial32' + ', ')
-                self.filename.write('trial33' + ', ')
-                self.filename.write('trial41' + ', ')
-                self.filename.write('trial42' + ', ')
-                self.filename.write('trial51' + ', ')
-                self.filename.write('trial52' + ', ')
-                self.filename.write('trial61' + ', ')
-                self.filename.write('trial62' + ', ')
-                self.filename.write('trial63' + ', ')
-                self.filename.write('trial64' + ', ')
-                self.filename.write('trial71' + ', ')
-                self.filename.write('trial72' + ', ')
-                self.filename.write('trial73' + ', ')
-                self.filename.write('trial74' + ', ')
-                self.filename.write('trial81' + ', ')
-                self.filename.write('trial82' + ', ')
-                self.filename.write(studentname + ', ')
-                self.filename.write(trial11 + ', ')
-                self.filename.write(trial12 + ', ')
-                self.filename.write(trial13 + ', ')
-                self.filename.write(trial14 + ', ')
-                self.filename.write(trial21 + ', ')
-                self.filename.write(trial22 + ', ')
-                self.filename.write(trial23 + ', ')
-                self.filename.write(trial31 + ', ')
-                self.filename.write(trial32 + ', ')
-                self.filename.write(trial33 + ', ')
-                self.filename.write(trial41 + ', ')
-                self.filename.write(trial42 + ', ')
-                self.filename.write(trial51 + ', ')
-                self.filename.write(trial52 + ', ')
-                self.filename.write(trial61 + ', ')
-                self.filename.write(trial62 + ', ')
-                self.filename.write(trial63 + ', ')
-                self.filename.write(trial64 + ', ')
-                self.filename.write(trial71 + ', ')
-                self.filename.write(trial72 + ', ')
-                self.filename.write(trial73 + ', ')
-                self.filename.write(trial74 + ', ')
-                self.filename.write(trial81 + ', ')
-                self.filename.write(trial82 + ', ')
-                self.filename.close()
-                tmppath = Path(USER_DIR).joinpath(
-                        'StudentDatabase',
-                        'StudentDataFiles',
-                        'Filenames.txt'
-                        )
-                self.filename = open(
-                        tmppath,
-                        'a'
-                        )
-                tmppath = Path(USER_DIR).joinpath(
-                        'StudentDatabase',
-                        'StudentDataFiles',
-                        studentname,
-                        self.studentdatabasename + '.txt'
-                        )
-                self.filename.write(f"{tmppath}" + '\n')
-                self.filename.close()
-                list_names = [
-                        'date',
-                        'P1_1',
-                        'P1_2',
-                        'P1_3',
-                        'P1_4',
-                        'P2_1',
-                        'P2_2',
-                        'P2_3',
-                        'P3_1',
-                        'P3_2',
-                        'P3_3',
-                        'P4_1',
-                        'P4_2',
-                        'P5_1',
-                        'P5_2',
-                        'P6_1',
-                        'P6_2',
-                        'P6_3',
-                        'P6_4',
-                        'P7_1',
-                        'P7_2',
-                        'P7_3',
-                        'P7_4',
-                        'P8_1',
-                        'P8_2'
-                        ]
-                list_data = [
-                        datenow,
-                        trial11,
-                        trial12,
-                        trial13,
-                        trial14,
-                        trial21,
-                        trial22,
-                        trial23,
-                        trial31,
-                        trial32,
-                        trial33,
-                        trial41,
-                        trial42,
-                        trial51,
-                        trial52,
-                        trial61,
-                        trial62,
-                        trial63,
-                        trial64,
-                        trial71,
-                        trial72,
-                        trial73,
-                        trial74,
-                        trial81,
-                        trial82
-                        ]
-                os.chdir(USER_DIR)
-                tmppath = Path(USER_DIR).joinpath(
-                        'StudentDatabase',
-                        'StudentDataFiles',
-                        studentname,
-                        'AbacusSkillsProgression.csv'
-                        )
-                with open(
-                        tmppath,
-                        'a',
-                        newline = ''
-                        ) as f_setup:
-                    writer_setup = writer(f_setup)
-                    writer_setup.writerow(list_data)
-                    f_setup.close()
-                self.dial = wx.MessageDialog(
-                        None,
-                        'Saved successfully!',
-                        'Info',
-                        wx.OK
-                        )
-                self.dial.ShowModal()
-                self.trial11.Clear()
-                self.trial12.Clear()
-                self.trial13.Clear()
-                self.trial14.Clear()
-                self.trial21.Clear()
-                self.trial22.Clear()
-                self.trial23.Clear()
-                self.trial31.Clear()
-                self.trial32.Clear()
-                self.trial33.Clear()
-                self.trial41.Clear()
-                self.trial42.Clear()
-                self.trial51.Clear()
-                self.trial52.Clear()
-                self.trial61.Clear()
-                self.trial62.Clear()
-                self.trial63.Clear()
-                self.trial64.Clear()
-                self.trial71.Clear()
-                self.trial72.Clear()
-                self.trial73.Clear()
-                self.trial74.Clear()
-                self.trial81.Clear()
-                self.trial82.Clear()
-            else:
-                self.dial = wx.MessageDialog(
-                        None,
-                        'Name already exists',
-                        'Info',
-                        wx.OK
-                        )
-                self.dial.ShowModal()
-        else:
-            self.dial = wx.MessageDialog(
-                    None,
-                    'Save cancelled'  'Info',
-                    wx.OK
+                    'StudentDataFiles', studentname,
+                    'ScreenReaderSkillsProgression.html'
                     )
-            self.dial.ShowModal()
+            fig.write_html(tmppath)
+            fig.show()
+            ui.notify(f'Graph Successful. The Graphs will open in a Browser Window', close_button = 'OK')
 
-        def data_entry():
-            """
 
-            """
-            conn = sqlite3.connect(dataBasePath)
-            c = conn.cursor()
-            c.execute(
-                    """INSERT INTO ABACUSPROGRESS (
-                STUDENTNAME,
-                DATE,
-                P1_1,
-                P1_2,
-                P1_3,
-                P1_4,
-                P2_1,
-                P2_2,
-                P2_3,
-                P3_1,
-                P3_2,
-                P3_3,
-                P4_1,
-                P4_2,
-                P5_1,
-                P5_2,
-                P6_1,
-                P6_2,
-                P6_3,
-                P6_4,
-                P7_1,
-                P7_2,
-                P7_3,
-                P7_4,
-                P8_1,
-                P8_2
-                )
-                VALUES (
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?)""",
-                    (studentname,
-                     datenow,
-                     trial11,
-                     trial12,
-                     trial13,
-                     trial14,
-                     trial21,
-                     trial22,
-                     trial23,
-                     trial31,
-                     trial32,
-                     trial33,
-                     trial41,
-                     trial42,
-                     trial51,
-                     trial52,
-                     trial61,
-                     trial62,
-                     trial63,
-                     trial64,
-                     trial71,
-                     trial72,
-                     trial73,
-                     trial74,
-                     trial81,
-                     trial82
-                     )
+        with ui.row().classes('w-full no-wrap py-4'):
+            ui.select(options = students, with_input = True, on_change = lambda e: ui.notify(e.value)).bind_value(u_studentname, 'value').classes('w-1/2').props(
+                    'aria-label="Select Student from the Dropdown. It will '
+                    'autocomplete as you type"'
+                    ).tooltip('Type Student Name, it will autocomplete AS you type')
+            with ui.input('Date').classes('w-1/2').props('aria-label="Date. Please type in date using the YYYY-MM-DD format"').tooltip('Date. Please type in date using the YYYY-MM-DD format') as date:
+                with date.add_slot('append'):
+                    ui.icon('edit_calendar').on('click', lambda: menu.open()).classes('cursor-pointer')
+                with ui.menu() as menu:
+                    ui.date().bind_value(date)
+        with ui.row().classes('w-full no-wrap py-4 justify-center items-center'):
+            ui.label('RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent').props('aria-label="RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent" content-center')
+            ui.input().props('aria-label="RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent" content-center').classes('sr-only')
+        with ui.row().classes('w-full no-wrap py-4 justify-center items-center'):
+            ui.label('PHASE 1: READING').classes('justify-center items-center')
+            ui.input().props('aria-label="PHASE 1: READING').classes('sr-only')
+        with ui.row().classes('w-full no-wrap py-4'):
+            ui.number(label = "1.1", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial11.set_value(e.value)).classes('w-1/7').props('aria-label="1.1 Turn on and off the screen reader"').tooltip(
+                    '1.1 Turn on and off the screen reader'
                     )
-            conn.commit()
-
-        data_entry()
-
-    def graph(
-            self,
-            event
-            ):
-        """
-
-        :param event:
-        :type event:
-        """
-        studentname = self.studentname1.GetString(
-                self.studentname1.GetSelection()
-                )
-        conn = sqlite3.connect(dataBasePath)
-        dfSQL = pd.read_sql_query(f"SELECT * FROM ABACUSPROGRESS", conn)
-        dfStudent = dfSQL[dfSQL.STUDENTNAME == studentname]
-        print(dfStudent)
-        conn.close()
-        df = dfStudent.drop(columns = ['ID', 'STUDENTNAME'])
-        print(df)
-        df = df.rename(columns = {'DATE': 'date'})
-        df = df.set_index('date')
-        print(df)
-
-        # tmppath=Path(USER_DIR).joinpath(
-        #        'StudentDatabase',
-        #        'StudentDataFiles',
-        #        studentname,
-        #        'BrailleSkillsProgression.csv'
-        #        )
-
-        # df=pd.read_csv(
-        #        tmppath,
-        #        sep=',',
-        #        index_col=[0],
-        #        parse_dates=[0]
-        #        )
-        df = df.sort_values(by = "date")
-        mu, sigma = 0, 0.1
-        noise = np.random.normal(mu, sigma, [len(df.index), len(df.columns)])
-        df_noisy = df + noise
-        fig = make_subplots(
-                rows = 4,
-                cols = 2,
-                subplot_titles = (
-                        "Phase 1: Foundation",
-                        "Phase 2: Addition",
-                        "Phase 3: Subtraction",
-                        "Phase 4: Multiplication",
-                        "Phase 5: Division",
-                        "Phase 6: Decimals",
-                        "Phase 7: Fractions",
-                        "Phase 8: Special Functions"),
-                print_grid = True
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy["P1_1"],
-                        mode = "lines+markers",
-                        name = "Setting Numbers",
-                        legendgroup = "Phase 1",
-                        legendgrouptitle_text = "Phase 1"
-                        ),
-                row = 1,
-                col = 1
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy["P1_2"],
-                        mode = "lines+markers",
-                        name = "Clearing Beads",
-                        legendgroup = "Phase 1",
-                        legendgrouptitle_text = "Phase 1"
-                        ),
-                row = 1,
-                col = 1
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy["P1_3"],
-                        mode = "lines+markers",
-                        name = "Place Value",
-                        legendgroup = "Phase 1",
-                        legendgrouptitle_text = "Phase 1"
-                        ),
-                row = 1,
-                col = 1
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy["P1_4"],
-                        mode = "lines+markers",
-                        name = "Vocabulary",
-                        legendgroup = "Phase 1",
-                        legendgrouptitle_text = "Phase 1"
-                        ),
-                row = 1,
-                col = 1
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy["P2_1"],
-                        mode = "lines+markers",
-                        name = "Setting Numbers",
-                        legendgroup = "Phase 2",
-                        legendgrouptitle_text = "Phase 2"
-                        ),
-                row = 1,
-                col = 2
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy["P2_2"],
-                        mode = "lines+markers",
-                        name = "Clearing Beads",
-                        legendgroup = "Phase 2",
-                        legendgrouptitle_text = "Phase 2"
-                        ),
-                row = 1,
-                col = 2
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy["P2_3"],
-                        mode = "lines+markers",
-                        name = "Place Value",
-                        legendgroup = "Phase 2",
-                        legendgrouptitle_text = "Phase 2"
-                        ),
-                row = 1,
-                col = 2
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy["P3_1"],
-                        mode = "lines+markers",
-                        name = "Setting Numbers",
-                        legendgroup = "Phase 3",
-                        legendgrouptitle_text = "Phase 3"
-                        ),
-                row = 2,
-                col = 1
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy["P3_2"],
-                        mode = "lines+markers",
-                        name = "Clearing Beads",
-                        legendgroup = "Phase 3",
-                        legendgrouptitle_text = "Phase 3"
-                        ),
-                row = 2,
-                col = 1
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy["P3_3"],
-                        mode = "lines+markers",
-                        name = "Place Value",
-                        legendgroup = "Phase 3",
-                        legendgrouptitle_text = "Phase 3"
-                        ),
-                row = 2,
-                col = 1
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy["P4_1"],
-                        mode = "lines+markers",
-                        name = "Setting Numbers",
-                        legendgroup = "Phase 4",
-                        legendgrouptitle_text = "Phase 4"
-                        ),
-                row = 2,
-                col = 2
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy["P4_2"],
-                        mode = "lines+markers",
-                        name = "Clearing Beads",
-                        legendgroup = "Phase 4",
-                        legendgrouptitle_text = "Phase 4"
-                        ),
-                row = 2,
-                col = 2
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy["P5_1"],
-                        mode = "lines+markers",
-                        name = "Place Value",
-                        legendgroup = "Phase 5",
-                        legendgrouptitle_text = "Phase 5"
-                        ),
-                row = 3,
-                col = 1
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy["P5_2"],
-                        mode = "lines+markers",
-                        name = "Vocabulary",
-                        legendgroup = "Phase 5",
-                        legendgrouptitle_text = "Phase 5"
-                        ),
-                row = 3,
-                col = 1
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy["P6_1"],
-                        mode = "lines+markers",
-                        name = "Setting Numbers",
-                        legendgroup = "Phase 6",
-                        legendgrouptitle_text = "Phase 6"
-                        ),
-                row = 3,
-                col = 2
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy["P6_2"],
-                        mode = "lines+markers",
-                        name = "Clearing Beads",
-                        legendgroup = "Phase 6",
-                        legendgrouptitle_text = "Phase 6"
-                        ),
-                row = 3,
-                col = 2
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy["P6_3"],
-                        mode = "lines+markers",
-                        name = "Place Value",
-                        legendgroup = "Phase 6",
-                        legendgrouptitle_text = "Phase 6"
-                        ),
-                row = 3,
-                col = 2
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy["P6_4"],
-                        mode = "lines+markers",
-                        name = "Vocabulary",
-                        legendgroup = "Phase 6",
-                        legendgrouptitle_text = "Phase 6"
-                        ),
-                row = 3,
-                col = 2
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy["P7_1"],
-                        mode = "lines+markers",
-                        name = "Setting Numbers",
-                        legendgroup = "Phase 7",
-                        legendgrouptitle_text = "Phase 7"
-                        ),
-                row = 4,
-                col = 1
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy["P7_2"],
-                        mode = "lines+markers",
-                        name = "Clearing Beads",
-                        legendgroup = "Phase 7",
-                        legendgrouptitle_text = "Phase 7"
-                        ),
-                row = 4,
-                col = 1
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy["P7_3"],
-                        mode = "lines+markers",
-                        name = "Place Value",
-                        legendgroup = "Phase 7",
-                        legendgrouptitle_text = "Phase 7"
-                        ),
-                row = 4,
-                col = 1
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy["P7_4"],
-                        mode = "lines+markers",
-                        name = "Vocabulary",
-                        legendgroup = "Phase 7",
-                        legendgrouptitle_text = "Phase 7"
-                        ),
-                row = 4,
-                col = 1
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy["P8_1"],
-                        mode = "lines+markers",
-                        name = "Setting Numbers",
-                        legendgroup = "Phase 8",
-                        legendgrouptitle_text = "Phase 8"
-                        ),
-                row = 4,
-                col = 2
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy["P8_2"],
-                        mode = "lines+markers",
-                        name = "Clearing Beads",
-                        legendgroup = "Phase 8",
-                        legendgrouptitle_text = "Phase 8"
-                        ),
-                row = 4,
-                col = 2
-                )
-        fig.add_hrect(
-                y0 = -.5,
-                y1 = .5,
-                line_width = 0,
-                fillcolor = "red",
-                opacity = 0.2,
-                row = 1,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = .5,
-                y1 = 1.5,
-                line_width = 0,
-                fillcolor = "orange",
-                opacity = 0.2,
-                row = 1,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = 1.5,
-                y1 = 2.5,
-                line_width = 0,
-                fillcolor = "yellow",
-                opacity = 0.2,
-                row = 1,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = 2.5,
-                y1 = 3.5,
-                line_width = 0,
-                fillcolor = "green",
-                opacity = 0.2,
-                row = 1,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = -.5,
-                y1 = .5,
-                line_width = 0,
-                fillcolor = "red",
-                opacity = 0.2,
-                row = 1,
-                col = 2
-                )
-        fig.add_hrect(
-                y0 = .5,
-                y1 = 1.5,
-                line_width = 0,
-                fillcolor = "orange",
-                opacity = 0.2,
-                row = 1,
-                col = 2
-                )
-        fig.add_hrect(
-                y0 = 1.5,
-                y1 = 2.5,
-                line_width = 0,
-                fillcolor = "yellow",
-                opacity = 0.2,
-                row = 1,
-                col = 2
-                )
-        fig.add_hrect(
-                y0 = 2.5,
-                y1 = 3.5,
-                line_width = 0,
-                fillcolor = "green",
-                opacity = 0.2,
-                row = 1,
-                col = 2
-                )
-        fig.add_hrect(
-                y0 = -.5,
-                y1 = .5,
-                line_width = 0,
-                fillcolor = "red",
-                opacity = 0.2,
-                row = 2,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = .5,
-                y1 = 1.5,
-                line_width = 0,
-                fillcolor = "orange",
-                opacity = 0.2,
-                row = 2,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = 1.5,
-                y1 = 2.5,
-                line_width = 0,
-                fillcolor = "yellow",
-                opacity = 0.2,
-                row = 2,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = 2.5,
-                y1 = 3.5,
-                line_width = 0,
-                fillcolor = "green",
-                opacity = 0.2,
-                row = 2,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = -.5,
-                y1 = .5,
-                line_width = 0,
-                fillcolor = "red",
-                opacity = 0.2,
-                row = 2,
-                col = 2
-                )
-        fig.add_hrect(
-                y0 = .5,
-                y1 = 1.5,
-                line_width = 0,
-                fillcolor = "orange",
-                opacity = 0.2,
-                row = 2,
-                col = 2
-                )
-        fig.add_hrect(
-                y0 = 1.5,
-                y1 = 2.5,
-                line_width = 0,
-                fillcolor = "yellow",
-                opacity = 0.2,
-                row = 2,
-                col = 2
-                )
-        fig.add_hrect(
-                y0 = 2.5,
-                y1 = 3.5,
-                line_width = 0,
-                fillcolor = "green",
-                opacity = 0.2,
-                row = 2,
-                col = 2
-                )
-        fig.add_hrect(
-                y0 = -.5,
-                y1 = .5,
-                line_width = 0,
-                fillcolor = "red",
-                opacity = 0.2,
-                row = 3,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = .5,
-                y1 = 1.5,
-                line_width = 0,
-                fillcolor = "orange",
-                opacity = 0.2,
-                row = 3,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = 1.5,
-                y1 = 2.5,
-                line_width = 0,
-                fillcolor = "yellow",
-                opacity = 0.2,
-                row = 3,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = 2.5,
-                y1 = 3.5,
-                line_width = 0,
-                fillcolor = "green",
-                opacity = 0.2,
-                row = 3,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = -.5,
-                y1 = .5,
-                line_width = 0,
-                fillcolor = "red",
-                opacity = 0.2,
-                row = 3,
-                col = 2
-                )
-        fig.add_hrect(
-                y0 = .5,
-                y1 = 1.5,
-                line_width = 0,
-                fillcolor = "orange",
-                opacity = 0.2,
-                row = 3,
-                col = 2
-                )
-        fig.add_hrect(
-                y0 = 1.5,
-                y1 = 2.5,
-                line_width = 0,
-                fillcolor = "yellow",
-                opacity = 0.2,
-                row = 3,
-                col = 2
-                )
-        fig.add_hrect(
-                y0 = 2.5,
-                y1 = 3.5,
-                line_width = 0,
-                fillcolor = "green",
-                opacity = 0.2,
-                row = 3,
-                col = 2
-                )
-        fig.add_hrect(
-                y0 = -.5,
-                y1 = .5,
-                line_width = 0,
-                fillcolor = "red",
-                opacity = 0.2,
-                row = 4,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = .5,
-                y1 = 1.5,
-                line_width = 0,
-                fillcolor = "orange",
-                opacity = 0.2,
-                row = 4,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = 1.5,
-                y1 = 2.5,
-                line_width = 0,
-                fillcolor = "yellow",
-                opacity = 0.2,
-                row = 4,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = 2.5,
-                y1 = 3.5,
-                line_width = 0,
-                fillcolor = "green",
-                opacity = 0.2,
-                row = 4,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = -.5,
-                y1 = .5,
-                line_width = 0,
-                fillcolor = "red",
-                opacity = 0.2,
-                row = 4,
-                col = 2
-                )
-        fig.add_hrect(
-                y0 = .5,
-                y1 = 1.5,
-                line_width = 0,
-                fillcolor = "orange",
-                opacity = 0.2,
-                row = 4,
-                col = 2
-                )
-        fig.add_hrect(
-                y0 = 1.5,
-                y1 = 2.5,
-                line_width = 0,
-                fillcolor = "yellow",
-                opacity = 0.2,
-                row = 4,
-                col = 2
-                )
-        fig.add_hrect(
-                y0 = 2.5,
-                y1 = 3.5,
-                line_width = 0,
-                fillcolor = "green",
-                opacity = 0.2,
-                row = 4,
-                col = 2
-                )
-        fig.update_xaxes(
-                rangebreaks = [dict(bounds = ["sat", "mon"]), dict(values = [])],
-                row = 1,
-                col = 1
-                )
-        fig.update_xaxes(
-                rangebreaks = [dict(bounds = ["sat", "mon"]), dict(values = [])],
-                row = 1,
-                col = 2
-                )
-        fig.update_xaxes(
-                rangebreaks = [dict(bounds = ["sat", "mon"]), dict(values = [])],
-                row = 2,
-                col = 1
-                )
-        fig.update_xaxes(
-                rangebreaks = [dict(bounds = ["sat", "mon"]), dict(values = [])],
-                row = 2,
-                col = 2
-                )
-        fig.update_xaxes(
-                rangebreaks = [dict(bounds = ["sat", "mon"]), dict(values = [])],
-                row = 3,
-                col = 1
-                )
-        fig.update_xaxes(
-                rangebreaks = [dict(bounds = ["sat", "mon"]), dict(values = [])],
-                row = 3,
-                col = 2
-                )
-        fig.update_xaxes(
-                rangebreaks = [dict(bounds = ["sat", "mon"]), dict(values = [])],
-                row = 4,
-                col = 1
-                )
-        fig.update_xaxes(
-                rangebreaks = [dict(bounds = ["sat", "mon"]), dict(values = [])],
-                row = 4,
-                col = 2
-                )
-        fig.update_yaxes(
-                range = [-.5, 3.5], fixedrange = True,
-                ticktext = ["Unable", "Prompted", "Hesitated",
-                            "Independent"],
-                tickvals = [0.1, 1, 2, 3],
-                row = 1,
-                col = 1
-                )
-        fig.update_yaxes(
-                range = [-.5, 3.5], fixedrange = True,
-                ticktext = ["Unable", "Prompted", "Hesitated",
-                            "Independent"],
-                tickvals = [0.1, 1, 2, 3],
-                row = 1,
-                col = 2
-                )
-        fig.update_yaxes(
-                range = [-.5, 3.5], fixedrange = True,
-                ticktext = ["Unable", "Prompted", "Hesitated",
-                            "Independent"],
-                tickvals = [0.1, 1, 2, 3],
-                row = 2,
-                col = 1
-                )
-        fig.update_yaxes(
-                range = [-.5, 3.5], fixedrange = True,
-                ticktext = ["Unable", "Prompted", "Hesitated",
-                            "Independent"],
-                tickvals = [0.1, 1, 2, 3],
-                row = 2,
-                col = 2
-                )
-        fig.update_yaxes(
-                range = [-.5, 3.5], fixedrange = True,
-                ticktext = ["Unable", "Prompted", "Hesitated",
-                            "Independent"],
-                tickvals = [0.1, 1, 2, 3],
-                row = 3,
-                col = 1
-                )
-        fig.update_yaxes(
-                range = [-.5, 3.5], fixedrange = True,
-                ticktext = ["Unable", "Prompted", "Hesitated",
-                            "Independent"],
-                tickvals = [0.1, 1, 2, 3],
-                row = 3,
-                col = 2
-                )
-        fig.update_yaxes(
-                range = [-.5, 3.5], fixedrange = True,
-                ticktext = ["Unable", "Prompted", "Hesitated",
-                            "Independent"],
-                tickvals = [0.1, 1, 2, 3],
-                row = 4,
-                col = 1
-                )
-        fig.update_yaxes(
-                range = [-.5, 3.5], fixedrange = True,
-                ticktext = ["Unable", "Prompted", "Hesitated",
-                            "Independent"],
-                tickvals = [0.1, 1, 2, 3],
-                row = 4,
-                col = 2
-                )
-        fig.update_layout(
-                template = "simple_white",
-                title_text = f"{studentname}: Abacus Skills Progression"
-                )
-        tmppath = Path(USER_DIR).joinpath(
-                'StudentDatabase',
-                'StudentDataFiles', studentname,
-                'AbacusSkillsProgression.html'
-                )
-        fig.write_html(tmppath)
-        dfAsString = df.to_html(index = True)
-
-        dialog = MyBrowser(
-                None, -1
-                )
-        dialog.browser.SetPage(dfAsString, "")
-        dialog.Show()
-        fig.show()
-
-
-class cviPanel(scrolled.ScrolledPanel):
-    """
-
-    """
-
-    def __init__(
-            self,
-            parent
-            ):
-        scrolled.ScrolledPanel.__init__(
-                self,
-                parent,
-                -1
-                )
-        vbox = wx.BoxSizer(wx.VERTICAL)
-        vbox.Add(
-                wx.StaticLine(
-                        self,
-                        -1,
-                        size = (
-                                750,
-                                -1
-                                )
-                        ),
-                0,
-                wx.ALL,
-                5
-                )
-        vbox.Add(
-                wx.StaticLine(
-                        self,
-                        -1,
-                        size = (-1,
-                                750
-                                )
-                        ),
-                0,
-                wx.ALL,
-                5
-                )
-        vbox.Add(
-                (20,
-                 20
-                 )
-                )
-        self.SetSizer(vbox)
-        self.SetupScrolling()
-        self.SetBackgroundColour(
-                random.choice(
-                        colorList
-                        )
-                )
-        self.SetFont(
-                wx.Font(
-                        10,
-                        wx.MODERN,
-                        wx.NORMAL,
-                        wx.NORMAL,
-                        False,
-                        u'Atkinson Hyperlegible'
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "CVI PROGRESSION",
-                pos = (
-                        200,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "Student Name",
-                pos = (
-                        30,
-                        50
-                        )
-                )
-        self.studentname1 = wx.Choice(
-                self,
-                -1,
-                choices = students,
-                pos = (
-                        130,
-                        50
-                        ),
-                size = (
-                        300,
-                        30
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "Color Preference" + '.' * (200 - len("Color Preference")),
-                pos = (
-                        30,
-                        80
-                        )
-                )
-        self.trial11 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        80
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "Need for Movement" + '.' * (200 - len("Need for Movement")),
-                pos = (
-                        30,
-                        110
-                        )
-                )
-        self.trial12 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        110
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "Visual Latency" + '.' * (200 - len("Visual Latency")),
-                pos = (
-                        30,
-                        140
-                        )
-                )
-        self.trial13 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        140
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "Visual Field Preference" + '.' * (200 - len("Visual Field Preference")),
-                pos = (
-                        30,
-                        170
-                        )
-                )
-        self.trial14 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        170
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "Difficulty with Visual Complexity" + '.' * (200 - len("Difficulty with Visual Complexity")),
-                pos = (
-                        30,
-                        200
-                        )
-                )
-        self.trial21 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        200
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "Light Gazing and Nonpurposeful Gaze" + '.' * (200 - len("Light Gazing and Nonpurposeful Gaze")),
-                pos = (
-                        30,
-                        230
-                        )
-                )
-        self.trial22 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        230
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "Difficulty with Distance Viewing" + '.' * (200 - len("Difficulty with Distance Viewing")),
-                pos = (
-                        30,
-                        260
-                        )
-                )
-        self.trial23 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        260
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "Atypical Visual Reflexes" + '.' * (200 - len("Atypical Visual Reflexes")),
-                pos = (
-                        30,
-                        290
-                        )
-                )
-        self.trial31 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        290
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "Difficulty with Visual Novelty" + '.' * (200 - len("Difficulty with Visual Novelty")),
-                pos = (
-                        30,
-                        320
-                        )
-                )
-        self.trial32 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        320
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "Absence of Visually Guided Reach" + '.' * (200 - len("Absence of Visually Guided Reach")),
-                pos = (
-                        30,
-                        350
-                        )
-                )
-        self.trial33 = wx.TextCtrl(
-                self,
-                -1,
-                "",
-                pos = (
-                        650,
-                        350
-                        ),
-                size = (
-                        500,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "RUBRIC DATA",
-                pos = (
-                        200,
-                        400
-                        )
-                )
-        self.btn3 = wx.Button(
-                self,
-                204,
-                "SHOW RUBRIC",
-                pos = (
-                        500,
-                        450
-                        ),
-                size = (
-                        170,
-                        30
-                        )
-                )
-        self.Bind(
-                wx.EVT_BUTTON,
-                self.rubric,
-                id = 204
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "CVI DOMAIN",
-                pos = (
-                        30,
-                        450
-                        )
-                )
-        self.cviDomain1 = wx.Choice(
-                self,
-                -1,
-                choices = cviDomains,
-                pos = (
-                        150,
-                        450
-                        ),
-                size = (
-                        300,
-                        30
-                        )
-                )
-        self.btn = wx.Button(
-                self,
-                201,
-                "SAVE",
-                pos = (
-                        450,
-                        830
-                        ),
-                size = (
-                        70,
-                        30
-                        )
-                )
-        self.Bind(
-                wx.EVT_BUTTON,
-                self.save,
-                id = 201
-                )
-        self.btn = wx.Button(
-                self,
-                203,
-                "PRINT GRAPHS",
-                pos = (
-                        450,
-                        870
-                        ),
-                size = (
-                        170,
-                        30
-                        )
-                )
-        self.Bind(
-                wx.EVT_BUTTON,
-                self.graph,
-                id = 203
-                )
-        self.btn1 = wx.Button(
-                self,
-                202,
-                "EXIT",
-                pos = (
-                        550,
-                        830
-                        ),
-                size = (
-                        70,
-                        30
-                        )
-                )
-        self.Bind(
-                wx.EVT_BUTTON,
-                self.exit,
-                id = 202
-                )
-
-    def rubric(self, event):
-        """
-
-        :param event:
-        :type event:
-        """
-
-        cvidomain = self.cviDomain1.GetString(self.cviDomain1.GetSelection())
-        cvidomain = cvidomain.lower()
-        rubricdata = globals()[cvidomain]
-        wx.MessageBox(
-                rubricdata,
-                caption = "CVI RUBRICS"
-                )
-
-    @staticmethod
-    def exit(event):
-        """
-
-        :param event:
-        :type event:
-        """
-        wx.Exit()
-
-    def save(
-            self,
-            event
-            ):
-        """
-
-        :param event:
-        :type event:
-        """
-        studentname = self.studentname1.GetString(
-                self.studentname1.GetSelection()
-                )
-        datenow = datetime.datetime.now().strftime("%Y_%m_%d-%H%M%S")
-        simpledate = datetime.datetime.now().strftime("%Y_%m_%d-%H%M")
-        trial11 = self.trial11.GetValue()
-        trial12 = self.trial12.GetValue()
-        trial13 = self.trial13.GetValue()
-        trial14 = self.trial14.GetValue()
-        trial21 = self.trial21.GetValue()
-        trial22 = self.trial22.GetValue()
-        trial23 = self.trial23.GetValue()
-        trial31 = self.trial31.GetValue()
-        trial32 = self.trial32.GetValue()
-        trial33 = self.trial33.GetValue()
-        box = wx.TextEntryDialog(
-                None,
-                "Enter File Name",
-                "Title",
-                f"cvi{studentname.title()}{datenow}"
-                )
-        if box.ShowModal() == wx.ID_OK:
-            self.studentdatabasename = box.GetValue()
-            if not Path(USER_DIR).joinpath(
-                    'StudentDatabase',
-                    'StudentDataFiles',
-                    studentname,
-                    self.studentdatabasename + '.txt'
-                    ).exists():
-                tmppath = Path(USER_DIR).joinpath(
-                        'StudentDatabase',
-                        'StudentDataFiles',
-                        studentname,
-                        self.studentdatabasename + '.txt'
-                        )
-                self.filename = open(
-                        tmppath,
-                        'w'
-                        )
-                self.filename.write('studentname' + ', ')
-                self.filename.write('simpledate' + ', ')
-                self.filename.write('trial11' + ', ')
-                self.filename.write('trial12' + ', ')
-                self.filename.write('trial13' + ', ')
-                self.filename.write('trial14' + ', ')
-                self.filename.write('trial21' + ', ')
-                self.filename.write('trial22' + ', ')
-                self.filename.write('trial23' + ', ')
-                self.filename.write('trial31' + ', ')
-                self.filename.write('trial32' + ', ')
-                self.filename.write('trial33' + ', ')
-                self.filename.write(studentname + ', ')
-                self.filename.write(trial11 + ', ')
-                self.filename.write(trial12 + ', ')
-                self.filename.write(trial13 + ', ')
-                self.filename.write(trial14 + ', ')
-                self.filename.write(trial21 + ', ')
-                self.filename.write(trial22 + ', ')
-                self.filename.write(trial23 + ', ')
-                self.filename.write(trial31 + ', ')
-                self.filename.write(trial32 + ', ')
-                self.filename.write(trial33 + ', ')
-                self.filename.close()
-                tmppath = Path(USER_DIR).joinpath(
-                        'StudentDatabase',
-                        'StudentDataFiles',
-                        'Filenames.txt'
-                        )
-                self.filename = open(
-                        tmppath,
-                        'a'
-                        )
-                tmppath = Path(USER_DIR).joinpath(
-                        'StudentDatabase',
-                        'StudentDataFiles',
-                        studentname,
-                        self.studentdatabasename + '.txt'
-                        )
-                self.filename.write(f"{tmppath}" + '\n')
-                self.filename.close()
-                list_names = [
-                        'date',
-                        'P1_1',
-                        'P1_2',
-                        'P1_3',
-                        'P1_4',
-                        'P1_5',
-                        'P1_6',
-                        'P2_1',
-                        'P2_2',
-                        'P2_3',
-                        'P2_4'
-                        ]
-                list_data = [
-                        datenow,
-                        trial11,
-                        trial12,
-                        trial13,
-                        trial14,
-                        trial21,
-                        trial22,
-                        trial23,
-                        trial31,
-                        trial32,
-                        trial33
-                        ]
-
-                os.chdir(USER_DIR)
-                tmppath = Path(USER_DIR).joinpath(
-                        'StudentDatabase',
-                        'StudentDataFiles',
-                        studentname,
-                        'cviProgression.csv'
-                        )
-                with open(
-                        tmppath,
-                        'a',
-                        newline = ''
-                        ) as f_setup:
-                    writer_setup = writer(f_setup)
-                    writer_setup.writerow(list_data)
-                    f_setup.close()
-                self.dial = wx.MessageDialog(
-                        None,
-                        'Saved successfully!',
-                        'Info',
-                        wx.OK
-                        )
-                self.dial.ShowModal()
-                self.trial11.Clear()
-                self.trial12.Clear()
-                self.trial13.Clear()
-                self.trial14.Clear()
-                self.trial21.Clear()
-                self.trial22.Clear()
-                self.trial23.Clear()
-                self.trial31.Clear()
-                self.trial32.Clear()
-                self.trial33.Clear()
-            else:
-                self.dial = wx.MessageDialog(
-                        None,
-                        'Name already exists',
-                        'Info',
-                        wx.OK
-                        )
-                self.dial.ShowModal()
-        else:
-            self.dial = wx.MessageDialog(
-                    None,
-                    'Save cancelled'  'Info',
-                    wx.OK
+            ui.number(label = "1.2", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial12.set_value(e.value)).classes('w-1/7').props(
+                    'aria-label="1.2 Utilize modifier keys such as ctrl alt and shift"'
+                    ).tooltip('1.2 Utilize modifier keys such as ctrl alt and shift')
+            ui.number(label = "1.3", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial13.set_value(e.value)).classes('w-1/7').props(
+                    'aria-label="1.3 Read text using a variety of reading commands"'
+                    ).tooltip('1.3 Read text using a variety of reading commands')
+            ui.number(label = "1.4", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial14.set_value(e.value)).classes('w-1/7').props(
+                    'aria-label="1.4 Identify the titles and section titles of documents with Headings"'
+                    ).tooltip('1.4 Identify the titles and section titles of documents with Headings')
+            ui.number(label = '1.5', min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial15.set_value(e.value)).classes('w-1/7').props(
+                    'aria-label="1.5 Access documents open and close programs  navigate to the  desktop"'
+                    ).tooltip('1.5 Access documents open and close programs  navigate to the  desktop')
+            ui.number(label = '1.6', min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial16.set_value(e.value)).classes('w-1/7').props('aria-label="1.6 Switch Program Focus"').tooltip(
+                    '1.6 Switch Program Focus'
                     )
-            self.dial.ShowModal()
-
-        def data_entry():
-            """
-
-            """
-            conn = sqlite3.connect(dataBasePath)
-            c = conn.cursor()
-            c.execute(
-                    """INSERT INTO CVIPROGRESS (
-                STUDENTNAME,
-                DATE,
-                P1_1,
-                P1_2,
-                P1_3,
-                P1_4,
-                P1_5,
-                P1_6,
-                P2_1,
-                P2_2,
-                P2_3,
-                P2_4
-                )
-                VALUES (
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?
-                )
-                """,
-                    (
-                            studentname,
-                            datenow,
-                            trial11,
-                            trial12,
-                            trial13,
-                            trial14,
-                            trial21,
-                            trial22,
-                            trial23,
-                            trial31,
-                            trial32,
-                            trial33
-                            )
+            ui.label(' ').classes('w-1/7')
+        with ui.row().classes('w-full no-wrap py-4 justify-center items-center'):
+            ui.label('PHASE 2: WRITING').classes('justify-center items-center')
+            ui.input().props('aria-label="PHASE 2: WRITING').classes('sr-only')
+        with ui.row().classes('w-full no-wrap py-4'):
+            ui.number(label = "2.1", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial21.set_value(e.value)).classes('w-1/7').props(
+                    'aria-label="2.1 Type with all alphanumeric keys on the keyboard."'
+                    ).tooltip('2.1 Type with all alphanumeric keys on the keyboard.')
+            ui.number(label = "2.2", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial22.set_value(e.value)).classes('w-1/7').props(
+                    'aria-label="2.2 Navigate to and change screen reader settings"'
+                    ).tooltip('2.2 Navigate to and change screen reader settings')
+            ui.number(label = "2.3", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial23.set_value(e.value)).classes('w-1/7').props(
+                    'aria-label="2.3 Write and edit documents using a basic understanding of cursor placement"'
+                    ).tooltip('2.3 Write and edit documents using a basic understanding of cursor placement')
+            ui.number(label = "2.4", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial24.set_value(e.value)).classes('w-1/7').props('aria-label="2.4. Select copy and paste text"').tooltip(
+                    '2.4. Select copy and paste text'
                     )
-            conn.commit()
-
-        data_entry()
-
-    def graph(self, event):
-        """
-
-        :param event:
-        :type event:
-        """
-        studentname = self.studentname1.GetString(
-                self.studentname1.GetSelection()
-                )
-        conn = sqlite3.connect(dataBasePath)
-        dfSQL = pd.read_sql_query(f"SELECT * FROM CVIPROGRESS", conn)
-        dfStudent = dfSQL[dfSQL.STUDENTNAME == studentname]
-        print(dfStudent)
-        conn.close()
-        df = dfStudent.drop(columns = ['ID', 'STUDENTNAME'])
-        print(df)
-        df = df.rename(columns = {'DATE': 'date'})
-        df = df.set_index('date')
-        print(df)
-
-        # tmppath=Path(USER_DIR).joinpath(
-        #        'StudentDatabase',
-        #        'StudentDataFiles',
-        #        studentname,
-        #        'BrailleSkillsProgression.csv'
-        #        )
-
-        # df=pd.read_csv(
-        #        tmppath,
-        #        sep=',',
-        #        index_col=[0],
-        #        parse_dates=[0]
-        #        )
-        # df['date']=pd.to_datetime(df['date'])
-        df = df.sort_values(by = "date")
-        print(df)
-        mu, sigma = 0, 0.1
-        noise = np.random.normal(mu, sigma, [len(df.index), len(df.columns)])
-        df_noisy = df + noise
-        fig = make_subplots(
-                rows = 5,
-                cols = 2, subplot_titles = (
-                        "Color Preference",
-                        "Need for Movement",
-                        "Latency",
-                        "Field Preference",
-                        "Visual Complexity",
-                        "Nonpurposeful Gaze",
-                        "Distance Viewing",
-                        "Atypical Reflexes",
-                        "Visual Novelty",
-                        "Visual Reach"),
-                print_grid = True
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy["P1_1"],
-                        mode = "lines+markers",
-                        name = "Color Preference",
-                        legendgroup = "",
-                        legendgrouptitle_text = " "
-                        ),
-                row = 1,
-                col = 1
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy["P1_2"],
-                        mode = "lines+markers",
-                        name = "Need for Movement",
-                        legendgroup = "Phase 1",
-                        legendgrouptitle_text = "Phase 1"
-                        ),
-                row = 1,
-                col = 2
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy["P1_3"],
-                        mode = "lines+markers",
-                        name = "Latency",
-                        legendgroup = "",
-                        legendgrouptitle_text = " "
-                        ),
-                row = 2,
-                col = 1
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy["P1_4"],
-                        mode = "lines+markers",
-                        name = "Field Prefence",
-                        legendgroup = "",
-                        legendgrouptitle_text = " "
-                        ),
-                row = 2,
-                col = 2
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy["P1_5"],
-                        mode = "lines+markers",
-                        name = "Visual Complexity",
-                        legendgroup = "",
-                        legendgrouptitle_text = " "
-                        ),
-                row = 3,
-                col = 1
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy["P1_6"],
-                        mode = "lines+markers",
-                        name = "Nonpurposeful Gaze",
-                        legendgroup = "",
-                        legendgrouptitle_text = " "
-                        ),
-                row = 3,
-                col = 2
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy["P2_1"],
-                        mode = "lines+markers",
-                        name = "Distance Viewing",
-                        legendgroup = "",
-                        legendgrouptitle_text = " "
-                        ),
-                row = 4,
-                col = 1
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy["P2_2"],
-                        mode = "lines+markers",
-                        name = "Atypical Reflexes",
-                        legendgroup = "",
-                        legendgrouptitle_text = " "
-                        ),
-                row = 4,
-                col = 2
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy["P2_3"],
-                        mode = "lines+markers",
-                        name = "Visual Novelty",
-                        legendgroup = "",
-                        legendgrouptitle_text = " "
-                        ),
-                row = 5,
-                col = 1
-                )
-        fig.add_trace(
-                go.Scatter(
-                        x = df_noisy.index, y = df_noisy["P2_4"],
-                        mode = "lines+markers",
-                        name = "Visual Reach",
-                        legendgroup = "Phase 3",
-                        legendgrouptitle_text = " "
-                        ),
-                row = 5,
-                col = 2
-                )
-        fig.add_hrect(
-                y0 = -.5,
-                y1 = .5,
-                line_width = 0,
-                fillcolor = "red",
-                opacity = 0.2,
-                row = 1,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = .5,
-                y1 = 1.5,
-                line_width = 0,
-                fillcolor = "orange",
-                opacity = 0.2,
-                row = 1,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = 1.5,
-                y1 = 2.5,
-                line_width = 0,
-                fillcolor = "yellow",
-                opacity = 0.2,
-                row = 1,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = 2.5,
-                y1 = 3.5,
-                line_width = 0,
-                fillcolor = "green",
-                opacity = 0.2,
-                row = 1,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = -.5,
-                y1 = .5,
-                line_width = 0,
-                fillcolor = "red",
-                opacity = 0.2,
-                row = 1,
-                col = 2
-                )
-        fig.add_hrect(
-                y0 = .5,
-                y1 = 1.5,
-                line_width = 0,
-                fillcolor = "orange",
-                opacity = 0.2,
-                row = 1,
-                col = 2
-                )
-        fig.add_hrect(
-                y0 = 1.5,
-                y1 = 2.5,
-                line_width = 0,
-                fillcolor = "yellow",
-                opacity = 0.2,
-                row = 1,
-                col = 2
-                )
-        fig.add_hrect(
-                y0 = 2.5,
-                y1 = 3.5,
-                line_width = 0,
-                fillcolor = "green",
-                opacity = 0.2,
-                row = 1,
-                col = 2
-                )
-        fig.add_hrect(
-                y0 = -.5,
-                y1 = .5,
-                line_width = 0,
-                fillcolor = "red",
-                opacity = 0.2,
-                row = 2,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = .5,
-                y1 = 1.5,
-                line_width = 0,
-                fillcolor = "orange",
-                opacity = 0.2,
-                row = 2,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = 1.5,
-                y1 = 2.5,
-                line_width = 0,
-                fillcolor = "yellow",
-                opacity = 0.2,
-                row = 2,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = 2.5,
-                y1 = 3.5,
-                line_width = 0,
-                fillcolor = "green",
-                opacity = 0.2,
-                row = 2,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = -.5,
-                y1 = .5,
-                line_width = 0,
-                fillcolor = "red",
-                opacity = 0.2,
-                row = 2,
-                col = 2
-                )
-        fig.add_hrect(
-                y0 = .5,
-                y1 = 1.5,
-                line_width = 0,
-                fillcolor = "orange",
-                opacity = 0.2,
-                row = 2,
-                col = 2
-                )
-        fig.add_hrect(
-                y0 = 1.5,
-                y1 = 2.5,
-                line_width = 0,
-                fillcolor = "yellow",
-                opacity = 0.2,
-                row = 2,
-                col = 2
-                )
-        fig.add_hrect(
-                y0 = 2.5,
-                y1 = 3.5,
-                line_width = 0,
-                fillcolor = "green",
-                opacity = 0.2,
-                row = 2,
-                col = 2
-                )
-        fig.add_hrect(
-                y0 = -.5,
-                y1 = .5,
-                line_width = 0,
-                fillcolor = "red",
-                opacity = 0.2,
-                row = 3,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = .5,
-                y1 = 1.5,
-                line_width = 0,
-                fillcolor = "orange",
-                opacity = 0.2,
-                row = 3,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = 1.5,
-                y1 = 2.5,
-                line_width = 0,
-                fillcolor = "yellow",
-                opacity = 0.2,
-                row = 3,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = 2.5,
-                y1 = 3.5,
-                line_width = 0,
-                fillcolor = "green",
-                opacity = 0.2,
-                row = 3,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = -.5,
-                y1 = .5,
-                line_width = 0,
-                fillcolor = "red",
-                opacity = 0.2,
-                row = 3,
-                col = 2
-                )
-        fig.add_hrect(
-                y0 = .5,
-                y1 = 1.5,
-                line_width = 0,
-                fillcolor = "orange",
-                opacity = 0.2,
-                row = 3,
-                col = 2
-                )
-        fig.add_hrect(
-                y0 = 1.5,
-                y1 = 2.5,
-                line_width = 0,
-                fillcolor = "yellow",
-                opacity = 0.2,
-                row = 3,
-                col = 2
-                )
-        fig.add_hrect(
-                y0 = 2.5,
-                y1 = 3.5,
-                line_width = 0,
-                fillcolor = "green",
-                opacity = 0.2,
-                row = 3,
-                col = 2
-                )
-        fig.add_hrect(
-                y0 = -.5,
-                y1 = .5,
-                line_width = 0,
-                fillcolor = "red",
-                opacity = 0.2,
-                row = 4,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = .5,
-                y1 = 1.5,
-                line_width = 0,
-                fillcolor = "orange",
-                opacity = 0.2,
-                row = 4,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = 1.5,
-                y1 = 2.5,
-                line_width = 0,
-                fillcolor = "yellow",
-                opacity = 0.2,
-                row = 4,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = 2.5,
-                y1 = 3.5,
-                line_width = 0,
-                fillcolor = "green",
-                opacity = 0.2,
-                row = 4,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = -.5,
-                y1 = .5,
-                line_width = 0,
-                fillcolor = "red",
-                opacity = 0.2,
-                row = 4,
-                col = 2
-                )
-        fig.add_hrect(
-                y0 = .5,
-                y1 = 1.5,
-                line_width = 0,
-                fillcolor = "orange",
-                opacity = 0.2,
-                row = 4,
-                col = 2
-                )
-        fig.add_hrect(
-                y0 = 1.5,
-                y1 = 2.5,
-                line_width = 0,
-                fillcolor = "yellow",
-                opacity = 0.2,
-                row = 4,
-                col = 2
-                )
-        fig.add_hrect(
-                y0 = 2.5,
-                y1 = 3.5,
-                line_width = 0,
-                fillcolor = "green",
-                opacity = 0.2,
-                row = 4,
-                col = 2
-                )
-        fig.add_hrect(
-                y0 = -.5,
-                y1 = .5,
-                line_width = 0,
-                fillcolor = "red",
-                opacity = 0.2,
-                row = 5,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = .5,
-                y1 = 1.5,
-                line_width = 0,
-                fillcolor = "orange",
-                opacity = 0.2,
-                row = 5,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = 1.5,
-                y1 = 2.5,
-                line_width = 0,
-                fillcolor = "yellow",
-                opacity = 0.2,
-                row = 5,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = 2.5,
-                y1 = 3.5,
-                line_width = 0,
-                fillcolor = "green",
-                opacity = 0.2,
-                row = 5,
-                col = 1
-                )
-        fig.add_hrect(
-                y0 = -.5,
-                y1 = .5,
-                line_width = 0,
-                fillcolor = "red",
-                opacity = 0.2,
-                row = 5,
-                col = 2
-                )
-        fig.add_hrect(
-                y0 = .5,
-                y1 = 1.5,
-                line_width = 0,
-                fillcolor = "orange",
-                opacity = 0.2,
-                row = 5,
-                col = 2
-                )
-        fig.add_hrect(
-                y0 = 1.5,
-                y1 = 2.5,
-                line_width = 0,
-                fillcolor = "yellow",
-                opacity = 0.2,
-                row = 5,
-                col = 2
-                )
-        fig.add_hrect(
-                y0 = 2.5,
-                y1 = 3.5,
-                line_width = 0,
-                fillcolor = "green",
-                opacity = 0.2,
-                row = 5,
-                col = 2
-                )
-        fig.update_xaxes(
-                rangebreaks = [dict(bounds = ["sat", "mon"]), dict(values = [" "])],
-                row = 1,
-                col = 1
-                )
-        fig.update_xaxes(
-                rangebreaks = [dict(bounds = ["sat", "mon"]), dict(values = [])],
-                row = 1,
-                col = 2
-                )
-        fig.update_xaxes(
-                rangebreaks = [dict(bounds = ["sat", "mon"]), dict(values = [])],
-                row = 2,
-                col = 1
-                )
-        fig.update_xaxes(
-                rangebreaks = [dict(bounds = ["sat", "mon"]), dict(values = [])],
-                row = 2,
-                col = 2
-                )
-        fig.update_xaxes(
-                rangebreaks = [dict(bounds = ["sat", "mon"]), dict(values = [])],
-                row = 3,
-                col = 1
-                )
-        fig.update_xaxes(
-                rangebreaks = [dict(bounds = ["sat", "mon"]), dict(values = [])],
-                row = 3,
-                col = 2
-                )
-        fig.update_xaxes(
-                rangebreaks = [dict(bounds = ["sat", "mon"]), dict(values = [])],
-                row = 4,
-                col = 1
-                )
-        fig.update_xaxes(
-                rangebreaks = [dict(bounds = ["sat", "mon"]), dict(values = [])],
-                row = 4,
-                col = 2
-                )
-        fig.update_yaxes(
-                range = [-.5, 3.5], fixedrange = True,
-                ticktext = ["Phase 1", "Phase 2", "Phase 3",
-                            "Resolving"],
-                tickvals = [0.1, 1, 2, 3],
-                row = 1,
-                col = 1
-                )
-        fig.update_yaxes(
-                range = [-.5, 3.5], fixedrange = True,
-                ticktext = ["Phase 1", "Phase 2", "Phase 3",
-                            "Resolving"],
-                tickvals = [0.1, 1, 2, 3],
-                row = 1,
-                col = 2
-                )
-        fig.update_yaxes(
-                range = [-.5, 3.5], fixedrange = True,
-                ticktext = ["Phase 1", "Phase 2", "Phase 3",
-                            "Resolving"],
-                tickvals = [0.1, 1, 2, 3],
-                row = 2,
-                col = 1
-                )
-        fig.update_yaxes(
-                range = [-.5, 3.5], fixedrange = True,
-                ticktext = ["Phase 1", "Phase 2", "Phase 3",
-                            "Resolving"],
-                tickvals = [0.1, 1, 2, 3],
-                row = 2,
-                col = 2
-                )
-        fig.update_yaxes(
-                range = [-.5, 3.5], fixedrange = True,
-                ticktext = ["Phase 1", "Phase 2", "Phase 3",
-                            "Resolving"],
-                tickvals = [0.1, 1, 2, 3],
-                row = 3,
-                col = 1
-                )
-        fig.update_yaxes(
-                range = [-.5, 3.5], fixedrange = True,
-                ticktext = ["Phase 1", "Phase 2", "Phase 3",
-                            "Resolving"],
-                tickvals = [0.1, 1, 2, 3],
-                row = 3,
-                col = 2
-                )
-        fig.update_yaxes(
-                range = [-.5, 3.5], fixedrange = True,
-                ticktext = ["Phase 1", "Phase 2", "Phase 3",
-                            "Resolving"],
-                tickvals = [0.1, 1, 2, 3],
-                row = 4,
-                col = 1
-                )
-        fig.update_yaxes(
-                range = [-.5, 3.5], fixedrange = True,
-                ticktext = ["Phase 1", "Phase 2", "Phase 3",
-                            "Resolving"],
-                tickvals = [0.1, 1, 2, 3],
-                row = 4,
-                col = 2
-                )
-        fig.update_yaxes(
-                range = [-.5, 3.5], fixedrange = True,
-                ticktext = ["Phase 1", "Phase 2", "Phase 3",
-                            "Resolving"],
-                tickvals = [0.1, 1, 2, 3],
-                row = 5,
-                col = 1
-                )
-        fig.update_yaxes(
-                range = [-.5, 3.5], fixedrange = True,
-                ticktext = ["Phase 1", "Phase 2", "Phase 3",
-                            "Resolving"],
-                tickvals = [0.1, 1, 2, 3],
-                row = 5,
-                col = 2
-                )
-        fig.update_layout(
-                template = "simple_white",
-                title_text = f"{studentname}: CVI Progression"
-                )
-        tmppath = Path(USER_DIR).joinpath(
-                'StudentDatabase',
-                'StudentDataFiles', studentname,
-                'cviProgression.html'
-                )
-        fig.write_html(tmppath)
-        dfAsString = df.to_html(index = True)
-
-        dialog = MyBrowser(
-                None, -1
-                )
-        dialog.browser.SetPage(dfAsString, "")
-        dialog.Show()
-        fig.show()
-
-
-class iepIntro(scrolled.ScrolledPanel):
-    """
-
-    """
-
-    def __init__(
-            self,
-            parent
-            ):
-        scrolled.ScrolledPanel.__init__(
-                self,
-                parent,
-                -1
-                )
-        vbox = wx.BoxSizer(wx.VERTICAL)
-        vbox.Add(
-                wx.StaticLine(
-                        self,
-                        -1,
-                        size = (
-                                750,
-                                -1
-                                )
-                        ),
-                0,
-                wx.ALL,
-                5
-                )
-        vbox.Add(
-                wx.StaticLine(
-                        self,
-                        -1,
-                        size = (-1,
-                                750
-                                )
-                        ),
-                0,
-                wx.ALL,
-                5
-                )
-        vbox.Add(
-                (20,
-                 20
-                 )
-                )
-        self.SetSizer(vbox)
-        self.SetupScrolling()
-        self.SetBackgroundColour(
-                random.choice(
-                        colorList
-                        )
-                )
-        self.SetFont(
-                wx.Font(
-                        10,
-                        wx.MODERN,
-                        wx.NORMAL,
-                        wx.NORMAL,
-                        False,
-                        u'Atkinson Hyperlegible'
-                        )
-                )
-        scrolled.ScrolledPanel.__init__(
-                self,
-                parent,
-                -1
-                )
-        vbox = wx.BoxSizer(wx.VERTICAL)
-        vbox.Add(
-                wx.StaticLine(
-                        self,
-                        -1,
-                        size = (
-                                1500,
-                                -1
-                                )
-                        ),
-                0,
-                wx.ALL,
-                5
-                )
-        vbox.Add(
-                wx.StaticLine(
-                        self,
-                        -1,
-                        size = (-1,
-                                2100
-                                )
-                        ),
-                0,
-                wx.ALL,
-                5
-                )
-        vbox.Add(
-                (20,
-                 20
-                 )
-                )
-        self.SetSizer(vbox)
-        self.SetupScrolling()
-        wx.StaticText(
-                self,
-                -1,
-                "2022-2023 IEP CASELOAD REPORT",
-                pos = (
-                        170,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "Student Name",
-                pos = (
-                        30,
-                        50
-                        )
-                )
-        self.studentname1 = wx.Choice(
-                self,
-                -1,
-                choices = students,
-                pos = (
-                        130,
-                        50
-                        ),
-                size = (
-                        300,
-                        30
-                        )
-                )
-        self.btn = wx.Button(
-                self,
-                401,
-                "IEP GOALS",
-                pos = (
-                        130,
-                        100
-                        ),
-                size = (
-                        170,
-                        30
-                        )
-                )
-        self.Bind(
-                wx.EVT_BUTTON,
-                self.submit,
-                id = 401
-                )
-        self.btn1 = wx.Button(
-                self,
-                402,
-                "EXIT",
-                pos = (
-                        330,
-                        100
-                        ),
-                size = (
-                        170,
-                        30
-                        )
-                )
-        self.Bind(
-                wx.EVT_BUTTON,
-                self.exit,
-                id = 402
-                )
-        self.btn3 = wx.Button(
-                self,
-                502,
-                "OPEN DATASHEETS",
-                pos = (
-                        130,
-                        150
-                        ),
-                size = (
-                        170,
-                        30
-                        )
-                )
-        self.Bind(
-                wx.EVT_BUTTON,
-                self.datasheet,
-                id = 502
-                )
-        self.btn4 = wx.Button(
-                self,
-                602,
-                "UPLOAD DATASHEET",
-                pos = (
-                        330,
-                        150
-                        ),
-                size = (
-                        170,
-                        30
-                        )
-                )
-        self.Bind(
-                wx.EVT_BUTTON,
-                self.upload,
-                id = 602
-                )
-        self.btn5 = wx.Button(
-                self,
-                702,
-                "UPLOAD VISION REPORT",
-                pos = (
-                        130,
-                        200
-                        ),
-                size = (
-                        170,
-                        30
-                        )
-                )
-        self.Bind(
-                wx.EVT_BUTTON,
-                self.report,
-                id = 702
-                )
-        self.btn5 = wx.Button(
-                self,
-                702,
-                "UPLOAD IEP",
-                pos = (
-                        330,
-                        200
-                        ),
-                size = (
-                        170,
-                        30
-                        )
-                )
-        self.Bind(
-                wx.EVT_BUTTON,
-                self.iep,
-                id = 702
-                )
-
-    @staticmethod
-    def exit(event):
-        """
-
-        :param event:
-        :type event:
-        """
-        wx.Exit()
-
-    def datasheet(
-            self,
-            event
-            ):
-        """
-
-        :param event:
-        :type event:
-        """
-        studentname = self.studentname1.GetString(
-                self.studentname1.GetSelection()
-                )
-        uploadlocation = Path(USER_DIR).joinpath(
-                'StudentDatabase',
-                'StudentDataFiles',
-                studentname
-                )
-        openfiledialog = wx.FileDialog(
-                frame,
-                "Open Student Datasheet",
-                f"{uploadlocation}",
-                "",
-                "PDF files (*.pdf)|*.pdf",
-                wx.FD_OPEN | wx.FD_FILE_MUST_EXIST
-                )
-
-        openfiledialog.ShowModal()
-        print(openfiledialog.GetPath())
-        openfiledialog.Destroy()
-
-    def clear(
-            self,
-            event
-            ):
-        """
-
-        :param event:
-        :type event:
-        """
-        self.Refresh()
-
-    def submit(self, event):
-        """
-
-        :param event:
-        :type event:
-        """
-        studentname = self.studentname1.GetString(self.studentname1.GetSelection())
-        studentname = studentname.lower()
-
-        lookupid = f"{studentname}iep"
-        iepdata = globals()[lookupid]
-        wx.MessageBox(
-                iepdata,
-                caption = f"IEP Summary for {studentname}"
-                )
-
-    def upload(
-            self,
-            event
-            ):
-        """
-
-        :param event:
-        :type event:
-        """
-        studentname = self.studentname1.GetString(
-                self.studentname1.GetSelection()
-                )
-        uploadlocation = Path(USER_DIR).joinpath(
-                'StudentDatabase',
-                'StudentDataFiles',
-                studentname
-                )
-        openfiledialog = wx.FileDialog(
-                frame,
-                "Open",
-                "",
-                "",
-                "",
-                wx.FD_OPEN | wx.FD_FILE_MUST_EXIST
-                )
-        openfiledialog.ShowModal()
-        uploadfile = openfiledialog.GetPath()
-        openfiledialog.Destroy()
-        shutil.copy2(
-                uploadfile,
-                uploadlocation
-                )
-        self.dial = wx.MessageDialog(
-                None,
-                'Datasheet Uploaded Successfully!',
-                'Info',
-                wx.OK
-                )
-        self.dial.ShowModal()
-
-    def report(
-            self,
-            event
-            ):
-        """
-
-        :param event:
-        :type event:
-        """
-        studentname = self.studentname1.GetString(
-                self.studentname1.GetSelection()
-                )
-        uploadlocation = Path(USER_DIR).joinpath(
-                'StudentDatabase',
-                'StudentDataFiles',
-                studentname
-                )
-        openfiledialog = wx.FileDialog(
-                frame,
-                "Open",
-                "",
-                "",
-                "",
-                wx.FD_OPEN | wx.FD_FILE_MUST_EXIST
-                )
-        openfiledialog.ShowModal()
-        uploadfile = openfiledialog.GetPath()
-        openfiledialog.Destroy()
-        shutil.copy2(
-                uploadfile,
-                uploadlocation
-                )
-        self.dial = wx.MessageDialog(
-                None,
-                'Vision Report Uploaded Ssuccessfully!',
-                'Info',
-                wx.OK
-                )
-        self.dial.ShowModal()
-
-    def iep(
-            self,
-            event
-            ):
-        """
-
-        :param event:
-        :type event:
-        """
-        studentname = self.studentname1.GetString(
-                self.studentname1.GetSelection()
-                )
-        uploadlocation = Path(USER_DIR).joinpath(
-                'StudentDatabase',
-                'StudentDataFiles',
-                studentname
-                )
-        openfiledialog = wx.FileDialog(
-                frame,
-                "Open",
-                "",
-                "",
-                "",
-                wx.FD_OPEN | wx.FD_FILE_MUST_EXIST
-                )
-        openfiledialog.ShowModal()
-        uploadfile = openfiledialog.GetPath()
-        openfiledialog.Destroy()
-        shutil.copy2(
-                uploadfile,
-                uploadlocation
-                )
-        self.dial = wx.MessageDialog(
-                None,
-                'IEP Uploaded Successfully!',
-                'Info',
-                wx.OK
-                )
-        self.dial.ShowModal()
-
-
-class meetingsPanel(scrolled.ScrolledPanel):
-    """
-
-    """
-
-    def __init__(
-            self,
-            parent
-            ):
-        scrolled.ScrolledPanel.__init__(
-                self,
-                parent,
-                -1
-                )
-        vbox = wx.BoxSizer(
-                wx.VERTICAL
-                )
-        vbox.Add(
-                wx.StaticLine(
-                        self,
-                        -1,
-                        size = (
-                                750,
-                                -1
-                                )
-                        ),
-                0,
-                wx.ALL,
-                5
-                )
-        vbox.Add(
-                wx.StaticLine(
-                        self,
-                        -1,
-                        size = (-1,
-                                750
-                                )
-                        ),
-                0,
-                wx.ALL,
-                5
-                )
-        vbox.Add(
-                (20,
-                 20
-                 )
-                )
-        self.SetSizer(vbox)
-        self.SetupScrolling()
-        self.SetBackgroundColour(
-                random.choice(
-                        colorList
-                        )
-                )
-        self.SetFont(
-                wx.Font(
-                        10,
-                        wx.MODERN,
-                        wx.NORMAL,
-                        wx.NORMAL,
-                        False,
-                        u'Atkinson Hyperlegible'
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "PLANNING MEETING",
-                pos = (
-                        170,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "Student Name",
-                pos = (
-                        30,
-                        50
-                        )
-                )
-        self.studentname1 = wx.Choice(
-                self,
-                -1,
-                choices = students,
-                pos = (
-                        130,
-                        50
-                        ),
-                size = (
-                        300,
-                        30
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                f"Date: {date}",
-                pos = (
-                        30,
-                        80
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "Anecdotal Notes",
-                pos = (
-                        30,
-                        110
-                        )
-                )
-        self.notes1 = wx.TextCtrl(
-                self,
-                111,
-                "",
-                pos = (
-                        170,
-                        110
-                        ),
-                size = (
-                        700,
-                        700
-                        ),
-                style = wx.TE_MULTILINE | wx.TE_WORDWRAP | wx.TE_PROCESS_TAB
-                )
-        # self.notes1.Bind(wx.EVT_KEY_DOWN, self.virtualTab)
-        self.Bind(wx.EVT_CHAR_HOOK, self.virtualTab, id = 111)
-        self.btn = wx.Button(
-                self,
-                201,
-                "SAVE",
-                pos = (
-                        450,
-                        850
-                        ),
-                size = (
-                        70,
-                        30
-                        )
-                )
-        self.Bind(
-                wx.EVT_BUTTON,
-                self.save,
-                id = 201
-                )
-        self.btn2 = wx.Button(
-                self,
-                203,
-                "UPLOAD FILE",
-                pos = (
-                        450,
-                        890
-                        ),
-                size = (
-                        170,
-                        30
-                        )
-                )
-        self.Bind(
-                wx.EVT_BUTTON,
-                self.upload,
-                id = 203
-                )
-        self.btn1 = wx.Button(
-                self,
-                202,
-                "EXIT",
-                pos = (
-                        550,
-                        850
-                        ),
-                size = (
-                        70,
-                        30
-                        )
-                )
-        self.Bind(
-                wx.EVT_BUTTON,
-                self.exit,
-                id = 202
-                )
-        self.Bind(
-                wx.EVT_BUTTON,
-                self.save,
-                id = 201
-                )
-
-        os.chdir(USER_DIR)
-
-    def virtualTab(self, event):
-        keycode = event.GetKeyCode()
-        print(keycode)
-        if keycode == 308:
-            event.EventObject.Navigate()
-        else:
-            event.Skip()
-
-    @staticmethod
-    def exit(event):
-        """
-
-        :param event:
-        :type event:
-        """
-        wx.Exit()
-
-    def upload(
-            self,
-            event
-            ):
-        """
-
-        :param event:
-        :type event:
-        """
-        studentname = self.studentname1.GetString(
-                self.studentname1.GetSelection()
-                )
-        uploadlocation = Path(USER_DIR).joinpath(
-                'StudentDatabase',
-                'StudentDataFiles',
-                studentname
-                )
-        openfiledialog = wx.FileDialog(
-                frame,
-                "Open",
-                "",
-                "",
-                "",
-                wx.FD_OPEN | wx.FD_FILE_MUST_EXIST
-                )
-        openfiledialog.ShowModal()
-        uploadfile = openfiledialog.GetPath()
-        openfiledialog.Destroy()
-        shutil.copy2(
-                uploadfile,
-                uploadlocation
-                )
-        self.dial = wx.MessageDialog(
-                None,
-                'Uploaded successfully!',
-                'Info',
-                wx.OK
-                )
-        self.dial.ShowModal()
-
-    def save(
-            self,
-            event
-            ):
-        """
-
-        :param event:
-        :type event:
-        """
-        studentname = self.studentname1.GetString(
-                self.studentname1.GetSelection()
-                )
-        datenow = datetime.datetime.now().strftime(
-                "%Y_%m_%d-%H%M%S"
-                )
-        simpledate = datetime.datetime.now().strftime(
-                "%Y_%m_%d-%H%M"
-                )
-        notes = self.notes1.GetValue()
-        if (
-                len(
-                        studentname
-                        ) and len(
-                notes
-                )
-        ) > 0:
-            box = wx.TextEntryDialog(
-                    None,
-                    "Enter File Name",
-                    "Title",
-                    f"meeting{studentname.title()}{datenow}"
+            ui.label(' ').classes('w-1/7')
+            ui.label(' ').classes('w-1/7')
+            ui.label(' ').classes('w-1/7')
+        with ui.row().classes('w-full no-wrap py-4 justify-center items-center'):
+            ui.label('PHASE 3: USING THE INTERNET').classes('justify-center items-center')
+            ui.input().props('aria-label="PHASE 3: USING THE INTERNET').classes('sr-only')
+        with ui.row().classes('w-full no-wrap py-4'):
+            ui.number(label = "3.1", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial31.set_value(e.value)).classes('w-1/7').props(
+                    'aria-label="3.1 Define common element types on the internet such as Headings Buttons"'
+                    ).tooltip('3.1 Define common element types on the internet such as Headings Buttons')
+            ui.number(label = "3.2", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial32.set_value(e.value)).classes('w-1/7').props('aria-label="3.2 identify each element by type."').tooltip(
+                    '3.2 identify each element by type.'
                     )
-            if box.ShowModal() == wx.ID_OK:
-                self.studentdatabasename = box.GetValue()
-                if not Path(
-                        USER_DIR
-                        ).joinpath(
-                        'StudentDatabase',
-                        'StudentDataFiles',
-                        studentname,
-                        self.studentdatabasename + '.txt'
-                        ).exists():
-                    tmppath = Path(
-                            USER_DIR
-                            ).joinpath(
-                            'StudentDatabase',
-                            'StudentDataFiles',
-                            studentname,
-                            self.studentdatabasename + '.txt'
-                            )
-                    self.filename = open(
-                            tmppath,
-                            'w'
-                            )
-                    self.filename.write(
-                            'studentname' + ', '
-                            )
-                    self.filename.write(
-                            'simpledate' + ', '
-                            )
-                    self.filename.write(
-                            'notes' + ',\n'
-                            )
-                    self.filename.write(
-                            studentname + ', '
-                            )
-                    self.filename.write(
-                            simpledate + ', '
-                            )
-                    self.filename.write(
-                            notes + ', '
-                            )
-                    self.filename.close()
-                    tmppath = Path(
-                            USER_DIR
-                            ).joinpath(
-                            'StudentDatabase',
-                            'StudentDataFiles',
-                            'Filenames.txt'
-                            )
-                    self.filename = open(
-                            tmppath,
-                            'a'
-                            )
-                    tmppath = Path(
-                            USER_DIR
-                            ).joinpath(
-                            'StudentDatabase',
-                            'StudentDataFiles',
-                            studentname,
-                            self.studentdatabasename + '.txt'
-                            )
-                    self.filename.write(
-                            f"'{tmppath}'" + '\n'
-                            )
-                    self.filename.close()
-                    self.dial = wx.MessageDialog(
-                            None,
-                            'Saved successfully!',
-                            'Info',
-                            wx.OK
-                            )
-                    self.dial.ShowModal()
-                    self.notes1.Clear()
-                else:
-                    self.dial = wx.MessageDialog(
-                            None,
-                            'Name already exists',
-                            'Info',
-                            wx.OK
-                            )
-                    self.dial.ShowModal()
-            else:
-                self.dial = wx.MessageDialog(
-                        None,
-                        'Save cancelled'  'Info',
-                        wx.OK
-                        )
-                self.dial.ShowModal()
-        else:
-            self.dial = wx.MessageDialog(
-                    None,
-                    'Fill Required Fields!'  'Info',
-                    wx.OK
+            ui.number(label = "3.3", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial33.set_value(e.value)).classes('w-1/7').props('aria-label="3.3 navigate to the address bar"').tooltip(
+                    '3.3 navigate to the address bar'
                     )
-            self.dial.ShowModal()
-
-
-class observationsPanel(scrolled.ScrolledPanel):
-    """
-
-    """
-
-    def __init__(
-            self,
-            parent
-            ):
-        scrolled.ScrolledPanel.__init__(
-                self,
-                parent,
-                -1
-                )
-        vbox = wx.BoxSizer(
-                wx.VERTICAL
-                )
-        vbox.Add(
-                wx.StaticLine(
-                        self,
-                        -1,
-                        size = (
-                                750,
-                                -1
-                                )
-                        ),
-                0,
-                wx.ALL,
-                5
-                )
-        vbox.Add(
-                wx.StaticLine(
-                        self,
-                        -1,
-                        size = (-1,
-                                750
-                                )
-                        ),
-                0,
-                wx.ALL,
-                5
-                )
-        vbox.Add(
-                (20,
-                 20
-                 )
-                )
-        self.SetSizer(
-                vbox
-                )
-        self.SetupScrolling()
-        self.SetBackgroundColour(
-                random.choice(
-                        colorList
-                        )
-                )
-        self.SetFont(
-                wx.Font(
-                        10,
-                        wx.MODERN,
-                        wx.NORMAL,
-                        wx.NORMAL,
-                        False,
-                        u'Atkinson Hyperlegible'
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "VISION OBSERVATIONS",
-                pos = (
-                        170,
-                        20
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "Student Name",
-                pos = (
-                        30,
-                        50
-                        )
-                )
-        self.studentname1 = wx.Choice(
-                self,
-                -1,
-                choices = students,
-                pos = (
-                        130,
-                        50
-                        ),
-                size = (
-                        300,
-                        30
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                f"Date: {date}",
-                pos = (
-                        30,
-                        80
-                        )
-                )
-        wx.StaticText(
-                self,
-                -1,
-                "Anecdotal Notes",
-                pos = (
-                        30,
-                        110
-                        )
-                )
-        self.notes1 = wx.TextCtrl(
-                self,
-                111,
-                "",
-                pos = (
-                        170,
-                        110
-                        ),
-                size = (
-                        700,
-                        700
-                        ),
-                style = wx.TE_MULTILINE | wx.TE_WORDWRAP | wx.TE_PROCESS_TAB
-                )
-        # self.notes1.Bind(wx.EVT_KEY_DOWN, self.virtualTab)
-        self.Bind(wx.EVT_CHAR_HOOK, self.virtualTab, id = 111)
-        self.btn = wx.Button(
-                self,
-                201,
-                "SAVE",
-                pos = (
-                        450,
-                        850
-                        ),
-                size = (
-                        70,
-                        30
-                        )
-                )
-        self.Bind(
-                wx.EVT_BUTTON,
-                self.save,
-                id = 201
-                )
-        self.btn2 = wx.Button(
-                self,
-                203,
-                "UPLOAD FILE",
-                pos = (
-                        450,
-                        890
-                        ),
-                size = (
-                        170,
-                        30
-                        )
-                )
-        self.Bind(
-                wx.EVT_BUTTON,
-                self.upload,
-                id = 203
-                )
-        self.btn1 = wx.Button(
-                self,
-                202,
-                "EXIT",
-                pos = (
-                        550,
-                        850
-                        ),
-                size = (
-                        70,
-                        30
-                        )
-                )
-        self.Bind(
-                wx.EVT_BUTTON,
-                self.exit,
-                id = 202
-                )
-        self.Bind(
-                wx.EVT_BUTTON,
-                self.save,
-                id = 201
-                )
-
-        os.chdir(
-                USER_DIR
-                )
-
-    def virtualTab(self, event):
-        keycode = event.GetKeyCode()
-        print(keycode)
-        if keycode == 308:
-            event.EventObject.Navigate()
-        else:
-            event.Skip()
-
-    @staticmethod
-    def exit(event):
-        """
-
-        :param event:
-        :type event:
-        """
-        wx.Exit()
-
-    def upload(
-            self,
-            event
-            ):
-        """
-
-        :param event:
-        :type event:
-        """
-        studentname = self.studentname1.GetString(
-                self.studentname1.GetSelection()
-                )
-        uploadlocation = Path(
-                USER_DIR
-                ).joinpath(
-                'StudentDatabase',
-                'StudentDataFiles',
-                studentname
-                )
-        openfiledialog = wx.FileDialog(
-                frame,
-                "Open",
-                "",
-                "",
-                "",
-                wx.FD_OPEN | wx.FD_FILE_MUST_EXIST
-                )
-        openfiledialog.ShowModal()
-        uploadfile = openfiledialog.GetPath()
-        openfiledialog.Destroy()
-        shutil.copy2(
-                uploadfile,
-                uploadlocation
-                )
-        self.dial = wx.MessageDialog(
-                None,
-                'Observation Uploaded Successfully!',
-                'Info',
-                wx.OK
-                )
-        self.dial.ShowModal()
-
-    def save(
-            self,
-            event
-            ):
-        """
-
-        :param event:
-        :type event:
-        """
-        studentname = self.studentname1.GetString(
-                self.studentname1.GetSelection()
-                )
-        datenow = datetime.datetime.now().strftime(
-                "%Y_%m_%d-%H%M%S"
-                )
-        simpledate = datetime.datetime.now().strftime(
-                "%Y_%m_%d-%H%M"
-                )
-        notes = self.notes1.GetValue()
-        if (
-                len(
-                        studentname
-                        ) and len(
-                notes
-                )
-        ) > 0:
-            box = wx.TextEntryDialog(
-                    None,
-                    "Enter File Name",
-                    "Title",
-                    f"observation{studentname.title()}{datenow}"
+            ui.number(label = "3.4", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial34.set_value(e.value)).classes('w-1/7').props(
+                    'aria-label="3.4 Use the “Tab” key to navigate to the next clickable object"'
+                    ).tooltip('3.4 Use the “Tab” key to navigate to the next clickable object')
+            ui.number(label = "3.5", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial35.set_value(e.value)).classes('w-1/7').props(
+                    'aira-label="3.5 Navigate by “Quick Keys” (h for heading b for button and u for link"'
                     )
-            if box.ShowModal() == wx.ID_OK:
-                self.studentdatabasename = box.GetValue()
-                if not Path(
-                        USER_DIR
-                        ).joinpath(
-                        'StudentDatabase',
-                        'StudentDataFiles',
-                        studentname,
-                        self.studentdatabasename + '.txt'
-                        ).exists():
-                    tmppath = Path(
-                            USER_DIR
-                            ).joinpath(
-                            'StudentDatabase',
-                            'StudentDataFiles',
-                            studentname,
-                            self.studentdatabasename + '.txt'
-                            )
-                    self.filename = open(
-                            tmppath,
-                            'w'
-                            )
-                    self.filename.write(
-                            'studentname' + ', '
-                            )
-                    self.filename.write(
-                            'simpledate' + ', '
-                            )
-                    self.filename.write(
-                            'notes' + ',\n'
-                            )
-                    self.filename.write(
-                            studentname + ', '
-                            )
-                    self.filename.write(
-                            simpledate + ', '
-                            )
-                    self.filename.write(
-                            notes + ', '
-                            )
-                    self.filename.close()
-                    tmppath = Path(
-                            USER_DIR
-                            ).joinpath(
-                            'StudentDatabase',
-                            'StudentDataFiles',
-                            'Filenames.txt'
-                            )
-                    self.filename = open(
-                            tmppath,
-                            'a'
-                            )
-                    tmppath = Path(
-                            USER_DIR
-                            ).joinpath(
-                            'StudentDatabase',
-                            'StudentDataFiles',
-                            studentname,
-                            self.studentdatabasename + '.txt'
-                            )
-                    self.filename.write(
-                            f"'{tmppath}'" + '\n'
-                            )
-                    self.filename.close()
-                    self.dial = wx.MessageDialog(
-                            None,
-                            'Saved successfully!',
-                            'Info',
-                            wx.OK
-                            )
-                    self.dial.ShowModal()
-                    self.notes1.Clear()
-                else:
-                    self.dial = wx.MessageDialog(
-                            None,
-                            'Name already exists',
-                            'Info',
-                            wx.OK
-                            )
-                    self.dial.ShowModal()
-            else:
-                self.dial = wx.MessageDialog(
-                        None,
-                        'Save cancelled',
-                        'Info',
-                        wx.OK
-                        )
-                self.dial.ShowModal()
-        else:
-            self.dial = wx.MessageDialog(
-                    None,
-                    'Fill Required Fields!',
-                    'Info',
-                    wx.OK
+            ui.number(label = "3.6", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial36.set_value(e.value)).classes('w-1/7').props(
+                    'aria-label="3.6 Use Elements Lists on a website to navigate by element type"'
+                    ).tooltip('3.6 Use Elements Lists on a website to navigate by element type')
+            ui.number(label = "3.7", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial37.set_value(e.value)).classes('w-1/7').props(
+                    'aria-label="3.7 Justify why he/she/they selected a particular method for the situation"'
+                    ).tooltip('3.7 Justify why he/she/they selected a particular method for the situation')
+        with ui.row().classes('w-full no-wrap py-4'):
+            ui.number(label = "3.8", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial38.set_value(e.value)).classes('w-1/7').props('aria-label="3.8 Switch tab focus"').tooltip('3.8 Switch tab focus')
+            ui.number(label = "3.9", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial39.set_value(e.value)).classes('w-1/7').props('aria-label="3.9 Switch between screen reader modes"').tooltip(
+                    '3.9 Switch between screen reader modes'
                     )
-            self.dial.ShowModal()
+            ui.number(label = "3.10", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial310.set_value(e.value)).classes('w-1/7').props('aria-label="3.10 Navigate a table"').tooltip(
+                    '3.10 Navigate a table'
+                    )
+            ui.number(label = "3.11", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial311.set_value(e.value)).classes('w-1/7').props(
+                    'aria-label="3.11 Develop a navigation sequence to access an unfamiliar website"'
+                    ).tooltip('3.11 Develop a navigation sequence to access an unfamiliar website')
+            ui.label(' ').classes('w-1/7')
+            ui.label(' ').classes('w-1/7')
+            ui.label(' ').classes('w-1/7')
+        with ui.row().classes('w-full no-wrap py-4 justify-center items-center'):
+            ui.label('PHASE 4: NAVIGATING AND FILE MANAGEMENT').classes('justify-center items-center')
+            ui.input().props('aria-label="PHASE 4: NAVIGATING AND FILE MANAGEMENT').classes('sr-only')
 
-
-class visualScan(scrolled.ScrolledPanel):
-    def __init__(
-            self,
-            *args,
-            **kwds
-            ):
-        scrolled.ScrolledPanel.__init__(
-                self,
-                *args,
-                **kwds
-                )
-        sizer = wx.BoxSizer(
-                wx.VERTICAL
-                )
-        self.browser = wx.html2.WebView.New(
-                self,
-                pos = (
-                        30,
-                        30
-                        )
-                )
-        sizer.Add(
-                self.browser, 1, wx.EXPAND, 10
-                )
-        self.SetSizer(
-                sizer
-                )
-        self.SetSize(
-                (1600, 1200
-                 )
-                )
-        URL = Path(
-                ROOT_DIR
-                ).joinpath(
-                'visualScan',
-                'VisualScanHeatMap',
-                'fieldmap.html'
-                )
-        self.browser.LoadURL(
-                f"{URL}"
-                )
-
-
-class StudentDataBook(
-        wx.Frame,
-        wx.Accessible
-        ):
-    """
-
-    """
-
-    def __init__(
-            self,
-            parent,
-            title
-            ):
-        super(
-                StudentDataBook,
-                self
-                ).__init__(
-                parent,
-                title = "Data Entry Form",
-                size = (
-                        1130,
-                        1000
-                        )
-                )
-        self.SetBackgroundColour(
-                random.choice(
-                        colorList
-                        )
-                )
-        self.SetFont(
-                wx.Font(
-                        10,
-                        wx.MODERN,
-                        wx.NORMAL,
-                        wx.NORMAL,
-                        False,
-                        u'Atkinson Hyperlegible'
-                        )
-                )
-        self.initui()
-
-    def initui(self):
-        """
-
-        """
-        menubar = wx.MenuBar()
-        fileMenu = wx.Menu()
-        fileItem = fileMenu.Append(
-                wx.ID_EXIT,
-                'Quit\t\tCtrl+Q'
-                )
-        menubar.Append(
-                fileMenu,
-                '&File'
-                )
-        editMenu = wx.Menu()
-        editItem = editMenu.Append(
-                wx.ID_EXIT,
-                'Quit\t\tCtrl+Q'
-                )
-        menubar.Append(
-                editMenu,
-                '\t&Edit'
-                )
-        helpMenu = wx.Menu()
-        helpItem = helpMenu.Append(
-                wx.ID_EXIT,
-                'Quit\t\tCtrl+Q'
-                )
-        menubar.Append(
-                helpMenu,
-                '\t&Help'
-                )
-        self.SetMenuBar(
-                menubar
-                )
-        self.Bind(
-                wx.EVT_MENU,
-                self.OnQuit,
-                fileItem
-                )
-
-        nb = wx.Notebook(
-                self
-                )
-        nb.AddPage(
-                iepIntro(
-                        nb
-                        ),
-                "CASELOAD SUMMARY"
-                )
-        nb.AddPage(
-                dataPanel(
-                        nb
-                        ),
-                "SESSION DATA ENTRY"
-                )
-        nb.AddPage(
-                braillePanel(
-                        nb
-                        ),
-                "BRAILLE SKILLS"
-                )
-        nb.AddPage(
-                screenreaderPanel(
-                        nb
-                        ),
-                "SCREENREADER SKILLS"
-                )
-        nb.AddPage(
-                abacusPanel(
-                        nb
-                        ),
-                "ABACUS SKILLS"
-                )
-        nb.AddPage(
-                cviPanel(
-                        nb
-                        ),
-                "CVI PROGRESSION"
-                )
-        nb.AddPage(
-                observationsPanel(
-                        nb
-                        ),
-                "VISION OBSERVATIONS"
-                )
-        nb.AddPage(
-                visualScan(
-                        nb
-                        ),
-                "Visual Scan Mapping (alpha)"
-                )
-        nb.AddPage(
-                meetingsPanel(
-                        nb
-                        ),
-                "MEETINGS"
-                )
-        self.Centre()
-        self.Show(
-                True
-                )
-
-    def OnQuit(
-            self,
-            e
-            ):
-        self.Close()
-
-
-app = wx.App()
-frame = StudentDataBook(
-        None,
-        'Student Data Entry'
-        )
-frame.Centre()
-frame.Show()
-app.MainLoop()
+        with ui.row().classes('w-full no-wrap py-4'):
+            ui.number(label = "4.1", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial41.set_value(e.value)).classes('w-1/7').props(
+                    'aria-label="4.1 Be able to save and open files using File Explorer."'
+                    ).tooltip('4.1 Be able to save and open files using File Explorer.')
+            ui.number(label = "4.2", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial42.set_value(e.value)).classes('w-1/7').props(
+                    'aria-label="4.2 Create folders and move files in File Explorer"'
+                    ).tooltip('4.2 Create folders and move files in File Explorer')
+            ui.number(label = "4.3", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial43.set_value(e.value)).classes('w-1/7').props(
+                    'aria-label="4.3 Navigate a cloud-based file management system (eg: Google Drive)"'
+                    ).tooltip('4.3 Navigate a cloud-based file management system (eg: Google Drive)')
+            ui.number(label = "4.4", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial44.set_value(e.value)).classes('w-1/7').props(
+                    'aria-label="4.4 Download and save material from the internet"'
+                    ).tooltip('4.4 Download and save material from the internet')
+            ui.number(label = "4.5", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial45.set_value(e.value)).classes('w-1/7').props('aria-label="4.5 Extract zipped folders"').tooltip(
+                    '4.5 Extract zipped folders'
+                    )
+            ui.number(label = "4.6", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial46.set_value(e.value)).classes('w-1/7').props(
+                    'aria-label="4.6 Utilize the virtual cursor and mouse keys"'
+                    ).tooltip('4.6 Utilize the virtual cursor and mouse keys')
+            ui.number(label = "4.7", min = 0, max = 3, format = '%.0f', on_change = lambda e: u_trial47.set_value(e.value)).classes('w-1/7').props(
+                    'aria-label="4.7 To use OCR features to read inaccessible material"'
+                    ).tooltip('4.7 To use OCR features to read inaccessible material')
+        with ui.row().classes('w-full no-wrap py-4'):
+            ui.button('SAVE', on_click = save)
+            ui.button('GRAPH', on_click = graph)
+            ui.button('EXIT', on_click = app.shutdown)
+# HEADER, FOOTER, SIDEBAR CONTENT
+with ui.footer(value = False) as footer:
+    ui.label('Copyright © 2023 Michael Ryan Hunsaker, M.Ed., Ph.D.')
+    ui.link('Report Bugs', 'mailto:hunsakerconsulting@gmail.com?subject=Skills Progression App')
+with ui.left_drawer().classes('bg-blue-100') as left_drawer:
+    ui.label('INSTRUCTIONAL MATERIALS').classes('w-full no-wrap py-4')
+    ui.label('ABACUS MATERIALS').classes('w-full no-wrap py-4')
+    ui.button('Hadley Abacus Curriculum I', on_click = lambda: ui.download('instructionMaterials/Abacus1.pdf')).classes('text-left w-full align-left')
+    ui.button('Hadley Abacus Curriculum II', on_click = lambda: ui.download('instructionMaterials/Abacus2.pdf')).classes('text-left w-full align-left bg-blue-100')
+    ui.button('Abacus Made Easy', on_click = lambda: ui.download('instructionMaterials/AbacusMadeEasy.pdf')).classes('text-left w-full align-left')
+    ui.button('Using the Cranmer Abacus', on_click = lambda: ui.download('instructionMaterials/UsingCramnerabacus')).classes('text-left w-full align-left bg-blue-100')
+    ui.button('Japanese Abacus Use and Theory', on_click = lambda: ui.download('instructionMaterials/abacusUseTheory.pdf')).classes('text-left w-full align-left')
+    ui.button('Advanced Japanese Abacus', on_click = lambda: ui.download('instructionMaterials/AdvancedAbacus.pdf')).classes('text-left w-full align-left bg-blue-100')
+    ui.label('BRAILLE MATERIALS').classes('w-full no-wrap py-4')
+    ui.button('NLS-IMBT UEB Literary Braille', on_click = lambda: ui.download('instructionMaterials/')).classes('text-left w-full align-left')
+    ui.button('UEB Australian Training Manual', on_click = lambda: ui.download('instructionMaterials/UEBAustrialianTrainingManual.pdf')).classes('text-left w-full align-left bg-blue-100')
+    ui.button('UEB Technical Course', on_click = lambda: ui.download('instructionMaterials/UEBTechnicalCourse.pdf')).classes('text-left w-full align-left')
+    ui.button('UEB Technical Guidelines', on_click = lambda: ui.download('instructionMaterials/UEBTechnicalGuidelines.pdf')).classes('text-left w-full align-left bg-blue-100')
+    ui.button('UEB with Nemeth', on_click = lambda: ui.download('instructionMaterials/NemethUEBContext')).classes('text-left w-full align-left')
+    ui.label('SCREENREADER MATERIALS').classes('w-full no-wrap py-4')
+    ui.button('NVDA Trainings', on_click = lambda: ui.download('instructionMaterials/NVDATrainings.pdf')).classes('text-left w-full align-left')
+    ui.button('Windows Screen Reader Primer', on_click = lambda: ui.download('instructionMaterials/WindowsScreenreaderPrimer.pdf')).classes('text-left w-full align-left bg-blue-100')
+    ui.button('Getting Started with Windows 11', on_click = lambda: ui.download('instructionMaterials/GettingStartedWindows11')).classes('text-left w-full align-left')
+    ui.label('DATASHEETS').classes('w-full no-wrap py-4')
+    ui.button('Blank Vision Template', on_click = lambda: ui.download('datasheets/BlankVisionTemplate.pdf')).classes('text-left w-full align-left')
+    ui.button('Generic Data Sheets', on_click = lambda: ui.download('datasheets/GenericDataSheets.pdf')).classes('text-left w-full align-left bg-blue-100')
+    ui.button('Bi-Weekly Progress Monitoring', on_click = lambda: ui.download('datasheets/ProgressMonitoring.pdf')).classes('text-left w-full align-left')
+    ui.label('ASSESSMENT FORMS').classes('w-full no-wrap py-4')
+    ui.button('Educational Vision Evaluation Forms', on_click = lambda: ui.download('visionAssessments/EducationVisionAssessments.pdf')).classes('text-left w-full align-left')
+with ui.page_sticky(position = 'bottom-right', x_offset = 20, y_offset = 20):
+    ui.button(on_click = footer.toggle).props('fab icon=contact_support')
+ui.run(native = True, reload = False, dark = False, title = 'Academic Skills Progression', fullscreen = False, window_size = (1550, 1500))

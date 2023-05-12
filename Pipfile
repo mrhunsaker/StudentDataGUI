@@ -15,6 +15,7 @@ matplotlib = "*"
 pathlib = "*"
 sqlalchemy = "*"
 nicegui = "*"
+screeninfo = "*"
 
 [dev-packages]
 

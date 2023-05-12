@@ -10,7 +10,13 @@
   <component name="ChangeListManager">
     <list default="true" id="fa304d23-fe14-4dd1-9cb8-16c0a72e419f" name="Changes" comment="Increasing Functionality and fixing to force out of protected text boxed with CTRL and not &quot;N&quot;">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AbacusSkillsProgression.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BrailleSkillsProgression.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pipfile" beforeDir="false" afterPath="$PROJECT_DIR$/Pipfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pipfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Pipfile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/brailletmp.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainOLD.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="true" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +76,7 @@
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/ryhunsaker/Downloads/glowing-darcula-1.1.7(1).zip&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/ryhunsaker/Downloads/tokyo-night-jetbrains-theme-main.zip&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -269,6 +275,9 @@
       <workItem from="1683125857397" duration="38000" />
       <workItem from="1683574566188" duration="1387000" />
       <workItem from="1683650298804" duration="679000" />
+      <workItem from="1683651222859" duration="142000" />
+      <workItem from="1683651390358" duration="226000" />
+      <workItem from="1683901386630" duration="104000" />
     </task>
     <task id="LOCAL-00051" summary="Miscellaneous fixes">
       <created>1673121549893</created>

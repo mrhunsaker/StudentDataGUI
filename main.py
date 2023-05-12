@@ -9,7 +9,7 @@
 #                                                                             #
 #    http://www.apache.org/licenses/LICENSE-2.0                               #
 #                                                                             #
-#    Unless required by applicable law or agreed to in writing, software      #
+#    Unless Required by applicable law or agreed to in writing, software      #
 #    distributed under the License is distributed on an "AS IS" BASIS,        #
 #    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. #
 #    See the License for the specific language governing permissions and      #
@@ -30,6 +30,7 @@ import pandas as pd
 import plotly.graph_objects as go
 from nicegui import app, ui
 from plotly.subplots import make_subplots
+from screeninfo import get_monitors
 
 from helpers import *
 
@@ -1083,19 +1084,20 @@ sys.excepthook = warningmessage
 ##############################################################################
 # Begin GUI
 ############################################################################
-with ui.header().classes(replace = 'row items-center') as header:
-    ui.button(on_click = lambda: left_drawer.toggle()).props('flat color=white icon=menu')
-    ui.label('ACADEMIC SKILL PROGRESSIONS').classes('text-2xl justify-center')
-    with ui.row().classes('w-full no-wrap'):
+# HEADER
+with ui.header().classes('bg-red-400 text-black font-black font-bold row items-center') as header:
+    ui.button(on_click = lambda: left_drawer.toggle()).props('flat color=black icon=menu')
+    ui.label('ACADEMIC SKILL PROGRESSIONS').classes('text-xl font-bold')
+    with ui.row().classes('w-full no-wrap text-l font-bold'):
         with ui.tabs() as tabs:
-            ui.tab('ABACUS SKILLS')
-            ui.tab('BRAILLE SKILLS')
-            ui.tab('BRAILLENOTE TOUCH SKILLS')
-            ui.tab('iOS/iPadOS VOICEOVER SKILLS')
-            ui.tab('SCREENREADER SKILLS')
+            ui.tab('ABACUS SKILLS').classes('text-l font-bold')
+            ui.tab('BRAILLE SKILLS').classes('text-l font-bold')
+            ui.tab('BRAILLENOTE TOUCH SKILLS').classes('font-bold')
+            ui.tab('iOS/iPadOS VOICEOVER SKILLS').classes('text-l font-bold')
+            ui.tab('SCREENREADER SKILLS').classes('text-l font-bold')
 # ABACUS SKILLS PROGRESSION
-with ui.tab_panels(tabs, value = 'ABACUS SKILLS PROGRESSION'):
-    with ui.tab_panel('ABACUS SKILLS PROGRESSION'):
+with ui.tab_panels(tabs, value = 'ABACUS SKILLS'):
+    with ui.tab_panel('ABACUS SKILLS'):
         u_studentname = ui.select(options = students, value = 'DonaldChamberlain').classes('hidden')
         date = ui.date().classes('hidden')
         u_trial11 = ui.number().classes('hidden')
@@ -1392,7 +1394,6 @@ with ui.tab_panels(tabs, value = 'ABACUS SKILLS PROGRESSION'):
 
 
         def graph(
-                self,
                 event
                 ):
             """
@@ -1697,7 +1698,7 @@ with ui.tab_panels(tabs, value = 'ABACUS SKILLS PROGRESSION'):
                     y0 = -.5,
                     y1 = .5,
                     line_width = 0,
-                    fillcolor = "red",
+                    fillcolor = "#b3c7f7",
                     opacity = 0.2,
                     row = 1,
                     col = 1
@@ -1733,7 +1734,7 @@ with ui.tab_panels(tabs, value = 'ABACUS SKILLS PROGRESSION'):
                     y0 = -.5,
                     y1 = .5,
                     line_width = 0,
-                    fillcolor = "red",
+                    fillcolor = "#b3c7f7",
                     opacity = 0.2,
                     row = 1,
                     col = 2
@@ -1769,7 +1770,7 @@ with ui.tab_panels(tabs, value = 'ABACUS SKILLS PROGRESSION'):
                     y0 = -.5,
                     y1 = .5,
                     line_width = 0,
-                    fillcolor = "red",
+                    fillcolor = "#b3c7f7",
                     opacity = 0.2,
                     row = 2,
                     col = 1
@@ -1805,7 +1806,7 @@ with ui.tab_panels(tabs, value = 'ABACUS SKILLS PROGRESSION'):
                     y0 = -.5,
                     y1 = .5,
                     line_width = 0,
-                    fillcolor = "red",
+                    fillcolor = "#b3c7f7",
                     opacity = 0.2,
                     row = 2,
                     col = 2
@@ -1841,7 +1842,7 @@ with ui.tab_panels(tabs, value = 'ABACUS SKILLS PROGRESSION'):
                     y0 = -.5,
                     y1 = .5,
                     line_width = 0,
-                    fillcolor = "red",
+                    fillcolor = "#b3c7f7",
                     opacity = 0.2,
                     row = 3,
                     col = 1
@@ -1877,7 +1878,7 @@ with ui.tab_panels(tabs, value = 'ABACUS SKILLS PROGRESSION'):
                     y0 = -.5,
                     y1 = .5,
                     line_width = 0,
-                    fillcolor = "red",
+                    fillcolor = "#b3c7f7",
                     opacity = 0.2,
                     row = 3,
                     col = 2
@@ -1913,7 +1914,7 @@ with ui.tab_panels(tabs, value = 'ABACUS SKILLS PROGRESSION'):
                     y0 = -.5,
                     y1 = .5,
                     line_width = 0,
-                    fillcolor = "red",
+                    fillcolor = "#b3c7f7",
                     opacity = 0.2,
                     row = 4,
                     col = 1
@@ -1949,7 +1950,7 @@ with ui.tab_panels(tabs, value = 'ABACUS SKILLS PROGRESSION'):
                     y0 = -.5,
                     y1 = .5,
                     line_width = 0,
-                    fillcolor = "red",
+                    fillcolor = "#b3c7f7",
                     opacity = 0.2,
                     row = 4,
                     col = 2
@@ -2196,13 +2197,13 @@ with ui.tab_panels(tabs, value = 'ABACUS SKILLS PROGRESSION'):
             ui.label(' ').classes('w-1/4')
             ui.label(' ').classes('w-1/4')
         with ui.row().classes('w-full no-wrap py-4'):
-            ui.button('SAVE', on_click = save)
-            ui.button('GRAPH', on_click = graph)
-            ui.button('EXIT', on_click = app.shutdown)
+            ui.button('SAVE', color = '#b3c7f7', on_click = save)
+            ui.button('GRAPH', color = '#b3c7f7', on_click = graph)
+            ui.button('EXIT', color = '#b3c7f7', on_click = app.shutdown)
 
 # BRAILLE SKILLS PROGRESSION
-with ui.tab_panels(tabs, value = 'BRAILLE SKILLS PROGRESSION'):
-    with ui.tab_panel('BRAILLE SKILLS PROGRESSION'):
+with ui.tab_panels(tabs, value = 'BRAILLE SKILLS'):
+    with ui.tab_panel('BRAILLE SKILLS'):
         u_studentname = ui.select(options = students, value = 'DonaldChamberlain').classes('hidden')
         date = ui.date().classes('hidden')
         u_trial11 = ui.number().classes('hidden')
@@ -2272,7 +2273,6 @@ with ui.tab_panels(tabs, value = 'BRAILLE SKILLS PROGRESSION'):
 
 
         def save(
-                self,
                 event
                 ):
             """
@@ -2419,140 +2419,77 @@ with ui.tab_panels(tabs, value = 'BRAILLE SKILLS PROGRESSION'):
                 filename.write('trial87' + ', ')
                 filename.write(studentname + ', ')
                 filename.write(date + ', ')
-                filename.write(trial11 + ', ')
-                filename.write(trial12 + ', ')
-                filename.write(trial13 + ', ')
-                filename.write(trial14 + ', ')
-                filename.write(trial21 + ', ')
-                filename.write(trial22 + ', ')
-                filename.write(trial23 + ', ')
-                filename.write(trial24 + ', ')
-                filename.write(trial25 + ', ')
-                filename.write(trial26 + ', ')
-                filename.write(trial27 + ', ')
-                filename.write(trial28 + ', ')
-                filename.write(trial29 + ', ')
-                filename.write(trial210 + ', ')
-                filename.write(trial211 + ', ')
-                filename.write(trial212 + ', ')
-                filename.write(trial213 + ', ')
-                filename.write(trial214 + ', ')
-                filename.write(trial215 + ', ')
-                filename.write(trial31 + ', ')
-                filename.write(trial32 + ', ')
-                filename.write(trial33 + ', ')
-                filename.write(trial34 + ', ')
-                filename.write(trial35 + ', ')
-                filename.write(trial36 + ', ')
-                filename.write(trial37 + ', ')
-                filename.write(trial38 + ', ')
-                filename.write(trial39 + ', ')
-                filename.write(trial310 + ', ')
-                filename.write(trial311 + ', ')
-                filename.write(trial312 + ', ')
-                filename.write(trial313 + ', ')
-                filename.write(trial314 + ', ')
-                filename.write(trial315 + ', ')
-                filename.write(trial41 + ', ')
-                filename.write(trial42 + ', ')
-                filename.write(trial43 + ', ')
-                filename.write(trial44 + ', ')
-                filename.write(trial51 + ', ')
-                filename.write(trial52 + ', ')
-                filename.write(trial53 + ', ')
-                filename.write(trial54 + ', ')
-                filename.write(trial61 + ', ')
-                filename.write(trial62 + ', ')
-                filename.write(trial63 + ', ')
-                filename.write(trial64 + ', ')
-                filename.write(trial65 + ', ')
-                filename.write(trial66 + ', ')
-                filename.write(trial67 + ', ')
-                filename.write(trial71 + ', ')
-                filename.write(trial72 + ', ')
-                filename.write(trial73 + ', ')
-                filename.write(trial74 + ', ')
-                filename.write(trial75 + ', ')
-                filename.write(trial76 + ', ')
-                filename.write(trial77 + ', ')
-                filename.write(trial78 + ', ')
-                filename.write(trial81 + ', ')
-                filename.write(trial82 + ', ')
-                filename.write(trial83 + ', ')
-                filename.write(trial84 + ', ')
-                filename.write(trial85 + ', ')
-                filename.write(trial86 + ', ')
-                filename.write(trial87 + ', ')
-                filename.write(trial12 + ', ')
-                filename.write(trial13 + ', ')
-                filename.write(trial14 + ', ')
-                filename.write(trial21 + ', ')
-                filename.write(trial22 + ', ')
-                filename.write(trial23 + ', ')
-                filename.write(trial24 + ', ')
-                filename.write(trial25 + ', ')
-                filename.write(trial26 + ', ')
-                filename.write(trial27 + ', ')
-                filename.write(trial28 + ', ')
-                filename.write(trial29 + ', ')
-                filename.write(trial210 + ', ')
-                filename.write(trial211 + ', ')
-                filename.write(trial212 + ', ')
-                filename.write(trial213 + ', ')
-                filename.write(trial214 + ', ')
-                filename.write(trial215 + ', ')
-                filename.write(trial31 + ', ')
-                filename.write(trial32 + ', ')
-                filename.write(trial33 + ', ')
-                filename.write(trial34 + ', ')
-                filename.write(trial35 + ', ')
-                filename.write(trial36 + ', ')
-                filename.write(trial37 + ', ')
-                filename.write(trial38 + ', ')
-                filename.write(trial39 + ', ')
-                filename.write(trial310 + ', ')
-                filename.write(trial311 + ', ')
-                filename.write(trial312 + ', ')
-                filename.write(trial313 + ', ')
-                filename.write(trial314 + ', ')
-                filename.write(trial315 + ', ')
-                filename.write(trial41 + ', ')
-                filename.write(trial42 + ', ')
-                filename.write(trial43 + ', ')
-                filename.write(trial44 + ', ')
-                filename.write(trial51 + ', ')
-                filename.write(trial52 + ', ')
-                filename.write(trial53 + ', ')
-                filename.write(trial54 + ', ')
-                filename.write(trial61 + ', ')
-                filename.write(trial62 + ', ')
-                filename.write(trial63 + ', ')
-                filename.write(trial64 + ', ')
-                filename.write(trial65 + ', ')
-                filename.write(trial66 + ', ')
-                filename.write(trial67 + ', ')
-                filename.write(trial71 + ', ')
-                filename.write(trial72 + ', ')
-                filename.write(trial73 + ', ')
-                filename.write(trial74 + ', ')
-                filename.write(trial75 + ', ')
-                filename.write(trial76 + ', ')
-                filename.write(trial77 + ', ')
-                filename.write(trial78 + ', ')
-                filename.write(trial81 + ', ')
-                filename.write(trial82 + ', ')
-                filename.write(trial83 + ', ')
-                filename.write(trial84 + ', ')
-                filename.write(trial85 + ', ')
-                filename.write(trial86 + ', ')
-                filename.write(trial87 + ', ')
+                filename.write(str(trial11) + ', ')
+                filename.write(str(trial12) + ', ')
+                filename.write(str(trial13) + ', ')
+                filename.write(str(trial14) + ', ')
+                filename.write(str(trial21) + ', ')
+                filename.write(str(trial22) + ', ')
+                filename.write(str(trial23) + ', ')
+                filename.write(str(trial24) + ', ')
+                filename.write(str(trial25) + ', ')
+                filename.write(str(trial26) + ', ')
+                filename.write(str(trial27) + ', ')
+                filename.write(str(trial28) + ', ')
+                filename.write(str(trial29) + ', ')
+                filename.write(str(trial210) + ', ')
+                filename.write(str(trial211) + ', ')
+                filename.write(str(trial212) + ', ')
+                filename.write(str(trial213) + ', ')
+                filename.write(str(trial214) + ', ')
+                filename.write(str(trial215) + ', ')
+                filename.write(str(trial31) + ', ')
+                filename.write(str(trial32) + ', ')
+                filename.write(str(trial33) + ', ')
+                filename.write(str(trial34) + ', ')
+                filename.write(str(trial35) + ', ')
+                filename.write(str(trial36) + ', ')
+                filename.write(str(trial37) + ', ')
+                filename.write(str(trial38) + ', ')
+                filename.write(str(trial39) + ', ')
+                filename.write(str(trial310) + ', ')
+                filename.write(str(trial311) + ', ')
+                filename.write(str(trial312) + ', ')
+                filename.write(str(trial313) + ', ')
+                filename.write(str(trial314) + ', ')
+                filename.write(str(trial315) + ', ')
+                filename.write(str(trial41) + ', ')
+                filename.write(str(trial42) + ', ')
+                filename.write(str(trial43) + ', ')
+                filename.write(str(trial44) + ', ')
+                filename.write(str(trial51) + ', ')
+                filename.write(str(trial52) + ', ')
+                filename.write(str(trial53) + ', ')
+                filename.write(str(trial54) + ', ')
+                filename.write(str(trial61) + ', ')
+                filename.write(str(trial62) + ', ')
+                filename.write(str(trial63) + ', ')
+                filename.write(str(trial64) + ', ')
+                filename.write(str(trial65) + ', ')
+                filename.write(str(trial66) + ', ')
+                filename.write(str(trial67) + ', ')
+                filename.write(str(trial71) + ', ')
+                filename.write(str(trial72) + ', ')
+                filename.write(str(trial73) + ', ')
+                filename.write(str(trial74) + ', ')
+                filename.write(str(trial75) + ', ')
+                filename.write(str(trial76) + ', ')
+                filename.write(str(trial77) + ', ')
+                filename.write(str(trial78) + ', ')
+                filename.write(str(trial81) + ', ')
+                filename.write(str(trial82) + ', ')
+                filename.write(str(trial83) + ', ')
+                filename.write(str(trial84) + ', ')
+                filename.write(str(trial85) + ', ')
+                filename.write(str(trial86) + ', ')
+                filename.write(str(trial87) + ', ')
                 filename.close()
                 tmppath = Path(USER_DIR).joinpath(
                         'StudentDatabase',
                         'StudentDataFiles',
                         'Filenames.txt'
                         )
-                self.filename = open(
+                filename = open(
                         tmppath,
                         'a'
                         )
@@ -2560,10 +2497,10 @@ with ui.tab_panels(tabs, value = 'BRAILLE SKILLS PROGRESSION'):
                         'StudentDatabase',
                         'StudentDataFiles',
                         studentname,
-                        self.studentdatabasename + '.txt'
+                        studentdatabasename + '.txt'
                         )
-                self.filename.write(f"'{tmppath}'" + '\n')
-                self.filename.close()
+                filename.write(f"'{tmppath}'" + '\n')
+                filename.close()
                 os.chdir(USER_DIR)
                 tmppath = Path(USER_DIR).joinpath(
                         'StudentDatabase',
@@ -2657,222 +2594,221 @@ with ui.tab_panels(tabs, value = 'BRAILLE SKILLS PROGRESSION'):
                     f_setup.close()
                 ui.notify('Saved successfully!', close_button = 'OK')
 
-                def data_entry():
-                    """
+            def data_entry():
+                """
 
-                    """
-                    conn = sqlite3.connect(dataBasePath)
-                    c = conn.cursor()
-                    c.execute(
-                            """INSERT INTO BRAILLEPROGRESS (
-                    STUDENTNAME,
-                    DATE,
-                    P1_1,
-                    P1_2,
-                    P1_3,
-                    P1_4,
-                    P2_1,
-                    P2_2,
-                    P2_3,
-                    P2_4,
-                    P2_5,
-                    P2_6,
-                    P2_7,
-                    P2_8,
-                    P2_9,
-                    P2_10,
-                    P2_11,
-                    P2_12,
-                    P2_13,
-                    P2_14,
-                    P2_15,
-                    P3_1,
-                    P3_2,
-                    P3_3,
-                    P3_4,
-                    P3_5,
-                    P3_6,
-                    P3_7,
-                    P3_8,
-                    P3_9,
-                    P3_10,
-                    P3_11,
-                    P3_12,
-                    P3_13,
-                    P3_14,
-                    P3_15,
-                    P4_1,
-                    P4_2,
-                    P4_3,
-                    P4_4,
-                    P5_1,
-                    P5_2,
-                    P5_3,
-                    P5_4,
-                    P6_1,
-                    P6_2,
-                    P6_3,
-                    P6_4,
-                    P6_5,
-                    P6_6,
-                    P6_7,
-                    P7_1,
-                    P7_2,
-                    P7_3,
-                    P7_4,
-                    P7_5,
-                    P7_6,
-                    P7_7,
-                    P7_8,
-                    P8_1,
-                    P8_2,
-                    P8_3,
-                    P8_4,
-                    P8_5,
-                    P8_6,
-                    P8_7
-                    )
-                    VALUES (?,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?,
-                    ?)""",
-                            (studentname,
-                             datenow,
-                             trial11,
-                             trial12,
-                             trial13,
-                             trial14,
-                             trial21,
-                             trial22,
-                             trial23,
-                             trial24,
-                             trial25,
-                             trial26,
-                             trial27,
-                             trial28,
-                             trial29,
-                             trial210,
-                             trial211,
-                             trial212,
-                             trial213,
-                             trial214,
-                             trial215,
-                             trial31,
-                             trial32,
-                             trial33,
-                             trial34,
-                             trial35,
-                             trial36,
-                             trial37,
-                             trial38,
-                             trial39,
-                             trial310,
-                             trial311,
-                             trial312,
-                             trial313,
-                             trial314,
-                             trial315,
-                             trial41,
-                             trial42,
-                             trial43,
-                             trial44,
-                             trial51,
-                             trial52,
-                             trial53,
-                             trial54,
-                             trial61,
-                             trial62,
-                             trial63,
-                             trial64,
-                             trial65,
-                             trial66,
-                             trial67,
-                             trial71,
-                             trial72,
-                             trial73,
-                             trial74,
-                             trial75,
-                             trial76,
-                             trial77,
-                             trial78,
-                             trial81,
-                             trial82,
-                             trial83,
-                             trial84,
-                             trial85,
-                             trial86,
-                             trial87
-                             )
-                            )
-                    conn.commit()
+                """
+                conn = sqlite3.connect(dataBasePath)
+                c = conn.cursor()
+                c.execute(
+                        """INSERT INTO BRAILLEPROGRESS (
+                STUDENTNAME,
+                DATE,
+                P1_1,
+                P1_2,
+                P1_3,
+                P1_4,
+                P2_1,
+                P2_2,
+                P2_3,
+                P2_4,
+                P2_5,
+                P2_6,
+                P2_7,
+                P2_8,
+                P2_9,
+                P2_10,
+                P2_11,
+                P2_12,
+                P2_13,
+                P2_14,
+                P2_15,
+                P3_1,
+                P3_2,
+                P3_3,
+                P3_4,
+                P3_5,
+                P3_6,
+                P3_7,
+                P3_8,
+                P3_9,
+                P3_10,
+                P3_11,
+                P3_12,
+                P3_13,
+                P3_14,
+                P3_15,
+                P4_1,
+                P4_2,
+                P4_3,
+                P4_4,
+                P5_1,
+                P5_2,
+                P5_3,
+                P5_4,
+                P6_1,
+                P6_2,
+                P6_3,
+                P6_4,
+                P6_5,
+                P6_6,
+                P6_7,
+                P7_1,
+                P7_2,
+                P7_3,
+                P7_4,
+                P7_5,
+                P7_6,
+                P7_7,
+                P7_8,
+                P8_1,
+                P8_2,
+                P8_3,
+                P8_4,
+                P8_5,
+                P8_6,
+                P8_7
+                )
+                VALUES (?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?,
+                ?)""",
+                        (studentname,
+                         datenow,
+                         trial11,
+                         trial12,
+                         trial13,
+                         trial14,
+                         trial21,
+                         trial22,
+                         trial23,
+                         trial24,
+                         trial25,
+                         trial26,
+                         trial27,
+                         trial28,
+                         trial29,
+                         trial210,
+                         trial211,
+                         trial212,
+                         trial213,
+                         trial214,
+                         trial215,
+                         trial31,
+                         trial32,
+                         trial33,
+                         trial34,
+                         trial35,
+                         trial36,
+                         trial37,
+                         trial38,
+                         trial39,
+                         trial310,
+                         trial311,
+                         trial312,
+                         trial313,
+                         trial314,
+                         trial315,
+                         trial41,
+                         trial42,
+                         trial43,
+                         trial44,
+                         trial51,
+                         trial52,
+                         trial53,
+                         trial54,
+                         trial61,
+                         trial62,
+                         trial63,
+                         trial64,
+                         trial65,
+                         trial66,
+                         trial67,
+                         trial71,
+                         trial72,
+                         trial73,
+                         trial74,
+                         trial75,
+                         trial76,
+                         trial77,
+                         trial78,
+                         trial81,
+                         trial82,
+                         trial83,
+                         trial84,
+                         trial85,
+                         trial86,
+                         trial87
+                         )
+                        )
+                conn.commit()
 
-                data_entry()
+            data_entry()
 
 
         def graph(
-                self,
                 event
                 ):
             """
@@ -2880,7 +2816,7 @@ with ui.tab_panels(tabs, value = 'BRAILLE SKILLS PROGRESSION'):
             Graphing
 
             """
-            studentname = self.studentname1.GetString(self.studentname1.GetSelection())
+            studentname = u_studentname.value
             conn = sqlite3.connect(dataBasePath)
             dfSQL = pd.read_sql_query(f"SELECT * FROM BRAILLEPROGRESS", conn)
             dfStudent = dfSQL[dfSQL.STUDENTNAME == studentname]
@@ -2983,7 +2919,7 @@ with ui.tab_panels(tabs, value = 'BRAILLE SKILLS PROGRESSION'):
                     )
             fig.add_trace(
                     go.Scatter(
-                            x = df_noisy.index,
+                            x = df_noisy.index[[-1]],
                             y = df_noisy['P2_1'].iloc[[-1]],
                             mode = "text",
                             text = [" G C L"],
@@ -3010,7 +2946,7 @@ with ui.tab_panels(tabs, value = 'BRAILLE SKILLS PROGRESSION'):
                     )
             fig.add_trace(
                     go.Scatter(
-                            x = df_noisy.index,
+                            x = df_noisy.index[[-1]],
                             y = df_noisy['P2_2'].iloc[[-1]],
                             mode = "text",
                             text = [" D Y"],
@@ -3037,7 +2973,7 @@ with ui.tab_panels(tabs, value = 'BRAILLE SKILLS PROGRESSION'):
                     )
             fig.add_trace(
                     go.Scatter(
-                            x = df_noisy.index,
+                            x = df_noisy.index[[-1]],
                             y = df_noisy['P2_3'].iloc[[-1]],
                             mode = "text",
                             text = [" A B"],
@@ -3064,7 +3000,7 @@ with ui.tab_panels(tabs, value = 'BRAILLE SKILLS PROGRESSION'):
                     )
             fig.add_trace(
                     go.Scatter(
-                            x = df_noisy.index,
+                            x = df_noisy.index[[-1]],
                             y = df_noisy['P2_4'].iloc[[-1]],
                             mode = "text",
                             text = [" S"],
@@ -3091,7 +3027,7 @@ with ui.tab_panels(tabs, value = 'BRAILLE SKILLS PROGRESSION'):
                     )
             fig.add_trace(
                     go.Scatter(
-                            x = df_noisy.index,
+                            x = df_noisy.index[[-1]],
                             y = df_noisy['P2_5'].iloc[[-1]],
                             mode = "text",
                             text = [" W"],
@@ -3118,7 +3054,7 @@ with ui.tab_panels(tabs, value = 'BRAILLE SKILLS PROGRESSION'):
                     )
             fig.add_trace(
                     go.Scatter(
-                            x = df_noisy.index,
+                            x = df_noisy.index[[-1]],
                             y = df_noisy['P2_6'].iloc[[-1]],
                             mode = "text",
                             text = [" P O"],
@@ -3145,7 +3081,7 @@ with ui.tab_panels(tabs, value = 'BRAILLE SKILLS PROGRESSION'):
                     )
             fig.add_trace(
                     go.Scatter(
-                            x = df_noisy.index,
+                            x = df_noisy.index[[-1]],
                             y = df_noisy['P2_7'].iloc[[-1]],
                             mode = "text",
                             text = [" K"],
@@ -3172,7 +3108,7 @@ with ui.tab_panels(tabs, value = 'BRAILLE SKILLS PROGRESSION'):
                     )
             fig.add_trace(
                     go.Scatter(
-                            x = df_noisy.index,
+                            x = df_noisy.index[[-1]],
                             y = df_noisy['P2_8'].iloc[[-1]],
                             mode = "text",
                             text = [" R"],
@@ -3199,7 +3135,7 @@ with ui.tab_panels(tabs, value = 'BRAILLE SKILLS PROGRESSION'):
                     )
             fig.add_trace(
                     go.Scatter(
-                            x = df_noisy.index,
+                            x = df_noisy.index[[-1]],
                             y = df_noisy['P2_9'].iloc[[-1]],
                             mode = "text",
                             text = [" M E"],
@@ -3226,7 +3162,7 @@ with ui.tab_panels(tabs, value = 'BRAILLE SKILLS PROGRESSION'):
                     )
             fig.add_trace(
                     go.Scatter(
-                            x = df_noisy.index,
+                            x = df_noisy.index[[-1]],
                             y = df_noisy['P2_10'].iloc[[-1]],
                             mode = "text",
                             text = [" H"],
@@ -3253,7 +3189,7 @@ with ui.tab_panels(tabs, value = 'BRAILLE SKILLS PROGRESSION'):
                     )
             fig.add_trace(
                     go.Scatter(
-                            x = df_noisy.index,
+                            x = df_noisy.index[[-1]],
                             y = df_noisy['P2_11'].iloc[[-1]],
                             mode = "text",
                             text = [" N X"],
@@ -3280,7 +3216,7 @@ with ui.tab_panels(tabs, value = 'BRAILLE SKILLS PROGRESSION'):
                     )
             fig.add_trace(
                     go.Scatter(
-                            x = df_noisy.index,
+                            x = df_noisy.index[[-1]],
                             y = df_noisy['P2_12'].iloc[[-1]],
                             mode = "text",
                             text = [" Z F"],
@@ -3307,7 +3243,7 @@ with ui.tab_panels(tabs, value = 'BRAILLE SKILLS PROGRESSION'):
                     )
             fig.add_trace(
                     go.Scatter(
-                            x = df_noisy.index,
+                            x = df_noisy.index[[-1]],
                             y = df_noisy['P2_13'].iloc[[-1]],
                             mode = "text",
                             text = [" U T"],
@@ -3334,7 +3270,7 @@ with ui.tab_panels(tabs, value = 'BRAILLE SKILLS PROGRESSION'):
                     )
             fig.add_trace(
                     go.Scatter(
-                            x = df_noisy.index,
+                            x = df_noisy.index[[-1]],
                             y = df_noisy['P2_14'].iloc[[-1]],
                             mode = "text",
                             text = [" Q I"],
@@ -3361,7 +3297,7 @@ with ui.tab_panels(tabs, value = 'BRAILLE SKILLS PROGRESSION'):
                     )
             fig.add_trace(
                     go.Scatter(
-                            x = df_noisy.index,
+                            x = df_noisy.index[[-1]],
                             y = df_noisy['P2_15'].iloc[[-1]],
                             mode = "text",
                             text = [" V J"],
@@ -3648,7 +3584,7 @@ with ui.tab_panels(tabs, value = 'BRAILLE SKILLS PROGRESSION'):
                     y0 = -.5,
                     y1 = .5,
                     line_width = 0,
-                    fillcolor = "red",
+                    fillcolor = "#b3c7f7",
                     opacity = 0.2,
                     row = 1,
                     col = 1
@@ -3684,7 +3620,7 @@ with ui.tab_panels(tabs, value = 'BRAILLE SKILLS PROGRESSION'):
                     y0 = -.5,
                     y1 = .5,
                     line_width = 0,
-                    fillcolor = "red",
+                    fillcolor = "#b3c7f7",
                     opacity = 0.2,
                     row = 1,
                     col = 2
@@ -3720,7 +3656,7 @@ with ui.tab_panels(tabs, value = 'BRAILLE SKILLS PROGRESSION'):
                     y0 = -.5,
                     y1 = .5,
                     line_width = 0,
-                    fillcolor = "red",
+                    fillcolor = "#b3c7f7",
                     opacity = 0.2,
                     row = 2,
                     col = 1
@@ -3756,7 +3692,7 @@ with ui.tab_panels(tabs, value = 'BRAILLE SKILLS PROGRESSION'):
                     y0 = -.5,
                     y1 = .5,
                     line_width = 0,
-                    fillcolor = "red",
+                    fillcolor = "#b3c7f7",
                     opacity = 0.2,
                     row = 3,
                     col = 1
@@ -3792,7 +3728,7 @@ with ui.tab_panels(tabs, value = 'BRAILLE SKILLS PROGRESSION'):
                     y0 = -.5,
                     y1 = .5,
                     line_width = 0,
-                    fillcolor = "red",
+                    fillcolor = "#b3c7f7",
                     opacity = 0.2,
                     row = 3,
                     col = 2
@@ -3828,7 +3764,7 @@ with ui.tab_panels(tabs, value = 'BRAILLE SKILLS PROGRESSION'):
                     y0 = -.5,
                     y1 = .5,
                     line_width = 0,
-                    fillcolor = "red",
+                    fillcolor = "#b3c7f7",
                     opacity = 0.2,
                     row = 5,
                     col = 1
@@ -3864,7 +3800,7 @@ with ui.tab_panels(tabs, value = 'BRAILLE SKILLS PROGRESSION'):
                     y0 = -.5,
                     y1 = .5,
                     line_width = 0,
-                    fillcolor = "red",
+                    fillcolor = "#b3c7f7",
                     opacity = 0.2,
                     row = 5,
                     col = 2
@@ -3900,7 +3836,7 @@ with ui.tab_panels(tabs, value = 'BRAILLE SKILLS PROGRESSION'):
                     y0 = -.5,
                     y1 = .5,
                     line_width = 0,
-                    fillcolor = "red",
+                    fillcolor = "#b3c7f7",
                     opacity = 0.2,
                     row = 7,
                     col = 1
@@ -3936,7 +3872,7 @@ with ui.tab_panels(tabs, value = 'BRAILLE SKILLS PROGRESSION'):
                     y0 = -.5,
                     y1 = .5,
                     line_width = 0,
-                    fillcolor = "red",
+                    fillcolor = "#b3c7f7",
                     opacity = 0.2,
                     row = 7,
                     col = 2
@@ -4362,7 +4298,7 @@ with ui.tab_panels(tabs, value = 'BRAILLE SKILLS PROGRESSION'):
                     y0 = -.5,
                     y1 = .5,
                     line_width = 0,
-                    fillcolor = "red",
+                    fillcolor = "#b3c7f7",
                     opacity = 0.2,
                     row = 1,
                     col = 1
@@ -4398,7 +4334,7 @@ with ui.tab_panels(tabs, value = 'BRAILLE SKILLS PROGRESSION'):
                     y0 = -.5,
                     y1 = .5,
                     line_width = 0,
-                    fillcolor = "red",
+                    fillcolor = "#b3c7f7",
                     opacity = 0.2,
                     row = 2,
                     col = 1
@@ -4434,7 +4370,7 @@ with ui.tab_panels(tabs, value = 'BRAILLE SKILLS PROGRESSION'):
                     y0 = -.5,
                     y1 = .5,
                     line_width = 0,
-                    fillcolor = "red",
+                    fillcolor = "#b3c7f7",
                     opacity = 0.2,
                     row = 3,
                     col = 1
@@ -4659,13 +4595,23 @@ with ui.tab_panels(tabs, value = 'BRAILLE SKILLS PROGRESSION'):
             ui.label(' ').classes('w-1/5')
             ui.label(' ').classes('w-1/5')
         with ui.row().classes('w-full no-wrap py-4'):
-            ui.button('SAVE', on_click = save)
-            ui.button('GRAPH', on_click = graph)
-            ui.button('EXIT', on_click = app.shutdown)
+            ui.button('SAVE', color = '#b3c7f7', on_click = save)
+            ui.button('GRAPH', color = '#b3c7f7', on_click = graph)
+            ui.button('EXIT', color = '#b3c7f7', on_click = app.shutdown)
+
+# BRAILLENOTE TOUCH SKILLS
+with ui.tab_panels(tabs, value = 'BRAILLENOTE TOUCH SKILLS'):
+    with ui.tab_panel('BRAILLENOTE TOUCH SKILLS'):
+        ui.label('COMING SOON')
+
+# iOS/iPadOS VOICEOVER SKILLS
+with ui.tab_panels(tabs, value = 'iOS/iPadOS VOICEOVER SKILLS'):
+    with ui.tab_panel('iOS/iPadOS VOICEOVER SKILLS'):
+        ui.label('COMING SOON')
 
 # SCREENREADER SKILLS PROGRESSION
-with ui.tab_panels(tabs, value = 'SCREENREADER SKILLS PROGRESSION'):
-    with ui.tab_panel('SCREENREADER SKILLS PROGRESSION'):
+with ui.tab_panels(tabs, value = 'SCREENREADER SKILLS'):
+    with ui.tab_panel('SCREENREADER SKILLS'):
         u_studentname = ui.select(options = students, value = 'DonaldChamberlain').classes('hidden')
         # ASSIGN VARIABLES
         date = ui.date().classes('hidden')
@@ -5363,7 +5309,7 @@ with ui.tab_panels(tabs, value = 'SCREENREADER SKILLS PROGRESSION'):
                     y0 = -.5,
                     y1 = .5,
                     line_width = 0,
-                    fillcolor = "red",
+                    fillcolor = "#b3c7f7",
                     opacity = 0.2,
                     row = 1,
                     col = 1
@@ -5399,7 +5345,7 @@ with ui.tab_panels(tabs, value = 'SCREENREADER SKILLS PROGRESSION'):
                     y0 = -.5,
                     y1 = .5,
                     line_width = 0,
-                    fillcolor = "red",
+                    fillcolor = "#b3c7f7",
                     opacity = 0.2,
                     row = 2,
                     col = 1
@@ -5435,7 +5381,7 @@ with ui.tab_panels(tabs, value = 'SCREENREADER SKILLS PROGRESSION'):
                     y0 = -.5,
                     y1 = .5,
                     line_width = 0,
-                    fillcolor = "red",
+                    fillcolor = "#b3c7f7",
                     opacity = 0.2,
                     row = 1,
                     col = 2
@@ -5471,7 +5417,7 @@ with ui.tab_panels(tabs, value = 'SCREENREADER SKILLS PROGRESSION'):
                     y0 = -.5,
                     y1 = .5,
                     line_width = 0,
-                    fillcolor = "red",
+                    fillcolor = "#b3c7f7",
                     opacity = 0.2,
                     row = 3,
                     col = 1
@@ -5507,7 +5453,7 @@ with ui.tab_panels(tabs, value = 'SCREENREADER SKILLS PROGRESSION'):
                     y0 = -.5,
                     y1 = .5,
                     line_width = 0,
-                    fillcolor = "red",
+                    fillcolor = "#b3c7f7",
                     opacity = 0.2,
                     row = 3,
                     col = 2
@@ -5543,7 +5489,7 @@ with ui.tab_panels(tabs, value = 'SCREENREADER SKILLS PROGRESSION'):
                     y0 = -.5,
                     y1 = .5,
                     line_width = 0,
-                    fillcolor = "red",
+                    fillcolor = "#b3c7f7",
                     opacity = 0.2,
                     row = 4,
                     col = 2
@@ -5579,7 +5525,7 @@ with ui.tab_panels(tabs, value = 'SCREENREADER SKILLS PROGRESSION'):
                     y0 = -.5,
                     y1 = .5,
                     line_width = 0,
-                    fillcolor = "red",
+                    fillcolor = "#b3c7f7",
                     opacity = 0.2,
                     row = 5,
                     col = 1
@@ -5615,7 +5561,7 @@ with ui.tab_panels(tabs, value = 'SCREENREADER SKILLS PROGRESSION'):
                     y0 = -.5,
                     y1 = .5,
                     line_width = 0,
-                    fillcolor = "red",
+                    fillcolor = "#b3c7f7",
                     opacity = 0.2,
                     row = 5,
                     col = 2
@@ -5891,38 +5837,48 @@ with ui.tab_panels(tabs, value = 'SCREENREADER SKILLS PROGRESSION'):
                     'aria-label="4.7 To use OCR features to read inaccessible material"'
                     ).tooltip('4.7 To use OCR features to read inaccessible material')
         with ui.row().classes('w-full no-wrap py-4'):
-            ui.button('SAVE', on_click = save)
-            ui.button('GRAPH', on_click = graph)
-            ui.button('EXIT', on_click = app.shutdown)
-# HEADER, FOOTER, SIDEBAR CONTENT
-with ui.footer(value = False) as footer:
-    ui.label('Copyright © 2023 Michael Ryan Hunsaker, M.Ed., Ph.D.')
-    ui.link('Report Bugs', 'mailto:hunsakerconsulting@gmail.com?subject=Skills Progression App')
-with ui.left_drawer().classes('bg-blue-100') as left_drawer:
-    ui.label('INSTRUCTIONAL MATERIALS').classes('w-full no-wrap py-4')
-    ui.label('ABACUS MATERIALS').classes('w-full no-wrap py-4')
-    ui.button('Hadley Abacus Curriculum I', on_click = lambda: ui.download('instructionMaterials/Abacus1.pdf')).classes('text-left w-full align-left')
-    ui.button('Hadley Abacus Curriculum II', on_click = lambda: ui.download('instructionMaterials/Abacus2.pdf')).classes('text-left w-full align-left bg-blue-100')
-    ui.button('Abacus Made Easy', on_click = lambda: ui.download('instructionMaterials/AbacusMadeEasy.pdf')).classes('text-left w-full align-left')
-    ui.button('Using the Cranmer Abacus', on_click = lambda: ui.download('instructionMaterials/UsingCramnerabacus')).classes('text-left w-full align-left bg-blue-100')
-    ui.button('Japanese Abacus Use and Theory', on_click = lambda: ui.download('instructionMaterials/abacusUseTheory.pdf')).classes('text-left w-full align-left')
-    ui.button('Advanced Japanese Abacus', on_click = lambda: ui.download('instructionMaterials/AdvancedAbacus.pdf')).classes('text-left w-full align-left bg-blue-100')
-    ui.label('BRAILLE MATERIALS').classes('w-full no-wrap py-4')
-    ui.button('NLS-IMBT UEB Literary Braille', on_click = lambda: ui.download('instructionMaterials/')).classes('text-left w-full align-left')
-    ui.button('UEB Australian Training Manual', on_click = lambda: ui.download('instructionMaterials/UEBAustrialianTrainingManual.pdf')).classes('text-left w-full align-left bg-blue-100')
-    ui.button('UEB Technical Course', on_click = lambda: ui.download('instructionMaterials/UEBTechnicalCourse.pdf')).classes('text-left w-full align-left')
-    ui.button('UEB Technical Guidelines', on_click = lambda: ui.download('instructionMaterials/UEBTechnicalGuidelines.pdf')).classes('text-left w-full align-left bg-blue-100')
-    ui.button('UEB with Nemeth', on_click = lambda: ui.download('instructionMaterials/NemethUEBContext')).classes('text-left w-full align-left')
-    ui.label('SCREENREADER MATERIALS').classes('w-full no-wrap py-4')
-    ui.button('NVDA Trainings', on_click = lambda: ui.download('instructionMaterials/NVDATrainings.pdf')).classes('text-left w-full align-left')
-    ui.button('Windows Screen Reader Primer', on_click = lambda: ui.download('instructionMaterials/WindowsScreenreaderPrimer.pdf')).classes('text-left w-full align-left bg-blue-100')
-    ui.button('Getting Started with Windows 11', on_click = lambda: ui.download('instructionMaterials/GettingStartedWindows11')).classes('text-left w-full align-left')
-    ui.label('DATASHEETS').classes('w-full no-wrap py-4')
-    ui.button('Blank Vision Template', on_click = lambda: ui.download('datasheets/BlankVisionTemplate.pdf')).classes('text-left w-full align-left')
-    ui.button('Generic Data Sheets', on_click = lambda: ui.download('datasheets/GenericDataSheets.pdf')).classes('text-left w-full align-left bg-blue-100')
-    ui.button('Bi-Weekly Progress Monitoring', on_click = lambda: ui.download('datasheets/ProgressMonitoring.pdf')).classes('text-left w-full align-left')
-    ui.label('ASSESSMENT FORMS').classes('w-full no-wrap py-4')
-    ui.button('Educational Vision Evaluation Forms', on_click = lambda: ui.download('visionAssessments/EducationVisionAssessments.pdf')).classes('text-left w-full align-left')
-with ui.page_sticky(position = 'bottom-right', x_offset = 20, y_offset = 20):
-    ui.button(on_click = footer.toggle).props('fab icon=contact_support')
-ui.run(native = True, reload = False, dark = False, title = 'Academic Skills Progression', fullscreen = False, window_size = (1550, 1500))
+            ui.button('SAVE', color = '#b3c7f7', on_click = save)
+            ui.button('GRAPH', color = '#b3c7f7', on_click = graph)
+            ui.button('EXIT', color = '#b3c7f7', on_click = app.shutdown)
+
+# FOOTER
+with ui.footer(value = True).classes('bg-indigo-500') as footer:
+    with ui.row().classes('w-full no-wrap justify-center items-center text-l font-bold'):
+        ui.label('Copyright © 2023 Michael Ryan Hunsaker, M.Ed., Ph.D.').classes('justify-center items-center')
+    with ui.row().classes('w-full no-wrap justify-center items-centertext-l font-bold'):
+        ui.link('Report Bugs or Request Features', 'mailto:hunsakerconsulting@gmail.com?subject=Academic%20Skills%20Progression%20App').classes('justify-center items-center')
+
+# SIDEBAR
+with ui.left_drawer(value = True).classes('bg-indigo-500') as left_drawer:
+    ui.label('MATERIALS').classes('w-full no-wrap py-4 text-white font-bold text-xl justify-center items-center')
+    ui.label('ABACUS').classes('w-full no-wrap py-4 font-bold text-white text-xl justify-center items-center')
+    ui.button('Hadley Abacus Curriculum I', color = '#F98080', on_click = lambda: ui.download('instructionMaterials/Abacus1.pdf')).classes('text-left w-full align-left font-bold')
+    ui.button('Hadley Abacus Curriculum II', color = '#F98080', on_click = lambda: ui.download('instructionMaterials/Abacus2.pdf')).classes('text-left w-full align-left bg-red-400 font-bold')
+    ui.button('Abacus Made Easy', color = '#F98080', on_click = lambda: ui.download('instructionMaterials/AbacusMadeEasy.pdf')).classes('text-left w-full align-left font-bold font-bold')
+    ui.button('Using the Cranmer Abacus', color = '#F98080', on_click = lambda: ui.download('instructionMaterials/UsingCramnerabacus')).classes('text-left w-full align-left bg-red-400 font-bold')
+    ui.button('Japanese Abacus Use and Theory', color = '#F98080', on_click = lambda: ui.download('instructionMaterials/abacusUseTheory.pdf')).classes('text-left w-full align-left font-bold')
+    ui.button('Advanced Japanese Abacus', color = '#F98080', on_click = lambda: ui.download('instructionMaterials/AdvancedAbacus.pdf')).classes('text-left w-full align-left bg-red-400 font-bold')
+    ui.label('BRAILLE').classes('w-full no-wrap py-4 font-bold text-white text-xl justify-center items-center')
+    ui.button('NLS-IMBT UEB Literary Braille', color = '#F98080', on_click = lambda: ui.download('instructionMaterials/')).classes('text-left w-full align-left font-bold')
+    ui.button('UEB Australian Training Manual', color = '#F98080', on_click = lambda: ui.download('instructionMaterials/UEBAustrialianTrainingManual.pdf')).classes('text-left w-full align-left bg-red-400 font-bold')
+    ui.button('UEB Technical Course', color = '#F98080', on_click = lambda: ui.download('instructionMaterials/UEBTechnicalCourse.pdf')).classes('text-left w-full align-left font-bold')
+    ui.button('UEB Technical Guidelines', color = '#F98080', on_click = lambda: ui.download('instructionMaterials/UEBTechnicalGuidelines.pdf')).classes('text-left w-full align-left bg-red-400 font-bold')
+    ui.button('UEB with Nemeth', color = '#F98080', on_click = lambda: ui.download('instructionMaterials/NemethUEBContext')).classes('text-left w-full align-left font-bold')
+    ui.label('SCREENREADER').classes('w-full no-wrap py-4 font-bold text-white text-xl justify-center items-center')
+    ui.button('NVDA Trainings', color = '#F98080', on_click = lambda: ui.download('instructionMaterials/NVDATrainings.pdf')).classes('text-left w-full align-left font-bold')
+    ui.button('Windows Screen Reader Primer', color = '#F98080', on_click = lambda: ui.download('instructionMaterials/WindowsScreenreaderPrimer.pdf')).classes('text-left w-full align-left bg-red-400 font-bold')
+    ui.button('Getting Started with Windows 11', color = '#F98080', on_click = lambda: ui.download('instructionMaterials/GettingStartedWindows11')).classes('text-left w-full align-left font-bold')
+    ui.label('DATASHEETS').classes('w-full no-wrap py-4 content-center font-bold text-white text-xl')
+    ui.button('Blank Vision Template', color = '#F98080', on_click = lambda: ui.download('datasheets/BlankVisionTemplate.pdf')).classes('text-left w-full align-left font-bold')
+    ui.button('Generic Data Sheets', color = '#F98080', on_click = lambda: ui.download('datasheets/GenericDataSheets.pdf')).classes('text-left w-full align-left bg-red-400 font-bold')
+    ui.button('Bi-Weekly Progress Monitoring', color = '#F98080', on_click = lambda: ui.download('datasheets/ProgressMonitoring.pdf')).classes('text-left w-full align-left font-bold')
+    ui.label('ASSESSMENT FORMS').classes('w-full no-wrap py-4 font-bold text-white text-xl justify-center items-center')
+    ui.button('Educational Vision Evaluation Forms', color = '#F98080', on_click = lambda: ui.download('visionAssessments/EducationVisionAssessments.pdf')).classes('text-left w-full align-left font-bold')
+
+# Get Monitor Size to allow me to create the app to fill screen without setting fullscreen=True.
+# 72 is subtracted from the height to accommodate the height of my Taskbar
+
+for monitor in get_monitors():
+    print(f'Screen Resolution = {str(monitor.width)}x{str(monitor.height)}')
+
+ui.run(native = True, reload = False, dark = False, title = 'Academic Skills Progression', fullscreen = False, window_size = (monitor.width, monitor.height - 72))

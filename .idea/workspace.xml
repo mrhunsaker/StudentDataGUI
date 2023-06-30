@@ -9,7 +9,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fa304d23-fe14-4dd1-9cb8-16c0a72e419f" name="Changes" comment="Increasing Functionality and fixing to force out of protected text boxed with CTRL and not &quot;N&quot;">
-      <change afterPath="$PROJECT_DIR$/old_wxPythonVersion/mainOLD.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
@@ -272,14 +271,10 @@
       <workItem from="1683650298804" duration="679000" />
       <workItem from="1683651222859" duration="142000" />
       <workItem from="1683651390358" duration="226000" />
-      <workItem from="1683901386630" duration="1081000" />
-    </task>
-    <task id="LOCAL-00052" summary="Miscellaneous fixes">
-      <created>1673287439342</created>
-      <option name="number" value="00052" />
-      <option name="presentableId" value="LOCAL-00052" />
-      <option name="project" value="LOCAL" />
-      <updated>1673287439344</updated>
+      <workItem from="1683901386630" duration="2015000" />
+      <workItem from="1684520203834" duration="205000" />
+      <workItem from="1688129669525" duration="11000" />
+      <workItem from="1688131569516" duration="10000" />
     </task>
     <task id="LOCAL-00053" summary="Miscellaneous fixes">
       <created>1673367161280</created>
@@ -617,7 +612,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683901555386</updated>
     </task>
-    <option name="localTasksCounter" value="101" />
+    <task id="LOCAL-00101" summary="Increasing Functionality and fixing to force out of protected text boxed with CTRL and not &quot;N&quot;">
+      <created>1683903642197</created>
+      <option name="number" value="00101" />
+      <option name="presentableId" value="LOCAL-00101" />
+      <option name="project" value="LOCAL" />
+      <updated>1683903642197</updated>
+    </task>
+    <option name="localTasksCounter" value="102" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

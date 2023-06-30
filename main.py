@@ -2822,7 +2822,6 @@ with ui.tab_panels(tabs, value = 'BRAILLE SKILLS'):
             dfStudent = dfSQL[dfSQL.STUDENTNAME == studentname]
             print(dfStudent)
             conn.close()
-            df = ""
             df = dfStudent.drop(columns = ['ID', 'STUDENTNAME'])
             print(df)
             df = df.rename(columns = {'DATE': 'date'})

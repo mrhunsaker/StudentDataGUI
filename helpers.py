@@ -679,7 +679,7 @@ COLOR PREFERENCE
 4.........Range 9-10: No color or pattern preference
 """)
 
-justRight = wx.Colour(239, 214, 192)
+"""justRight = wx.Colour(239, 214, 192)
 whiteRock = wx.Colour(241, 240, 226)
 khaki = wx.Colour(238, 231, 142)
 poloBlue = wx.Colour(136, 150, 198)
@@ -697,6 +697,7 @@ colorList = [
         coral,
         heather
         ]
+"""
 
 passiveHtmlList = [
         'fieldMap_1.html',

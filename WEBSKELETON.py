@@ -1096,7 +1096,13 @@ with ui.header().classes('bg-red-400 text-black font-black font-bold row items-c
             ui.tab('iOS/iPadOS VOICEOVER SKILLS').classes('text-l font-bold')
             ui.tab('SCREENREADER SKILLS').classes('text-l font-bold')
 
-# ABACUS SKILLS PROGRESSION
+
+
+##############################################################################
+# modules in here
+############################################################################
+
+
 with ui.tab_panels(tabs, value='ABACUS SKILLS'):
     with ui.tab_panel('ABACUS SKILLS'):
         u_studentname = ui.select(options=students, value='DonaldChamberlain').classes('hidden')
@@ -1125,7 +1131,6 @@ with ui.tab_panels(tabs, value='ABACUS SKILLS'):
         u_trial74 = ui.number().classes('hidden')
         u_trial81 = ui.number().classes('hidden')
         u_trial82 = ui.number().classes('hidden')
-
 
         def save(event):
             """
@@ -1289,8 +1294,13 @@ with ui.tab_panels(tabs, value='ABACUS SKILLS'):
                         trial82
                         ]
                 os.chdir(USER_DIR)
-                with open(
-                        f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\ScreenReaderSkillsProgression.csv",
+                tmppath = Path(USER_DIR).joinpath(
+                        'StudentDatabase',
+                        'StudentDataFiles',
+                        studentname,
+                        'BrailleSkillsProgression.csv'
+                        )
+                with open(tmppath,
                         'a',
                         newline=''
                         ) as f_setup:
@@ -1398,7 +1408,6 @@ with ui.tab_panels(tabs, value='ABACUS SKILLS'):
                 event
                 ):
             """
-
             :param event:
             :type event:
             """
@@ -2094,7 +2103,7 @@ with ui.tab_panels(tabs, value='ABACUS SKILLS'):
             tmppath = Path(USER_DIR).joinpath(
                     'StudentDatabase',
                     'StudentDataFiles', studentname,
-                    'ScreenReaderSkillsProgression.html'
+                    'AbacusSkillsProgression.html'
                     )
             fig.write_html(tmppath)
             fig.show()
@@ -2262,7 +2271,9 @@ with ui.tab_panels(tabs, value='ABACUS SKILLS'):
             ui.button('GRAPH', color='#b3c7f7', on_click=graph)
             ui.button('EXIT', color='#b3c7f7', on_click=app.shutdown)
 
-
+##############################################################################
+#BRAILLE
+############################################################################
 # BRAILLE SKILLS PROGRESSION
 with ui.tab_panels(tabs, value='BRAILLE SKILLS'):
     with ui.tab_panel('BRAILLE SKILLS'):
@@ -2333,12 +2344,10 @@ with ui.tab_panels(tabs, value='BRAILLE SKILLS'):
         u_trial86 = ui.number().classes('hidden')
         u_trial87 = ui.number().classes('hidden')
 
-
         def save(
                 event
                 ):
             """
-
             :param event:
             :type event:
             """
@@ -2545,6 +2554,7 @@ with ui.tab_panels(tabs, value='BRAILLE SKILLS'):
                 filename.write(str(trial86) + ', ')
                 filename.write(str(trial87) + ', ')
                 filename.close()
+
                 tmppath = Path(USER_DIR).joinpath(
                         'StudentDatabase',
                         'StudentDataFiles',
@@ -2562,6 +2572,73 @@ with ui.tab_panels(tabs, value='BRAILLE SKILLS'):
                         )
                 filename.write(f"'{tmppath}'" + '\n')
                 filename.close()
+                list_data = [
+                        datenow,
+                        trial11,
+                        trial12,
+                        trial13,
+                        trial14,
+                        trial21,
+                        trial22,
+                        trial23,
+                        trial24,
+                        trial25,
+                        trial26,
+                        trial27,
+                        trial28,
+                        trial29,
+                        trial210,
+                        trial211,
+                        trial212,
+                        trial213,
+                        trial214,
+                        trial215,
+                        trial31,
+                        trial32,
+                        trial33,
+                        trial34,
+                        trial35,
+                        trial36,
+                        trial37,
+                        trial38,
+                        trial39,
+                        trial310,
+                        trial311,
+                        trial312,
+                        trial313,
+                        trial314,
+                        trial315,
+                        trial41,
+                        trial42,
+                        trial43,
+                        trial44,
+                        trial51,
+                        trial52,
+                        trial53,
+                        trial54,
+                        trial61,
+                        trial62,
+                        trial63,
+                        trial64,
+                        trial65,
+                        trial66,
+                        trial67,
+                        trial71,
+                        trial72,
+                        trial73,
+                        trial74,
+                        trial75,
+                        trial76,
+                        trial77,
+                        trial78,
+                        trial81,
+                        trial82,
+                        trial83,
+                        trial84,
+                        trial85,
+                        trial86,
+                        trial87
+                        ]
                 os.chdir(USER_DIR)
                 tmppath = Path(USER_DIR).joinpath(
                         'StudentDatabase',
@@ -2571,82 +2648,6 @@ with ui.tab_panels(tabs, value='BRAILLE SKILLS'):
                         )
                 with open(
                         tmppath,
-                        'a',
-                        newline=''
-                        ) as f_setup:
-                    list_data = [
-                            datenow,
-                            trial11,
-                            trial12,
-                            trial13,
-                            trial14,
-                            trial21,
-                            trial22,
-                            trial23,
-                            trial24,
-                            trial25,
-                            trial26,
-                            trial27,
-                            trial28,
-                            trial29,
-                            trial210,
-                            trial211,
-                            trial212,
-                            trial213,
-                            trial214,
-                            trial215,
-                            trial31,
-                            trial32,
-                            trial33,
-                            trial34,
-                            trial35,
-                            trial36,
-                            trial37,
-                            trial38,
-                            trial39,
-                            trial310,
-                            trial311,
-                            trial312,
-                            trial313,
-                            trial314,
-                            trial315,
-                            trial41,
-                            trial42,
-                            trial43,
-                            trial44,
-                            trial51,
-                            trial52,
-                            trial53,
-                            trial54,
-                            trial61,
-                            trial62,
-                            trial63,
-                            trial64,
-                            trial65,
-                            trial66,
-                            trial67,
-                            trial71,
-                            trial72,
-                            trial73,
-                            trial74,
-                            trial75,
-                            trial76,
-                            trial77,
-                            trial78,
-                            trial81,
-                            trial82,
-                            trial83,
-                            trial84,
-                            trial85,
-                            trial86,
-                            trial87
-                            ]
-                    writer_setup = writer(f_setup)
-                    writer_setup.writerow(list_data)
-                    f_setup.close()
-                os.chdir(USER_DIR)
-                with open(
-                        f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\BrailleSkillsProgression.csv",
                         'a',
                         newline=''
                         ) as f_setup:
@@ -2663,139 +2664,139 @@ with ui.tab_panels(tabs, value='BRAILLE SKILLS'):
                 c = conn.cursor()
                 c.execute(
                         """INSERT INTO BRAILLEPROGRESS (
-                STUDENTNAME,
-                DATE,
-                P1_1,
-                P1_2,
-                P1_3,
-                P1_4,
-                P2_1,
-                P2_2,
-                P2_3,
-                P2_4,
-                P2_5,
-                P2_6,
-                P2_7,
-                P2_8,
-                P2_9,
-                P2_10,
-                P2_11,
-                P2_12,
-                P2_13,
-                P2_14,
-                P2_15,
-                P3_1,
-                P3_2,
-                P3_3,
-                P3_4,
-                P3_5,
-                P3_6,
-                P3_7,
-                P3_8,
-                P3_9,
-                P3_10,
-                P3_11,
-                P3_12,
-                P3_13,
-                P3_14,
-                P3_15,
-                P4_1,
-                P4_2,
-                P4_3,
-                P4_4,
-                P5_1,
-                P5_2,
-                P5_3,
-                P5_4,
-                P6_1,
-                P6_2,
-                P6_3,
-                P6_4,
-                P6_5,
-                P6_6,
-                P6_7,
-                P7_1,
-                P7_2,
-                P7_3,
-                P7_4,
-                P7_5,
-                P7_6,
-                P7_7,
-                P7_8,
-                P8_1,
-                P8_2,
-                P8_3,
-                P8_4,
-                P8_5,
-                P8_6,
-                P8_7
-                )
-                VALUES (?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?)""",
+                    STUDENTNAME,
+                    DATE,
+                    P1_1,
+                    P1_2,
+                    P1_3,
+                    P1_4,
+                    P2_1,
+                    P2_2,
+                    P2_3,
+                    P2_4,
+                    P2_5,
+                    P2_6,
+                    P2_7,
+                    P2_8,
+                    P2_9,
+                    P2_10,
+                    P2_11,
+                    P2_12,
+                    P2_13,
+                    P2_14,
+                    P2_15,
+                    P3_1,
+                    P3_2,
+                    P3_3,
+                    P3_4,
+                    P3_5,
+                    P3_6,
+                    P3_7,
+                    P3_8,
+                    P3_9,
+                    P3_10,
+                    P3_11,
+                    P3_12,
+                    P3_13,
+                    P3_14,
+                    P3_15,
+                    P4_1,
+                    P4_2,
+                    P4_3,
+                    P4_4,
+                    P5_1,
+                    P5_2,
+                    P5_3,
+                    P5_4,
+                    P6_1,
+                    P6_2,
+                    P6_3,
+                    P6_4,
+                    P6_5,
+                    P6_6,
+                    P6_7,
+                    P7_1,
+                    P7_2,
+                    P7_3,
+                    P7_4,
+                    P7_5,
+                    P7_6,
+                    P7_7,
+                    P7_8,
+                    P8_1,
+                    P8_2,
+                    P8_3,
+                    P8_4,
+                    P8_5,
+                    P8_6,
+                    P8_7
+                    )
+                    VALUES (?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?)""",
                         (studentname,
                          datenow,
                          trial11,
@@ -2873,9 +2874,8 @@ with ui.tab_panels(tabs, value='BRAILLE SKILLS'):
                 event 
                 ):
             """
-
-            Graphing
-
+            :param event:
+            :type event:
             """
             studentname = u_studentname.value
             conn = sqlite3.connect(dataBasePath)
@@ -4066,6 +4066,7 @@ with ui.tab_panels(tabs, value='BRAILLE SKILLS'):
                     )
             fig.write_html(tmppath)
             fig.show()
+            
             fig = make_subplots(
                     rows=3,
                     cols=1, subplot_titles=(
@@ -4481,7 +4482,9 @@ with ui.tab_panels(tabs, value='BRAILLE SKILLS'):
             fig.write_html(tmppath)
             fig.show()
 
-
+        # BRAILLE SKILLS PROGRESSION TAB
+        with ui.row().classes('w-full no-wrap'):
+            ui.label('BRAILLE SKILLS PROGRESSION').classes('justify-center items-center')
         with ui.row().classes('w-full no-wrap py-4'):
             ui.select(options=students, with_input=True, on_change=lambda e: ui.notify(e.value)).bind_value(
                     u_studentname, 'value'
@@ -4504,7 +4507,7 @@ with ui.tab_panels(tabs, value='BRAILLE SKILLS'):
                     ).classes('sr-only')
         with ui.row().classes('w-full no-wrap py-4 justify-center items-center'):
             ui.label('PHASE 1: ').classes('justify-center items-center')
-            ui.input().props('aria-label="PHASE 1: ').classes('sr-only')
+            ui.input().props('aria-label="PHASE 1: " content-center').classes('sr-only')
         with ui.row().classes('w-full no-wrap py-4 justify-center items-center'):
             ui.number(
                     label="1.1", min=0, max=3, format='%.0f', on_change=lambda e: u_trial11.set_value(e.value)
@@ -4523,7 +4526,7 @@ with ui.tab_panels(tabs, value='BRAILLE SKILLS'):
             ui.label(' ').classes('w-1/5')
         with ui.row().classes('w-full no-wrap py-4 justify-center items-center'):
             ui.label('PHASE 2: ').classes('justify-center items-center')
-            ui.input().props('aria-label="PHASE 2: ').classes('sr-only')
+            ui.input().props('aria-label="PHASE 2: "').classes('sr-only')
         with ui.row().classes('w-full no-wrap py-4 justify-center items-center'):
             ui.number(
                     label="2.1", min=0, max=3, format='%.0f', on_change=lambda e: u_trial21.set_value(e.value)
@@ -4574,7 +4577,7 @@ with ui.tab_panels(tabs, value='BRAILLE SKILLS'):
                     ).classes('w-1/5').props('aria-label="2.15 Mangold Progression: V J"')
         with ui.row().classes('w-full no-wrap py-4 justify-center items-center'):
             ui.label('PHASE 3: ').classes('justify-center items-center')
-            ui.input().props('aria-label="PHASE 3: ').classes('sr-only')
+            ui.input().props('aria-label="PHASE 3: "').classes('sr-only')
         with ui.row().classes('w-full no-wrap py-4 justify-center items-center'):
             ui.number(
                     label="3.1", min=0, max=3, format='%.0f', on_change=lambda e: u_trial31.set_value(e.value)
@@ -4639,7 +4642,7 @@ with ui.tab_panels(tabs, value='BRAILLE SKILLS'):
                     )
         with ui.row().classes('w-full no-wrap py-4 justify-center items-center'):
             ui.label('PHASE 4: ').classes('justify-center items-center')
-            ui.input().props('aria-label="PHASE 4: ').classes('sr-only')
+            ui.input().props('aria-label="PHASE 4: "').classes('sr-only')
         with ui.row().classes('w-full no-wrap py-4 justify-center items-center'):
             ui.number(
                     label="4.1", min=0, max=3, format='%.0f', on_change=lambda e: u_trial41.set_value(e.value)
@@ -4664,7 +4667,7 @@ with ui.tab_panels(tabs, value='BRAILLE SKILLS'):
             ui.label(' ').classes('w-1/5')
         with ui.row().classes('w-full no-wrap py-4 justify-center items-center'):
             ui.label('PHASE 5: ').classes('justify-center items-center')
-            ui.input().props('aria-label="PHASE 5: ').classes('sr-only')
+            ui.input().props('aria-label="PHASE 5: "').classes('sr-only')
         with ui.row().classes('w-full no-wrap py-4 justify-center items-center'):
             ui.number(
                     label="5.1", min=0, max=3, format='%.0f', on_change=lambda e: u_trial51.set_value(e.value)
@@ -4681,7 +4684,7 @@ with ui.tab_panels(tabs, value='BRAILLE SKILLS'):
             ui.label(' ').classes('w-1/5')
         with ui.row().classes('w-full no-wrap py-4 justify-center items-center'):
             ui.label('PHASE 6: ').classes('justify-center items-center')
-            ui.input().props('aria-label="PHASE 6: ').classes('sr-only')
+            ui.input().props('aria-label="PHASE 6: "').classes('sr-only')
         with ui.row().classes('w-full no-wrap py-4 justify-center items-center'):
             ui.number(
                     label="6.1", min=0, max=3, format='%.0f', on_change=lambda e: u_trial61.set_value(e.value)
@@ -4714,7 +4717,7 @@ with ui.tab_panels(tabs, value='BRAILLE SKILLS'):
             ui.label(' ').classes('w-1/5')
         with ui.row().classes('w-full no-wrap py-4 justify-center items-center'):
             ui.label('PHASE 7: ').classes('justify-center items-center')
-            ui.input().props('aria-label="PHASE 7: ').classes('sr-only')
+            ui.input().props('aria-label="PHASE 7: "').classes('sr-only')
         with ui.row().classes('w-full no-wrap py-4 justify-center items-center'):
             ui.number(
                     label="7.1", min=0, max=3, format='%.0f', on_change=lambda e: u_trial71.set_value(e.value)
@@ -4794,6 +4797,7 @@ with ui.tab_panels(tabs, value='BRAILLE SKILLS'):
             ui.button('SAVE', color='#b3c7f7', on_click=save)
             ui.button('GRAPH', color='#b3c7f7', on_click=graph)
             ui.button('EXIT', color='#b3c7f7', on_click=app.shutdown)
+
 # BRAILLENOTE TOUCH SKILLS
 with ui.tab_panels(tabs, value='BRAILLENOTE TOUCH SKILLS'):
     with ui.tab_panel('BRAILLENOTE TOUCH SKILLS'):
@@ -4803,6 +4807,7 @@ with ui.tab_panels(tabs, value='BRAILLENOTE TOUCH SKILLS'):
 with ui.tab_panels(tabs, value='iOS/iPadOS VOICEOVER SKILLS'):
     with ui.tab_panel('iOS/iPadOS VOICEOVER SKILLS'):
         ui.label('COMING SOON')
+
 # SCREENREADER SKILLS PROGRESSION
 with ui.tab_panels(tabs, value='SCREENREADER SKILLS'):
     with ui.tab_panel('SCREENREADER SKILLS'):
@@ -5933,7 +5938,7 @@ with ui.tab_panels(tabs, value='SCREENREADER SKILLS'):
                     ).classes('sr-only')
         with ui.row().classes('w-full no-wrap py-4 justify-center items-center'):
             ui.label('PHASE 1: READING').classes('justify-center items-center')
-            ui.input().props('aria-label="PHASE 1: READING').classes('sr-only')
+            ui.input().props('aria-label="PHASE 1: READING"').classes('sr-only')
         with ui.row().classes('w-full no-wrap py-4'):
             ui.number(
                     label="1.1", min=0, max=3, format='%.0f', on_change=lambda e: u_trial11.set_value(e.value)
@@ -5968,7 +5973,7 @@ with ui.tab_panels(tabs, value='SCREENREADER SKILLS'):
             ui.label(' ').classes('w-1/7')
         with ui.row().classes('w-full no-wrap py-4 justify-center items-center'):
             ui.label('PHASE 2: WRITING').classes('justify-center items-center')
-            ui.input().props('aria-label="PHASE 2: WRITING').classes('sr-only')
+            ui.input().props('aria-label="PHASE 2: WRITING"').classes('sr-only')
         with ui.row().classes('w-full no-wrap py-4'):
             ui.number(
                     label="2.1", min=0, max=3, format='%.0f', on_change=lambda e: u_trial21.set_value(e.value)
@@ -5995,7 +6000,7 @@ with ui.tab_panels(tabs, value='SCREENREADER SKILLS'):
             ui.label(' ').classes('w-1/7')
         with ui.row().classes('w-full no-wrap py-4 justify-center items-center'):
             ui.label('PHASE 3: USING THE INTERNET').classes('justify-center items-center')
-            ui.input().props('aria-label="PHASE 3: USING THE INTERNET').classes('sr-only')
+            ui.input().props('aria-label="PHASE 3: USING THE INTERNET"').classes('sr-only')
         with ui.row().classes('w-full no-wrap py-4'):
             ui.number(
                     label="3.1", min=0, max=3, format='%.0f', on_change=lambda e: u_trial31.set_value(e.value)
@@ -6056,7 +6061,7 @@ with ui.tab_panels(tabs, value='SCREENREADER SKILLS'):
             ui.label(' ').classes('w-1/7')
         with ui.row().classes('w-full no-wrap py-4 justify-center items-center'):
             ui.label('PHASE 4: NAVIGATING AND FILE MANAGEMENT').classes('justify-center items-center')
-            ui.input().props('aria-label="PHASE 4: NAVIGATING AND FILE MANAGEMENT').classes('sr-only')
+            ui.input().props('aria-label="PHASE 4: NAVIGATING AND FILE MANAGEMENT"').classes('sr-only')
 
         with ui.row().classes('w-full no-wrap py-4'):
             ui.number(
@@ -6098,6 +6103,10 @@ with ui.tab_panels(tabs, value='SCREENREADER SKILLS'):
             ui.button('SAVE', color='#b3c7f7', on_click=save)
             ui.button('GRAPH', color='#b3c7f7', on_click=graph)
             ui.button('EXIT', color='#b3c7f7', on_click=app.shutdown)
+
+##############################################################################
+# SIDEBAR AND FOOTER
+############################################################################
 
 # FOOTER
 with ui.footer(value=True).classes('bg-indigo-500') as footer:
@@ -6225,14 +6234,23 @@ with ui.left_drawer(value=True).classes('bg-indigo-500') as left_drawer:
             ).classes(
             'text-left w-full align-left font-bold'
             )
+    
 
+##############################################################################
+# EXECUTE PROGRAM WINDOW
+##############################################################################
 # Get Monitor Size to allow me to create the app to fill screen without setting fullscreen=True.
 # 72 is subtracted from the height to accommodate the height of my Taskbar
 
 for monitor in get_monitors():
     print(f'Screen Resolution = {str(monitor.width)}x{str(monitor.height)}')
 
+# Run call
 ui.run(
         native=True, reload=False, dark=False, title='Academic Skills Progression', fullscreen=False,
         window_size=(monitor.width, monitor.height - 72)
         )
+        
+        
+        
+

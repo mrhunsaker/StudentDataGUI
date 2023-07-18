@@ -1,0 +1,1292 @@
+/home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1100:32 - error: Argument of type "Literal['ABACUS SKILLS']" cannot be assigned to parameter "value" of type "Tab | TabPanel | None" in function "__init__"
+    Type "Literal['ABACUS SKILLS']" cannot be assigned to type "Tab | TabPanel | None"
+      "Literal['ABACUS SKILLS']" is incompatible with "Tab"
+      "Literal['ABACUS SKILLS']" is incompatible with "TabPanel"
+      Type cannot be assigned to type "None" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:2134:42 - error: Argument of type "Literal['']" cannot be assigned to parameter "value" of type "float | None" in function "__init__"
+    Type "Literal['']" cannot be assigned to type "float | None"
+      "Literal['']" is incompatible with "float"
+      Type cannot be assigned to type "None" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:2137:42 - error: Argument of type "Literal['']" cannot be assigned to parameter "value" of type "float | None" in function "__init__"
+    Type "Literal['']" cannot be assigned to type "float | None"
+      "Literal['']" is incompatible with "float"
+      Type cannot be assigned to type "None" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:2140:42 - error: Argument of type "Literal['']" cannot be assigned to parameter "value" of type "float | None" in function "__init__"
+    Type "Literal['']" cannot be assigned to type "float | None"
+      "Literal['']" is incompatible with "float"
+      Type cannot be assigned to type "None" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:2143:42 - error: Argument of type "Literal['']" cannot be assigned to parameter "value" of type "float | None" in function "__init__"
+    Type "Literal['']" cannot be assigned to type "float | None"
+      "Literal['']" is incompatible with "float"
+      Type cannot be assigned to type "None" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:2150:42 - error: Argument of type "Literal['']" cannot be assigned to parameter "value" of type "float | None" in function "__init__"
+    Type "Literal['']" cannot be assigned to type "float | None"
+      "Literal['']" is incompatible with "float"
+      Type cannot be assigned to type "None" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:2155:42 - error: Argument of type "Literal['']" cannot be assigned to parameter "value" of type "float | None" in function "__init__"
+    Type "Literal['']" cannot be assigned to type "float | None"
+      "Literal['']" is incompatible with "float"
+      Type cannot be assigned to type "None" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:2160:42 - error: Argument of type "Literal['']" cannot be assigned to parameter "value" of type "float | None" in function "__init__"
+    Type "Literal['']" cannot be assigned to type "float | None"
+      "Literal['']" is incompatible with "float"
+      Type cannot be assigned to type "None" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:2170:42 - error: Argument of type "Literal['']" cannot be assigned to parameter "value" of type "float | None" in function "__init__"
+    Type "Literal['']" cannot be assigned to type "float | None"
+      "Literal['']" is incompatible with "float"
+      Type cannot be assigned to type "None" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:2173:42 - error: Argument of type "Literal['']" cannot be assigned to parameter "value" of type "float | None" in function "__init__"
+    Type "Literal['']" cannot be assigned to type "float | None"
+      "Literal['']" is incompatible with "float"
+      Type cannot be assigned to type "None" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:2178:42 - error: Argument of type "Literal['']" cannot be assigned to parameter "value" of type "float | None" in function "__init__"
+    Type "Literal['']" cannot be assigned to type "float | None"
+      "Literal['']" is incompatible with "float"
+      Type cannot be assigned to type "None" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:2188:42 - error: Argument of type "Literal['']" cannot be assigned to parameter "value" of type "float | None" in function "__init__"
+    Type "Literal['']" cannot be assigned to type "float | None"
+      "Literal['']" is incompatible with "float"
+      Type cannot be assigned to type "None" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:2193:42 - error: Argument of type "Literal['']" cannot be assigned to parameter "value" of type "float | None" in function "__init__"
+    Type "Literal['']" cannot be assigned to type "float | None"
+      "Literal['']" is incompatible with "float"
+      Type cannot be assigned to type "None" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:2204:42 - error: Argument of type "Literal['']" cannot be assigned to parameter "value" of type "float | None" in function "__init__"
+    Type "Literal['']" cannot be assigned to type "float | None"
+      "Literal['']" is incompatible with "float"
+      Type cannot be assigned to type "None" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:2209:42 - error: Argument of type "Literal['']" cannot be assigned to parameter "value" of type "float | None" in function "__init__"
+    Type "Literal['']" cannot be assigned to type "float | None"
+      "Literal['']" is incompatible with "float"
+      Type cannot be assigned to type "None" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:2220:42 - error: Argument of type "Literal['']" cannot be assigned to parameter "value" of type "float | None" in function "__init__"
+    Type "Literal['']" cannot be assigned to type "float | None"
+      "Literal['']" is incompatible with "float"
+      Type cannot be assigned to type "None" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:2223:42 - error: Argument of type "Literal['']" cannot be assigned to parameter "value" of type "float | None" in function "__init__"
+    Type "Literal['']" cannot be assigned to type "float | None"
+      "Literal['']" is incompatible with "float"
+      Type cannot be assigned to type "None" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:2226:42 - error: Argument of type "Literal['']" cannot be assigned to parameter "value" of type "float | None" in function "__init__"
+    Type "Literal['']" cannot be assigned to type "float | None"
+      "Literal['']" is incompatible with "float"
+      Type cannot be assigned to type "None" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:2229:42 - error: Argument of type "Literal['']" cannot be assigned to parameter "value" of type "float | None" in function "__init__"
+    Type "Literal['']" cannot be assigned to type "float | None"
+      "Literal['']" is incompatible with "float"
+      Type cannot be assigned to type "None" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:2236:42 - error: Argument of type "Literal['']" cannot be assigned to parameter "value" of type "float | None" in function "__init__"
+    Type "Literal['']" cannot be assigned to type "float | None"
+      "Literal['']" is incompatible with "float"
+      Type cannot be assigned to type "None" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:2239:42 - error: Argument of type "Literal['']" cannot be assigned to parameter "value" of type "float | None" in function "__init__"
+    Type "Literal['']" cannot be assigned to type "float | None"
+      "Literal['']" is incompatible with "float"
+      Type cannot be assigned to type "None" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:2242:42 - error: Argument of type "Literal['']" cannot be assigned to parameter "value" of type "float | None" in function "__init__"
+    Type "Literal['']" cannot be assigned to type "float | None"
+      "Literal['']" is incompatible with "float"
+      Type cannot be assigned to type "None" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:2245:42 - error: Argument of type "Literal['']" cannot be assigned to parameter "value" of type "float | None" in function "__init__"
+    Type "Literal['']" cannot be assigned to type "float | None"
+      "Literal['']" is incompatible with "float"
+      Type cannot be assigned to type "None" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:2252:42 - error: Argument of type "Literal['']" cannot be assigned to parameter "value" of type "float | None" in function "__init__"
+    Type "Literal['']" cannot be assigned to type "float | None"
+      "Literal['']" is incompatible with "float"
+      Type cannot be assigned to type "None" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:2255:42 - error: Argument of type "Literal['']" cannot be assigned to parameter "value" of type "float | None" in function "__init__"
+    Type "Literal['']" cannot be assigned to type "float | None"
+      "Literal['']" is incompatible with "float"
+      Type cannot be assigned to type "None" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:2267:32 - error: Argument of type "Literal['BRAILLE SKILLS']" cannot be assigned to parameter "value" of type "Tab | TabPanel | None" in function "__init__"
+    Type "Literal['BRAILLE SKILLS']" cannot be assigned to type "Tab | TabPanel | None"
+      "Literal['BRAILLE SKILLS']" is incompatible with "Tab"
+      "Literal['BRAILLE SKILLS']" is incompatible with "TabPanel"
+      Type cannot be assigned to type "None" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:4799:32 - error: Argument of type "Literal['BRAILLENOTE TOUCH SKILLS']" cannot be assigned to parameter "value" of type "Tab | TabPanel | None" in function "__init__"
+    Type "Literal['BRAILLENOTE TOUCH SKILLS']" cannot be assigned to type "Tab | TabPanel | None"
+      "Literal['BRAILLENOTE TOUCH SKILLS']" is incompatible with "Tab"
+      "Literal['BRAILLENOTE TOUCH SKILLS']" is incompatible with "TabPanel"
+      Type cannot be assigned to type "None" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:4804:32 - error: Argument of type "Literal['iOS/iPadOS VOICEOVER SKILLS']" cannot be assigned to parameter "value" of type "Tab | TabPanel | None" in function "__init__"
+    Type "Literal['iOS/iPadOS VOICEOVER SKILLS']" cannot be assigned to type "Tab | TabPanel | None"
+      "Literal['iOS/iPadOS VOICEOVER SKILLS']" is incompatible with "Tab"
+      "Literal['iOS/iPadOS VOICEOVER SKILLS']" is incompatible with "TabPanel"
+      Type cannot be assigned to type "None" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:4808:32 - error: Argument of type "Literal['SCREENREADER SKILLS']" cannot be assigned to parameter "value" of type "Tab | TabPanel | None" in function "__init__"
+    Type "Literal['SCREENREADER SKILLS']" cannot be assigned to type "Tab | TabPanel | None"
+      "Literal['SCREENREADER SKILLS']" is incompatible with "Tab"
+      "Literal['SCREENREADER SKILLS']" is incompatible with "TabPanel"
+      Type cannot be assigned to type "None" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1161:56 - error: Cannot access member "title" for type "BindableProperty"
+    Member "title" is unknown (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1161:56 - error: "title" is not a known member of "None" (reportOptionalMemberAccess)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1192:32 - error: Operator "+" not supported for types "BindableProperty | Any | None" and "Literal[', ']"
+    Operator "+" not supported for types "BindableProperty" and "Literal[', ']" when expected type is "str"
+    Operator "+" not supported for types "None" and "Literal[', ']" when expected type is "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1232:25 - error: Argument of type "BindableProperty | Any | None" cannot be assigned to parameter "other" of type "StrPath" in function "joinpath"
+    Type "BindableProperty | Any | None" cannot be assigned to type "StrPath"
+      Type "BindableProperty" cannot be assigned to type "StrPath"
+        "BindableProperty" is incompatible with "str"
+        "BindableProperty" is incompatible with protocol "PathLike[str]"
+          "__fspath__" is not present (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1704:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1705:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1713:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1714:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1722:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1723:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1731:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1732:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1740:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1741:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1749:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1750:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1758:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1759:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1767:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1768:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1776:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1777:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1785:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1786:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1794:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1795:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1803:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1804:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1812:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1813:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1821:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1822:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1830:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1831:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1839:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1840:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1848:25 - error: Argument of type "Literal[3]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[3]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1849:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1857:25 - error: Argument of type "Literal[3]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[3]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1858:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1866:25 - error: Argument of type "Literal[3]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[3]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1867:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1875:25 - error: Argument of type "Literal[3]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[3]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1876:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1884:25 - error: Argument of type "Literal[3]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[3]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1885:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1893:25 - error: Argument of type "Literal[3]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[3]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1894:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1902:25 - error: Argument of type "Literal[3]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[3]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1903:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1911:25 - error: Argument of type "Literal[3]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[3]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1912:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1920:25 - error: Argument of type "Literal[4]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[4]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1921:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1929:25 - error: Argument of type "Literal[4]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[4]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1930:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1938:25 - error: Argument of type "Literal[4]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[4]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1939:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1947:25 - error: Argument of type "Literal[4]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[4]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1948:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1956:25 - error: Argument of type "Literal[4]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[4]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1957:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1965:25 - error: Argument of type "Literal[4]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[4]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1966:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1974:25 - error: Argument of type "Literal[4]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[4]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1975:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1983:25 - error: Argument of type "Literal[4]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[4]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1984:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:2096:41 - error: Argument of type "BindableProperty | Any | None" cannot be assigned to parameter "other" of type "StrPath" in function "joinpath"
+    Type "BindableProperty | Any | None" cannot be assigned to type "StrPath"
+      Type "BindableProperty" cannot be assigned to type "StrPath"
+        "BindableProperty" is incompatible with "str"
+        "BindableProperty" is incompatible with protocol "PathLike[str]"
+          "__fspath__" is not present (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:2411:57 - error: Cannot access member "title" for type "BindableProperty"
+    Member "title" is unknown (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:2411:57 - error: "title" is not a known member of "None" (reportOptionalMemberAccess)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:2481:32 - error: Operator "+" not supported for types "BindableProperty | Any | None" and "Literal[', ']"
+    Operator "+" not supported for types "BindableProperty" and "Literal[', ']" when expected type is "str"
+    Operator "+" not supported for types "None" and "Literal[', ']" when expected type is "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:2560:25 - error: Argument of type "BindableProperty | Any | None" cannot be assigned to parameter "other" of type "StrPath" in function "joinpath"
+    Type "BindableProperty | Any | None" cannot be assigned to type "StrPath"
+      Type "BindableProperty" cannot be assigned to type "StrPath"
+        "BindableProperty" is incompatible with "str"
+        "BindableProperty" is incompatible with protocol "PathLike[str]"
+          "__fspath__" is not present (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:2569:25 - error: Argument of type "BindableProperty | Any | None" cannot be assigned to parameter "other" of type "StrPath" in function "joinpath"
+    Type "BindableProperty | Any | None" cannot be assigned to type "StrPath"
+      Type "BindableProperty" cannot be assigned to type "StrPath"
+        "BindableProperty" is incompatible with "str"
+        "BindableProperty" is incompatible with protocol "PathLike[str]"
+          "__fspath__" is not present (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3649:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3650:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3658:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3659:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3667:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3668:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3676:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3677:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3685:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3686:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3694:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3695:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3703:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3704:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3712:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3713:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3721:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3722:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3730:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3731:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3739:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3740:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3748:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3749:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3757:25 - error: Argument of type "Literal[3]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[3]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3758:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3766:25 - error: Argument of type "Literal[3]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[3]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3767:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3775:25 - error: Argument of type "Literal[3]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[3]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3776:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3784:25 - error: Argument of type "Literal[3]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[3]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3785:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3793:25 - error: Argument of type "Literal[3]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[3]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3794:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3802:25 - error: Argument of type "Literal[3]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[3]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3803:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3811:25 - error: Argument of type "Literal[3]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[3]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3812:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3820:25 - error: Argument of type "Literal[3]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[3]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3821:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3829:25 - error: Argument of type "Literal[5]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[5]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3830:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3838:25 - error: Argument of type "Literal[5]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[5]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3839:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3847:25 - error: Argument of type "Literal[5]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[5]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3848:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3856:25 - error: Argument of type "Literal[5]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[5]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3857:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3865:25 - error: Argument of type "Literal[5]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[5]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3866:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3874:25 - error: Argument of type "Literal[5]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[5]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3875:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3883:25 - error: Argument of type "Literal[5]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[5]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3884:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3892:25 - error: Argument of type "Literal[5]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[5]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3893:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3901:25 - error: Argument of type "Literal[7]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[7]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3902:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3910:25 - error: Argument of type "Literal[7]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[7]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3911:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3919:25 - error: Argument of type "Literal[7]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[7]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3920:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3928:25 - error: Argument of type "Literal[7]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[7]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3929:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3937:25 - error: Argument of type "Literal[7]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[7]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3938:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3946:25 - error: Argument of type "Literal[7]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[7]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3947:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3955:25 - error: Argument of type "Literal[7]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[7]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3956:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3964:25 - error: Argument of type "Literal[7]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[7]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3965:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:4064:41 - error: Argument of type "BindableProperty | Any | None" cannot be assigned to parameter "other" of type "StrPath" in function "joinpath"
+    Type "BindableProperty | Any | None" cannot be assigned to type "StrPath"
+      Type "BindableProperty" cannot be assigned to type "StrPath"
+        "BindableProperty" is incompatible with "str"
+        "BindableProperty" is incompatible with protocol "PathLike[str]"
+          "__fspath__" is not present (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:4363:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:4364:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:4372:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:4373:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:4381:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:4382:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:4390:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:4391:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:4399:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:4400:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:4408:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:4409:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:4417:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:4418:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:4426:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:4427:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:4435:25 - error: Argument of type "Literal[3]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[3]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:4436:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:4444:25 - error: Argument of type "Literal[3]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[3]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:4445:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:4453:25 - error: Argument of type "Literal[3]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[3]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:4454:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:4462:25 - error: Argument of type "Literal[3]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[3]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:4463:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:4478:41 - error: Argument of type "BindableProperty | Any | None" cannot be assigned to parameter "other" of type "StrPath" in function "joinpath"
+    Type "BindableProperty | Any | None" cannot be assigned to type "StrPath"
+      Type "BindableProperty" cannot be assigned to type "StrPath"
+        "BindableProperty" is incompatible with "str"
+        "BindableProperty" is incompatible with protocol "PathLike[str]"
+          "__fspath__" is not present (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:4880:62 - error: Cannot access member "title" for type "BindableProperty"
+    Member "title" is unknown (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:4880:62 - error: "title" is not a known member of "None" (reportOptionalMemberAccess)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:4915:32 - error: Operator "+" not supported for types "BindableProperty | Any | None" and "Literal[', ']"
+    Operator "+" not supported for types "BindableProperty" and "Literal[', ']" when expected type is "str"
+    Operator "+" not supported for types "None" and "Literal[', ']" when expected type is "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:4959:25 - error: Argument of type "BindableProperty | Any | None" cannot be assigned to parameter "other" of type "StrPath" in function "joinpath"
+    Type "BindableProperty | Any | None" cannot be assigned to type "StrPath"
+      Type "BindableProperty" cannot be assigned to type "StrPath"
+        "BindableProperty" is incompatible with "str"
+        "BindableProperty" is incompatible with protocol "PathLike[str]"
+          "__fspath__" is not present (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:4976:25 - error: Argument of type "BindableProperty | Any | None" cannot be assigned to parameter "other" of type "StrPath" in function "joinpath"
+    Type "BindableProperty | Any | None" cannot be assigned to type "StrPath"
+      Type "BindableProperty" cannot be assigned to type "StrPath"
+        "BindableProperty" is incompatible with "str"
+        "BindableProperty" is incompatible with protocol "PathLike[str]"
+          "__fspath__" is not present (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5509:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5510:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5518:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5519:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5527:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5528:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5536:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5537:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5545:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5546:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5554:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5555:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5563:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5564:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5572:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5573:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5581:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5582:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5590:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5591:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5599:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5600:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5608:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5609:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5617:25 - error: Argument of type "Literal[3]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[3]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5618:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5626:25 - error: Argument of type "Literal[3]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[3]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5627:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5635:25 - error: Argument of type "Literal[3]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[3]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5636:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5644:25 - error: Argument of type "Literal[3]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[3]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5645:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5653:25 - error: Argument of type "Literal[3]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[3]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5654:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5662:25 - error: Argument of type "Literal[3]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[3]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5663:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5671:25 - error: Argument of type "Literal[3]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[3]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5672:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5680:25 - error: Argument of type "Literal[3]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[3]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5681:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5689:25 - error: Argument of type "Literal[4]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[4]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5690:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5698:25 - error: Argument of type "Literal[4]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[4]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5699:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5707:25 - error: Argument of type "Literal[4]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[4]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5708:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5716:25 - error: Argument of type "Literal[4]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[4]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5717:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5725:25 - error: Argument of type "Literal[5]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[5]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5726:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5734:25 - error: Argument of type "Literal[5]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[5]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5735:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5743:25 - error: Argument of type "Literal[5]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[5]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5744:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5752:25 - error: Argument of type "Literal[5]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[5]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5753:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5761:25 - error: Argument of type "Literal[5]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[5]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5762:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5770:25 - error: Argument of type "Literal[5]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[5]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5771:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5779:25 - error: Argument of type "Literal[5]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[5]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5780:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5788:25 - error: Argument of type "Literal[5]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[5]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5789:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5906:41 - error: Argument of type "BindableProperty | Any | None" cannot be assigned to parameter "other" of type "StrPath" in function "joinpath"
+    Type "BindableProperty | Any | None" cannot be assigned to type "StrPath"
+      Type "BindableProperty" cannot be assigned to type "StrPath"
+        "BindableProperty" is incompatible with "str"
+        "BindableProperty" is incompatible with protocol "PathLike[str]"
+          "__fspath__" is not present (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:6238:22 - error: "monitor" is possibly unbound (reportUnboundVariable)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:6238:37 - error: "monitor" is possibly unbound (reportUnboundVariable)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:711:5 - error: Function declaration "create_connection" is obscured by a declaration of the same name (reportGeneralTypeIssues)
+274 errors, 0 warnings, 0 informations 
+/home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1100:32 - error: Argument of type "Literal['ABACUS SKILLS']" cannot be assigned to parameter "value" of type "Tab | TabPanel | None" in function "__init__"
+    Type "Literal['ABACUS SKILLS']" cannot be assigned to type "Tab | TabPanel | None"
+      "Literal['ABACUS SKILLS']" is incompatible with "Tab"
+      "Literal['ABACUS SKILLS']" is incompatible with "TabPanel"
+      Type cannot be assigned to type "None" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:2134:42 - error: Argument of type "Literal['']" cannot be assigned to parameter "value" of type "float | None" in function "__init__"
+    Type "Literal['']" cannot be assigned to type "float | None"
+      "Literal['']" is incompatible with "float"
+      Type cannot be assigned to type "None" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:2137:42 - error: Argument of type "Literal['']" cannot be assigned to parameter "value" of type "float | None" in function "__init__"
+    Type "Literal['']" cannot be assigned to type "float | None"
+      "Literal['']" is incompatible with "float"
+      Type cannot be assigned to type "None" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:2140:42 - error: Argument of type "Literal['']" cannot be assigned to parameter "value" of type "float | None" in function "__init__"
+    Type "Literal['']" cannot be assigned to type "float | None"
+      "Literal['']" is incompatible with "float"
+      Type cannot be assigned to type "None" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:2143:42 - error: Argument of type "Literal['']" cannot be assigned to parameter "value" of type "float | None" in function "__init__"
+    Type "Literal['']" cannot be assigned to type "float | None"
+      "Literal['']" is incompatible with "float"
+      Type cannot be assigned to type "None" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:2150:42 - error: Argument of type "Literal['']" cannot be assigned to parameter "value" of type "float | None" in function "__init__"
+    Type "Literal['']" cannot be assigned to type "float | None"
+      "Literal['']" is incompatible with "float"
+      Type cannot be assigned to type "None" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:2155:42 - error: Argument of type "Literal['']" cannot be assigned to parameter "value" of type "float | None" in function "__init__"
+    Type "Literal['']" cannot be assigned to type "float | None"
+      "Literal['']" is incompatible with "float"
+      Type cannot be assigned to type "None" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:2160:42 - error: Argument of type "Literal['']" cannot be assigned to parameter "value" of type "float | None" in function "__init__"
+    Type "Literal['']" cannot be assigned to type "float | None"
+      "Literal['']" is incompatible with "float"
+      Type cannot be assigned to type "None" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:2170:42 - error: Argument of type "Literal['']" cannot be assigned to parameter "value" of type "float | None" in function "__init__"
+    Type "Literal['']" cannot be assigned to type "float | None"
+      "Literal['']" is incompatible with "float"
+      Type cannot be assigned to type "None" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:2173:42 - error: Argument of type "Literal['']" cannot be assigned to parameter "value" of type "float | None" in function "__init__"
+    Type "Literal['']" cannot be assigned to type "float | None"
+      "Literal['']" is incompatible with "float"
+      Type cannot be assigned to type "None" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:2178:42 - error: Argument of type "Literal['']" cannot be assigned to parameter "value" of type "float | None" in function "__init__"
+    Type "Literal['']" cannot be assigned to type "float | None"
+      "Literal['']" is incompatible with "float"
+      Type cannot be assigned to type "None" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:2188:42 - error: Argument of type "Literal['']" cannot be assigned to parameter "value" of type "float | None" in function "__init__"
+    Type "Literal['']" cannot be assigned to type "float | None"
+      "Literal['']" is incompatible with "float"
+      Type cannot be assigned to type "None" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:2193:42 - error: Argument of type "Literal['']" cannot be assigned to parameter "value" of type "float | None" in function "__init__"
+    Type "Literal['']" cannot be assigned to type "float | None"
+      "Literal['']" is incompatible with "float"
+      Type cannot be assigned to type "None" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:2204:42 - error: Argument of type "Literal['']" cannot be assigned to parameter "value" of type "float | None" in function "__init__"
+    Type "Literal['']" cannot be assigned to type "float | None"
+      "Literal['']" is incompatible with "float"
+      Type cannot be assigned to type "None" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:2209:42 - error: Argument of type "Literal['']" cannot be assigned to parameter "value" of type "float | None" in function "__init__"
+    Type "Literal['']" cannot be assigned to type "float | None"
+      "Literal['']" is incompatible with "float"
+      Type cannot be assigned to type "None" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:2220:42 - error: Argument of type "Literal['']" cannot be assigned to parameter "value" of type "float | None" in function "__init__"
+    Type "Literal['']" cannot be assigned to type "float | None"
+      "Literal['']" is incompatible with "float"
+      Type cannot be assigned to type "None" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:2223:42 - error: Argument of type "Literal['']" cannot be assigned to parameter "value" of type "float | None" in function "__init__"
+    Type "Literal['']" cannot be assigned to type "float | None"
+      "Literal['']" is incompatible with "float"
+      Type cannot be assigned to type "None" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:2226:42 - error: Argument of type "Literal['']" cannot be assigned to parameter "value" of type "float | None" in function "__init__"
+    Type "Literal['']" cannot be assigned to type "float | None"
+      "Literal['']" is incompatible with "float"
+      Type cannot be assigned to type "None" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:2229:42 - error: Argument of type "Literal['']" cannot be assigned to parameter "value" of type "float | None" in function "__init__"
+    Type "Literal['']" cannot be assigned to type "float | None"
+      "Literal['']" is incompatible with "float"
+      Type cannot be assigned to type "None" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:2236:42 - error: Argument of type "Literal['']" cannot be assigned to parameter "value" of type "float | None" in function "__init__"
+    Type "Literal['']" cannot be assigned to type "float | None"
+      "Literal['']" is incompatible with "float"
+      Type cannot be assigned to type "None" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:2239:42 - error: Argument of type "Literal['']" cannot be assigned to parameter "value" of type "float | None" in function "__init__"
+    Type "Literal['']" cannot be assigned to type "float | None"
+      "Literal['']" is incompatible with "float"
+      Type cannot be assigned to type "None" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:2242:42 - error: Argument of type "Literal['']" cannot be assigned to parameter "value" of type "float | None" in function "__init__"
+    Type "Literal['']" cannot be assigned to type "float | None"
+      "Literal['']" is incompatible with "float"
+      Type cannot be assigned to type "None" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:2245:42 - error: Argument of type "Literal['']" cannot be assigned to parameter "value" of type "float | None" in function "__init__"
+    Type "Literal['']" cannot be assigned to type "float | None"
+      "Literal['']" is incompatible with "float"
+      Type cannot be assigned to type "None" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:2252:42 - error: Argument of type "Literal['']" cannot be assigned to parameter "value" of type "float | None" in function "__init__"
+    Type "Literal['']" cannot be assigned to type "float | None"
+      "Literal['']" is incompatible with "float"
+      Type cannot be assigned to type "None" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:2255:42 - error: Argument of type "Literal['']" cannot be assigned to parameter "value" of type "float | None" in function "__init__"
+    Type "Literal['']" cannot be assigned to type "float | None"
+      "Literal['']" is incompatible with "float"
+      Type cannot be assigned to type "None" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:2267:32 - error: Argument of type "Literal['BRAILLE SKILLS']" cannot be assigned to parameter "value" of type "Tab | TabPanel | None" in function "__init__"
+    Type "Literal['BRAILLE SKILLS']" cannot be assigned to type "Tab | TabPanel | None"
+      "Literal['BRAILLE SKILLS']" is incompatible with "Tab"
+      "Literal['BRAILLE SKILLS']" is incompatible with "TabPanel"
+      Type cannot be assigned to type "None" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:4799:32 - error: Argument of type "Literal['BRAILLENOTE TOUCH SKILLS']" cannot be assigned to parameter "value" of type "Tab | TabPanel | None" in function "__init__"
+    Type "Literal['BRAILLENOTE TOUCH SKILLS']" cannot be assigned to type "Tab | TabPanel | None"
+      "Literal['BRAILLENOTE TOUCH SKILLS']" is incompatible with "Tab"
+      "Literal['BRAILLENOTE TOUCH SKILLS']" is incompatible with "TabPanel"
+      Type cannot be assigned to type "None" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:4804:32 - error: Argument of type "Literal['iOS/iPadOS VOICEOVER SKILLS']" cannot be assigned to parameter "value" of type "Tab | TabPanel | None" in function "__init__"
+    Type "Literal['iOS/iPadOS VOICEOVER SKILLS']" cannot be assigned to type "Tab | TabPanel | None"
+      "Literal['iOS/iPadOS VOICEOVER SKILLS']" is incompatible with "Tab"
+      "Literal['iOS/iPadOS VOICEOVER SKILLS']" is incompatible with "TabPanel"
+      Type cannot be assigned to type "None" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:4808:32 - error: Argument of type "Literal['SCREENREADER SKILLS']" cannot be assigned to parameter "value" of type "Tab | TabPanel | None" in function "__init__"
+    Type "Literal['SCREENREADER SKILLS']" cannot be assigned to type "Tab | TabPanel | None"
+      "Literal['SCREENREADER SKILLS']" is incompatible with "Tab"
+      "Literal['SCREENREADER SKILLS']" is incompatible with "TabPanel"
+      Type cannot be assigned to type "None" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1161:56 - error: Cannot access member "title" for type "BindableProperty"
+    Member "title" is unknown (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1161:56 - error: "title" is not a known member of "None" (reportOptionalMemberAccess)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1192:32 - error: Operator "+" not supported for types "BindableProperty | Any | None" and "Literal[', ']"
+    Operator "+" not supported for types "BindableProperty" and "Literal[', ']" when expected type is "str"
+    Operator "+" not supported for types "None" and "Literal[', ']" when expected type is "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1232:25 - error: Argument of type "BindableProperty | Any | None" cannot be assigned to parameter "other" of type "StrPath" in function "joinpath"
+    Type "BindableProperty | Any | None" cannot be assigned to type "StrPath"
+      Type "BindableProperty" cannot be assigned to type "StrPath"
+        "BindableProperty" is incompatible with "str"
+        "BindableProperty" is incompatible with protocol "PathLike[str]"
+          "__fspath__" is not present (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1704:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1705:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1713:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1714:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1722:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1723:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1731:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1732:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1740:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1741:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1749:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1750:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1758:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1759:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1767:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1768:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1776:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1777:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1785:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1786:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1794:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1795:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1803:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1804:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1812:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1813:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1821:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1822:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1830:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1831:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1839:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1840:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1848:25 - error: Argument of type "Literal[3]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[3]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1849:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1857:25 - error: Argument of type "Literal[3]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[3]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1858:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1866:25 - error: Argument of type "Literal[3]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[3]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1867:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1875:25 - error: Argument of type "Literal[3]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[3]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1876:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1884:25 - error: Argument of type "Literal[3]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[3]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1885:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1893:25 - error: Argument of type "Literal[3]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[3]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1894:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1902:25 - error: Argument of type "Literal[3]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[3]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1903:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1911:25 - error: Argument of type "Literal[3]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[3]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1912:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1920:25 - error: Argument of type "Literal[4]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[4]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1921:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1929:25 - error: Argument of type "Literal[4]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[4]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1930:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1938:25 - error: Argument of type "Literal[4]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[4]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1939:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1947:25 - error: Argument of type "Literal[4]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[4]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1948:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1956:25 - error: Argument of type "Literal[4]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[4]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1957:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1965:25 - error: Argument of type "Literal[4]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[4]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1966:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1974:25 - error: Argument of type "Literal[4]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[4]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1975:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1983:25 - error: Argument of type "Literal[4]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[4]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:1984:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:2096:41 - error: Argument of type "BindableProperty | Any | None" cannot be assigned to parameter "other" of type "StrPath" in function "joinpath"
+    Type "BindableProperty | Any | None" cannot be assigned to type "StrPath"
+      Type "BindableProperty" cannot be assigned to type "StrPath"
+        "BindableProperty" is incompatible with "str"
+        "BindableProperty" is incompatible with protocol "PathLike[str]"
+          "__fspath__" is not present (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:2411:57 - error: Cannot access member "title" for type "BindableProperty"
+    Member "title" is unknown (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:2411:57 - error: "title" is not a known member of "None" (reportOptionalMemberAccess)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:2481:32 - error: Operator "+" not supported for types "BindableProperty | Any | None" and "Literal[', ']"
+    Operator "+" not supported for types "BindableProperty" and "Literal[', ']" when expected type is "str"
+    Operator "+" not supported for types "None" and "Literal[', ']" when expected type is "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:2560:25 - error: Argument of type "BindableProperty | Any | None" cannot be assigned to parameter "other" of type "StrPath" in function "joinpath"
+    Type "BindableProperty | Any | None" cannot be assigned to type "StrPath"
+      Type "BindableProperty" cannot be assigned to type "StrPath"
+        "BindableProperty" is incompatible with "str"
+        "BindableProperty" is incompatible with protocol "PathLike[str]"
+          "__fspath__" is not present (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:2569:25 - error: Argument of type "BindableProperty | Any | None" cannot be assigned to parameter "other" of type "StrPath" in function "joinpath"
+    Type "BindableProperty | Any | None" cannot be assigned to type "StrPath"
+      Type "BindableProperty" cannot be assigned to type "StrPath"
+        "BindableProperty" is incompatible with "str"
+        "BindableProperty" is incompatible with protocol "PathLike[str]"
+          "__fspath__" is not present (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3649:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3650:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3658:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3659:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3667:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3668:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3676:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3677:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3685:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3686:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3694:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3695:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3703:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3704:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3712:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3713:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3721:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3722:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3730:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3731:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3739:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3740:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3748:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3749:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3757:25 - error: Argument of type "Literal[3]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[3]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3758:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3766:25 - error: Argument of type "Literal[3]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[3]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3767:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3775:25 - error: Argument of type "Literal[3]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[3]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3776:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3784:25 - error: Argument of type "Literal[3]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[3]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3785:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3793:25 - error: Argument of type "Literal[3]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[3]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3794:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3802:25 - error: Argument of type "Literal[3]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[3]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3803:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3811:25 - error: Argument of type "Literal[3]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[3]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3812:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3820:25 - error: Argument of type "Literal[3]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[3]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3821:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3829:25 - error: Argument of type "Literal[5]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[5]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3830:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3838:25 - error: Argument of type "Literal[5]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[5]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3839:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3847:25 - error: Argument of type "Literal[5]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[5]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3848:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3856:25 - error: Argument of type "Literal[5]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[5]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3857:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3865:25 - error: Argument of type "Literal[5]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[5]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3866:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3874:25 - error: Argument of type "Literal[5]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[5]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3875:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3883:25 - error: Argument of type "Literal[5]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[5]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3884:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3892:25 - error: Argument of type "Literal[5]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[5]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3893:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3901:25 - error: Argument of type "Literal[7]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[7]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3902:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3910:25 - error: Argument of type "Literal[7]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[7]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3911:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3919:25 - error: Argument of type "Literal[7]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[7]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3920:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3928:25 - error: Argument of type "Literal[7]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[7]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3929:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3937:25 - error: Argument of type "Literal[7]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[7]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3938:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3946:25 - error: Argument of type "Literal[7]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[7]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3947:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3955:25 - error: Argument of type "Literal[7]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[7]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3956:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3964:25 - error: Argument of type "Literal[7]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[7]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:3965:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:4064:41 - error: Argument of type "BindableProperty | Any | None" cannot be assigned to parameter "other" of type "StrPath" in function "joinpath"
+    Type "BindableProperty | Any | None" cannot be assigned to type "StrPath"
+      Type "BindableProperty" cannot be assigned to type "StrPath"
+        "BindableProperty" is incompatible with "str"
+        "BindableProperty" is incompatible with protocol "PathLike[str]"
+          "__fspath__" is not present (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:4363:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:4364:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:4372:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:4373:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:4381:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:4382:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:4390:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:4391:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:4399:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:4400:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:4408:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:4409:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:4417:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:4418:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:4426:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:4427:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:4435:25 - error: Argument of type "Literal[3]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[3]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:4436:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:4444:25 - error: Argument of type "Literal[3]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[3]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:4445:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:4453:25 - error: Argument of type "Literal[3]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[3]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:4454:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:4462:25 - error: Argument of type "Literal[3]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[3]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:4463:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:4478:41 - error: Argument of type "BindableProperty | Any | None" cannot be assigned to parameter "other" of type "StrPath" in function "joinpath"
+    Type "BindableProperty | Any | None" cannot be assigned to type "StrPath"
+      Type "BindableProperty" cannot be assigned to type "StrPath"
+        "BindableProperty" is incompatible with "str"
+        "BindableProperty" is incompatible with protocol "PathLike[str]"
+          "__fspath__" is not present (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:4880:62 - error: Cannot access member "title" for type "BindableProperty"
+    Member "title" is unknown (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:4880:62 - error: "title" is not a known member of "None" (reportOptionalMemberAccess)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:4915:32 - error: Operator "+" not supported for types "BindableProperty | Any | None" and "Literal[', ']"
+    Operator "+" not supported for types "BindableProperty" and "Literal[', ']" when expected type is "str"
+    Operator "+" not supported for types "None" and "Literal[', ']" when expected type is "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:4959:25 - error: Argument of type "BindableProperty | Any | None" cannot be assigned to parameter "other" of type "StrPath" in function "joinpath"
+    Type "BindableProperty | Any | None" cannot be assigned to type "StrPath"
+      Type "BindableProperty" cannot be assigned to type "StrPath"
+        "BindableProperty" is incompatible with "str"
+        "BindableProperty" is incompatible with protocol "PathLike[str]"
+          "__fspath__" is not present (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:4976:25 - error: Argument of type "BindableProperty | Any | None" cannot be assigned to parameter "other" of type "StrPath" in function "joinpath"
+    Type "BindableProperty | Any | None" cannot be assigned to type "StrPath"
+      Type "BindableProperty" cannot be assigned to type "StrPath"
+        "BindableProperty" is incompatible with "str"
+        "BindableProperty" is incompatible with protocol "PathLike[str]"
+          "__fspath__" is not present (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5509:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5510:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5518:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5519:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5527:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5528:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5536:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5537:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5545:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5546:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5554:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5555:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5563:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5564:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5572:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5573:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5581:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5582:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5590:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5591:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5599:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5600:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5608:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5609:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5617:25 - error: Argument of type "Literal[3]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[3]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5618:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5626:25 - error: Argument of type "Literal[3]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[3]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5627:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5635:25 - error: Argument of type "Literal[3]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[3]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5636:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5644:25 - error: Argument of type "Literal[3]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[3]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5645:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5653:25 - error: Argument of type "Literal[3]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[3]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5654:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5662:25 - error: Argument of type "Literal[3]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[3]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5663:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5671:25 - error: Argument of type "Literal[3]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[3]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5672:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5680:25 - error: Argument of type "Literal[3]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[3]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5681:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5689:25 - error: Argument of type "Literal[4]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[4]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5690:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5698:25 - error: Argument of type "Literal[4]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[4]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5699:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5707:25 - error: Argument of type "Literal[4]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[4]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5708:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5716:25 - error: Argument of type "Literal[4]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[4]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5717:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5725:25 - error: Argument of type "Literal[5]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[5]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5726:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5734:25 - error: Argument of type "Literal[5]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[5]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5735:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5743:25 - error: Argument of type "Literal[5]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[5]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5744:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5752:25 - error: Argument of type "Literal[5]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[5]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5753:25 - error: Argument of type "Literal[1]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[1]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5761:25 - error: Argument of type "Literal[5]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[5]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5762:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5770:25 - error: Argument of type "Literal[5]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[5]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5771:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5779:25 - error: Argument of type "Literal[5]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[5]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5780:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5788:25 - error: Argument of type "Literal[5]" cannot be assigned to parameter "row" of type "str" in function "add_hrect"
+    "Literal[5]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5789:25 - error: Argument of type "Literal[2]" cannot be assigned to parameter "col" of type "str" in function "add_hrect"
+    "Literal[2]" is incompatible with "str" (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:5906:41 - error: Argument of type "BindableProperty | Any | None" cannot be assigned to parameter "other" of type "StrPath" in function "joinpath"
+    Type "BindableProperty | Any | None" cannot be assigned to type "StrPath"
+      Type "BindableProperty" cannot be assigned to type "StrPath"
+        "BindableProperty" is incompatible with "str"
+        "BindableProperty" is incompatible with protocol "PathLike[str]"
+          "__fspath__" is not present (reportGeneralTypeIssues)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:6238:22 - error: "monitor" is possibly unbound (reportUnboundVariable)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:6238:37 - error: "monitor" is possibly unbound (reportUnboundVariable)
+  /home/ryhunsaker/GitHubRepos/StudentDataGUI/main.py:711:5 - error: Function declaration "create_connection" is obscured by a declaration of the same name (reportGeneralTypeIssues)
+274 errors, 0 warnings, 0 informations 

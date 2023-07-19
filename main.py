@@ -1101,9 +1101,10 @@ with ui.header().classes('bg-blue-950 text-white font-white font-bold row items-
         with ui.tabs() as tabs:
             ui.tab('ABACUS SKILLS').classes('text-l font-bold')
             ui.tab('BRAILLE SKILLS').classes('text-l font-bold')
+            ui.tab('SCREENREADER SKILLS').classes('text-l font-bold')
             ui.tab('BRAILLENOTE TOUCH SKILLS').classes('font-bold')
             ui.tab('iOS/iPadOS VOICEOVER SKILLS').classes('text-l font-bold')
-            ui.tab('SCREENREADER SKILLS').classes('text-l font-bold')
+            ui.tab('CVI PROGRESS').classes('text-l font-bold')
             
 # ABACUS SKILLS PROGRESSION
 with ui.tab_panels(tabs, value='ABACUS SKILLS'):
@@ -4775,7 +4776,18 @@ with ui.tab_panels(tabs, value='iOS/iPadOS VOICEOVER SKILLS'):
             ui.button('GRAPH', color='#172554', on_click=graph).classes('text-white')
             ui.button('EXIT', color='#172554', on_click=app.shutdown).classes('text-white')
             
+# CVI PROGRESSION
+with ui.tab_panels(tabs, value='CVI PROGRESS'):
+    with ui.tab_panel('CVI PROGRESS'):
 
+        #CVI PROGRESS TAB
+        with ui.row().classes('w-screen no-wrap'):
+            ui.label('CVI PROGRESSION').classes('justify-center items-center')
+        with ui.row().classes('w-screen no-wrap py-4'):
+            ui.button('SAVE', color='#172554', on_click=save).classes('text-white')
+            ui.button('GRAPH', color='#172554', on_click=graph).classes('text-white')
+            ui.button('EXIT', color='#172554', on_click=app.shutdown).classes('text-white')
+#
 # SCREENREADER SKILLS PROGRESSION
 with ui.tab_panels(tabs, value='SCREENREADER SKILLS'):
     with ui.tab_panel('SCREENREADER SKILLS'):

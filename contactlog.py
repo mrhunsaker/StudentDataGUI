@@ -36,7 +36,7 @@ from nicegui import app, ui
 from plotly.subplots import make_subplots
 from screeninfo import get_monitors
 
-from helpers import *
+from helpers import students
 
 ##############################################################################
 # Define Paths
@@ -478,7 +478,7 @@ for name in students:
             ).joinpath(
             'StudentDatabase',
             'StudentDataFiles',
-            name,
+            name,""
             'ScreenReaderSkillsProgression.html'
             ).exists():
         tmppath = Path(
@@ -754,6 +754,7 @@ def create_connection(
             )
 
 
+'''
 def create_connection(
         db_file
         ):
@@ -775,6 +776,7 @@ def create_connection(
                 e
                 )
     return conn
+'''
 
 
 def create_table(
@@ -1104,7 +1106,128 @@ with ui.header().classes('bg-blue-950 text-white font-white font-bold row items-
             ui.tab('BRAILLENOTE TOUCH SKILLS').classes('font-bold')
             ui.tab('iOS/iPadOS VOICEOVER SKILLS').classes('text-l font-bold')
             ui.tab('CVI PROGRESS').classes('text-l font-bold')
-
+            ui.tab('CONTACT LOG').classes('text-l font-bold')
+# CONTACT LOG
+with ui.tab_panels(tabs, value='CONTACT LOG'):
+    with ui.tab_panel('CONTACT LOG'):
+        u_studentname = ui.select(options=students, value='DonaldChamberlain').classes('hidden')
+        date = ui.date().classes('hidden')
+        u_guardianName = ui.input().classes('hidden')
+        u_contactMethod = ui.radio(['Phone', 'Text', 'In-Person', 'Email']).classes('hidden')
+        u_phoneNumber = ui.input().classes('hidden')
+        u_emailAddress = ui.input().classes('hidden')
+        u_contactResponse = ui.radio(['Answered','Left Message','Unable to Leave Message', 'Disconnected' ]).classes('hidden')
+        u_contactGeneral = ui.radio([ 'IEP Related', 'Discipline Related', 'Student Requested'  ]).classes('hidden')
+        u_contactSpecific = ui.radio(['Schedule IEP Meeting','IEP Team Follow-Up','Collaborate on Student IEP Goals', 'Progress Monitoring Update']).classes('hidden')
+        u_contactNotes = ui.textarea().classes('hidden')
+        '''def save(event):
+            """
+            :param event:
+            :type event:
+            """
+            studentname = u_studentname.value
+            date = datenow
+            guardianName = u_guardianName.value
+            contactMethod = u_contactMethod.value
+            phoneNumber = u_phoneNumber.value
+            emailAddress = u_emailAddress.value
+            contactResponse = u_contactResponse.value
+            contactGeneral = u_contactGeneral.value
+            contactSpecific = u_contactSpecific.value
+            contactNotes = u_contactNotes.value
+            
+            studentdatabasename = f"abacus{studentname.title()}{datenow}"
+            with open(
+                    tmppath,
+                    'w'
+                    ) as filename:
+                filename.write('studentname' + ', ')
+                filename.write('date' + ', ')
+                filename.write('guardianName' + ', ')
+                filename.write('contactMethod' + ', ')
+                filename.write('phoneNumber' + ', ')
+                filename.write('emailAddress' + ', ')
+                filename.write('contactResponse' + ', ')
+                filename.write('contactGeneral' + ', ')
+                filename.write('contactSpecific' + ', ')
+                filename.write('contactNotes' + ', ')
+                filename.write(studentname + ', ')
+                filename.write(date + ', ')
+                filename.write(guardianName + ', ')
+                filename.write(contactMethod + ', ')
+                filename.write(phoneNumber + ', ')
+                filename.write(emailAdddress + ', ')
+                filename.write(contactResponse + ', ')
+                filename.write(contactGeneral + ', ')
+                filename.write(contactSpecific + ', ')
+                filename.write(contactNotes + ', ')     
+            '''           
+        with ui.row().classes('w-full no-wrap py-4'):
+            ui.label().classes('w-[250px]')
+            ui.label('PARENT CONTACT LOG').classes('w-screen justify-center items-center text-lg font-bold')
+        with ui.row().classes('w-screen no-wrap py-4'):
+            ui.label().classes('w-[50px]')
+            ui.label('STUDENT INFORMATION').classes('w-full justify-center items-center font-bold')        
+        with ui.row().classes('w-screen no-wrap'):
+            ui.select(options=students, with_input=True, on_change=lambda e: ui.notify(e.value)).bind_value(
+                    u_studentname, 'value'
+                    ).classes(
+                    'w-[300px]'
+                    ).props(
+                    'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
+                    ).tooltip('Type Student Name, it will autocomplete AS you type')
+            with ui.input('Date').classes('w-[300px]').props(
+                    'aria-label="Date. Please type in date using the YYYY-MM-DD format"'
+                    ).tooltip('Date. Please type in date using the YYYY-MM-DD format') as date:
+                with date.add_slot('append'):
+                    ui.icon('edit_calendar').on('click', lambda: menu.open()).classes('cursor-pointer')
+                with ui.menu() as menu:
+                    ui.date().bind_value(date)
+        with ui.row().classes('w-screen no-wrap py-4'):
+            ui.label().classes('w-[50px]')
+            ui.label('GUARDIAN INFORMATION').classes('w-screen justify-center items-center font-bold')        
+        with ui.row().classes('w-screen no-wrap'):
+            ui.input(label="Guardian Name", value="", on_change=lambda e: u_guardianName.set_value(e.value)).classes('w-[200px]').props(
+                    'aria-label="Guardian Name"'
+                    ).tooltip('Guardian Name')
+            ui.input(label="Phone Number", value="", on_change=lambda e: u_phoneNumber.set_value(e.value)).classes('w-[200px]').props(
+                    'aria-label="Phone Number"'
+                    ).tooltip('Phone Number')
+            ui.input(label="Email Address", value="", on_change=lambda e: u_emailAddress.set_value(e.value)).classes('w-[200px]').props(
+                    'aria-label="Email Address"'
+                    ).tooltip('Email Address')
+        with ui.row().classes('w-screen no-wrap py-4'):
+            ui.label().classes('w-[50px]')
+            ui.label('DETAILS OF CONTACT ATTEMPT').classes('w-screen justify-center items-center font-bold')
+        with ui.row().classes('w-screen no-wrap'):
+            ui.label('Contact Method').classes('w-[50px]')
+            ui.select(options=['Phone', 'Text', 'In-Person', 'Email'], value="", on_change=lambda e: u_contactMethod.set_value(e.value)).classes('w-[240px]').props(
+                    'aria-label="Contact Method"'
+                    ).tooltip('Contact Method')
+            ui.label('Contact Response').classes('w-[50px]')
+            ui.select(options=['Answered','Left Message','Unable to Leave Message', 'Disconnected'], value="", on_change=lambda e: u_contactResponse.set_value(e.value)).classes('w-[240px]').props(
+                    'aria-label="Contact Response"'
+                    ).tooltip('Contact Response')
+        with ui.row().classes('w-screen no-wrap py-4'):
+            ui.label().classes('w-[50px]')
+            ui.label('TOPIC OF CONTACT').classes('w-screen justify-center items-center font-bold')
+        with ui.row().classes('w-screen no-wrap'):
+            ui.label('General Topic').classes('w-[50px]')            
+            ui.select(options=['IEP Related', 'Discipline Related', 'Student Requested'], value="", on_change=lambda e: u_contactGeneral.set_value(e.value)).classes('w-[240px]').props(
+                    'aria-label="Reason for Contact - General Category"'
+                    ).tooltip('Reason for Contact - General Category')
+            ui.label('Specific Topic').classes('w-[50px]')            
+            ui.select(options=[
+                'Schedule IEP Meeting','IEP Team Follow-Up','Collaborate on Student IEP Goals', 'Progress Monitoring Update'],
+                      value="", on_change=lambda e: u_contactSpecific.set_value(e.value)).classes('w-[240px]').props(
+                    'aria-label="Reason for Contact - Specific Reason"'
+                    ).tooltip('Reason for Contact - Specific Reason')
+        with ui.row().classes('w-screen no-wrap '):
+            ui.textarea(label="Contact Notes (if email please copy/paste email into the box)", value="", on_change=lambda e: u_contactNotes.set_value(e.value)).classes('w-[640px]').props(
+                    'aria-label="Contact Notes (if email please copy/paste email into the box)"'
+                    ).tooltip('Contact Notes (if email please copy/paste email into the box)')    
+                
+                
 # ABACUS SKILLS PROGRESSION
 with ui.tab_panels(tabs, value='ABACUS SKILLS'):
     with ui.tab_panel('ABACUS SKILLS'):
@@ -2613,8 +2736,13 @@ with ui.tab_panels(tabs, value='BRAILLE SKILLS'):
                     writer_setup.writerow(list_data)
                     f_setup.close()
                 os.chdir(USER_DIR)
+                tmpdir=Path(USER_DIR,
+                            "StudentDatabase",
+                            "StudentDataFiles",
+                            studentname,
+                            'ScreenReaderSkillsProgression.csv')
                 with open(
-                        f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\ScreenReaderSkillsProgression.csv",
+                        tmpdir,
                         'a',
                         newline=''
                         ) as f_setup:
@@ -4859,13 +4987,14 @@ with ui.tab_panels(tabs, value='SCREENREADER SKILLS'):
             trial45 = int(u_trial45.value)
             trial46 = int(u_trial46.value)
             trial47 = int(u_trial47.value)
+            studentdatabasename = f"screenreader{studentname.title()}{datenow}"
             tmppath = Path(USER_DIR).joinpath(
             'StudentDatabase',
             'StudentDataFiles',
             studentname,
             studentdatabasename + '.txt'
             )
-            studentdatabasename = f"screenreader{studentname.title()}{datenow}"
+            
             with open(
                 tmppath,
                 'w'
@@ -5032,13 +5161,13 @@ with ui.tab_panels(tabs, value='SCREENREADER SKILLS'):
                         'StudentDatabase',
                         'StudentDataFiles',
                         studentname,
-                        ScreenReaderSkillsProgression+".csv"
+                        "ScreenReaderSkillsProgression.csv"
                         )
                 os.chdir(USER_DIR)
                 with open(
                         tmppath,
                         'a',
-                        newline='', encoding=UTF8
+                        newline=''
                         ) as f_setup:
                     writer_setup = writer(f_setup)
                     writer_setup.writerow(list_data)

@@ -15,6 +15,16 @@ pathlib = "*"
 sqlalchemy = "*"
 nicegui = "*"
 screeninfo = "*"
+pythonnet = "*"
+pywebview = "*"
+clr-loader = "*"
+cefpython3 = {file = "https://github.com/cztomczak/cefpython/releases/download/v66.1/cefpython3-66.1-py2.py3-none-win_amd64.whl"}
+jedi = "*"
+mypy = "*"
+black = "*"
+pylint = "*"
+pyright = "*"
+ruff = "*"
 
 [dev-packages]
 

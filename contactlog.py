@@ -111,7 +111,6 @@ for name in students:
                 USER_DIR
                 ).joinpath(
                 'StudentDatabase'
-                'StudentDatabase'
                 )
         Path.mkdir(
                 tmppath,
@@ -240,7 +239,8 @@ for name in students:
         tmppath = Path(
                 USER_DIR
                 ).joinpath(
-                'StudentDatabase/StudentDataFiles',
+                'StudentDatabase',
+                'StudentDataFiles',
                 name,
                 'omnibusDatabase.csv'
                 )
@@ -478,8 +478,8 @@ for name in students:
             ).joinpath(
             'StudentDatabase',
             'StudentDataFiles',
-            name,""
-            'ScreenReaderSkillsProgression.html'
+            name, ""
+                  'ScreenReaderSkillsProgression.html'
             ).exists():
         tmppath = Path(
                 USER_DIR
@@ -630,7 +630,7 @@ for name in students:
         Path.touch(
                 tmppath
                 )
-
+    
     sourceDir = Path(
             ROOT_DIR
             ).joinpath(
@@ -655,7 +655,7 @@ for name in students:
                         ),
                 destinationDir
                 )
-
+    
     sourceDir = Path(
             ROOT_DIR
             ).joinpath(
@@ -680,7 +680,7 @@ for name in students:
                         ),
                 destinationDir
                 )
-
+    
     sourceDir = Path(
             ROOT_DIR
             ).joinpath(
@@ -716,6 +716,7 @@ dataBasePath = Path(
         'StudentDatabase',
         'students.db'
         )
+print(dataBasePath)
 def create_connection(
         db_file
         ):
@@ -736,48 +737,13 @@ def create_connection(
         print(
                 e
                 )
-    finally:
-        if conn:
-            conn.close()
+    conn.close()
+    
 
-
-    dataBasePath = Path(
-        USER_DIR
-        ).joinpath(
-        'StudentDatabase',
-        'students.db'
-        )
-
-    if __name__ == '__main__':
-        create_connection(
-                dataBasePath
+if __name__ == '__main__':
+    create_connection(
+            dataBasePath
             )
-
-
-'''
-def create_connection(
-        db_file
-        ):
-    """
-
-    :param db_file:
-    :type db_file:
-    :return:
-    :rtype:
-    """
-    conn = None
-    try:
-        conn = sqlite3.connect(
-                db_file
-                )
-        return conn
-    except Error as e:
-        print(
-                e
-                )
-    return conn
-'''
-
 
 def create_table(
         conn,
@@ -791,6 +757,9 @@ def create_table(
     :type sql_create_sql_table:
     """
     try:
+        conn = create_connection(
+                dataBasePath
+                )
         c = conn.cursor()
         c.execute(
                 sql_create_sql_table
@@ -802,7 +771,7 @@ def create_table(
     conn.close()
 
 
-def main():
+def createTables():
     """
 
     """
@@ -827,8 +796,9 @@ def main():
         MEDIAN FLOAT,
         NOTES TEXT NOT NULL
     );"""
-
-    sql_create_brailledata_table = """CREATE TABLE IF NOT EXISTS BRAILLEPROGRESS (
+    
+    sql_create_brailledata_table = """CREATE TABLE IF NOT EXISTS
+    BRAILLEPROGRESS (
         ID INTEGER PRIMARY KEY AUTOINCREMENT,
         STUDENTNAME TEXT NOT NULL,
         DATE TEXT NOT NULL,
@@ -897,8 +867,9 @@ def main():
         P8_6 INTEGER,
         P8_7 INTEGER
     );"""
-
-    sql_create_screenreaderdata_table = """CREATE TABLE IF NOT EXISTS SCREENREADERPROGRESS (
+    
+    sql_create_screenreaderdata_table = """CREATE TABLE IF NOT EXISTS
+    SCREENREADERPROGRESS (
         ID INTEGER PRIMARY KEY AUTOINCREMENT,
         STUDENTNAME TEXT NOT NULL,
         DATE TEXT NOT NULL,
@@ -931,8 +902,9 @@ def main():
         P4_6 INTEGER,
         P4_7 INTEGER
     );"""
-
-    sql_create_abacusdata_table = """CREATE TABLE IF NOT EXISTS ABACUSPROGRESS (
+    
+    sql_create_abacusdata_table = """CREATE TABLE IF NOT EXISTS
+    ABACUSPROGRESS (
         ID INTEGER PRIMARY KEY AUTOINCREMENT,
         STUDENTNAME TEXT NOT NULL,
         DATE TEXT NOT NULL,
@@ -961,7 +933,7 @@ def main():
         P8_1 INTEGER,
         P8_2 INTEGER
     );"""
-
+    
     sql_create_cvidata_table = """CREATE TABLE IF NOT EXISTS CVIPROGRESS (
         ID INTEGER PRIMARY KEY AUTOINCREMENT,
         STUDENTNAME TEXT NOT NULL,
@@ -977,8 +949,7 @@ def main():
         P2_3 INTEGER NOT NULL,
         P2_4 INTEGER NOT NULL
     );"""
-
-
+    
     conn = create_connection(
             dataBasePath
             )
@@ -994,7 +965,7 @@ def main():
     conn = create_connection(
             dataBasePath
             )
-
+    
     if conn is not None:
         create_table(
                 conn,
@@ -1007,7 +978,7 @@ def main():
     conn = create_connection(
             dataBasePath
             )
-
+    
     if conn is not None:
         create_table(
                 conn,
@@ -1020,7 +991,7 @@ def main():
     conn = create_connection(
             dataBasePath
             )
-
+    
     if conn is not None:
         create_table(
                 conn,
@@ -1033,7 +1004,7 @@ def main():
     conn = create_connection(
             dataBasePath
             )
-
+    
     if conn is not None:
         create_table(
                 conn,
@@ -1043,13 +1014,15 @@ def main():
         print(
                 "Error! cannot create the database connection."
                 )
+    
+if __name__ == '__main__':
+        createTables()
 
-    if __name__ == '__main__':
-        main()
 
 datenow = datetime.datetime.now().strftime(
         "%Y_%m_%d-%H%M%S_%p"
         )
+
 
 ##############################################################################
 # Error Logging
@@ -1059,7 +1032,8 @@ def warningmessage(
         exception_value,
         exception_traceback
         ):
-    message = "Please make sure all fields are selected / filled out properly\n\n"
+    message = "Please make sure all fields are selected / filled out " \
+              "properly\n\n"
     tb = traceback.format_exception(
             exception_type,
             exception_value,
@@ -1095,8 +1069,12 @@ sys.excepthook = warningmessage
 ############################################################################
 
 # HEADER
-with ui.header().classes('bg-blue-950 text-white font-white font-bold row items-center') as header:
-    ui.button(on_click=lambda: left_drawer.toggle()).props('flat color=white icon=menu')
+with ui.header().classes(
+        'bg-blue-950 text-white font-white font-bold row items-center'
+        ) as header:
+    ui.button(on_click=lambda: left_drawer.toggle()).props(
+            'flat color=white icon=menu'
+            )
     ui.label('ACADEMIC SKILL PROGRESSIONS').classes('text-xl font-bold')
     with ui.row().classes('w-screen no-wrap text-l font-bold'):
         with ui.tabs() as tabs:
@@ -1110,15 +1088,30 @@ with ui.header().classes('bg-blue-950 text-white font-white font-bold row items-
 # CONTACT LOG
 with ui.tab_panels(tabs, value='CONTACT LOG'):
     with ui.tab_panel('CONTACT LOG'):
-        u_studentname = ui.select(options=students, value='DonaldChamberlain').classes('hidden')
+        u_studentname = ui.select(
+                options=students, value='DonaldChamberlain'
+                ).classes('hidden')
         date = ui.date().classes('hidden')
         u_guardianName = ui.input().classes('hidden')
-        u_contactMethod = ui.radio(['Phone', 'Text', 'In-Person', 'Email']).classes('hidden')
+        u_contactMethod = ui.radio(
+                ['Phone', 'Text', 'In-Person', 'Email']
+                ).classes('hidden')
         u_phoneNumber = ui.input().classes('hidden')
         u_emailAddress = ui.input().classes('hidden')
-        u_contactResponse = ui.radio(['Answered','Left Message','Unable to Leave Message', 'Disconnected' ]).classes('hidden')
-        u_contactGeneral = ui.radio([ 'IEP Related', 'Discipline Related', 'Student Requested'  ]).classes('hidden')
-        u_contactSpecific = ui.radio(['Schedule IEP Meeting','IEP Team Follow-Up','Collaborate on Student IEP Goals', 'Progress Monitoring Update']).classes('hidden')
+        u_contactResponse = ui.radio(
+                ['Answered', 'Left Message', 'Unable to Leave Message',
+                 'Disconnected']
+                ).classes(
+                'hidden'
+                )
+        u_contactGeneral = ui.radio(
+                ['IEP Related', 'Discipline Related', 'Student Requested']
+                ).classes('hidden')
+        u_contactSpecific = ui.radio(
+                ['Schedule IEP Meeting', 'IEP Team Follow-Up',
+                 'Collaborate on Student IEP Goals',
+                 'Progress Monitoring Update']
+                ).classes('hidden')
         u_contactNotes = ui.textarea().classes('hidden')
         '''def save(event):
             """
@@ -1160,78 +1153,142 @@ with ui.tab_panels(tabs, value='CONTACT LOG'):
                 filename.write(contactResponse + ', ')
                 filename.write(contactGeneral + ', ')
                 filename.write(contactSpecific + ', ')
-                filename.write(contactNotes + ', ')     
-            '''           
+                filename.write(contactNotes + ', ')
+            '''
         with ui.row().classes('w-full no-wrap py-4'):
             ui.label().classes('w-[250px]')
-            ui.label('PARENT CONTACT LOG').classes('w-screen justify-center items-center text-lg font-bold')
+            ui.label('PARENT CONTACT LOG').classes(
+                    'w-screen justify-center items-center text-lg font-bold'
+                    )
         with ui.row().classes('w-screen no-wrap py-4'):
             ui.label().classes('w-[50px]')
-            ui.label('STUDENT INFORMATION').classes('w-full justify-center items-center font-bold')        
+            ui.label('STUDENT INFORMATION').classes(
+                    'w-full justify-center items-center font-bold'
+                    )
         with ui.row().classes('w-screen no-wrap'):
-            ui.select(options=students, with_input=True, on_change=lambda e: ui.notify(e.value)).bind_value(
+            ui.select(
+                    options=students, with_input=True,
+                    on_change=lambda e: ui.notify(e.value)
+                    ).bind_value(
                     u_studentname, 'value'
                     ).classes(
                     'w-[300px]'
                     ).props(
-                    'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
-                    ).tooltip('Type Student Name, it will autocomplete AS you type')
+                    'aria-label="Select Student from the Dropdown. It will '
+                    'autocomplete as you type"'
+                    ).tooltip(
+                    'Type Student Name, it will autocomplete AS you type'
+                    )
             with ui.input('Date').classes('w-[300px]').props(
-                    'aria-label="Date. Please type in date using the YYYY-MM-DD format"'
-                    ).tooltip('Date. Please type in date using the YYYY-MM-DD format') as date:
+                    'aria-label="Date. Please type in date using the '
+                    'YYYY-MM-DD format"'
+                    ).tooltip(
+                    'Date. Please type in date using the YYYY-MM-DD format'
+                    ) as date:
                 with date.add_slot('append'):
-                    ui.icon('edit_calendar').on('click', lambda: menu.open()).classes('cursor-pointer')
+                    ui.icon('edit_calendar').on(
+                            'click', lambda: menu.open()
+                            ).classes('cursor-pointer')
                 with ui.menu() as menu:
                     ui.date().bind_value(date)
         with ui.row().classes('w-screen no-wrap py-4'):
             ui.label().classes('w-[50px]')
-            ui.label('GUARDIAN INFORMATION').classes('w-screen justify-center items-center font-bold')        
+            ui.label('GUARDIAN INFORMATION').classes(
+                    'w-screen justify-center items-center font-bold'
+                    )
         with ui.row().classes('w-screen no-wrap'):
-            ui.input(label="Guardian Name", value="", on_change=lambda e: u_guardianName.set_value(e.value)).classes('w-[200px]').props(
+            ui.input(
+                    label="Guardian Name", value="",
+                    on_change=lambda e: u_guardianName.set_value(e.value)
+                    ).classes(
+                    'w-[200px]'
+                    ).props(
                     'aria-label="Guardian Name"'
                     ).tooltip('Guardian Name')
-            ui.input(label="Phone Number", value="", on_change=lambda e: u_phoneNumber.set_value(e.value)).classes('w-[200px]').props(
+            ui.input(
+                    label="Phone Number", value="",
+                    on_change=lambda e: u_phoneNumber.set_value(e.value)
+                    ).classes(
+                    'w-[200px]'
+                    ).props(
                     'aria-label="Phone Number"'
                     ).tooltip('Phone Number')
-            ui.input(label="Email Address", value="", on_change=lambda e: u_emailAddress.set_value(e.value)).classes('w-[200px]').props(
+            ui.input(
+                    label="Email Address", value="",
+                    on_change=lambda e: u_emailAddress.set_value(e.value)
+                    ).classes(
+                    'w-[200px]'
+                    ).props(
                     'aria-label="Email Address"'
                     ).tooltip('Email Address')
         with ui.row().classes('w-screen no-wrap py-4'):
             ui.label().classes('w-[50px]')
-            ui.label('DETAILS OF CONTACT ATTEMPT').classes('w-screen justify-center items-center font-bold')
+            ui.label('DETAILS OF CONTACT ATTEMPT').classes(
+                    'w-screen justify-center items-center font-bold'
+                    )
         with ui.row().classes('w-screen no-wrap'):
             ui.label('Contact Method').classes('w-[50px]')
-            ui.select(options=['Phone', 'Text', 'In-Person', 'Email'], value="", on_change=lambda e: u_contactMethod.set_value(e.value)).classes('w-[240px]').props(
+            ui.select(
+                    options=['Phone', 'Text', 'In-Person', 'Email'], value="",
+                    on_change=lambda e: u_contactMethod.set_value(e.value)
+                    ).classes('w-[240px]').props(
                     'aria-label="Contact Method"'
                     ).tooltip('Contact Method')
             ui.label('Contact Response').classes('w-[50px]')
-            ui.select(options=['Answered','Left Message','Unable to Leave Message', 'Disconnected'], value="", on_change=lambda e: u_contactResponse.set_value(e.value)).classes('w-[240px]').props(
+            ui.select(
+                    options=['Answered', 'Left Message',
+                             'Unable to Leave Message',
+                             'Disconnected'], value="",
+                    on_change=lambda e: u_contactResponse.set_value(e.value)
+                    ).classes('w-[240px]').props(
                     'aria-label="Contact Response"'
                     ).tooltip('Contact Response')
         with ui.row().classes('w-screen no-wrap py-4'):
             ui.label().classes('w-[50px]')
-            ui.label('TOPIC OF CONTACT').classes('w-screen justify-center items-center font-bold')
+            ui.label('TOPIC OF CONTACT').classes(
+                    'w-screen justify-center items-center font-bold'
+                    )
         with ui.row().classes('w-screen no-wrap'):
-            ui.label('General Topic').classes('w-[50px]')            
-            ui.select(options=['IEP Related', 'Discipline Related', 'Student Requested'], value="", on_change=lambda e: u_contactGeneral.set_value(e.value)).classes('w-[240px]').props(
+            ui.label('General Topic').classes('w-[50px]')
+            ui.select(
+                    options=['IEP Related', 'Discipline Related',
+                             'Student Requested'], value="",
+                    on_change=lambda e: u_contactGeneral.set_value(e.value)
+                    ).classes('w-[240px]').props(
                     'aria-label="Reason for Contact - General Category"'
                     ).tooltip('Reason for Contact - General Category')
-            ui.label('Specific Topic').classes('w-[50px]')            
-            ui.select(options=[
-                'Schedule IEP Meeting','IEP Team Follow-Up','Collaborate on Student IEP Goals', 'Progress Monitoring Update'],
-                      value="", on_change=lambda e: u_contactSpecific.set_value(e.value)).classes('w-[240px]').props(
+            ui.label('Specific Topic').classes('w-[50px]')
+            ui.select(
+                    options=[
+                            'Schedule IEP Meeting', 'IEP Team Follow-Up',
+                            'Collaborate on Student IEP Goals',
+                            'Progress Monitoring Update'],
+                    value="",
+                    on_change=lambda e: u_contactSpecific.set_value(e.value)
+                    ).classes('w-[240px]').props(
                     'aria-label="Reason for Contact - Specific Reason"'
                     ).tooltip('Reason for Contact - Specific Reason')
         with ui.row().classes('w-screen no-wrap '):
-            ui.textarea(label="Contact Notes (if email please copy/paste email into the box)", value="", on_change=lambda e: u_contactNotes.set_value(e.value)).classes('w-[640px]').props(
-                    'aria-label="Contact Notes (if email please copy/paste email into the box)"'
-                    ).tooltip('Contact Notes (if email please copy/paste email into the box)')    
-                
-                
-# ABACUS SKILLS PROGRESSION
+            ui.textarea(
+                    label="Contact Notes (if email please copy/paste email "
+                          "into "
+                          "the box)",
+                    value="",
+                    on_change=lambda e: u_contactNotes.set_value(e.value)
+                    ).classes('w-[640px]').props(
+                    'aria-label="Contact Notes (if email please copy/paste '
+                    'email into the box)"'
+                    ).tooltip(
+                    'Contact Notes (if email please copy/paste email into '
+                    'the box)'
+                    )
+        
+        # ABACUS SKILLS PROGRESSION
 with ui.tab_panels(tabs, value='ABACUS SKILLS'):
     with ui.tab_panel('ABACUS SKILLS'):
-        u_studentname = ui.select(options=students, value='DonaldChamberlain').classes('hidden')
+        u_studentname = ui.select(
+                options=students, value='DonaldChamberlain'
+                ).classes('hidden')
         date = ui.date().classes('hidden')
         u_trial11 = ui.number().classes('hidden')
         u_trial12 = ui.number().classes('hidden')
@@ -1257,8 +1314,8 @@ with ui.tab_panels(tabs, value='ABACUS SKILLS'):
         u_trial74 = ui.number().classes('hidden')
         u_trial81 = ui.number().classes('hidden')
         u_trial82 = ui.number().classes('hidden')
-
-
+        
+        
         def save(event):
             """
             :param event:
@@ -1291,6 +1348,12 @@ with ui.tab_panels(tabs, value='ABACUS SKILLS'):
             trial81 = int(u_trial81.value)
             trial82 = int(u_trial82.value)
             studentdatabasename = f"abacus{studentname.title()}{datenow}"
+            tmppath = Path(USER_DIR).joinpath(
+                    'StudentDatabase',
+                    'StudentDataFiles',
+                    studentname,
+                    studentdatabasename + '.csv'
+                    )
             with open(
                     tmppath,
                     'w'
@@ -1348,7 +1411,7 @@ with ui.tab_panels(tabs, value='ABACUS SKILLS'):
                 filename.write(str(trial81) + ', ')
                 filename.write(str(trial82) + ', ')
                 filename.close()
-
+                
                 tmppath = Path(USER_DIR).joinpath(
                         'StudentDatabase',
                         'StudentDataFiles',
@@ -1422,7 +1485,8 @@ with ui.tab_panels(tabs, value='ABACUS SKILLS'):
                         ]
                 os.chdir(USER_DIR)
                 with open(
-                        f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\{studentname}\\ScreenReaderSkillsProgression.csv",
+                        f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\"
+                        f"{studentname}\\ScreenReaderSkillsProgression.csv",
                         'a',
                         newline=''
                         ) as f_setup:
@@ -1430,7 +1494,7 @@ with ui.tab_panels(tabs, value='ABACUS SKILLS'):
                     writer_setup.writerow(list_data)
                     f_setup.close()
                 ui.notify('Saved successfully!', close_button='OK')
-
+            
             def data_entry():
                 """
 
@@ -1523,7 +1587,8 @@ with ui.tab_panels(tabs, value='ABACUS SKILLS'):
                         )
                 conn.commit()
                 data_entry()
-
+        
+        
         def graph(
                 event
                 ):
@@ -1545,7 +1610,9 @@ with ui.tab_panels(tabs, value='ABACUS SKILLS'):
             print(df)
             df = df.sort_values(by="date")
             mu, sigma = 0, 0.1
-            noise = np.random.normal(mu, sigma, [len(df.index), len(df.columns)])
+            noise = np.random.normal(
+                    mu, sigma, [len(df.index), len(df.columns)]
+                    )
             df_noisy = df + noise
             fig = make_subplots(
                     rows=4,
@@ -2188,167 +2255,353 @@ with ui.tab_panels(tabs, value='ABACUS SKILLS'):
                     )
             fig.write_html(tmppath)
             fig.show()
-
-
+        
+        
         # ABACUS SKILLS PROGRESSION TAB
         with ui.row().classes('w-screen no-wrap'):
-            ui.label('ABACUS SKILLS PROGRESSION').classes('justify-center items-center')
+            ui.label('ABACUS SKILLS PROGRESSION').classes(
+                    'justify-center items-center'
+                    )
         with ui.row().classes('w-screen no-wrap py-4'):
-            ui.select(options=students, with_input=True, on_change=lambda e: ui.notify(e.value)).bind_value(
+            ui.select(
+                    options=students, with_input=True,
+                    on_change=lambda e: ui.notify(e.value)
+                    ).bind_value(
                     u_studentname, 'value'
                     ).classes(
                     'w-[300px]'
                     ).props(
-                    'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
-                    ).tooltip('Type Student Name, it will autocomplete AS you type')
+                    'aria-label="Select Student from the Dropdown. It will '
+                    'autocomplete as you type"'
+                    ).tooltip(
+                    'Type Student Name, it will autocomplete AS you type'
+                    )
             with ui.input('Date').classes('w-[300px]').props(
-                    'aria-label="Date. Please type in date using the YYYY-MM-DD format"'
-                    ).tooltip('Date. Please type in date using the YYYY-MM-DD format') as date:
+                    'aria-label="Date. Please type in date using the '
+                    'YYYY-MM-DD format"'
+                    ).tooltip(
+                    'Date. Please type in date using the YYYY-MM-DD format'
+                    ) as date:
                 with date.add_slot('append'):
-                    ui.icon('edit_calendar').on('click', lambda: menu.open()).classes('cursor-pointer')
+                    ui.icon('edit_calendar').on(
+                            'click', lambda: menu.open()
+                            ).classes('cursor-pointer')
                 with ui.menu() as menu:
                     ui.date().bind_value(date)
         with ui.row().classes('w-screen no-wrap py-4'):
-            ui.label('RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent').props(
-                    'aria-label="RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent" content-center'
+            ui.label(
+                    'RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated '
+                    '3=Independent'
+                    ).props(
+                    'aria-label="RUBRIC: 0=No attempt 1=Required Assistance '
+                    '2=Hesitated 3=Independent" content-center'
                     )
             ui.input().props(
-                    'aria-label="RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent" content-center'
+                    'aria-label="RUBRIC: 0=No attempt 1=Required Assistance '
+                    '2=Hesitated 3=Independent" content-center'
                     ).classes('sr-only')
         with ui.row().classes('w-screen no-wrap py-4'):
-            ui.label('PHASE 1: Setting and Clearing Numbers').classes('justify-center items-center')
-            ui.input().props('aria-label="PHASE 1: Setting and Clearing Numbers" content-center').classes('sr-only')
+            ui.label('PHASE 1: Setting and Clearing Numbers').classes(
+                    'justify-center items-center'
+                    )
+            ui.input().props(
+                    'aria-label="PHASE 1: Setting and Clearing Numbers" '
+                    'content-center'
+                    ).classes('sr-only')
         with ui.row().classes('w-screen no-wrap py-4'):
-            ui.number(label="1.1", value="", on_change=lambda e: u_trial11.set_value(e.value)).classes('w-[200px]').props(
+            ui.number(
+                    label="1.1", value="",
+                    on_change=lambda e: u_trial11.set_value(e.value)
+                    ).classes(
+                    'w-[200px]'
+                    ).props(
                     'aria-label="1.1 Setting Numbers"'
                     ).tooltip('1.1 Setting Numbers')
-            ui.number(label="1.2", value="", on_change=lambda e: u_trial12.set_value(e.value)).classes('w-[200px]').props(
+            ui.number(
+                    label="1.2", value="",
+                    on_change=lambda e: u_trial12.set_value(e.value)
+                    ).classes(
+                    'w-[200px]'
+                    ).props(
                     'aria-label="1.2 Clearing Numbers"'
                     ).tooltip('1.2 Clearing Numbers')
-            ui.number(label="1.3", value="", on_change=lambda e: u_trial13.set_value(e.value)).classes('w-[200px]').props(
+            ui.number(
+                    label="1.3", value="",
+                    on_change=lambda e: u_trial13.set_value(e.value)
+                    ).classes(
+                    'w-[200px]'
+                    ).props(
                     'aria-label="1.3 Place Value"'
                     ).tooltip('1.3 Place Value')
-            ui.number(label="1.4", value="", on_change=lambda e: u_trial14.set_value(e.value)).classes('w-[200px]').props(
+            ui.number(
+                    label="1.4", value="",
+                    on_change=lambda e: u_trial14.set_value(e.value)
+                    ).classes(
+                    'w-[200px]'
+                    ).props(
                     'aria-label="1.4 Vocabulary"'
                     ).tooltip('1.4 Vocabulary')
         with ui.row().classes('w-screen no-wrap py-4'):
-            ui.label('PHASE 2: Addition').classes('justify-center items-center')
-            ui.input().props('aria-label="PHASE 2: Addition" content-center').classes('sr-only')
+            ui.label('PHASE 2: Addition').classes(
+                    'justify-center items-center'
+                    )
+            ui.input().props(
+                    'aria-label="PHASE 2: Addition" content-center'
+                    ).classes('sr-only')
         with ui.row().classes('w-screen no-wrap py-4'):
-            ui.number(label="2.1", value="", on_change=lambda e: u_trial21.set_value(e.value)).classes('w-[200px]').props(
+            ui.number(
+                    label="2.1", value="",
+                    on_change=lambda e: u_trial21.set_value(e.value)
+                    ).classes(
+                    'w-[200px]'
+                    ).props(
                     'aria-label="2.1 Addition of Single Digit Numbers"'
                     ).tooltip(
                     '2.1 Addition of Single Digit Numbers'
                     )
-            ui.number(label="2.2", value="", on_change=lambda e: u_trial22.set_value(e.value)).classes('w-[200px]').props(
-                    'aria-label="2.2 Addition of Multiple Digit Numbers – Direct"'
+            ui.number(
+                    label="2.2", value="",
+                    on_change=lambda e: u_trial22.set_value(e.value)
+                    ).classes(
+                    'w-[200px]'
+                    ).props(
+                    'aria-label="2.2 Addition of Multiple Digit Numbers – '
+                    'Direct"'
                     ).tooltip(
                     '2.2 Addition of Multiple Digit Numbers – Direct'
                     )
-            ui.number(label="2.3", value="", on_change=lambda e: u_trial23.set_value(e.value)).classes('w-[200px]').props(
-                    'aria-label="2.3 Addition of Multiple Digit Numbers – Indirect"'
+            ui.number(
+                    label="2.3", value="",
+                    on_change=lambda e: u_trial23.set_value(e.value)
+                    ).classes(
+                    'w-[200px]'
+                    ).props(
+                    'aria-label="2.3 Addition of Multiple Digit Numbers – '
+                    'Indirect"'
                     ).tooltip(
                     '2.3 Addition of Multiple Digit Numbers – Indirect'
                     )
             ui.label(' ').classes('w-[200px]')
         with ui.row().classes('w-screen no-wrap py-4'):
-            ui.label('PHASE 3: Subtraction').classes('justify-center items-center')
-            ui.input().props('aria-label="PHASE 3: Subtraction" content-center').classes('sr-only')
+            ui.label('PHASE 3: Subtraction').classes(
+                    'justify-center items-center'
+                    )
+            ui.input().props(
+                    'aria-label="PHASE 3: Subtraction" content-center'
+                    ).classes('sr-only')
         with ui.row().classes('w-screen no-wrap py-4'):
-            ui.number(label="3.1", value="", on_change=lambda e: u_trial31.set_value(e.value)).classes('w-[200px]').props(
+            ui.number(
+                    label="3.1", value="",
+                    on_change=lambda e: u_trial31.set_value(e.value)
+                    ).classes(
+                    'w-[200px]'
+                    ).props(
                     'aria-label="3.1 Subtraction"'
                     ).tooltip('3.1 Subtraction')
-            ui.number(label="3.2", value="", on_change=lambda e: u_trial32.set_value(e.value)).classes('w-[200px]').props(
-                    'aria-label="3.2 Subtraction of Multiple Digit Numbers – Direct"'
+            ui.number(
+                    label="3.2", value="",
+                    on_change=lambda e: u_trial32.set_value(e.value)
+                    ).classes(
+                    'w-[200px]'
+                    ).props(
+                    'aria-label="3.2 Subtraction of Multiple Digit Numbers – '
+                    'Direct"'
                     ).tooltip(
                     '3.2 Subtraction of Multiple Digit Numbers – Direct'
                     )
-            ui.number(label="3.3", value="", on_change=lambda e: u_trial33.set_value(e.value)).classes('w-[200px]').props(
-                    'aria-label="3.3 Subtraction of Multiple Digit Numbers – Indirect"'
+            ui.number(
+                    label="3.3", value="",
+                    on_change=lambda e: u_trial33.set_value(e.value)
+                    ).classes(
+                    'w-[200px]'
+                    ).props(
+                    'aria-label="3.3 Subtraction of Multiple Digit Numbers – '
+                    'Indirect"'
                     ).tooltip(
                     '3.3 Subtraction of Multiple Digit Numbers – Indirect'
                     )
             ui.label(' ').classes('w-[200px]')
         with ui.row().classes('w-screen no-wrap py-4'):
-            ui.label('PHASE 4: Multiplication').classes('justify-center items-center')
-            ui.input().props('aria-label="PHASE 4: Multiplication" content-center').classes('sr-only')
-        with ui.row().classes('w-screen no-wrap py-4'):
-            ui.number(label="4.1", value="", on_change=lambda e: u_trial41.set_value(e.value)).classes('w-[200px]').props(
-                    'aria-label="4.1 Multiplication – 2+ Digit Multiplicand 1-Digit Multiplier"'
-                    ).tooltip(
-                    '4.1 Multiplication – 2+ Digit Multiplicand 1-Digit Multiplier'
+            ui.label('PHASE 4: Multiplication').classes(
+                    'justify-center items-center'
                     )
-            ui.number(label="4.2", value="", on_change=lambda e: u_trial42.set_value(e.value)).classes('w-[200px]').props(
-                    'aria-label="4.2 Multiplication – 2+ Digit Multiplicand AND Multiplier"'
+            ui.input().props(
+                    'aria-label="PHASE 4: Multiplication" content-center'
+                    ).classes('sr-only')
+        with ui.row().classes('w-screen no-wrap py-4'):
+            ui.number(
+                    label="4.1", value="",
+                    on_change=lambda e: u_trial41.set_value(e.value)
+                    ).classes(
+                    'w-[200px]'
+                    ).props(
+                    'aria-label="4.1 Multiplication – 2+ Digit Multiplicand '
+                    '1-Digit Multiplier"'
+                    ).tooltip(
+                    '4.1 Multiplication – 2+ Digit Multiplicand 1-Digit '
+                    'Multiplier'
+                    )
+            ui.number(
+                    label="4.2", value="",
+                    on_change=lambda e: u_trial42.set_value(e.value)
+                    ).classes(
+                    'w-[200px]'
+                    ).props(
+                    'aria-label="4.2 Multiplication – 2+ Digit Multiplicand '
+                    'AND Multiplier"'
                     ).tooltip(
                     '4.2 Multiplication – 2+ Digit Multiplicand AND Multiplier'
                     )
             ui.label(' ').classes('w-[200px]')
             ui.label(' ').classes('w-[200px]')
         with ui.row().classes('w-screen no-wrap py-4'):
-            ui.label('PHASE 5: Division').classes('justify-center items-center')
-            ui.input().props('aria-label="PHASE 5: Division" content-center').classes('sr-only')
+            ui.label('PHASE 5: Division').classes(
+                    'justify-center items-center'
+                    )
+            ui.input().props(
+                    'aria-label="PHASE 5: Division" content-center'
+                    ).classes('sr-only')
         with ui.row().classes('w-screen no-wrap py-4'):
-            ui.number(label="5.1", value="", on_change=lambda e: u_trial51.set_value(e.value)).classes('w-[200px]').props(
-                    'aria-label="5.1 Division – 2+ Digit Dividend 1-Digit Divisor"'
+            ui.number(
+                    label="5.1", value="",
+                    on_change=lambda e: u_trial51.set_value(e.value)
+                    ).classes(
+                    'w-[200px]'
+                    ).props(
+                    'aria-label="5.1 Division – 2+ Digit Dividend 1-Digit '
+                    'Divisor"'
                     ).tooltip(
                     '5.1 Division – 2+ Digit Dividend 1-Digit Divisor'
                     )
-            ui.number(label="5.2", value="", on_change=lambda e: u_trial52.set_value(e.value)).classes('w-[200px]').props(
-                    'aria-label="5.2 Division – 2+ Digit Dividend AND 1 Digit Divisor"'
+            ui.number(
+                    label="5.2", value="",
+                    on_change=lambda e: u_trial52.set_value(e.value)
+                    ).classes(
+                    'w-[200px]'
+                    ).props(
+                    'aria-label="5.2 Division – 2+ Digit Dividend AND 1 '
+                    'Digit Divisor"'
                     ).tooltip(
                     '5.2 Division – 2+ Digit Dividend AND 1 Digit Divisor'
                     )
             ui.label(' ').classes('w-[200px]')
             ui.label(' ').classes('w-[200px]')
         with ui.row().classes('w-screen no-wrap py-4'):
-            ui.label('PHASE 6: Decimals').classes('justify-center items-center')
-            ui.input().props('aria-label="PHASE 6: Decimals" content-center').classes('sr-only')
+            ui.label('PHASE 6: Decimals').classes(
+                    'justify-center items-center'
+                    )
+            ui.input().props(
+                    'aria-label="PHASE 6: Decimals" content-center'
+                    ).classes('sr-only')
         with ui.row().classes('w-screen no-wrap py-4'):
-            ui.number(label="6.1", value="", on_change=lambda e: u_trial61.set_value(e.value)).classes('w-[200px]').props(
+            ui.number(
+                    label="6.1", value="",
+                    on_change=lambda e: u_trial61.set_value(e.value)
+                    ).classes(
+                    'w-[200px]'
+                    ).props(
                     'aria-label="6.1 Addition of Decimals"'
                     ).tooltip('6.1 Addition of Decimals')
-            ui.number(label="6.2", value="", on_change=lambda e: u_trial62.set_value(e.value)).classes('w-[200px]').props(
+            ui.number(
+                    label="6.2", value="",
+                    on_change=lambda e: u_trial62.set_value(e.value)
+                    ).classes(
+                    'w-[200px]'
+                    ).props(
                     'aria-label="6.2 Subtraction of Decimals"'
                     ).tooltip('6.2 Subtraction of Decimals')
-            ui.number(label="6.3", value="", on_change=lambda e: u_trial63.set_value(e.value)).classes('w-[200px]').props(
+            ui.number(
+                    label="6.3", value="",
+                    on_change=lambda e: u_trial63.set_value(e.value)
+                    ).classes(
+                    'w-[200px]'
+                    ).props(
                     'aria-label="6.3 Multiplication of Decimals"'
                     ).tooltip('6.3 Multiplication of Decimals')
-            ui.number(label="6.4", value="", on_change=lambda e: u_trial64.set_value(e.value)).classes('w-[200px]').props(
+            ui.number(
+                    label="6.4", value="",
+                    on_change=lambda e: u_trial64.set_value(e.value)
+                    ).classes(
+                    'w-[200px]'
+                    ).props(
                     'aria-label="6.4 Division of Decimals"'
                     ).tooltip('6.4 Division of Decimals')
         with ui.row().classes('w-screen no-wrap py-4'):
-            ui.label('PHASE 7: Fractions').classes('justify-center items-center')
-            ui.input().props('aria-label="PHASE 7: Fractions" content-center').classes('sr-only')
+            ui.label('PHASE 7: Fractions').classes(
+                    'justify-center items-center'
+                    )
+            ui.input().props(
+                    'aria-label="PHASE 7: Fractions" content-center'
+                    ).classes('sr-only')
         with ui.row().classes('w-screen no-wrap py-4'):
-            ui.number(label="7.1", value="", on_change=lambda e: u_trial71.set_value(e.value)).classes('w-[200px]').props(
+            ui.number(
+                    label="7.1", value="",
+                    on_change=lambda e: u_trial71.set_value(e.value)
+                    ).classes(
+                    'w-[200px]'
+                    ).props(
                     'aria-label="7.1 Addition of Fractions"'
                     ).tooltip('7.1 Addition of Fractions')
-            ui.number(label="7.2", value="", on_change=lambda e: u_trial72.set_value(e.value)).classes('w-[200px]').props(
+            ui.number(
+                    label="7.2", value="",
+                    on_change=lambda e: u_trial72.set_value(e.value)
+                    ).classes(
+                    'w-[200px]'
+                    ).props(
                     'aria-label="7.2 Subtraction of Fractions"'
                     ).tooltip('7.2 Subtraction of Fractions')
-            ui.number(label="7.3", value="", on_change=lambda e: u_trial73.set_value(e.value)).classes('w-[200px]').props(
+            ui.number(
+                    label="7.3", value="",
+                    on_change=lambda e: u_trial73.set_value(e.value)
+                    ).classes(
+                    'w-[200px]'
+                    ).props(
                     'aria-label="7.3 Multiplication of Fractions"'
                     ).tooltip('7.3 Multiplication of Fractions')
-            ui.number(label="7.4", value="", on_change=lambda e: u_trial74.set_value(e.value)).classes('w-[200px]').props(
+            ui.number(
+                    label="7.4", value="",
+                    on_change=lambda e: u_trial74.set_value(e.value)
+                    ).classes(
+                    'w-[200px]'
+                    ).props(
                     'aria-label="7.4 Division of Fractions"'
                     ).tooltip('7.4 Division of Fractions')
         with ui.row().classes('w-screen no-wrap py-4'):
-            ui.label('PHASE 8: Roots and Percents').classes('justify-center items-center')
-            ui.input().props('aria-label="HASE 8: Roots and Percents" content-center').classes('sr-only')
+            ui.label('PHASE 8: Roots and Percents').classes(
+                    'justify-center items-center'
+                    )
+            ui.input().props(
+                    'aria-label="HASE 8: Roots and Percents" content-center'
+                    ).classes('sr-only')
         with ui.row().classes('w-screen no-wrap py-4'):
-            ui.number(label="8.1", value="", on_change=lambda e: u_trial81.set_value(e.value)).classes('w-[200px]').props(
+            ui.number(
+                    label="8.1", value="",
+                    on_change=lambda e: u_trial81.set_value(e.value)
+                    ).classes(
+                    'w-[200px]'
+                    ).props(
                     'aria-label="8.1 Percent"'
                     ).tooltip('8.1 Percent')
-            ui.number(label="8.2", value="", on_change=lambda e: u_trial82.set_value(e.value)).classes('w-[200px]').props(
+            ui.number(
+                    label="8.2", value="",
+                    on_change=lambda e: u_trial82.set_value(e.value)
+                    ).classes(
+                    'w-[200px]'
+                    ).props(
                     'aria-label="8.2 Square Root"'
                     ).tooltip('8.2 Square Root')
             ui.label(' ').classes('w-[200px]')
             ui.label(' ').classes('w-[200px]')
         with ui.row().classes('w-screen no-wrap py-4'):
-            ui.button('SAVE', color='#172554', on_click=save).classes('text-white')
-            ui.button('GRAPH', color='#172554', on_click=graph).classes('text-white')
-            ui.button('EXIT', color='#172554', on_click=app.shutdown).classes('text-white')
+            ui.button('SAVE', color='#172554', on_click=save).classes(
+                    'text-white'
+                    )
+            ui.button('GRAPH', color='#172554', on_click=graph).classes(
+                    'text-white'
+                    )
+            ui.button('EXIT', color='#172554', on_click=app.shutdown).classes(
+                    'text-white'
+                    )
 
 ##############################################################################
 # BRAILLE
@@ -2356,7 +2609,9 @@ with ui.tab_panels(tabs, value='ABACUS SKILLS'):
 # BRAILLE SKILLS PROGRESSION
 with ui.tab_panels(tabs, value='BRAILLE SKILLS'):
     with ui.tab_panel('BRAILLE SKILLS'):
-        u_studentname = ui.select(options=students, value='DonaldChamberlain').classes('hidden')
+        u_studentname = ui.select(
+                options=students, value='DonaldChamberlain'
+                ).classes('hidden')
         date = ui.date().classes('hidden')
         u_trial11 = ui.number().classes('hidden')
         u_trial12 = ui.number().classes('hidden')
@@ -2422,8 +2677,8 @@ with ui.tab_panels(tabs, value='BRAILLE SKILLS'):
         u_trial85 = ui.number().classes('hidden')
         u_trial86 = ui.number().classes('hidden')
         u_trial87 = ui.number().classes('hidden')
-
-
+        
+        
         def save(
                 event
                 ):
@@ -2499,6 +2754,12 @@ with ui.tab_panels(tabs, value='BRAILLE SKILLS'):
             trial86 = int(u_trial86.value)
             trial87 = int(u_trial87.value)
             studentdatabasename = f"braille{studentname.title()}{datenow}"
+            tmppath = Path(USER_DIR).joinpath(
+                    'StudentDatabase',
+                    'StudentDataFiles',
+                    studentname,
+                    studentdatabasename + '.csv'
+                    )
             with open(
                     tmppath,
                     'w'
@@ -2568,7 +2829,7 @@ with ui.tab_panels(tabs, value='BRAILLE SKILLS'):
                 filename.write('trial84' + ', ')
                 filename.write('trial85' + ', ')
                 filename.write('trial86' + ', ')
-                filename.write('trial87' + ', ')
+                filename.write('trial87' + '\n')
                 filename.write(studentname + ', ')
                 filename.write(date + ', ')
                 filename.write(str(trial11) + ', ')
@@ -2736,11 +2997,13 @@ with ui.tab_panels(tabs, value='BRAILLE SKILLS'):
                     writer_setup.writerow(list_data)
                     f_setup.close()
                 os.chdir(USER_DIR)
-                tmpdir=Path(USER_DIR,
-                            "StudentDatabase",
-                            "StudentDataFiles",
-                            studentname,
-                            'ScreenReaderSkillsProgression.csv')
+                tmpdir = Path(
+                        USER_DIR,
+                        "StudentDatabase",
+                        "StudentDataFiles",
+                        studentname,
+                        'ScreenReaderSkillsProgression.csv'
+                        )
                 with open(
                         tmpdir,
                         'a',
@@ -2750,7 +3013,7 @@ with ui.tab_panels(tabs, value='BRAILLE SKILLS'):
                     writer_setup.writerow(list_data)
                     f_setup.close()
                 ui.notify('Saved successfully!', close_button='OK')
-
+                
                 def data_entry():
                     """
 
@@ -2961,10 +3224,10 @@ with ui.tab_panels(tabs, value='BRAILLE SKILLS'):
                      )
                     )
             conn.commit()
-
+            
             data_entry()
-
-
+        
+        
         def graph(
                 event
                 ):
@@ -3507,7 +3770,8 @@ with ui.tab_panels(tabs, value='BRAILLE SKILLS'):
                             x=df_noisy.index,
                             y=df_noisy['P3_4'],
                             mode="lines+markers",
-                            name="Strong Contractions <br>(AND OF FOR WITH THE)",
+                            name="Strong Contractions <br>(AND OF FOR WITH "
+                                 "THE)",
                             legendgroup="Phase 3b",
                             legendgrouptitle_text="Phase 3b"
                             ),
@@ -3519,7 +3783,8 @@ with ui.tab_panels(tabs, value='BRAILLE SKILLS'):
                             x=df_noisy.index,
                             y=df_noisy['P3_5'],
                             mode="lines+markers",
-                            name="Strong Groupsigns <br>(CH GH SH TH WH ED ER OU OW ST AR ING)",
+                            name="Strong Groupsigns <br>(CH GH SH TH WH ED "
+                                 "ER OU OW ST AR ING)",
                             legendgroup="Phase 3b",
                             legendgrouptitle_text="Phase 3b"
                             ),
@@ -3685,7 +3950,8 @@ with ui.tab_panels(tabs, value='BRAILLE SKILLS'):
                     go.Scatter(
                             x=df_noisy.index, y=df_noisy['P4_4'],
                             mode="lines+markers",
-                            name="Typeform Indicators <br>(ITALIC, SCRIPT, UNDERLINE, BOLDFACE)",
+                            name="Typeform Indicators <br>(ITALIC, SCRIPT, "
+                                 "UNDERLINE, BOLDFACE)",
                             legendgroup="Phase 4",
                             legendgrouptitle_text="Phase 4"
                             ),
@@ -4148,7 +4414,8 @@ with ui.tab_panels(tabs, value='BRAILLE SKILLS'):
                     xaxis7_tickformat='%d %b', xaxis8_tickformat='%d %b',
                     xaxis9_tickformat='%d %b',
                     template="simple_white",
-                    title_text=f"{studentname}: Literary UEB Skills Progression",
+                    title_text=f"{studentname}: Literary UEB Skills "
+                               f"Progression",
                     legend=dict(
                             font=dict(
                                     size=10
@@ -4165,7 +4432,8 @@ with ui.tab_panels(tabs, value='BRAILLE SKILLS'):
             fig = make_subplots(
                     rows=3,
                     cols=1, subplot_titles=(
-                            "Phase 6: UEB Technical Basics", "Phase 7: Advanced UEB Technical",
+                            "Phase 6: UEB Technical Basics",
+                            "Phase 7: Advanced UEB Technical",
                             "Phase 8: Accelerated UEB Technical"),
                     print_grid=True
                     )
@@ -4547,7 +4815,8 @@ with ui.tab_panels(tabs, value='BRAILLE SKILLS'):
                     xaxis_tickformat='%d %b', xaxis2_tickformat='%d %b',
                     xaxis3_tickformat='%d %b',
                     template="simple_white",
-                    title_text=f"{studentname}: Technical UEB Skills Progression",
+                    title_text=f"{studentname}: Technical UEB Skills "
+                               f"Progression",
                     legend=dict(
                             font=dict(
                                     size=10
@@ -4561,48 +4830,79 @@ with ui.tab_panels(tabs, value='BRAILLE SKILLS'):
                     )
             fig.write_html(tmppath)
             fig.show()
-
+        
+        
         # BRAILLE SKILLS PROGRESSION TAB
         with ui.row().classes('w-screen no-wrap'):
-            ui.label('BRAILLE SKILLS PROGRESSION').classes('justify-center items-center')
+            ui.label('BRAILLE SKILLS PROGRESSION').classes(
+                    'justify-center items-center'
+                    )
         with ui.row().classes('w-screen no-wrap py-4'):
-            ui.select(options=students, with_input=True, on_change=lambda e: ui.notify(e.value)).bind_value(
+            ui.select(
+                    options=students, with_input=True,
+                    on_change=lambda e: ui.notify(e.value)
+                    ).bind_value(
                     u_studentname, 'value'
                     ).classes(
                     'w-[300px]'
                     ).props(
-                    'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
-                    ).tooltip('Type Student Name, it will autocomplete AS you type')
+                    'aria-label="Select Student from the Dropdown. It will '
+                    'autocomplete as you type"'
+                    ).tooltip(
+                    'Type Student Name, it will autocomplete AS you type'
+                    )
             with ui.input('Date').classes('w-[300px]').props(
-                    'aria-label="Date. Please type in date using the YYYY-MM-DD format"'
-                    ).tooltip('Date. Please type in date using the YYYY-MM-DD format') as date:
+                    'aria-label="Date. Please type in date using the '
+                    'YYYY-MM-DD format"'
+                    ).tooltip(
+                    'Date. Please type in date using the YYYY-MM-DD format'
+                    ) as date:
                 with date.add_slot('append'):
-                    ui.icon('edit_calendar').on('click', lambda: menu.open()).classes('cursor-pointer')
+                    ui.icon('edit_calendar').on(
+                            'click', lambda: menu.open()
+                            ).classes('cursor-pointer')
                 with ui.menu() as menu:
                     ui.date().bind_value(date)
         with ui.row().classes('w-screen no-wrap py-4'):
-            ui.label('RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent').props(
-                    'aria-label="RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent" content-center'
+            ui.label(
+                    'RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated '
+                    '3=Independent'
+                    ).props(
+                    'aria-label="RUBRIC: 0=No attempt 1=Required Assistance '
+                    '2=Hesitated 3=Independent" content-center'
                     )
             ui.input().props(
-                    'aria-label="RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent" content-center'
+                    'aria-label="RUBRIC: 0=No attempt 1=Required Assistance '
+                    '2=Hesitated 3=Independent" content-center'
                     ).classes('sr-only')
         with ui.row().classes('w-screen no-wrap py-4'):
             ui.label('PHASE 1: ').classes('justify-center items-center')
             ui.input().props('aria-label="PHASE 1:"').classes('sr-only')
         with ui.row().classes('w-screen no-wrap py-4'):
-            ui.number(label="1.1", min=0, max=3, format='%.0f', on_change=lambda e: u_trial11.set_value(e.value)).classes(
+            ui.number(
+                    label="1.1", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial11.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
                     ).props('aria-label="1.1 Track Left to Right"').tooltip(
                     '1.1 Track Left to Right'
                     )
-            ui.number(label="1.2", min=0, max=3, format='%.0f', on_change=lambda e: u_trial12.set_value(e.value)).classes(
+            ui.number(
+                    label="1.2", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial12.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
                     ).props('aria-label="1.2 Track Top to Bottom"')
-            ui.number(label="1.3", min=0, max=3, format='%.0f', on_change=lambda e: u_trial13.set_value(e.value)).classes(
+            ui.number(
+                    label="1.3", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial13.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
                     ).props('aria-label="1.3 Discriminate Shapes"')
-            ui.number(label="1.4", min=0, max=3, format='%.0f', on_change=lambda e: u_trial14.set_value(e.value)).classes(
+            ui.number(
+                    label="1.4", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial14.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
                     ).props('aria-label="1.4 Discriminate Braille Characters"')
             ui.label(' ').classes('w-[200px]')
@@ -4610,114 +4910,216 @@ with ui.tab_panels(tabs, value='BRAILLE SKILLS'):
             ui.label('PHASE 2: ').classes('justify-center items-center')
             ui.input().props('aria-label="PHASE 2: "').classes('sr-only')
         with ui.row().classes('w-screen no-wrap py-4'):
-            ui.number(label="2.1", min=0, max=3, format='%.0f', on_change=lambda e: u_trial21.set_value(e.value)).classes(
+            ui.number(
+                    label="2.1", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial21.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
                     ).props('aria-label="2.1 Mangold Progression: G C L"')
-            ui.number(label="2.2", min=0, max=3, format='%.0f', on_change=lambda e: u_trial22.set_value(e.value)).classes(
+            ui.number(
+                    label="2.2", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial22.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
                     ).props('aria-label="2.2 Mangold Progression: D Y"')
-            ui.number(label="2.3", min=0, max=3, format='%.0f', on_change=lambda e: u_trial23.set_value(e.value)).classes(
+            ui.number(
+                    label="2.3", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial23.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
                     ).props('aria-label="2.3 Mangold Progression: A B"')
-            ui.number(label="2.4", min=0, max=3, format='%.0f', on_change=lambda e: u_trial24.set_value(e.value)).classes(
+            ui.number(
+                    label="2.4", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial24.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
                     ).props('aria-label="2.4 Mangold Progression: S"')
-            ui.number(label="2.5", min=0, max=3, format='%.0f', on_change=lambda e: u_trial25.set_value(e.value)).classes(
+            ui.number(
+                    label="2.5", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial25.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
                     ).props('aria-label="2.5 Mangold Progression: W"')
         with ui.row().classes('w-screen no-wrap py-4'):
-            ui.number(label="2.6", min=0, max=3, format='%.0f', on_change=lambda e: u_trial26.set_value(e.value)).classes(
+            ui.number(
+                    label="2.6", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial26.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
                     ).props('aria-label="2.6 Mangold Progression: P O"')
-            ui.number(label="2.7", min=0, max=3, format='%.0f', on_change=lambda e: u_trial27.set_value(e.value)).classes(
+            ui.number(
+                    label="2.7", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial27.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
                     ).props('aria-label="2.7 Mangold Progression: K"')
-            ui.number(label="2.8", min=0, max=3, format='%.0f', on_change=lambda e: u_trial28.set_value(e.value)).classes(
+            ui.number(
+                    label="2.8", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial28.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
                     ).props('aria-label="2.8 Mangold Progression: R"')
-            ui.number(label="2.9", min=0, max=3, format='%.0f', on_change=lambda e: u_trial29.set_value(e.value)).classes(
+            ui.number(
+                    label="2.9", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial29.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
                     ).props('aria-label="2.9 Mangold Progression: M E"')
-            ui.number(label="2.10", min=0, max=3, format='%.0f', on_change=lambda e: u_trial210.set_value(e.value)).classes(
+            ui.number(
+                    label="2.10", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial210.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
                     ).props('aria-label="2.10 Mangold Progression: H"')
         with ui.row().classes('w-screen no-wrap py-4'):
-            ui.number(label="2.11", min=0, max=3, format='%.0f', on_change=lambda e: u_trial211.set_value(e.value)).classes(
+            ui.number(
+                    label="2.11", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial211.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
                     ).props('aria-label="2.11 Mangold Progression: N X"')
-            ui.number(label="2.12", min=0, max=3, format='%.0f', on_change=lambda e: u_trial212.set_value(e.value)).classes(
+            ui.number(
+                    label="2.12", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial212.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
                     ).props('aria-label="2.12 Mangold Progression: Z F"')
-            ui.number(label="2.13", min=0, max=3, format='%.0f', on_change=lambda e: u_trial213.set_value(e.value)).classes(
+            ui.number(
+                    label="2.13", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial213.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
                     ).props('aria-label="2.13 Mangold Progression: U T"')
-            ui.number(label="2.14", min=0, max=3, format='%.0f', on_change=lambda e: u_trial214.set_value(e.value)).classes(
+            ui.number(
+                    label="2.14", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial214.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
                     ).props('aria-label="2.14 Mangold Progression: Q I"')
-            ui.number(label="2.15", min=0, max=3, format='%.0f', on_change=lambda e: u_trial215.set_value(e.value)).classes(
+            ui.number(
+                    label="2.15", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial215.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
                     ).props('aria-label="2.15 Mangold Progression: V J"')
         with ui.row().classes('w-screen no-wrap py-4'):
             ui.label('PHASE 3: ').classes('justify-center items-center')
             ui.input().props('aria-label="PHASE 3: "').classes('sr-only')
         with ui.row().classes('w-screen no-wrap py-4'):
-            ui.number(label="3.1", min=0, max=3, format='%.0f', on_change=lambda e: u_trial31.set_value(e.value)).classes(
+            ui.number(
+                    label="3.1", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial31.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
                     ).props('aria-label="3.1 Alphabetic Wordsigns"')
-            ui.number(label="3.2", min=0, max=3, format='%.0f', on_change=lambda e: u_trial32.set_value(e.value)).classes(
+            ui.number(
+                    label="3.2", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial32.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
                     ).props('aria-label="3.2 Braille Numbers"')
-            ui.number(label="3.3", min=0, max=3, format='%.0f', on_change=lambda e: u_trial33.set_value(e.value)).classes(
+            ui.number(
+                    label="3.3", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial33.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
                     ).props('aria-label="3.3 Punctuation"')
-            ui.number(label="3.4", min=0, max=3, format='%.0f', on_change=lambda e: u_trial34.set_value(e.value)).classes(
-                    'w-[200px]'
-                    ).props('aria-label="3.4 Strong Contractions - AND OF FOR WITH THE"')
-            ui.number(label="3.5", min=0, max=3, format='%.0f', on_change=lambda e: u_trial35.set_value(e.value)).classes(
+            ui.number(
+                    label="3.4", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial34.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
                     ).props(
-                    'aria-label="3.5 Strong Groupsigns - CH GH SH TH WH ED ER OU OW ST AR ING"'
+                    'aria-label="3.4 Strong Contractions - AND OF FOR WITH '
+                    'THE"'
+                    )
+            ui.number(
+                    label="3.5", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial35.set_value(e.value)
+                    ).classes(
+                    'w-[200px]'
+                    ).props(
+                    'aria-label="3.5 Strong Groupsigns - CH GH SH TH WH ED '
+                    'ER OU OW ST AR ING"'
                     )
         with ui.row().classes('w-screen no-wrap py-4'):
-            ui.number(label="3.6", min=0, max=3, format='%.0f', on_change=lambda e: u_trial36.set_value(e.value)).classes(
+            ui.number(
+                    label="3.6", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial36.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
-                    ).props('aria-label="3.6 Strong Wordsigns - CH SH TH WH OU ST"')
-            ui.number(label="3.7", min=0, max=3, format='%.0f', on_change=lambda e: u_trial37.set_value(e.value)).classes(
+                    ).props(
+                    'aria-label="3.6 Strong Wordsigns - CH SH TH WH OU ST"'
+                    )
+            ui.number(
+                    label="3.7", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial37.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
                     ).props('aria-label="3.7 Lower Groupsigns - BE CON DIS"')
-            ui.number(label="3.8", min=0, max=3, format='%.0f', on_change=lambda e: u_trial38.set_value(e.value)).classes(
+            ui.number(
+                    label="3.8", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial38.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
-                    ).props('aria-label="3.8 Lower Groupsigns - EA BB CC FF GG"')
-            ui.number(label="3.9", min=0, max=3, format='%.0f', on_change=lambda e: u_trial39.set_value(e.value)).classes(
+                    ).props(
+                    'aria-label="3.8 Lower Groupsigns - EA BB CC FF GG"'
+                    )
+            ui.number(
+                    label="3.9", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial39.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
                     ).props('aria-label="3.9 Lower Group/Wordsigns - EN IN"')
-            ui.number(label="3.10", min=0, max=3, format='%.0f', on_change=lambda e: u_trial310.set_value(e.value)).classes(
+            ui.number(
+                    label="3.10", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial310.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
-                    ).props('aria-label="3.10 Lower Wordsigns - BE HIS WAS WERE"').tooltip(
+                    ).props(
+                    'aria-label="3.10 Lower Wordsigns - BE HIS WAS WERE"'
+                    ).tooltip(
                     '3.10 Lower Wordsigns - BE HIS WAS WERE'
                     )
         with ui.row().classes('w-screen no-wrap py-4'):
-            ui.number(label="3.11", min=0, max=3, format='%.0f', on_change=lambda e: u_trial311.set_value(e.value)).classes(
+            ui.number(
+                    label="3.11", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial311.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
                     ).props('aria-label="3.11 Dot 5 Contractions"').tooltip(
                     '3.11 Dot 5 Contractions'
                     )
-            ui.number(label="3.12", min=0, max=3, format='%.0f', on_change=lambda e: u_trial312.set_value(e.value)).classes(
+            ui.number(
+                    label="3.12", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial312.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
                     ).props('aria-label="3.12 Dot 45 Contractions"').tooltip(
                     '3.12 Dot 45 Contractions'
                     )
-            ui.number(label="3.13", min=0, max=3, format='%.0f', on_change=lambda e: u_trial313.set_value(e.value)).classes(
+            ui.number(
+                    label="3.13", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial313.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
                     ).props('aria-label="3.13 Dot 456 Contractions"').tooltip(
                     '3.13 Dot 456 Contractions'
                     )
-            ui.number(label="3.14", min=0, max=3, format='%.0f', on_change=lambda e: u_trial314.set_value(e.value)).classes(
+            ui.number(
+                    label="3.14", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial314.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
-                    ).props('aria-label="3.14 Final Letter Groupsigns"').tooltip(
+                    ).props(
+                    'aria-label="3.14 Final Letter Groupsigns"'
+                    ).tooltip(
                     '3.14 Final Letter Groupsigns'
                     )
-            ui.number(label="3.15", min=0, max=3, format='%.0f', on_change=lambda e: u_trial315.set_value(e.value)).classes(
+            ui.number(
+                    label="3.15", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial315.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
                     ).props('aria-label="3.15 Shortform Words"').tooltip(
                     '3.15 Shortform Words'
@@ -4726,74 +5128,142 @@ with ui.tab_panels(tabs, value='BRAILLE SKILLS'):
             ui.label('PHASE 4: ').classes('justify-center items-center')
             ui.input().props('aria-label="PHASE 4: "').classes('sr-only')
         with ui.row().classes('w-screen no-wrap py-4'):
-            ui.number(label="4.1", min=0, max=3, format='%.0f', on_change=lambda e: u_trial41.set_value(e.value)).classes(
+            ui.number(
+                    label="4.1", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial41.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
                     ).props('aria-label="4.1 Grade 1 Indicators"').tooltip(
                     '4.1 Grade 1 Indicators'
                     )
-            ui.number(label="4.2", min=0, max=3, format='%.0f', on_change=lambda e: u_trial42.set_value(e.value)).classes(
+            ui.number(
+                    label="4.2", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial42.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
                     ).props('aria-label="4.2 Capitals Indicators"').tooltip(
                     '4.2 Capitals Indicators'
                     )
-            ui.number(label="4.3", min=0, max=3, format='%.0f', on_change=lambda e: u_trial43.set_value(e.value)).classes(
-                    'w-[200px]'
-                    ).props('aria-label="4.3 Numeric Mode and Spatial Math"').tooltip(
-                    '4.3 Numeric Mode and Spatial Math'
-                    )
-            ui.number(label="4.4", min=0, max=3, format='%.0f', on_change=lambda e: u_trial44.set_value(e.value)).classes(
+            ui.number(
+                    label="4.3", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial43.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
                     ).props(
-                    'aria-label="4.4 Typeform Indicators - ITALIC BOLD UNDERLINE SCRIPT"'
-                    ).tooltip('4.4 Typeform Indicators - ITALIC BOLD UNDERLINE SCRIPT')
+                    'aria-label="4.3 Numeric Mode and Spatial Math"'
+                    ).tooltip(
+                    '4.3 Numeric Mode and Spatial Math'
+                    )
+            ui.number(
+                    label="4.4", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial44.set_value(e.value)
+                    ).classes(
+                    'w-[200px]'
+                    ).props(
+                    'aria-label="4.4 Typeform Indicators - ITALIC BOLD '
+                    'UNDERLINE SCRIPT"'
+                    ).tooltip(
+                    '4.4 Typeform Indicators - ITALIC BOLD UNDERLINE SCRIPT'
+                    )
             ui.label(' ').classes('w-[200px]')
         with ui.row().classes('w-screen no-wrap py-4'):
             ui.label('PHASE 5: ').classes('justify-center items-center')
             ui.input().props('aria-label="PHASE 5: "').classes('sr-only')
         with ui.row().classes('w-screen no-wrap py-4'):
-            ui.number(label="5.1", min=0, max=3, format='%.0f', on_change=lambda e: u_trial51.set_value(e.value)).classes(
+            ui.number(
+                    label="5.1", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial51.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
-                    ).props('aria-label="5.1 Page Numbering"').tooltip('5.1 Page Numbering')
-            ui.number(label="5.2", min=0, max=3, format='%.0f', on_change=lambda e: u_trial52.set_value(e.value)).classes(
+                    ).props('aria-label="5.1 Page Numbering"').tooltip(
+                    '5.1 Page Numbering'
+                    )
+            ui.number(
+                    label="5.2", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial52.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
-                    ).props('aria-label="5.2 Headings"').tooltip('5.2 Headings')
-            ui.number(label="5.3", min=0, max=3, format='%.0f', on_change=lambda e: u_trial53.set_value(e.value)).classes(
+                    ).props('aria-label="5.2 Headings"').tooltip(
+                    '5.2 Headings'
+                    )
+            ui.number(
+                    label="5.3", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial53.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
                     ).props('aria-label="5.3 Lists"').tooltip('5.3 Lists')
-            ui.number(label="5.4", min=0, max=3, format='%.0f', on_change=lambda e: u_trial54.set_value(e.value)).classes(
+            ui.number(
+                    label="5.4", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial54.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
-                    ).props('aria-label="5.4 Poetry / Drama"').tooltip('5.4 Poetry / Drama')
+                    ).props('aria-label="5.4 Poetry / Drama"').tooltip(
+                    '5.4 Poetry / Drama'
+                    )
             ui.label(' ').classes('w-[200px]')
         with ui.row().classes('w-screen no-wrap py-4'):
             ui.label('PHASE 6: ').classes('justify-center items-center')
             ui.input().props('aria-label="PHASE 6: "').classes('sr-only')
         with ui.row().classes('w-screen no-wrap py-4'):
-            ui.number(label="6.1", min=0, max=3, format='%.0f', on_change=lambda e: u_trial61.set_value(e.value)).classes(
+            ui.number(
+                    label="6.1", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial61.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
-                    ).props('aria-label="6.1 Operation and Comparison Signs"').tooltip(
+                    ).props(
+                    'aria-label="6.1 Operation and Comparison Signs"'
+                    ).tooltip(
                     '6.1 Operation and Comparison Signs'
                     )
-            ui.number(label="6.2", min=0, max=3, format='%.0f', on_change=lambda e: u_trial62.set_value(e.value)).classes(
+            ui.number(
+                    label="6.2", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial62.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
-                    ).props('aria-label="6.2 Grade 1 Mode"').tooltip('6.2 Grade 1 Mode')
-            ui.number(label="6.3", min=0, max=3, format='%.0f', on_change=lambda e: u_trial63.set_value(e.value)).classes(
+                    ).props('aria-label="6.2 Grade 1 Mode"').tooltip(
+                    '6.2 Grade 1 Mode'
+                    )
+            ui.number(
+                    label="6.3", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial63.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
                     ).props('aria-label="6.3 Special Print Symbols"').tooltip(
                     '6.3 Special Print Symbols'
                     )
-            ui.number(label="6.4", min=0, max=3, format='%.0f', on_change=lambda e: u_trial64.set_value(e.value)).classes(
+            ui.number(
+                    label="6.4", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial64.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
-                    ).props('aria-label="6.4 Omission Marks"').tooltip('6.4 Omission Marks')
-            ui.number(label="6.5", min=0, max=3, format='%.0f', on_change=lambda e: u_trial65.set_value(e.value)).classes(
+                    ).props('aria-label="6.4 Omission Marks"').tooltip(
+                    '6.4 Omission Marks'
+                    )
+            ui.number(
+                    label="6.5", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial65.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
-                    ).props('aria-label="6.5 Shape Indicators"').tooltip('6.5 Shape Indicators')
+                    ).props('aria-label="6.5 Shape Indicators"').tooltip(
+                    '6.5 Shape Indicators'
+                    )
         with ui.row().classes('w-screen no-wrap py-4'):
-            ui.number(label="6.6", min=0, max=3, format='%.0f', on_change=lambda e: u_trial66.set_value(e.value)).classes(
+            ui.number(
+                    label="6.6", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial66.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
-                    ).props('aria-label="6.6 Roman Numerals"').tooltip('6.6 Roman Numerals')
-            ui.number(label="6.7", min=0, max=3, format='%.0f', on_change=lambda e: u_trial67.set_value(e.value)).classes(
+                    ).props('aria-label="6.6 Roman Numerals"').tooltip(
+                    '6.6 Roman Numerals'
+                    )
+            ui.number(
+                    label="6.7", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial67.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
-                    ).props('aria-label="6.7 Fractions"').tooltip('6.7 Fractions')
+                    ).props('aria-label="6.7 Fractions"').tooltip(
+                    '6.7 Fractions'
+                    )
             ui.label(' ').classes('w-[200px]')
             ui.label(' ').classes(' w-[200px]')
             ui.label(' ').classes('w-[200px]')
@@ -4801,124 +5271,218 @@ with ui.tab_panels(tabs, value='BRAILLE SKILLS'):
             ui.label('PHASE 7: ').classes('justify-center items-center')
             ui.input().props('aria-label="PHASE 7: "').classes('sr-only')
         with ui.row().classes('w-screen no-wrap py-4'):
-            ui.number(label="7.1", min=0, max=3, format='%.0f', on_change=lambda e: u_trial71.set_value(e.value)).classes(
+            ui.number(
+                    label="7.1", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial71.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
-                    ).props('aria-label="7.1 Grade 1 Mode and algebra"').tooltip(
+                    ).props(
+                    'aria-label="7.1 Grade 1 Mode and algebra"'
+                    ).tooltip(
                     '7.1 Grade 1 Mode and algebra'
                     )
-            ui.number(label="7.2", min=0, max=3, format='%.0f', on_change=lambda e: u_trial72.set_value(e.value)).classes(
+            ui.number(
+                    label="7.2", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial72.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
-                    ).props('aria-label="7.2 Grade 1 Mode and Fractions"').tooltip(
+                    ).props(
+                    'aria-label="7.2 Grade 1 Mode and Fractions"'
+                    ).tooltip(
                     '7.2 Grade 1 Mode and Fractions'
                     )
-            ui.number(label="7.3", min=0, max=3, format='%.0f', on_change=lambda e: u_trial73.set_value(e.value)).classes(
+            ui.number(
+                    label="7.3", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial73.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
-                    ).props('aria-label="7.3 Advanced Operation and Comparison Signs"').tooltip(
+                    ).props(
+                    'aria-label="7.3 Advanced Operation and Comparison Signs"'
+                    ).tooltip(
                     '7.3 Advanced Operation and Comparison Signs'
                     )
-            ui.number(label="7.4", min=0, max=3, format='%.0f', on_change=lambda e: u_trial74.set_value(e.value)).classes(
+            ui.number(
+                    label="7.4", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial74.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
                     ).props('aria-label="7.4 Indices"').tooltip('7.4 Indices')
-            ui.number(label="7.5", min=0, max=3, format='%.0f', on_change=lambda e: u_trial75.set_value(e.value)).classes(
+            ui.number(
+                    label="7.5", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial75.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
                     ).props('aria-label="7.5 Roots and Radicals"').tooltip(
                     '7.5 Roots and Radicals'
                     )
         with ui.row().classes('w-screen no-wrap py-4'):
-            ui.number(label="7.6", min=0, max=3, format='%.0f', on_change=lambda e: u_trial76.set_value(e.value)).classes(
+            ui.number(
+                    label="7.6", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial76.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
-                    ).props('aria-label="7.6 Miscellaneous Shape Indicators"').tooltip(
+                    ).props(
+                    'aria-label="7.6 Miscellaneous Shape Indicators"'
+                    ).tooltip(
                     '7.6 Miscellaneous Shape Indicators'
                     )
-            ui.number(label="7.7", min=0, max=3, format='%.0f', on_change=lambda e: u_trial77.set_value(e.value)).classes(
+            ui.number(
+                    label="7.7", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial77.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
-                    ).props('aria-label="7.7 Functions"').tooltip('7.7 Functions')
-            ui.number(label="7.8", min=0, max=3, format='%.0f', on_change=lambda e: u_trial78.set_value(e.value)).classes(
+                    ).props('aria-label="7.7 Functions"').tooltip(
+                    '7.7 Functions'
+                    )
+            ui.number(
+                    label="7.8", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial78.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
-                    ).props('aria-label="7.8 Greek Letters"').tooltip('7.8 Greek Letters')
+                    ).props('aria-label="7.8 Greek Letters"').tooltip(
+                    '7.8 Greek Letters'
+                    )
             ui.label(' ').classes('w-[200px]')
             ui.label(' ').classes('w-[200px]')
         with ui.row().classes('w-screen no-wrap py-4'):
             ui.label('PHASE 8: ').classes('justify-center items-center')
             ui.input().props('aria-label="PHASE 8:"').classes('sr-only')
         with ui.row().classes('w-screen no-wrap py-4'):
-            ui.number(label="8.1", min=0, max=3, format='%.0f', on_change=lambda e: u_trial81.set_value(e.value)).classes(
+            ui.number(
+                    label="8.1", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial81.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
                     ).props('aria-label="8.1 Functions"')
-            ui.number(label="8.2", min=0, max=3, format='%.0f', on_change=lambda e: u_trial82.set_value(e.value)).classes(
+            ui.number(
+                    label="8.2", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial82.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
-                    ).props('aria-label="8.2 Modifiers: Bars and Dots"').tooltip(
+                    ).props(
+                    'aria-label="8.2 Modifiers: Bars and Dots"'
+                    ).tooltip(
                     '8.2 Modifiers: Bars and Dots'
                     )
-            ui.number(label="8.3", min=0, max=3, format='%.0f', on_change=lambda e: u_trial83.set_value(e.value)).classes(
+            ui.number(
+                    label="8.3", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial83.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
-                    ).props('aria-label="8.3 Modifiers: Arrows and Limits"').tooltip(
+                    ).props(
+                    'aria-label="8.3 Modifiers: Arrows and Limits"'
+                    ).tooltip(
                     '8.3 Modifiers: Arrows and Limits'
                     )
-            ui.number(label="8.4", min=0, max=3, format='%.0f', on_change=lambda e: u_trial84.set_value(e.value)).classes(
+            ui.number(
+                    label="8.4", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial84.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
-                    ).props('aria-label="8.4 Probability"').tooltip('8.4 Probability')
-            ui.number(label="8.5", min=0, max=3, format='%.0f', on_change=lambda e: u_trial85.set_value(e.value)).classes(
+                    ).props('aria-label="8.4 Probability"').tooltip(
+                    '8.4 Probability'
+                    )
+            ui.number(
+                    label="8.5", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial85.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
-                    ).props('aria-label="8.5 Calculus: Differentiation"').tooltip(
+                    ).props(
+                    'aria-label="8.5 Calculus: Differentiation"'
+                    ).tooltip(
                     '8.5 Calculus: Differentiation'
                     )
         with ui.row().classes('w-screen no-wrap py-4'):
-            ui.number(label="8.6", min=0, max=3, format='%.0f', on_change=lambda e: u_trial86.set_value(e.value)).classes(
+            ui.number(
+                    label="8.6", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial86.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
                     ).props('aria-label="8.6 Calculus: Integration"').tooltip(
                     '8.6 Calculus: Integration'
                     )
-            ui.number(label="8.7", min=0, max=3, format='%.0f', on_change=lambda e: u_trial87.set_value(e.value)).classes(
+            ui.number(
+                    label="8.7", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial87.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
-                    ).props('aria-label="8.7 Vertical Bars"').tooltip('8.7 Vertical Bars')
+                    ).props('aria-label="8.7 Vertical Bars"').tooltip(
+                    '8.7 Vertical Bars'
+                    )
             ui.label(' ').classes('w-[200px]')
             ui.label(' ').classes('w-[200px]')
             ui.label(' ').classes('w-[200px]')
         with ui.row().classes('w-screen no-wrap py-4'):
-            ui.button('SAVE', color='#172554', on_click=save).classes('text-white')
-            ui.button('GRAPH', color='#172554', on_click=graph).classes('text-white')
-            ui.button('EXIT', color='#172554', on_click=app.shutdown).classes('text-white')
+            ui.button('SAVE', color='#172554', on_click=save).classes(
+                    'text-white'
+                    )
+            ui.button('GRAPH', color='#172554', on_click=graph).classes(
+                    'text-white'
+                    )
+            ui.button('EXIT', color='#172554', on_click=app.shutdown).classes(
+                    'text-white'
+                    )
 
 # BRAILLENOTE TOUCH PLUS SKILLS
 with ui.tab_panels(tabs, value='BRAILLENOTE TOUCH SKILLS'):
     with ui.tab_panel('BRAILLENOTE TOUCH SKILLS'):
-
         # BRAILLENOTE TOUCH PLUS SKILLS TAB
         with ui.row().classes('w-screen no-wrap'):
-            ui.label('BRAILLENOTE TOUCH PLUS SKILLS PROGRESSION').classes('justify-center items-center')
+            ui.label('BRAILLENOTE TOUCH PLUS SKILLS PROGRESSION').classes(
+                    'justify-center items-center'
+                    )
         with ui.row().classes('w-screen no-wrap py-4'):
-            ui.button('SAVE', color='#172554', on_click=save).classes('text-white')
-            ui.button('GRAPH', color='#172554', on_click=graph).classes('text-white')
-            ui.button('EXIT', color='#172554', on_click=app.shutdown).classes('text-white')
+            ui.button('SAVE', color='#172554', on_click=save).classes(
+                    'text-white'
+                    )
+            ui.button('GRAPH', color='#172554', on_click=graph).classes(
+                    'text-white'
+                    )
+            ui.button('EXIT', color='#172554', on_click=app.shutdown).classes(
+                    'text-white'
+                    )
 # iOS/iPadOS VOICEOVER SKILLS
 with ui.tab_panels(tabs, value='iOS/iPadOS VOICEOVER SKILLS'):
     with ui.tab_panel('iOS/iPadOS VOICEOVER SKILLS'):
-
         # BRAILLENOTE TOUCH PLUS SKILLS TAB
         with ui.row().classes('w-screen no-wrap'):
-            ui.label('iOS/iPadOS VOICEOVER SKILLS PROGRESSION').classes('justify-center items-center')
+            ui.label('iOS/iPadOS VOICEOVER SKILLS PROGRESSION').classes(
+                    'justify-center items-center'
+                    )
         with ui.row().classes('w-screen no-wrap py-4'):
-            ui.button('SAVE', color='#172554', on_click=save).classes('text-white')
-            ui.button('GRAPH', color='#172554', on_click=graph).classes('text-white')
-            ui.button('EXIT', color='#172554', on_click=app.shutdown).classes('text-white')
+            ui.button('SAVE', color='#172554', on_click=save).classes(
+                    'text-white'
+                    )
+            ui.button('GRAPH', color='#172554', on_click=graph).classes(
+                    'text-white'
+                    )
+            ui.button('EXIT', color='#172554', on_click=app.shutdown).classes(
+                    'text-white'
+                    )
 
 # CVI PROGRESSION
 with ui.tab_panels(tabs, value='CVI PROGRESS'):
     with ui.tab_panel('CVI PROGRESS'):
-
-        #CVI PROGRESS TAB
+        # CVI PROGRESS TAB
         with ui.row().classes('w-screen no-wrap'):
             ui.label('CVI PROGRESSION').classes('justify-center items-center')
         with ui.row().classes('w-screen no-wrap py-4'):
-            ui.button('SAVE', color='#172554', on_click=save).classes('text-white')
-            ui.button('GRAPH', color='#172554', on_click=graph).classes('text-white')
-            ui.button('EXIT', color='#172554', on_click=app.shutdown).classes('text-white')
+            ui.button('SAVE', color='#172554', on_click=save).classes(
+                    'text-white'
+                    )
+            ui.button('GRAPH', color='#172554', on_click=graph).classes(
+                    'text-white'
+                    )
+            ui.button('EXIT', color='#172554', on_click=app.shutdown).classes(
+                    'text-white'
+                    )
 #
 # SCREENREADER SKILLS PROGRESSION
 with ui.tab_panels(tabs, value='SCREENREADER SKILLS'):
     with ui.tab_panel('SCREENREADER SKILLS'):
-        u_studentname = ui.select(options=students, value='DonaldChamberlain').classes('hidden')
+        u_studentname = ui.select(
+                options=students, value='DonaldChamberlain'
+                ).classes('hidden')
         # ASSIGN VARIABLES
         date = ui.date().classes('hidden')
         u_trial11 = ui.number().classes('hidden')
@@ -4949,8 +5513,8 @@ with ui.tab_panels(tabs, value='SCREENREADER SKILLS'):
         u_trial45 = ui.number().classes('hidden')
         u_trial46 = ui.number().classes('hidden')
         u_trial47 = ui.number().classes('hidden')
-
-
+        
+        
         # SAVE FUNCTION (USED BELOW)
         def save(event):
             """
@@ -4989,16 +5553,16 @@ with ui.tab_panels(tabs, value='SCREENREADER SKILLS'):
             trial47 = int(u_trial47.value)
             studentdatabasename = f"screenreader{studentname.title()}{datenow}"
             tmppath = Path(USER_DIR).joinpath(
-            'StudentDatabase',
-            'StudentDataFiles',
-            studentname,
-            studentdatabasename + '.txt'
-            )
+                    'StudentDatabase',
+                    'StudentDataFiles',
+                    studentname,
+                    studentdatabasename + '.txt'
+                    )
             
             with open(
-                tmppath,
-                'w'
-                ) as filename:
+                    tmppath,
+                    'w'
+                    ) as filename:
                 filename.write('studentname' + ', ')
                 filename.write('date' + ', ')
                 filename.write('trial11' + ', ')
@@ -5060,7 +5624,7 @@ with ui.tab_panels(tabs, value='SCREENREADER SKILLS'):
                 filename.write(str(trial46) + ', ')
                 filename.write(str(trial47) + ', ')
                 filename.close()
-
+                
                 tmppath = Path(USER_DIR).joinpath(
                         'StudentDatabase',
                         'StudentDataFiles',
@@ -5173,8 +5737,7 @@ with ui.tab_panels(tabs, value='SCREENREADER SKILLS'):
                     writer_setup.writerow(list_data)
                     f_setup.close()
                 ui.notify('Saved successfully!', close_button='OK')
-
-
+            
             def data_entry():
                 """
                 """
@@ -5279,10 +5842,10 @@ with ui.tab_panels(tabs, value='SCREENREADER SKILLS'):
                                 )
                         )
                 conn.commit()
-
+                
                 data_entry()
-
-
+        
+        
         def graph(event):
             """
 
@@ -5291,7 +5854,9 @@ with ui.tab_panels(tabs, value='SCREENREADER SKILLS'):
                 """
             studentname = u_studentname.value
             conn = sqlite3.connect(dataBasePath)
-            df_sql = pd.read_sql_query("SELECT * FROM SCREENREADERPROGRESS", conn)
+            df_sql = pd.read_sql_query(
+                    "SELECT * FROM SCREENREADERPROGRESS", conn
+                    )
             df_student = df_sql[df_sql.STUDENTNAME == studentname]
             print(df_student)
             conn.close()
@@ -5302,7 +5867,9 @@ with ui.tab_panels(tabs, value='SCREENREADER SKILLS'):
             print(df)
             df = df.sort_values(by="date")
             mu, sigma = 0, 0.1
-            noise = np.random.normal(mu, sigma, [len(df.index), len(df.columns)])
+            noise = np.random.normal(
+                    mu, sigma, [len(df.index), len(df.columns)]
+                    )
             df_noisy = df + noise
             fig = make_subplots(
                     rows=5,
@@ -5978,7 +6545,8 @@ with ui.tab_panels(tabs, value='SCREENREADER SKILLS'):
                     )
             fig.update_layout(
                     template="simple_white",
-                    title_text=f"{studentname}: Screen Reader Skills Progression"
+                    title_text=f"{studentname}: Screen Reader Skills "
+                               f"Progression"
                     )
             tmppath = Path(USER_DIR).joinpath(
                     'StudentDatabase',
@@ -5987,64 +6555,123 @@ with ui.tab_panels(tabs, value='SCREENREADER SKILLS'):
                     )
             fig.write_html(tmppath)
             fig.show()
-            ui.notify(f'Graph Successful. The Graphs will open in a Browser Window', close_button='OK')
-
+            ui.notify(
+                    f'Graph Successful. The Graphs will open in a Browser '
+                    f'Window',
+                    close_button='OK'
+                    )
+        
+        
         # SCREENREADER SKILLS PROGRESSION TAB
         with ui.row().classes('w-screen no-wrap'):
-            ui.label('SCREENREADER SKILLS PROGRESSION').classes('justify-center items-center')
+            ui.label('SCREENREADER SKILLS PROGRESSION').classes(
+                    'justify-center items-center'
+                    )
         with ui.row().classes('w-screen no-wrap py-4'):
-            ui.select(options=students, with_input=True, on_change=lambda e: ui.notify(e.value)).bind_value(
+            ui.select(
+                    options=students, with_input=True,
+                    on_change=lambda e: ui.notify(e.value)
+                    ).bind_value(
                     u_studentname, 'value'
                     ).classes(
                     'w-[300px]'
                     ).props(
                     'aria-label="Select Student from the Dropdown. It will '
                     'autocomplete as you type"'
-                    ).tooltip('Type Student Name, it will autocomplete AS you type')
+                    ).tooltip(
+                    'Type Student Name, it will autocomplete AS you type'
+                    )
             with ui.input('Date').classes('w-[300px]').props(
-                    'aria-label="Date. Please type in date using the YYYY-MM-DD format"'
-                    ).tooltip('Date. Please type in date using the YYYY-MM-DD format') as date:
+                    'aria-label="Date. Please type in date using the '
+                    'YYYY-MM-DD format"'
+                    ).tooltip(
+                    'Date. Please type in date using the YYYY-MM-DD format'
+                    ) as date:
                 with date.add_slot('append'):
-                    ui.icon('edit_calendar').on('click', lambda: menu.open()).classes('cursor-pointer')
+                    ui.icon('edit_calendar').on(
+                            'click', lambda: menu.open()
+                            ).classes('cursor-pointer')
                 with ui.menu() as menu:
                     ui.date().bind_value(date)
         with ui.row().classes('w-screen no-wrap py-4'):
-            ui.label('RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent').props(
-                    'aria-label="RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent" content-center'
+            ui.label(
+                    'RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated '
+                    '3=Independent'
+                    ).props(
+                    'aria-label="RUBRIC: 0=No attempt 1=Required Assistance '
+                    '2=Hesitated 3=Independent" content-center'
                     )
             ui.input().props(
-                    'aria-label="RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent" content-center'
+                    'aria-label="RUBRIC: 0=No attempt 1=Required Assistance '
+                    '2=Hesitated 3=Independent" content-center'
                     ).classes('sr-only')
         with ui.row().classes('w-screen no-wrap py-4'):
             ui.label('PHASE 1: READING').classes('justify-center items-center')
-            ui.input().props('aria-label="PHASE 1: READING"').classes('sr-only')
+            ui.input().props('aria-label="PHASE 1: READING"').classes(
+                    'sr-only'
+                    )
         with ui.row().classes('w-screen no-wrap py-4'):
-            ui.number(label="1.1", min=0, max=3, format='%.0f', on_change=lambda e: u_trial11.set_value(e.value)).classes(
+            ui.number(
+                    label="1.1", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial11.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
-                    ).props('aria-label="1.1 Turn on and off the screen reader"').tooltip(
+                    ).props(
+                    'aria-label="1.1 Turn on and off the screen reader"'
+                    ).tooltip(
                     '1.1 Turn on and off the screen reader'
                     )
-            ui.number(label="1.2", min=0, max=3, format='%.0f', on_change=lambda e: u_trial12.set_value(e.value)).classes(
+            ui.number(
+                    label="1.2", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial12.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
                     ).props(
-                    'aria-label="1.2 Utilize modifier keys such as ctrl alt and shift"'
-                    ).tooltip('1.2 Utilize modifier keys such as ctrl alt and shift')
-            ui.number(label="1.3", min=0, max=3, format='%.0f', on_change=lambda e: u_trial13.set_value(e.value)).classes(
+                    'aria-label="1.2 Utilize modifier keys such as ctrl alt '
+                    'and shift"'
+                    ).tooltip(
+                    '1.2 Utilize modifier keys such as ctrl alt and shift'
+                    )
+            ui.number(
+                    label="1.3", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial13.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
                     ).props(
-                    'aria-label="1.3 Read text using a variety of reading commands"'
-                    ).tooltip('1.3 Read text using a variety of reading commands')
-            ui.number(label="1.4", min=0, max=3, format='%.0f', on_change=lambda e: u_trial14.set_value(e.value)).classes(
+                    'aria-label="1.3 Read text using a variety of reading '
+                    'commands"'
+                    ).tooltip(
+                    '1.3 Read text using a variety of reading commands'
+                    )
+            ui.number(
+                    label="1.4", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial14.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
                     ).props(
-                    'aria-label="1.4 Identify the titles and section titles of documents with Headings"'
-                    ).tooltip('1.4 Identify the titles and section titles of documents with Headings')
-            ui.number(label='1.5', min=0, max=3, format='%.0f', on_change=lambda e: u_trial15.set_value(e.value)).classes(
+                    'aria-label="1.4 Identify the titles and section titles '
+                    'of documents with Headings"'
+                    ).tooltip(
+                    '1.4 Identify the titles and section titles of documents '
+                    'with Headings'
+                    )
+            ui.number(
+                    label='1.5', min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial15.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
                     ).props(
-                    'aria-label="1.5 Access documents open and close programs  navigate to the  desktop"'
-                    ).tooltip('1.5 Access documents open and close programs  navigate to the  desktop')
-            ui.number(label='1.6', min=0, max=3, format='%.0f', on_change=lambda e: u_trial16.set_value(e.value)).classes(
+                    'aria-label="1.5 Access documents open and close '
+                    'programs  navigate to the  desktop"'
+                    ).tooltip(
+                    '1.5 Access documents open and close programs  navigate '
+                    'to '
+                    'the  desktop'
+                    )
+            ui.number(
+                    label='1.6', min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial16.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
                     ).props('aria-label="1.6 Switch Program Focus"').tooltip(
                     '1.6 Switch Program Focus'
@@ -6052,224 +6679,460 @@ with ui.tab_panels(tabs, value='SCREENREADER SKILLS'):
             ui.label(' ').classes('w-[200px]')
         with ui.row().classes('w-screen no-wrap py-4'):
             ui.label('PHASE 2: WRITING').classes('justify-center items-center')
-            ui.input().props('aria-label="PHASE 2: WRITING"').classes('sr-only')
+            ui.input().props('aria-label="PHASE 2: WRITING"').classes(
+                    'sr-only'
+                    )
         with ui.row().classes('w-screen no-wrap py-4'):
-            ui.number(label="2.1", min=0, max=3, format='%.0f', on_change=lambda e: u_trial21.set_value(e.value)).classes(
+            ui.number(
+                    label="2.1", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial21.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
                     ).props(
-                    'aria-label="2.1 Type with all alphanumeric keys on the keyboard."'
-                    ).tooltip('2.1 Type with all alphanumeric keys on the keyboard.')
-            ui.number(label="2.2", min=0, max=3, format='%.0f', on_change=lambda e: u_trial22.set_value(e.value)).classes(
+                    'aria-label="2.1 Type with all alphanumeric keys on the '
+                    'keyboard."'
+                    ).tooltip(
+                    '2.1 Type with all alphanumeric keys on the keyboard.'
+                    )
+            ui.number(
+                    label="2.2", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial22.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
                     ).props(
-                    'aria-label="2.2 Navigate to and change screen reader settings"'
-                    ).tooltip('2.2 Navigate to and change screen reader settings')
-            ui.number(label="2.3", min=0, max=3, format='%.0f', on_change=lambda e: u_trial23.set_value(e.value)).classes(
+                    'aria-label="2.2 Navigate to and change screen reader '
+                    'settings"'
+                    ).tooltip(
+                    '2.2 Navigate to and change screen reader settings'
+                    )
+            ui.number(
+                    label="2.3", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial23.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
                     ).props(
-                    'aria-label="2.3 Write and edit documents using a basic understanding of cursor placement"'
-                    ).tooltip('2.3 Write and edit documents using a basic understanding of cursor placement')
-            ui.number(label="2.4", min=0, max=3, format='%.0f', on_change=lambda e: u_trial24.set_value(e.value)).classes(
+                    'aria-label="2.3 Write and edit documents using a basic '
+                    'understanding of cursor placement"'
+                    ).tooltip(
+                    '2.3 Write and edit documents using a basic '
+                    'understanding of '
+                    'cursor placement'
+                    )
+            ui.number(
+                    label="2.4", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial24.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
-                    ).props('aria-label="2.4. Select copy and paste text"').tooltip(
+                    ).props(
+                    'aria-label="2.4. Select copy and paste text"'
+                    ).tooltip(
                     '2.4. Select copy and paste text'
                     )
             ui.label(' ').classes('w-[200px]')
             ui.label(' ').classes('w-[200px]')
             ui.label(' ').classes('w-[200px]')
         with ui.row().classes('w-screen no-wrap py-4'):
-            ui.label('PHASE 3: USING THE INTERNET').classes('justify-center items-center')
-            ui.input().props('aria-label="PHASE 3: USING THE INTERNET"').classes('sr-only')
+            ui.label('PHASE 3: USING THE INTERNET').classes(
+                    'justify-center items-center'
+                    )
+            ui.input().props(
+                    'aria-label="PHASE 3: USING THE INTERNET"'
+                    ).classes('sr-only')
         with ui.row().classes('w-screen no-wrap py-4'):
-            ui.number(label="3.1", min=0, max=3, format='%.0f', on_change=lambda e: u_trial31.set_value(e.value)).classes(
+            ui.number(
+                    label="3.1", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial31.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
                     ).props(
-                    'aria-label="3.1 Define common element types on the internet such as Headings Buttons"'
-                    ).tooltip('3.1 Define common element types on the internet such as Headings Buttons')
-            ui.number(label="3.2", min=0, max=3, format='%.0f', on_change=lambda e: u_trial32.set_value(e.value)).classes(
+                    'aria-label="3.1 Define common element types on the '
+                    'internet such as Headings Buttons"'
+                    ).tooltip(
+                    '3.1 Define common element types on the internet such as '
+                    'Headings Buttons'
+                    )
+            ui.number(
+                    label="3.2", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial32.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
-                    ).props('aria-label="3.2 identify each element by type."').tooltip(
+                    ).props(
+                    'aria-label="3.2 identify each element by type."'
+                    ).tooltip(
                     '3.2 identify each element by type.'
                     )
-            ui.number(label="3.3", min=0, max=3, format='%.0f', on_change=lambda e: u_trial33.set_value(e.value)).classes(
+            ui.number(
+                    label="3.3", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial33.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
-                    ).props('aria-label="3.3 navigate to the address bar"').tooltip(
+                    ).props(
+                    'aria-label="3.3 navigate to the address bar"'
+                    ).tooltip(
                     '3.3 navigate to the address bar'
                     )
-            ui.number(label="3.4", min=0, max=3, format='%.0f', on_change=lambda e: u_trial34.set_value(e.value)).classes(
+            ui.number(
+                    label="3.4", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial34.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
                     ).props(
-                    'aria-label="3.4 Use the “Tab” key to navigate to the next clickable object"'
-                    ).tooltip('3.4 Use the “Tab” key to navigate to the next clickable object')
-            ui.number(label="3.5", min=0, max=3, format='%.0f', on_change=lambda e: u_trial35.set_value(e.value)).classes(
-                    'w-[200px]'
-                    ).props(
-                    'aira-label="3.5 Navigate by “Quick Keys” (h for heading b for button and u for link"'
+                    'aria-label="3.4 Use the “Tab” key to navigate to the '
+                    'next clickable object"'
+                    ).tooltip(
+                    '3.4 Use the “Tab” key to navigate to the next clickable '
+                    'object'
                     )
-            ui.number(label="3.6", min=0, max=3, format='%.0f', on_change=lambda e: u_trial36.set_value(e.value)).classes(
+            ui.number(
+                    label="3.5", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial35.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
                     ).props(
-                    'aria-label="3.6 Use Elements Lists on a website to navigate by element type"'
-                    ).tooltip('3.6 Use Elements Lists on a website to navigate by element type')
-            ui.number(label="3.7", min=0, max=3, format='%.0f', on_change=lambda e: u_trial37.set_value(e.value)).classes(
+                    'aira-label="3.5 Navigate by “Quick Keys” (h for heading '
+                    'b for button and u for link"'
+                    )
+            ui.number(
+                    label="3.6", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial36.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
                     ).props(
-                    'aria-label="3.7 Justify why he/she/they selected a particular method for the situation"'
-                    ).tooltip('3.7 Justify why he/she/they selected a particular method for the situation')
+                    'aria-label="3.6 Use Elements Lists on a website to '
+                    'navigate by element type"'
+                    ).tooltip(
+                    '3.6 Use Elements Lists on a website to navigate by '
+                    'element '
+                    'type'
+                    )
+            ui.number(
+                    label="3.7", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial37.set_value(e.value)
+                    ).classes(
+                    'w-[200px]'
+                    ).props(
+                    'aria-label="3.7 Justify why he/she/they selected a '
+                    'particular method for the situation"'
+                    ).tooltip(
+                    '3.7 Justify why he/she/they selected a particular method '
+                    'for the situation'
+                    )
         with ui.row().classes('w-screen no-wrap py-4'):
-            ui.number(label="3.8", min=0, max=3, format='%.0f', on_change=lambda e: u_trial38.set_value(e.value)).classes(
+            ui.number(
+                    label="3.8", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial38.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
-                    ).props('aria-label="3.8 Switch tab focus"').tooltip('3.8 Switch tab focus')
-            ui.number(label="3.9", min=0, max=3, format='%.0f', on_change=lambda e: u_trial39.set_value(e.value)).classes(
+                    ).props('aria-label="3.8 Switch tab focus"').tooltip(
+                    '3.8 Switch tab focus'
+                    )
+            ui.number(
+                    label="3.9", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial39.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
-                    ).props('aria-label="3.9 Switch between screen reader modes"').tooltip(
+                    ).props(
+                    'aria-label="3.9 Switch between screen reader modes"'
+                    ).tooltip(
                     '3.9 Switch between screen reader modes'
                     )
-            ui.number(label="3.10", min=0, max=3, format='%.0f', on_change=lambda e: u_trial310.set_value(e.value)).classes(
+            ui.number(
+                    label="3.10", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial310.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
                     ).props('aria-label="3.10 Navigate a table"').tooltip(
                     '3.10 Navigate a table'
                     )
-            ui.number(label="3.11", min=0, max=3, format='%.0f', on_change=lambda e: u_trial311.set_value(e.value)).classes(
+            ui.number(
+                    label="3.11", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial311.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
                     ).props(
-                    'aria-label="3.11 Develop a navigation sequence to access an unfamiliar website"'
-                    ).tooltip('3.11 Develop a navigation sequence to access an unfamiliar website')
+                    'aria-label="3.11 Develop a navigation sequence to '
+                    'access an unfamiliar website"'
+                    ).tooltip(
+                    '3.11 Develop a navigation sequence to access an '
+                    'unfamiliar '
+                    'website'
+                    )
             ui.label(' ').classes('w-[200px]')
             ui.label(' ').classes('w-[200px]')
             ui.label(' ').classes('w-[200px]')
         with ui.row().classes('w-screen no-wrap py-4'):
-            ui.label('PHASE 4: NAVIGATING AND FILE MANAGEMENT').classes('justify-center items-center')
-            ui.input().props('aria-label="PHASE 4: NAVIGATING AND FILE MANAGEMENT"').classes('sr-only')
-
+            ui.label('PHASE 4: NAVIGATING AND FILE MANAGEMENT').classes(
+                    'justify-center items-center'
+                    )
+            ui.input().props(
+                    'aria-label="PHASE 4: NAVIGATING AND FILE MANAGEMENT"'
+                    ).classes('sr-only')
+        
         with ui.row().classes('w-screen no-wrap py-4'):
-            ui.number(label="4.1", min=0, max=3, format='%.0f', on_change=lambda e: u_trial41.set_value(e.value)).classes(
+            ui.number(
+                    label="4.1", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial41.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
                     ).props(
-                    'aria-label="4.1 Be able to save and open files using File Explorer."'
-                    ).tooltip('4.1 Be able to save and open files using File Explorer.')
-            ui.number(label="4.2", min=0, max=3, format='%.0f', on_change=lambda e: u_trial42.set_value(e.value)).classes(
+                    'aria-label="4.1 Be able to save and open files using '
+                    'File Explorer."'
+                    ).tooltip(
+                    '4.1 Be able to save and open files using File Explorer.'
+                    )
+            ui.number(
+                    label="4.2", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial42.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
                     ).props(
-                    'aria-label="4.2 Create folders and move files in File Explorer"'
-                    ).tooltip('4.2 Create folders and move files in File Explorer')
-            ui.number(label="4.3", min=0, max=3, format='%.0f', on_change=lambda e: u_trial43.set_value(e.value)).classes(
+                    'aria-label="4.2 Create folders and move files in File '
+                    'Explorer"'
+                    ).tooltip(
+                    '4.2 Create folders and move files in File Explorer'
+                    )
+            ui.number(
+                    label="4.3", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial43.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
                     ).props(
-                    'aria-label="4.3 Navigate a cloud-based file management system (eg: Google Drive)"'
-                    ).tooltip('4.3 Navigate a cloud-based file management system (eg: Google Drive)')
-            ui.number(label="4.4", min=0, max=3, format='%.0f', on_change=lambda e: u_trial44.set_value(e.value)).classes(
+                    'aria-label="4.3 Navigate a cloud-based file management '
+                    'system (eg: Google Drive)"'
+                    ).tooltip(
+                    '4.3 Navigate a cloud-based file management system (eg: '
+                    'Google Drive)'
+                    )
+            ui.number(
+                    label="4.4", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial44.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
                     ).props(
-                    'aria-label="4.4 Download and save material from the internet"'
-                    ).tooltip('4.4 Download and save material from the internet')
-            ui.number(label="4.5", min=0, max=3, format='%.0f', on_change=lambda e: u_trial45.set_value(e.value)).classes(
+                    'aria-label="4.4 Download and save material from the '
+                    'internet"'
+                    ).tooltip(
+                    '4.4 Download and save material from the internet'
+                    )
+            ui.number(
+                    label="4.5", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial45.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
                     ).props('aria-label="4.5 Extract zipped folders"').tooltip(
                     '4.5 Extract zipped folders'
                     )
-            ui.number(label="4.6", min=0, max=3, format='%.0f', on_change=lambda e: u_trial46.set_value(e.value)).classes(
+            ui.number(
+                    label="4.6", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial46.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
                     ).props(
-                    'aria-label="4.6 Utilize the virtual cursor and mouse keys"'
+                    'aria-label="4.6 Utilize the virtual cursor and mouse '
+                    'keys"'
                     ).tooltip('4.6 Utilize the virtual cursor and mouse keys')
-            ui.number(label="4.7", min=0, max=3, format='%.0f', on_change=lambda e: u_trial47.set_value(e.value)).classes(
+            ui.number(
+                    label="4.7", min=0, max=3, format='%.0f',
+                    on_change=lambda e: u_trial47.set_value(e.value)
+                    ).classes(
                     'w-[200px]'
                     ).props(
-                    'aria-label="4.7 To use OCR features to read inaccessible material"'
-                    ).tooltip('4.7 To use OCR features to read inaccessible material')
+                    'aria-label="4.7 To use OCR features to read '
+                    'inaccessible material"'
+                    ).tooltip(
+                    '4.7 To use OCR features to read inaccessible material'
+                    )
         with ui.row().classes('w-screen no-wrap py-4'):
-            ui.button('SAVE', color='#172554', on_click=save).classes('text-white')
-            ui.button('GRAPH', color='#172554', on_click=graph).classes('text-white')
-            ui.button('EXIT', color='#172554', on_click=app.shutdown).classes('text-white')
+            ui.button('SAVE', color='#172554', on_click=save).classes(
+                    'text-white'
+                    )
+            ui.button('GRAPH', color='#172554', on_click=graph).classes(
+                    'text-white'
+                    )
+            ui.button('EXIT', color='#172554', on_click=app.shutdown).classes(
+                    'text-white'
+                    )
 
 # FOOTER
 with ui.footer(value=True).classes('bg-blue-950') as footer:
-    with ui.row().classes('w-screen no-wrap justify-center items-center text-l font-bold'):
-        ui.label('Copyright © 2023 Michael Ryan Hunsaker, M.Ed., Ph.D.').classes('justify-center items-center')
-    with ui.row().classes('w-screen no-wrap justify-center items-centertext-l font-bold'):
-                ui.label('Report Bugs or Request Features by emailing hunsakerconsulting@gmail.com'
+    with ui.row().classes(
+            'w-screen no-wrap justify-center items-center text-l font-bold'
+            ):
+        ui.label(
+                'Copyright © 2023 Michael Ryan Hunsaker, M.Ed., Ph.D.'
+                ).classes('justify-center items-center')
+    with ui.row().classes(
+            'w-screen no-wrap justify-center items-centertext-l font-bold'
+            ):
+        ui.label(
+                'Report Bugs or Request Features by emailing '
+                'hunsakerconsulting@gmail.com'
                 ).classes('justify-center items-center')
 
 # SIDEBAR
 with ui.left_drawer(value=True).classes('bg-blue-950') as left_drawer:
     with ui.row().classes('w-full no-wrap'):
-        ui.label('MATERIALS').classes('w-screen no-wrap py-4 text-white font-bold text-xl justify-center items-center')
+        ui.label('MATERIALS').classes(
+                'w-screen no-wrap py-4 text-white font-bold text-xl '
+                'justify-center items-center'
+                )
     with ui.row().classes('w-full no-wrap'):
-        ui.label('ABACUS').classes('w-screen no-wrap font-bold text-white text-xl justify-center items-center')
+        ui.label('ABACUS').classes(
+                'w-screen no-wrap font-bold text-white text-xl justify-center '
+                'items-center'
+                )
     with ui.row().classes('w-full no-wrap py-4'):
         ui.link(
-                'Hadley Abacus Curriculum I', 'instructionMaterials/Abacus1.pdf', new_tab=True).classes('text-left w-full text-white align-left font-bold')
+                'Hadley Abacus Curriculum I',
+                'instructionMaterials/Abacus1.pdf', new_tab=True
+                ).classes(
+                'text-left w-full text-white align-left font-bold'
+                )
     with ui.row().classes('w-full no-wrap py-4'):
         ui.link(
-                'Hadley Abacus Curriculum II', 'instructionMaterials/Abacus2.pdf', new_tab=True).classes('text-left w-full align-left text-white font-bold')
+                'Hadley Abacus Curriculum II',
+                'instructionMaterials/Abacus2.pdf', new_tab=True
+                ).classes(
+                'text-left w-full align-left text-white font-bold'
+                )
     with ui.row().classes('w-full no-wrap py-4'):
         ui.link(
-                'Abacus Made Easy', 'instructionMaterials/AbacusMadeEasy.pdf', new_tab=True).classes('text-left w-full text-white align-left font-bold font-bold')
+                'Abacus Made Easy', 'instructionMaterials/AbacusMadeEasy.pdf',
+                new_tab=True
+                ).classes(
+                'text-left w-full text-white align-left font-bold font-bold'
+                )
     with ui.row().classes('w-full no-wrap py-4'):
         ui.link(
-                'Using the Cranmer Abacus', 'instructionMaterials/UsingCramnerabacus', new_tab=True).classes('text-left w-full align-left text-white font-bold')
+                'Using the Cranmer Abacus',
+                'instructionMaterials/UsingCramnerabacus', new_tab=True
+                ).classes(
+                'text-left w-full align-left text-white font-bold'
+                )
     with ui.row().classes('w-full no-wrap py-4'):
         ui.link(
-                'Japanese Abacus Use and Theory', 'instructionMaterials/abacusUseTheory.pdf', new_tab=True).classes('text-left w-full text-white align-left font-bold')
+                'Japanese Abacus Use and Theory',
+                'instructionMaterials/abacusUseTheory.pdf', new_tab=True
+                ).classes(
+                'text-left w-full text-white align-left font-bold'
+                )
     with ui.row().classes('w-full no-wrap py-4'):
         ui.link(
-                'Advanced Japanese Abacus', 'instructionMaterials/AdvancedAbacus.pdf', new_tab=True).classes('text-left w-full align-left text-white font-bold')
+                'Advanced Japanese Abacus',
+                'instructionMaterials/AdvancedAbacus.pdf', new_tab=True
+                ).classes(
+                'text-left w-full align-left text-white font-bold'
+                )
     with ui.row().classes('w-full no-wrap'):
-        ui.label('BRAILLE').classes('w-screen no-wrap font-bold text-white text-xl justify-center items-center')
+        ui.label('BRAILLE').classes(
+                'w-screen no-wrap font-bold text-white text-xl justify-center '
+                'items-center'
+                )
     with ui.row().classes('w-full no-wrap py-4'):
         ui.link(
-                'NLS-IMBT UEB Literary Braille', ' ', new_tab=True).classes('text-left w-full text-white align-left font-bold')
+                'NLS-IMBT UEB Literary Braille', ' ', new_tab=True
+                ).classes(
+                'text-left w-full text-white align-left font-bold'
+                )
     with ui.row().classes('w-full no-wrap py-4'):
         ui.link(
-                'UEB Australian Training Manual', 'instructionMaterials/UEBAustrialianTrainingManual.pdf', new_tab=True).classes('text-left w-full align-left text-white font-bold')
+                'UEB Australian Training Manual',
+                'instructionMaterials/UEBAustrialianTrainingManual.pdf',
+                new_tab=True
+                ).classes('text-left w-full align-left text-white font-bold')
     with ui.row().classes('w-full no-wrap py-4'):
         ui.link(
-                'UEB Technical Course', 'instructionMaterials/UEBTechnicalCourse.pdf', new_tab=True).classes('text-left w-full text-white align-left font-bold')
+                'UEB Technical Course',
+                'instructionMaterials/UEBTechnicalCourse.pdf', new_tab=True
+                ).classes(
+                'text-left w-full text-white align-left font-bold'
+                )
     with ui.row().classes('w-full no-wrap py-4'):
         ui.link(
-                'UEB Technical Guidelines', 'instructionMaterials/UEBTechnicalGuidelines.pdf', new_tab=True).classes('text-left w-full align-left text-white font-bold')
+                'UEB Technical Guidelines',
+                'instructionMaterials/UEBTechnicalGuidelines.pdf', new_tab=True
+                ).classes(
+                'text-left w-full align-left text-white font-bold'
+                )
     with ui.row().classes('w-full no-wrap py-4'):
         ui.link(
-                'UEB with Nemeth', 'instructionMaterials/NemethUEBContext').classes('text-left w-full text-white align-left font-bold')
+                'UEB with Nemeth', 'instructionMaterials/NemethUEBContext'
+                ).classes(
+                'text-left w-full text-white align-left font-bold'
+                )
     with ui.row().classes('w-full no-wrap'):
-        ui.label('SCREENREADER').classes('w-screen no-wrap font-bold text-white text-xl justify-center items-center')
+        ui.label('SCREENREADER').classes(
+                'w-screen no-wrap font-bold text-white text-xl justify-center '
+                'items-center'
+                )
     with ui.row().classes('w-full no-wrap py-4'):
         ui.link(
-                'NVDA Trainings', 'instructionMaterials/NVDATrainings.pdf', new_tab=True).classes('text-left w-full text-white align-left font-bold')
+                'NVDA Trainings', 'instructionMaterials/NVDATrainings.pdf',
+                new_tab=True
+                ).classes(
+                'text-left w-full text-white align-left font-bold'
+                )
     with ui.row().classes('w-full no-wrap py-4'):
         ui.link(
-                'Windows Screen Reader Primer', 'instructionMaterials/WindowsScreenreaderPrimer.pdf', new_tab=True).classes('text-left w-full align-left text-white font-bold')
+                'Windows Screen Reader Primer',
+                'instructionMaterials/WindowsScreenreaderPrimer.pdf',
+                new_tab=True
+                ).classes(
+                'text-left w-full align-left text-white font-bold'
+                )
     with ui.row().classes('w-full no-wrap py-4'):
         ui.link(
-                'Getting Started with Windows 11', 'instructionMaterials/GettingStartedWindows11', new_tab=True).classes('text-left w-full text-white align-left font-bold')
+                'Getting Started with Windows 11',
+                'instructionMaterials/GettingStartedWindows11', new_tab=True
+                ).classes(
+                'text-left w-full text-white align-left font-bold'
+                )
     with ui.row().classes('w-full no-wrap'):
-        ui.label('DATASHEETS').classes('w-screen no-wrap content-center font-bold text-white text-xl')
+        ui.label('DATASHEETS').classes(
+                'w-screen no-wrap content-center font-bold text-white text-xl'
+                )
     with ui.row().classes('w-full no-wrap py-4'):
         ui.link(
-                'Blank Vision Template', 'datasheets/BlankVisionTemplate.pdf', new_tab=True
+                'Blank Vision Template', 'datasheets/BlankVisionTemplate.pdf',
+                new_tab=True
                 ).classes('text-left w-screen text-white align-left font-bold')
     with ui.row().classes('w-full no-wrap py-4'):
         ui.link(
-                'Generic Data Sheets', 'datasheets/GenericDataSheets.pdf', new_tab=True).classes('text-left w-full align-left text-white font-bold')
+                'Generic Data Sheets', 'datasheets/GenericDataSheets.pdf',
+                new_tab=True
+                ).classes(
+                'text-left w-full align-left text-white font-bold'
+                )
     with ui.row().classes('w-full no-wrap py-4'):
         ui.link(
-                'Bi-Weekly Progress Monitoring', 'datasheets/ProgressMonitoring.pdf', new_tab=True).classes('text-left w-full text-white align-left font-bold')
+                'Bi-Weekly Progress Monitoring',
+                'datasheets/ProgressMonitoring.pdf', new_tab=True
+                ).classes(
+                'text-left w-full text-white align-left font-bold'
+                )
     with ui.row().classes('w-full no-wrap'):
-        ui.label('ASSESSMENT FORMS').classes('w-screen no-wrap py-4 font-bold text-white text-xl justify-center items-center')
+        ui.label('ASSESSMENT FORMS').classes(
+                'w-screen no-wrap py-4 font-bold text-white text-xl '
+                'justify-center items-center'
+                )
     with ui.row().classes('w-full no-wrap'):
-        ui.link('Educational Vision Evaluation Forms', 'visionAssessments/EducationVisionAssessments.pdf', new_tab=True).classes('text-left w-full text-white align-left font-bold')
+        ui.link(
+                'Educational Vision Evaluation Forms',
+                'visionAssessments/EducationVisionAssessments.pdf',
+                new_tab=True
+                ).classes('text-left w-full text-white align-left font-bold')
 
 ##############################################################################
 # EXECUTE PROGRAM WINDOW
 ##############################################################################
-# Get Monitor Size to allow me to create the app to fill screen without setting fullscreen=True.
+# Get Monitor Size to allow me to create the app to fill screen without
+# setting fullscreen=True.
 # 72 is subtracted from the height to accommodate the height of my Taskbar
 for monitor in get_monitors():
     print(f'Screen Resolution = {str(monitor.width)}x{str(monitor.height)}')
 # Run call
 ui.run(
-        native=True, reload=False, dark=False, title='Academic Skills Progression', fullscreen=False,
+        native=True, reload=False, dark=False,
+        title='Academic Skills Progression', fullscreen=False,
         window_size=(monitor.width, monitor.height - 72)
         )
-

@@ -717,6 +717,8 @@ dataBasePath = Path(
         'students.db'
         )
 print(dataBasePath)
+
+
 def create_connection(
         db_file
         ):
@@ -736,13 +738,14 @@ def create_connection(
     except Error as e:
         print(
                 e
-            )
-    
+                )
+
 
 if __name__ == '__main__':
     create_connection(
             dataBasePath
             )
+
 
 def create_table(
         conn,
@@ -765,6 +768,7 @@ def create_table(
                 e
                 )
     conn.close()
+
 
 def createTables():
     """
@@ -792,7 +796,8 @@ def createTables():
         NOTES TEXT NOT NULL
     );"""
     
-    sql_create_brailledata_table = """CREATE TABLE IF NOT EXISTS BRAILLEPROGRESS(
+    sql_create_brailledata_table = """CREATE TABLE IF NOT EXISTS
+    BRAILLEPROGRESS(
         ID INTEGER PRIMARY KEY AUTOINCREMENT,
         STUDENTNAME TEXT NOT NULL,
         DATE TEXT NOT NULL,
@@ -862,7 +867,8 @@ def createTables():
         P8_7 INTEGER
     );"""
     
-    sql_create_screenreaderdata_table = """CREATE TABLE IF NOT EXISTS SCREENREADERPROGRESS(
+    sql_create_screenreaderdata_table = """CREATE TABLE IF NOT EXISTS
+    SCREENREADERPROGRESS(
         ID INTEGER PRIMARY KEY AUTOINCREMENT,
         STUDENTNAME TEXT NOT NULL,
         DATE TEXT NOT NULL,
@@ -1003,9 +1009,9 @@ def createTables():
         print(
                 "Error! cannot create the database connection."
                 )
-        
-createTables()
 
+
+createTables()
 
 datenow = datetime.datetime.now().strftime(
         "%Y_%m_%d-%H%M%S_%p"
@@ -1574,7 +1580,8 @@ with ui.tab_panels(tabs, value='ABACUS SKILLS'):
                          )
                         )
                 conn.commit()
-                data_entry()
+            
+            data_entry()
         
         
         def graph(
@@ -3001,217 +3008,217 @@ with ui.tab_panels(tabs, value='BRAILLE SKILLS'):
                     writer_setup.writerow(list_data)
                     f_setup.close()
                 ui.notify('Saved successfully!', close_button='OK')
-                
-                def data_entry():
-                    """
+            
+            def data_entry():
+                """
 
                 """
-            conn = sqlite3.connect(dataBasePath)
-            c = conn.cursor()
-            c.execute(
-                    """INSERT INTO BRAILLEPROGRESS (
-                STUDENTNAME,
-                DATE,
-                P1_1,
-                P1_2,
-                P1_3,
-                P1_4,
-                P2_1,
-                P2_2,
-                P2_3,
-                P2_4,
-                P2_5,
-                P2_6,
-                P2_7,
-                P2_8,
-                P2_9,
-                P2_10,
-                P2_11,
-                P2_12,
-                P2_13,
-                P2_14,
-                P2_15,
-                P3_1,
-                P3_2,
-                P3_3,
-                P3_4,
-                P3_5,
-                P3_6,
-                P3_7,
-                P3_8,
-                P3_9,
-                P3_10,
-                P3_11,
-                P3_12,
-                P3_13,
-                P3_14,
-                P3_15,
-                P4_1,
-                P4_2,
-                P4_3,
-                P4_4,
-                P5_1,
-                P5_2,
-                P5_3,
-                P5_4,
-                P6_1,
-                P6_2,
-                P6_3,
-                P6_4,
-                P6_5,
-                P6_6,
-                P6_7,
-                P7_1,
-                P7_2,
-                P7_3,
-                P7_4,
-                P7_5,
-                P7_6,
-                P7_7,
-                P7_8,
-                P8_1,
-                P8_2,
-                P8_3,
-                P8_4,
-                P8_5,
-                P8_6,
-                P8_7
-                )
-                VALUES (?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?,
-                ?)""",
-                    (studentname,
-                     datenow,
-                     trial11,
-                     trial12,
-                     trial13,
-                     trial14,
-                     trial21,
-                     trial22,
-                     trial23,
-                     trial24,
-                     trial25,
-                     trial26,
-                     trial27,
-                     trial28,
-                     trial29,
-                     trial210,
-                     trial211,
-                     trial212,
-                     trial213,
-                     trial214,
-                     trial215,
-                     trial31,
-                     trial32,
-                     trial33,
-                     trial34,
-                     trial35,
-                     trial36,
-                     trial37,
-                     trial38,
-                     trial39,
-                     trial310,
-                     trial311,
-                     trial312,
-                     trial313,
-                     trial314,
-                     trial315,
-                     trial41,
-                     trial42,
-                     trial43,
-                     trial44,
-                     trial51,
-                     trial52,
-                     trial53,
-                     trial54,
-                     trial61,
-                     trial62,
-                     trial63,
-                     trial64,
-                     trial65,
-                     trial66,
-                     trial67,
-                     trial71,
-                     trial72,
-                     trial73,
-                     trial74,
-                     trial75,
-                     trial76,
-                     trial77,
-                     trial78,
-                     trial81,
-                     trial82,
-                     trial83,
-                     trial84,
-                     trial85,
-                     trial86,
-                     trial87
-                     )
+                conn = sqlite3.connect(dataBasePath)
+                c = conn.cursor()
+                c.execute(
+                        """INSERT INTO BRAILLEPROGRESS (
+                    STUDENTNAME,
+                    DATE,
+                    P1_1,
+                    P1_2,
+                    P1_3,
+                    P1_4,
+                    P2_1,
+                    P2_2,
+                    P2_3,
+                    P2_4,
+                    P2_5,
+                    P2_6,
+                    P2_7,
+                    P2_8,
+                    P2_9,
+                    P2_10,
+                    P2_11,
+                    P2_12,
+                    P2_13,
+                    P2_14,
+                    P2_15,
+                    P3_1,
+                    P3_2,
+                    P3_3,
+                    P3_4,
+                    P3_5,
+                    P3_6,
+                    P3_7,
+                    P3_8,
+                    P3_9,
+                    P3_10,
+                    P3_11,
+                    P3_12,
+                    P3_13,
+                    P3_14,
+                    P3_15,
+                    P4_1,
+                    P4_2,
+                    P4_3,
+                    P4_4,
+                    P5_1,
+                    P5_2,
+                    P5_3,
+                    P5_4,
+                    P6_1,
+                    P6_2,
+                    P6_3,
+                    P6_4,
+                    P6_5,
+                    P6_6,
+                    P6_7,
+                    P7_1,
+                    P7_2,
+                    P7_3,
+                    P7_4,
+                    P7_5,
+                    P7_6,
+                    P7_7,
+                    P7_8,
+                    P8_1,
+                    P8_2,
+                    P8_3,
+                    P8_4,
+                    P8_5,
+                    P8_6,
+                    P8_7
                     )
-            conn.commit()
+                    VALUES (?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?,
+                    ?)""",
+                        (studentname,
+                         datenow,
+                         trial11,
+                         trial12,
+                         trial13,
+                         trial14,
+                         trial21,
+                         trial22,
+                         trial23,
+                         trial24,
+                         trial25,
+                         trial26,
+                         trial27,
+                         trial28,
+                         trial29,
+                         trial210,
+                         trial211,
+                         trial212,
+                         trial213,
+                         trial214,
+                         trial215,
+                         trial31,
+                         trial32,
+                         trial33,
+                         trial34,
+                         trial35,
+                         trial36,
+                         trial37,
+                         trial38,
+                         trial39,
+                         trial310,
+                         trial311,
+                         trial312,
+                         trial313,
+                         trial314,
+                         trial315,
+                         trial41,
+                         trial42,
+                         trial43,
+                         trial44,
+                         trial51,
+                         trial52,
+                         trial53,
+                         trial54,
+                         trial61,
+                         trial62,
+                         trial63,
+                         trial64,
+                         trial65,
+                         trial66,
+                         trial67,
+                         trial71,
+                         trial72,
+                         trial73,
+                         trial74,
+                         trial75,
+                         trial76,
+                         trial77,
+                         trial78,
+                         trial81,
+                         trial82,
+                         trial83,
+                         trial84,
+                         trial85,
+                         trial86,
+                         trial87
+                         )
+                        )
+                conn.commit()
             
             data_entry()
         
@@ -5830,8 +5837,8 @@ with ui.tab_panels(tabs, value='SCREENREADER SKILLS'):
                                 )
                         )
                 conn.commit()
-                
-                data_entry()
+            
+            data_entry()
         
         
         def graph(event):

@@ -736,8 +736,7 @@ def create_connection(
     except Error as e:
         print(
                 e
-                )
-    conn.close()
+            )
     
 
 if __name__ == '__main__':
@@ -757,9 +756,6 @@ def create_table(
     :type sql_create_sql_table:
     """
     try:
-        conn = create_connection(
-                dataBasePath
-                )
         c = conn.cursor()
         c.execute(
                 sql_create_sql_table
@@ -770,12 +766,11 @@ def create_table(
                 )
     conn.close()
 
-
 def createTables():
     """
 
     """
-    sql_create_studentdata_table = """CREATE TABLE IF NOT EXISTS STUDENTDATA (
+    sql_create_studentdata_table = """CREATE TABLE IF NOT EXISTS STUDENTDATA(
         ID INTEGER PRIMARY KEY AUTOINCREMENT,
         STUDENTNAME TEXT NOT NULL,
         DATE TEXT NOT NULL,
@@ -797,8 +792,7 @@ def createTables():
         NOTES TEXT NOT NULL
     );"""
     
-    sql_create_brailledata_table = """CREATE TABLE IF NOT EXISTS
-    BRAILLEPROGRESS (
+    sql_create_brailledata_table = """CREATE TABLE IF NOT EXISTS BRAILLEPROGRESS(
         ID INTEGER PRIMARY KEY AUTOINCREMENT,
         STUDENTNAME TEXT NOT NULL,
         DATE TEXT NOT NULL,
@@ -868,8 +862,7 @@ def createTables():
         P8_7 INTEGER
     );"""
     
-    sql_create_screenreaderdata_table = """CREATE TABLE IF NOT EXISTS
-    SCREENREADERPROGRESS (
+    sql_create_screenreaderdata_table = """CREATE TABLE IF NOT EXISTS SCREENREADERPROGRESS(
         ID INTEGER PRIMARY KEY AUTOINCREMENT,
         STUDENTNAME TEXT NOT NULL,
         DATE TEXT NOT NULL,
@@ -903,8 +896,7 @@ def createTables():
         P4_7 INTEGER
     );"""
     
-    sql_create_abacusdata_table = """CREATE TABLE IF NOT EXISTS
-    ABACUSPROGRESS (
+    sql_create_abacusdata_table = """CREATE TABLE IF NOT EXISTS ABACUSPROGRESS(
         ID INTEGER PRIMARY KEY AUTOINCREMENT,
         STUDENTNAME TEXT NOT NULL,
         DATE TEXT NOT NULL,
@@ -934,7 +926,7 @@ def createTables():
         P8_2 INTEGER
     );"""
     
-    sql_create_cvidata_table = """CREATE TABLE IF NOT EXISTS CVIPROGRESS (
+    sql_create_cvidata_table = """CREATE TABLE IF NOT EXISTS CVIPROGRESS(
         ID INTEGER PRIMARY KEY AUTOINCREMENT,
         STUDENTNAME TEXT NOT NULL,
         DATE TEXT NOT NULL,
@@ -950,7 +942,7 @@ def createTables():
         P2_4 INTEGER NOT NULL
     );"""
     
-    conn = create_connection(
+    conn = sqlite3.connect(
             dataBasePath
             )
     if conn is not None:
@@ -962,10 +954,9 @@ def createTables():
         print(
                 "Error! cannot create the database connection."
                 )
-    conn = create_connection(
+    conn = sqlite3.connect(
             dataBasePath
             )
-    
     if conn is not None:
         create_table(
                 conn,
@@ -975,10 +966,10 @@ def createTables():
         print(
                 "Error! cannot create the database connection."
                 )
-    conn = create_connection(
+    
+    conn = sqlite3.connect(
             dataBasePath
             )
-    
     if conn is not None:
         create_table(
                 conn,
@@ -988,10 +979,9 @@ def createTables():
         print(
                 "Error! cannot create the database connection."
                 )
-    conn = create_connection(
+    conn = sqlite3.connect(
             dataBasePath
             )
-    
     if conn is not None:
         create_table(
                 conn,
@@ -1001,10 +991,9 @@ def createTables():
         print(
                 "Error! cannot create the database connection."
                 )
-    conn = create_connection(
+    conn = sqlite3.connect(
             dataBasePath
             )
-    
     if conn is not None:
         create_table(
                 conn,
@@ -1014,9 +1003,8 @@ def createTables():
         print(
                 "Error! cannot create the database connection."
                 )
-    
-if __name__ == '__main__':
-        createTables()
+        
+createTables()
 
 
 datenow = datetime.datetime.now().strftime(

@@ -1080,6 +1080,7 @@ with ui.header().classes(
             ui.tab('CVI PROGRESS').classes('text-l font-bold')
             ui.tab('CONTACT LOG').classes('text-l font-bold')
 # CONTACT LOG
+# noinspection PyTypeChecker
 with ui.tab_panels(tabs, value='CONTACT LOG'):
     with ui.tab_panel('CONTACT LOG'):
         u_studentname = ui.select(
@@ -1489,6 +1490,7 @@ with ui.tab_panels(tabs, value='ABACUS SKILLS'):
                     f_setup.close()
                 ui.notify('Saved successfully!', close_button='OK')
             
+            # noinspection SqlResolve
             def data_entry():
                 """
 
@@ -3009,6 +3011,7 @@ with ui.tab_panels(tabs, value='BRAILLE SKILLS'):
                     f_setup.close()
                 ui.notify('Saved successfully!', close_button='OK')
             
+            # noinspection SqlResolve
             def data_entry():
                 """
 
@@ -5419,6 +5422,7 @@ with ui.tab_panels(tabs, value='BRAILLE SKILLS'):
                     )
 
 # BRAILLENOTE TOUCH PLUS SKILLS
+# noinspection PyTypeChecker
 with ui.tab_panels(tabs, value='BRAILLENOTE TOUCH SKILLS'):
     with ui.tab_panel('BRAILLENOTE TOUCH SKILLS'):
         # BRAILLENOTE TOUCH PLUS SKILLS TAB
@@ -5437,6 +5441,7 @@ with ui.tab_panels(tabs, value='BRAILLENOTE TOUCH SKILLS'):
                     'text-white'
                     )
 # iOS/iPadOS VOICEOVER SKILLS
+# noinspection PyTypeChecker
 with ui.tab_panels(tabs, value='iOS/iPadOS VOICEOVER SKILLS'):
     with ui.tab_panel('iOS/iPadOS VOICEOVER SKILLS'):
         # BRAILLENOTE TOUCH PLUS SKILLS TAB
@@ -5456,6 +5461,7 @@ with ui.tab_panels(tabs, value='iOS/iPadOS VOICEOVER SKILLS'):
                     )
 
 # CVI PROGRESSION
+# noinspection PyTypeChecker
 with ui.tab_panels(tabs, value='CVI PROGRESS'):
     with ui.tab_panel('CVI PROGRESS'):
         # CVI PROGRESS TAB
@@ -5473,6 +5479,7 @@ with ui.tab_panels(tabs, value='CVI PROGRESS'):
                     )
 #
 # SCREENREADER SKILLS PROGRESSION
+# noinspection PyTypeChecker
 with ui.tab_panels(tabs, value='SCREENREADER SKILLS'):
     with ui.tab_panel('SCREENREADER SKILLS'):
         u_studentname = ui.select(
@@ -5733,6 +5740,7 @@ with ui.tab_panels(tabs, value='SCREENREADER SKILLS'):
                     f_setup.close()
                 ui.notify('Saved successfully!', close_button='OK')
             
+            # noinspection SqlResolve
             def data_entry():
                 """
                 """

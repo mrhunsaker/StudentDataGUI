@@ -16,6 +16,7 @@
 #    limitations under the License.                                           #
 ###############################################################################
 
+import datetime
 ##############################################################################
 # Imports
 ##############################################################################
@@ -24,7 +25,6 @@ import shutil
 import sqlite3
 import sys
 import traceback
-import datetime
 from csv import writer
 from pathlib import Path
 from sqlite3 import Error

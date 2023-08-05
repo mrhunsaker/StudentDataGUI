@@ -723,7 +723,6 @@ def create_connection(
         db_file
         ):
     """
-
     :param db_file:
     :type db_file:
     """
@@ -752,7 +751,6 @@ def create_table(
         sql_create_sql_table
         ):
     """
-
     :param conn:
     :type conn:
     :param sql_create_sql_table:
@@ -771,8 +769,7 @@ def create_table(
 
 
 def createTables():
-    """
-
+    """_summary_
     """
     sql_create_studentdata_table = """CREATE TABLE IF NOT EXISTS STUDENTDATA(
         ID INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -1026,6 +1023,11 @@ def warningmessage(
         exception_value,
         exception_traceback
         ):
+    """
+        exception_type (_type_): _description_
+        exception_value (_type_): _description_
+        exception_traceback (_type_): _description_
+    """        
     message = "Please make sure all fields are selected / filled out " \
               "properly\n\n"
     tb = traceback.format_exception(
@@ -1108,7 +1110,8 @@ with ui.tab_panels(tabs, value='CONTACT LOG'):
                  'Progress Monitoring Update']
                 ).classes('hidden')
         u_contactNotes = ui.textarea().classes('hidden')
-        '''def save(event):
+        
+        def save(event):
             """
             :param event:
             :type event:
@@ -1149,7 +1152,7 @@ with ui.tab_panels(tabs, value='CONTACT LOG'):
                 filename.write(contactGeneral + ', ')
                 filename.write(contactSpecific + ', ')
                 filename.write(contactNotes + ', ')
-            '''
+
         with ui.row().classes('w-full no-wrap py-4'):
             ui.label().classes('w-[250px]')
             ui.label('PARENT CONTACT LOG').classes(

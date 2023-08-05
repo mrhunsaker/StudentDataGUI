@@ -738,13 +738,13 @@ def create_connection(
         print(
                 e
                 )
+    return conn
 
-
-if __name__ == '__main__':
-    create_connection(
+create_connection(
             dataBasePath
             )
 
+conn = sqlite3.connect(dataBasePath)
 
 def create_table(
         conn,
@@ -1127,7 +1127,13 @@ with ui.tab_panels(tabs, value='CONTACT LOG'):
             contactSpecific = u_contactSpecific.value
             contactNotes = u_contactNotes.value
             
-            studentdatabasename = f"abacus{studentname.title()}{datenow}"
+            studentdatabasename = f"contact{studentname.title()}{datenow}"
+            tmppath = Path(USER_DIR).joinpath(
+                    'StudentDatabase',
+                    'StudentDataFiles',
+                    studentname,
+                    studentdatabasename + '.csv'
+                    )
             with open(
                     tmppath,
                     'w'
@@ -1147,7 +1153,7 @@ with ui.tab_panels(tabs, value='CONTACT LOG'):
                 filename.write(guardianName + ', ')
                 filename.write(contactMethod + ', ')
                 filename.write(phoneNumber + ', ')
-                filename.write(emailAdddress + ', ')
+                filename.write(emailAddress + ', ')
                 filename.write(contactResponse + ', ')
                 filename.write(contactGeneral + ', ')
                 filename.write(contactSpecific + ', ')
@@ -1427,33 +1433,6 @@ with ui.tab_panels(tabs, value='ABACUS SKILLS'):
                         )
                 filename.write(f"{tmppath}" + '\n')
                 filename.close()
-                list_names = [
-                        'date',
-                        'P1_1',
-                        'P1_2',
-                        'P1_3',
-                        'P1_4',
-                        'P2_1',
-                        'P2_2',
-                        'P2_3',
-                        'P3_1',
-                        'P3_2',
-                        'P3_3',
-                        'P4_1',
-                        'P4_2',
-                        'P5_1',
-                        'P5_2',
-                        'P6_1',
-                        'P6_2',
-                        'P6_3',
-                        'P6_4',
-                        'P7_1',
-                        'P7_2',
-                        'P7_3',
-                        'P7_4',
-                        'P8_1',
-                        'P8_2'
-                        ]
                 list_data = [
                         datenow,
                         trial11,
@@ -5664,37 +5643,6 @@ with ui.tab_panels(tabs, value='SCREENREADER SKILLS'):
                         )
                 filename.write(f"'{tmppath}'" + '\n')
                 filename.close()
-                list_names = [
-                        'date',
-                        'P1_1',
-                        'P1_2',
-                        'P1_3',
-                        'P1_4',
-                        'P1_5',
-                        'P1_6',
-                        'P2_1',
-                        'P2_2',
-                        'P2_3',
-                        'P2_4',
-                        'P3_1',
-                        'P3_2',
-                        'P3_3',
-                        'P3_4',
-                        'P3_5',
-                        'P3_6',
-                        'P3_7',
-                        'P3_8',
-                        'P3_9',
-                        'P3_10',
-                        'P3_11',
-                        'P4_1',
-                        'P4_2',
-                        'P4_3',
-                        'P4_4',
-                        'P4_5',
-                        'P4_6',
-                        'P4_7'
-                        ]
                 list_data = [
                         datenow,
                         trial11,
@@ -6562,8 +6510,8 @@ with ui.tab_panels(tabs, value='SCREENREADER SKILLS'):
             fig.write_html(tmppath)
             fig.show()
             ui.notify(
-                    f'Graph Successful. The Graphs will open in a Browser '
-                    f'Window',
+                    'Graph Successful. The Graphs will open in a Browser '
+                    'Window',
                     close_button='OK'
                     )
         

@@ -25,6 +25,7 @@ black = "*"
 pylint = "*"
 pyright = "*"
 ruff = "*"
+pytest = "*"
 
 [dev-packages]
 

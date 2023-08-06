@@ -16,7 +16,7 @@
 #    limitations under the License.                                           #
 ###############################################################################
 
-import datetime
+
 ##############################################################################
 # Imports
 ##############################################################################
@@ -28,7 +28,7 @@ import traceback
 from csv import writer
 from pathlib import Path
 from sqlite3 import Error
-
+import datetime
 import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
@@ -63,38 +63,47 @@ IMAGE_DIR = Path(
 # Set User Directory based on OS
 ##############################################################################
 if os.name == 'nt':
-    tmppath = Path(
+    try:
+        tmppath = Path(
             os.environ['USERPROFILE']
             ).joinpath(
             'Documents'
             )
-    Path.mkdir(
-            tmppath,
-            parents=True,
-            exist_ok=True
-            )
-    USER_DIR = Path(
-            tmppath
-            )
+        Path.mkdir(
+                tmppath,
+                parents=True,
+                exist_ok=True
+                )
+        USER_DIR = Path(
+                tmppath
+                )
+    except Error as e:
+        print(
+                f'{e}\n Cannot find %USERPROFILE'
+                )
 elif os.name == 'posix':
-    tmppath = Path(
-            os.environ['HOME']
-            ).joinpath(
-            'Documents'
-            )
-    Path.mkdir(
-            tmppath,
-            parents=True,
-            exist_ok=True
-            )
-    USER_DIR = Path(
-            tmppath
+    try:
+        tmppath = Path(
+                os.environ['HOME']
+                ).joinpath(
+                'Documents'
+                )
+        Path.mkdir(
+                tmppath,
+                parents=True,
+                exist_ok=True
+                )
+        USER_DIR = Path(
+                tmppath
+                )
+    except Error as e:
+            print(
+                    f'{e}\n Cannot find $HOME'
             )
 else:
     print(
-            "Error! Cannot find HOME directory"
-            )
-
+            'Cannot determine OS Type'
+    )
 os.chdir(USER_DIR)
 
 ##############################################################################
@@ -738,13 +747,17 @@ def create_connection(
         print(
                 e
                 )
-    return conn
+    finally:
+        if conn:
+        conn.close()
 
 create_connection(
             dataBasePath
             )
 
-conn = sqlite3.connect(dataBasePath)
+conn = sqlite3.connect(
+        dataBasePath
+        )
 
 def create_table(
         conn,
@@ -949,71 +962,73 @@ def createTables():
             dataBasePath
             )
     if conn is not None:
-        create_table(
+        try:
+            create_table(
                 conn,
                 sql_create_studentdata_table
                 )
-    else:
-        print(
-                "Error! cannot create the database connection."
-                )
+        except Error as e:
+            print(
+                    e
+                    )
     conn = sqlite3.connect(
             dataBasePath
             )
     if conn is not None:
-        create_table(
+        try:
+            create_table(
                 conn,
                 sql_create_brailledata_table
                 )
-    else:
+        except Error as e:
         print(
-                "Error! cannot create the database connection."
+                e
                 )
-    
     conn = sqlite3.connect(
             dataBasePath
             )
     if conn is not None:
-        create_table(
+        try:
+            create_table(
                 conn,
                 sql_create_screenreaderdata_table
                 )
-    else:
+        except Error as e:
         print(
-                "Error! cannot create the database connection."
+                e
                 )
     conn = sqlite3.connect(
             dataBasePath
             )
     if conn is not None:
-        create_table(
+        try:
+            create_table(
                 conn,
                 sql_create_abacusdata_table
                 )
-    else:
-        print(
-                "Error! cannot create the database connection."
-                )
+            except Error as e:
+            print(
+                    e
+                    )
     conn = sqlite3.connect(
             dataBasePath
             )
     if conn is not None:
-        create_table(
+        try:
+            create_table(
                 conn,
                 sql_create_cvidata_table
                 )
-    else:
-        print(
-                "Error! cannot create the database connection."
-                )
-
+            except Error as e:
+            print(
+                    e
+                    )
 
 createTables()
 
 datenow = datetime.datetime.now().strftime(
         "%Y_%m_%d-%H%M%S_%p"
         )
-
 
 ##############################################################################
 # Error Logging
@@ -1058,13 +1073,15 @@ def warningmessage(
     ui.notify(f'{message}\n{errortype}', close_button='OK')
 
 
-sys.excepthook = warningmessage
+sys.excepthook = warningmessage()
 
 ##############################################################################
 # Begin GUI
-############################################################################
+##############################################################################
 
+##############################################################################
 # HEADER
+##############################################################################
 with ui.header().classes(
         'bg-blue-950 text-white font-white font-bold row items-center'
         ) as header:
@@ -1081,8 +1098,9 @@ with ui.header().classes(
             ui.tab('iOS/iPadOS VOICEOVER SKILLS').classes('text-l font-bold')
             ui.tab('CVI PROGRESS').classes('text-l font-bold')
             ui.tab('CONTACT LOG').classes('text-l font-bold')
+##############################################################################
 # CONTACT LOG
-# noinspection PyTypeChecker
+##############################################################################
 with ui.tab_panels(tabs, value='CONTACT LOG'):
     with ui.tab_panel('CONTACT LOG'):
         u_studentname = ui.select(
@@ -1288,6 +1306,9 @@ with ui.tab_panels(tabs, value='CONTACT LOG'):
                     )
         
         # ABACUS SKILLS PROGRESSION
+##############################################################################
+# ABACUS SKILLS
+##############################################################################
 with ui.tab_panels(tabs, value='ABACUS SKILLS'):
     with ui.tab_panel('ABACUS SKILLS'):
         u_studentname = ui.select(
@@ -1604,7 +1625,8 @@ with ui.tab_panels(tabs, value='ABACUS SKILLS'):
                             "Phase 5: Division",
                             "Phase 6: Decimals",
                             "Phase 7: Fractions",
-                            "Phase 8: Special Functions"),
+                            "Phase 8: Special Functions"
+                            ),
                     print_grid=True
                     )
             fig.add_trace(
@@ -2581,9 +2603,8 @@ with ui.tab_panels(tabs, value='ABACUS SKILLS'):
             ui.button('EXIT', color='#172554', on_click=app.shutdown).classes(
                     'text-white'
                     )
-
 ##############################################################################
-# BRAILLE
+# BRAILLE SKILLS
 ############################################################################
 # BRAILLE SKILLS PROGRESSION
 with ui.tab_panels(tabs, value='BRAILLE SKILLS'):
@@ -5402,9 +5423,9 @@ with ui.tab_panels(tabs, value='BRAILLE SKILLS'):
             ui.button('EXIT', color='#172554', on_click=app.shutdown).classes(
                     'text-white'
                     )
-
+##############################################################################
 # BRAILLENOTE TOUCH PLUS SKILLS
-# noinspection PyTypeChecker
+##############################################################################
 with ui.tab_panels(tabs, value='BRAILLENOTE TOUCH SKILLS'):
     with ui.tab_panel('BRAILLENOTE TOUCH SKILLS'):
         # BRAILLENOTE TOUCH PLUS SKILLS TAB
@@ -5422,8 +5443,9 @@ with ui.tab_panels(tabs, value='BRAILLENOTE TOUCH SKILLS'):
             ui.button('EXIT', color='#172554', on_click=app.shutdown).classes(
                     'text-white'
                     )
+##############################################################################
 # iOS/iPadOS VOICEOVER SKILLS
-# noinspection PyTypeChecker
+##############################################################################
 with ui.tab_panels(tabs, value='iOS/iPadOS VOICEOVER SKILLS'):
     with ui.tab_panel('iOS/iPadOS VOICEOVER SKILLS'):
         # BRAILLENOTE TOUCH PLUS SKILLS TAB
@@ -5441,9 +5463,9 @@ with ui.tab_panels(tabs, value='iOS/iPadOS VOICEOVER SKILLS'):
             ui.button('EXIT', color='#172554', on_click=app.shutdown).classes(
                     'text-white'
                     )
-
+##############################################################################
 # CVI PROGRESSION
-# noinspection PyTypeChecker
+##############################################################################
 with ui.tab_panels(tabs, value='CVI PROGRESS'):
     with ui.tab_panel('CVI PROGRESS'):
         # CVI PROGRESS TAB
@@ -5459,9 +5481,9 @@ with ui.tab_panels(tabs, value='CVI PROGRESS'):
             ui.button('EXIT', color='#172554', on_click=app.shutdown).classes(
                     'text-white'
                     )
-#
+##############################################################################
 # SCREENREADER SKILLS PROGRESSION
-# noinspection PyTypeChecker
+##############################################################################
 with ui.tab_panels(tabs, value='SCREENREADER SKILLS'):
     with ui.tab_panel('SCREENREADER SKILLS'):
         u_studentname = ui.select(
@@ -6906,8 +6928,9 @@ with ui.tab_panels(tabs, value='SCREENREADER SKILLS'):
             ui.button('EXIT', color='#172554', on_click=app.shutdown).classes(
                     'text-white'
                     )
-
+##############################################################################
 # FOOTER
+##############################################################################
 with ui.footer(value=True).classes('bg-blue-950') as footer:
     with ui.row().classes(
             'w-screen no-wrap justify-center items-center text-l font-bold'
@@ -6922,8 +6945,9 @@ with ui.footer(value=True).classes('bg-blue-950') as footer:
                 'Report Bugs or Request Features by emailing '
                 'hunsakerconsulting@gmail.com'
                 ).classes('justify-center items-center')
-
+##############################################################################
 # SIDEBAR
+##############################################################################
 with ui.left_drawer(value=True).classes('bg-blue-950') as left_drawer:
     with ui.row().classes('w-full no-wrap'):
         ui.label('MATERIALS').classes(
@@ -6938,20 +6962,20 @@ with ui.left_drawer(value=True).classes('bg-blue-950') as left_drawer:
     with ui.row().classes('w-full no-wrap py-4'):
         ui.link(
                 'Hadley Abacus Curriculum I',
-                'instructionMaterials/Abacus1.pdf', new_tab=True
+                'https://github.com/mrhunsaker/Materials/raw/main/instructionMaterials/Abacus1.pdf', new_tab=True
                 ).classes(
                 'text-left w-full text-white align-left font-bold'
                 )
     with ui.row().classes('w-full no-wrap py-4'):
         ui.link(
                 'Hadley Abacus Curriculum II',
-                'instructionMaterials/Abacus2.pdf', new_tab=True
+                'https://github.com/mrhunsaker/Materials/raw/main/instructionMaterials/Abacus2.pdf', new_tab=True
                 ).classes(
                 'text-left w-full align-left text-white font-bold'
                 )
     with ui.row().classes('w-full no-wrap py-4'):
         ui.link(
-                'Abacus Made Easy', 'instructionMaterials/AbacusMadeEasy.pdf',
+                'Abacus Made Easy', 'https://github.com/mrhunsaker/Materials/raw/main/instructionMaterials/AbacusMadeEasy.pdf',
                 new_tab=True
                 ).classes(
                 'text-left w-full text-white align-left font-bold font-bold'
@@ -6959,21 +6983,21 @@ with ui.left_drawer(value=True).classes('bg-blue-950') as left_drawer:
     with ui.row().classes('w-full no-wrap py-4'):
         ui.link(
                 'Using the Cranmer Abacus',
-                'instructionMaterials/UsingCramnerabacus', new_tab=True
+                'https://github.com/mrhunsaker/Materials/raw/main/instructionMaterials/UsingCranmerAbacus.pdf', new_tab=True
                 ).classes(
                 'text-left w-full align-left text-white font-bold'
                 )
     with ui.row().classes('w-full no-wrap py-4'):
         ui.link(
                 'Japanese Abacus Use and Theory',
-                'instructionMaterials/abacusUseTheory.pdf', new_tab=True
+                'https://github.com/mrhunsaker/Materials/raw/main/instructionMaterials/abacusUseTheory.pdf', new_tab=True
                 ).classes(
                 'text-left w-full text-white align-left font-bold'
                 )
     with ui.row().classes('w-full no-wrap py-4'):
         ui.link(
                 'Advanced Japanese Abacus',
-                'instructionMaterials/AdvancedAbacus.pdf', new_tab=True
+                'https://github.com/mrhunsaker/Materials/raw/main/instructionMaterials/AdvancedAbacus.pdf', new_tab=True
                 ).classes(
                 'text-left w-full align-left text-white font-bold'
                 )
@@ -6984,33 +7008,35 @@ with ui.left_drawer(value=True).classes('bg-blue-950') as left_drawer:
                 )
     with ui.row().classes('w-full no-wrap py-4'):
         ui.link(
-                'NLS-IMBT UEB Literary Braille', ' ', new_tab=True
+                'NLS-IMBT UEB Literary Braille',
+                'https://github.com/mrhunsaker/Materials/raw/main/instructionMaterials/NLSLOCLessons1-11.pdf',
+                new_tab=True
                 ).classes(
                 'text-left w-full text-white align-left font-bold'
                 )
     with ui.row().classes('w-full no-wrap py-4'):
         ui.link(
                 'UEB Australian Training Manual',
-                'instructionMaterials/UEBAustrialianTrainingManual.pdf',
+                'https://github.com/mrhunsaker/Materials/raw/main/instructionMaterials/UEBAustralianTrainingManual.pdf',
                 new_tab=True
                 ).classes('text-left w-full align-left text-white font-bold')
     with ui.row().classes('w-full no-wrap py-4'):
         ui.link(
                 'UEB Technical Course',
-                'instructionMaterials/UEBTechnicalCourse.pdf', new_tab=True
+                'https://github.com/mrhunsaker/Materials/raw/main/instructionMaterials/UEBTechnicalCourse.pdf', new_tab=True
                 ).classes(
                 'text-left w-full text-white align-left font-bold'
                 )
     with ui.row().classes('w-full no-wrap py-4'):
         ui.link(
                 'UEB Technical Guidelines',
-                'instructionMaterials/UEBTechnicalGuidelines.pdf', new_tab=True
+                'https://github.com/mrhunsaker/Materials/raw/main/instructionMaterials/UEBTechnicalGuidelines.pdf', new_tab=True
                 ).classes(
                 'text-left w-full align-left text-white font-bold'
                 )
     with ui.row().classes('w-full no-wrap py-4'):
         ui.link(
-                'UEB with Nemeth', 'instructionMaterials/NemethUEBContext'
+                'UEB with Nemeth', 'https://github.com/mrhunsaker/Materials/raw/main/instructionMaterials/NemethUEBContext.pdf'
                 ).classes(
                 'text-left w-full text-white align-left font-bold'
                 )
@@ -7021,7 +7047,7 @@ with ui.left_drawer(value=True).classes('bg-blue-950') as left_drawer:
                 )
     with ui.row().classes('w-full no-wrap py-4'):
         ui.link(
-                'NVDA Trainings', 'instructionMaterials/NVDATrainings.pdf',
+                'NVDA Trainings', 'https://github.com/mrhunsaker/Materials/raw/main/instructionMaterials/NVDATrainings.pdf',
                 new_tab=True
                 ).classes(
                 'text-left w-full text-white align-left font-bold'
@@ -7029,7 +7055,7 @@ with ui.left_drawer(value=True).classes('bg-blue-950') as left_drawer:
     with ui.row().classes('w-full no-wrap py-4'):
         ui.link(
                 'Windows Screen Reader Primer',
-                'instructionMaterials/WindowsScreenreaderPrimer.pdf',
+                'https://github.com/mrhunsaker/Materials/raw/main/instructionMaterials/WindowsScreenreaderPrimer.zip',
                 new_tab=True
                 ).classes(
                 'text-left w-full align-left text-white font-bold'
@@ -7037,7 +7063,7 @@ with ui.left_drawer(value=True).classes('bg-blue-950') as left_drawer:
     with ui.row().classes('w-full no-wrap py-4'):
         ui.link(
                 'Getting Started with Windows 11',
-                'instructionMaterials/GettingStartedWindows11', new_tab=True
+                'https://github.com/mrhunsaker/Materials/blob/main/instructionMaterials/GettingStartedWindows11.doc', new_tab=True
                 ).classes(
                 'text-left w-full text-white align-left font-bold'
                 )
@@ -7047,12 +7073,12 @@ with ui.left_drawer(value=True).classes('bg-blue-950') as left_drawer:
                 )
     with ui.row().classes('w-full no-wrap py-4'):
         ui.link(
-                'Blank Vision Template', 'datasheets/BlankVisionTemplate.pdf',
+                'Blank Vision Template', 'https://github.com/mrhunsaker/Materials/raw/main/datasheets/BlankVisionTemplate.pdf',
                 new_tab=True
                 ).classes('text-left w-screen text-white align-left font-bold')
     with ui.row().classes('w-full no-wrap py-4'):
         ui.link(
-                'Generic Data Sheets', 'datasheets/GenericDataSheets.pdf',
+                'Generic Data Sheets', 'https://github.com/mrhunsaker/Materials/raw/main/datasheets/GenericDataSheets.pdf',
                 new_tab=True
                 ).classes(
                 'text-left w-full align-left text-white font-bold'
@@ -7060,7 +7086,7 @@ with ui.left_drawer(value=True).classes('bg-blue-950') as left_drawer:
     with ui.row().classes('w-full no-wrap py-4'):
         ui.link(
                 'Bi-Weekly Progress Monitoring',
-                'datasheets/ProgressMonitoring.pdf', new_tab=True
+                'https://github.com/mrhunsaker/Materials/raw/main/datasheets/ProgressMonitoring.pdf', new_tab=True
                 ).classes(
                 'text-left w-full text-white align-left font-bold'
                 )
@@ -7072,21 +7098,25 @@ with ui.left_drawer(value=True).classes('bg-blue-950') as left_drawer:
     with ui.row().classes('w-full no-wrap'):
         ui.link(
                 'Educational Vision Evaluation Forms',
-                'visionAssessments/EducationVisionAssessments.pdf',
+                'https://github.com/mrhunsaker/Materials/raw/main/visionAssessments/EducationVisionAssessments.pdf',
                 new_tab=True
                 ).classes('text-left w-full text-white align-left font-bold')
-
 ##############################################################################
 # EXECUTE PROGRAM WINDOW
 ##############################################################################
-# Get Monitor Size to allow me to create the app to fill screen without
-# setting fullscreen=True.
-# 72 is subtracted from the height to accommodate the height of my Taskbar
+'''Get Monitor Size to allow me to create the app to fill screen without setting fullscreen=True.
+72 is subtracted from the height to accommodate the height of my Taskbar
+'''
 for monitor in get_monitors():
     print(f'Screen Resolution = {str(monitor.width)}x{str(monitor.height)}')
-# Run call
+##############################################################################
+# RUN CALL
+##############################################################################
 ui.run(
         native=True, reload=False, dark=False,
         title='Academic Skills Progression', fullscreen=False,
         window_size=(monitor.width, monitor.height - 72)
         )
+##############################################################################
+# END FILE
+##############################################################################

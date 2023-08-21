@@ -4619,11 +4619,11 @@ def create() -> None:
             ui.label('BRAILLENOTE TOUCH PLUS SKILLS').classes('text-h4 text-grey-8')
                         
             def save():
-            
+                a=1
             def graph():
-                
+                a=1
             def exit():
-                
+                a=1
             with ui.row().classes("w-screen no-wrap"):
                 ui.label("BRAILLENOTE TOUCH PLUS SKILLS PROGRESSION").classes(
                         "justify-center items-center"
@@ -4651,13 +4651,12 @@ def create() -> None:
                 ui.label("iOS/iPadOS VOICEOVER SKILLS PROGRESSION").classes(
                         "justify-center items-center"
                         )
-                
             def save():
-            
+                a=1
             def graph():
-                
+                a=1
             def exit():
-                
+                a=1
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.button("SAVE", color="#172554", on_click=save).classes(
                         "text-white"
@@ -4669,7 +4668,7 @@ def create() -> None:
                         "text-white"
                         )
             
-    ##########################################################################
+    #########################################################################
     # CVI PROGRESSION
     ##########################################################################
     @ui.page('/cviprogress')
@@ -4680,10 +4679,11 @@ def create() -> None:
                 ui.label("CVI PROGRESSION").classes("justify-center items-center")
             
             def save():
-            
+                a=1
             def graph():
-                
+                a=1
             def exit():
+                a=1
                 
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.button("SAVE", color="#172554", on_click=save).classes(

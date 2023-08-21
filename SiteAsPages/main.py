@@ -39,9 +39,15 @@ from plotly.subplots import make_subplots
 from screeninfo import get_monitors
 
 import homepage
-import menu
 import theme
-import contentpages
+
+import abacus
+import braille
+import braillenote
+import contactLog
+import ios
+import cvi
+import screenreader
 from helpers import students
 
 ##############################################################################
@@ -725,8 +731,16 @@ def index_page() -> None:
     with theme.frame('Academic Progress'):
         homepage.content()
 
-contentpages.create()
+# contentpages.create()
+abacus.create()
+braille.create()
+contactLog.create()
+cvi.create()
+ios.create()
+braillenote.create()
+screenreader.create()
 
+'''
 ##############################################################################
 # FOOTER
 ##############################################################################
@@ -906,6 +920,7 @@ with ui.left_drawer(value=True) as left_drawer:
                 "/visionAssessments/EducationVisionAssessments.pdf",
                 new_tab=True,
                 ).classes("text-left w-full text-white align-left font-bold")
+'''
 ##############################################################################
 # EXECUTE PROGRAM WINDOW
 ##############################################################################

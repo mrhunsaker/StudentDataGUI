@@ -35,10 +35,11 @@ def frame(navtitle: str):
                     "Report Bugs or Request Features by emailing "
                     "hunsakerconsulting@gmail.com"
                     ).classes("justify-center items-center")
-    '''
+
     ##############################################################################
     # SIDEBAR
     ##############################################################################
+    '''
     with ui.left_drawer(value=True) as left_drawer:
         with ui.row().classes("w-full no-wrap"):
             ui.label("MATERIALS").classes(

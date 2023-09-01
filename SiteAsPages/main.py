@@ -441,9 +441,11 @@ for name in students:
 ##############################################################################
 # Create SQL database with SQLite and create data tables
 ##############################################################################
-print(f"SQLite version {sqlite3.sqlite_version}")
+
 dataBasePath = Path(USER_DIR).joinpath("StudentDatabase", "students.db")
-print(dataBasePath)
+'''print(f"SQLite version {sqlite3.sqlite_version}")
+print(dataBasePath)'''
+print("Program is Loading, Please be Patient")
 
 
 def create_connection(db_file):
@@ -719,8 +721,9 @@ def warningmessage(exception_type, exception_value, exception_traceback):
     with open(log_path, "a") as log_file:
         log_file.write(f"{date}\n{i}" + "\n")
         errortype = str(exception_type)
-    ui.notify(f"{message}\n{errortype}", close_button="OK")
-
+    ui.notify(f"{message}\n{errortype}", 
+              type='warning',
+              close_button="OK")
 
 sys.excepthook = warningmessage
 
@@ -729,7 +732,7 @@ sys.excepthook = warningmessage
 ##############################################################################
 @ui.page('/')
 def index_page() -> None:
-    with theme.frame('Academic Progress'):
+    with theme.frame('Student Skills Progressions'):
         homepage.content()
 
 # contentpages.create()
@@ -767,7 +770,7 @@ with ui.footer(value=True) as footer:
 with ui.left_drawer(value=True) as left_drawer:
     with ui.row().classes("w-full no-wrap"):
         ui.label("MATERIALS").classes(
-                "w-screen no-wrap py-4 text-white font-bold text-xl "
+       N         "w-screen no-wrap py-4 text-white font-bold text-xl "
                 "justify-center items-center"
                 )
     with ui.row().classes("w-full no-wrap"):
@@ -925,14 +928,13 @@ with ui.left_drawer(value=True) as left_drawer:
 ##############################################################################
 # EXECUTE PROGRAM WINDOW
 ##############################################################################
-"""Get Monitor Size to allow me to create the app to fill screen without
+'''Get Monitor Size to allow me to create the app to fill screen without
 setting fullscreen=True. 72 is subtracted from the height to accommodate the
-height of my Taskbar
-"""
+height of my Taskbar'''
+
 for monitor in get_monitors():
-    print(
-            f"Screen Resolution = {str(monitor.width)}x{str(monitor.height)}"
-            )
+    ScreenResolution = "{str(monitor.width)}x{str(monitor.height)}"
+
 ##############################################################################
 # RUN CALL
 ##############################################################################
@@ -940,7 +942,7 @@ ui.run(
         native=True,
         reload=False,
         dark=False,
-        title="Academic Skills Progression",
+        title="Student Skills Progressions",
         fullscreen=False,
         window_size=(monitor.width, monitor.height - 72),
         )

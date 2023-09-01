@@ -1898,8 +1898,14 @@ def create() -> None:
                         studentname,
                         "UEBLiterarySkillsProgression.html",
                         )
-                fig.write_html(tmppath)
-                fig.show()
+                fig.write_html(tmppath, auto_open=True)
+                #fig.show()
+                ui.notify(
+                        "Graph Successful. The Graphs will open in a Browser "
+                        "Window",
+                        close_button="OK",
+                        )
+                        
                 fig = make_subplots(
                         rows=3,
                         cols=1,
@@ -2329,6 +2335,8 @@ def create() -> None:
                 ui.notify(
                         "Graph Successful. The Graphs will open in a Browser "
                         "Window",
+                        position='center',
+                        type='positive',
                         close_button="OK",
                         )            
             

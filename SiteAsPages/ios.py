@@ -56,9 +56,21 @@ def create() -> None:
             def save():
                 a=1
             def graph():
-                a=1
-            def exit():
-                a=1
+                ui.notify(
+                        "This Function is Not Yet Configured",
+                        position='center',
+                        type='warning',
+                        close_button="OK",
+                        ) 
+                '''ui.notify(
+                        "Graph Successful. The Graphs will open in a Browser "
+                        "Window",
+                        color='pink',
+                        position='center',
+                        type='positive',
+                        close_button="OK",
+                        )
+                '''                       
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.button("SAVE", color="#172554", on_click=save).classes(
                         "text-white"

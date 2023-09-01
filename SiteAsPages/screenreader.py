@@ -1158,6 +1158,8 @@ def create() -> None:
                 ui.notify(
                         "Graph Successful. The Graphs will open in a Browser "
                         "Window",
+                        position='center',
+                        type='positive',
                         close_button="OK",
                         )
             

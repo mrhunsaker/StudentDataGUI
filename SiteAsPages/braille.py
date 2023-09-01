@@ -40,6 +40,34 @@ from screeninfo import get_monitors
 
 import theme
 from helpers import students
+##############################################################################
+# Define Paths
+##############################################################################
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
+ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
+USER_DIR = ""
+IMAGE_DIR = Path(ROOT_DIR).joinpath("images")
+##############################################################################
+# Set User Directory based on OS
+##############################################################################
+if os.name == "nt":
+    try:
+        tmppath = Path(os.environ["USERPROFILE"]).joinpath("Documents")
+        Path.mkdir(tmppath, parents=True, exist_ok=True)
+        USER_DIR = Path(tmppath)
+    except Error as e:
+        print(f"{e}\n Cannot find %USERPROFILE")
+elif os.name == "posix":
+    try:
+        tmppath = Path(os.environ["HOME"]).joinpath("Documents")
+        Path.mkdir(tmppath, parents=True, exist_ok=True)
+        USER_DIR = Path(tmppath)
+    except Error as e:
+        print(f"{e}\n Cannot find $HOME")
+else:
+    print("Cannot determine OS Type")
+os.chdir(USER_DIR)
+
 
 def create() -> None:
     ##########################################################################
@@ -659,6 +687,7 @@ def create() -> None:
                 Graphing
 
                 """
+                dataBasePath = Path(USER_DIR).joinpath("StudentDatabase", "students.db")
                 studentname = u_studentname.value
                 conn = sqlite3.connect(dataBasePath)
                 df_sql = pd.read_sql_query("SELECT * FROM BRAILLEPROGRESS", conn)
@@ -2295,9 +2324,13 @@ def create() -> None:
                         studentname,
                         "UEBTechnicalSkillsProgression.html",
                         )
-                fig.write_html(tmppath)
-                fig.show()
-            
+                fig.write_html(tmppath,auto_open=True)
+                #fig.show()
+                ui.notify(
+                        "Graph Successful. The Graphs will open in a Browser "
+                        "Window",
+                        close_button="OK",
+                        )            
             
             # BRAILLE SKILLS PROGRESSION TAB
             with ui.row().classes("w-screen no-wrap"):

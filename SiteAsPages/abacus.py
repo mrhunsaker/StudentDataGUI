@@ -30,7 +30,7 @@ import traceback
 from csv import writer
 from pathlib import Path
 from sqlite3 import Error
-
+import plotly.io as pio
 import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
@@ -51,6 +51,34 @@ import cvi
 import screenreader
 from helpers import students
 
+##############################################################################
+# Define Paths
+##############################################################################
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
+ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
+USER_DIR = ""
+IMAGE_DIR = Path(ROOT_DIR).joinpath("images")
+##############################################################################
+# Set User Directory based on OS
+##############################################################################
+if os.name == "nt":
+    try:
+        tmppath = Path(os.environ["USERPROFILE"]).joinpath("Documents")
+        Path.mkdir(tmppath, parents=True, exist_ok=True)
+        USER_DIR = Path(tmppath)
+    except Error as e:
+        print(f"{e}\n Cannot find %USERPROFILE")
+elif os.name == "posix":
+    try:
+        tmppath = Path(os.environ["HOME"]).joinpath("Documents")
+        Path.mkdir(tmppath, parents=True, exist_ok=True)
+        USER_DIR = Path(tmppath)
+    except Error as e:
+        print(f"{e}\n Cannot find $HOME")
+else:
+    print("Cannot determine OS Type")
+os.chdir(USER_DIR)
+
 def create() -> None:
         ##########################################################################
     # ABACUS SKILLS
@@ -59,7 +87,7 @@ def create() -> None:
     def abacusskills():
         with theme.frame('- ABACUS SKILLS -'):
             ui.label('ABACUS SKILLS').classes('text-h4 text-grey-8')
-
+            datenow = datetime.datetime.now().strftime("%Y_%m_%d-%H%M%S_%p")
             u_studentname = ui.select(
                     options=students, value="DonaldChamberlain"
                     ).classes(
@@ -239,6 +267,7 @@ def create() -> None:
                 # noinspection SqlResolve
                 def data_entry():
                     """ """
+                    dataBasePath = Path(USER_DIR).joinpath("StudentDatabase", "students.db")
                     conn = sqlite3.connect(dataBasePath)
                     c = conn.cursor()
                     c.execute(
@@ -333,11 +362,12 @@ def create() -> None:
             
             def graph(event):
                 """
-
                 :param event:
                 :type event:
                 """
+                
                 studentname = u_studentname.value
+                dataBasePath = Path(USER_DIR).joinpath("StudentDatabase", "students.db")
                 conn = sqlite3.connect(dataBasePath)
                 df_sql = pd.read_sql_query("SELECT * FROM ABACUSPROGRESS", conn)
                 df_student = df_sql[df_sql.STUDENTNAME == studentname]
@@ -1025,11 +1055,15 @@ def create() -> None:
                         "StudentDatabase",
                         "StudentDataFiles",
                         studentname,
-                        "ScreenReaderSkillsProgression.html",
+                        "AbacusSkillsProgression.html",
                         )
-                fig.write_html(tmppath)
-                fig.show()
-            
+                fig.write_html(tmppath, auto_open=True)
+                # fig.show( )
+                ui.notify(
+                        "Graph Successful. The Graphs will open in a Browser "
+                        "Window",
+                        close_button="OK",
+                        )            
             
             # ABACUS SKILLS PROGRESSION TAB
             with ui.row().classes("w-screen no-wrap"):

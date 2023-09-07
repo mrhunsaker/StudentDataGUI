@@ -21,25 +21,10 @@ of students with Visual Impairments
 #    limitations under the License.                                           #
 ###############################################################################
 
-import datetime
-import os
-import shutil
-import sqlite3
-import sys
-import traceback
-from csv import writer
-from pathlib import Path
-from sqlite3 import Error
-
-import numpy as np
-import pandas as pd
-import plotly.graph_objects as go
 from nicegui import app, ui
-from plotly.subplots import make_subplots
-from screeninfo import get_monitors
 
 import theme
-from helpers import students
+
 
 def create() -> None:
     ##########################################################################
@@ -50,18 +35,13 @@ def create() -> None:
         with theme.frame('- iOS/iPadOS VOICEOVER SKILLS -'):
             ui.label('iOS/iPadOS VOICEOVER SKILLS').classes('text-h4 text-grey-8')
             with ui.row().classes("w-screen no-wrap"):
-                ui.label("iOS/iPadOS VOICEOVER SKILLS PROGRESSION").classes(
-                        "justify-center items-center"
-                        )
+                ui.label("iOS/iPadOS VOICEOVER SKILLS PROGRESSION").classes("justify-center items-center")
+            
             def save():
-                a=1
+                a = 1
+            
             def graph():
-                ui.notify(
-                        "This Function is Not Yet Configured",
-                        position='center',
-                        type='warning',
-                        close_button="OK",
-                        ) 
+                ui.notify("This Function is Not Yet Configured", position='center', type='warning', close_button="OK", )
                 '''ui.notify(
                         "Graph Successful. The Graphs will open in a Browser "
                         "Window",
@@ -70,15 +50,9 @@ def create() -> None:
                         type='positive',
                         close_button="OK",
                         )
-                '''                       
-            with ui.row().classes("w-screen no-wrap py-4"):
-                ui.button("SAVE", color="#172554", on_click=save).classes(
-                        "text-white"
-                        )
-                ui.button("GRAPH", color="#172554", on_click=graph).classes(
-                        "text-white"
-                        )
-                ui.button("EXIT", color="#172554", on_click=app.shutdown).classes(
-                        "text-white"
-                        )
+                '''
             
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.button("SAVE", color="#172554", on_click=save).classes("text-white")
+                ui.button("GRAPH", color="#172554", on_click=graph).classes("text-white")
+                ui.button("EXIT", color="#172554", on_click=app.shutdown).classes("text-white")

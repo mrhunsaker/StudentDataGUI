@@ -22,8 +22,10 @@ of students with Visual Impairments
 ###############################################################################
 
 from contextlib import contextmanager
-from menu import menu
+
 from nicegui import ui
+
+from menu import menu
 
 
 @contextmanager
@@ -41,18 +43,8 @@ def frame(navtitle: str):
     # FOOTER
     ##############################################################################
     with ui.footer(value=True) as footer:
-        with ui.row().classes(
-                "w-screen no-wrap justify-center items-center text-l font-bold"
-                ):
-            ui.label(
-                    "Copyright © 2023 Michael Ryan Hunsaker, M.Ed., Ph.D."
-                    ).classes(
-                    "justify-center items-center"
-                    )
-        with ui.row().classes(
-                "w-screen no-wrap justify-center items-centertext-l font-bold"
-                ):
-            ui.label(
-                    "Report Bugs or Request Features by emailing "
-                    "hunsakerconsulting@gmail.com"
-                    ).classes("justify-center items-center")
+        with ui.row().classes("w-screen no-wrap justify-center items-center text-l font-bold"):
+            ui.label("Copyright © 2023 Michael Ryan Hunsaker, M.Ed., Ph.D.").classes("justify-center items-center")
+        with ui.row().classes("w-screen no-wrap justify-center items-centertext-l font-bold"):
+            ui.label("Report Bugs or Request Features by emailing "
+                     "hunsakerconsulting@gmail.com").classes("justify-center items-center")

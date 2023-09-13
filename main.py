@@ -36,7 +36,8 @@ import InstructionalMaterials
 import ios
 import screenreader
 import theme
-from helpers import (create_connection, createFolderHierarchy, createTables, dataBasePath, warningmessage, )
+from helpers import (createFolderHierarchy, dataBasePath, warningmessage, )
+from sqlgenerate import (create_connection, createTables)
 
 createFolderHierarchy()
 create_connection(dataBasePath)
@@ -89,4 +90,6 @@ for monitor in get_monitors():
 ##############################################################################
 # RUN CALL
 ##############################################################################
-ui.run(native=True, reload=False, dark=False, title="Student Skills Progressions", fullscreen=False, window_size=(monitor.width, monitor.height - 72), )  ##############################################################################  # END FILE  ##############################################################################
+ui.run(native=True, reload=False, dark=False, title="Student Skills Progressions", fullscreen=False, window_size=(
+        monitor.width,
+        monitor.height - 72), )  ##############################################################################  # END FILE  ##############################################################################

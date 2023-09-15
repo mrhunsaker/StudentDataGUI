@@ -21,31 +21,31 @@ of students with Visual Impairments
 #    limitations under the License.                                           #
 ###############################################################################
 
-from contextlib import contextmanager
-
-from nicegui import ui
-
-from menu import menu
-from roster import students
-
-
-@contextmanager
-def frame(navtitle: str):
-    '''Custom page frame to share the same styling and behavior across all pages'''
-    ui.colors(primary='#6E93D6', secondary='#53B689', accent='#111B1E', positive='#53B689')
-    with ui.header().classes('justify-between text-white'):
-        with ui.row().classes("no-wrap text-l font-bold"):
-            ui.label(navtitle)
-        with ui.row().classes("no-wrap text-l font-bold"):
-            menu()
-    with ui.column().classes(''):
-        yield
-    ##############################################################################
-    # FOOTER
-    ##############################################################################
-    with ui.footer(value=True) as footer:
-        with ui.row().classes("w-screen no-wrap justify-center items-center text-l font-bold"):
-            ui.label("Copyright © 2023 Michael Ryan Hunsaker, M.Ed., Ph.D.").classes("justify-center items-center")
-        with ui.row().classes("w-screen no-wrap justify-center items-centertext-l font-bold"):
-            ui.label("Report Bugs or Request Features by emailing "
-                     "hunsakerconsulting@gmail.com").classes("justify-center items-center")
+##############################################################################
+# Current Students for Project
+##############################################################################
+students = [
+            'DonaldChamberlain',
+            'AshlynnNelson',
+            'AvaWilson',
+            'BaraahAlArbid',
+            'BelleWinegar',
+            'CelestialNelson',
+            'ClairePeterson',
+            'ColbieBlodgett',
+            'ColeHalbasch',
+            'ElyseStephensen',
+            'EmmaTorres',
+            'GrantChristensen',
+            'HunterTrevino',
+            'JerseyLenoard',
+            'KahvonFord',
+            'LilyVanwagoner',
+            'MilesWebster',
+            'OliviaEvershed',
+            'PaulaSackett',
+            'PrimrosePeterson',
+            'RoninSorenson',
+            'TrinityKellum',
+            'TylerAshby'
+            ]

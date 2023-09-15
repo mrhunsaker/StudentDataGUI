@@ -34,6 +34,7 @@ from plotly.subplots import make_subplots
 
 import theme
 from helpers import (dataBasePath, datenow, students, USER_DIR)
+from roster import students
 
 
 def create() -> None:

@@ -25,6 +25,7 @@ import sqlite3
 from sqlite3 import Error
 
 from helpers import (dataBasePath, )
+from roster import students
 
 
 ##############################################################################

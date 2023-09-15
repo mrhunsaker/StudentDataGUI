@@ -30,6 +30,7 @@ from pathlib import Path
 from sqlite3 import Error
 
 from nicegui import ui
+from roster import students
 
 ##############################################################################
 # Set User Directory based on OS
@@ -68,7 +69,6 @@ os.chdir(USER_DIR)
 
 dataBasePath = Path(USER_DIR).joinpath("StudentDatabase", "students.db")
 
-
 ##############################################################################
 # Error Logging
 ##############################################################################
@@ -90,15 +90,6 @@ def warningmessage(exception_type, exception_value, exception_traceback):
         log_file.write(f"{date}\n{i}" + "\n")
         errortype = str(exception_type)
     ui.notify(f"{message}\n{errortype}", type='warning', close_button="OK")
-
-
-##############################################################################
-# Current Students for Project
-##############################################################################
-students = ['DonaldChamberlain', 'AshlynnNelson', 'AvaWilson', 'BaraahAlArbid', 'BelleWinegar', 'CelestialNelson',
-            'ClairePeterson', 'ColbieBlodgett', 'ColeHalbasch', 'ElyseStephensen', 'EmmaTorres', 'GrantChristensen',
-            'HunterTrevino', 'JerseyLenoard', 'KahvonFord', 'LilyVanwagoner', 'MilesWebster', 'OliviaEvershed',
-            'PaulaSackett', 'PrimrosePeterson', 'RoninSorenson', 'TrinityKellum', 'TylerAshby']
 
 
 ##############################################################################

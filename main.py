@@ -29,7 +29,7 @@ from screeninfo import get_monitors
 import abacus
 import braille
 import braillenote
-import contactLog
+import contactlog
 import cvi
 import homepage
 import InstructionalMaterials
@@ -37,7 +37,10 @@ import ios
 import screenreader
 import theme
 from helpers import (createFolderHierarchy, dataBasePath, warningmessage, )
+from helpers import (dataBasePath, datenow, students, USER_DIR, )
+
 from sqlgenerate import (create_connection, createTables)
+from roster import students
 
 createFolderHierarchy()
 create_connection(dataBasePath)
@@ -57,7 +60,7 @@ def index_page() -> None:
 ##############################################################################
 # CONTENT PAGES
 ##############################################################################
-contactLog.create()
+contactlog.create()
 abacus.create()
 braille.create()
 braillenote.create()

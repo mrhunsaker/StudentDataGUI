@@ -56,7 +56,8 @@ from nicegui import app, ui
 from plotly.subplots import make_subplots
 
 import theme
-from helpers import (dataBasePath, datenow, students, USER_DIR)
+from helpers import (dataBasePath, datenow, students, USER_DIR, )
+from roster import students
 
 
 def create() -> None:
@@ -493,11 +494,11 @@ def create() -> None:
             # df_noisy = df
             df_noisy = df + noise
             fig = make_subplots(
-                    rows=3, cols=2, subplot_titles=("Basic Operations", "Presentation Tools", "Word Processing", "Acceptable Use", "SpreadSheets", "Additional SKills", "Presentation Tools"), print_grid=True
+                    rows=3, cols=4, subplot_titles=("Basic Skills","KeyMath","Calendar","KeyBRF","KeyFiles", "Keymail", "KeyWeb", "KeyCalc","KeyWord",  "KeySlides",   "KeyCode", "Third Party Apps"), print_grid=True
                     )
             fig.add_trace(
                     go.Scatter(
-                            x=df_noisy.index, y=df_noisy["P1_1"], mode="lines+markers", name=" PLACEHOLDER", legendgroup="PLACEHOLDER", legendgrouptitle_text="PLACEHOLDER"
+                            x=df_noisy.index, y=df_noisy["P1_1"], mode="lines+markers", name=" 1.1PLACEHOLDER", legendgroup="PLACEHOLDER", legendgrouptitle_text="PLACEHOLDER"
                             ), row=1, col=1
                     )
             fig.add_trace(
@@ -542,265 +543,264 @@ def create() -> None:
                     )
             fig.add_trace(
                     go.Scatter(
-                            x=df_noisy.index, y=df_noisy["P2_1"], mode="lines+markers", name=" PLACEHOLDER", legendgroup="PLACEHOLDER", legendgrouptitle_text="PLACEHOLDER"
-                            ), row=1, col=1
+                            x=df_noisy.index, y=df_noisy["P2_1"], mode="lines+markers", name=" 2.1 PLACEHOLDER", legendgroup="PLACEHOLDER", legendgrouptitle_text="PLACEHOLDER"
+                            ), row=2, col=1
                     )
             fig.add_trace(
                     go.Scatter(
                             x=df_noisy.index, y=df_noisy["P2_2"], mode="lines+markers", name=" PLACEHOLDER", legendgroup="PLACEHOLDER", legendgrouptitle_text="PLACEHOLDER"
-                            ), row=1, col=1
+                            ), row=2, col=1
                     )
             fig.add_trace(
                     go.Scatter(
                             x=df_noisy.index, y=df_noisy["P2_3"], mode="lines+markers", name=" PLACEHOLDER", legendgroup="PLACEHOLDER", legendgrouptitle_text="PLACEHOLDER"
-                            ), row=1, col=1
+                            ), row=2, col=1
                     )
             fig.add_trace(
                     go.Scatter(
                             x=df_noisy.index, y=df_noisy["P2_4"], mode="lines+markers", name=" PLACEHOLDER", legendgroup="PLACEHOLDER", legendgrouptitle_text="PLACEHOLDER"
-                            ), row=1, col=1
+                            ), row=2, col=1
                     )
             fig.add_trace(
                     go.Scatter(
                             x=df_noisy.index, y=df_noisy["P2_5"], mode="lines+markers", name=" PLACEHOLDER", legendgroup="PLACEHOLDER", legendgrouptitle_text="PLACEHOLDER"
-                            ), row=1, col=1
+                            ), row=2, col=1
                     )
             fig.add_trace(
                     go.Scatter(
                             x=df_noisy.index, y=df_noisy["P2_6"], mode="lines+markers", name=" PLACEHOLDER", legendgroup="PLACEHOLDER", legendgrouptitle_text="PLACEHOLDER"
-                            ), row=1, col=1
+                            ), row=2, col=1
                     )
             fig.add_trace(
                     go.Scatter(
                             x=df_noisy.index, y=df_noisy["P2_7"], mode="lines+markers", name=" PLACEHOLDER", legendgroup="PLACEHOLDER", legendgrouptitle_text="PLACEHOLDER"
-                            ), row=1, col=1
+                            ), row=2, col=1
                     )
             fig.add_trace(
                     go.Scatter(
                             x=df_noisy.index, y=df_noisy["P3_1"], mode="lines+markers", name=" PLACEHOLDER", legendgroup="PLACEHOLDER", legendgrouptitle_text="PLACEHOLDER"
-                            ), row=1, col=1
+                            ), row=3, col=1
                     )
             fig.add_trace(
                     go.Scatter(
                             x=df_noisy.index, y=df_noisy["P3_2"], mode="lines+markers", name=" PLACEHOLDER", legendgroup="PLACEHOLDER", legendgrouptitle_text="PLACEHOLDER"
-                            ), row=1, col=1
+                            ), row=3, col=1
                     )
             fig.add_trace(
                     go.Scatter(
                             x=df_noisy.index, y=df_noisy["P3_3"], mode="lines+markers", name=" PLACEHOLDER", legendgroup="PLACEHOLDER", legendgrouptitle_text="PLACEHOLDER"
-                            ), row=1, col=1
+                            ), row=3, col=1
                     )
             fig.add_trace(
                     go.Scatter(
                             x=df_noisy.index, y=df_noisy["P3_4"], mode="lines+markers", name=" PLACEHOLDER", legendgroup="PLACEHOLDER", legendgrouptitle_text="PLACEHOLDER"
-                            ), row=1, col=1
+                            ), row=3, col=1
                     )
             fig.add_trace(
                     go.Scatter(
                             x=df_noisy.index, y=df_noisy["P3_5"], mode="lines+markers", name=" PLACEHOLDER", legendgroup="PLACEHOLDER", legendgrouptitle_text="PLACEHOLDER"
-                            ), row=1, col=1
+                            ), row=3, col=1
                     )
             fig.add_trace(
                     go.Scatter(
                             x=df_noisy.index, y=df_noisy["P3_6"], mode="lines+markers", name=" PLACEHOLDER", legendgroup="PLACEHOLDER", legendgrouptitle_text="PLACEHOLDER"
-                            ), row=1, col=1
+                            ), row=3, col=1
                     )
             fig.add_trace(
                     go.Scatter(
                             x=df_noisy.index, y=df_noisy["P3_7"], mode="lines+markers", name=" PLACEHOLDER", legendgroup="PLACEHOLDER", legendgrouptitle_text="PLACEHOLDER"
-                            ), row=1, col=1
+                            ), row=3, col=1
                     )
             fig.add_trace(
                     go.Scatter(
                             x=df_noisy.index, y=df_noisy["P4_1"], mode="lines+markers", name=" PLACEHOLDER", legendgroup="PLACEHOLDER", legendgrouptitle_text="PLACEHOLDER"
-                            ), row=1, col=1
+                            ), row=1, col=2
                     )
             fig.add_trace(
                     go.Scatter(
                             x=df_noisy.index, y=df_noisy["P4_2"], mode="lines+markers", name=" PLACEHOLDER", legendgroup="PLACEHOLDER", legendgrouptitle_text="PLACEHOLDER"
-                            ), row=1, col=1
+                            ), row=1, col=2
                     )
             fig.add_trace(
                     go.Scatter(
                             x=df_noisy.index, y=df_noisy["P4_3"], mode="lines+markers", name=" PLACEHOLDER", legendgroup="PLACEHOLDER", legendgrouptitle_text="PLACEHOLDER"
-                            ), row=1, col=1
+                            ), row=1, col=2
                     )
             fig.add_trace(
                     go.Scatter(
                             x=df_noisy.index, y=df_noisy["P5_1"], mode="lines+markers", name=" PLACEHOLDER", legendgroup="PLACEHOLDER", legendgrouptitle_text="PLACEHOLDER"
-                            ), row=1, col=1
+                            ), row=2, col=2
                     )
             fig.add_trace(
                     go.Scatter(
                             x=df_noisy.index, y=df_noisy["P5_2"], mode="lines+markers", name=" PLACEHOLDER", legendgroup="PLACEHOLDER", legendgrouptitle_text="PLACEHOLDER"
-                            ), row=1, col=1
+                            ), row=2, col=2
                     )
             fig.add_trace(
                     go.Scatter(
                             x=df_noisy.index, y=df_noisy["P5_3"], mode="lines+markers", name=" PLACEHOLDER", legendgroup="PLACEHOLDER", legendgrouptitle_text="PLACEHOLDER"
-                            ), row=1, col=1
+                            ), row=2, col=2
                     )
             fig.add_trace(
                     go.Scatter(
                             x=df_noisy.index, y=df_noisy["P5_4"], mode="lines+markers", name=" PLACEHOLDER", legendgroup="PLACEHOLDER", legendgrouptitle_text="PLACEHOLDER"
-                            ), row=1, col=1
+                            ), row=2, col=2
                     )
             fig.add_trace(
                     go.Scatter(
                             x=df_noisy.index, y=df_noisy["P5_5"], mode="lines+markers", name=" PLACEHOLDER", legendgroup="PLACEHOLDER", legendgrouptitle_text="PLACEHOLDER"
-                            ), row=1, col=1
+                            ), row=2, col=2
                     )
             fig.add_trace(
                     go.Scatter(
                             x=df_noisy.index, y=df_noisy["P5_6"], mode="lines+markers", name=" PLACEHOLDER", legendgroup="PLACEHOLDER", legendgrouptitle_text="PLACEHOLDER"
-                            ), row=1, col=1
+                            ), row=2, col=2
                     )
             fig.add_trace(
                     go.Scatter(
                             x=df_noisy.index, y=df_noisy["P5_7"], mode="lines+markers", name=" PLACEHOLDER", legendgroup="PLACEHOLDER", legendgrouptitle_text="PLACEHOLDER"
-                            ), row=1, col=1
+                            ), row=2, col=2
                     )
             fig.add_trace(
                     go.Scatter(
                             x=df_noisy.index, y=df_noisy["P6_1"], mode="lines+markers", name=" PLACEHOLDER", legendgroup="PLACEHOLDER", legendgrouptitle_text="PLACEHOLDER"
-                            ), row=1, col=1
+                            ), row=3, col=2
                     )
             fig.add_trace(
                     go.Scatter(
                             x=df_noisy.index, y=df_noisy["P6_2"], mode="lines+markers", name=" PLACEHOLDER", legendgroup="PLACEHOLDER", legendgrouptitle_text="PLACEHOLDER"
-                            ), row=1, col=1
+                            ), row=3, col=2
                     )
             fig.add_trace(
                     go.Scatter(
                             x=df_noisy.index, y=df_noisy["P6_3"], mode="lines+markers", name=" PLACEHOLDER", legendgroup="PLACEHOLDER", legendgrouptitle_text="PLACEHOLDER"
-                            ), row=1, col=1
+                            ), row=3, col=2
                     )
             fig.add_trace(
                     go.Scatter(
                             x=df_noisy.index, y=df_noisy["P7_1"], mode="lines+markers", name=" PLACEHOLDER", legendgroup="PLACEHOLDER", legendgrouptitle_text="PLACEHOLDER"
-                            ), row=1, col=1
+                            ), row=1, col=3
                     )
             fig.add_trace(
                     go.Scatter(
                             x=df_noisy.index, y=df_noisy["P7_2"], mode="lines+markers", name=" PLACEHOLDER", legendgroup="PLACEHOLDER", legendgrouptitle_text="PLACEHOLDER"
-                            ), row=1, col=1
+                            ), row=1, col=3
                     )
             fig.add_trace(
                     go.Scatter(
                             x=df_noisy.index, y=df_noisy["P7_3"], mode="lines+markers", name=" PLACEHOLDER", legendgroup="PLACEHOLDER", legendgrouptitle_text="PLACEHOLDER"
-                            ), row=1, col=1
+                            ), row=1, col=3
                     )
             fig.add_trace(
                     go.Scatter(
                             x=df_noisy.index, y=df_noisy["P7_4"], mode="lines+markers", name=" PLACEHOLDER", legendgroup="PLACEHOLDER", legendgrouptitle_text="PLACEHOLDER"
-                            ), row=1, col=1
+                            ), row=1, col=3
                     )
             fig.add_trace(
                     go.Scatter(
                             x=df_noisy.index, y=df_noisy["P8_1"], mode="lines+markers", name=" PLACEHOLDER", legendgroup="PLACEHOLDER", legendgrouptitle_text="PLACEHOLDER"
-                            ), row=1, col=1
+                            ), row=2, col=3
                     )
             fig.add_trace(
                     go.Scatter(
                             x=df_noisy.index, y=df_noisy["P8_2"], mode="lines+markers", name=" PLACEHOLDER", legendgroup="PLACEHOLDER", legendgrouptitle_text="PLACEHOLDER"
-                            ), row=1, col=1
+                            ), row=2, col=3
                     )
             fig.add_trace(
                     go.Scatter(
                             x=df_noisy.index, y=df_noisy["P8_3"], mode="lines+markers", name=" PLACEHOLDER", legendgroup="PLACEHOLDER", legendgrouptitle_text="PLACEHOLDER"
-                            ), row=1, col=1
+                            ), row=2, col=3
                     )
             fig.add_trace(
                     go.Scatter(
                             x=df_noisy.index, y=df_noisy["P8_4"], mode="lines+markers", name=" PLACEHOLDER", legendgroup="PLACEHOLDER", legendgrouptitle_text="PLACEHOLDER"
-                            ), row=1, col=1
+                            ), row=2, col=3
                     )
             fig.add_trace(
                     go.Scatter(
                             x=df_noisy.index, y=df_noisy["P8_5"], mode="lines+markers", name=" PLACEHOLDER", legendgroup="PLACEHOLDER", legendgrouptitle_text="PLACEHOLDER"
-                            ), row=1, col=1
+                            ), row=2, col=3
                     )
             fig.add_trace(
                     go.Scatter(
                             x=df_noisy.index, y=df_noisy["P9_1"], mode="lines+markers", name=" PLACEHOLDER", legendgroup="PLACEHOLDER", legendgrouptitle_text="PLACEHOLDER"
-                            ), row=1, col=1
+                            ), row=3, col=3
                     )
             fig.add_trace(
                     go.Scatter(
                             x=df_noisy.index, y=df_noisy["P9_2"], mode="lines+markers", name=" PLACEHOLDER", legendgroup="PLACEHOLDER", legendgrouptitle_text="PLACEHOLDER"
-                            ), row=1, col=1
+                            ), row=3, col=3
                     )
             fig.add_trace(
                     go.Scatter(
                             x=df_noisy.index, y=df_noisy["P9_3"], mode="lines+markers", name=" PLACEHOLDER", legendgroup="PLACEHOLDER", legendgrouptitle_text="PLACEHOLDER"
-                            ), row=1, col=1
+                            ), row=3, col=3
                     )
             fig.add_trace(
                     go.Scatter(
                             x=df_noisy.index, y=df_noisy["P9_4"], mode="lines+markers", name=" PLACEHOLDER", legendgroup="PLACEHOLDER", legendgrouptitle_text="PLACEHOLDER"
-                            ), row=1, col=1
+                            ), row=3, col=3
                     )
             fig.add_trace(
                     go.Scatter(
                             x=df_noisy.index, y=df_noisy["P10_1"], mode="lines+markers", name=" PLACEHOLDER", legendgroup="PLACEHOLDER", legendgrouptitle_text="PLACEHOLDER"
-                            ), row=1, col=1
+                            ), row=1, col=4
                     )
             fig.add_trace(
                     go.Scatter(
                             x=df_noisy.index, y=df_noisy["P10_2"], mode="lines+markers", name=" PLACEHOLDER", legendgroup="PLACEHOLDER", legendgrouptitle_text="PLACEHOLDER"
-                            ), row=1, col=1
+                            ), row=1, col=4
                     )
             fig.add_trace(
                     go.Scatter(
                             x=df_noisy.index, y=df_noisy["P10_3"], mode="lines+markers", name=" PLACEHOLDER", legendgroup="PLACEHOLDER", legendgrouptitle_text="PLACEHOLDER"
-                            ), row=1, col=1
+                            ), row=1, col=4
                     )
             fig.add_trace(
                     go.Scatter(
                             x=df_noisy.index, y=df_noisy["P11_1"], mode="lines+markers", name=" PLACEHOLDER", legendgroup="PLACEHOLDER", legendgrouptitle_text="PLACEHOLDER"
-                            ), row=1, col=1
+                            ), row=2, col=4
                     )
             fig.add_trace(
                     go.Scatter(
                             x=df_noisy.index, y=df_noisy["P11_2"], mode="lines+markers", name=" PLACEHOLDER", legendgroup="PLACEHOLDER", legendgrouptitle_text="PLACEHOLDER"
-                            ), row=1, col=1
+                            ), row=2, col=4
                     )
             fig.add_trace(
                     go.Scatter(
                             x=df_noisy.index, y=df_noisy["P11_3"], mode="lines+markers", name=" PLACEHOLDER", legendgroup="PLACEHOLDER", legendgrouptitle_text="PLACEHOLDER"
-                            ), row=1, col=1
+                            ), row=2, col=4
                     )
             fig.add_trace(
                     go.Scatter(
                             x=df_noisy.index, y=df_noisy["P11_4"], mode="lines+markers", name=" PLACEHOLDER", legendgroup="PLACEHOLDER", legendgrouptitle_text="PLACEHOLDER"
-                            ), row=1, col=1
+                            ), row=2, col=4
                     )
             fig.add_trace(
                     go.Scatter(
                             x=df_noisy.index, y=df_noisy["P11_5"], mode="lines+markers", name=" PLACEHOLDER", legendgroup="PLACEHOLDER", legendgrouptitle_text="PLACEHOLDER"
-                            ), row=1, col=1
+                            ), row=2, col=4
                     )
             fig.add_trace(
                     go.Scatter(
                             x=df_noisy.index, y=df_noisy["P12_1"], mode="lines+markers", name=" PLACEHOLDER", legendgroup="PLACEHOLDER", legendgrouptitle_text="PLACEHOLDER"
-                            ), row=1, col=1
+                            ), row=3, col=4
                     )
             fig.add_trace(
                     go.Scatter(
                             x=df_noisy.index, y=df_noisy["P12_2"], mode="lines+markers", name=" PLACEHOLDER", legendgroup="PLACEHOLDER", legendgrouptitle_text="PLACEHOLDER"
-                            ), row=1, col=1
+                            ), row=3, col=4
                     )
             fig.add_trace(
                     go.Scatter(
                             x=df_noisy.index, y=df_noisy["P12_3"], mode="lines+markers", name=" PLACEHOLDER", legendgroup="PLACEHOLDER", legendgrouptitle_text="PLACEHOLDER"
-                            ), row=1, col=1
+                            ), row=3, col=4
                     )
             fig.add_trace(
                     go.Scatter(
                             x=df_noisy.index, y=df_noisy["P12_4"], mode="lines+markers", name=" PLACEHOLDER", legendgroup="PLACEHOLDER", legendgrouptitle_text="PLACEHOLDER"
-                            ), row=1, col=1
+                            ), row=3, col=4
                     )
-            
             fig.add_hrect(
                     y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2, row=1, col=1
                     )
@@ -824,6 +824,30 @@ def create() -> None:
                     )
             fig.add_hrect(
                     y0=2.5, y1=3.5, line_width=0, fillcolor="green", opacity=0.2, row=1, col=2
+                    )
+            fig.add_hrect(
+                    y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2, row=1, col=3
+                    )
+            fig.add_hrect(
+                    y0=.5, y1=1.5, line_width=0, fillcolor="orange", opacity=0.2, row=1, col=3
+                    )
+            fig.add_hrect(
+                    y0=1.5, y1=2.5, line_width=0, fillcolor="yellow", opacity=0.2, row=1, col=3
+                    )
+            fig.add_hrect(
+                    y0=2.5, y1=3.5, line_width=0, fillcolor="green", opacity=0.2, row=1, col=3
+                    )
+            fig.add_hrect(
+                    y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2, row=1, col=4
+                    )
+            fig.add_hrect(
+                    y0=.5, y1=1.5, line_width=0, fillcolor="orange", opacity=0.2, row=1, col=4
+                    )
+            fig.add_hrect(
+                    y0=1.5, y1=2.5, line_width=0, fillcolor="yellow", opacity=0.2, row=1, col=4
+                    )
+            fig.add_hrect(
+                    y0=2.5, y1=3.5, line_width=0, fillcolor="green", opacity=0.2, row=1, col=4
                     )
             fig.add_hrect(
                     y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2, row=2, col=1
@@ -850,6 +874,30 @@ def create() -> None:
                     y0=2.5, y1=3.5, line_width=0, fillcolor="green", opacity=0.2, row=2, col=2
                     )
             fig.add_hrect(
+                    y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2, row=2, col=3
+                    )
+            fig.add_hrect(
+                    y0=.5, y1=1.5, line_width=0, fillcolor="orange", opacity=0.2, row=2, col=3
+                    )
+            fig.add_hrect(
+                    y0=1.5, y1=2.5, line_width=0, fillcolor="yellow", opacity=0.2, row=2, col=3
+                    )
+            fig.add_hrect(
+                    y0=2.5, y1=3.5, line_width=0, fillcolor="green", opacity=0.2, row=2, col=3
+                    )
+            fig.add_hrect(
+                    y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2, row=2, col=4
+                    )
+            fig.add_hrect(
+                    y0=.5, y1=1.5, line_width=0, fillcolor="orange", opacity=0.2, row=2, col=4
+                    )
+            fig.add_hrect(
+                    y0=1.5, y1=2.5, line_width=0, fillcolor="yellow", opacity=0.2, row=2, col=4
+                    )
+            fig.add_hrect(
+                    y0=2.5, y1=3.5, line_width=0, fillcolor="green", opacity=0.2, row=2, col=4
+                    )       
+            fig.add_hrect(
                     y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2, row=3, col=1
                     )
             fig.add_hrect(
@@ -873,6 +921,30 @@ def create() -> None:
             fig.add_hrect(
                     y0=2.5, y1=3.5, line_width=0, fillcolor="green", opacity=0.2, row=3, col=2
                     )
+            fig.add_hrect(
+                    y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2, row=3, col=3
+                    )
+            fig.add_hrect(
+                    y0=.5, y1=1.5, line_width=0, fillcolor="orange", opacity=0.2, row=3, col=3
+                    )
+            fig.add_hrect(
+                    y0=1.5, y1=2.5, line_width=0, fillcolor="yellow", opacity=0.2, row=3, col=3
+                    )
+            fig.add_hrect(
+                    y0=2.5, y1=3.5, line_width=0, fillcolor="green", opacity=0.2, row=3, col=3
+                    )
+            fig.add_hrect(
+                    y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2, row=3, col=4
+                    )
+            fig.add_hrect(
+                    y0=.5, y1=1.5, line_width=0, fillcolor="orange", opacity=0.2, row=3, col=4
+                    )
+            fig.add_hrect(
+                    y0=1.5, y1=2.5, line_width=0, fillcolor="yellow", opacity=0.2, row=3, col=4
+                    )
+            fig.add_hrect(
+                    y0=2.5, y1=3.5, line_width=0, fillcolor="green", opacity=0.2, row=3, col=4
+                    )           
             fig.update_xaxes(
                     rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[" "])], row=1, col=1
                     )
@@ -880,37 +952,45 @@ def create() -> None:
                     rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=1, col=2
                     )
             fig.update_xaxes(
-                    rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=2, col=1
+                    rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=1, col=3
+                    )
+            fig.update_xaxes(
+                    rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=1, col=4
+                    )
+            fig.update_xaxes(
+                    rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[" "])], row=2, col=1
                     )
             fig.update_xaxes(
                     rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=2, col=2
                     )
             fig.update_xaxes(
-                    rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=3, col=1
+                    rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=2, col=3
+                    )
+            fig.update_xaxes(
+                    rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=2, col=4
+                    )
+            fig.update_xaxes(
+                    rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[" "])], row=3, col=1
                     )
             fig.update_xaxes(
                     rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=3, col=2
                     )
-            
-            fig.update_yaxes(
-                    range=[-.5, 3.5], fixedrange=True, ticktext=["Unable", "Prompted", "Hesitated", "Independent"], tickvals=[0.1, 1, 2, 3], row=1, col=1
+            fig.update_xaxes(
+                    rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=3, col=3
+                    )
+            fig.update_xaxes(
+                    rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=3, col=4
                     )
             fig.update_yaxes(
-                    range=[-.5, 3.5], fixedrange=True, ticktext=["Unable", "Prompted", "Hesitated", "Independent"], tickvals=[0.1, 1, 2, 3], row=1, col=2
+                    range=[-.5, 3.5], fixedrange=True, ticktext=["Unable", "Prompted", "Hesitated", "Independent"], tickvals=[0.1, 1, 2, 3], row=1, col=1
                     )
             fig.update_yaxes(
                     range=[-.5, 3.5], fixedrange=True, ticktext=["Unable", "Prompted", "Hesitated", "Independent"], tickvals=[0.1, 1, 2, 3], row=2, col=1
                     )
             fig.update_yaxes(
-                    range=[-.5, 3.5], fixedrange=True, ticktext=["Unable", "Prompted", "Hesitated", "Independent"], tickvals=[0.1, 1, 2, 3], row=2, col=2
-                    )
-            fig.update_yaxes(
                     range=[-.5, 3.5], fixedrange=True, ticktext=["Unable", "Prompted", "Hesitated", "Independent"], tickvals=[0.1, 1, 2, 3], row=3, col=1
                     )
-            fig.update_yaxes(
-                    range=[-.5, 3.5], fixedrange=True, ticktext=["Unable", "Prompted", "Hesitated", "Independent"], tickvals=[0.1, 1, 2, 3], row=3, col=2
-                    )
-            
+
             fig.update_layout(template="simple_white", title_text=f"{studentname}: iOS Skills Progression")
             tmppath = Path(USER_DIR).joinpath(
                     'StudentDatabase', 'StudentDataFiles', studentname, 'iosProgression.html'
@@ -922,7 +1002,7 @@ def create() -> None:
                     "Window", position='center', type='positive', close_button="OK", )
         
         with ui.row().classes("w-screen no-wrap"):
-            ui.label("iOS SKILLS PROGRESSION").classes(
+            ui.label("BRAILLENOTE TOUCH PLUS SKILLS PROGRESSION").classes(
                     "justify-center "
                     "items-center"
                     )
@@ -1237,3 +1317,4 @@ def create() -> None:
             ui.button(
                     "EXIT", color="#172554", on_click=app.shutdown
                     ).classes("text-white")
+

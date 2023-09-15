@@ -36,6 +36,7 @@ import InstructionalMaterials
 import ios
 import screenreader
 import theme
+import anecdotalnotes
 from helpers import (createFolderHierarchy, dataBasePath, warningmessage, )
 from helpers import (dataBasePath, datenow, students, USER_DIR, )
 
@@ -62,6 +63,7 @@ def index_page() -> None:
 ##############################################################################
 contactlog.create()
 abacus.create()
+anecdotalnotes.create()
 braille.create()
 braillenote.create()
 cvi.create()

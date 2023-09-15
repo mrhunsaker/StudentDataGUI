@@ -50,7 +50,18 @@ def create() -> None:
             u_studentname = ui.select(options=students, value='DonaldChamberlain').classes('hidden')
             date = ui.date().classes('hidden')
             u_anecdotalnotes = ui.textarea().classes('hidden')
-            
+            u_trial01=ui.number().classes('hidden')
+            u_trial02=ui.number().classes('hidden')
+            u_trial03=ui.number().classes('hidden')
+            u_trial04=ui.number().classes('hidden')
+            u_trial05=ui.number().classes('hidden')
+            u_trial06=ui.number().classes('hidden')
+            u_trial07=ui.number().classes('hidden')
+            u_trial08=ui.number().classes('hidden')
+            u_trial09=ui.number().classes('hidden')
+            u_trial10=ui.number().classes('hidden')
+            u_trial011=ui.number().classes('hidden')
+
             def save(event):
                 '''
                 :param event
@@ -59,22 +70,39 @@ def create() -> None:
                 studentname = u_studentname.value
                 date = datenow
                 anecdotalnotes = u_anecdotalnotes.value
+                trial01 = u_trial01,
+                trial02 = u_trial02,
+                trial03 = u_trial03,
+                trial04 = u_trial04,
+                trial05 = u_trial05,
+                trial06 = u_trial06,
+                trial07 = u_trial07,
+                trial08 = u_trial08,
+                trial09 = u_trial09,
+                trial10 = u_trial10,
+                trial11 = u_trial011
                 
                 studentdatabasename = (f"anecdotalnotes{studentname.title()}"
                                        f"{datenow}")
                 tmppath = Path(USER_DIR).joinpath("StudentDatabase", "StudentDataFiles", studentname, studentdatabasename + ".json" )
                 anecdotal_dictionary = {"studentname": studentname,
                                         "date" : datenow,
-                                        "anecdotalnotes" : anecdotalnotes
+                                        "anecdotalnotes" : anecdotalnotes,
+                                        "trial 01" : trial01,
+                                        "trial 02" : trial02,
+                                        "trial 03" : trial03,
+                                        "trial 04" : trial04,
+                                        "trial 05" : trial05,
+                                        "trial 06" : trial06,
+                                        "trial 07" : trial07,
+                                        "trial 08" : trial08,
+                                        "trial 09" : trial09,
+                                        "trial 10" : trial10,
+                                        "trial 11" : trial11
                                         }
                 with open(tmppath, "w") as filename:
                     json.dump(anecdotal_dictionary, filename)
                     
-                    tmppath = Path(USER_DIR).joinpath("StudentDatabase", "StudentDataFiles", "Filenames.txt")
-                    filename = open(tmppath, "a")
-                    tmppath = Path(USER_DIR).joinpath("StudentDatabase", "StudentDataFiles", studentname, studentdatabasename + ".txt", )
-                    filename.write(f"'{tmppath}'" + "\n")
-                    filename.close()
                     tmppath = Path(USER_DIR).joinpath("StudentDatabase", "StudentDataFiles", "Filenames.txt")
                     filename = open(tmppath, "a")
                     tmppath = Path(USER_DIR).joinpath("StudentDatabase", "StudentDataFiles", studentname, studentdatabasename + ".txt", )
@@ -106,6 +134,20 @@ def create() -> None:
                 ui.icon("edit_calendar").on("click", lambda: menu.open()).classes("cursor-pointer")
             with ui.menu() as menu:
                 ui.date().bind_value(date)
+
+        with ui.row().classes("w-screen no-wrap py-4"):
+            ui.number(label="Trial 1", min=0, max=3, format="%.0f", on_change=lambda e: u_trial01.set_value(e.value), ).classes("w-[200px]").props('aria-label="3.1 Define common element types on the"')
+            ui.number(label="Trial 2", min=0, max=3, format="%.0f", on_change=lambda e: u_trial02.set_value(e.value), ).classes("w-[200px]").props('aria-label="3.1 Define common element types on the" ')
+            ui.number(label="Trial 3", min=0, max=3, format="%.0f", on_change=lambda e: u_trial03.set_value(e.value), ).classes("w-[200px]").props('aria-label="3.1 Define common element types on the" ')
+            ui.number(label="Trial 4", min=0, max=3, format="%.0f", on_change=lambda e: u_trial04.set_value(e.value), ).classes("w-[200px]").props('aria-label="3.1 Define common element types on the" ')
+            ui.number(label="Trial 5", min=0, max=3, format="%.0f", on_change=lambda e: u_trial05.set_value(e.value), ).classes("w-[200px]").props('aria-label="3.1 Define common element types on the" ')
+            ui.number(label="Trial 6", min=0, max=3, format="%.0f", on_change=lambda e: u_trial06.set_value(e.value), ).classes("w-[200px]").props('aria-label="3.1 Define common element types on the" ')
+            ui.number(label="Trial 7", min=0, max=3, format="%.0f", on_change=lambda e: u_trial07.set_value(e.value), ).classes("w-[200px]").props('aria-label="3.1 Define common element types on the" ')
+            ui.number(label="Trial 8", min=0, max=3, format="%.0f", on_change=lambda e: u_trial08.set_value(e.value), ).classes("w-[200px]").props('aria-label="3.1 Define common element types on the" ')
+            ui.number(label="Trial 9", min=0, max=3, format="%.0f", on_change=lambda e: u_trial09.set_value(e.value), ).classes("w-[200px]").props('aria-label="3.1 Define common element types on the" ')
+            ui.number(label="Trial 10", min=0, max=3, format="%.0f", on_change=lambda e: u_trial10.set_value(e.value), ).classes("w-[200px]").props('aria-label="3.1 Define common element types on th" ')
+            ui.number(label="Trial 11", min=0, max=3, format="%.0f", on_change=lambda e: u_trial11.set_value(e.value), ).classes("w-[200px]").props('aria-label="3.1 Define common element types on the" ')
+
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.textarea(label='Input Anecdotal Notes In this Box and Press Save', on_change=lambda e: u_anecdotalnotes.set_value(e.value)).classes("h-full h-min-[400px] ").props('cols=80 autogrow outlined aria-label="Please type anecdotal notes" square' )
         with ui.row().classes("w-screen no-wrap py-4"):

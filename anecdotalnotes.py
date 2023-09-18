@@ -1,40 +1,47 @@
 #!/usr/bin/env python3
 # coding=utf-8
 """
-Program designed to be a data collection and instructional tool for teachers
+Program designed to be a data collection and instructional tool for
+teachers
 of students with Visual Impairments
 """
 ###############################################################################
-#    Copyright 2023 Michael Ryan Hunsaker, M.Ed., Ph.D.                       #
-#    email: hunsakerconsulting@gmail.com                                      #
+#    Copyright 2023 Michael Ryan Hunsaker, M.Ed., Ph.D.
+#    #
+#    email: hunsakerconsulting@gmail.com
+#    #
 #                                                                             #
-#    Licensed under the Apache License, Version 2.0 (the "License");          #
-#    you may not use this file except in compliance with the License.         #
-#    You may obtain a copy of the License at                                  #
+#    Licensed under the Apache License, Version 2.0 (the "License");
+#    #
+#    you may not use this file except in compliance with the License.
+#    #
+#    You may obtain a copy of the License at
+#    #
 #                                                                             #
-#    http://www.apache.org/licenses/LICENSE-2.0                               #
+#    http://www.apache.org/licenses/LICENSE-2.0
+#    #
 #                                                                             #
-#    Unless Required by applicable law or agreed to in writing, software      #
-#    distributed under the License is distributed on an "AS IS" BASIS,        #
-#    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. #
-#    See the License for the specific language governing permissions and      #
-#    limitations under the License.                                           #
+#    Unless Required by applicable law or agreed to in writing,
+#    software      #
+#    distributed under the License is distributed on an "AS IS"
+#    BASIS,        #
+#    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+#    implied. #
+#    See the License for the specific language governing permissions
+#    and      #
+#    limitations under the License.
+#    #
 ###############################################################################
 
+import json
 import os
-import sqlite3
 from csv import writer
 from pathlib import Path
-import json 
 
-import numpy as np
-import pandas as pd
-import plotly.graph_objects as go
 from nicegui import app, ui
-from plotly.subplots import make_subplots
 
 import theme
-from helpers import (dataBasePath, datenow, students, USER_DIR)
+from helpers import (datenow, tasks, USER_DIR)
 from roster import students
 
 
@@ -47,109 +54,237 @@ def create() -> None:
         with theme.frame('- ANECDOTAL NOTES -'):
             ui.label('SESSION NOTES').classes('text-h4 text-grey-8')
             # ASSIGN VARIABLES
-            u_studentname = ui.select(options=students, value='DonaldChamberlain').classes('hidden')
+            u_studentname = ui.select(
+                    options=students, value='DonaldChamberlain'
+                    ).classes('hidden')
             date = ui.date().classes('hidden')
+            u_tasks = ui.select(
+                    options=tasks, value='Choose a Task'
+                    ).classes(
+                    'hidden'
+                    )
             u_anecdotalnotes = ui.textarea().classes('hidden')
-            u_trial01=ui.number().classes('hidden')
-            u_trial02=ui.number().classes('hidden')
-            u_trial03=ui.number().classes('hidden')
-            u_trial04=ui.number().classes('hidden')
-            u_trial05=ui.number().classes('hidden')
-            u_trial06=ui.number().classes('hidden')
-            u_trial07=ui.number().classes('hidden')
-            u_trial08=ui.number().classes('hidden')
-            u_trial09=ui.number().classes('hidden')
-            u_trial10=ui.number().classes('hidden')
-            u_trial011=ui.number().classes('hidden')
-
+            u_trial01 = ui.number().classes('hidden')
+            u_trial02 = ui.number().classes('hidden')
+            u_trial03 = ui.number().classes('hidden')
+            u_trial04 = ui.number().classes('hidden')
+            u_trial05 = ui.number().classes('hidden')
+            u_trial06 = ui.number().classes('hidden')
+            u_trial07 = ui.number().classes('hidden')
+            u_trial08 = ui.number().classes('hidden')
+            u_trial09 = ui.number().classes('hidden')
+            u_trial10 = ui.number().classes('hidden')
+            u_trial11 = ui.number().classes('hidden')
+            
             def save(event):
-                '''
+                """
                 :param event
                 :type event
-                '''
+                """
                 studentname = u_studentname.value
                 date = datenow
                 anecdotalnotes = u_anecdotalnotes.value
-                trial01 = u_trial01,
-                trial02 = u_trial02,
-                trial03 = u_trial03,
-                trial04 = u_trial04,
-                trial05 = u_trial05,
-                trial06 = u_trial06,
-                trial07 = u_trial07,
-                trial08 = u_trial08,
-                trial09 = u_trial09,
-                trial10 = u_trial10,
-                trial11 = u_trial011
+                tasks = u_tasks.value
+                trial01 = str(int(u_trial01.value)),
+                trial02 = str(int(u_trial02.value)),
+                trial03 = str(int(u_trial03.value)),
+                trial04 = str(int(u_trial04.value)),
+                trial05 = str(int(u_trial05.value)),
+                trial06 = str(int(u_trial06.value)),
+                trial07 = str(int(u_trial07.value)),
+                trial08 = str(int(u_trial08.value)),
+                trial09 = str(int(u_trial09.value)),
+                trial10 = str(int(u_trial10.value)),
+                trial11 = str(int(u_trial11.value))
                 
                 studentdatabasename = (f"anecdotalnotes{studentname.title()}"
                                        f"{datenow}")
-                tmppath = Path(USER_DIR).joinpath("StudentDatabase", "StudentDataFiles", studentname, studentdatabasename + ".json" )
-                anecdotal_dictionary = {"studentname": studentname,
-                                        "date" : datenow,
-                                        "anecdotalnotes" : anecdotalnotes,
-                                        "trial 01" : trial01,
-                                        "trial 02" : trial02,
-                                        "trial 03" : trial03,
-                                        "trial 04" : trial04,
-                                        "trial 05" : trial05,
-                                        "trial 06" : trial06,
-                                        "trial 07" : trial07,
-                                        "trial 08" : trial08,
-                                        "trial 09" : trial09,
-                                        "trial 10" : trial10,
-                                        "trial 11" : trial11
-                                        }
+                tmppath = Path(USER_DIR).joinpath(
+                        "StudentDatabase", "StudentDataFiles", studentname, studentdatabasename + ".json"
+                        )
+                anecdotal_dictionary = {
+                        "studentname": studentname, "date": datenow, "anecdotalnotes": anecdotalnotes, "trial 01": trial01, "trial 02": trial02, "trial 03": trial03, "trial 04": trial04, "trial 05": trial05, "trial 06": trial06, "trial 07": trial07,
+                        "trial 08"   : trial08, "trial 09": trial09, "trial 10": trial10, "trial 11": trial11
+                        }
                 with open(tmppath, "w") as filename:
                     json.dump(anecdotal_dictionary, filename)
                     
-                    tmppath = Path(USER_DIR).joinpath("StudentDatabase", "StudentDataFiles", "Filenames.txt")
+                    tmppath = Path(USER_DIR).joinpath(
+                            "StudentDatabase", "StudentDataFiles", "Filenames.txt"
+                            )
                     filename = open(tmppath, "a")
-                    tmppath = Path(USER_DIR).joinpath("StudentDatabase", "StudentDataFiles", studentname, studentdatabasename + ".txt", )
+                    tmppath = Path(USER_DIR).joinpath(
+                            "StudentDatabase", "StudentDataFiles", studentname, studentdatabasename + ".txt", )
                     filename.write(f"'{tmppath}'" + "\n")
                     filename.close()
                     list_data = [datenow, anecdotalnotes]
-                    tmppath = Path(USER_DIR).joinpath("StudentDatabase", "StudentDataFiles", studentname, "anecdotalnotes.csv", )
+                    tmppath = Path(USER_DIR).joinpath(
+                            "StudentDatabase", "StudentDataFiles", studentname, "anecdotalnotes.csv", )
                     os.chdir(USER_DIR)
                     with open(tmppath, "a", newline="") as f_setup:
                         writer_setup = writer(f_setup)
                         writer_setup.writerow(list_data)
                         f_setup.close()
-                    ui.notify("Saved successfully!", position='center', type='positive', close_button="OK")
-
-
+                    ui.notify(
+                            "Saved successfully!", position='center', type='positive', close_button="OK"
+                            )
+        
         with ui.row().classes("w-screen no-wrap"):
-            ui.label("Anecdotal Notes").classes("justify-center items-center")
+            ui.label("Anecdotal Notes").classes(
+                    "justify-center "
+                    "items-center"
+                    )
         with ui.row().classes("w-screen no-wrap"):
-            ui.select(options=students, with_input=True, on_change=lambda e: ui.notify(e.value), ).bind_value(u_studentname, "value").classes("w-[300px]").props(
-            'aria-label="Select Student from the Dropdown. It '
-            'will '
-            'autocomplete as you type"'
-            ).tooltip("Type Student Name, it will autocomplete AS you type")
+            ui.select(
+                    options=students, with_input=True, on_change=lambda e: ui.notify(e.value), ).bind_value(
+                    u_studentname, "value"
+                    ).classes(
+                    "w-[300px]"
+                    ).props(
+                    'aria-label="Select Student from the Dropdown. It '
+                    'will '
+                    'autocomplete as you type"'
+                    ).tooltip(
+                    "Type Student Name, it will "
+                    "autocomplete AS you type"
+                    )
         with ui.input("Date").classes("w-[300px]").props(
                 'aria-label="Date. Please type in date using the '
                 'YYYY-MM-DD format"'
-                ).tooltip("Date. Please type in date using the YYYY-MM-DD format") as date:
+                ).tooltip(
+                "Date. Please type in date using the "
+                "YYYY-MM-DD format"
+                ) as date:
             with date.add_slot("append"):
-                ui.icon("edit_calendar").on("click", lambda: menu.open()).classes("cursor-pointer")
+                ui.icon("edit_calendar").on(
+                        "click", lambda: menu.open()
+                        ).classes("cursor-pointer")
             with ui.menu() as menu:
                 ui.date().bind_value(date)
-
+        with ui.row().classes("w-screen no-wrap"):
+            ui.select(
+                    options=tasks, with_input=True, on_change=lambda e: ui.notify(e.value), ).bind_value(
+                    u_tasks, "value"
+                    ).classes(
+                    "w-[300px]"
+                    ).props(
+                    'aria-label="Select Student from the Dropdown. It '
+                    'will '
+                    'autocomplete as you type"'
+                    ).tooltip(
+                    "Type Taske, it will "
+                    "autocomplete AS you type"
+                    )
         with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(label="Trial 1", min=0, max=3, format="%.0f", on_change=lambda e: u_trial01.set_value(e.value), ).classes("w-[200px]").props('aria-label="3.1 Define common element types on the"')
-            ui.number(label="Trial 2", min=0, max=3, format="%.0f", on_change=lambda e: u_trial02.set_value(e.value), ).classes("w-[200px]").props('aria-label="3.1 Define common element types on the" ')
-            ui.number(label="Trial 3", min=0, max=3, format="%.0f", on_change=lambda e: u_trial03.set_value(e.value), ).classes("w-[200px]").props('aria-label="3.1 Define common element types on the" ')
-            ui.number(label="Trial 4", min=0, max=3, format="%.0f", on_change=lambda e: u_trial04.set_value(e.value), ).classes("w-[200px]").props('aria-label="3.1 Define common element types on the" ')
-            ui.number(label="Trial 5", min=0, max=3, format="%.0f", on_change=lambda e: u_trial05.set_value(e.value), ).classes("w-[200px]").props('aria-label="3.1 Define common element types on the" ')
-            ui.number(label="Trial 6", min=0, max=3, format="%.0f", on_change=lambda e: u_trial06.set_value(e.value), ).classes("w-[200px]").props('aria-label="3.1 Define common element types on the" ')
-            ui.number(label="Trial 7", min=0, max=3, format="%.0f", on_change=lambda e: u_trial07.set_value(e.value), ).classes("w-[200px]").props('aria-label="3.1 Define common element types on the" ')
-            ui.number(label="Trial 8", min=0, max=3, format="%.0f", on_change=lambda e: u_trial08.set_value(e.value), ).classes("w-[200px]").props('aria-label="3.1 Define common element types on the" ')
-            ui.number(label="Trial 9", min=0, max=3, format="%.0f", on_change=lambda e: u_trial09.set_value(e.value), ).classes("w-[200px]").props('aria-label="3.1 Define common element types on the" ')
-            ui.number(label="Trial 10", min=0, max=3, format="%.0f", on_change=lambda e: u_trial10.set_value(e.value), ).classes("w-[200px]").props('aria-label="3.1 Define common element types on th" ')
-            ui.number(label="Trial 11", min=0, max=3, format="%.0f", on_change=lambda e: u_trial11.set_value(e.value), ).classes("w-[200px]").props('aria-label="3.1 Define common element types on the" ')
-
+            ui.label(
+                    "RUBRIC: 0=No attempt 1=Required Assistance "
+                    "2=Hesitated 3=Independent"
+                    ).props(
+                    'aria-label="RUBRIC: 0=No attempt 1=Required '
+                    'Assistance '
+                    '2=Hesitated 3=Independent" content-center'
+                    )
+            ui.input().props(
+                    'aria-label="RUBRIC: 0=No attempt 1=Required '
+                    'Assistance '
+                    '2=Hesitated 3=Independent" content-center'
+                    ).classes("sr-only")
         with ui.row().classes("w-screen no-wrap py-4"):
-            ui.textarea(label='Input Anecdotal Notes In this Box and Press Save', on_change=lambda e: u_anecdotalnotes.set_value(e.value)).classes("h-full h-min-[400px] ").props('cols=80 autogrow outlined aria-label="Please type anecdotal notes" square' )
+            ui.number(
+                    label="Trial 1", min=0, max=3, format="%.0f", on_change=lambda e: u_trial01.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="3.1 Define common element types on '
+                    'the"'
+                    )
+            ui.number(
+                    label="Trial 2", min=0, max=3, format="%.0f", on_change=lambda e: u_trial02.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="3.1 Define common element types on '
+                    'the" '
+                    )
+            ui.number(
+                    label="Trial 3", min=0, max=3, format="%.0f", on_change=lambda e: u_trial03.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="3.1 Define common element types on '
+                    'the" '
+                    )
+            ui.number(
+                    label="Trial 4", min=0, max=3, format="%.0f", on_change=lambda e: u_trial04.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="3.1 Define common element types on '
+                    'the" '
+                    )
+            ui.number(
+                    label="Trial 5", min=0, max=3, format="%.0f", on_change=lambda e: u_trial05.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="3.1 Define common element types on '
+                    'the" '
+                    )
+            ui.number(
+                    label="Trial 6", min=0, max=3, format="%.0f", on_change=lambda e: u_trial06.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="3.1 Define common element types on '
+                    'the" '
+                    )
+            ui.number(
+                    label="Trial 7", min=0, max=3, format="%.0f", on_change=lambda e: u_trial07.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="3.1 Define common element types on '
+                    'the" '
+                    )
+            ui.number(
+                    label="Trial 8", min=0, max=3, format="%.0f", on_change=lambda e: u_trial08.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="3.1 Define common element types on '
+                    'the" '
+                    )
+            ui.number(
+                    label="Trial 9", min=0, max=3, format="%.0f", on_change=lambda e: u_trial09.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="3.1 Define common element types on '
+                    'the" '
+                    )
+            ui.number(
+                    label="Trial 10", min=0, max=3, format="%.0f", on_change=lambda e: u_trial10.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="3.1 Define common element types on '
+                    'th" '
+                    )
+            ui.number(
+                    label="Trial 11", min=0, max=3, format="%.0f", on_change=lambda e: u_trial11.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="3.1 Define common element types on '
+                    'the" '
+                    )
+        
         with ui.row().classes("w-screen no-wrap py-4"):
-            ui.button("SAVE", color="#172554", on_click=save).classes("text-white")
-            ui.button("EXIT", color="#172554", on_click=app.shutdown).classes("text-white")
+            ui.textarea(
+                    label='Input Anecdotal Notes In this Box and '
+                          'Press Save', on_change=lambda e: u_anecdotalnotes.set_value(e.value)
+                    ).classes(
+                    "h-full "
+                    "h-min-["
+                    "400px] "
+                    ""
+                    ).props(
+                    'cols=80 autogrow outlined aria-label="Please '
+                    'type anecdotal notes" square'
+                    )
+        with ui.row().classes("w-screen no-wrap py-4"):
+            ui.button(
+                    "SAVE", color="#172554", on_click=save
+                    ).classes("text-white")
+            ui.button(
+                    "EXIT", color="#172554", on_click=app.shutdown
+                    ).classes("text-white")

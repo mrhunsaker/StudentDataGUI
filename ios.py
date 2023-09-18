@@ -1,24 +1,36 @@
 #!/usr/bin/env python3
 # coding=utf-8
 """
-Program designed to be a data collection and instructional tool for teachers
+Program designed to be a data collection and instructional tool for
+teachers
 of students with Visual Impairments
 """
 ###############################################################################
-#    Copyright 2023 Michael Ryan Hunsaker, M.Ed., Ph.D.                       #
-#    email: hunsakerconsulting@gmail.com                                      #
+#    Copyright 2023 Michael Ryan Hunsaker, M.Ed., Ph.D.
+#    #
+#    email: hunsakerconsulting@gmail.com
+#    #
 #                                                                             #
-#    Licensed under the Apache License, Version 2.0 (the "License");          #
-#    you may not use this file except in compliance with the License.         #
-#    You may obtain a copy of the License at                                  #
+#    Licensed under the Apache License, Version 2.0 (the "License");
+#    #
+#    you may not use this file except in compliance with the License.
+#    #
+#    You may obtain a copy of the License at
+#    #
 #                                                                             #
-#    http://www.apache.org/licenses/LICENSE-2.0                               #
+#    http://www.apache.org/licenses/LICENSE-2.0
+#    #
 #                                                                             #
-#    Unless Required by applicable law or agreed to in writing, software      #
-#    distributed under the License is distributed on an "AS IS" BASIS,        #
-#    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. #
-#    See the License for the specific language governing permissions and      #
-#    limitations under the License.                                           #
+#    Unless Required by applicable law or agreed to in writing,
+#    software      #
+#    distributed under the License is distributed on an "AS IS"
+#    BASIS,        #
+#    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+#    implied. #
+#    See the License for the specific language governing permissions
+#    and      #
+#    limitations under the License.
+#    #
 ###############################################################################
 
 import os
@@ -33,7 +45,7 @@ from nicegui import app, ui
 from plotly.subplots import make_subplots
 
 import theme
-from helpers import (dataBasePath, datenow, students, USER_DIR)
+from helpers import (dataBasePath, datenow, USER_DIR)
 from roster import students
 
 
@@ -44,9 +56,14 @@ def create() -> None:
     @ui.page('/iosskills')
     def iosskillsprogression():
         with theme.frame('- iOS / iPad OS SKILLS -'):
-            ui.label('iOS / iPad OS  SKILLS').classes('text-h4 text-grey-8')
+            ui.label('iOS / iPad OS  SKILLS').classes(
+                    'text-h4 '
+                    'text-grey-8'
+                    )
             # ASSIGN VARIABLES
-            u_studentname = ui.select(options=students, value='DonaldChamberlain').classes('hidden')
+            u_studentname = ui.select(
+                    options=students, value='DonaldChamberlain'
+                    ).classes('hidden')
             date = ui.date().classes('hidden')
             u_ios_trial11 = ui.number().classes('hidden')
             u_ios_trial12 = ui.number().classes('hidden')
@@ -144,7 +161,8 @@ def create() -> None:
                 ios_trial611 = int(u_ios_trial611.value)
                 studentdatabasename = (f"ios{studentname.title()}"
                                        f"{datenow}")
-                tmppath = Path(USER_DIR).joinpath("StudentDatabase", "StudentDataFiles", studentname, studentdatabasename + ".txt", )
+                tmppath = Path(USER_DIR).joinpath(
+                        "StudentDatabase", "StudentDataFiles", studentname, studentdatabasename + ".txt", )
                 with open(tmppath, "w") as filename:
                     filename.write("studentname" + ", ")
                     filename.write("date" + ", ")
@@ -238,19 +256,27 @@ def create() -> None:
                     filename.write(str(ios_trial611) + ", ")
                     filename.close()
                     
-                    tmppath = Path(USER_DIR).joinpath("StudentDatabase", "StudentDataFiles", "Filenames.txt")
+                    tmppath = Path(USER_DIR).joinpath(
+                            "StudentDatabase", "StudentDataFiles", "Filenames.txt"
+                            )
                     filename = open(tmppath, "a")
-                    tmppath = Path(USER_DIR).joinpath("StudentDatabase", "StudentDataFiles", studentname, studentdatabasename + ".txt", )
+                    tmppath = Path(USER_DIR).joinpath(
+                            "StudentDatabase", "StudentDataFiles", studentname, studentdatabasename + ".txt", )
                     filename.write(f"'{tmppath}'" + "\n")
                     filename.close()
-                    tmppath = Path(USER_DIR).joinpath("StudentDatabase", "StudentDataFiles", "Filenames.txt")
+                    tmppath = Path(USER_DIR).joinpath(
+                            "StudentDatabase", "StudentDataFiles", "Filenames.txt"
+                            )
                     filename = open(tmppath, "a")
-                    tmppath = Path(USER_DIR).joinpath("StudentDatabase", "StudentDataFiles", studentname, studentdatabasename + ".txt", )
+                    tmppath = Path(USER_DIR).joinpath(
+                            "StudentDatabase", "StudentDataFiles", studentname, studentdatabasename + ".txt", )
                     filename.write(f"'{tmppath}'" + "\n")
                     filename.close()
-                    list_data = [datenow, ios_trial11, ios_trial12, ios_trial13, ios_trial14, ios_trial15, ios_trial16, ios_trial17, ios_trial18, ios_trial19, ios_trial21, ios_trial22, ios_trial23, ios_trial24, ios_trial25, ios_trial26, ios_trial31, ios_trial32, ios_trial33, ios_trial34, ios_trial35, ios_trial41, ios_trial42, ios_trial43, ios_trial44, ios_trial45, ios_trial51, ios_trial52, ios_trial53, ios_trial54, ios_trial55, ios_trial56, ios_trial57, ios_trial61, ios_trial62, ios_trial63, ios_trial64,
-                                 ios_trial65, ios_trial66, ios_trial67, ios_trial68, ios_trial69, ios_trial610, ios_trial611]
-                    tmppath = Path(USER_DIR).joinpath("StudentDatabase", "StudentDataFiles", studentname, "iosProgression.csv", )
+                    list_data = [datenow, ios_trial11, ios_trial12, ios_trial13, ios_trial14, ios_trial15, ios_trial16, ios_trial17, ios_trial18, ios_trial19, ios_trial21, ios_trial22, ios_trial23, ios_trial24, ios_trial25, ios_trial26, ios_trial31,
+                                 ios_trial32, ios_trial33, ios_trial34, ios_trial35, ios_trial41, ios_trial42, ios_trial43, ios_trial44, ios_trial45, ios_trial51, ios_trial52, ios_trial53, ios_trial54, ios_trial55, ios_trial56, ios_trial57, ios_trial61,
+                                 ios_trial62, ios_trial63, ios_trial64, ios_trial65, ios_trial66, ios_trial67, ios_trial68, ios_trial69, ios_trial610, ios_trial611]
+                    tmppath = Path(USER_DIR).joinpath(
+                            "StudentDatabase", "StudentDataFiles", studentname, "iosProgression.csv", )
                     os.chdir(USER_DIR)
                     with open(tmppath, "a", newline="") as f_setup:
                         writer_setup = writer(f_setup)
@@ -263,71 +289,74 @@ def create() -> None:
                         conn = sqlite3.connect(dataBasePath)
                         c = conn.cursor()
                         c.execute(
-                            """INSERT INTO IOSPROGRESS (
-                                    STUDENTNAME,
-                                    DATE,
-                                    P1_1,
-                                    P1_2,
-                                    P1_3,
-                                    P1_4,
-                                    P1_5,
-                                    P1_6,
-                                    P1_7,
-                                    P1_8,
-                                    P1_9,
-                                    P2_1,
-                                    P2_2,
-                                    P2_3,
-                                    P2_4,
-                                    P2_5,
-                                    P2_6,
-                                    P3_1,
-                                    P3_2,
-                                    P3_3,
-                                    P3_4,
-                                    P3_5,
-                                    P4_1,
-                                    P4_2,
-                                    P4_3,
-                                    P4_4,
-                                    P4_5,
-                                    P5_1,
-                                    P5_2,
-                                    P5_3,
-                                    P5_4,
-                                    P5_5,
-                                    P5_6,
-                                    P5_7,
-                                    P6_1,
-                                    P6_2,
-                                    P6_3,
-                                    P6_4,
-                                    P6_5,
-                                    P6_6,
-                                    P6_7,
-                                    P6_8,
-                                    P6_9,
-                                    P6_10,
-                                    P6_11
-                                                                        )
-                                                                        VALUES (
-                                                                            ?,
-                                                                            ?,
-                                                                            ?,
-                                                                            ?,
-                                                                            ?,
-                                                                            ?,
-                                                                            ?,
-                                                                            ?,
-                                                                            ?,
-                                                                            ?,
-                                                                            ?,
-                                                                            ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?
-                                                                            )""", (
-                                        studentname, datenow, ios_trial11, ios_trial12, ios_trial13, ios_trial14, ios_trial15, ios_trial16, ios_trial17, ios_trial18, ios_trial19, ios_trial21, ios_trial22, ios_trial23, ios_trial24, ios_trial25, ios_trial26, ios_trial31, ios_trial32, ios_trial33, ios_trial34, ios_trial35, ios_trial41, ios_trial42, ios_trial43, ios_trial44, ios_trial45, ios_trial51, ios_trial52, ios_trial53, ios_trial54, ios_trial55, ios_trial56, ios_trial57, ios_trial61, ios_trial62,
-                                        ios_trial63, ios_trial64, ios_trial65, ios_trial66, ios_trial67, ios_trial68, ios_trial69, ios_trial610, ios_trial611,), )
+                                """INSERT INTO IOSPROGRESS (
+                                        STUDENTNAME,
+                                        DATE,
+                                        P1_1,
+                                        P1_2,
+                                        P1_3,
+                                        P1_4,
+                                        P1_5,
+                                        P1_6,
+                                        P1_7,
+                                        P1_8,
+                                        P1_9,
+                                        P2_1,
+                                        P2_2,
+                                        P2_3,
+                                        P2_4,
+                                        P2_5,
+                                        P2_6,
+                                        P3_1,
+                                        P3_2,
+                                        P3_3,
+                                        P3_4,
+                                        P3_5,
+                                        P4_1,
+                                        P4_2,
+                                        P4_3,
+                                        P4_4,
+                                        P4_5,
+                                        P5_1,
+                                        P5_2,
+                                        P5_3,
+                                        P5_4,
+                                        P5_5,
+                                        P5_6,
+                                        P5_7,
+                                        P6_1,
+                                        P6_2,
+                                        P6_3,
+                                        P6_4,
+                                        P6_5,
+                                        P6_6,
+                                        P6_7,
+                                        P6_8,
+                                        P6_9,
+                                        P6_10,
+                                        P6_11
+                                                                            )
+                                                                            VALUES (
+                                                                                ?,
+                                                                                ?,
+                                                                                ?,
+                                                                                ?,
+                                                                                ?,
+                                                                                ?,
+                                                                                ?,
+                                                                                ?,
+                                                                                ?,
+                                                                                ?,
+                                                                                ?,
+                                                                                ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?
+                                                                                )""", (
+                                        studentname, datenow, ios_trial11, ios_trial12, ios_trial13, ios_trial14, ios_trial15, ios_trial16, ios_trial17, ios_trial18, ios_trial19, ios_trial21, ios_trial22, ios_trial23, ios_trial24, ios_trial25, ios_trial26,
+                                        ios_trial31, ios_trial32, ios_trial33, ios_trial34, ios_trial35, ios_trial41, ios_trial42, ios_trial43, ios_trial44, ios_trial45, ios_trial51, ios_trial52, ios_trial53, ios_trial54, ios_trial55, ios_trial56,
+                                        ios_trial57, ios_trial61, ios_trial62, ios_trial63, ios_trial64, ios_trial65, ios_trial66, ios_trial67, ios_trial68, ios_trial69, ios_trial610, ios_trial611,), )
                         conn.commit()
-                        ui.notify("Saved successfully!", position='center', type='positive', close_button="OK")
+                        ui.notify(
+                                "Saved successfully!", position='center', type='positive', close_button="OK"
+                                )
                     
                     data_entry()
         
@@ -337,10 +366,14 @@ def create() -> None:
             :param event:
             :type event:
             """
-            dataBasePath = Path(USER_DIR).joinpath("StudentDatabase", "students.db")
+            dataBasePath = Path(USER_DIR).joinpath(
+                    "StudentDatabase", "students.db"
+                    )
             studentname = u_studentname.value
             conn = sqlite3.connect(dataBasePath)
-            df_sql = pd.read_sql_query("SELECT * FROM IOSPROGRESS", conn)
+            df_sql = pd.read_sql_query(
+                    "SELECT * FROM IOSPROGRESS", conn
+                    )
             df_student = df_sql[df_sql.STUDENTNAME == studentname]
             print(df_student)
             conn.close()
@@ -352,364 +385,925 @@ def create() -> None:
             print(df.dtypes)
             df = df.sort_values(by="date")
             mu, sigma = 0, 0.1
-            noise = np.random.normal(mu, sigma, [len(df.index), len(df.columns)])
+            noise = np.random.normal(
+                    mu, sigma, [len(df.index), len(df.columns)]
+                    )
             df_noisy = df + noise
             fig = make_subplots(
-                rows=3, cols=2, subplot_titles=("Basic Operations", "Presentation Tools", "Word Processing", "Acceptable Use", "SpreadSheets", "Additional SKills", "Presentation Tools"), print_grid=True
-                )
+                    rows=3, cols=2, subplot_titles=("Basic Operations", "Presentation Tools", "Word Processing", "Acceptable Use", "SpreadSheets", "Additional SKills", "Presentation Tools"), print_grid=True
+                    )
             
             fig.add_trace(
-                go.Scatter(
-                    x=df_noisy.index, y=df_noisy["P1_1"], mode="lines+markers", name="Turn Device On/Off", legendgroup="Phase 1", legendgrouptitle_text="Basic Operations"
-                    ), row=1, col=1
-                )
+                    go.Scatter(
+                            x=df_noisy.index, y=df_noisy["P1_1"], mode="lines+markers", name="Turn Device On/Off", legendgroup="Phase 1", legendgrouptitle_text="Basic Operations"
+                            ), row=1, col=1
+                    )
             fig.add_trace(
-                go.Scatter(
-                    x=df_noisy.index, y=df_noisy["P1_2"], mode="lines+markers", name="Turn VoiceOver On/Off", legendgroup="Phase 1", legendgrouptitle_text="Basic Operations"
-                    ), row=1, col=1
-                )
+                    go.Scatter(
+                            x=df_noisy.index, y=df_noisy["P1_2"], mode="lines+markers", name="Turn VoiceOver On/Off", legendgroup="Phase 1", legendgrouptitle_text="Basic Operations"
+                            ), row=1, col=1
+                    )
             fig.add_trace(
-                go.Scatter(
-                    x=df_noisy.index, y=df_noisy["P1_3"], mode="lines+markers", name="Gestures to Click Icons", legendgroup="Phase 1", legendgrouptitle_text="Basic Operations"
-                    ), row=1, col=1
-                )
+                    go.Scatter(
+                            x=df_noisy.index, y=df_noisy["P1_3"], mode="lines+markers", name="Gestures to Click Icons", legendgroup="Phase 1", legendgrouptitle_text="Basic Operations"
+                            ), row=1, col=1
+                    )
             fig.add_trace(
-                go.Scatter(
-                    x=df_noisy.index, y=df_noisy["P1_4"], mode="lines+markers", name="Home Screen Icons to Open Documents", legendgroup="Phase 1", legendgrouptitle_text="Basic Operations"
-                    ), row=1, col=1
-                )
+                    go.Scatter(
+                            x=df_noisy.index, y=df_noisy["P1_4"], mode="lines+markers", name="Home Screen Icons to Open "
+                                                                                             "Documents", legendgroup="Phase 1", legendgrouptitle_text="Basic Operations"
+                            ), row=1, col=1
+                    )
             fig.add_trace(
-                go.Scatter(
-                    x=df_noisy.index, y=df_noisy["P1_5"], mode="lines+markers", name="Save Documents", legendgroup="Phase 1", legendgrouptitle_text="Basic Operations"
-                    ), row=1, col=1
-                )
+                    go.Scatter(
+                            x=df_noisy.index, y=df_noisy["P1_5"], mode="lines+markers", name="Save Documents", legendgroup="Phase "
+                                                                                                                           "1", legendgrouptitle_text="Basic Operations"
+                            ), row=1, col=1
+                    )
             fig.add_trace(
-                go.Scatter(
-                    x=df_noisy.index, y=df_noisy["P1_6"], mode="lines+markers", name="Online Tools/Resources", legendgroup="Phase 1", legendgrouptitle_text="Basic Operations"
-                    ), row=1, col=1
-                )
+                    go.Scatter(
+                            x=df_noisy.index, y=df_noisy["P1_6"], mode="lines+markers", name="Online Tools/Resources", legendgroup="Phase 1", legendgrouptitle_text="Basic Operations"
+                            ), row=1, col=1
+                    )
             fig.add_trace(
-                go.Scatter(
-                    x=df_noisy.index, y=df_noisy["P1_7"], mode="lines+markers", name="Keyboarding", legendgroup="Phase 1", legendgrouptitle_text="Basic Operations"
-                    ), row=1, col=1
-                )
+                    go.Scatter(
+                            x=df_noisy.index, y=df_noisy["P1_7"], mode="lines+markers", name="Keyboarding", legendgroup="Phase "
+                                                                                                                        "1", legendgrouptitle_text="Basic Operations"
+                            ), row=1, col=1
+                    )
             fig.add_trace(
-                go.Scatter(
-                    x=df_noisy.index, y=df_noisy["P1_8"], mode="lines+markers", name="Use Different Elements", legendgroup="Phase 1", legendgrouptitle_text="Basic Operations"
-                    ), row=1, col=1
-                )
+                    go.Scatter(
+                            x=df_noisy.index, y=df_noisy["P1_8"], mode="lines+markers", name="Use Different Elements", legendgroup="Phase 1", legendgrouptitle_text="Basic Operations"
+                            ), row=1, col=1
+                    )
             fig.add_trace(
-                go.Scatter(
-                    x=df_noisy.index, y=df_noisy["P1_9"], mode="lines+markers", name="Control Center, App Switcher...", legendgroup="Phase 1", legendgrouptitle_text="Basic Operations"
-                    ), row=1, col=1
-                )
+                    go.Scatter(
+                            x=df_noisy.index, y=df_noisy["P1_9"], mode="lines+markers", name="Control Center, App Switcher...", legendgroup="Phase 1", legendgrouptitle_text="Basic Operations"
+                            ), row=1, col=1
+                    )
             fig.add_trace(
-                go.Scatter(
-                    x=df_noisy.index, y=df_noisy["P2_1"], mode="lines+markers", name="Write, edit save", legendgroup="Phase 2", legendgrouptitle_text="Word Processing"
-                    ), row=2, col=1
-                )
+                    go.Scatter(
+                            x=df_noisy.index, y=df_noisy["P2_1"], mode="lines+markers", name="Write, edit save", legendgroup="Phase 2", legendgrouptitle_text="Word Processing"
+                            ), row=2, col=1
+                    )
             fig.add_trace(
-                go.Scatter(
-                    x=df_noisy.index, y=df_noisy["P2_2"], mode="lines+markers", name="Read, Navigate Document", legendgroup="Phase 2", legendgrouptitle_text="Word Processing"
-                    ), row=2, col=1
-                )
+                    go.Scatter(
+                            x=df_noisy.index, y=df_noisy["P2_2"], mode="lines+markers", name="Read, Navigate Document", legendgroup="Phase 2", legendgrouptitle_text="Word Processing"
+                            ), row=2, col=1
+                    )
             fig.add_trace(
-                go.Scatter(
-                    x=df_noisy.index, y=df_noisy["P2_3"], mode="lines+markers", name="Use Menubar", legendgroup="Phase 2", legendgrouptitle_text="Word Processing"
-                    ), row=2, col=1
-                )
+                    go.Scatter(
+                            x=df_noisy.index, y=df_noisy["P2_3"], mode="lines+markers", name="Use Menubar", legendgroup="Phase "
+                                                                                                                        "2", legendgrouptitle_text="Word Processing"
+                            ), row=2, col=1
+                    )
             fig.add_trace(
-                go.Scatter(
-                    x=df_noisy.index, y=df_noisy["P2_4"], mode="lines+markers", name="Highlight text, copy and paste text", legendgroup="Phase 2", legendgrouptitle_text="Word Processing"
-                    ), row=2, col=1
-                )
+                    go.Scatter(
+                            x=df_noisy.index, y=df_noisy["P2_4"], mode="lines+markers", name="Highlight text, copy and paste "
+                                                                                             "text", legendgroup="Phase 2", legendgrouptitle_text="Word Processing"
+                            ), row=2, col=1
+                    )
             fig.add_trace(
-                go.Scatter(
-                    x=df_noisy.index, y=df_noisy["P2_5"], mode="lines+markers", name="Copy and paste images", legendgroup="Phase 2", legendgrouptitle_text="Word Processing"
-                    ), row=2, col=1
-                )
+                    go.Scatter(
+                            x=df_noisy.index, y=df_noisy["P2_5"], mode="lines+markers", name="Copy and paste images", legendgroup="Phase 2", legendgrouptitle_text="Word Processing"
+                            ), row=2, col=1
+                    )
             fig.add_trace(
-                go.Scatter(
-                    x=df_noisy.index, y=df_noisy["P2_6"], mode="lines+markers", name="Proofread and edit", legendgroup="Phase 2", legendgrouptitle_text="Word Processing"
-                    ), row=2, col=1
-                )
+                    go.Scatter(
+                            x=df_noisy.index, y=df_noisy["P2_6"], mode="lines+markers", name="Proofread and edit", legendgroup="Phase 2", legendgrouptitle_text="Word Processing"
+                            ), row=2, col=1
+                    )
             fig.add_trace(
-                go.Scatter(
-                    x=df_noisy.index, y=df_noisy["P3_1"], mode="lines+markers", name="Describe Spreadsheet", legendgroup="Phase 3", legendgrouptitle_text="Spreadsheet"
-                    ), row=3, col=1
-                )
+                    go.Scatter(
+                            x=df_noisy.index, y=df_noisy["P3_1"], mode="lines+markers", name="Describe Spreadsheet", legendgroup="Phase 3", legendgrouptitle_text="Spreadsheet"
+                            ), row=3, col=1
+                    )
             fig.add_trace(
-                go.Scatter(
-                    x=df_noisy.index, y=df_noisy["P3_2"], mode="lines+markers", name="Explain terms and concepts ", legendgroup="Phase 3", legendgrouptitle_text="Spreadsheet"
-                    ), row=3, col=1
-                )
+                    go.Scatter(
+                            x=df_noisy.index, y=df_noisy["P3_2"], mode="lines+markers", name="Explain terms and concepts ", legendgroup="Phase 3", legendgrouptitle_text="Spreadsheet"
+                            ), row=3, col=1
+                    )
             fig.add_trace(
-                go.Scatter(
-                    x=df_noisy.index, y=df_noisy["P3_3"], mode="lines+markers", name="Enter/Edit data", legendgroup="Phase 3", legendgrouptitle_text="Spreadsheet"
-                    ), row=3, col=1
-                )
+                    go.Scatter(
+                            x=df_noisy.index, y=df_noisy["P3_3"], mode="lines+markers", name="Enter/Edit data", legendgroup="Phase 3", legendgrouptitle_text="Spreadsheet"
+                            ), row=3, col=1
+                    )
             fig.add_trace(
-                go.Scatter(
-                    x=df_noisy.index, y=df_noisy["P3_4"], mode="lines+markers", name="Use mathematical symbols", legendgroup="Phase 3", legendgrouptitle_text="Spreadsheet"
-                    ), row=3, col=1
-                )
+                    go.Scatter(
+                            x=df_noisy.index, y=df_noisy["P3_4"], mode="lines+markers", name="Use mathematical symbols", legendgroup="Phase 3", legendgrouptitle_text="Spreadsheet"
+                            ), row=3, col=1
+                    )
             fig.add_trace(
-                go.Scatter(
-                    x=df_noisy.index, y=df_noisy["P3_5"], mode="lines+markers", name="Use Spreadsheet to Solve Problems", legendgroup="Phase 3", legendgrouptitle_text="Spreadsheet"
-                    ), row=3, col=1
-                )
+                    go.Scatter(
+                            x=df_noisy.index, y=df_noisy["P3_5"], mode="lines+markers", name="Use Spreadsheet to Solve Problems", legendgroup="Phase 3", legendgrouptitle_text="Spreadsheet"
+                            ), row=3, col=1
+                    )
             fig.add_trace(
-                go.Scatter(
-                    x=df_noisy.index, y=df_noisy["P4_1"], mode="lines+markers", name="Navigate slides ", legendgroup="Phase 4", legendgrouptitle_text="Presentation Tools"
-                    ), row=1, col=2
-                )
+                    go.Scatter(
+                            x=df_noisy.index, y=df_noisy["P4_1"], mode="lines+markers", name="Navigate slides ", legendgroup="Phase 4", legendgrouptitle_text="Presentation Tools"
+                            ), row=1, col=2
+                    )
             fig.add_trace(
-                go.Scatter(
-                    x=df_noisy.index, y=df_noisy["P4_2"], mode="lines+markers", name="Create, edit and format text", legendgroup="Phase 4", legendgrouptitle_text="Presentation Tools"
-                    ), row=1, col=2
-                )
+                    go.Scatter(
+                            x=df_noisy.index, y=df_noisy["P4_2"], mode="lines+markers", name="Create, edit and format text", legendgroup="Phase 4", legendgrouptitle_text="Presentation Tools"
+                            ), row=1, col=2
+                    )
             fig.add_trace(
-                go.Scatter(
-                    x=df_noisy.index, y=df_noisy["P4_3"], mode="lines+markers", name="Create a series of slides ", legendgroup="Phase 4", legendgrouptitle_text="Presentation Tools"
-                    ), row=1, col=2
-                )
+                    go.Scatter(
+                            x=df_noisy.index, y=df_noisy["P4_3"], mode="lines+markers", name="Create a series of slides ", legendgroup="Phase 4", legendgrouptitle_text="Presentation Tools"
+                            ), row=1, col=2
+                    )
             fig.add_trace(
-                go.Scatter(
-                    x=df_noisy.index, y=df_noisy["P4_4"], mode="lines+markers", name="Copy and paste or import graphics", legendgroup="Phase 4", legendgrouptitle_text="Presentation Tools"
-                    ), row=1, col=2
-                )
+                    go.Scatter(
+                            x=df_noisy.index, y=df_noisy["P4_4"], mode="lines+markers", name="Copy and paste or import graphics", legendgroup="Phase 4", legendgrouptitle_text="Presentation Tools"
+                            ), row=1, col=2
+                    )
             fig.add_trace(
-                go.Scatter(
-                    x=df_noisy.index, y=df_noisy["P4_5"], mode="lines+markers", name="Use painting and drawing tools", legendgroup="Phase 4", legendgrouptitle_text="Presentation Tools"
-                    ), row=1, col=2
-                )
+                    go.Scatter(
+                            x=df_noisy.index, y=df_noisy["P4_5"], mode="lines+markers", name="Use painting and drawing tools", legendgroup="Phase 4", legendgrouptitle_text="Presentation Tools"
+                            ), row=1, col=2
+                    )
             fig.add_trace(
-                go.Scatter(
-                    x=df_noisy.index, y=df_noisy["P5_1"], mode="lines+markers", name="Explain Acceptable Use Policy", legendgroup="Phase 5", legendgrouptitle_text="Acceptable Use"
-                    ), row=2, col=2
-                )
+                    go.Scatter(
+                            x=df_noisy.index, y=df_noisy["P5_1"], mode="lines+markers", name="Explain Acceptable Use Policy", legendgroup="Phase 5", legendgrouptitle_text="Acceptable Use"
+                            ), row=2, col=2
+                    )
             fig.add_trace(
-                go.Scatter(
-                    x=df_noisy.index, y=df_noisy["P5_2"], mode="lines+markers", name="Explain responsible uses of technology", legendgroup="Phase 5", legendgrouptitle_text="Acceptable Use"
-                    ), row=2, col=2
-                )
+                    go.Scatter(
+                            x=df_noisy.index, y=df_noisy["P5_2"], mode="lines+markers", name="Explain responsible uses of "
+                                                                                             "technology", legendgroup="Phase 5", legendgrouptitle_text="Acceptable Use"
+                            ), row=2, col=2
+                    )
             fig.add_trace(
-                go.Scatter(
-                    x=df_noisy.index, y=df_noisy["P5_3"], mode="lines+markers", name="Explain Fair Use Guidelines", legendgroup="Phase 5", legendgrouptitle_text="Acceptable Use"
-                    ), row=2, col=2
-                )
+                    go.Scatter(
+                            x=df_noisy.index, y=df_noisy["P5_3"], mode="lines+markers", name="Explain Fair Use Guidelines", legendgroup="Phase 5", legendgrouptitle_text="Acceptable Use"
+                            ), row=2, col=2
+                    )
             fig.add_trace(
-                go.Scatter(
-                    x=df_noisy.index, y=df_noisy["P5_4"], mode="lines+markers", name="Safe and efficient use of computers", legendgroup="Phase 5", legendgrouptitle_text="Acceptable Use"
-                    ), row=2, col=2
-                )
+                    go.Scatter(
+                            x=df_noisy.index, y=df_noisy["P5_4"], mode="lines+markers", name="Safe and efficient use of "
+                                                                                             "computers", legendgroup="Phase 5", legendgrouptitle_text="Acceptable Use"
+                            ), row=2, col=2
+                    )
             fig.add_trace(
-                go.Scatter(
-                    x=df_noisy.index, y=df_noisy["P5_5"], mode="lines+markers", name="Demonstrate safe email practices", legendgroup="Phase 5", legendgrouptitle_text="Acceptable Use"
-                    ), row=2, col=2
-                )
+                    go.Scatter(
+                            x=df_noisy.index, y=df_noisy["P5_5"], mode="lines+markers", name="Demonstrate safe email practices", legendgroup="Phase 5", legendgrouptitle_text="Acceptable Use"
+                            ), row=2, col=2
+                    )
             fig.add_trace(
-                go.Scatter(
-                    x=df_noisy.index, y=df_noisy["P5_6"], mode="lines+markers", name="Identify cyberbullying ", legendgroup="Phase 5", legendgrouptitle_text="Acceptable Use"
-                    ), row=2, col=2
-                )
+                    go.Scatter(
+                            x=df_noisy.index, y=df_noisy["P5_6"], mode="lines+markers", name="Identify cyberbullying ", legendgroup="Phase 5", legendgrouptitle_text="Acceptable Use"
+                            ), row=2, col=2
+                    )
             fig.add_trace(
-                go.Scatter(
-                    x=df_noisy.index, y=df_noisy["P5_7"], mode="lines+markers", name="Describe the potential risks and dangers", legendgroup="Phase 5", legendgrouptitle_text="Acceptable Use"
-                    ), row=2, col=2
-                )
+                    go.Scatter(
+                            x=df_noisy.index, y=df_noisy["P5_7"], mode="lines+markers", name="Describe the potential risks and "
+                                                                                             "dangers", legendgroup="Phase 5", legendgrouptitle_text="Acceptable Use"
+                            ), row=2, col=2
+                    )
             fig.add_trace(
-                go.Scatter(
-                    x=df_noisy.index, y=df_noisy["P6_1"], mode="lines+markers", name="Be responsible for device", legendgroup="Phase 6", legendgrouptitle_text="Additional AT Skills"
-                    ), row=3, col=2
-                )
+                    go.Scatter(
+                            x=df_noisy.index, y=df_noisy["P6_1"], mode="lines+markers", name="Be responsible for device", legendgroup="Phase 6", legendgrouptitle_text="Additional AT Skills"
+                            ), row=3, col=2
+                    )
             fig.add_trace(
-                go.Scatter(
-                    x=df_noisy.index, y=df_noisy["P6_2"], mode="lines+markers", name="Tactile graphics paired with digital graphics", legendgroup="Phase 6", legendgrouptitle_text="Additional AT Skills"
-                    ), row=3, col=2
-                )
+                    go.Scatter(
+                            x=df_noisy.index, y=df_noisy["P6_2"], mode="lines+markers", name="Tactile graphics paired with "
+                                                                                             "digital graphics", legendgroup="Phase 6", legendgrouptitle_text="Additional AT Skills"
+                            ), row=3, col=2
+                    )
             fig.add_trace(
-                go.Scatter(
-                    x=df_noisy.index, y=df_noisy["P6_3"], mode="lines+markers", name="Understand and use Earcons", legendgroup="Phase 6", legendgrouptitle_text="Additional AT Skills"
-                    ), row=3, col=2
-                )
+                    go.Scatter(
+                            x=df_noisy.index, y=df_noisy["P6_3"], mode="lines+markers", name="Understand and use Earcons", legendgroup="Phase 6", legendgrouptitle_text="Additional AT Skills"
+                            ), row=3, col=2
+                    )
             fig.add_trace(
-                go.Scatter(
-                    x=df_noisy.index, y=df_noisy["P6_4"], mode="lines+markers", name="Spatial relationships on the physical iPad screen ", legendgroup="Phase 6", legendgrouptitle_text="Additional AT Skills"
-                    ), row=3, col=2
-                )
+                    go.Scatter(
+                            x=df_noisy.index, y=df_noisy["P6_4"], mode="lines+markers", name="Spatial relationships on the "
+                                                                                             "physical iPad screen ", legendgroup="Phase 6", legendgrouptitle_text="Additional AT Skills"
+                            ), row=3, col=2
+                    )
             fig.add_trace(
-                go.Scatter(
-                    x=df_noisy.index, y=df_noisy["P6_5"], mode="lines+markers", name="Use sonification", legendgroup="Phase 6", legendgrouptitle_text="Additional AT Skills"
-                    ), row=3, col=2
-                )
+                    go.Scatter(
+                            x=df_noisy.index, y=df_noisy["P6_5"], mode="lines+markers", name="Use sonification", legendgroup="Phase 6", legendgrouptitle_text="Additional AT Skills"
+                            ), row=3, col=2
+                    )
             fig.add_trace(
-                go.Scatter(
-                    x=df_noisy.index, y=df_noisy["P6_6"], mode="lines+markers", name="Learn and use screen reader commands", legendgroup="Phase 6", legendgrouptitle_text="Additional AT Skills"
-                    ), row=3, col=2
-                )
+                    go.Scatter(
+                            x=df_noisy.index, y=df_noisy["P6_6"], mode="lines+markers", name="Learn and use screen reader "
+                                                                                             "commands", legendgroup="Phase 6", legendgrouptitle_text="Additional AT Skills"
+                            ), row=3, col=2
+                    )
             fig.add_trace(
-                go.Scatter(
-                    x=df_noisy.index, y=df_noisy["P6_7"], mode="lines+markers", name="Increase listening speed", legendgroup="Phase 6", legendgrouptitle_text="Additional AT Skills"
-                    ), row=3, col=2
-                )
+                    go.Scatter(
+                            x=df_noisy.index, y=df_noisy["P6_7"], mode="lines+markers", name="Increase listening speed", legendgroup="Phase 6", legendgrouptitle_text="Additional AT Skills"
+                            ), row=3, col=2
+                    )
             fig.add_trace(
-                go.Scatter(
-                    x=df_noisy.index, y=df_noisy["P6_8"], mode="lines+markers", name="Learn and use rotor commands ", legendgroup="Phase 6", legendgrouptitle_text="Additional AT Skills"
-                    ), row=3, col=2
-                )
+                    go.Scatter(
+                            x=df_noisy.index, y=df_noisy["P6_8"], mode="lines+markers", name="Learn and use rotor commands ", legendgroup="Phase 6", legendgrouptitle_text="Additional AT Skills"
+                            ), row=3, col=2
+                    )
             fig.add_trace(
-                go.Scatter(
-                    x=df_noisy.index, y=df_noisy["P6_9"], mode="lines+markers", name="Learn about accessibility features", legendgroup="Phase 6", legendgrouptitle_text="Additional AT Skills"
-                    ), row=3, col=2
-                )
+                    go.Scatter(
+                            x=df_noisy.index, y=df_noisy["P6_9"], mode="lines+markers", name="Learn about accessibility "
+                                                                                             "features", legendgroup="Phase 6", legendgrouptitle_text="Additional AT Skills"
+                            ), row=3, col=2
+                    )
             fig.add_trace(
-                go.Scatter(
-                    x=df_noisy.index, y=df_noisy["P6_10"], mode="lines+markers", name="Learn note taking skills", legendgroup="Phase 6", legendgrouptitle_text="Additional AT Skills"
-                    ), row=3, col=2
-                )
+                    go.Scatter(
+                            x=df_noisy.index, y=df_noisy["P6_10"], mode="lines+markers", name="Learn note taking skills", legendgroup="Phase 6", legendgrouptitle_text="Additional AT Skills"
+                            ), row=3, col=2
+                    )
             fig.add_trace(
-                go.Scatter(
-                    x=df_noisy.index, y=df_noisy["P6_11"], mode="lines+markers", name="Explain what makes digital content accessible", legendgroup="Phase 6", legendgrouptitle_text="Additional AT Skills"
-                    ), row=3, col=2
-                )
-            fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2, row=1, col=1)
-            fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange", opacity=0.2, row=1, col=1)
-            fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow", opacity=0.2, row=1, col=1)
-            fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green", opacity=0.2, row=1, col=1)
-            fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2, row=1, col=2)
-            fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange", opacity=0.2, row=1, col=2)
-            fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow", opacity=0.2, row=1, col=2)
-            fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green", opacity=0.2, row=1, col=2)
-            fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2, row=2, col=1)
-            fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange", opacity=0.2, row=2, col=1)
-            fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow", opacity=0.2, row=2, col=1)
-            fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green", opacity=0.2, row=2, col=1)
-            fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2, row=2, col=2)
-            fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange", opacity=0.2, row=2, col=2)
-            fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow", opacity=0.2, row=2, col=2)
-            fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green", opacity=0.2, row=2, col=2)
-            fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2, row=3, col=1)
-            fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange", opacity=0.2, row=3, col=1)
-            fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow", opacity=0.2, row=3, col=1)
-            fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green", opacity=0.2, row=3, col=1)
-            fig.add_hrect(y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2, row=3, col=2)
-            fig.add_hrect(y0=.5, y1=1.5, line_width=0, fillcolor="orange", opacity=0.2, row=3, col=2)
-            fig.add_hrect(y0=1.5, y1=2.5, line_width=0, fillcolor="yellow", opacity=0.2, row=3, col=2)
-            fig.add_hrect(y0=2.5, y1=3.5, line_width=0, fillcolor="green", opacity=0.2, row=3, col=2)
-            fig.update_xaxes(rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[" "])], row=1, col=1)
-            fig.update_xaxes(rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=1, col=2)
-            fig.update_xaxes(rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=2, col=1)
-            fig.update_xaxes(rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=2, col=2)
-            fig.update_xaxes(rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=3, col=1)
-            fig.update_xaxes(rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=3, col=2)
+                    go.Scatter(
+                            x=df_noisy.index, y=df_noisy["P6_11"], mode="lines+markers", name="Explain what makes digital content "
+                                                                                              "accessible", legendgroup="Phase 6", legendgrouptitle_text="Additional AT Skills"
+                            ), row=3, col=2
+                    )
+            fig.add_hrect(
+                    y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2, row=1, col=1
+                    )
+            fig.add_hrect(
+                    y0=.5, y1=1.5, line_width=0, fillcolor="orange", opacity=0.2, row=1, col=1
+                    )
+            fig.add_hrect(
+                    y0=1.5, y1=2.5, line_width=0, fillcolor="yellow", opacity=0.2, row=1, col=1
+                    )
+            fig.add_hrect(
+                    y0=2.5, y1=3.5, line_width=0, fillcolor="green", opacity=0.2, row=1, col=1
+                    )
+            fig.add_hrect(
+                    y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2, row=1, col=2
+                    )
+            fig.add_hrect(
+                    y0=.5, y1=1.5, line_width=0, fillcolor="orange", opacity=0.2, row=1, col=2
+                    )
+            fig.add_hrect(
+                    y0=1.5, y1=2.5, line_width=0, fillcolor="yellow", opacity=0.2, row=1, col=2
+                    )
+            fig.add_hrect(
+                    y0=2.5, y1=3.5, line_width=0, fillcolor="green", opacity=0.2, row=1, col=2
+                    )
+            fig.add_hrect(
+                    y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2, row=2, col=1
+                    )
+            fig.add_hrect(
+                    y0=.5, y1=1.5, line_width=0, fillcolor="orange", opacity=0.2, row=2, col=1
+                    )
+            fig.add_hrect(
+                    y0=1.5, y1=2.5, line_width=0, fillcolor="yellow", opacity=0.2, row=2, col=1
+                    )
+            fig.add_hrect(
+                    y0=2.5, y1=3.5, line_width=0, fillcolor="green", opacity=0.2, row=2, col=1
+                    )
+            fig.add_hrect(
+                    y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2, row=2, col=2
+                    )
+            fig.add_hrect(
+                    y0=.5, y1=1.5, line_width=0, fillcolor="orange", opacity=0.2, row=2, col=2
+                    )
+            fig.add_hrect(
+                    y0=1.5, y1=2.5, line_width=0, fillcolor="yellow", opacity=0.2, row=2, col=2
+                    )
+            fig.add_hrect(
+                    y0=2.5, y1=3.5, line_width=0, fillcolor="green", opacity=0.2, row=2, col=2
+                    )
+            fig.add_hrect(
+                    y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2, row=3, col=1
+                    )
+            fig.add_hrect(
+                    y0=.5, y1=1.5, line_width=0, fillcolor="orange", opacity=0.2, row=3, col=1
+                    )
+            fig.add_hrect(
+                    y0=1.5, y1=2.5, line_width=0, fillcolor="yellow", opacity=0.2, row=3, col=1
+                    )
+            fig.add_hrect(
+                    y0=2.5, y1=3.5, line_width=0, fillcolor="green", opacity=0.2, row=3, col=1
+                    )
+            fig.add_hrect(
+                    y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2, row=3, col=2
+                    )
+            fig.add_hrect(
+                    y0=.5, y1=1.5, line_width=0, fillcolor="orange", opacity=0.2, row=3, col=2
+                    )
+            fig.add_hrect(
+                    y0=1.5, y1=2.5, line_width=0, fillcolor="yellow", opacity=0.2, row=3, col=2
+                    )
+            fig.add_hrect(
+                    y0=2.5, y1=3.5, line_width=0, fillcolor="green", opacity=0.2, row=3, col=2
+                    )
+            fig.update_xaxes(
+                    rangebreaks=[dict(bounds=["sat", "mon"]), dict(
+                            values=[" "]
+                            )], row=1, col=1
+                    )
+            fig.update_xaxes(
+                    rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=1, col=2
+                    )
+            fig.update_xaxes(
+                    rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=2, col=1
+                    )
+            fig.update_xaxes(
+                    rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=2, col=2
+                    )
+            fig.update_xaxes(
+                    rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=3, col=1
+                    )
+            fig.update_xaxes(
+                    rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[])], row=3, col=2
+                    )
             
             fig.update_yaxes(
-                range=[-.5, 3.5], fixedrange=True, ticktext=["Unable", "Prompted", "Hesitated", "Independent"], tickvals=[0.1, 1, 2, 3], row=1, col=1
-                )
+                    range=[-.5, 3.5], fixedrange=True, ticktext=["Unable", "Prompted", "Hesitated", "Independent"], tickvals=[0.1, 1, 2, 3], row=1, col=1
+                    )
             fig.update_yaxes(
-                range=[-.5, 3.5], fixedrange=True, ticktext=["Unable", "Prompted", "Hesitated", "Independent"], tickvals=[0.1, 1, 2, 3], row=1, col=2
-                )
+                    range=[-.5, 3.5], fixedrange=True, ticktext=["Unable", "Prompted", "Hesitated", "Independent"], tickvals=[0.1, 1, 2, 3], row=1, col=2
+                    )
             fig.update_yaxes(
-                range=[-.5, 3.5], fixedrange=True, ticktext=["Unable", "Prompted", "Hesitated", "Independent"], tickvals=[0.1, 1, 2, 3], row=2, col=1
-                )
+                    range=[-.5, 3.5], fixedrange=True, ticktext=["Unable", "Prompted", "Hesitated", "Independent"], tickvals=[0.1, 1, 2, 3], row=2, col=1
+                    )
             fig.update_yaxes(
-                range=[-.5, 3.5], fixedrange=True, ticktext=["Unable", "Prompted", "Hesitated", "Independent"], tickvals=[0.1, 1, 2, 3], row=2, col=2
-                )
+                    range=[-.5, 3.5], fixedrange=True, ticktext=["Unable", "Prompted", "Hesitated", "Independent"], tickvals=[0.1, 1, 2, 3], row=2, col=2
+                    )
             fig.update_yaxes(
-                range=[-.5, 3.5], fixedrange=True, ticktext=["Unable", "Prompted", "Hesitated", "Independent"], tickvals=[0.1, 1, 2, 3], row=3, col=1
-                )
+                    range=[-.5, 3.5], fixedrange=True, ticktext=["Unable", "Prompted", "Hesitated", "Independent"], tickvals=[0.1, 1, 2, 3], row=3, col=1
+                    )
             fig.update_yaxes(
-                range=[-.5, 3.5], fixedrange=True, ticktext=["Unable", "Prompted", "Hesitated", "Independent"], tickvals=[0.1, 1, 2, 3], row=3, col=2
-                )
+                    range=[-.5, 3.5], fixedrange=True, ticktext=["Unable", "Prompted", "Hesitated", "Independent"], tickvals=[0.1, 1, 2, 3], row=3, col=2
+                    )
             
-            fig.update_layout(template="simple_white", title_text=f"{studentname}: iOS SKills Progression")
-            tmppath = Path(USER_DIR).joinpath('StudentDatabase', 'StudentDataFiles', studentname, 'iosProgression.html')
+            fig.update_layout(template="simple_white", title_text=f"{studentname}: iOS SKills  Progression")
+            tmppath = Path(USER_DIR).joinpath(
+                    'StudentDatabase', 'StudentDataFiles', studentname, 'iosProgression.html'
+                    )
             fig.write_html(tmppath, auto_open=True)
             # fig.show()
             ui.notify(
-                "Graph Successful. The Graphs will open in a Browser "
-                "Window", position='center', type='positive', close_button="OK", )
+                    "Graph Successful. The Graphs will open in a "
+                    "Browser "
+                    "Window", position='center', type='positive', close_button="OK", )
         
         with ui.row().classes("w-screen no-wrap"):
-            ui.label("iOS SKILLS PROGRESSION").classes("justify-center items-center")
+            ui.label("iOS SKILLS PROGRESSION").classes(
+                    "justify-center items-center"
+                    )
         with ui.row().classes("w-screen no-wrap"):
-            ui.select(options=students, with_input=True, on_change=lambda e: ui.notify(e.value), ).bind_value(u_studentname, "value").classes("w-[300px]").props(
-                'aria-label="Select Student from the Dropdown. It '
-                'will '
-                'autocomplete as you type"'
-                ).tooltip("Type Student Name, it will autocomplete AS you type")
+            ui.select(
+                    options=students, with_input=True, on_change=lambda e: ui.notify(e.value), ).bind_value(u_studentname, "value").classes(
+                    "w-[300px]"
+                    ).props(
+                    'aria-label="Select Student from the Dropdown. It '
+                    'will '
+                    'autocomplete as you type"'
+                    ).tooltip(
+                    "Type Student Name, it will "
+                    "autocomplete AS you type"""
+                    )
             with ui.input("Date").classes("w-[300px]").props(
                     'aria-label="Date. Please type in date using the '
                     'YYYY-MM-DD format"'
-                    ).tooltip("Date. Please type in date using the YYYY-MM-DD format") as date:
+                    ).tooltip(
+                    "Date. Please type in date using the "
+                    "YYYY-MM-DD format"
+                    ) as date:
                 with date.add_slot("append"):
-                    ui.icon("edit_calendar").on("click", lambda: menu.open()).classes("cursor-pointer")
+                    ui.icon("edit_calendar").on(
+                            "click", lambda: menu.open()
+                            ).classes("cursor-pointer")
                 with ui.menu() as menu:
                     ui.date().bind_value(date)
         
         with ui.row().classes("w-screen no-wrap py-4"):
-            ui.label("RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent").props(
-                'aria-label="RUBRIC: 0=No attempt 1=Required '
-                'Assistance '
-                '2=Hesitated 3=Independent" content-center'
-                )
+            ui.label(
+                    "RUBRIC: 0=No attempt 1=Required Assistance "
+                    "2=Hesitated 3=Independent"
+                    ).props(
+                    'aria-label="RUBRIC: 0=No attempt 1=Required '
+                    'Assistance '
+                    '2=Hesitated 3=Independent" content-center'
+                    )
             ui.input().props(
-                'aria-label="RUBRIC: 0=No attempt 1=Required '
-                'Assistance '
-                '2=Hesitated 3=Independent" content-center'
-                ).classes("sr-only")
+                    'aria-label="RUBRIC: 0=No attempt 1=Required '
+                    'Assistance '
+                    '2=Hesitated 3=Independent" content-center'
+                    ).classes("sr-only")
         with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(label="1.1", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial11.set_value(e.value), ).classes("w-[200px]").props('aria-label="Turn Device On/Off"').tooltip("Turn Device On/Off")
-            ui.number(label="1.2", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial12.set_value(e.value), ).classes("w-[200px]").props('aria-label="Turn VoiceOver On/Off"').tooltip("Turn VoiceOver On/Off")
-            ui.number(label="1.3", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial13.set_value(e.value), ).classes("w-[200px]").props('aria-label="Simple Gestures to click on icons"').tooltip("Simple Gestures to click on icons")
-            ui.number(label="1.4", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial14.set_value(e.value), ).classes("w-[200px]").props('aria-label="Use home screen icons to open applications and documents"').tooltip("Use home screen icons to open applications and documents")
-            ui.number(label="1.5", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial15.set_value(e.value), ).classes("w-[200px]").props('aria-label="Save Documents"').tooltip("Save Documents")
-            ui.number(label="1.6", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial16.set_value(e.value), ).classes("w-[200px]").props('aria-label="Explain and use age-appropriate online tools and resources "').tooltip("Explain and use age-appropriate online tools and resources ")
-            ui.number(label="1.7", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial17.set_value(e.value), ).classes("w-[200px]").props('aria-label="Keyboarding (Bluetooth keyboard and Braille display if appropriate)"').tooltip("Keyboarding (Bluetooth keyboard and Braille display if appropriate)")
-            ui.number(label="1.8", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial18.set_value(e.value), ).classes("w-[200px]").props('aria-label="Learn about and use different types of elements (e.g. address bar, tabs, menu)"').tooltip("Learn about and use different types of elements (e.g. address bar, tabs, menu)")
-            ui.number(label="1.9", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial19.set_value(e.value), ).classes("w-[200px]").props('aria-label="Learn about and use Control Center, Notification Center, App Switcher, Status Bar, etc."').tooltip("Learn about and use Control Center, Notification Center, App Switcher, Status Bar, etc.")
+            ui.number(
+                    label="1.1", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial11.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="Turn Device On/Off"'
+                    ).tooltip(
+                    "Turn "
+                    "Device On/Off"
+                    )
+            ui.number(
+                    label="1.2", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial12.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="Turn VoiceOver On/Off"'
+                    ).tooltip(
+                    "Turn VoiceOver On/Off"
+                    )
+            ui.number(
+                    label="1.3", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial13.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="Simple Gestures to click on '
+                    'icons"'
+                    ).tooltip(
+                    "Simple Gestures to click on "
+                    "icons"
+                    )
+            ui.number(
+                    label="1.4", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial14.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="Use home screen icons to open '
+                    'applications and documents"'
+                    ).tooltip(
+                    "Use home "
+                    "screen "
+                    "icons to "
+                    "open "
+                    "applications and documents"
+                    )
+            ui.number(
+                    label="1.5", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial15.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="Save Documents"'
+                    ).tooltip(
+                    "Save "
+                    "Documents"
+                    )
+            ui.number(
+                    label="1.6", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial16.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="Explain and use age-appropriate '
+                    'online tools and resources "'
+                    ).tooltip(
+                    "Explain "
+                    "and use "
+                    "age-appropriate online tools and resources "
+                    )
+            ui.number(
+                    label="1.7", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial17.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="Keyboarding (Bluetooth keyboard and '
+                    'Braille display if appropriate)"'
+                    ).tooltip(
+                    "Keyboarding (Bluetooth keyboard and Braille "
+                    "display if appropriate)"
+                    )
+            ui.number(
+                    label="1.8", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial18.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="Learn about and use different types '
+                    'of elements (e.g. address bar, tabs, '
+                    'menu)"'
+                    ).tooltip(
+                    "Learn about and use different "
+                    "types of elements (e.g. "
+                    "address bar, tabs, menu)"
+                    )
+            ui.number(
+                    label="1.9", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial19.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="Learn about and use Control Center, '
+                    'Notification Center, App Switcher, Status Bar, '
+                    'etc."'
+                    ).tooltip(
+                    "Learn about and use Control "
+                    "Center, Notification Center, "
+                    "App Switcher, Status Bar, etc."
+                    )
         with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(label="2.1", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial21.set_value(e.value), ).classes("w-[200px]").props('aria-label="Use a word processing application to write, edit, print and save simple assignments"').tooltip("Use a word processing application to write, edit, print and save simple assignments")
-            ui.number(label="2.2", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial22.set_value(e.value), ).classes("w-[200px]").props('aria-label="Read and navigate documents"').tooltip("Read and navigate documents")
-            ui.number(label="2.3", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial23.set_value(e.value), ).classes("w-[200px]").props('aria-label="Use menu/tool bar functions (e.g. font/size/style, line spacing, margins) to format, edit and print a document"').tooltip("Use menu/tool bar functions (e.g. font/size/style, line spacing, margins) to format, edit and print a document")
-            ui.number(label="2.4", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial24.set_value(e.value), ).classes("w-[200px]").props('aria-label="Highlight text, copy and paste text"').tooltip("Highlight text, copy and paste text")
-            ui.number(label="2.5", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial25.set_value(e.value), ).classes("w-[200px]").props('aria-label="Copy and paste images within the document and from outside sources"').tooltip("Copy and paste images within the document and from outside sources")
-            ui.number(label="2.6", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial26.set_value(e.value), ).classes("w-[200px]").props('aria-label="Proofread and edit writing using appropriate resources (e.g. dictionary, spell checker, grammar, and thesaurus)"').tooltip("Proofread and edit writing using appropriate resources (e.g. dictionary, spell checker, grammar, and thesaurus)")
+            ui.number(
+                    label="2.1", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial21.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="Use a word processing application to '
+                    'write, edit, print and save simple '
+                    'assignments"'
+                    ).tooltip(
+                    "Use a word processing "
+                    "application to write, "
+                    "edit, print and save "
+                    "simple assignments"
+                    )
+            ui.number(
+                    label="2.2", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial22.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="Read and navigate '
+                    'documents"'
+                    ).tooltip("Read and navigate documents")
+            ui.number(
+                    label="2.3", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial23.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="Use menu/tool bar functions (e.g. '
+                    'font/size/style, line spacing, margins) to '
+                    'format, edit and print a document"'
+                    ).tooltip(
+                    "Use menu/tool bar functions (e.g. "
+                    "font/size/style, line spacing, margins) to "
+                    "format, edit and print a document"
+                    )
+            ui.number(
+                    label="2.4", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial24.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="Highlight text, copy and paste '
+                    'text"'
+                    ).tooltip(
+                    "Highlight text, copy and paste "
+                    "text"
+                    )
+            ui.number(
+                    label="2.5", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial25.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="Copy and paste images within the '
+                    'document and from outside sources"'
+                    ).tooltip(
+                    "Copy and paste images within the document and "
+                    "from outside sources"
+                    )
+            ui.number(
+                    label="2.6", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial26.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="Proofread and edit writing using '
+                    'appropriate resources (e.g. dictionary, '
+                    'spell checker, grammar, '
+                    'and thesaurus)"'
+                    ).tooltip(
+                    "Proofread and edit "
+                    "writing using "
+                    "appropriate resources "
+                    "(e.g. dictionary, "
+                    "spell checker, "
+                    "grammar, "
+                    "and thesaurus)"
+                    )
         with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(label="3.1", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial31.set_value(e.value), ).classes("w-[200px]").props('aria-label="Demonstrate an understanding of the spreadsheet as a tool to record, organize and graph information."').tooltip("Demonstrate an understanding of the spreadsheet as a tool to record, organize and graph information.")
-            ui.number(label="3.2", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial32.set_value(e.value), ).classes("w-[200px]").props('aria-label="Identify and explain terms and concepts related to spreadsheets (i.e. cell, column, row, values, labels, chart graph)"').tooltip("Identify and explain terms and concepts related to spreadsheets (i.e. cell, column, row, values, labels, chart graph)")
-            ui.number(label="3.3", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial33.set_value(e.value), ).classes("w-[200px]").props('aria-label="Enter/Edit data in spreadsheets and perform calculations using formulas"').tooltip("Enter/Edit data in spreadsheets and perform calculations using formulas")
-            ui.number(label="3.4", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial34.set_value(e.value), ).classes("w-[200px]").props('aria-label="Use mathematical symbols e.g. + add, ‐ minus, *multiply, /divide, ^ exponents "').tooltip("Use mathematical symbols e.g. + add, ‐ minus, *multiply, /divide, ^ exponents ")
-            ui.number(label="3.5", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial35.set_value(e.value), ).classes("w-[200px]").props('aria-label="Use spreadsheets and other applications to make predictions, solve problems and draw conclusions. "').tooltip("Use spreadsheets and other applications to make predictions, solve problems and draw conclusions. ")
+            ui.number(
+                    label="3.1", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial31.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="Demonstrate an understanding of the '
+                    'spreadsheet as a tool to record, organize and '
+                    'graph information."'
+                    ).tooltip(
+                    "Demonstrate an "
+                    "understanding of "
+                    "the spreadsheet "
+                    "as a tool to "
+                    "record, organize "
+                    "and graph "
+                    "information."
+                    )
+            ui.number(
+                    label="3.2", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial32.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="Identify and explain terms and '
+                    'concepts related to spreadsheets (i.e. cell, '
+                    'column, row, values, labels, chart '
+                    'graph)"'
+                    ).tooltip(
+                    "Identify and explain terms "
+                    "and concepts related to "
+                    "spreadsheets (i.e. cell, "
+                    "column, row, values, labels, "
+                    "chart graph)"
+                    )
+            ui.number(
+                    label="3.3", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial33.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="Enter/Edit data in spreadsheets and '
+                    'perform calculations using formulas"'
+                    ).tooltip(
+                    "Enter/Edit data in spreadsheets and perform "
+                    "calculations using formulas"
+                    )
+            ui.number(
+                    label="3.4", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial34.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="Use mathematical symbols e.g. + add, '
+                    '‐ minus, *multiply, /divide, ^ exponents '
+                    '"'
+                    ).tooltip(
+                    "Use mathematical symbols e.g. + "
+                    "add, ‐ minus, *multiply, /divide, "
+                    "^ exponents "
+                    )
+            ui.number(
+                    label="3.5", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial35.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="Use spreadsheets and other '
+                    'applications to make predictions, solve problems '
+                    'and draw conclusions. "'
+                    ).tooltip(
+                    "Use "
+                    "spreadsheets "
+                    "and other "
+                    "applications "
+                    "to make "
+                    "predictions, "
+                    "solve "
+                    "problems and "
+                    "draw "
+                    "conclusions. "
+                    )
         with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(label="4.1", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial41.set_value(e.value), ).classes("w-[200px]").props('aria-label="Navigate slides (book format)"').tooltip("Navigate slides (book format)")
-            ui.number(label="4.2", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial42.set_value(e.value), ).classes("w-[200px]").props('aria-label="Create, edit and format text on a slide "').tooltip("Create, edit and format text on a slide ")
-            ui.number(label="4.3", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial43.set_value(e.value), ).classes("w-[200px]").props('aria-label="Create a series of slides and organize them to present research or convey an idea "').tooltip("Create a series of slides and organize them to present research or convey an idea ")
-            ui.number(label="4.4", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial44.set_value(e.value), ).classes("w-[200px]").props('aria-label="Copy and paste or import graphics; change their size and position on a slide"').tooltip("Copy and paste or import graphics; change their size and position on a slide")
-            ui.number(label="4.5", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial45.set_value(e.value), ).classes("w-[200px]").props('aria-label="Use painting and drawing tools/ applications to create and edit work "').tooltip("Use painting and drawing tools/ applications to create and edit work ")
+            ui.number(
+                    label="4.1", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial41.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="Navigate slides (book '
+                    'format)"'
+                    ).tooltip("Navigate slides (book format)")
+            ui.number(
+                    label="4.2", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial42.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="Create, edit and format text on a '
+                    'slide "'
+                    ).tooltip(
+                    "Create, edit and format text "
+                    "on a slide "
+                    )
+            ui.number(
+                    label="4.3", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial43.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="Create a series of slides and '
+                    'organize them to present research or convey an '
+                    'idea "'
+                    ).tooltip(
+                    "Create a series of slides and "
+                    "organize them to present "
+                    "research or convey an idea "
+                    )
+            ui.number(
+                    label="4.4", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial44.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="Copy and paste or import graphics; '
+                    'change their size and position on a '
+                    'slide"'
+                    ).tooltip(
+                    "Copy and paste or import "
+                    "graphics; change their size "
+                    "and position on a slide"
+                    )
+            ui.number(
+                    label="4.5", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial45.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="Use painting and drawing tools/ '
+                    'applications to create and edit work '
+                    '"'
+                    ).tooltip(
+                    "Use painting and drawing tools/ "
+                    "applications to create and edit "
+                    "work "
+                    )
         with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(label="5.1", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial51.set_value(e.value), ).classes("w-[200px]").props('aria-label="Explain and demonstrate compliance with classroom, school rules (Acceptable Use Policy) regarding responsible use of computers and networks"').tooltip("Explain and demonstrate compliance with classroom, school rules (Acceptable Use Policy) regarding responsible use of computers and networks")
-            ui.number(label="5.2", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial52.set_value(e.value), ).classes("w-[200px]").props('aria-label="Explain responsible uses of technology and digital information; describe possible consequences of inappropriate use"').tooltip("Explain responsible uses of technology and digital information; describe possible consequences of inappropriate use")
-            ui.number(label="5.3", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial53.set_value(e.value), ).classes("w-[200px]").props('aria-label="Explain Fair Use Guidelines for the use of copyrighted materials, (e.g. text, images, music, video in student projects) and giving credit to media creators"').tooltip("Explain Fair Use Guidelines for the use of copyrighted materials, (e.g. text, images, music, video in student projects) and giving credit to media creators")
-            ui.number(label="5.4", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial54.set_value(e.value), ).classes("w-[200px]").props('aria-label="Identify and explain the strategies for the safe and efficient use of computers (e.g. passwords, virus protection software, spam filters, popup blockers)"').tooltip("Identify and explain the strategies for the safe and efficient use of computers (e.g. passwords, virus protection software, spam filters, popup blockers)")
-            ui.number(label="5.5", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial55.set_value(e.value), ).classes("w-[200px]").props('aria-label="Demonstrate safe email practices, recognition of the potentially public exposure of email and appropriate email etiquette"').tooltip("Demonstrate safe email practices, recognition of the potentially public exposure of email and appropriate email etiquette")
-            ui.number(label="5.6", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial56.set_value(e.value), ).classes("w-[200px]").props('aria-label="Identify cyberbullying and describe strategies to deal with such a situation"').tooltip("Identify cyberbullying and describe strategies to deal with such a situation")
-            ui.number(label="5.7", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial57.set_value(e.value), ).classes("w-[200px]").props('aria-label="Recognize and describe the potential risks and dangers associated with various forms of online communications"').tooltip("Recognize and describe the potential risks and dangers associated with various forms of online communications")
+            ui.number(
+                    label="5.1", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial51.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="Explain and demonstrate compliance '
+                    'with classroom, school rules (Acceptable Use '
+                    'Policy) regarding responsible use of computers '
+                    'and networks"'
+                    ).tooltip(
+                    "Explain and demonstrate "
+                    "compliance with "
+                    "classroom, school rules "
+                    "(Acceptable Use Policy) "
+                    "regarding responsible "
+                    "use of computers and "
+                    "networks"
+                    )
+            ui.number(
+                    label="5.2", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial52.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="Explain responsible uses of '
+                    'technology and digital information; describe '
+                    'possible consequences of inappropriate '
+                    'use"'
+                    ).tooltip(
+                    "Explain responsible uses of "
+                    "technology and digital "
+                    "information; describe possible "
+                    "consequences of inappropriate use"
+                    )
+            ui.number(
+                    label="5.3", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial53.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="Explain Fair Use Guidelines for the '
+                    'use of copyrighted materials, (e.g. text, '
+                    'images, music, video in student projects) and '
+                    'giving credit to media creators"'
+                    ).tooltip(
+                    "Explain Fair Use Guidelines for the use of "
+                    "copyrighted materials, (e.g. text, images, "
+                    "music, video in student projects) and giving "
+                    "credit to media creators"
+                    )
+            ui.number(
+                    label="5.4", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial54.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="Identify and explain the strategies '
+                    'for the safe and efficient use of computers ('
+                    'e.g. passwords, virus protection software, '
+                    'spam filters, popup blockers)"'
+                    ).tooltip(
+                    "Identify and explain the strategies for the safe "
+                    "and efficient use of computers (e.g. passwords, "
+                    "virus protection software, spam filters, "
+                    "popup blockers)"
+                    )
+            ui.number(
+                    label="5.5", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial55.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="Demonstrate safe email practices, '
+                    'recognition of the potentially public exposure '
+                    'of email and appropriate email '
+                    'etiquette"'
+                    ).tooltip(
+                    "Demonstrate safe email "
+                    "practices, recognition of "
+                    "the potentially public "
+                    "exposure of email and "
+                    "appropriate email etiquette"
+                    )
+            ui.number(
+                    label="5.6", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial56.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="Identify cyberbullying and describe '
+                    'strategies to deal with such a '
+                    'situation"'
+                    ).tooltip(
+                    "Identify cyberbullying and "
+                    "describe strategies to "
+                    "deal with such a situation"
+                    )
+            ui.number(
+                    label="5.7", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial57.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="Recognize and describe the potential '
+                    'risks and dangers associated with various forms '
+                    'of online communications"'
+                    ).tooltip(
+                    "Recognize "
+                    "and "
+                    "describe "
+                    "the "
+                    "potential "
+                    "risks and "
+                    "dangers "
+                    "associated "
+                    "with "
+                    "various "
+                    "forms of "
+                    "online "
+                    "communications"
+                    )
         with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(label="6.1", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial61.set_value(e.value), ).classes("w-[200px]").props('aria-label="Be responsible for device(s)"').tooltip("Be responsible for device(s)")
-            ui.number(label="6.2", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial62.set_value(e.value), ).classes("w-[200px]").props('aria-label="Tactile graphics paired with digital graphics"').tooltip("Tactile graphics paired with digital graphics")
-            ui.number(label="6.3", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial63.set_value(e.value), ).classes("w-[200px]").props('aria-label="Understand and use Earcons (screen reader sound hints)"').tooltip("Understand and use Earcons (screen reader sound hints)")
-            ui.number(label="6.4", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial64.set_value(e.value), ).classes("w-[200px]").props('aria-label="Understand and use spatial relationships on the physical iPad screen "').tooltip("Understand and use spatial relationships on the physical iPad screen ")
-            ui.number(label="6.5", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial65.set_value(e.value), ).classes("w-[200px]").props('aria-label="Use sonification to explore and understand digital graphics"').tooltip("Use sonification to explore and understand digital graphics")
-            ui.number(label="6.6", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial66.set_value(e.value), ).classes("w-[200px]").props('aria-label="Learn and use screen reader commands (gestures/keyboard/braille display)"').tooltip("Learn and use screen reader commands (gestures/keyboard/braille display)")
+            ui.number(
+                    label="6.1", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial61.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="Be responsible for device('
+                    's)"'
+                    ).tooltip("Be responsible for device(s)")
+            ui.number(
+                    label="6.2", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial62.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="Tactile graphics paired with digital '
+                    'graphics"'
+                    ).tooltip(
+                    "Tactile graphics paired "
+                    "with digital graphics"
+                    )
+            ui.number(
+                    label="6.3", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial63.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="Understand and use Earcons (screen '
+                    'reader sound hints)"'
+                    ).tooltip(
+                    "Understand and "
+                    "use Earcons ("
+                    "screen reader "
+                    "sound hints)"
+                    )
+            ui.number(
+                    label="6.4", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial64.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="Understand and use spatial '
+                    'relationships on the physical iPad screen '
+                    '"'
+                    ).tooltip(
+                    "Understand and use spatial "
+                    "relationships on the physical iPad "
+                    "screen "
+                    )
+            ui.number(
+                    label="6.5", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial65.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="Use sonification to explore and '
+                    'understand digital graphics"'
+                    ).tooltip(
+                    "Use "
+                    "sonification to explore and understand digital graphics"
+                    )
+            ui.number(
+                    label="6.6", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial66.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="Learn and use screen reader commands '
+                    '(gestures/keyboard/braille display)"'
+                    ).tooltip(
+                    "Learn and use screen reader commands ("
+                    "gestures/keyboard/braille display)"
+                    )
         with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(label="6.7", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial67.set_value(e.value), ).classes("w-[200px]").props('aria-label="Increase listening speed (100% on the iPad for pleasure reading)"').tooltip("Increase listening speed (100% on the iPad for pleasure reading)")
-            ui.number(label="6.8", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial68.set_value(e.value), ).classes("w-[200px]").props('aria-label="Learn and use rotor commands "').tooltip("Learn and use rotor commands ")
-            ui.number(label="6.9", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial69.set_value(e.value), ).classes("w-[200px]").props('aria-label="Learn about accessibility features"').tooltip("Learn about accessibility features")
-            ui.number(label="6.10", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial610.set_value(e.value), ).classes("w-[200px]").props('aria-label="Learn note taking skills"').tooltip("Learn note taking skills")
-            ui.number(label="6.11", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial611.set_value(e.value), ).classes("w-[200px]").props('aria-label="Learn and be able to explain what makes digital content accessible"').tooltip("Learn and be able to explain what makes digital content accessible")
+            ui.number(
+                    label="6.7", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial67.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="Increase listening speed (100% on '
+                    'the iPad for pleasure reading)"'
+                    ).tooltip(
+                    "Increase listening speed (100% on the iPad for "
+                    "pleasure reading)"
+                    )
+            ui.number(
+                    label="6.8", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial68.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="Learn and use rotor commands '
+                    '"'
+                    ).tooltip("Learn and use rotor commands ")
+            ui.number(
+                    label="6.9", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial69.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="Learn about accessibility '
+                    'features"'
+                    ).tooltip(
+                    "Learn about accessibility "
+                    "features"
+                    )
+            ui.number(
+                    label="6.10", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial610.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="Learn note taking skills"'
+                    ).tooltip(
+                    "Learn note taking skills"
+                    )
+            ui.number(
+                    label="6.11", min=0, max=3, format="%.0f", on_change=lambda e: u_ios_trial611.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="Learn and be able to explain what '
+                    'makes digital content accessible"'
+                    ).tooltip(
+                    "Learn and be able to explain what makes digital "
+                    "content accessible"
+                    )
         with ui.row().classes("w-screen no-wrap py-4"):
-            ui.button("SAVE", color="#172554", on_click=save).classes("text-white")
-            ui.button("GRAPH", color="#172554", on_click=graph).classes("text-white")
-            ui.button("EXIT", color="#172554", on_click=app.shutdown).classes("text-white")
+            ui.button(
+                    "SAVE", color="#172554", on_click=save
+                    ).classes("text-white")
+            ui.button(
+                    "GRAPH", color="#172554", on_click=graph
+                    ).classes("text-white")
+            ui.button(
+                    "EXIT", color="#172554", on_click=app.shutdown
+                    ).classes("text-white")

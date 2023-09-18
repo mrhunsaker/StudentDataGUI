@@ -1,31 +1,42 @@
 #!/usr/bin/env python3
 # coding=utf-8
 """
-Program designed to be a data collection and instructional tool for teachers
+Program designed to be a data collection and instructional tool for
+teachers
 of students with Visual Impairments
 """
 ###############################################################################
-#    Copyright 2023 Michael Ryan Hunsaker, M.Ed., Ph.D.                       #
-#    email: hunsakerconsulting@gmail.com                                      #
+#    Copyright 2023 Michael Ryan Hunsaker, M.Ed., Ph.D.
+#    #
+#    email: hunsakerconsulting@gmail.com
+#    #
 #                                                                             #
-#    Licensed under the Apache License, Version 2.0 (the "License");          #
-#    you may not use this file except in compliance with the License.         #
-#    You may obtain a copy of the License at                                  #
+#    Licensed under the Apache License, Version 2.0 (the "License");
+#    #
+#    you may not use this file except in compliance with the License.
+#    #
+#    You may obtain a copy of the License at
+#    #
 #                                                                             #
-#    http://www.apache.org/licenses/LICENSE-2.0                               #
+#    http://www.apache.org/licenses/LICENSE-2.0
+#    #
 #                                                                             #
-#    Unless Required by applicable law or agreed to in writing, software      #
-#    distributed under the License is distributed on an "AS IS" BASIS,        #
-#    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. #
-#    See the License for the specific language governing permissions and      #
-#    limitations under the License.                                           #
+#    Unless Required by applicable law or agreed to in writing,
+#    software      #
+#    distributed under the License is distributed on an "AS IS"
+#    BASIS,        #
+#    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+#    implied. #
+#    See the License for the specific language governing permissions
+#    and      #
+#    limitations under the License.
+#    #
 ###############################################################################
 
 import sqlite3
 from sqlite3 import Error
 
 from helpers import (dataBasePath, )
-from roster import students
 
 
 ##############################################################################
@@ -67,7 +78,8 @@ conn = sqlite3.connect(dataBasePath)
 
 def createTables():
     """create tables within SQL database for all projects"""
-    sql_create_studentdata_table = """CREATE TABLE IF NOT EXISTS STUDENTDATA(
+    sql_create_studentdata_table = """CREATE TABLE IF NOT EXISTS
+    STUDENTDATA(
         ID INTEGER PRIMARY KEY AUTOINCREMENT,
         STUDENTNAME TEXT NOT NULL,
         DATE TEXT NOT NULL,
@@ -195,7 +207,8 @@ def createTables():
         P4_7 INTEGER
     );"""
     
-    sql_create_abacusdata_table = """CREATE TABLE IF NOT EXISTS ABACUSPROGRESS(
+    sql_create_abacusdata_table = """CREATE TABLE IF NOT EXISTS
+    ABACUSPROGRESS(
         ID INTEGER PRIMARY KEY AUTOINCREMENT,
         STUDENTNAME TEXT NOT NULL,
         DATE TEXT NOT NULL,
@@ -225,7 +238,8 @@ def createTables():
         P8_2 INTEGER
     );"""
     
-    sql_create_cvidata_table = """CREATE TABLE IF NOT EXISTS CVIPROGRESS(
+    sql_create_cvidata_table = """CREATE TABLE IF NOT EXISTS
+    CVIPROGRESS(
         ID INTEGER PRIMARY KEY AUTOINCREMENT,
         STUDENTNAME TEXT NOT NULL,
         DATE TEXT NOT NULL,
@@ -241,7 +255,8 @@ def createTables():
         P2_4 INTEGER NOT NULL
     );"""
     
-    sql_create_iosdata_table = """CREATE TABLE IF NOT EXISTS IOSPROGRESS(
+    sql_create_iosdata_table = """CREATE TABLE IF NOT EXISTS
+    IOSPROGRESS(
         ID INTEGER PRIMARY KEY AUTOINCREMENT,
         STUDENTNAME TEXT NOT NULL,
         DATE TEXT NOT NULL,
@@ -290,7 +305,8 @@ def createTables():
         P6_11 INTEGER NOT NULL
     );"""
     
-    sql_create_bntdata_table = """CREATE TABLE IF NOT EXISTS BNTPROGRESS(
+    sql_create_bntdata_table = """CREATE TABLE IF NOT EXISTS
+    BNTPROGRESS(
         ID INTEGER PRIMARY KEY AUTOINCREMENT,
         STUDENTNAME TEXT NOT NULL,
         DATE TEXT NOT NULL,
@@ -357,7 +373,8 @@ def createTables():
         P12_4 INTEGER NOT NULL
     );"""
     
-    sql_create_elemdigitalliteracydata_table = """CREATE TABLE IF NOT EXISTS ELEMDIGITALLITERACY(
+    sql_create_elemdigitalliteracydata_table = """CREATE TABLE IF NOT
+    EXISTS ELEMDIGITALLITERACY(
         ID INTEGER PRIMARY KEY AUTOINCREMENT,
         STUDENTNAME TEXT NOT NULL,
         DATE TEXT NOT NULL,
@@ -401,7 +418,8 @@ def createTables():
         P7_5 INTEGER NOT NULL
     );"""
     
-    sql_create_hsdigitalliteracydata_table = """CREATE TABLE IF NOT EXISTS HSDIGITALLITERACY(
+    sql_create_hsdigitalliteracydata_table = """CREATE TABLE IF NOT
+    EXISTS HSDIGITALLITERACY(
         ID INTEGER PRIMARY KEY AUTOINCREMENT,
         STUDENTNAME TEXT NOT NULL,
         DATE TEXT NOT NULL,

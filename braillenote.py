@@ -1,47 +1,71 @@
 #!/usr/bin/env python3
 # coding=utf-8
 """
-Program designed to be a data collection and instructional tool for teachers
+Program designed to be a data collection and instructional tool for
+teachers
 of students with Visual Impairments
 """
 ###############################################################################
-#    Copyright 2023 Michael Ryan Hunsaker, M.Ed., Ph.D.                       #
-#    email: hunsakerconsulting@gmail.com                                      #
+#    Copyright 2023 Michael Ryan Hunsaker, M.Ed., Ph.D.
+#    #
+#    email: hunsakerconsulting@gmail.com
+#    #
 #                                                                             #
-#    Licensed under the Apache License, Version 2.0 (the "License");          #
-#    you may not use this file except in compliance with the License.         #
-#    You may obtain a copy of the License at                                  #
+#    Licensed under the Apache License, Version 2.0 (the "License");
+#    #
+#    you may not use this file except in compliance with the License.
+#    #
+#    You may obtain a copy of the License at
+#    #
 #                                                                             #
-#    http://www.apache.org/licenses/LICENSE-2.0                               #
+#    http://www.apache.org/licenses/LICENSE-2.0
+#    #
 #                                                                             #
-#    Unless Required by applicable law or agreed to in writing, software      #
-#    distributed under the License is distributed on an "AS IS" BASIS,        #
-#    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. #
-#    See the License for the specific language governing permissions and      #
-#    limitations under the License.                                           #
+#    Unless Required by applicable law or agreed to in writing,
+#    software      #
+#    distributed under the License is distributed on an "AS IS"
+#    BASIS,        #
+#    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+#    implied. #
+#    See the License for the specific language governing permissions
+#    and      #
+#    limitations under the License.
+#    #
 ###############################################################################
 
 # !/usr/bin/env python3
 # coding=utf-8
 """
-Program designed to be a data collection and instructional tool for teachers
+Program designed to be a data collection and instructional tool for
+teachers
 of students with Visual Impairments
 """
 ###############################################################################
-#    Copyright 2023 Michael Ryan Hunsaker, M.Ed., Ph.D.                       #
-#    email: hunsakerconsulting@gmail.com                                      #
+#    Copyright 2023 Michael Ryan Hunsaker, M.Ed., Ph.D.
+#    #
+#    email: hunsakerconsulting@gmail.com
+#    #
 #                                                                             #
-#    Licensed under the Apache License, Version 2.0 (the "License");          #
-#    you may not use this file except in compliance with the License.         #
-#    You may obtain a copy of the License at                                  #
+#    Licensed under the Apache License, Version 2.0 (the "License");
+#    #
+#    you may not use this file except in compliance with the License.
+#    #
+#    You may obtain a copy of the License at
+#    #
 #                                                                             #
-#    http://www.apache.org/licenses/LICENSE-2.0                               #
+#    http://www.apache.org/licenses/LICENSE-2.0
+#    #
 #                                                                             #
-#    Unless Required by applicable law or agreed to in writing, software      #
-#    distributed under the License is distributed on an "AS IS" BASIS,        #
-#    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. #
-#    See the License for the specific language governing permissions and      #
-#    limitations under the License.                                           #
+#    Unless Required by applicable law or agreed to in writing,
+#    software      #
+#    distributed under the License is distributed on an "AS IS"
+#    BASIS,        #
+#    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+#    implied. #
+#    See the License for the specific language governing permissions
+#    and      #
+#    limitations under the License.
+#    #
 ###############################################################################
 
 import os
@@ -56,7 +80,7 @@ from nicegui import app, ui
 from plotly.subplots import make_subplots
 
 import theme
-from helpers import (dataBasePath, datenow, students, USER_DIR, )
+from helpers import (dataBasePath, datenow, USER_DIR, )
 from roster import students
 
 
@@ -358,8 +382,10 @@ def create() -> None:
                             "StudentDatabase", "StudentDataFiles", studentname, studentdatabasename + ".txt", )
                     filename.write(f"'{tmppath}'" + "\n")
                     filename.close()
-                    list_data = [datenow, bnt_trial11, bnt_trial12, bnt_trial13, bnt_trial14, bnt_trial15, bnt_trial16, bnt_trial17, bnt_trial18, bnt_trial19, bnt_trial21, bnt_trial22, bnt_trial23, bnt_trial24, bnt_trial25, bnt_trial26, bnt_trial27, bnt_trial31, bnt_trial32, bnt_trial33, bnt_trial34, bnt_trial35, bnt_trial36, bnt_trial37, bnt_trial41, bnt_trial42, bnt_trial43, bnt_trial51, bnt_trial52, bnt_trial53, bnt_trial54, bnt_trial55, bnt_trial56, bnt_trial57, bnt_trial61, bnt_trial62, bnt_trial63,
-                                 bnt_trial71, bnt_trial72, bnt_trial73, bnt_trial74, bnt_trial81, bnt_trial82, bnt_trial83, bnt_trial84, bnt_trial85, bnt_trial91, bnt_trial92, bnt_trial93, bnt_trial94, bnt_trial101, bnt_trial102, bnt_trial103, bnt_trial111, bnt_trial112, bnt_trial113, bnt_trial114, bnt_trial115, bnt_trial121, bnt_trial122, bnt_trial123, bnt_trial124]
+                    list_data = [datenow, bnt_trial11, bnt_trial12, bnt_trial13, bnt_trial14, bnt_trial15, bnt_trial16, bnt_trial17, bnt_trial18, bnt_trial19, bnt_trial21, bnt_trial22, bnt_trial23, bnt_trial24, bnt_trial25, bnt_trial26, bnt_trial27,
+                                 bnt_trial31, bnt_trial32, bnt_trial33, bnt_trial34, bnt_trial35, bnt_trial36, bnt_trial37, bnt_trial41, bnt_trial42, bnt_trial43, bnt_trial51, bnt_trial52, bnt_trial53, bnt_trial54, bnt_trial55, bnt_trial56, bnt_trial57,
+                                 bnt_trial61, bnt_trial62, bnt_trial63, bnt_trial71, bnt_trial72, bnt_trial73, bnt_trial74, bnt_trial81, bnt_trial82, bnt_trial83, bnt_trial84, bnt_trial85, bnt_trial91, bnt_trial92, bnt_trial93, bnt_trial94, bnt_trial101,
+                                 bnt_trial102, bnt_trial103, bnt_trial111, bnt_trial112, bnt_trial113, bnt_trial114, bnt_trial115, bnt_trial121, bnt_trial122, bnt_trial123, bnt_trial124]
                     tmppath = Path(USER_DIR).joinpath(
                             "StudentDatabase", "StudentDataFiles", studentname, "bntProgression.csv", )
                     os.chdir(USER_DIR)
@@ -453,8 +479,10 @@ def create() -> None:
                                                                                 ?,
                                                                                 ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?
                                                                                 )""", (
-                                        studentname, datenow, bnt_trial11, bnt_trial12, bnt_trial13, bnt_trial14, bnt_trial15, bnt_trial16, bnt_trial17, bnt_trial18, bnt_trial19, bnt_trial21, bnt_trial22, bnt_trial23, bnt_trial24, bnt_trial25, bnt_trial26, bnt_trial27, bnt_trial31, bnt_trial32, bnt_trial33, bnt_trial34, bnt_trial35, bnt_trial36, bnt_trial37, bnt_trial41, bnt_trial42, bnt_trial43, bnt_trial51, bnt_trial52, bnt_trial53, bnt_trial54, bnt_trial55, bnt_trial56, bnt_trial57, bnt_trial61,
-                                        bnt_trial62, bnt_trial63, bnt_trial71, bnt_trial72, bnt_trial73, bnt_trial74, bnt_trial81, bnt_trial82, bnt_trial83, bnt_trial84, bnt_trial85, bnt_trial91, bnt_trial92, bnt_trial93, bnt_trial94, bnt_trial101, bnt_trial102, bnt_trial103, bnt_trial111, bnt_trial112, bnt_trial113, bnt_trial114, bnt_trial115, bnt_trial121, bnt_trial122, bnt_trial123, bnt_trial124,), )
+                                        studentname, datenow, bnt_trial11, bnt_trial12, bnt_trial13, bnt_trial14, bnt_trial15, bnt_trial16, bnt_trial17, bnt_trial18, bnt_trial19, bnt_trial21, bnt_trial22, bnt_trial23, bnt_trial24, bnt_trial25, bnt_trial26,
+                                        bnt_trial27, bnt_trial31, bnt_trial32, bnt_trial33, bnt_trial34, bnt_trial35, bnt_trial36, bnt_trial37, bnt_trial41, bnt_trial42, bnt_trial43, bnt_trial51, bnt_trial52, bnt_trial53, bnt_trial54, bnt_trial55,
+                                        bnt_trial56, bnt_trial57, bnt_trial61, bnt_trial62, bnt_trial63, bnt_trial71, bnt_trial72, bnt_trial73, bnt_trial74, bnt_trial81, bnt_trial82, bnt_trial83, bnt_trial84, bnt_trial85, bnt_trial91, bnt_trial92,
+                                        bnt_trial93, bnt_trial94, bnt_trial101, bnt_trial102, bnt_trial103, bnt_trial111, bnt_trial112, bnt_trial113, bnt_trial114, bnt_trial115, bnt_trial121, bnt_trial122, bnt_trial123, bnt_trial124,), )
                         conn.commit()
                         ui.notify(
                                 "Saved successfully!", position='center', type='positive', close_button="OK"
@@ -473,7 +501,9 @@ def create() -> None:
                     )
             studentname = u_studentname.value
             conn = sqlite3.connect(dataBasePath)
-            df_sql = pd.read_sql_query("SELECT * FROM BNTPROGRESS", conn)
+            df_sql = pd.read_sql_query(
+                    "SELECT * FROM BNTPROGRESS", conn
+                    )
             df_student = df_sql[df_sql.STUDENTNAME == studentname]
             print(df_student)
             conn.close()
@@ -494,7 +524,7 @@ def create() -> None:
             # df_noisy = df
             df_noisy = df + noise
             fig = make_subplots(
-                    rows=3, cols=4, subplot_titles=("Basic Skills","KeyMath","Calendar","KeyBRF","KeyFiles", "Keymail", "KeyWeb", "KeyCalc","KeyWord",  "KeySlides",   "KeyCode", "Third Party Apps"), print_grid=True
+                    rows=3, cols=4, subplot_titles=("Basic Skills", "KeyMath", "Calendar", "KeyBRF", "KeyFiles", "Keymail", "KeyWeb", "KeyCalc", "KeyWord", "KeySlides", "KeyCode", "Third Party Apps"), print_grid=True
                     )
             fig.add_trace(
                     go.Scatter(
@@ -896,7 +926,7 @@ def create() -> None:
                     )
             fig.add_hrect(
                     y0=2.5, y1=3.5, line_width=0, fillcolor="green", opacity=0.2, row=2, col=4
-                    )       
+                    )
             fig.add_hrect(
                     y0=-.5, y1=.5, line_width=0, fillcolor="red", opacity=0.2, row=3, col=1
                     )
@@ -944,7 +974,7 @@ def create() -> None:
                     )
             fig.add_hrect(
                     y0=2.5, y1=3.5, line_width=0, fillcolor="green", opacity=0.2, row=3, col=4
-                    )           
+                    )
             fig.update_xaxes(
                     rangebreaks=[dict(bounds=["sat", "mon"]), dict(values=[" "])], row=1, col=1
                     )
@@ -990,7 +1020,7 @@ def create() -> None:
             fig.update_yaxes(
                     range=[-.5, 3.5], fixedrange=True, ticktext=["Unable", "Prompted", "Hesitated", "Independent"], tickvals=[0.1, 1, 2, 3], row=3, col=1
                     )
-
+            
             fig.update_layout(template="simple_white", title_text=f"{studentname}: iOS Skills Progression")
             tmppath = Path(USER_DIR).joinpath(
                     'StudentDatabase', 'StudentDataFiles', studentname, 'iosProgression.html'
@@ -998,11 +1028,15 @@ def create() -> None:
             fig.write_html(tmppath, auto_open=True)
             # fig.show()
             ui.notify(
-                    "Graph Successful. The Graphs will open in a Browser "
+                    "Graph Successful. The Graphs will open in a "
+                    "Browser "
                     "Window", position='center', type='positive', close_button="OK", )
         
         with ui.row().classes("w-screen no-wrap"):
-            ui.label("BRAILLENOTE TOUCH PLUS SKILLS PROGRESSION").classes(
+            ui.label(
+                    "BRAILLENOTE TOUCH PLUS SKILLS "
+                    "PROGRESSION"
+                    ).classes(
                     "justify-center "
                     "items-center"
                     )
@@ -1039,7 +1073,8 @@ def create() -> None:
         
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.label(
-                    "RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated "
+                    "RUBRIC: 0=No attempt 1=Required Assistance "
+                    "2=Hesitated "
                     "3=Independent"
                     ).props(
                     'aria-label="RUBRIC: 0=No attempt 1=Required '
@@ -1053,258 +1088,380 @@ def create() -> None:
                     ).classes("sr-only")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
-                    label="1.1", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial11.set_value(e.value), ).classes("w-[200px]").props(
+                    label="1.1", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial11.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
                     'aria-label="LABELX"'
                     ).tooltip("LABELX"),
             ui.number(
-                    label="1.2", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial12.set_value(e.value), ).classes("w-[200px]").props(
+                    label="1.2", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial12.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
                     'aria-label="LABELX"'
                     ).tooltip("LABELX"),
             ui.number(
-                    label="1.3", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial13.set_value(e.value), ).classes("w-[200px]").props(
+                    label="1.3", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial13.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
                     'aria-label="LABELX"'
                     ).tooltip("LABELX"),
             ui.number(
-                    label="1.4", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial14.set_value(e.value), ).classes("w-[200px]").props(
+                    label="1.4", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial14.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
                     'aria-label="LABELX"'
                     ).tooltip("LABELX"),
             ui.number(
-                    label="1.5", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial15.set_value(e.value), ).classes("w-[200px]").props(
+                    label="1.5", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial15.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
                     'aria-label="LABELX"'
                     ).tooltip("LABELX"),
             ui.number(
-                    label="1.6", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial16.set_value(e.value), ).classes("w-[200px]").props(
+                    label="1.6", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial16.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
                     'aria-label="LABELX"'
                     ).tooltip("LABELX"),
             ui.number(
-                    label="1.7", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial17.set_value(e.value), ).classes("w-[200px]").props(
+                    label="1.7", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial17.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
                     'aria-label="LABELX"'
                     ).tooltip("LABELX"),
             ui.number(
-                    label="1.8", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial18.set_value(e.value), ).classes("w-[200px]").props(
+                    label="1.8", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial18.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
                     'aria-label="LABELX"'
                     ).tooltip("LABELX"),
             ui.number(
-                    label="1.9", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial19.set_value(e.value), ).classes("w-[200px]").props(
-                    'aria-label="LABELX"'
-                    ).tooltip("LABELX"),
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                    label="2.1", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial21.set_value(e.value), ).classes("w-[200px]").props(
-                    'aria-label="LABELX"'
-                    ).tooltip("LABELX"),
-            ui.number(
-                    label="2.2", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial22.set_value(e.value), ).classes("w-[200px]").props(
-                    'aria-label="LABELX"'
-                    ).tooltip("LABELX"),
-            ui.number(
-                    label="2.3", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial23.set_value(e.value), ).classes("w-[200px]").props(
-                    'aria-label="LABELX"'
-                    ).tooltip("LABELX"),
-            ui.number(
-                    label="2.4", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial24.set_value(e.value), ).classes("w-[200px]").props(
-                    'aria-label="LABELX"'
-                    ).tooltip("LABELX"),
-            ui.number(
-                    label="2.5", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial25.set_value(e.value), ).classes("w-[200px]").props(
-                    'aria-label="LABELX"'
-                    ).tooltip("LABELX"),
-            ui.number(
-                    label="2.6", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial26.set_value(e.value), ).classes("w-[200px]").props(
-                    'aria-label="LABELX"'
-                    ).tooltip("LABELX"),
-            ui.number(
-                    label="2.7", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial27.set_value(e.value), ).classes("w-[200px]").props(
+                    label="1.9", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial19.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
                     'aria-label="LABELX"'
                     ).tooltip("LABELX"),
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
-                    label="3.1", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial31.set_value(e.value), ).classes("w-[200px]").props(
+                    label="2.1", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial21.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
                     'aria-label="LABELX"'
                     ).tooltip("LABELX"),
             ui.number(
-                    label="3.2", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial32.set_value(e.value), ).classes("w-[200px]").props(
+                    label="2.2", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial22.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
                     'aria-label="LABELX"'
                     ).tooltip("LABELX"),
             ui.number(
-                    label="3.3", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial33.set_value(e.value), ).classes("w-[200px]").props(
+                    label="2.3", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial23.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
                     'aria-label="LABELX"'
                     ).tooltip("LABELX"),
             ui.number(
-                    label="3.4", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial34.set_value(e.value), ).classes("w-[200px]").props(
+                    label="2.4", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial24.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
                     'aria-label="LABELX"'
                     ).tooltip("LABELX"),
             ui.number(
-                    label="3.5", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial35.set_value(e.value), ).classes("w-[200px]").props(
+                    label="2.5", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial25.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
                     'aria-label="LABELX"'
                     ).tooltip("LABELX"),
             ui.number(
-                    label="3.6", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial36.set_value(e.value), ).classes("w-[200px]").props(
+                    label="2.6", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial26.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
                     'aria-label="LABELX"'
                     ).tooltip("LABELX"),
             ui.number(
-                    label="3.7", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial37.set_value(e.value), ).classes("w-[200px]").props(
-                    'aria-label="LABELX"'
-                    ).tooltip("LABELX"),
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                    label="4.1", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial41.set_value(e.value), ).classes("w-[200px]").props(
-                    'aria-label="LABELX"'
-                    ).tooltip("LABELX"),
-            ui.number(
-                    label="4.2", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial42.set_value(e.value), ).classes("w-[200px]").props(
-                    'aria-label="LABELX"'
-                    ).tooltip("LABELX"),
-            ui.number(
-                    label="4.3", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial43.set_value(e.value), ).classes("w-[200px]").props(
-                    'aria-label="LABELX"'
-                    ).tooltip("LABELX"),
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                    label="5.1", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial51.set_value(e.value), ).classes("w-[200px]").props(
-                    'aria-label="LABELX"'
-                    ).tooltip("LABELX"),
-            ui.number(
-                    label="5.2", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial52.set_value(e.value), ).classes("w-[200px]").props(
-                    'aria-label="LABELX"'
-                    ).tooltip("LABELX"),
-            ui.number(
-                    label="5.3", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial53.set_value(e.value), ).classes("w-[200px]").props(
-                    'aria-label="LABELX"'
-                    ).tooltip("LABELX"),
-            ui.number(
-                    label="5.4", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial54.set_value(e.value), ).classes("w-[200px]").props(
-                    'aria-label="LABELX"'
-                    ).tooltip("LABELX"),
-            ui.number(
-                    label="5.5", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial55.set_value(e.value), ).classes("w-[200px]").props(
-                    'aria-label="LABELX"'
-                    ).tooltip("LABELX"),
-            ui.number(
-                    label="5.6", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial56.set_value(e.value), ).classes("w-[200px]").props(
-                    'aria-label="LABELX"'
-                    ).tooltip("LABELX"),
-            ui.number(
-                    label="5.7", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial57.set_value(e.value), ).classes("w-[200px]").props(
+                    label="2.7", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial27.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
                     'aria-label="LABELX"'
                     ).tooltip("LABELX"),
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
-                    label="6.1", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial61.set_value(e.value), ).classes("w-[200px]").props(
+                    label="3.1", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial31.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
                     'aria-label="LABELX"'
                     ).tooltip("LABELX"),
             ui.number(
-                    label="6.2", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial62.set_value(e.value), ).classes("w-[200px]").props(
+                    label="3.2", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial32.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
                     'aria-label="LABELX"'
                     ).tooltip("LABELX"),
             ui.number(
-                    label="6.3", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial63.set_value(e.value), ).classes("w-[200px]").props(
-                    'aria-label="LABELX"'
-                    ).tooltip("LABELX"),
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                    label="7.1", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial71.set_value(e.value), ).classes("w-[200px]").props(
+                    label="3.3", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial33.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
                     'aria-label="LABELX"'
                     ).tooltip("LABELX"),
             ui.number(
-                    label="7.2", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial72.set_value(e.value), ).classes("w-[200px]").props(
+                    label="3.4", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial34.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
                     'aria-label="LABELX"'
                     ).tooltip("LABELX"),
             ui.number(
-                    label="7.3", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial73.set_value(e.value), ).classes("w-[200px]").props(
+                    label="3.5", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial35.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
                     'aria-label="LABELX"'
                     ).tooltip("LABELX"),
             ui.number(
-                    label="7.4", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial74.set_value(e.value), ).classes("w-[200px]").props(
-                    'aria-label="LABELX"'
-                    ).tooltip("LABELX"),
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                    label="8.1", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial81.set_value(e.value), ).classes("w-[200px]").props(
+                    label="3.6", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial36.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
                     'aria-label="LABELX"'
                     ).tooltip("LABELX"),
             ui.number(
-                    label="8.2", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial82.set_value(e.value), ).classes("w-[200px]").props(
-                    'aria-label="LABELX"'
-                    ).tooltip("LABELX"),
-            ui.number(
-                    label="8.3", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial83.set_value(e.value), ).classes("w-[200px]").props(
-                    'aria-label="LABELX"'
-                    ).tooltip("LABELX"),
-            ui.number(
-                    label="8.4", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial84.set_value(e.value), ).classes("w-[200px]").props(
-                    'aria-label="LABELX"'
-                    ).tooltip("LABELX"),
-            ui.number(
-                    label="8.5", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial85.set_value(e.value), ).classes("w-[200px]").props(
+                    label="3.7", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial37.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
                     'aria-label="LABELX"'
                     ).tooltip("LABELX"),
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
-                    label="9.1", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial91.set_value(e.value), ).classes("w-[200px]").props(
+                    label="4.1", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial41.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
                     'aria-label="LABELX"'
                     ).tooltip("LABELX"),
             ui.number(
-                    label="9.2", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial92.set_value(e.value), ).classes("w-[200px]").props(
+                    label="4.2", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial42.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
                     'aria-label="LABELX"'
                     ).tooltip("LABELX"),
             ui.number(
-                    label="9.3", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial93.set_value(e.value), ).classes("w-[200px]").props(
-                    'aria-label="LABELX"'
-                    ).tooltip("LABELX"),
-            ui.number(
-                    label="9.4", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial94.set_value(e.value), ).classes("w-[200px]").props(
-                    'aria-label="LABELX"'
-                    ).tooltip("LABELX"),
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                    label="10.1", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial101.set_value(e.value), ).classes("w-[200px]").props(
-                    'aria-label="LABELX"'
-                    ).tooltip("LABELX"),
-            ui.number(
-                    label="10.2", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial102.set_value(e.value), ).classes("w-[200px]").props(
-                    'aria-label="LABELX"'
-                    ).tooltip("LABELX"),
-            ui.number(
-                    label="10.3", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial103.set_value(e.value), ).classes("w-[200px]").props(
+                    label="4.3", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial43.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
                     'aria-label="LABELX"'
                     ).tooltip("LABELX"),
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
-                    label="11.1", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial111.set_value(e.value), ).classes("w-[200px]").props(
+                    label="5.1", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial51.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
                     'aria-label="LABELX"'
                     ).tooltip("LABELX"),
             ui.number(
-                    label="11.2", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial112.set_value(e.value), ).classes("w-[200px]").props(
+                    label="5.2", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial52.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
                     'aria-label="LABELX"'
                     ).tooltip("LABELX"),
             ui.number(
-                    label="11.3", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial113.set_value(e.value), ).classes("w-[200px]").props(
+                    label="5.3", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial53.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
                     'aria-label="LABELX"'
                     ).tooltip("LABELX"),
             ui.number(
-                    label="11.4", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial114.set_value(e.value), ).classes("w-[200px]").props(
+                    label="5.4", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial54.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
                     'aria-label="LABELX"'
                     ).tooltip("LABELX"),
             ui.number(
-                    label="11.5", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial115.set_value(e.value), ).classes("w-[200px]").props(
+                    label="5.5", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial55.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="LABELX"'
+                    ).tooltip("LABELX"),
+            ui.number(
+                    label="5.6", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial56.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="LABELX"'
+                    ).tooltip("LABELX"),
+            ui.number(
+                    label="5.7", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial57.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
                     'aria-label="LABELX"'
                     ).tooltip("LABELX"),
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
-                    label="12.1", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial121.set_value(e.value), ).classes("w-[200px]").props(
+                    label="6.1", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial61.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
                     'aria-label="LABELX"'
                     ).tooltip("LABELX"),
             ui.number(
-                    label="12.2", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial122.set_value(e.value), ).classes("w-[200px]").props(
+                    label="6.2", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial62.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
                     'aria-label="LABELX"'
                     ).tooltip("LABELX"),
             ui.number(
-                    label="12.3", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial123.set_value(e.value), ).classes("w-[200px]").props(
+                    label="6.3", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial63.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="LABELX"'
+                    ).tooltip("LABELX"),
+        with ui.row().classes("w-screen no-wrap py-4"):
+            ui.number(
+                    label="7.1", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial71.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
                     'aria-label="LABELX"'
                     ).tooltip("LABELX"),
             ui.number(
-                    label="12.4", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial124.set_value(e.value), ).classes("w-[200px]").props(
+                    label="7.2", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial72.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="LABELX"'
+                    ).tooltip("LABELX"),
+            ui.number(
+                    label="7.3", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial73.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="LABELX"'
+                    ).tooltip("LABELX"),
+            ui.number(
+                    label="7.4", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial74.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="LABELX"'
+                    ).tooltip("LABELX"),
+        with ui.row().classes("w-screen no-wrap py-4"):
+            ui.number(
+                    label="8.1", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial81.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="LABELX"'
+                    ).tooltip("LABELX"),
+            ui.number(
+                    label="8.2", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial82.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="LABELX"'
+                    ).tooltip("LABELX"),
+            ui.number(
+                    label="8.3", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial83.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="LABELX"'
+                    ).tooltip("LABELX"),
+            ui.number(
+                    label="8.4", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial84.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="LABELX"'
+                    ).tooltip("LABELX"),
+            ui.number(
+                    label="8.5", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial85.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="LABELX"'
+                    ).tooltip("LABELX"),
+        with ui.row().classes("w-screen no-wrap py-4"):
+            ui.number(
+                    label="9.1", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial91.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="LABELX"'
+                    ).tooltip("LABELX"),
+            ui.number(
+                    label="9.2", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial92.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="LABELX"'
+                    ).tooltip("LABELX"),
+            ui.number(
+                    label="9.3", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial93.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="LABELX"'
+                    ).tooltip("LABELX"),
+            ui.number(
+                    label="9.4", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial94.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="LABELX"'
+                    ).tooltip("LABELX"),
+        with ui.row().classes("w-screen no-wrap py-4"):
+            ui.number(
+                    label="10.1", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial101.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="LABELX"'
+                    ).tooltip("LABELX"),
+            ui.number(
+                    label="10.2", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial102.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="LABELX"'
+                    ).tooltip("LABELX"),
+            ui.number(
+                    label="10.3", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial103.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="LABELX"'
+                    ).tooltip("LABELX"),
+        with ui.row().classes("w-screen no-wrap py-4"):
+            ui.number(
+                    label="11.1", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial111.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="LABELX"'
+                    ).tooltip("LABELX"),
+            ui.number(
+                    label="11.2", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial112.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="LABELX"'
+                    ).tooltip("LABELX"),
+            ui.number(
+                    label="11.3", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial113.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="LABELX"'
+                    ).tooltip("LABELX"),
+            ui.number(
+                    label="11.4", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial114.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="LABELX"'
+                    ).tooltip("LABELX"),
+            ui.number(
+                    label="11.5", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial115.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="LABELX"'
+                    ).tooltip("LABELX"),
+        with ui.row().classes("w-screen no-wrap py-4"):
+            ui.number(
+                    label="12.1", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial121.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="LABELX"'
+                    ).tooltip("LABELX"),
+            ui.number(
+                    label="12.2", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial122.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="LABELX"'
+                    ).tooltip("LABELX"),
+            ui.number(
+                    label="12.3", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial123.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
+                    'aria-label="LABELX"'
+                    ).tooltip("LABELX"),
+            ui.number(
+                    label="12.4", min=0, max=3, format="%.0f", on_change=lambda e: u_bnt_trial124.set_value(
+                            e.value
+                            ), ).classes("w-[200px]").props(
                     'aria-label="LABELX"'
                     ).tooltip("LABELX"),
         with ui.row().classes("w-screen no-wrap py-4"):
@@ -1317,4 +1474,3 @@ def create() -> None:
             ui.button(
                     "EXIT", color="#172554", on_click=app.shutdown
                     ).classes("text-white")
-

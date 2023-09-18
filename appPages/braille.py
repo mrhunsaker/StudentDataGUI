@@ -44,9 +44,9 @@ import plotly.graph_objects as go
 from nicegui import app, ui
 from plotly.subplots import make_subplots
 
-import theme
-from helpers import (dataBasePath, datenow, USER_DIR, )
-from roster import students
+from appPages import theme
+from appHelpers.helpers import (dataBasePath, datenow, USER_DIR, )
+from appHelpers.roster import students
 
 
 def create() -> None:

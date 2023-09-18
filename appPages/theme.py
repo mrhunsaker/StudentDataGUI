@@ -37,7 +37,7 @@ from contextlib import contextmanager
 
 from nicegui import ui
 
-from menu import menu
+from appPages.menu import menu
 
 
 @contextmanager

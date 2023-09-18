@@ -34,7 +34,7 @@ of students with Visual Impairments
 
 from nicegui import ui
 
-import theme
+from appPages import theme
 
 
 @ui.page('/instructionalmaterials')

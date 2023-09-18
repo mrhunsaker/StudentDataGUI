@@ -36,7 +36,7 @@ of students with Visual Impairments
 import sqlite3
 from sqlite3 import Error
 
-from helpers import (dataBasePath, )
+from appHelpers.helpers import (dataBasePath, )
 
 
 ##############################################################################

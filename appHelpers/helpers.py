@@ -43,7 +43,7 @@ from sqlite3 import Error
 
 from nicegui import ui
 
-from roster import students
+from appHelpers.roster import students
 
 ##############################################################################
 # Set User Directory based on OS

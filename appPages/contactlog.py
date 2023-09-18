@@ -37,9 +37,9 @@ from pathlib import Path
 
 from nicegui import app, ui
 
-import theme
-from helpers import (datenow, USER_DIR, )
-from roster import students
+from appPages import theme
+from appHelpers.helpers import (datenow, USER_DIR, )
+from appHelpers.roster import students
 
 
 def create() -> None:

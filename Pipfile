@@ -26,6 +26,7 @@ pylint = "*"
 pyright = "*"
 ruff = "*"
 pytest = "*"
+flake8-pyproject = "*"
 
 [dev-packages]
 

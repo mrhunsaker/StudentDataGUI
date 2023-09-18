@@ -36,5 +36,28 @@ of students with Visual Impairments
 ##############################################################################
 # Current Students for Project
 ##############################################################################
-students = ['DonaldChamberlain', 'AshlynnNelson', 'AvaWilson', 'BaraahAlArbid', 'BelleWinegar', 'CelestialNelson', 'ClairePeterson', 'ColbieBlodgett', 'ColeHalbasch', 'ElyseStephensen', 'EmmaTorres', 'GrantChristensen', 'HunterTrevino', 'JerseyLenoard',
-            'KahvonFord', 'LilyVanwagoner', 'MilesWebster', 'OliviaEvershed', 'PaulaSackett', 'PrimrosePeterson', 'RoninSorenson', 'TrinityKellum', 'TylerAshby']
+students = [
+    "DonaldChamberlain",
+    "AshlynnNelson",
+    "AvaWilson",
+    "BaraahAlArbid",
+    "BelleWinegar",
+    "CelestialNelson",
+    "ClairePeterson",
+    "ColbieBlodgett",
+    "ColeHalbasch",
+    "ElyseStephensen",
+    "EmmaTorres",
+    "GrantChristensen",
+    "HunterTrevino",
+    "JerseyLenoard",
+    "KahvonFord",
+    "LilyVanwagoner",
+    "MilesWebster",
+    "OliviaEvershed",
+    "PaulaSackett",
+    "PrimrosePeterson",
+    "RoninSorenson",
+    "TrinityKellum",
+    "TylerAshby",
+]

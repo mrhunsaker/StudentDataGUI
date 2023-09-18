@@ -35,9 +35,8 @@ from appHelpers.roster import students
 
 
 def create() -> None:
-    ##########################################################################
-    # ANECDOTAL NOTES
-    ##########################################################################
+    """Creates Anecdotal Notes Page"""
+
     @ui.page("/anecdotalnotes")
     def anecdotalnotes():
         with theme.frame("- ANECDOTAL NOTES -"):
@@ -69,7 +68,7 @@ def create() -> None:
                 studentname = u_studentname.value
                 date = datenow
                 anecdotalnotes = u_anecdotalnotes.value
-                tasks = u_tasks.value
+                task = u_tasks.value
                 trial01 = (str(int(u_trial01.value)),)
                 trial02 = (str(int(u_trial02.value)),)
                 trial03 = (str(int(u_trial03.value)),)
@@ -83,7 +82,7 @@ def create() -> None:
                 trial11 = str(int(u_trial11.value))
 
                 studentdatabasename = (
-                    f"anecdotalnotes{studentname.title()}" f"{datenow}"
+                    f"anecdotalnotes{studentname.title()}{datenow}"
                 )
                 tmppath = Path(USER_DIR).joinpath(
                     "StudentDatabase",
@@ -166,9 +165,7 @@ def create() -> None:
                 ui.date().bind_value(date)
         with ui.row().classes("w-screen no-wrap"):
             ui.select(
-                options=tasks,
-                with_input=True,
-                on_change=lambda e: ui.notify(e.value),
+                options=tasks, with_input=True, on_change=lambda e: ui.notify(e.value)
             ).bind_value(u_tasks, "value").classes("w-[300px]").props(
                 'aria-label="Select Student from the Dropdown. It '
                 "will "

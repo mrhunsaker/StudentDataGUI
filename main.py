@@ -5,7 +5,7 @@ Program designed to be a data collection and instructional tool for
 teachers of students with Visual Impairments
 """
 #########################################################################
-#    Copyright 2023 Michael Ryan Hunsaker, M.Ed., Ph.D.                 # 
+#    Copyright 2023 Michael Ryan Hunsaker, M.Ed., Ph.D.                 #
 #    email: hunsakerconsulting@gmail.com                                #
 #                                                                       #
 #                                                                       #
@@ -22,9 +22,10 @@ teachers of students with Visual Impairments
 #########################################################################
 
 import sys
-import os 
+import os
 from nicegui import ui
 from screeninfo import get_monitors
+
 module_path = os.path.abspath(os.getcwd())
 if module_path not in sys.path:
     sys.path.append(module_path)
@@ -41,7 +42,7 @@ from appPages import ios
 from appPages import screenreader
 from appPages import theme
 from appHelpers.helpers import createFolderHierarchy, dataBasePath, warningmessage
-from appHelpers.sqlgenerate import (create_connection, createTables)
+from appHelpers.sqlgenerate import create_connection, createTables
 
 createFolderHierarchy()
 create_connection(dataBasePath)
@@ -52,12 +53,10 @@ sys.excepthook = warningmessage
 ########################################################################
 # Begin GUI
 ########################################################################
-@ui.page('/')
+@ui.page("/")
 def index_page() -> None:
     """Opens Homepage for App"""
-    with theme.frame(
-        'Student Skills Progressions'
-        ):
+    with theme.frame("Student Skills Progressions"):
         homepage.content()
 
 
@@ -79,45 +78,32 @@ InstructionalMaterials.create()
 ########################################################################
 with ui.footer(value=True) as footer:
     with ui.row().classes(
-            "w-screen no-wrap justify-center "
-            "items-center text-l font-bold"
-            ):
-        ui.label(
-                "Copyright © 2023 Michael Ryan Hunsaker, M.Ed., "
-                "Ph.D."
-                ).classes(
-                    "justify-center items-center"
-                    )
+        "w-screen no-wrap justify-center " "items-center text-l font-bold"
+    ):
+        ui.label("Copyright © 2023 Michael Ryan Hunsaker, M.Ed., " "Ph.D.").classes(
+            "justify-center items-center"
+        )
     with ui.row().classes(
-            "w-screen no-wrap justify-center "
-            "items-centertext-l font-bold"
-            ):
+        "w-screen no-wrap justify-center " "items-centertext-l font-bold"
+    ):
         ui.label(
-                "Report Bugs or Request Features by emailing "
-                "hunsakerconsulting@gmail.com"
-                ).classes(
-                    "justify-center items-center"
-                    )
+            "Report Bugs or Request Features by emailing "
+            "hunsakerconsulting@gmail.com"
+        ).classes("justify-center items-center")
 
 ########################################################################
 # EXECUTE PROGRAM WINDOW
 ########################################################################
-'''Get Monitor Size to allow me to create the app to fill screen without setting fullscreen=True. 72 is subtracted from the height to accommodate the height of my Taskbar'''
-
-MONITOR = ""
 for MONITOR in get_monitors():
-    SCREENRESOLUTION = "{str(monitor.width)}x{str(monitor.height)}"
-
+    SCREENRESOLUTION = "{str(MONITOR.width)}x{str(MONITOR.height)}"
 ########################################################################
 # RUN CALL
 ########################################################################
 ui.run(
-        native=True, 
-        reload=False, 
-        dark=False, 
-        title="Student Skills Progressions", 
-        fullscreen=False, 
-        window_size=(
-            MONITOR.width, 
-            MONITOR.height - 72), 
-            )
+    native=True,
+    reload=False,
+    dark=False,
+    title="Student Skills Progressions",
+    fullscreen=False,
+    window_size=(MONITOR.width, MONITOR.height - 72),
+)

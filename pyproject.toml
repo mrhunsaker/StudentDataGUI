@@ -1,0 +1,16 @@
+[project]
+name = "Student Vision Skills Progression Data Collection GUI"
+version = "0.1.0a"
+authors = [{name = "Michael Ryan Hunsaker, M.Ed, Ph.D.", email = "hunsakerconsulting@gmail.com"}]
+description = "  "
+
+[tools.flake8]
+exclude = ""
+max-line-length = 88
+exclude = [".git", "__pycache__"]
+ignore = [E201, E202, E203, E266, E265, E402, E501]
+
+[tools.black]
+line-length = 99
+target-version = ['py37', 'py38', 'py39', 'py310', 'py311']
+exclude = [".git", "__pycache__"]

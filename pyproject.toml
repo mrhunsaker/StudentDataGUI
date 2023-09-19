@@ -6,11 +6,28 @@ description = "  "
 
 [tools.flake8]
 exclude = ""
-max-line-length = 88
-exclude = [".git", "__pycache__"]
-ignore = [E201, E202, E203, E266, E265, E402, E501]
+max-line-length = 512
+ignore = ["E201", "E202", "E203", "E266", "E265", "E402", "E501"]
 
 [tools.black]
-line-length = 99
+line-length = 512
 target-version = ['py37', 'py38', 'py39', 'py310', 'py311']
-exclude = [".git", "__pycache__"]
+
+[tool.pylint.'MESSAGES CONTROL']
+max-line-length = 512
+disable = [
+    "C0103", # (invalid-name)
+    "C0114", # (missing-module-docstring)
+    "C0115", # (missing-class-docstring)
+    "C0116", # (missing-function-docstring)
+    "R0903", # (too-few-public-methods)
+    "R0913", # (too-many-arguments)
+    "W0105", # (pointless-string-statement)
+    "R0915",
+    "W0109",
+    "W0108",
+    "C0103"
+]
+good-names=[
+    "i"
+]

@@ -28,7 +28,7 @@ from nicegui import app, ui
 
 from appHelpers.helpers import datenow, USER_DIR
 from appHelpers.roster import students
-from appPages import theme
+from appTheming import theme
 
 
 def create() -> None:
@@ -36,7 +36,7 @@ def create() -> None:
     # CONTACT LOG
     ##########################################################################
     @ui.page("/contactlog")
-    def contactlog():
+    def contactlog() -> None:
         with theme.frame("- CONTACT LOG -"):
             ui.label("CONTACT LOG").classes("text-h4 text-grey-8")
             u_studentname = ui.select(
@@ -80,7 +80,7 @@ def create() -> None:
                 contactGeneral = u_contactGeneral.value
                 contactSpecific = u_contactSpecific.value
                 contactNotes = u_contactNotes.value
-
+                
                 studentdatabasename = f"contact{studentname.title()}{datenow}"
                 tmppath = Path(USER_DIR).joinpath(
                     "StudentDatabase",
@@ -102,13 +102,27 @@ def create() -> None:
                 }
                 with open(tmppath, "w") as filename:
                     json.dump(contactlog_dictionary, filename)
-                filename.close()
+                tmppath = Path(USER_DIR).joinpath(
+                        "StudentDatabase", "StudentDataFiles", "Filenames.txt"
+                    )
+                    filename = open(tmppath, "a")
+                    tmppath = Path(USER_DIR).joinpath(
+                        "StudentDatabase",
+                        "StudentDataFiles",
+                        studentname,
+                        studentdatabasename + ".json",
+                    )
+                    filename.write(f"{tmppath}" + "\n")
+                    filename.close()
+                
+                
                 ui.notify(
                     "Saved successfully!",
                     position="center",
                     type="positive",
                     close_button="OK",
                 )
+                
 
             with ui.row().classes("w-full no-wrap py-4"):
                 ui.label().classes("w-[250px]")

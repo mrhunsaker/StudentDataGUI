@@ -35,7 +35,7 @@ from plotly.subplots import make_subplots
 
 from appHelpers.helpers import dataBasePath, datenow, USER_DIR
 from appHelpers.roster import students
-from appPages import theme
+from appTheming import theme
 
 
 def create() -> None:
@@ -43,9 +43,9 @@ def create() -> None:
     # BRAILLENOTE TOUCH  SKILLS
     ##########################################################################
     @ui.page("/braillenotetouchskills")
-    def braillenotetouchskills():
+    def braillenotetouchskills() -> None:
         with theme.frame("- BRAILLENOTE TOUCH PLUS SKILLS -"):
-            ui.label("BRAILLENOTE TOUCH PLUS SKILLS").classes("text-h4 " "text-grey-8")
+            ui.label("BRAILLENOTE TOUCH PLUS SKILLS").classes("text-h4 text-grey-8")
 
             # ASSIGN VARIABLES
             u_studentname = ui.select(
@@ -256,7 +256,6 @@ def create() -> None:
                 }
                 with open(tmppath, "w") as filename:
                     json.dump(bnt_dictionary,filename)
-                filename.close()
                 tmppath = Path(USER_DIR).joinpath(
                     "StudentDatabase", "StudentDataFiles", "Filenames.txt"
                 )
@@ -265,98 +264,10 @@ def create() -> None:
                     "StudentDatabase",
                     "StudentDataFiles",
                     studentname,
-                    studentdatabasename + ".txt",
+                    studentdatabasename + ".json",
                 )
                 filename.write(f"'{tmppath}'" + "\n")
                 filename.close()
-                tmppath = Path(USER_DIR).joinpath(
-                    "StudentDatabase", "StudentDataFiles", "Filenames.txt"
-                )
-                filename = open(tmppath, "a")
-                tmppath = Path(USER_DIR).joinpath(
-                    "StudentDatabase",
-                    "StudentDataFiles",
-                    studentname,
-                    studentdatabasename + ".txt",
-                )
-                filename.write(f"'{tmppath}'" + "\n")
-                filename.close()
-                list_data = [
-                    datenow,
-                    bnt_trial11,
-                    bnt_trial12,
-                    bnt_trial13,
-                    bnt_trial14,
-                    bnt_trial15,
-                    bnt_trial16,
-                    bnt_trial17,
-                    bnt_trial18,
-                    bnt_trial19,
-                    bnt_trial21,
-                    bnt_trial22,
-                    bnt_trial23,
-                    bnt_trial24,
-                    bnt_trial25,
-                    bnt_trial26,
-                    bnt_trial27,
-                    bnt_trial31,
-                    bnt_trial32,
-                    bnt_trial33,
-                    bnt_trial34,
-                    bnt_trial35,
-                    bnt_trial36,
-                    bnt_trial37,
-                    bnt_trial41,
-                    bnt_trial42,
-                    bnt_trial43,
-                    bnt_trial51,
-                    bnt_trial52,
-                    bnt_trial53,
-                    bnt_trial54,
-                    bnt_trial55,
-                    bnt_trial56,
-                    bnt_trial57,
-                    bnt_trial61,
-                    bnt_trial62,
-                    bnt_trial63,
-                    bnt_trial71,
-                    bnt_trial72,
-                    bnt_trial73,
-                    bnt_trial74,
-                    bnt_trial81,
-                    bnt_trial82,
-                    bnt_trial83,
-                    bnt_trial84,
-                    bnt_trial85,
-                    bnt_trial91,
-                    bnt_trial92,
-                    bnt_trial93,
-                    bnt_trial94,
-                    bnt_trial101,
-                    bnt_trial102,
-                    bnt_trial103,
-                    bnt_trial111,
-                    bnt_trial112,
-                    bnt_trial113,
-                    bnt_trial114,
-                    bnt_trial115,
-                    bnt_trial121,
-                    bnt_trial122,
-                    bnt_trial123,
-                    bnt_trial124,
-                ]
-                tmppath = Path(USER_DIR).joinpath(
-                    "StudentDatabase",
-                    "StudentDataFiles",
-                    studentname,
-                    "bntProgression.csv",
-                )
-                os.chdir(USER_DIR)
-                with open(tmppath, "a", newline="") as f_setup:
-                    writer_setup = writer(f_setup)
-                    writer_setup.writerow(list_data)
-                    f_setup.close()
-
                     # noinspection SqlResolve
                     def data_entry():
                         """ """
@@ -1803,37 +1714,31 @@ def create() -> None:
                 "StudentDatabase",
                 "StudentDataFiles",
                 studentname,
-                "iosProgression.html",
+                "bntProgression.html",
             )
             fig.write_html(tmppath, auto_open=True)
             # fig.show()
             ui.notify(
-                "Graph Successful. The Graphs will open in a " "Browser " "Window",
+                "Graph Successful. The Graphs will open in a Browser Window",
                 position="center",
                 type="positive",
                 close_button="OK",
             )
 
         with ui.row().classes("w-screen no-wrap"):
-            ui.label("BRAILLENOTE TOUCH PLUS SKILLS " "PROGRESSION").classes(
-                "justify-center " "items-center"
+            ui.label("BRAILLENOTE TOUCH PLUS SKILLS PROGRESSION").classes(
+                "justify-center items-center"
             )
         with ui.row().classes("w-screen no-wrap"):
             ui.select(
                 options=students,
                 with_input=True,
                 on_change=lambda e: ui.notify(e.value),
-            ).bind_value(u_studentname, "value").classes("w-[" "300px]").props(
-                'aria-label="Select Student from the Dropdown. It '
-                "will "
-                'autocomplete as you type"'
-            ).tooltip(
-                "Type Student Name, it will autocomplete AS you " "type"
+            ).bind_value(u_studentname, "value").classes("w-[" "300px]").props('aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
+            ).tooltip("Type Student Name, it will autocomplete AS you type"
             )
-            with ui.input("Date").classes("w-[300px]").props(
-                'aria-label="Date. Please type in date using the ' 'YYYY-MM-DD format"'
-            ).tooltip(
-                "Date. Please type in date using the " "YYYY-MM-DD format"
+            with ui.input("Date").classes("w-[300px]").props('aria-label="Date. Please type in date using the YYYY-MM-DD format"'
+            ).tooltip("Date. Please type in date using the YYYY-MM-DD format"
             ) as date:
                 with date.add_slot("append"):
                     ui.icon("edit_calendar").on("click", lambda: menu.open()).classes(
@@ -1844,21 +1749,13 @@ def create() -> None:
 
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.label(
-                "RUBRIC: 0=No attempt 1=Required Assistance "
-                "2=Hesitated "
-                "3=Independent"
-            ).props(
-                'aria-label="RUBRIC: 0=No attempt 1=Required '
-                "Assistance "
-                '2=Hesitated 3=Independent" content-center'
+                "RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated  3=Independent"
+            ).props('aria-label="RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent" content-center'
             )
-            ui.input().props(
-                'aria-label="RUBRIC: 0=No attempt 1=Required '
-                "Assistance "
-                '2=Hesitated 3=Independent" content-center'
+            ui.input().props('aria-label="RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent" content-center'
             ).classes("sr-only")
         with ui.row().classes("w-screen no-wrap py-4"):
-            ui.label("Phase 1: Basic SKills").classes("justify-center " "items-center")
+            ui.label("Phase 1: Basic SKills").classes("justify-center items-center")
             ui.input().props('aria-label="Phase 1: Basic SKills"').classes("sr-only")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
@@ -1925,7 +1822,7 @@ def create() -> None:
                 on_change=lambda e: u_bnt_trial19.set_value(e.value),
             ).classes("w-[200px]").props('aria-label="System Updates"').tooltip("System Updates"),
         with ui.row().classes("w-screen no-wrap py-4"):
-            ui.label("Phase 2: KeySoft Programs - KeyFiles").classes("justify-center " "items-center")
+            ui.label("Phase 2: KeySoft Programs - KeyFiles").classes("justify-center items-center")
             ui.input().props('aria-label="Phase 2: KeySoft Programs - KeyFiles"').classes("sr-only")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
@@ -1978,7 +1875,7 @@ def create() -> None:
                 on_change=lambda e: u_bnt_trial27.set_value(e.value),
             ).classes("w-[200px]").props('aria-label="File and folder commands"').tooltip("File and folder commands"),
         with ui.row().classes("w-screen no-wrap py-4"):
-            ui.label("Phase 3: KeySoft Programs - KeyWord").classes("justify-center " "items-center")
+            ui.label("Phase 3: KeySoft Programs - KeyWord").classes("justify-center items-center")
             ui.input().props('aria-label="Phase 3: KeySoft Programs - KeyWord"').classes("sr-only")
     
         with ui.row().classes("w-screen no-wrap py-4"):
@@ -2032,7 +1929,7 @@ def create() -> None:
                 on_change=lambda e: u_bnt_trial37.set_value(e.value),
             ).classes("w-[200px]").props('aria-label="Save as Word File"').tooltip("Save as Word File"),
         with ui.row().classes("w-screen no-wrap py-4"):
-            ui.label("Phase 4: KeySoft Programs - Keymath").classes("justify-center " "items-center")
+            ui.label("Phase 4: KeySoft Programs - Keymath").classes("justify-center items-center")
             ui.input().props('aria-label="Phase 4: KeySoft Programs - Keymath"').classes("sr-only")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
@@ -2057,7 +1954,7 @@ def create() -> None:
                 on_change=lambda e: u_bnt_trial43.set_value(e.value),
             ).classes("w-[200px]").props('aria-label="Generate and Read Graphics"').tooltip("Generate and Read Graphics"),
         with ui.row().classes("w-screen no-wrap py-4"):
-            ui.label("Phase 5: KeySoft Programs - KeyMail").classes("justify-center " "items-center")
+            ui.label("Phase 5: KeySoft Programs - KeyMail").classes("justify-center items-center")
             ui.input().props('aria-label="Phase 5: KeySoft Programs - KeyMail"').classes("sr-only")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
@@ -2110,7 +2007,7 @@ def create() -> None:
                 on_change=lambda e: u_bnt_trial57.set_value(e.value),
             ).classes("w-[200px]").props('aria-label="Deleting an email account"').tooltip("Deleting an email account"),
         with ui.row().classes("w-screen no-wrap py-4"):
-            ui.label("Phase 6: KeySoft Programs - KeySlides").classes("justify-center " "items-center")
+            ui.label("Phase 6: KeySoft Programs - KeySlides").classes("justify-center items-center")
             ui.input().props('aria-label="Phase 6: KeySoft Programs - KeySlides"').classes("sr-only")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
@@ -2135,7 +2032,7 @@ def create() -> None:
                 on_change=lambda e: u_bnt_trial63.set_value(e.value),
             ).classes("w-[200px]").props('aria-label="Navigating in your presentation document"').tooltip("Navigating in your presentation document"),
         with ui.row().classes("w-screen no-wrap py-4"):
-            ui.label("Phase 7: KeySoft Programs - Calendar").classes("justify-center " "items-center")
+            ui.label("Phase 7: KeySoft Programs - Calendar").classes("justify-center items-center")
             ui.input().props('aria-label="Phase 7: KeySoft Programs - Calendar"').classes("sr-only")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
@@ -2167,7 +2064,7 @@ def create() -> None:
                 on_change=lambda e: u_bnt_trial74.set_value(e.value),
             ).classes("w-[200px]").props('aria-label="Navigating Day View"').tooltip("Navigating Day View"),
         with ui.row().classes("w-screen no-wrap py-4"):
-            ui.label("Phase 8: KeySoft Programs - KeyMail").classes("justify-center " "items-center")
+            ui.label("Phase 8: KeySoft Programs - KeyMail").classes("justify-center items-center")
             ui.input().props('aria-label="Phase 8: KeySoft Programs - KeyMail"').classes("sr-only")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
@@ -2206,7 +2103,7 @@ def create() -> None:
                 on_change=lambda e: u_bnt_trial85.set_value(e.value),
             ).classes("w-[200px]").props('aria-label="Downloading Files"').tooltip("Downloading Files"),
         with ui.row().classes("w-screen no-wrap py-4"):
-            ui.label("Phase 9: KeySoft Programs - KeyCalc").classes("justify-center " "items-center")
+            ui.label("Phase 9: KeySoft Programs - KeyCalc").classes("justify-center items-center")
             ui.input().props('aria-label="Phase 9: KeySoft Programs - KeyCalc"').classes("sr-only")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
@@ -2238,7 +2135,7 @@ def create() -> None:
                 on_change=lambda e: u_bnt_trial94.set_value(e.value),
             ).classes("w-[200px]").props('aria-label="History"').tooltip("History"),
         with ui.row().classes("w-screen no-wrap py-4"):
-            ui.label("Phase 10: KeySoft Programs - KeyBRF").classes("justify-center " "items-center")
+            ui.label("Phase 10: KeySoft Programs - KeyBRF").classes("justify-center items-center")
             ui.input().props('aria-label="Phase 10: KeySoft Programs - KeyBRF"').classes("sr-only")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
@@ -2263,7 +2160,7 @@ def create() -> None:
                 on_change=lambda e: u_bnt_trial103.set_value(e.value),
             ).classes("w-[200px]").props('aria-label="Finding Braille Text"').tooltip("Finding Braille Text"),
         with ui.row().classes("w-screen no-wrap py-4"):
-            ui.label("Phase 11: KeySoft Programs - KeyCode").classes("justify-center " "items-center")
+            ui.label("Phase 11: KeySoft Programs - KeyCode").classes("justify-center items-center")
             ui.input().props('aria-label="Phase 11: KeySoft Programs - KeyCode"').classes("sr-only")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
@@ -2302,7 +2199,7 @@ def create() -> None:
                 on_change=lambda e: u_bnt_trial115.set_value(e.value),
             ).classes("w-[200px]").props('aria-label="Coding with KeyCode"').tooltip("Coding with KeyCode"),
         with ui.row().classes("w-screen no-wrap py-4"):
-            ui.label("Phase 12: Third Party Apps").classes("justify-center " "items-center")
+            ui.label("Phase 12: Third Party Apps").classes("justify-center items-center")
             ui.input().props('aria-label="Phase 12: Third Party Apps"').classes("sr-only")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(

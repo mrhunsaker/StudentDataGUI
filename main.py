@@ -41,7 +41,7 @@ from appPages import homepage
 from appPages import InstructionalMaterials
 from appPages import ios
 from appPages import screenreader
-from appPages import theme
+from appTheming import theme
 from appHelpers.helpers import createFolderHierarchy, dataBasePath, warningmessage
 from appHelpers.sqlgenerate import create_connection, createTables
 
@@ -81,14 +81,15 @@ with ui.footer(value=True) as footer:
     with ui.row().classes(
         "w-screen no-wrap justify-center items-center text-l font-bold"
     ):
-        ui.label("Copyright © 2023 Michael Ryan Hunsaker, M.Ed., " "Ph.D.").classes("justify-center items-center")
+        ui.label("Copyright © 2023 Michael Ryan Hunsaker, M.Ed., Ph.D.").classes("justify-center items-center")
     with ui.row().classes("w-screen no-wrap justify-center items-center text-l font-bold"):
         ui.label("Report Bugs or Request Features by emailing hunsakerconsulting@gmail.com"
-        ).classes("justify-center items-center")
+                ).classes("justify-center items-center")
 
 ########################################################################
 # EXECUTE PROGRAM WINDOW
 ########################################################################
+MONITOR = ""
 for MONITOR in get_monitors():
     SCREENRESOLUTION = "{str(MONITOR.width)}x{str(MONITOR.height)}"
 ########################################################################

@@ -23,28 +23,22 @@ teachers of students with Visual Impairments
 
 from nicegui import ui
 
-from appPages import theme
+from appTheming import theme
 
 
 @ui.page("/instructionalmaterials")
 def create() -> None:
-    with theme.frame("- iOS/iPadOS VOICEOVER SKILLS -"):
+    with theme.frame("- INSTRUCTIONAL MATERIALS -"):
         ui.label("Instructional Materials").classes(
-            "text-h4 " "font-bold " "text-grey-8"
+            "text-h4 font-bold text-grey-8"
         )
         with ui.row().classes("w-full no-wrap"):
             ui.label("MATERIALS").classes(
-                "text-h4 w-screen no-wrap py-4 text-black "
-                "font-bold "
-                "text-xl "
-                "justify-center items-center"
+                "text-h4 w-screen no-wrap py-4 text-black font-bold text-xl justify-center items-center"
             )
         with ui.row().classes("w-full no-wrap"):
             ui.label("ABACUS").classes(
-                "text-h4 w-screen no-wrap font-bold text-black "
-                "text-xl "
-                "justify-center "
-                "items-center"
+                "text-h4 w-screen no-wrap font-bold text-black text-xl justify-center items-center"
             )
         with ui.row().classes("w-full no-wrap py-4"):
             ui.link(
@@ -90,10 +84,7 @@ def create() -> None:
             ).classes("text-left w-full align-left text-black font-bold")
         with ui.row().classes("w-full no-wrap"):
             ui.label("BRAILLE").classes(
-                "text-h4 w-screen no-wrap font-bold text-black "
-                "text-xl "
-                "justify-center "
-                "items-center"
+                "text-h4 w-screen no-wrap font-bold text-black text-xl justify-center items-center"
             )
         with ui.row().classes("w-full no-wrap py-4"):
             ui.link(
@@ -131,9 +122,7 @@ def create() -> None:
             ).classes("text-left w-full text-black align-left font-bold")
         with ui.row().classes("w-full no-wrap"):
             ui.label("SCREENREADER").classes(
-                "w-screen no-wrap font-bold text-black text-xl "
-                "justify-center "
-                "items-center"
+                "w-screen no-wrap font-bold text-black text-xl justify-center items-center"
             )
         with ui.row().classes("w-full no-wrap py-4"):
             ui.link(
@@ -176,7 +165,7 @@ def create() -> None:
                 "/datasheets"
                 "/GenericDataSheets.pdf",
                 new_tab=True,
-            ).classes("text-left w-full " "align-left text-black " "font-bold")
+            ).classes("text-left w-full align-left text-black font-bold")
         with ui.row().classes("w-full no-wrap py-4"):
             ui.link(
                 "Bi-Weekly Progress Monitoring",
@@ -187,10 +176,7 @@ def create() -> None:
             ).classes("text-left w-full text-black align-left font-bold")
         with ui.row().classes("w-full no-wrap"):
             ui.label("ASSESSMENT FORMS").classes(
-                "text-h4 w-screen no-wrap py-4 font-bold "
-                "text-black "
-                "text-xl "
-                "justify-center items-center"
+                "text-h4 w-screen no-wrap py-4 font-bold text-black text-xl justify-center items-center"
             )
         with ui.row().classes("w-full no-wrap"):
             ui.link(

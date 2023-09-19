@@ -35,7 +35,7 @@ from plotly.subplots import make_subplots
 
 from appHelpers.helpers import dataBasePath, datenow, USER_DIR
 from appHelpers.roster import students
-from appPages import theme
+from appTheming import theme
 
 
 def create() -> None:
@@ -43,7 +43,7 @@ def create() -> None:
     # BRAILLE SKILLS
     ##########################################################################
     @ui.page("/brailleskills")
-    def brailleskills():
+    def brailleskills() -> None:
         with theme.frame("- BRAILLE SKILLS -"):
             ui.label("BRAILLE SKILLS").classes("text-h4 text-grey-8")
 
@@ -196,77 +196,75 @@ def create() -> None:
                     studentdatabasename + ".json",
                 )
                 braille_dictionary={
-                "studentname": studentname,
-                "date": datenow,
-                "braille_trial11": braille_trial11,
-                "braille_trial12" : braille_trial12,
-                "braille_trial13" : braille_trial13,
-                "braille_trial14" : braille_trial14,
-                "braille_trial21" : braille_trial21,
-                "braille_trial22" : braille_trial22,
-                "braille_trial23" : braille_trial23,
-                "braille_trial24" : braille_trial24,
-                "braille_trial25" : braille_trial25,
-                "braille_trial26" : braille_trial26,
-                "braille_trial27" : braille_trial27,
-                "braille_trial28" : braille_trial28,
-                "braille_trial29" : braille_trial29,
-                "braille_trial210" : braille_trial210,
-                "braille_trial211" : braille_trial211,
-                "braille_trial212" : braille_trial212,
-                "braille_trial213" : braille_trial213,
-                "braille_trial214" : braille_trial214,
-                "braille_trial215" : braille_trial215,
-                "braille_trial31" : braille_trial31,
-                "braille_trial32" : braille_trial32,
-                "braille_trial33" : braille_trial33,
-                "braille_trial34" : braille_trial34,
-                "braille_trial35" : braille_trial35,
-                "braille_trial36" : braille_trial36,
-                "braille_trial37" : braille_trial37,
-                "braille_trial38" : braille_trial38,
-                "braille_trial39" : braille_trial39,
-                "braille_trial310" : braille_trial310,
-                "braille_trial311" : braille_trial311,
-                "braille_trial312" : braille_trial312,
-                "braille_trial313" : braille_trial313,
-                "braille_trial314" : braille_trial314,
-                "braille_trial315" : braille_trial315,
-                "braille_trial41" : braille_trial41,
-                "braille_trial42" : braille_trial42,
-                "braille_trial43" : braille_trial43,
-                "braille_trial44" : braille_trial44,
-                "braille_trial51" : braille_trial51,
-                "braille_trial52" : braille_trial52,
-                "braille_trial53" : braille_trial53,
-                "braille_trial54" : braille_trial54,
-                "braille_trial61" : braille_trial61,
-                "braille_trial62" : braille_trial62,
-                "braille_trial63" : braille_trial63,
-                "braille_trial64" : braille_trial64,
-                "braille_trial65" : braille_trial65,
-                "braille_trial66" : braille_trial66,
-                "braille_trial67" : braille_trial67,
-                "braille_trial71" : braille_trial71,
-                "braille_trial72" : braille_trial72,
-                "braille_trial73" : braille_trial73,
-                "braille_trial74" : braille_trial74,
-                "braille_trial75" : braille_trial75,
-                "braille_trial76" : braille_trial76,
-                "braille_trial77" : braille_trial77,
-                "braille_trial78" : braille_trial78,
-                "braille_trial81" : braille_trial81,
-                "braille_trial82" : braille_trial82,
-                "braille_trial83" : braille_trial83,
-                "braille_trial84" : braille_trial84,
-                "braille_trial85" : braille_trial85,
-                "braille_trial86" : braille_trial86,
-                "braille_trial87" : braille_trial87
+                    "studentname": studentname,
+                    "date": datenow,
+                    "braille_trial11": braille_trial11,
+                    "braille_trial12" : braille_trial12,
+                    "braille_trial13" : braille_trial13,
+                    "braille_trial14" : braille_trial14,
+                    "braille_trial21" : braille_trial21,
+                    "braille_trial22" : braille_trial22,
+                    "braille_trial23" : braille_trial23,
+                    "braille_trial24" : braille_trial24,
+                    "braille_trial25" : braille_trial25,
+                    "braille_trial26" : braille_trial26,
+                    "braille_trial27" : braille_trial27,
+                    "braille_trial28" : braille_trial28,
+                    "braille_trial29" : braille_trial29,
+                    "braille_trial210" : braille_trial210,
+                    "braille_trial211" : braille_trial211,
+                    "braille_trial212" : braille_trial212,
+                    "braille_trial213" : braille_trial213,
+                    "braille_trial214" : braille_trial214,
+                    "braille_trial215" : braille_trial215,
+                    "braille_trial31" : braille_trial31,
+                    "braille_trial32" : braille_trial32,
+                    "braille_trial33" : braille_trial33,
+                    "braille_trial34" : braille_trial34,
+                    "braille_trial35" : braille_trial35,
+                    "braille_trial36" : braille_trial36,
+                    "braille_trial37" : braille_trial37,
+                    "braille_trial38" : braille_trial38,
+                    "braille_trial39" : braille_trial39,
+                    "braille_trial310" : braille_trial310,
+                    "braille_trial311" : braille_trial311,
+                    "braille_trial312" : braille_trial312,
+                    "braille_trial313" : braille_trial313,
+                    "braille_trial314" : braille_trial314,
+                    "braille_trial315" : braille_trial315,
+                    "braille_trial41" : braille_trial41,
+                    "braille_trial42" : braille_trial42,
+                    "braille_trial43" : braille_trial43,
+                    "braille_trial44" : braille_trial44,
+                    "braille_trial51" : braille_trial51,
+                    "braille_trial52" : braille_trial52,
+                    "braille_trial53" : braille_trial53,
+                    "braille_trial54" : braille_trial54,
+                    "braille_trial61" : braille_trial61,
+                    "braille_trial62" : braille_trial62,
+                    "braille_trial63" : braille_trial63,
+                    "braille_trial64" : braille_trial64,
+                    "braille_trial65" : braille_trial65,
+                    "braille_trial66" : braille_trial66,
+                    "braille_trial67" : braille_trial67,
+                    "braille_trial71" : braille_trial71,
+                    "braille_trial72" : braille_trial72,
+                    "braille_trial73" : braille_trial73,
+                    "braille_trial74" : braille_trial74,
+                    "braille_trial75" : braille_trial75,
+                    "braille_trial76" : braille_trial76,
+                    "braille_trial77" : braille_trial77,
+                    "braille_trial78" : braille_trial78,
+                    "braille_trial81" : braille_trial81,
+                    "braille_trial82" : braille_trial82,
+                    "braille_trial83" : braille_trial83,
+                    "braille_trial84" : braille_trial84,
+                    "braille_trial85" : braille_trial85,
+                    "braille_trial86" : braille_trial86,
+                    "braille_trial87" : braille_trial87
                 }
                 with open(tmppath, "w") as filename:
                     json.dump(braille_dictionary,filename)
-                filename.close()
-        
                 tmppath = Path(USER_DIR).joinpath(
                     "StudentDatabase", "StudentDataFiles", "Filenames.txt"
                 )
@@ -275,103 +273,11 @@ def create() -> None:
                     "StudentDatabase",
                     "StudentDataFiles",
                     studentname,
-                    studentdatabasename + ".txt",
+                    studentdatabasename + ".json",
                 )
                 filename.write(f"'{tmppath}'" + "\n")
                 filename.close()
-                os.chdir(USER_DIR)
-                tmppath = Path(USER_DIR).joinpath(
-                    "StudentDatabase",
-                    "StudentDataFiles",
-                    studentname,
-                    "BrailleSkillsProgression.csv",
-                )
-                with open(tmppath, "a", newline="") as f_setup:
-                    list_data = [
-                        datenow,
-                        braille_trial11,
-                        braille_trial12,
-                        braille_trial13,
-                        braille_trial14,
-                        braille_trial21,
-                        braille_trial22,
-                        braille_trial23,
-                        braille_trial24,
-                        braille_trial25,
-                        braille_trial26,
-                        braille_trial27,
-                        braille_trial28,
-                        braille_trial29,
-                        braille_trial210,
-                        braille_trial211,
-                        braille_trial212,
-                        braille_trial213,
-                        braille_trial214,
-                        braille_trial215,
-                        braille_trial31,
-                        braille_trial32,
-                        braille_trial33,
-                        braille_trial34,
-                        braille_trial35,
-                        braille_trial36,
-                        braille_trial37,
-                        braille_trial38,
-                        braille_trial39,
-                        braille_trial310,
-                        braille_trial311,
-                        braille_trial312,
-                        braille_trial313,
-                        braille_trial314,
-                        braille_trial315,
-                        braille_trial41,
-                        braille_trial42,
-                        braille_trial43,
-                        braille_trial44,
-                        braille_trial51,
-                        braille_trial52,
-                        braille_trial53,
-                        braille_trial54,
-                        braille_trial61,
-                        braille_trial62,
-                        braille_trial63,
-                        braille_trial64,
-                        braille_trial65,
-                        braille_trial66,
-                        braille_trial67,
-                        braille_trial71,
-                        braille_trial72,
-                        braille_trial73,
-                        braille_trial74,
-                        braille_trial75,
-                        braille_trial76,
-                        braille_trial77,
-                        braille_trial78,
-                        braille_trial81,
-                        braille_trial82,
-                        braille_trial83,
-                        braille_trial84,
-                        braille_trial85,
-                        braille_trial86,
-                        braille_trial87,
-                    ]
-                writer_setup = writer(f_setup)
-                writer_setup.writerow(list_data)
-                f_setup.close()
-                os.chdir(USER_DIR)
-                tmpdir = Path(
-                    USER_DIR,
-                    "StudentDatabase",
-                    "StudentDataFiles",
-                    studentname,
-                    "BrailleSkillsProgression.csv",
-                )
-                with open(tmpdir, "a", newline="") as f_setup:
-                    writer_setup = writer(f_setup)
-                writer_setup.writerow(list_data)
-                f_setup.close()
-
                 # noinspection SqlResolve
-
                 def data_entry():
                     """ """
                     conn = sqlite3.connect(dataBasePath)
@@ -591,15 +497,11 @@ def create() -> None:
                 data_entry()
 
             def graph(event):
-                """
-
-                Graphing
-
-                """
+                """ """
                 dataBasePath = Path(USER_DIR).joinpath("StudentDatabase", "students.db")
                 studentname = u_studentname.value
                 conn = sqlite3.connect(dataBasePath)
-                df_sql = pd.read_sql_query("SELECT * FROM " "BRAILLEPROGRESS", conn)
+                df_sql = pd.read_sql_query("SELECT * FROM BRAILLEPROGRESS", conn)
                 df_student = df_sql[df_sql.STUDENTNAME == studentname]
                 print(df_student)
                 conn.close()
@@ -704,7 +606,7 @@ def create() -> None:
                         y=df_noisy["P2_1"].iloc[[-1]],
                         mode="text",
                         text=[" G C L"],
-                        textposition="middle " "right",
+                        textposition="middle right",
                         legendgroup="Phase 2",
                         legendgrouptitle_text="Phase 2",
                         showlegend=False,
@@ -1121,7 +1023,7 @@ def create() -> None:
                         y=df_noisy["P3_3"],
                         mode="lines+markers",
                         name="Punctuation",
-                        legendgroup="Phase " "3a",
+                        legendgroup="Phase 3a",
                         legendgrouptitle_text="Phase 3a",
                     ),
                     row=3,
@@ -1132,7 +1034,7 @@ def create() -> None:
                         x=df_noisy.index,
                         y=df_noisy["P3_4"],
                         mode="lines+markers",
-                        name="Strong Contractions <br>(AND OF FOR " "WITH " "THE)",
+                        name="Strong Contractions <br>(AND OF FOR WITH THE)",
                         legendgroup="Phase 3b",
                         legendgrouptitle_text="Phase 3b",
                     ),
@@ -1160,7 +1062,7 @@ def create() -> None:
                         x=df_noisy.index,
                         y=df_noisy["P3_6"],
                         mode="lines+markers",
-                        name="Strong Wordsigns <br>(CH SH TH WH OU " "ST)",
+                        name="Strong Wordsigns <br>(CH SH TH WH OU ST)",
                         legendgroup="Phase 3b",
                         legendgrouptitle_text="Phase 3b",
                     ),
@@ -1184,7 +1086,7 @@ def create() -> None:
                         x=df_noisy.index,
                         y=df_noisy["P3_8"],
                         mode="lines+markers",
-                        name="Lower Groupsigns <br>(EA BB CC FF " "GG)",
+                        name="Lower Groupsigns <br>(EA BB CC FF GG)",
                         legendgroup="Phase 3c",
                         legendgrouptitle_text="Phase 3c",
                     ),
@@ -1196,7 +1098,7 @@ def create() -> None:
                         x=df_noisy.index,
                         y=df_noisy["P3_9"],
                         mode="lines+markers",
-                        name="Lower Groupsigns/Wordsigns <br>(EN " "IN)",
+                        name="Lower Groupsigns/Wordsigns <br>(EN IN)",
                         legendgroup="Phase 3c",
                         legendgrouptitle_text="Phase 3c",
                     ),
@@ -1208,7 +1110,7 @@ def create() -> None:
                         x=df_noisy.index,
                         y=df_noisy["P3_10"],
                         mode="lines+markers",
-                        name="Lower Wordsigns <br>(BE HIS WAS " "WERE)",
+                        name="Lower Wordsigns <br>(BE HIS WAS WERE)",
                         legendgroup="Phase 3c",
                         legendgrouptitle_text="Phase 3c",
                     ),
@@ -1220,7 +1122,7 @@ def create() -> None:
                         x=df_noisy.index,
                         y=df_noisy["P3_11"],
                         mode="lines+markers",
-                        name="Dot " "5 " "Contractions",
+                        name="Dot 5 Contractions",
                         legendgroup="Phase 3d",
                         legendgrouptitle_text="Phase 3d",
                     ),
@@ -1232,7 +1134,7 @@ def create() -> None:
                         x=df_noisy.index,
                         y=df_noisy["P3_12"],
                         mode="lines+markers",
-                        name="Dot " "45 " "Contractions",
+                        name="Dot 45 Contractions",
                         legendgroup="Phase 3d",
                         legendgrouptitle_text="Phase 3d",
                     ),
@@ -1244,7 +1146,7 @@ def create() -> None:
                         x=df_noisy.index,
                         y=df_noisy["P3_13"],
                         mode="lines+markers",
-                        name="Dot " "456 " "Contractions",
+                        name="Dot 456 Contractions",
                         legendgroup="Phase 3d",
                         legendgrouptitle_text="Phase 3d",
                     ),
@@ -1330,7 +1232,7 @@ def create() -> None:
                         x=df_noisy.index,
                         y=df_noisy["P5_1"],
                         mode="lines+markers",
-                        name="Page " "Numbering",
+                        name="Page Numbering",
                         legendgroup="Phase 5",
                         legendgrouptitle_text="Phase 5",
                     ),
@@ -1367,7 +1269,7 @@ def create() -> None:
                         y=df_noisy["P5_4"],
                         mode="lines+markers",
                         name="Poety / Drama",
-                        legendgroup="Phase " "5",
+                        legendgroup="Phase 5",
                         legendgrouptitle_text="Phase 5",
                     ),
                     row=7,
@@ -1779,7 +1681,7 @@ def create() -> None:
                 )
                 fig.update_layout(
                     xaxis_tickformat="%d %b",
-                    xaxis2_tickformat="%d " "%b",
+                    xaxis2_tickformat="%d %b",
                     xaxis3_tickformat="%d %b",
                     xaxis4_tickformat="%d %b",
                     xaxis5_tickformat="%d %b",
@@ -1800,7 +1702,7 @@ def create() -> None:
                 fig.write_html(tmppath, auto_open=True)
                 # fig.show()
                 ui.notify(
-                    "Graph Successful. The Graphs will open in a " "Browser " "Window",
+                    "Graph Successful. The Graphs will open in a Browser Window",
                     close_button="OK",
                 )
 
@@ -1832,7 +1734,7 @@ def create() -> None:
                         y=df_noisy["P6_2"],
                         mode="lines+markers",
                         name="Grade 1 Mode",
-                        legendgroup="Phase " "6",
+                        legendgroup="Phase 6",
                         legendgrouptitle_text="Phase 6",
                     ),
                     row=1,
@@ -1856,7 +1758,7 @@ def create() -> None:
                         y=df_noisy["P6_4"],
                         mode="lines+markers",
                         name="Omission Marks",
-                        legendgroup="Phase " "6",
+                        legendgroup="Phase 6",
                         legendgrouptitle_text="Phase 6",
                     ),
                     row=1,
@@ -1880,7 +1782,7 @@ def create() -> None:
                         y=df_noisy["P6_6"],
                         mode="lines+markers",
                         name="Roman Numerals",
-                        legendgroup="Phase " "6",
+                        legendgroup="Phase 6",
                         legendgrouptitle_text="Phase 6",
                     ),
                     row=1,
@@ -1927,7 +1829,7 @@ def create() -> None:
                         x=df_noisy.index,
                         y=df_noisy["P7_3"],
                         mode="lines+markers",
-                        name="Advanced Operation and Comparison " "Signs",
+                        name="Advanced Operation and Comparison Signs",
                         legendgroup="Phase 7",
                         legendgrouptitle_text="Phase 7",
                     ),
@@ -1988,7 +1890,7 @@ def create() -> None:
                         y=df_noisy["P7_8"],
                         mode="lines+markers",
                         name="Greek letters",
-                        legendgroup="Phase " "7",
+                        legendgroup="Phase 7",
                         legendgrouptitle_text="Phase 7",
                     ),
                     row=2,
@@ -2036,7 +1938,7 @@ def create() -> None:
                         y=df_noisy["P8_4"],
                         mode="lines+markers",
                         name="Probability",
-                        legendgroup="Phase " "8",
+                        legendgroup="Phase 8",
                         legendgrouptitle_text="Phase 8",
                     ),
                     row=3,
@@ -2072,7 +1974,7 @@ def create() -> None:
                         y=df_noisy["P8_7"],
                         mode="lines+markers",
                         name="Vertical Bars",
-                        legendgroup="Phase " "8",
+                        legendgroup="Phase 8",
                         legendgrouptitle_text="Phase 8",
                     ),
                     row=3,
@@ -2212,7 +2114,7 @@ def create() -> None:
                 )
                 fig.update_layout(
                     xaxis_tickformat="%d %b",
-                    xaxis2_tickformat="%d " "%b",
+                    xaxis2_tickformat="%d %b",
                     xaxis3_tickformat="%d %b",
                     template="simple_white",
                     title_text=f""
@@ -2229,7 +2131,7 @@ def create() -> None:
                 fig.write_html(tmppath, auto_open=True)
                 # fig.show()
                 ui.notify(
-                    "Graph Successful. The Graphs will open in a " "Browser " "Window",
+                    "Graph Successful. The Graphs will open in a Browser Window",
                     position="center",
                     type="positive",
                     close_button="OK",
@@ -2251,14 +2153,14 @@ def create() -> None:
                 "will "
                 'autocomplete as you type"'
             ).tooltip(
-                "Type Student Name, it will " "autocomplete AS you type"
+                "Type Student Name, it will autocomplete AS you type"
             )
             with ui.input("Date").classes("w-[300px]").props(
                 'aria-label="Date. Please type in date using '
                 "the "
                 'YYYY-MM-DD format"'
             ).tooltip(
-                "Date. Please type in date using " "the YYYY-MM-DD format"
+                "Date. Please type in date using the YYYY-MM-DD format"
             ) as date:
                 with date.add_slot("append"):
                     ui.icon("edit_calendar").on("click", lambda: menu.open()).classes(
@@ -2282,7 +2184,7 @@ def create() -> None:
                 '2=Hesitated 3=Independent" content-center'
             ).classes("sr-only")
         with ui.row().classes("w-screen no-wrap py-4"):
-            ui.label("PHASE 1: ").classes("justify-center " "items-center")
+            ui.label("PHASE 1: ").classes("justify-center items-center")
             ui.input().props('aria-label="PHASE 1:"').classes("sr-only")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
@@ -2294,7 +2196,7 @@ def create() -> None:
             ).classes("w-[200px]").props(
                 'aria-label="1.1 Track Left to Right"'
             ).tooltip(
-                "1.1 " "Track Left to Right"
+                "1.1 Track Left to Right"
             )
             ui.number(
                 label="1.2",
@@ -2319,9 +2221,9 @@ def create() -> None:
             ).classes("w-[200px]").props(
                 'aria-label="1.4 Discriminate Braille Characters"'
             )
-            ui.label(" ").classes("w-[200px]")
+            ui.label().classes("w-[200px]")
         with ui.row().classes("w-screen no-wrap py-4"):
-            ui.label("PHASE 2: ").classes("justify-center " "items-center")
+            ui.label("PHASE 2: ").classes("justify-center items-center")
             ui.input().props('aria-label="PHASE 2: "').classes("sr-only")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
@@ -2432,7 +2334,7 @@ def create() -> None:
                 on_change=lambda e: u_braille_trial215.set_value(e.value),
             ).classes("w-[200px]").props('aria-label="2.15 Mangold Progression: V J"')
         with ui.row().classes("w-screen no-wrap py-4"):
-            ui.label("PHASE 3: ").classes("justify-center " "items-center")
+            ui.label("PHASE 3: ").classes("justify-center items-center")
             ui.input().props('aria-label="PHASE 3: "').classes("sr-only")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
@@ -2523,7 +2425,7 @@ def create() -> None:
             ).classes("w-[200px]").props(
                 'aria-label="3.10 Lower Wordsigns - BE HIS WAS ' 'WERE"'
             ).tooltip(
-                "3.10 Lower Wordsigns - BE HIS WAS " "WERE"
+                "3.10 Lower Wordsigns - BE HIS WAS WERE"
             )
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
@@ -2535,7 +2437,7 @@ def create() -> None:
             ).classes("w-[200px]").props(
                 'aria-label="3.11 Dot 5 Contractions"'
             ).tooltip(
-                "3.11 " "Dot 5 Contractions"
+                "3.11 Dot 5 Contractions"
             )
             ui.number(
                 label="3.12",
@@ -2577,10 +2479,10 @@ def create() -> None:
                 format="%.0f",
                 on_change=lambda e: u_braille_trial315.set_value(e.value),
             ).classes("w-[200px]").props('aria-label="3.15 Shortform Words"').tooltip(
-                "3.15 " "Shortform Words"
+                "3.15 Shortform Words"
             )
         with ui.row().classes("w-screen no-wrap py-4"):
-            ui.label("PHASE 4: ").classes("justify-center " "items-center")
+            ui.label("PHASE 4: ").classes("justify-center items-center")
             ui.input().props('aria-label="PHASE 4: "').classes("sr-only")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
@@ -2590,7 +2492,7 @@ def create() -> None:
                 format="%.0f",
                 on_change=lambda e: u_braille_trial41.set_value(e.value),
             ).classes("w-[200px]").props('aria-label="4.1 Grade 1 Indicators"').tooltip(
-                "4.1 " "Grade 1 Indicators"
+                "4.1 Grade 1 Indicators"
             )
             ui.number(
                 label="4.2",
@@ -2601,7 +2503,7 @@ def create() -> None:
             ).classes("w-[200px]").props(
                 'aria-label="4.2 Capitals Indicators"'
             ).tooltip(
-                "4.2 " "Capitals Indicators"
+                "4.2 Capitals Indicators"
             )
             ui.number(
                 label="4.3",
@@ -2623,11 +2525,11 @@ def create() -> None:
             ).classes("w-[200px]").props(
                 'aria-label="4.4 Typeform Indicators - ITALIC BOLD ' 'UNDERLINE SCRIPT"'
             ).tooltip(
-                "4.4 Typeform Indicators - ITALIC BOLD UNDERLINE " "SCRIPT"
+                "4.4 Typeform Indicators - ITALIC BOLD UNDERLINE SCRIPT"
             )
-            ui.label(" ").classes("w-[200px]")
+            ui.label().classes("w-[200px]")
         with ui.row().classes("w-screen no-wrap py-4"):
-            ui.label("PHASE 5: ").classes("justify-center " "items-center")
+            ui.label("PHASE 5: ").classes("justify-center items-center")
             ui.input().props('aria-label="PHASE 5: "').classes("sr-only")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
@@ -2637,7 +2539,7 @@ def create() -> None:
                 format="%.0f",
                 on_change=lambda e: u_braille_trial51.set_value(e.value),
             ).classes("w-[200px]").props('aria-label="5.1 Page Numbering"').tooltip(
-                "5.1 Page " "Numbering"
+                "5.1 Page Numbering"
             )
             ui.number(
                 label="5.2",
@@ -2662,11 +2564,11 @@ def create() -> None:
                 format="%.0f",
                 on_change=lambda e: u_braille_trial54.set_value(e.value),
             ).classes("w-[200px]").props('aria-label="5.4 Poetry / Drama"').tooltip(
-                "5.4 " "Poetry / Drama"
+                "5.4 Poetry / Drama"
             )
-            ui.label(" ").classes("w-[200px]")
+            ui.label().classes("w-[200px]")
         with ui.row().classes("w-screen no-wrap py-4"):
-            ui.label("PHASE 6: ").classes("justify-center " "items-center")
+            ui.label("PHASE 6: ").classes("justify-center items-center")
             ui.input().props('aria-label="PHASE 6: "').classes("sr-only")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
@@ -2687,7 +2589,7 @@ def create() -> None:
                 format="%.0f",
                 on_change=lambda e: u_braille_trial62.set_value(e.value),
             ).classes("w-[200px]").props('aria-label="6.2 Grade 1 Mode"').tooltip(
-                "6.2 Grade 1 " "Mode"
+                "6.2 Grade 1 Mode"
             )
             ui.number(
                 label="6.3",
@@ -2707,7 +2609,7 @@ def create() -> None:
                 format="%.0f",
                 on_change=lambda e: u_braille_trial64.set_value(e.value),
             ).classes("w-[200px]").props('aria-label="6.4 Omission Marks"').tooltip(
-                "6.4 " "Omission Marks"
+                "6.4 Omission Marks"
             )
             ui.number(
                 label="6.5",
@@ -2716,7 +2618,7 @@ def create() -> None:
                 format="%.0f",
                 on_change=lambda e: u_braille_trial65.set_value(e.value),
             ).classes("w-[200px]").props('aria-label="6.5 Shape Indicators"').tooltip(
-                "6.5 " "Shape Indicators"
+                "6.5 Shape Indicators"
             )
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
@@ -2726,7 +2628,7 @@ def create() -> None:
                 format="%.0f",
                 on_change=lambda e: u_braille_trial66.set_value(e.value),
             ).classes("w-[200px]").props('aria-label="6.6 Roman Numerals"').tooltip(
-                "6.6 Roman " "Numerals"
+                "6.6 Roman Numerals"
             )
             ui.number(
                 label="6.7",
@@ -2737,11 +2639,11 @@ def create() -> None:
             ).classes("w-[200px]").props('aria-label="6.7 Fractions"').tooltip(
                 "6.7 Fractions"
             )
-            ui.label(" ").classes("w-[200px]")
-            ui.label(" ").classes(" w-[200px]")
-            ui.label(" ").classes("w-[200px]")
+            ui.label().classes("w-[200px]")
+            ui.label().classes(" w-[200px]")
+            ui.label().classes("w-[200px]")
         with ui.row().classes("w-screen no-wrap py-4"):
-            ui.label("PHASE 7: ").classes("justify-center " "items-center")
+            ui.label("PHASE 7: ").classes("justify-center items-center")
             ui.input().props('aria-label="PHASE 7: "').classes("sr-only")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
@@ -2775,7 +2677,7 @@ def create() -> None:
             ).classes("w-[200px]").props(
                 'aria-label="7.3 Advanced Operation and Comparison ' 'Signs"'
             ).tooltip(
-                "7.3 Advanced Operation and Comparison " "Signs"
+                "7.3 Advanced Operation and Comparison Signs"
             )
             ui.number(
                 label="7.4",
@@ -2793,7 +2695,7 @@ def create() -> None:
                 format="%.0f",
                 on_change=lambda e: u_braille_trial75.set_value(e.value),
             ).classes("w-[200px]").props('aria-label="7.5 Roots and Radicals"').tooltip(
-                "7.5 " "Roots and Radicals"
+                "7.5 Roots and Radicals"
             )
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
@@ -2805,7 +2707,7 @@ def create() -> None:
             ).classes("w-[200px]").props(
                 'aria-label="7.6 Miscellaneous Shape ' 'Indicators"'
             ).tooltip(
-                "7.6 Miscellaneous Shape " "Indicators"
+                "7.6 Miscellaneous Shape Indicators"
             )
             ui.number(
                 label="7.7",
@@ -2823,12 +2725,12 @@ def create() -> None:
                 format="%.0f",
                 on_change=lambda e: u_braille_trial78.set_value(e.value),
             ).classes("w-[200px]").props('aria-label="7.8 Greek Letters"').tooltip(
-                "7.8 Greek " "Letters"
+                "7.8 Greek Letters"
             )
-            ui.label(" ").classes("w-[200px]")
-            ui.label(" ").classes("w-[200px]")
+            ui.label().classes("w-[200px]")
+            ui.label().classes("w-[200px]")
         with ui.row().classes("w-screen no-wrap py-4"):
-            ui.label("PHASE 8: ").classes("justify-center " "items-center")
+            ui.label("PHASE 8: ").classes("justify-center items-center")
             ui.input().props('aria-label="PHASE 8:"').classes("sr-only")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
@@ -2867,7 +2769,7 @@ def create() -> None:
                 format="%.0f",
                 on_change=lambda e: u_braille_trial84.set_value(e.value),
             ).classes("w-[200px]").props('aria-label="8.4 Probability"').tooltip(
-                "8.4 " "Probability"
+                "8.4 Probability"
             )
             ui.number(
                 label="8.5",
@@ -2878,7 +2780,7 @@ def create() -> None:
             ).classes("w-[200px]").props(
                 'aria-label="8.5 Calculus: ' 'Differentiation"'
             ).tooltip(
-                "8.5 Calculus: " "Differentiation"
+                "8.5 Calculus: Differentiation"
             )
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
@@ -2899,11 +2801,11 @@ def create() -> None:
                 format="%.0f",
                 on_change=lambda e: u_braille_trial87.set_value(e.value),
             ).classes("w-[200px]").props('aria-label="8.7 Vertical Bars"').tooltip(
-                "8.7 " "Vertical Bars"
+                "8.7 Vertical Bars"
             )
-            ui.label(" ").classes("w-[200px]")
-            ui.label(" ").classes("w-[200px]")
-            ui.label(" ").classes("w-[200px]")
+            ui.label().classes("w-[200px]")
+            ui.label().classes("w-[200px]")
+            ui.label().classes("w-[200px]")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.button("SAVE", color="#172554", on_click=save).classes("text-white")
             ui.button("GRAPH", color="#172554", on_click=graph).classes("text-white")

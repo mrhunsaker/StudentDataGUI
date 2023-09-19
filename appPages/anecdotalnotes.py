@@ -31,14 +31,14 @@ from nicegui import app, ui
 
 from appHelpers.helpers import datenow, tasks, USER_DIR
 from appHelpers.roster import students
-from appPages import theme
+from appTheming import theme
 
 
 def create() -> None:
     """Creates Anecdotal Notes Page"""
 
     @ui.page("/anecdotalnotes")
-    def anecdotalnotes():
+    def anecdotalnotes() -> None:
         with theme.frame("- ANECDOTAL NOTES -"):
             ui.label("SESSION NOTES").classes("text-h4 text-grey-8")
             # ASSIGN VARIABLES
@@ -117,28 +117,10 @@ def create() -> None:
                         "StudentDatabase",
                         "StudentDataFiles",
                         studentname,
-                        studentdatabasename + ".txt",
+                        studentdatabasename + ".json",
                     )
                     filename.write(f"'{tmppath}'" + "\n")
                     filename.close()
-                    list_data = [datenow, anecdotalnotes]
-                    tmppath = Path(USER_DIR).joinpath(
-                        "StudentDatabase",
-                        "StudentDataFiles",
-                        studentname,
-                        "anecdotalnotes.csv",
-                    )
-                    os.chdir(USER_DIR)
-                    with open(tmppath, "a", newline="") as f_setup:
-                        writer_setup = writer(f_setup)
-                        writer_setup.writerow(list_data)
-                        f_setup.close()
-                    ui.notify(
-                        "Saved successfully!",
-                        position="center",
-                        type="positive",
-                        close_button="OK",
-                    )
 
         with ui.row().classes("w-screen no-wrap"):
             ui.label("Anecdotal Notes").classes("justify-center " "items-center")

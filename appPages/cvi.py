@@ -35,7 +35,7 @@ from plotly.subplots import make_subplots
 
 from appHelpers.helpers import dataBasePath, datenow, USER_DIR
 from appHelpers.roster import students
-from appPages import theme
+from appTheming import theme
 
 
 def create() -> None:
@@ -79,8 +79,8 @@ def create() -> None:
                 cvi_trial31 = int(u_cvi_trial31.value)
                 cvi_trial32 = int(u_cvi_trial32.value)
                 cvi_trial33 = int(u_cvi_trial33.value)
-
-                studentdatabasename = f"screenreader{studentname.title()}{datenow}"
+                
+                studentdatabasename = f"cvi{studentname.title()}{datenow}"
                 tmppath = Path(USER_DIR).joinpath(
                     "StudentDatabase",
                     "StudentDataFiles",
@@ -113,46 +113,10 @@ def create() -> None:
                     "StudentDatabase",
                     "StudentDataFiles",
                     studentname,
-                    studentdatabasename + ".txt",
+                    studentdatabasename + ".json",
                 )
                 filename.write(f"'{tmppath}'" + "\n")
                 filename.close()
-                tmppath = Path(USER_DIR).joinpath(
-                    "StudentDatabase", "StudentDataFiles", "Filenames.txt"
-                )
-                filename = open(tmppath, "a")
-                tmppath = Path(USER_DIR).joinpath(
-                    "StudentDatabase",
-                    "StudentDataFiles",
-                    studentname,
-                    studentdatabasename + ".txt",
-                )
-                filename.write(f"'{tmppath}'" + "\n")
-                filename.close()
-                list_data = [
-                    datenow,
-                    cvi_trial11,
-                    cvi_trial12,
-                    cvi_trial13,
-                    cvi_trial14,
-                    cvi_trial21,
-                    cvi_trial22,
-                    cvi_trial23,
-                    cvi_trial31,
-                    cvi_trial32,
-                    cvi_trial33,
-                ]
-                tmppath = Path(USER_DIR).joinpath(
-                    "StudentDatabase",
-                    "StudentDataFiles",
-                    studentname,
-                    "cviProgression.csv",
-                )
-                os.chdir(USER_DIR)
-                with open(tmppath, "a", newline="") as f_setup:
-                    writer_setup = writer(f_setup)
-                    writer_setup.writerow(list_data)
-                    f_setup.close()
 
                     # noinspection SqlResolve
                     def data_entry():

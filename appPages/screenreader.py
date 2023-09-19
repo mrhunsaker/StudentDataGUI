@@ -25,7 +25,7 @@ import os
 import sqlite3
 from csv import writer
 from pathlib import Path
-
+import json
 import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
@@ -34,7 +34,7 @@ from plotly.subplots import make_subplots
 
 from appHelpers.helpers import dataBasePath, datenow, USER_DIR
 from appHelpers.roster import students
-from appPages import theme
+from appTheming import theme
 
 
 def create() -> None:
@@ -42,9 +42,9 @@ def create() -> None:
     # SCREENREADER SKILLS
     ##########################################################################
     @ui.page("/screenreaderskills")
-    def screenreaderskills():
+    def screenreaderskills() -> None:
         with theme.frame("- SCREENREADER SKILLS -"):
-            ui.label("SCREENREADER SKILLS").classes("text-h4 " "text-grey-8")
+            ui.label("SCREENREADER SKILLS").classes("text-h4 text-grey-8")
             u_studentname = ui.select(
                 options=students, value="DonaldChamberlain"
             ).classes("hidden")
@@ -120,139 +120,56 @@ def create() -> None:
                     "StudentDatabase",
                     "StudentDataFiles",
                     studentname,
-                    studentdatabasename + ".txt",
+                    studentdatabasename + ".json",
                 )
-
-                with open(tmppath, "w") as filename:
-                    filename.write("studentname" + ", ")
-                    filename.write("date" + ", ")
-                    filename.write("screenreader_trial11" + ", ")
-                    filename.write("screenreader_trial12" + ", ")
-                    filename.write("screenreader_trial13" + ", ")
-                    filename.write("screenreader_trial14" + ", ")
-                    filename.write("screenreader_trial15" + ", ")
-                    filename.write("screenreader_trial16" + ", ")
-                    filename.write("screenreader_trial21" + ", ")
-                    filename.write("screenreader_trial22" + ", ")
-                    filename.write("screenreader_trial23" + ", ")
-                    filename.write("screenreader_trial24" + ", ")
-                    filename.write("screenreader_trial31" + ", ")
-                    filename.write("screenreader_trial32" + ", ")
-                    filename.write("screenreader_trial33" + ", ")
-                    filename.write("screenreader_trial34" + ", ")
-                    filename.write("screenreader_trial35" + ", ")
-                    filename.write("screenreader_trial36" + ", ")
-                    filename.write("screenreader_trial37" + ", ")
-                    filename.write("screenreader_trial38" + ", ")
-                    filename.write("screenreader_trial39" + ", ")
-                    filename.write("screenreader_trial310" + ", ")
-                    filename.write("screenreader_trial311" + ", ")
-                    filename.write("screenreader_trial41" + ", ")
-                    filename.write("screenreader_trial42" + ", ")
-                    filename.write("screenreader_trial43" + ", ")
-                    filename.write("screenreader_trial44" + ", ")
-                    filename.write("screenreader_trial45" + ", ")
-                    filename.write("screenreader_trial46" + ", ")
-                    filename.write("screenreader_trial47" + "\n")
-                    filename.write(studentname + ", ")
-                    filename.write(date + ", ")
-                    filename.write(str(screenreader_trial11) + ", ")
-                    filename.write(str(screenreader_trial12) + ", ")
-                    filename.write(str(screenreader_trial13) + ", ")
-                    filename.write(str(screenreader_trial14) + ", ")
-                    filename.write(str(screenreader_trial15) + ", ")
-                    filename.write(str(screenreader_trial16) + ", ")
-                    filename.write(str(screenreader_trial21) + ", ")
-                    filename.write(str(screenreader_trial22) + ", ")
-                    filename.write(str(screenreader_trial23) + ", ")
-                    filename.write(str(screenreader_trial24) + ", ")
-                    filename.write(str(screenreader_trial31) + ", ")
-                    filename.write(str(screenreader_trial32) + ", ")
-                    filename.write(str(screenreader_trial33) + ", ")
-                    filename.write(str(screenreader_trial34) + ", ")
-                    filename.write(str(screenreader_trial35) + ", ")
-                    filename.write(str(screenreader_trial36) + ", ")
-                    filename.write(str(screenreader_trial37) + ", ")
-                    filename.write(str(screenreader_trial38) + ", ")
-                    filename.write(str(screenreader_trial39) + ", ")
-                    filename.write(str(screenreader_trial310) + ", ")
-                    filename.write(str(screenreader_trial311) + ", ")
-                    filename.write(str(screenreader_trial41) + ", ")
-                    filename.write(str(screenreader_trial42) + ", ")
-                    filename.write(str(screenreader_trial43) + ", ")
-                    filename.write(str(screenreader_trial44) + ", ")
-                    filename.write(str(screenreader_trial45) + ", ")
-                    filename.write(str(screenreader_trial46) + ", ")
-                    filename.write(str(screenreader_trial47) + ", ")
-                    filename.close()
-
+                screenreader_dictionary={
+                    "studentname" : studentname,
+                    "date" : datenow,
+                    "screenreader_trial11" : screenreader_trial11,
+                    "screenreader_trial12" : screenreader_trial12,
+                    "screenreader_trial13" : screenreader_trial13,
+                    "screenreader_trial14" : screenreader_trial14,
+                    "screenreader_trial15" : screenreader_trial15,
+                    "screenreader_trial16" : screenreader_trial16,
+                    "screenreader_trial21" : screenreader_trial21,
+                    "screenreader_trial22" : screenreader_trial22,
+                    "screenreader_trial23" : screenreader_trial23,
+                    "screenreader_trial24" : screenreader_trial24,
+                    "screenreader_trial31" : screenreader_trial31,
+                    "screenreader_trial32" : screenreader_trial32,
+                    "screenreader_trial33" : screenreader_trial33,
+                    "screenreader_trial34" : screenreader_trial34,
+                    "screenreader_trial35" : screenreader_trial35,
+                    "screenreader_trial36" : screenreader_trial36,
+                    "screenreader_trial37" : screenreader_trial37,
+                    "screenreader_trial38" : screenreader_trial38,
+                    "screenreader_trial39" : screenreader_trial39,
+                    "screenreader_trial310" : screenreader_trial310,
+                    "screenreader_trial311" : screenreader_trial311,
+                    "screenreader_trial41" : screenreader_trial41,
+                    "screenreader_trial42" : screenreader_trial42,
+                    "screenreader_trial43" : screenreader_trial43,
+                    "screenreader_trial44" : screenreader_trial44,
+                    "screenreader_trial45" : screenreader_trial45,
+                    "screenreader_trial46" : screenreader_trial46,
+                    "screenreader_trial47" : screenreader_trial47
+                }
+                with open(tmppath, "w", encoding="utf8") as filename:
+                    json.dump(screenreader_dictionary, filename)
+                    
                     tmppath = Path(USER_DIR).joinpath(
                         "StudentDatabase", "StudentDataFiles", "Filenames.txt"
                     )
-                    filename = open(tmppath, "a")
+                    filename = open(tmppath, "a", encoding="utf8")
                     tmppath = Path(USER_DIR).joinpath(
                         "StudentDatabase",
                         "StudentDataFiles",
                         studentname,
-                        studentdatabasename + ".txt",
+                        studentdatabasename + ".json",
                     )
                     filename.write(f"'{tmppath}'" + "\n")
                     filename.close()
-                    tmppath = Path(USER_DIR).joinpath(
-                        "StudentDatabase", "StudentDataFiles", "Filenames.txt"
-                    )
-                    filename = open(tmppath, "a")
-                    tmppath = Path(USER_DIR).joinpath(
-                        "StudentDatabase",
-                        "StudentDataFiles",
-                        studentname,
-                        studentdatabasename + ".txt",
-                    )
-                    filename.write(f"'{tmppath}'" + "\n")
-                    filename.close()
-                    list_data = [
-                        datenow,
-                        screenreader_trial11,
-                        screenreader_trial12,
-                        screenreader_trial13,
-                        screenreader_trial14,
-                        screenreader_trial15,
-                        screenreader_trial16,
-                        screenreader_trial21,
-                        screenreader_trial22,
-                        screenreader_trial23,
-                        screenreader_trial24,
-                        screenreader_trial31,
-                        screenreader_trial32,
-                        screenreader_trial33,
-                        screenreader_trial34,
-                        screenreader_trial35,
-                        screenreader_trial36,
-                        screenreader_trial37,
-                        screenreader_trial38,
-                        screenreader_trial39,
-                        screenreader_trial310,
-                        screenreader_trial311,
-                        screenreader_trial41,
-                        screenreader_trial42,
-                        screenreader_trial43,
-                        screenreader_trial44,
-                        screenreader_trial45,
-                        screenreader_trial46,
-                        screenreader_trial47,
-                    ]
-                    tmppath = Path(USER_DIR).joinpath(
-                        "StudentDatabase",
-                        "StudentDataFiles",
-                        studentname,
-                        "ScreenReaderSkillsProgression.csv",
-                    )
-                    os.chdir(USER_DIR)
-                    with open(tmppath, "a", newline="") as f_setup:
-                        writer_setup = writer(f_setup)
-                        writer_setup.writerow(list_data)
-                        f_setup.close()
-
+                    
                 # noinspection SqlResolve
                 def data_entry():
                     """ """
@@ -376,7 +293,7 @@ def create() -> None:
                 studentname = u_studentname.value
                 conn = sqlite3.connect(dataBasePath)
                 df_sql = pd.read_sql_query(
-                    "SELECT * FROM " "SCREENREADERPROGRESS", conn
+                    "SELECT * FROM SCREENREADERPROGRESS", conn
                 )
                 df_student = df_sql[df_sql.STUDENTNAME == studentname]
                 print(df_student)
@@ -1129,15 +1046,12 @@ def create() -> None:
                     options=students,
                     with_input=True,
                     on_change=lambda e: ui.notify(e.value),
-                ).bind_value(u_studentname, "value").classes("w-[300px]").props(
-                    'aria-label="Select Student from the Dropdown. It '
+                ).bind_value(u_studentname, "value").classes("w-[300px]").props('aria-label="Select Student from the Dropdown. It '
                     "will "
                     'autocomplete as you type"'
-                ).tooltip(
-                    "Type Student Name, it will " "autocomplete AS you type"
+                ).tooltip("Type Student Name, it will autocomplete AS you type"
                 )
-            with ui.input("Date").classes("w-[300px]").props(
-                'aria-label="Date. Please type in date using the YYYY-MM-DD format"'
+            with ui.input("Date").classes("w-[300px]").props('aria-label="Date. Please type in date using the YYYY-MM-DD format"'
             ).tooltip("Date. Please type in date using the YYYY-MM-DD format") as date:
                 with date.add_slot("append"):
                     ui.icon("edit_calendar").on("click", lambda: menu.open()).classes(
@@ -1145,24 +1059,16 @@ def create() -> None:
                     )
                 with ui.menu() as menu:
                     ui.date().bind_value(date)
-                with ui.row().classes("w-screen no-wrap py-4"):
-                    ui.label(
-                        "RUBRIC: 0=No attempt 1=Required Assistance "
-                        "2=Hesitated "
-                        "3=Independent"
-                    ).props(
-                        'aria-label="RUBRIC: 0=No attempt 1=Required '
-                        "Assistance "
-                        '2=Hesitated 3=Independent" content-center'
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.label(
+                    "RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent"
+                    ).props('aria-label="RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent" content-center'
                     )
-            ui.input().props(
-                'aria-label="RUBRIC: 0=No attempt 1=Required '
-                "Assistance "
-                '2=Hesitated 3=Independent" content-center'
+            ui.input().props('aria-label="RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent" content-center'
             ).classes("sr-only")
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.label("PHASE 1: READING").classes("justify-center items-center")
-            ui.input().props('aria-label="PHASE 1: ' 'READING"').classes("sr-only")
+            ui.input().props('aria-label="PHASE 1: READING"').classes("sr-only")
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.number(
                     label="1.1",
@@ -1170,10 +1076,8 @@ def create() -> None:
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_screenreader_trial11.set_value(e.value),
-                ).classes("w-[200px]").props(
-                    'aria-label="1.1 Turn on and off the ' 'screen reader"'
-                ).tooltip(
-                    "1.1 Turn on and off the screen reader"
+                ).classes("w-[200px]").props('aria-label="1.1 Turn on and off the screen reader"'
+                ).tooltip("1.1 Turn on and off the screen reader"
                 )
             ui.number(
                 label="1.2",
@@ -1181,10 +1085,8 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_screenreader_trial12.set_value(e.value),
-            ).classes("w-[200px]").props(
-                'aria-label="1.2 Utilize modifier keys such as ctrl alt and shift"'
-            ).tooltip(
-                "1.2 Utilize modifier keys such as ctrl " "alt and shift"
+            ).classes("w-[200px]").props('aria-label="1.2 Utilize modifier keys such as ctrl alt and shift"'
+            ).tooltip("1.2 Utilize modifier keys such as ctrl alt and shift"
             )
             ui.number(
                 label="1.3",
@@ -1192,10 +1094,8 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_screenreader_trial13.set_value(e.value),
-            ).classes("w-[200px]").props(
-                'aria-label="1.3 Read text using a variety of reading commands"'
-            ).tooltip(
-                "1.3 Read text using a " "variety of reading commands"
+            ).classes("w-[200px]").props('aria-label="1.3 Read text using a variety of reading commands"'
+            ).tooltip("1.3 Read text using a variety of reading commands"
             )
             ui.number(
                 label="1.4",
@@ -1203,14 +1103,8 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_screenreader_trial14.set_value(e.value),
-            ).classes("w-[200px]").props(
-                'aria-label="1.4 Identify the titles and section '
-                "titles "
-                'of documents with Headings"'
-            ).tooltip(
-                "1.4 Identify the titles and section titles of "
-                "documents "
-                "with Headings"
+            ).classes("w-[200px]").props('aria-label="1.4 Identify the titles and section titles of documents with Headings"'
+            ).tooltip("1.4 Identify the titles and section titles of documents with Headings"
             )
             ui.number(
                 label="1.5",
@@ -1218,14 +1112,8 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_screenreader_trial15.set_value(e.value),
-            ).classes("w-[200px]").props(
-                'aria-label="1.5 Access documents open and close '
-                'programs  navigate to the  desktop"'
-            ).tooltip(
-                "1.5 Access documents open and close programs  "
-                "navigate "
-                "to "
-                "the  desktop"
+            ).classes("w-[200px]").props('aria-label="1.5 Access documents open and close programs  navigate to the  desktop"'
+            ).tooltip("1.5 Access documents open and close programs navigate to the  desktop"
             )
             ui.number(
                 label="1.6",
@@ -1233,10 +1121,8 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_screenreader_trial16.set_value(e.value),
-            ).classes("w-[200px]").props(
-                'aria-label="1.6 Switch Program Focus"'
-            ).tooltip(
-                "1.6 Switch Program Focus"
+            ).classes("w-[200px]").props('aria-label="1.6 Switch Program Focus"'
+            ).tooltip("1.6 Switch Program Focus"
             )
             ui.label(" ").classes("w-[200px]")
             with ui.row().classes("w-screen no-wrap py-4"):
@@ -1249,14 +1135,8 @@ def create() -> None:
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_screenreader_trial21.set_value(e.value),
-                ).classes("w-[200px]").props(
-                    'aria-label="2.1 Type with all alphanumeric keys '
-                    "on "
-                    "the "
-                    ""
-                    'keyboard."'
-                ).tooltip(
-                    "2.1 Type with all alphanumeric keys on " "the keyboard."
+                ).classes("w-[200px]").props('aria-label="2.1 Type with all alphanumeric keys on the keyboard."'
+                ).tooltip("2.1 Type with all alphanumeric keys on the keyboard."
                 )
             ui.number(
                 label="2.2",
@@ -1264,10 +1144,8 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_screenreader_trial22.set_value(e.value),
-            ).classes("w-[200px]").props(
-                'aria-label="2.2 Navigate to and change screen ' "reader " 'settings"'
-            ).tooltip(
-                "2.2 Navigate to and change screen " "reader settings"
+            ).classes("w-[200px]").props('aria-label="2.2 Navigate to and change screen reader settings"'
+            ).tooltip("2.2 Navigate to and change screen reader settings"
             )
             ui.number(
                 label="2.3",
@@ -1275,12 +1153,8 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_screenreader_trial23.set_value(e.value),
-            ).classes("w-[200px]").props(
-                'aria-label="2.3 Write and edit documents using a '
-                "basic "
-                'understanding of cursor placement"'
-            ).tooltip(
-                "2.3 Write and edit documents using a basic "
+            ).classes("w-[200px]").props('aria-label="2.3 Write and edit documents using a basic understanding of cursor placement"'
+            ).tooltip("2.3 Write and edit documents using a basic "
                 "understanding of "
                 "cursor placement"
             )
@@ -1290,10 +1164,8 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_screenreader_trial24.set_value(e.value),
-            ).classes("w-[200px]").props(
-                'aria-label="2.4. Select copy and paste ' 'text"'
-            ).tooltip(
-                "2.4. Select copy and paste text"
+            ).classes("w-[200px]").props('aria-label="2.4. Select copy and paste text"'
+            ).tooltip("2.4. Select copy and paste text"
             )
             ui.label(" ").classes("w-[200px]")
             ui.label(" ").classes("w-[200px]")
@@ -1302,7 +1174,7 @@ def create() -> None:
                 ui.label("PHASE 3: USING THE INTERNET").classes(
                     "justify-center items-center"
                 )
-            ui.input().props('aria-label="PHASE 3: USING THE ' 'INTERNET"').classes(
+            ui.input().props('aria-label="PHASE 3: USING THE INTERNET"').classes(
                 "sr-only"
             )
             with ui.row().classes("w-screen no-wrap py-4"):
@@ -1312,14 +1184,8 @@ def create() -> None:
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_screenreader_trial31.set_value(e.value),
-                ).classes("w-[200px]").props(
-                    'aria-label="3.1 Define common element types on '
-                    "the "
-                    'internet such as Headings Buttons"'
-                ).tooltip(
-                    "3.1 Define common element types on the internet "
-                    "such as "
-                    "Headings Buttons"
+                ).classes("w-[200px]").props('aria-label="3.1 Define common element types on the internet such as Headings or Buttons"'
+                ).tooltip("3.1 Define common element types on the internet such as Headings or Buttons"
                 )
             ui.number(
                 label="3.2",
@@ -1327,10 +1193,8 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_screenreader_trial32.set_value(e.value),
-            ).classes("w-[200px]").props(
-                'aria-label="3.2 identify each element ' 'by type."'
-            ).tooltip(
-                "3.2 identify each element by type."
+            ).classes("w-[200px]").props('aria-label="3.2 identify each element by type."'
+            ).tooltip("3.2 identify each element by type."
             )
             ui.number(
                 label="3.3",
@@ -1338,10 +1202,8 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_screenreader_trial33.set_value(e.value),
-            ).classes("w-[200px]").props(
-                'aria-label="3.3 navigate to the address ' 'bar"'
-            ).tooltip(
-                "3.3 navigate to the address bar"
+            ).classes("w-[200px]").props('aria-label="3.3 navigate to the address bar"'
+            ).tooltip("3.3 navigate to the address bar"
             )
             ui.number(
                 label="3.4",
@@ -1349,16 +1211,8 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_screenreader_trial34.set_value(e.value),
-            ).classes("w-[200px]").props(
-                'aria-label="3.4 Use the “Tab” key to navigate to '
-                "the "
-                'next clickable object"'
-            ).tooltip(
-                "3.4 Use the “Tab” key to navigate to the next "
-                "clickable "
-                ""
-                ""
-                "object"
+            ).classes("w-[200px]").props('aria-label="3.4 Use the “Tab” key to navigate to the next clickable object"'
+            ).tooltip("3.4 Use the “Tab” key to navigate to the next clickable object"
             )
             ui.number(
                 label="3.5",
@@ -1366,10 +1220,7 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_screenreader_trial35.set_value(e.value),
-            ).classes("w-[200px]").props(
-                'aira-label="3.5 Navigate by “Quick Keys” (h for '
-                "heading "
-                'b for button and u for link"'
+            ).classes("w-[200px]").props('aira-label="3.5 Navigate by “Quick Keys” (h for heading b for button and u for link"'
             )
             ui.number(
                 label="3.6",
@@ -1377,15 +1228,8 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_screenreader_trial36.set_value(e.value),
-            ).classes("w-[200px]").props(
-                'aria-label="3.6 Use Elements Lists on a website '
-                "to "
-                'navigate by element type"'
-            ).tooltip(
-                "3.6 Use Elements Lists on a website to navigate "
-                "by "
-                "element "
-                "type"
+            ).classes("w-[200px]").props('aria-label="3.6 Use Elements Lists on a website to navigate by element type"'
+            ).tooltip("3.6 Use Elements Lists on a website to navigate by element type"
             )
             ui.number(
                 label="3.7",
@@ -1393,14 +1237,8 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_screenreader_trial37.set_value(e.value),
-            ).classes("w-[200px]").props(
-                'aria-label="3.7 Justify why he/she/they selected '
-                "a "
-                'particular method for the situation"'
-            ).tooltip(
-                "3.7 Justify why he/she/they selected a particular "
-                "method "
-                "for the situation"
+            ).classes("w-[200px]").props('aria-label="3.7 Justify why he/she/they selected a particular method for the situation"'
+            ).tooltip("3.7 Justify why he/she/they selected a particular method xfor the situation"
             )
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.number(
@@ -1409,10 +1247,8 @@ def create() -> None:
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_screenreader_trial38.set_value(e.value),
-                ).classes("w-[200px]").props(
-                    'aria-label="3.8 Switch tab ' 'focus"'
-                ).tooltip(
-                    "3.8 Switch tab focus"
+                ).classes("w-[200px]").props('aria-label="3.8 Switch tab focus"'
+                ).tooltip("3.8 Switch tab focus"
                 )
             ui.number(
                 label="3.9",
@@ -1420,10 +1256,8 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_screenreader_trial39.set_value(e.value),
-            ).classes("w-[200px]").props(
-                'aria-label="3.9 Switch between screen ' 'reader modes"'
-            ).tooltip(
-                "3.9 Switch between screen reader modes"
+            ).classes("w-[200px]").props('aria-label="3.9 Switch between screen reader modes"'
+            ).tooltip("3.9 Switch between screen reader modes"
             )
             ui.number(
                 label="3.10",
@@ -1431,10 +1265,8 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_screenreader_trial310.set_value(e.value),
-            ).classes("w-[200px]").props(
-                'aria-label="3.10 Navigate a ' 'table"'
-            ).tooltip(
-                "3.10 Navigate a table"
+            ).classes("w-[200px]").props('aria-label="3.10 Navigate a table"'
+            ).tooltip("3.10 Navigate a table"
             )
             ui.number(
                 label="3.11",
@@ -1442,23 +1274,17 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_screenreader_trial311.set_value(e.value),
-            ).classes("w-[200px]").props(
-                'aria-label="3.11 Develop a navigation sequence to '
-                'access an unfamiliar website"'
-            ).tooltip(
-                "3.11 Develop a navigation sequence to access an "
-                "unfamiliar "
-                "website"
+            ).classes("w-[200px]").props('aria-label="3.11 Develop a navigation sequence to access an unfamiliar website"'
+            ).tooltip("3.11 Develop a navigation sequence to access an unfamiliar website"
             )
             ui.label(" ").classes("w-[200px]")
             ui.label(" ").classes("w-[200px]")
             ui.label(" ").classes("w-[200px]")
             with ui.row().classes("w-screen no-wrap py-4"):
-                ui.label("PHASE 4: NAVIGATING AND FILE " "MANAGEMENT").classes(
+                ui.label("PHASE 4: NAVIGATING AND FILE MANAGEMENT").classes(
                     "justify-center items-center"
                 )
-            ui.input().props(
-                'aria-label="PHASE 4: NAVIGATING AND ' 'FILE MANAGEMENT"'
+            ui.input().props('aria-label="PHASE 4: NAVIGATING AND FILE MANAGEMENT"'
             ).classes("sr-only")
 
             with ui.row().classes("w-screen no-wrap py-4"):
@@ -1468,12 +1294,8 @@ def create() -> None:
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_screenreader_trial41.set_value(e.value),
-                ).classes("w-[200px]").props(
-                    'aria-label="4.1 Be able to save and open files '
-                    "using "
-                    'File Explorer."'
-                ).tooltip(
-                    "4.1 Be able to save and open files using File " "Explorer."
+                ).classes("w-[200px]").props('aria-label="4.1 Be able to save and open files using File Explorer."'
+                ).tooltip("4.1 Be able to save and open files using File Explorer."
                 )
             ui.number(
                 label="4.2",
@@ -1481,10 +1303,8 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_screenreader_trial42.set_value(e.value),
-            ).classes("w-[200px]").props(
-                'aria-label="4.2 Create folders and move files in ' "File " 'Explorer"'
-            ).tooltip(
-                "4.2 Create folders and move files in " "File Explorer"
+            ).classes("w-[200px]").props('aria-label="4.2 Create folders and move files in File Explorer"'
+            ).tooltip("4.2 Create folders and move files in File Explorer"
             )
             ui.number(
                 label="4.3",
@@ -1492,15 +1312,8 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_screenreader_trial43.set_value(e.value),
-            ).classes("w-[200px]").props(
-                'aria-label="4.3 Navigate a cloud-based file '
-                "management "
-                'system (eg: Google Drive)"'
-            ).tooltip(
-                "4.3 Navigate a cloud-based file management "
-                "system ("
-                "eg: "
-                "Google Drive)"
+            ).classes("w-[200px]").props('aria-label="4.3 Navigate a cloud-based file management system (eg: Google Drive)"'
+            ).tooltip("4.3 Navigate a cloud-based file management system (eg: Google Drive)"
             )
             ui.number(
                 label="4.4",
@@ -1508,10 +1321,8 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_screenreader_trial44.set_value(e.value),
-            ).classes("w-[200px]").props(
-                'aria-label="4.4 Download and save material from ' "the " 'internet"'
-            ).tooltip(
-                "4.4 Download and save material from " "the internet"
+            ).classes("w-[200px]").props('aria-label="4.4 Download and save material from the internet"'
+            ).tooltip("4.4 Download and save material from the internet"
             )
             ui.number(
                 label="4.5",
@@ -1519,10 +1330,8 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_screenreader_trial45.set_value(e.value),
-            ).classes("w-[200px]").props(
-                'aria-label="4.5 Extract zipped ' 'folders"'
-            ).tooltip(
-                "4.5 Extract zipped folders"
+            ).classes("w-[200px]").props('aria-label="4.5 Extract zipped folders"'
+            ).tooltip("4.5 Extract zipped folders"
             )
             ui.number(
                 label="4.6",
@@ -1530,10 +1339,8 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_screenreader_trial46.set_value(e.value),
-            ).classes("w-[200px]").props(
-                'aria-label="4.6 Utilize the virtual cursor and ' "mouse " 'keys"'
-            ).tooltip(
-                "4.6 Utilize the virtual cursor and " "mouse keys"
+            ).classes("w-[200px]").props('aria-label="4.6 Utilize the virtual cursor and mouse keys"'
+            ).tooltip("4.6 Utilize the virtual cursor and mouse keys"
             )
             ui.number(
                 label="4.7",
@@ -1541,14 +1348,11 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_screenreader_trial47.set_value(e.value),
-            ).classes("w-[200px]").props(
-                'aria-label="4.7 To use OCR features to read ' 'inaccessible material"'
-            ).tooltip(
-                "4.7 To use OCR features to read " "inaccessible material"
+            ).classes("w-[200px]").props('aria-label="4.7 To use OCR features to read inaccessible material"'
+            ).tooltip("4.7 To use OCR features to read inaccessible material"
             )
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.button("SAVE", color="#172554", on_click=save).classes("text-white")
             ui.button("GRAPH", color="#172554", on_click=graph).classes("text-white")
-            ui.button("EXIT", color="#172554", on_click=app.shutdown).classes(
-                "text-white"
+            ui.button("EXIT", color="#172554", on_click=app.shutdown).classes("text-white"
             )

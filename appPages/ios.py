@@ -35,7 +35,7 @@ from plotly.subplots import make_subplots
 
 from appHelpers.helpers import dataBasePath, datenow, USER_DIR
 from appHelpers.roster import students
-from appPages import theme
+from appTheming import theme
 
 
 def create() -> None:
@@ -209,7 +209,7 @@ def create() -> None:
                         "StudentDatabase",
                         "StudentDataFiles",
                         studentname,
-                        studentdatabasename + ".txt",
+                        studentdatabasename + ".json",
                     )
                     filename.write(f"'{tmppath}'" + "\n")
                     filename.close()
@@ -225,64 +225,7 @@ def create() -> None:
                     )
                     filename.write(f"'{tmppath}'" + "\n")
                     filename.close()
-                    list_data = [
-                        datenow,
-                        ios_trial11,
-                        ios_trial12,
-                        ios_trial13,
-                        ios_trial14,
-                        ios_trial15,
-                        ios_trial16,
-                        ios_trial17,
-                        ios_trial18,
-                        ios_trial19,
-                        ios_trial21,
-                        ios_trial22,
-                        ios_trial23,
-                        ios_trial24,
-                        ios_trial25,
-                        ios_trial26,
-                        ios_trial31,
-                        ios_trial32,
-                        ios_trial33,
-                        ios_trial34,
-                        ios_trial35,
-                        ios_trial41,
-                        ios_trial42,
-                        ios_trial43,
-                        ios_trial44,
-                        ios_trial45,
-                        ios_trial51,
-                        ios_trial52,
-                        ios_trial53,
-                        ios_trial54,
-                        ios_trial55,
-                        ios_trial56,
-                        ios_trial57,
-                        ios_trial61,
-                        ios_trial62,
-                        ios_trial63,
-                        ios_trial64,
-                        ios_trial65,
-                        ios_trial66,
-                        ios_trial67,
-                        ios_trial68,
-                        ios_trial69,
-                        ios_trial610,
-                        ios_trial611,
-                    ]
-                    tmppath = Path(USER_DIR).joinpath(
-                        "StudentDatabase",
-                        "StudentDataFiles",
-                        studentname,
-                        "iosProgression.csv",
-                    )
-                    os.chdir(USER_DIR)
-                    with open(tmppath, "a", newline="") as f_setup:
-                        writer_setup = writer(f_setup)
-                        writer_setup.writerow(list_data)
-                        f_setup.close()
-
+                    
                     # noinspection SqlResolve
                     def data_entry():
                         """ """

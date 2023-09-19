@@ -36,7 +36,7 @@ from plotly.subplots import make_subplots
 
 from appHelpers.helpers import USER_DIR
 from appHelpers.roster import students
-from appPages import theme
+from appTheming import theme
 
 
 def create() -> None:
@@ -44,7 +44,7 @@ def create() -> None:
     # ABACUS SKILLS
     ##########################################################################
     @ui.page("/abacusskills")
-    def abacusskills():
+    def abacusskills() -> None:
         with theme.frame("- ABACUS SKILLS -"):
             ui.label("ABACUS SKILLS").classes("text-h4 text-grey-8")
             datenow = datetime.datetime.now().strftime("%Y_%m_%d-%H%M%S_%p")
@@ -145,8 +145,6 @@ def create() -> None:
                     }
                 with open(tmppath, "w") as filename:
                     json.dump(abacus_dictionary, filename)
-                    filename.close()
-
                     tmppath = Path(USER_DIR).joinpath(
                         "StudentDatabase", "StudentDataFiles", "Filenames.txt"
                     )
@@ -155,48 +153,10 @@ def create() -> None:
                         "StudentDatabase",
                         "StudentDataFiles",
                         studentname,
-                        studentdatabasename + ".txt",
+                        studentdatabasename + ".json",
                     )
                     filename.write(f"{tmppath}" + "\n")
                     filename.close()
-                    list_data = [
-                        datenow,
-                        abacus_trial11,
-                        abacus_trial12,
-                        abacus_trial13,
-                        abacus_trial14,
-                        abacus_trial21,
-                        abacus_trial22,
-                        abacus_trial23,
-                        abacus_trial31,
-                        abacus_trial32,
-                        abacus_trial33,
-                        abacus_trial41,
-                        abacus_trial42,
-                        abacus_trial51,
-                        abacus_trial52,
-                        abacus_trial61,
-                        abacus_trial62,
-                        abacus_trial63,
-                        abacus_trial64,
-                        abacus_trial71,
-                        abacus_trial72,
-                        abacus_trial73,
-                        abacus_trial74,
-                        abacus_trial81,
-                        abacus_trial82,
-                    ]
-                    os.chdir(USER_DIR)
-                    with open(
-                        f"{USER_DIR}\\StudentDatabase\\StudentDataFiles\\"
-                        f"{studentname}\\ScreenReaderSkillsProgression.csv",
-                        "a",
-                        newline="",
-                    ) as f_setup:
-                        writer_setup = writer(f_setup)
-                        writer_setup.writerow(list_data)
-                        f_setup.close()
-
                 # noinspection SqlResolve
                 def data_entry():
                     """ """
@@ -1287,7 +1247,7 @@ def create() -> None:
             ).classes("w-[" "200px]").props(
                 'aria-label="7.2 Subtraction of ' 'Fractions"'
             ).tooltip(
-                "7.2 Subtraction of " "Fractions"
+                "7.2 Subtraction of Fractions"
             )
             ui.number(
                 label="7.3",

@@ -25,7 +25,7 @@ from contextlib import contextmanager
 
 from nicegui import ui
 
-from appPages.menu import menu
+from appTheming.menu import menu
 
 
 @contextmanager
@@ -33,7 +33,7 @@ def frame(navtitle: str):
     """Custom page frame to share the same styling and behavior
     across all pages"""
     ui.colors(
-        primary="#e7b9ba", secondary="#37add3", accent="#046f75", positive="#53B689"
+        primary="#ffc8dd", secondary="#cdb4db", accent="#bde0fe", positive="#a2d2ff"
     )
     with ui.header().classes("justify-between text-black"):
         with ui.row().classes("no-wrap text-l font-bold text-black"):

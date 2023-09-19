@@ -105,15 +105,15 @@ def create() -> None:
                 tmppath = Path(USER_DIR).joinpath(
                         "StudentDatabase", "StudentDataFiles", "Filenames.txt"
                     )
-                    filename = open(tmppath, "a")
-                    tmppath = Path(USER_DIR).joinpath(
-                        "StudentDatabase",
-                        "StudentDataFiles",
-                        studentname,
-                        studentdatabasename + ".json",
-                    )
-                    filename.write(f"{tmppath}" + "\n")
-                    filename.close()
+                filename = open(tmppath, "a")
+                tmppath = Path(USER_DIR).joinpath(
+                    "StudentDatabase",
+                    "StudentDataFiles",
+                    studentname,
+                    studentdatabasename + ".json",
+                )
+                filename.write(f"{tmppath}" + "\n")
+                filename.close()
                 
                 
                 ui.notify(

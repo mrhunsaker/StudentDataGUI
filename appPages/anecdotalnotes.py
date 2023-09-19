@@ -123,22 +123,18 @@ def create() -> None:
                     filename.close()
 
         with ui.row().classes("w-screen no-wrap"):
-            ui.label("Anecdotal Notes").classes("justify-center " "items-center")
+            ui.label("Anecdotal Notes").classes("justify-center items-center")
         with ui.row().classes("w-screen no-wrap"):
             ui.select(
                 options=students,
                 with_input=True,
                 on_change=lambda e: ui.notify(e.value),
-            ).bind_value(u_studentname, "value").classes("w-[300px]").props(
-                'aria-label="Select Student from the Dropdown. It '
-                "will "
-                'autocomplete as you type"'
+            ).bind_value(u_studentname, "value").classes("w-[300px]").props('aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
             ).tooltip(
                 "Type Student Name, it will " "autocomplete AS you type"
             )
-        with ui.input("Date").classes("w-[300px]").props(
-            'aria-label="Date. Please type in date using the ' 'YYYY-MM-DD format"'
-        ).tooltip("Date. Please type in date using the " "YYYY-MM-DD format") as date:
+        with ui.input("Date").classes("w-[300px]").props('aria-label="Date. Please type in date using the YYYY-MM-DD format"'
+        ).tooltip("Date. Please type in date using the YYYY-MM-DD format") as date:
             with date.add_slot("append"):
                 ui.icon("edit_calendar").on("click", lambda: menu.open()).classes(
                     "cursor-pointer"
@@ -148,26 +144,17 @@ def create() -> None:
         with ui.row().classes("w-screen no-wrap"):
             ui.select(
                 options=tasks, with_input=True, on_change=lambda e: ui.notify(e.value)
-            ).bind_value(u_tasks, "value").classes("w-[300px]").props(
-                'aria-label="Select Student from the Dropdown. It '
-                "will "
-                'autocomplete as you type"'
-            ).tooltip(
-                "Type Taske, it will " "autocomplete AS you type"
+            ).bind_value(u_tasks, "value").classes("w-[300px]").props('aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
+            ).tooltip("Type Taske, it will autocomplete as you type"
             )
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.label(
-                "RUBRIC: 0=No attempt 1=Required Assistance "
-                "2=Hesitated 3=Independent"
+                "RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent"
             ).props(
-                'aria-label="RUBRIC: 0=No attempt 1=Required '
-                "Assistance "
-                '2=Hesitated 3=Independent" content-center'
+                'aria-label="RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent" content-center'
             )
             ui.input().props(
-                'aria-label="RUBRIC: 0=No attempt 1=Required '
-                "Assistance "
-                '2=Hesitated 3=Independent" content-center'
+                'aria-label="RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent" content-center'
             ).classes("sr-only")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
@@ -176,8 +163,7 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_trial01.set_value(e.value),
-            ).classes("w-[200px]").props(
-                'aria-label="3.1 Define common element types on ' 'the"'
+            ).classes("w-[200px]").props('aria-label="Trial 1"'
             )
             ui.number(
                 label="Trial 2",
@@ -185,8 +171,7 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_trial02.set_value(e.value),
-            ).classes("w-[200px]").props(
-                'aria-label="3.1 Define common element types on ' 'the" '
+            ).classes("w-[200px]").props('aria-label="Trial 2"'
             )
             ui.number(
                 label="Trial 3",
@@ -194,8 +179,7 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_trial03.set_value(e.value),
-            ).classes("w-[200px]").props(
-                'aria-label="3.1 Define common element types on ' 'the" '
+            ).classes("w-[200px]").props('aria-label="Trial 3"'
             )
             ui.number(
                 label="Trial 4",
@@ -203,8 +187,7 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_trial04.set_value(e.value),
-            ).classes("w-[200px]").props(
-                'aria-label="3.1 Define common element types on ' 'the" '
+            ).classes("w-[200px]").props('aria-label="Trial 4" '
             )
             ui.number(
                 label="Trial 5",
@@ -212,8 +195,7 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_trial05.set_value(e.value),
-            ).classes("w-[200px]").props(
-                'aria-label="3.1 Define common element types on ' 'the" '
+            ).classes("w-[200px]").props('aria-label="Trial 5" '
             )
             ui.number(
                 label="Trial 6",
@@ -221,8 +203,7 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_trial06.set_value(e.value),
-            ).classes("w-[200px]").props(
-                'aria-label="3.1 Define common element types on ' 'the" '
+            ).classes("w-[200px]").props('aria-label="Trial 6" '
             )
             ui.number(
                 label="Trial 7",
@@ -230,8 +211,7 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_trial07.set_value(e.value),
-            ).classes("w-[200px]").props(
-                'aria-label="3.1 Define common element types on ' 'the" '
+            ).classes("w-[200px]").props('aria-label="Trial 7" '
             )
             ui.number(
                 label="Trial 8",
@@ -239,8 +219,7 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_trial08.set_value(e.value),
-            ).classes("w-[200px]").props(
-                'aria-label="3.1 Define common element types on ' 'the" '
+            ).classes("w-[200px]").props('aria-label="Trial 8" '
             )
             ui.number(
                 label="Trial 9",
@@ -248,8 +227,7 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_trial09.set_value(e.value),
-            ).classes("w-[200px]").props(
-                'aria-label="3.1 Define common element types on ' 'the" '
+            ).classes("w-[200px]").props('aria-label="Trial 9" '
             )
             ui.number(
                 label="Trial 10",
@@ -257,8 +235,7 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_trial10.set_value(e.value),
-            ).classes("w-[200px]").props(
-                'aria-label="3.1 Define common element types on ' 'th" '
+            ).classes("w-[200px]").props('aria-label="Trial 10" '
             )
             ui.number(
                 label="Trial 11",
@@ -266,20 +243,15 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_trial11.set_value(e.value),
-            ).classes("w-[200px]").props(
-                'aria-label="3.1 Define common element types on ' 'the" '
+            ).classes("w-[200px]").props('aria-label="Trial 11" '
             )
-
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.textarea(
-                label="Input Anecdotal Notes In this Box and " "Press Save",
+                label="Input Anecdotal Notes In this Box and Press Save",
                 on_change=lambda e: u_anecdotalnotes.set_value(e.value),
-            ).classes("h-full " "h-min-[" "400px] " "").props(
-                'cols=80 autogrow outlined aria-label="Please '
-                'type anecdotal notes" square'
+            ).classes("h-full " "h-min-[" "400px] " "").props('cols=80 autogrow outlined aria-label="Please type anecdotal notes" square'
             )
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.button("SAVE", color="#172554", on_click=save).classes("text-white")
-            ui.button("EXIT", color="#172554", on_click=app.shutdown).classes(
-                "text-white"
+            ui.button("EXIT", color="#172554", on_click=app.shutdown).classes("text-white"
             )

@@ -2365,7 +2365,7 @@ def create() -> None:
                 format="%.0f",
                 on_change=lambda e: u_braille_trial34.set_value(e.value),
             ).classes("w-[200px]").props(
-                'aria-label="3.4 Strong Contractions - AND OF FOR ' "WITH " 'THE"'
+                'aria-label="3.4 Strong Contractions - AND OF FOR WITH THE"'
             )
             ui.number(
                 label="3.5",
@@ -2374,10 +2374,7 @@ def create() -> None:
                 format="%.0f",
                 on_change=lambda e: u_braille_trial35.set_value(e.value),
             ).classes("w-[200px]").props(
-                'aria-label="3.5 Strong Groupsigns - CH GH SH TH '
-                "WH "
-                "ED "
-                'ER OU OW ST AR ING"'
+                'aria-label="3.5 Strong Groupsigns - CH GH SH TH WH ED  ER OU OW ST AR ING"'
             )
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
@@ -2423,7 +2420,7 @@ def create() -> None:
                 format="%.0f",
                 on_change=lambda e: u_braille_trial310.set_value(e.value),
             ).classes("w-[200px]").props(
-                'aria-label="3.10 Lower Wordsigns - BE HIS WAS ' 'WERE"'
+                'aria-label="3.10 Lower Wordsigns - BE HIS WAS WERE"'
             ).tooltip(
                 "3.10 Lower Wordsigns - BE HIS WAS WERE"
             )
@@ -2523,7 +2520,7 @@ def create() -> None:
                 format="%.0f",
                 on_change=lambda e: u_braille_trial44.set_value(e.value),
             ).classes("w-[200px]").props(
-                'aria-label="4.4 Typeform Indicators - ITALIC BOLD ' 'UNDERLINE SCRIPT"'
+                'aria-label="4.4 Typeform Indicators - ITALIC BOLD UNDERLINE SCRIPT"'
             ).tooltip(
                 "4.4 Typeform Indicators - ITALIC BOLD UNDERLINE SCRIPT"
             )
@@ -2578,7 +2575,7 @@ def create() -> None:
                 format="%.0f",
                 on_change=lambda e: u_braille_trial61.set_value(e.value),
             ).classes("w-[200px]").props(
-                'aria-label="6.1 Operation and Comparison ' 'Signs"'
+                'aria-label="6.1 Operation and Comparison Signs"'
             ).tooltip(
                 "6.1 Operation and Comparison Signs"
             )
@@ -2675,7 +2672,7 @@ def create() -> None:
                 format="%.0f",
                 on_change=lambda e: u_braille_trial73.set_value(e.value),
             ).classes("w-[200px]").props(
-                'aria-label="7.3 Advanced Operation and Comparison ' 'Signs"'
+                'aria-label="7.3 Advanced Operation and Comparison Signs"'
             ).tooltip(
                 "7.3 Advanced Operation and Comparison Signs"
             )
@@ -2705,7 +2702,7 @@ def create() -> None:
                 format="%.0f",
                 on_change=lambda e: u_braille_trial76.set_value(e.value),
             ).classes("w-[200px]").props(
-                'aria-label="7.6 Miscellaneous Shape ' 'Indicators"'
+                'aria-label="7.6 Miscellaneous Shape Indicators"'
             ).tooltip(
                 "7.6 Miscellaneous Shape Indicators"
             )
@@ -2758,7 +2755,7 @@ def create() -> None:
                 format="%.0f",
                 on_change=lambda e: u_braille_trial83.set_value(e.value),
             ).classes("w-[200px]").props(
-                'aria-label="8.3 Modifiers: Arrows and ' 'Limits"'
+                'aria-label="8.3 Modifiers: Arrows and Limits"'
             ).tooltip(
                 "8.3 Modifiers: Arrows and Limits"
             )
@@ -2778,7 +2775,7 @@ def create() -> None:
                 format="%.0f",
                 on_change=lambda e: u_braille_trial85.set_value(e.value),
             ).classes("w-[200px]").props(
-                'aria-label="8.5 Calculus: ' 'Differentiation"'
+                'aria-label="8.5 Calculus: Differentiation"'
             ).tooltip(
                 "8.5 Calculus: Differentiation"
             )

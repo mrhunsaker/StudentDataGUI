@@ -119,63 +119,63 @@ def create() -> None:
                 filename.close()
 
                     # noinspection SqlResolve
-                    def data_entry():
-                        """ """
-                        conn = sqlite3.connect(dataBasePath)
-                        c = conn.cursor()
-                        c.execute(
-                            """INSERT INTO CVIPROGRESS (
-                                                                        STUDENTNAME,
-                                                                        DATE,
-                                                                        P1_1,
-                                                                        P1_2,
-                                                                        P1_3,
-                                                                        P1_4,
-                                                                        P1_5,
-                                                                        P1_6,
-                                                                        P2_1,
-                                                                        P2_2,
-                                                                        P2_3,
-                                                                        P2_4
-                                                                        )
-                                                                        VALUES (
-                                                                            ?,
-                                                                            ?,
-                                                                            ?,
-                                                                            ?,
-                                                                            ?,
-                                                                            ?,
-                                                                            ?,
-                                                                            ?,
-                                                                            ?,
-                                                                            ?,
-                                                                            ?,
-                                                                            ?
-                                                                            )""",
-                            (
-                                studentname,
-                                datenow,
-                                cvi_trial11,
-                                cvi_trial12,
-                                cvi_trial13,
-                                cvi_trial14,
-                                cvi_trial21,
-                                cvi_trial22,
-                                cvi_trial23,
-                                cvi_trial31,
-                                cvi_trial32,
-                                cvi_trial33,
-                            ),
-                        )
-                        conn.commit()
-                        ui.notify(
-                            "Saved successfully!",
-                            position="center",
-                            type="positive",
-                            close_button="OK",
-                        )
+                def data_entry():
+                    """ """
+                    conn = sqlite3.connect(dataBasePath)
+                    c = conn.cursor()
+                    c.execute(
+                        """INSERT INTO CVIPROGRESS (
+                                                                    STUDENTNAME,
+                                                                    DATE,
+                                                                    P1_1,
+                                                                    P1_2,
+                                                                    P1_3,
+                                                                    P1_4,
+                                                                    P1_5,
+                                                                    P1_6,
+                                                                    P2_1,
+                                                                    P2_2,
+                                                                    P2_3,
+                                                                    P2_4
+                                                                    )
+                                                                    VALUES (
+                                                                        ?,
+                                                                        ?,
+                                                                        ?,
+                                                                        ?,
+                                                                        ?,
+                                                                        ?,
+                                                                        ?,
+                                                                        ?,
+                                                                        ?,
+                                                                        ?,
+                                                                        ?,
+                                                                        ?
+                                                                        )""",
+                        (
+                            studentname,
+                            datenow,
+                            cvi_trial11,
+                            cvi_trial12,
+                            cvi_trial13,
+                            cvi_trial14,
+                            cvi_trial21,
+                            cvi_trial22,
+                            cvi_trial23,
+                            cvi_trial31,
+                            cvi_trial32,
+                            cvi_trial33,
+                        ),
+                    )
+                    conn.commit()
+                    ui.notify(
+                        "Saved successfully!",
+                        position="center",
+                        type="positive",
+                        close_button="OK",
+                    )
 
-                    data_entry()
+                data_entry()
 
             def graph(event):
                 """

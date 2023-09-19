@@ -32,10 +32,9 @@ import plotly.graph_objects as go
 from nicegui import app, ui
 from plotly.subplots import make_subplots
 
-
-from appPages import theme
 from appHelpers.helpers import dataBasePath, datenow, USER_DIR
 from appHelpers.roster import students
+from appPages import theme
 
 
 def create() -> None:
@@ -531,7 +530,7 @@ def create() -> None:
                         x=df_noisy.index,
                         y=df_noisy["P1_4"],
                         mode="lines+markers",
-                        name="Home Screen Icons to Open " "Documents",
+                        name="Home Screen Icons to Open Documents",
                         legendgroup="Phase 1",
                         legendgrouptitle_text="Basic Operations",
                     ),
@@ -544,7 +543,7 @@ def create() -> None:
                         y=df_noisy["P1_5"],
                         mode="lines+markers",
                         name="Save Documents",
-                        legendgroup="Phase " "1",
+                        legendgroup="Phase 1",
                         legendgrouptitle_text="Basic Operations",
                     ),
                     row=1,
@@ -568,7 +567,7 @@ def create() -> None:
                         y=df_noisy["P1_7"],
                         mode="lines+markers",
                         name="Keyboarding",
-                        legendgroup="Phase " "1",
+                        legendgroup="Phase 1",
                         legendgrouptitle_text="Basic Operations",
                     ),
                     row=1,
@@ -628,7 +627,7 @@ def create() -> None:
                         y=df_noisy["P2_3"],
                         mode="lines+markers",
                         name="Use Menubar",
-                        legendgroup="Phase " "2",
+                        legendgroup="Phase 2",
                         legendgrouptitle_text="Word Processing",
                     ),
                     row=2,
@@ -639,7 +638,7 @@ def create() -> None:
                         x=df_noisy.index,
                         y=df_noisy["P2_4"],
                         mode="lines+markers",
-                        name="Highlight text, copy and paste " "text",
+                        name="Highlight text, copy and paste text",
                         legendgroup="Phase 2",
                         legendgrouptitle_text="Word Processing",
                     ),
@@ -807,7 +806,7 @@ def create() -> None:
                         x=df_noisy.index,
                         y=df_noisy["P5_2"],
                         mode="lines+markers",
-                        name="Explain responsible uses of " "technology",
+                        name="Explain responsible uses of technology",
                         legendgroup="Phase 5",
                         legendgrouptitle_text="Acceptable Use",
                     ),
@@ -831,7 +830,7 @@ def create() -> None:
                         x=df_noisy.index,
                         y=df_noisy["P5_4"],
                         mode="lines+markers",
-                        name="Safe and efficient use of " "computers",
+                        name="Safe and efficient use of computers",
                         legendgroup="Phase 5",
                         legendgrouptitle_text="Acceptable Use",
                     ),
@@ -867,7 +866,7 @@ def create() -> None:
                         x=df_noisy.index,
                         y=df_noisy["P5_7"],
                         mode="lines+markers",
-                        name="Describe the potential risks and " "dangers",
+                        name="Describe the potential risks and dangers",
                         legendgroup="Phase 5",
                         legendgrouptitle_text="Acceptable Use",
                     ),
@@ -891,7 +890,7 @@ def create() -> None:
                         x=df_noisy.index,
                         y=df_noisy["P6_2"],
                         mode="lines+markers",
-                        name="Tactile graphics paired with " "digital graphics",
+                        name="Tactile graphics paired with digital graphics",
                         legendgroup="Phase 6",
                         legendgrouptitle_text="Additional AT Skills",
                     ),
@@ -915,7 +914,7 @@ def create() -> None:
                         x=df_noisy.index,
                         y=df_noisy["P6_4"],
                         mode="lines+markers",
-                        name="Spatial relationships on the " "physical iPad screen ",
+                        name="Spatial relationships on the physical iPad screen ",
                         legendgroup="Phase 6",
                         legendgrouptitle_text="Additional AT Skills",
                     ),
@@ -939,7 +938,7 @@ def create() -> None:
                         x=df_noisy.index,
                         y=df_noisy["P6_6"],
                         mode="lines+markers",
-                        name="Learn and use screen reader " "commands",
+                        name="Learn and use screen reader commands",
                         legendgroup="Phase 6",
                         legendgrouptitle_text="Additional AT Skills",
                     ),
@@ -975,7 +974,7 @@ def create() -> None:
                         x=df_noisy.index,
                         y=df_noisy["P6_9"],
                         mode="lines+markers",
-                        name="Learn about accessibility " "features",
+                        name="Learn about accessibility features",
                         legendgroup="Phase 6",
                         legendgrouptitle_text="Additional AT Skills",
                     ),
@@ -999,7 +998,7 @@ def create() -> None:
                         x=df_noisy.index,
                         y=df_noisy["P6_11"],
                         mode="lines+markers",
-                        name="Explain what makes digital content " "accessible",
+                        name="Explain what makes digital content accessible",
                         legendgroup="Phase 6",
                         legendgrouptitle_text="Additional AT Skills",
                     ),
@@ -1826,6 +1825,4 @@ def create() -> None:
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.button("SAVE", color="#172554", on_click=save).classes("text-white")
                 ui.button("GRAPH", color="#172554", on_click=graph).classes("text-white")
-                ui.button("EXIT", color="#172554", on_click=app.shutdown).classes(
-                    "text-white"
-                )
+                ui.button("EXIT", color="#172554", on_click=app.shutdown).classes("text-white")

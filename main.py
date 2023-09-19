@@ -21,8 +21,9 @@ teachers of students with Visual Impairments
 #   language governing permissions and limitations under the License.   #
 #########################################################################
 
-import sys
 import os
+import sys
+
 from nicegui import ui
 from screeninfo import get_monitors
 
@@ -78,13 +79,13 @@ InstructionalMaterials.create()
 ########################################################################
 with ui.footer(value=True) as footer:
     with ui.row().classes(
-        "w-screen no-wrap justify-center " "items-center text-l font-bold"
+        "w-screen no-wrap justify-center items-center text-l font-bold"
     ):
         ui.label("Copyright © 2023 Michael Ryan Hunsaker, M.Ed., " "Ph.D.").classes(
             "justify-center items-center"
         )
     with ui.row().classes(
-        "w-screen no-wrap justify-center " "items-centertext-l font-bold"
+        "w-screen no-wrap justify-center items-center text-l font-bold"
     ):
         ui.label(
             "Report Bugs or Request Features by emailing "

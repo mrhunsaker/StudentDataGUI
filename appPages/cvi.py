@@ -21,20 +21,21 @@ teachers of students with Visual Impairments
 #   language governing permissions and limitations under the License.   #
 #########################################################################
 
+import json
 import os
 import sqlite3
 from csv import writer
 from pathlib import Path
-import json
+
 import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
 from nicegui import app, ui
 from plotly.subplots import make_subplots
 
-from appPages import theme
 from appHelpers.helpers import dataBasePath, datenow, USER_DIR
 from appHelpers.roster import students
+from appPages import theme
 
 
 def create() -> None:

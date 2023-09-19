@@ -29,9 +29,9 @@ from pathlib import Path
 
 from nicegui import app, ui
 
-from appPages import theme
 from appHelpers.helpers import datenow, tasks, USER_DIR
 from appHelpers.roster import students
+from appPages import theme
 
 
 def create() -> None:

@@ -5,63 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ce23218e-a8d9-4102-89c9-431635277b0c" name="Changes" comment="Linted code">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/73329fa8-3f00-4500-8447-a87749f48b42.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/73329fa8-3f00-4500-8447-a87749f48b42.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2022-08-29_10_54.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2022-08-29_10_54.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_9_6_2022_11_07_AM.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_9_6_2022_11_07_AM.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InstructionalMaterials.py" beforeDir="false" afterPath="$PROJECT_DIR$/InstructionalMaterials.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/abacus.py" beforeDir="false" afterPath="$PROJECT_DIR$/abacus.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/anecdotalnotes.py" beforeDir="false" afterPath="$PROJECT_DIR$/anecdotalnotes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/braille.py" beforeDir="false" afterPath="$PROJECT_DIR$/braille.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/braillenote.py" beforeDir="false" afterPath="$PROJECT_DIR$/braillenote.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/contactlog.py" beforeDir="false" afterPath="$PROJECT_DIR$/contactlog.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cvi.py" beforeDir="false" afterPath="$PROJECT_DIR$/cvi.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helpers.py" beforeDir="false" afterPath="$PROJECT_DIR$/helpers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/homepage.py" beforeDir="false" afterPath="$PROJECT_DIR$/homepage.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios.py" beforeDir="false" afterPath="$PROJECT_DIR$/ios.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appPages/abacus.py" beforeDir="false" afterPath="$PROJECT_DIR$/appPages/abacus.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appPages/anecdotalnotes.py" beforeDir="false" afterPath="$PROJECT_DIR$/appPages/anecdotalnotes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appPages/braille.py" beforeDir="false" afterPath="$PROJECT_DIR$/appPages/braille.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appPages/braillenote.py" beforeDir="false" afterPath="$PROJECT_DIR$/appPages/braillenote.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appPages/contactlog.py" beforeDir="false" afterPath="$PROJECT_DIR$/appPages/contactlog.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appPages/cvi.py" beforeDir="false" afterPath="$PROJECT_DIR$/appPages/cvi.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appPages/ios.py" beforeDir="false" afterPath="$PROJECT_DIR$/appPages/ios.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appPages/screenreader.py" beforeDir="false" afterPath="$PROJECT_DIR$/appPages/screenreader.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/menu.py" beforeDir="false" afterPath="$PROJECT_DIR$/menu.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/old/.contactlog.py@neomake_14092_28.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/old/contactlog.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/old/datasheets/BlankVisionTemplate.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/old/datasheets/GenericDataSheets.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/old/datasheets/ProgressMonitoring.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/old/helpers.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/old/instructionMaterials/Abacus1.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/old/instructionMaterials/Abacus2.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/old/instructionMaterials/AbacusMadeEasy.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/old/instructionMaterials/AdvancedAbacus.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/old/instructionMaterials/GettingStartedWindows11.doc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/old/instructionMaterials/NVDATrainings.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/old/instructionMaterials/NemethUEBContext.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/old/instructionMaterials/UEBAustralianTrainingManual.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/old/instructionMaterials/UEBTechnicalCourse.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/old/instructionMaterials/UEBTechnicalGuidelines.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/old/instructionMaterials/UsingCranmerAbacus.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/old/instructionMaterials/WindowsScreenreaderPrimer.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/old/instructionMaterials/abacusUseTheory.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/old/mainold.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/old/old_wxPythonVersion/mainOLD.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/old/visionAssessments/EducationVisionAssessments.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/old/visualScan/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/old/visualScan/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/old/visualScan/VisualScanHeatMap/fieldMap_1.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/old/visualScan/VisualScanHeatMap/fieldMap_2.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/old/visualScan/VisualScanHeatMap/fieldMap_3.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/old/visualScan/VisualScanHeatMap/fieldMap_4.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/old/visualScan/VisualScanHeatMap/fieldMap_5.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/old/visualScan/VisualScanHeatMap/fieldMap_6.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/old/visualScan/VisualScanHeatMap/fieldMap_7VT.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/old/visualScan/VisualScanHeatMap/fieldMap_8VT.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/old/visualScan/cviheatmap.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylint_reports/20230803.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylint_reports/pylint_report_20230805.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pylint_reports/pylint_report_20230806.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/roster.py" beforeDir="false" afterPath="$PROJECT_DIR$/roster.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/screenreader.py" beforeDir="false" afterPath="$PROJECT_DIR$/screenreader.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sqlgenerate.py" beforeDir="false" afterPath="$PROJECT_DIR$/sqlgenerate.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/theme.py" beforeDir="false" afterPath="$PROJECT_DIR$/theme.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="true" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,10 +80,35 @@
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;run.code.analysis.last.selected.profile&quot;: &quot;aDefault&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;indent.rainbow.settings.IrConfigurable&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.black.configuration.BlackFormatterConfigurable&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RunManager">
+    <configuration name="Python_StudentDataGUI" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="StudentDataGUI" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="SDK_NAME" value="Pipenv (StudentDataGUI)" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="Python_StudentDataGUI" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task id="LOCAL-00001" summary="Linted code">
@@ -181,6 +160,8 @@
       <workItem from="1694816656165" duration="226000" />
       <workItem from="1694892084526" duration="4994000" />
       <workItem from="1694907216862" duration="2283000" />
+      <workItem from="1695081963813" duration="298000" />
+      <workItem from="1695083881672" duration="431000" />
     </task>
     <option name="localTasksCounter" value="2" />
     <servers />
@@ -204,23 +185,13 @@
     <MESSAGE value="Linted code" />
     <option name="LAST_COMMIT_MESSAGE" value="Linted code" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/menu.py</url>
-          <line>44</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/main_py$ios.coverage" NAME="ios Coverage Results" MODIFIED="1694188835652" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/StudentDataGUI$main.coverage" NAME="main Coverage Results" MODIFIED="1677268629456" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/main_py$theme.coverage" NAME="theme Coverage Results" MODIFIED="1694026218427" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/main_py$sqlgenerate.coverage" NAME="sqlgenerate Coverage Results" MODIFIED="1694541357026" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/main_py$main.coverage" NAME="main Coverage Results" MODIFIED="1694909235399" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/main_py$main.coverage" NAME="main Coverage Results" MODIFIED="1695084298443" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/main_py$Python_StudentDataGUI.coverage" NAME="Python_StudentDataGUI Coverage Results" MODIFIED="1695084284787" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/main_py$menu.coverage" NAME="menu Coverage Results" MODIFIED="1693938873501" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/SiteAsPages" />
     <SUITE FILE_PATH="coverage/main_py$braillenote.coverage" NAME="braillenote Coverage Results" MODIFIED="1694544512402" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/main_py$contactlog.coverage" NAME="contactlog Coverage Results" MODIFIED="1694008929622" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

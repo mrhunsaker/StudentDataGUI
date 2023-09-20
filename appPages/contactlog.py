@@ -100,21 +100,19 @@ def create() -> None:
                 "contactSpecific" :contactSpecific,
                 "contactNotes" :contactNotes
                 }
-                with open(tmppath, "w") as filename:
+                with open(tmppath, "w", encoding="utf-8") as filename:
                     json.dump(contactlog_dictionary, filename)
                 tmppath = Path(USER_DIR).joinpath(
                         "StudentDatabase", "StudentDataFiles", "Filenames.txt"
                     )
-                filename = open(tmppath, "a")
-                tmppath = Path(USER_DIR).joinpath(
-                    "StudentDatabase",
-                    "StudentDataFiles",
-                    studentname,
-                    studentdatabasename + ".json",
-                )
-                filename.write(f"{tmppath}" + "\n")
-                filename.close()
-                
+                open(tmppath, "a",encoding="utf-8") as filename:
+                    tmppath = Path(USER_DIR).joinpath(
+                        "StudentDatabase",
+                        "StudentDataFiles",
+                        studentname,
+                        studentdatabasename + ".json",
+                    )
+                    filename.write(f"{tmppath}" + "\n")
                 
                 ui.notify(
                     "Saved successfully!",
@@ -127,12 +125,12 @@ def create() -> None:
             with ui.row().classes("w-full no-wrap py-4"):
                 ui.label().classes("w-[250px]")
                 ui.label("PARENT CONTACT LOG").classes(
-                    "w-screen justify-center items-center text-lg " "font-bold"
+                    "w-screen justify-center items-center text-lg font-bold"
                 )
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.label().classes("w-[50px]")
                 ui.label("STUDENT INFORMATION").classes(
-                    "w-full " "justify-center items-center font-bold"
+                    "w-full justify-center items-center font-bold"
                 )
             with ui.row().classes("w-screen no-wrap"):
                 ui.select(
@@ -140,11 +138,9 @@ def create() -> None:
                     with_input=True,
                     on_change=lambda e: ui.notify(e.value),
                 ).bind_value(u_studentname, "value").classes("w-[300px]").props(
-                    'aria-label="Select Student from the Dropdown. It '
-                    "will "
-                    'autocomplete as you type"'
+                    'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
                 ).tooltip(
-                    "Type Student Name, it will " "autocomplete AS you type"
+                    "Type Student Name, it will autocomplete AS you type"
                 )
             with ui.input("Date").classes("w-[300px]").props(
                 'aria-label="Date. Please type in date using YYYY-MM-DD format"'
@@ -165,21 +161,21 @@ def create() -> None:
                     label="Guardian Name",
                     value="",
                     on_change=lambda e: u_guardianName.set_value(e.value),
-                ).classes("w-[" "200px]").props('aria-label="Guardian Name"').tooltip(
+                ).classes("w-[200px]").props('aria-label="Guardian Name"').tooltip(
                     "Guardian Name"
                 )
                 ui.input(
                     label="Phone Number",
                     value="",
                     on_change=lambda e: u_phoneNumber.set_value(e.value),
-                ).classes("w-[" "200px]").props('aria-label="Phone Number"').tooltip(
+                ).classes("w-[200px]").props('aria-label="Phone Number"').tooltip(
                     "Phone Number"
                 )
                 ui.input(
                     label="Email Address",
                     value="",
                     on_change=lambda e: u_emailAddress.set_value(e.value),
-                ).classes("w-[" "200px]").props('aria-label="Email Address"').tooltip(
+                ).classes("w-[200px]").props('aria-label="Email Address"').tooltip(
                     "Email Address"
                 )
             with ui.row().classes("w-screen no-wrap py-4"):
@@ -207,12 +203,12 @@ def create() -> None:
                     value="",
                     on_change=lambda e: u_contactResponse.set_value(e.value),
                 ).classes("w-[240px]").props('aria-label="Contact Response"').tooltip(
-                    "Contact " "Response"
+                    "Contact Response"
                 )
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.label().classes("w-[50px]")
                 ui.label("TOPIC OF CONTACT").classes(
-                    "w-screen " "justify-center items-center font-bold"
+                    "w-screen justify-center items-center font-bold"
                 )
             with ui.row().classes("w-screen no-wrap"):
                 ui.label("General Topic").classes("w-[50px]")
@@ -221,7 +217,7 @@ def create() -> None:
                     value="",
                     on_change=lambda e: u_contactGeneral.set_value(e.value),
                 ).classes("w-[240px]").props(
-                    'aria-label="Reason for Contact - General ' 'Category"'
+                    'aria-label="Reason for Contact - General Category"'
                 ).tooltip(
                     "Reason for Contact - General Category"
                 )
@@ -236,22 +232,17 @@ def create() -> None:
                     value="",
                     on_change=lambda e: u_contactSpecific.set_value(e.value),
                 ).classes("w-[240px]").props(
-                    'aria-label="Reason for Contact - ' 'Specific Reason"'
+                    'aria-label="Reason for Contact - Specific Reason"'
                 ).tooltip(
                     "Reason for Contact - Specific Reason"
                 )
             with ui.row().classes("w-screen no-wrap "):
                 ui.textarea(
-                    label="Contact Notes (if email please copy/paste "
-                    "email "
-                    "into "
-                    "the box)",
+                    label="Contact Notes (if email please copy/paste email into the box)",
                     value="",
                     on_change=lambda e: u_contactNotes.set_value(e.value),
                 ).classes("w-[640px]").props(
-                    'aria-label="Contact Notes (if email please '
-                    "copy/paste "
-                    'email into the box)"'
+                    'aria-label="Contact Notes (if email please copy/paste email into the box)"'
                 ).tooltip(
                     "Contact Notes (if email please copy/paste email into the box)"
                 )

@@ -47,16 +47,14 @@ def frame(navtitle: str):
     ##############################################################################
     with ui.footer(value=True) as footer:
         with ui.row().classes(
-            "w-screen no-wrap justify-center " "items-center text-l font-bold"
+            "w-screen no-wrap justify-center items-center text-l font-bold"
         ):
-            ui.label("Copyright © 2023 Michael Ryan Hunsaker, M.Ed., " "Ph.D.").classes(
-                "justify-center items-center text-black"
+            ui.label("Copyright © 2023 Michael Ryan Hunsaker, M.Ed., Ph.D.").classes(
+                "justify-center items-center text-grey-8"
             )
         with ui.row().classes(
-            "w-screen no-wrap justify-center "
-            "items-center text-l font-bold text-black"
+            "w-screen no-wrap justify-center items-center text-l font-bold text-grey-8"
         ):
             ui.label(
-                "Report Bugs or Request Features by emailing "
-                "hunsakerconsulting@gmail.com"
+                "Report Bugs or Request Features by emailing hunsakerconsulting@gmail.com"
             ).classes("justify-center items-center")

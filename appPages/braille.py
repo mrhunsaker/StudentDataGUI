@@ -22,9 +22,7 @@ teachers of students with Visual Impairments
 #########################################################################
 
 import json
-import os
 import sqlite3
-from csv import writer
 from pathlib import Path
 
 import numpy as np
@@ -263,20 +261,19 @@ def create() -> None:
                     "braille_trial86" : braille_trial86,
                     "braille_trial87" : braille_trial87
                 }
-                with open(tmppath, "w") as filename:
+                with open(tmppath, "w", encoding="utf-8") as filename:
                     json.dump(braille_dictionary,filename)
                 tmppath = Path(USER_DIR).joinpath(
                     "StudentDatabase", "StudentDataFiles", "Filenames.txt"
                 )
-                filename = open(tmppath, "a")
-                tmppath = Path(USER_DIR).joinpath(
+                with open(tmppath, "a", encoding="utf-8") as filename:
+                    tmppath = Path(USER_DIR).joinpath(
                     "StudentDatabase",
                     "StudentDataFiles",
                     studentname,
                     studentdatabasename + ".json",
-                )
+                    )
                 filename.write(f"'{tmppath}'" + "\n")
-                filename.close()
                 # noinspection SqlResolve
                 def data_entry():
                     """ """
@@ -2509,7 +2506,7 @@ def create() -> None:
                 format="%.0f",
                 on_change=lambda e: u_braille_trial43.set_value(e.value),
             ).classes("w-[200px]").props(
-                'aria-label="4.3 Numeric Mode and Spatial ' 'Math"'
+                'aria-label="4.3 Numeric Mode and Spatial Math"'
             ).tooltip(
                 "4.3 Numeric Mode and Spatial Math"
             )
@@ -2661,7 +2658,7 @@ def create() -> None:
                 format="%.0f",
                 on_change=lambda e: u_braille_trial72.set_value(e.value),
             ).classes("w-[200px]").props(
-                'aria-label="7.2 Grade 1 Mode and ' 'Fractions"'
+                'aria-label="7.2 Grade 1 Mode and Fractions"'
             ).tooltip(
                 "7.2 Grade 1 Mode and Fractions"
             )

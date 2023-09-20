@@ -23,9 +23,7 @@ teachers of students with Visual Impairments
 
 import datetime
 import json
-import os
 import sqlite3
-from csv import writer
 from pathlib import Path
 
 import numpy as np
@@ -143,12 +141,12 @@ def create() -> None:
                     "abacus_trial81" : abacus_trial81,
                     "abacus_trial82" : abacus_trial82
                     }
-                with open(tmppath, "w") as filename:
+                with open(tmppath, "w", encoding="utf-8") as filename:
                     json.dump(abacus_dictionary, filename)
                     tmppath = Path(USER_DIR).joinpath(
                         "StudentDatabase", "StudentDataFiles", "Filenames.txt"
                     )
-                    filename = open(tmppath, "a")
+                with open(tmppath, "a", encoding="utf-8") as filename:
                     tmppath = Path(USER_DIR).joinpath(
                         "StudentDatabase",
                         "StudentDataFiles",
@@ -156,7 +154,6 @@ def create() -> None:
                         studentdatabasename + ".json",
                     )
                     filename.write(f"{tmppath}" + "\n")
-                    filename.close()
                 # noinspection SqlResolve
                 def data_entry():
                     """ """
@@ -967,7 +964,7 @@ def create() -> None:
                     options=students,
                     with_input=True,
                     on_change=lambda e: ui.notify(e.value),
-                ).bind_value(u_studentname, "value").classes("w-[" "300px]").props(
+                ).bind_value(u_studentname, "value").classes("w-["300px]").props(
                     'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
                 ).tooltip(
                     "Type Student Name, it will autocomplete AS you type"
@@ -994,7 +991,7 @@ def create() -> None:
             ).classes("sr-only")
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.label("PHASE 1: Setting and Clearing Numbers").classes(
-                    "justify-center " "items-center"
+                    "justify-center items-center"
                 )
             ui.input().props(
                 'aria-label="PHASE 1: Setting and Clearing Numbers"'
@@ -1004,7 +1001,7 @@ def create() -> None:
                     label="1.1",
                     value="",
                     on_change=lambda e: u_abacus_trial11.set_value(e.value),
-                ).classes("w-[" "200px]").props(
+                ).classes("w-[200px]").props(
                     'aria-label="1.1 Setting Numbers"'
                 ).tooltip(
                     "1.1 Setting Numbers"
@@ -1013,7 +1010,7 @@ def create() -> None:
                 label="1.2",
                 value="",
                 on_change=lambda e: u_abacus_trial12.set_value(e.value),
-            ).classes("w-[" "200px]").props(
+            ).classes("w-[200px]").props(
                 'aria-label="1.2 Clearing Numbers"'
             ).tooltip(
                 "1.2 Clearing Numbers"
@@ -1022,18 +1019,18 @@ def create() -> None:
                 label="1.3",
                 value="",
                 on_change=lambda e: u_abacus_trial13.set_value(e.value),
-            ).classes("w-[" "200px]").props('aria-label="1.3 Place Value"').tooltip(
+            ).classes("w-[200px]").props('aria-label="1.3 Place Value"').tooltip(
                 "1.3 Place Value"
             )
             ui.number(
                 label="1.4",
                 value="",
                 on_change=lambda e: u_abacus_trial14.set_value(e.value),
-            ).classes("w-[" "200px]").props('aria-label="1.4 Vocabulary"').tooltip(
+            ).classes("w-[200px]").props('aria-label="1.4 Vocabulary"').tooltip(
                 "1.4 Vocabulary"
             )
             with ui.row().classes("w-screen no-wrap py-4"):
-                ui.label("PHASE 2: Addition").classes("justify-center" " items-center")
+                ui.label("PHASE 2: Addition").classes("justify-center items-center")
             ui.input().props(
                 'aria-label="PHASE 2: Addition"'
             ).classes("sr-only")
@@ -1042,7 +1039,7 @@ def create() -> None:
                     label="2.1",
                     value="",
                     on_change=lambda e: u_abacus_trial21.set_value(e.value),
-                ).classes("w-[" "200px]").props(
+                ).classes("w-[200px]").props(
                     'aria-label="2.1 Addition of Single Digit Numbers"'
                 ).tooltip(
                     "2.1 Addition of Single Digit Numbers"
@@ -1051,7 +1048,7 @@ def create() -> None:
                 label="2.2",
                 value="",
                 on_change=lambda e: u_abacus_trial22.set_value(e.value),
-            ).classes("w-[" "200px]").props(
+            ).classes("w-[200px]").props(
                 'aria-label="2.2 Addition of Multiple Digit Numbers – Direct"'
             ).tooltip(
                 "2.2 Addition of Multiple Digit Numbers – Direct"
@@ -1060,7 +1057,7 @@ def create() -> None:
                 label="2.3",
                 value="",
                 on_change=lambda e: u_abacus_trial23.set_value(e.value),
-            ).classes("w-[" "200px]").props(
+            ).classes("w-[200px]").props(
                 'aria-label="2.3 Addition of Multiple Digit Numbers – Indirect"'
             ).tooltip(
                 "2.3 Addition of Multiple Digit Numbers " "– Indirect"
@@ -1076,14 +1073,14 @@ def create() -> None:
                     label="3.1",
                     value="",
                     on_change=lambda e: u_abacus_trial31.set_value(e.value),
-                ).classes("w-[" "200px]").props('aria-label="3.1 Subtraction"').tooltip(
+                ).classes("w-[200px]").props('aria-label="3.1 Subtraction"').tooltip(
                     "3.1 Subtraction"
                 )
             ui.number(
                 label="3.2",
                 value="",
                 on_change=lambda e: u_abacus_trial32.set_value(e.value),
-            ).classes("w-[" "200px]").props(
+            ).classes("w-[200px]").props(
                 'aria-label="3.2 Subtraction of Multiple Digit Numbers – Direct"'
             ).tooltip(
                 "3.2 Subtraction of Multiple Digit Numbers – Direct"
@@ -1092,7 +1089,7 @@ def create() -> None:
                 label="3.3",
                 value="",
                 on_change=lambda e: u_abacus_trial33.set_value(e.value),
-            ).classes("w-[" "200px]").props(
+            ).classes("w-[200px]").props(
                 'aria-label="3.3 Subtraction of Multiple Digit Numbers – Indirect"'
             ).tooltip(
                 "3.3 Subtraction of Multiple Digit Numbers – Indirect"
@@ -1110,7 +1107,7 @@ def create() -> None:
                     label="4.1",
                     value="",
                     on_change=lambda e: u_abacus_trial41.set_value(e.value),
-                ).classes("w-[" "200px]").props(
+                ).classes("w-[200px]").props(
                     'aria-label="4.1 Multiplication – 2+ Digit Multiplicand 1-Digit Multiplier"'
                 ).tooltip(
                     "4.1 Multiplication – 2+ Digit Multiplicand 1-Digit Multiplier"
@@ -1119,7 +1116,7 @@ def create() -> None:
                 label="4.2",
                 value="",
                 on_change=lambda e: u_abacus_trial42.set_value(e.value),
-            ).classes("w-[" "200px]").props(
+            ).classes("w-[200px]").props(
                 'aria-label="4.2 Multiplication – 2+ Digit Multiplicand AND Multiplier"'
             ).tooltip(
                 "4.2 Multiplication – 2+ Digit Multiplicand AND Multiplier"
@@ -1136,7 +1133,7 @@ def create() -> None:
                     label="5.1",
                     value="",
                     on_change=lambda e: u_abacus_trial51.set_value(e.value),
-                ).classes("w-[" "200px]").props(
+                ).classes("w-[200px]").props(
                     'aria-label="5.1 Division – 2+ Digit Dividend 1-Digit Divisor"'
                 ).tooltip(
                     "5.1 Division – 2+ Digit Dividend 1-Digit Divisor"
@@ -1145,7 +1142,7 @@ def create() -> None:
                 label="5.2",
                 value="",
                 on_change=lambda e: u_abacus_trial52.set_value(e.value),
-            ).classes("w-[" "200px]").props(
+            ).classes("w-[200px]").props(
                 'aria-label="5.2 Division – 2+ Digit Dividend AND 1 Digit Divisor"'
             ).tooltip(
                 "5.2 Division – 2+ Digit Dividend AND 1 Digit Divisor"
@@ -1162,7 +1159,7 @@ def create() -> None:
                     label="6.1",
                     value="",
                     on_change=lambda e: u_abacus_trial61.set_value(e.value),
-                ).classes("w-[" "200px]").props(
+                ).classes("w-[200px]").props(
                     'aria-label="6.1 Addition of Decimals"'
                 ).tooltip(
                     "6.1 Addition of Decimals"
@@ -1171,7 +1168,7 @@ def create() -> None:
                 label="6.2",
                 value="",
                 on_change=lambda e: u_abacus_trial62.set_value(e.value),
-            ).classes("w-[" "200px]").props(
+            ).classes("w-[200px]").props(
                 'aria-label="6.2 Subtraction of Decimals"'
             ).tooltip(
                 "6.2 Subtraction of Decimals"
@@ -1180,7 +1177,7 @@ def create() -> None:
                 label="6.3",
                 value="",
                 on_change=lambda e: u_abacus_trial63.set_value(e.value),
-            ).classes("w-[" "200px]").props(
+            ).classes("w-[200px]").props(
                 'aria-label="6.3 Multiplication of Decimals"'
             ).tooltip(
                 "6.3 Multiplication of Decimals"
@@ -1189,7 +1186,7 @@ def create() -> None:
                 label="6.4",
                 value="",
                 on_change=lambda e: u_abacus_trial64.set_value(e.value),
-            ).classes("w-[" "200px]").props(
+            ).classes("w-[200px]").props(
                 'aria-label="6.4 Division of Decimals"'
             ).tooltip(
                 "6.4 Division of Decimals"
@@ -1204,7 +1201,7 @@ def create() -> None:
                     label="7.1",
                     value="",
                     on_change=lambda e: u_abacus_trial71.set_value(e.value),
-                ).classes("w-[" "200px]").props(
+                ).classes("w-[200px]").props(
                     'aria-label="7.1 Addition of Fractions"'
                 ).tooltip(
                     "7.1 Addition of Fractions"
@@ -1213,7 +1210,7 @@ def create() -> None:
                 label="7.2",
                 value="",
                 on_change=lambda e: u_abacus_trial72.set_value(e.value),
-            ).classes("w-[" "200px]").props(
+            ).classes("w-[200px]").props(
                 'aria-label="7.2 Subtraction of Fractions"'
             ).tooltip(
                 "7.2 Subtraction of Fractions"
@@ -1222,7 +1219,7 @@ def create() -> None:
                 label="7.3",
                 value="",
                 on_change=lambda e: u_abacus_trial73.set_value(e.value),
-            ).classes("w-[" "200px]").props(
+            ).classes("w-[200px]").props(
                 'aria-label="7.3 Multiplication of Fractions"'
             ).tooltip(
                 "7.3 Multiplication of Fractions"
@@ -1231,7 +1228,7 @@ def create() -> None:
                 label="7.4",
                 value="",
                 on_change=lambda e: u_abacus_trial74.set_value(e.value),
-            ).classes("w-[" "200px]").props(
+            ).classes("w-[200px]").props(
                 'aria-label="7.4 Division of Fractions"'
             ).tooltip(
                 "7.4 Division of Fractions"
@@ -1248,14 +1245,14 @@ def create() -> None:
                     label="8.1",
                     value="",
                     on_change=lambda e: u_abacus_trial81.set_value(e.value),
-                ).classes("w-[" "200px]").props('aria-label="8.1 Percent"').tooltip(
+                ).classes("w-[200px]").props('aria-label="8.1 Percent"').tooltip(
                     "8.1 Percent"
                 )
             ui.number(
                 label="8.2",
                 value="",
                 on_change=lambda e: u_abacus_trial82.set_value(e.value),
-            ).classes("w-[" "200px]").props('aria-label="8.2 Square Root"').tooltip(
+            ).classes("w-[200px]").props('aria-label="8.2 Square Root"').tooltip(
                 "8.2 Square Root"
             )
             ui.label(" ").classes("w-[200px]")

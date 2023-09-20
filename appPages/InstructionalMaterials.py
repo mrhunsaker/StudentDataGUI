@@ -157,7 +157,7 @@ def create() -> None:
                 "/datasheets"
                 "/BlankVisionTemplate.pdf",
                 new_tab=True,
-            ).classes("text-left w-screen " "text-black align-left " "font-bold")
+            ).classes("text-left w-screen text-black align-left font-bold")
         with ui.row().classes("w-full no-wrap py-4"):
             ui.link(
                 "Generic Data Sheets",

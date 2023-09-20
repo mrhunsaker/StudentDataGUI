@@ -21,9 +21,7 @@ teachers of students with Visual Impairments
 #   language governing permissions and limitations under the License.   #
 #########################################################################
 
-import os
 import sqlite3
-from csv import writer
 from pathlib import Path
 import json
 import numpy as np
@@ -160,7 +158,7 @@ def create() -> None:
                     tmppath = Path(USER_DIR).joinpath(
                         "StudentDatabase", "StudentDataFiles", "Filenames.txt"
                     )
-                    filename = open(tmppath, "a", encoding="utf8")
+                with open(tmppath, "a", encoding="utf8") as filename:
                     tmppath = Path(USER_DIR).joinpath(
                         "StudentDatabase",
                         "StudentDataFiles",
@@ -168,7 +166,6 @@ def create() -> None:
                         studentdatabasename + ".json",
                     )
                     filename.write(f"'{tmppath}'" + "\n")
-                    filename.close()
                     
                 # noinspection SqlResolve
                 def data_entry():
@@ -1126,8 +1123,8 @@ def create() -> None:
             )
             ui.label(" ").classes("w-[200px]")
             with ui.row().classes("w-screen no-wrap py-4"):
-                ui.label("PHASE 2: WRITING").classes("justify-center " "items-center")
-            ui.input().props('aria-label="PHASE 2: ' 'WRITING"').classes("sr-only")
+                ui.label("PHASE 2: WRITING").classes("justify-center items-center")
+            ui.input().props('aria-label="PHASE 2: WRITING"').classes("sr-only")
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.number(
                     label="2.1",

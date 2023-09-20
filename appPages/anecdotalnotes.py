@@ -23,8 +23,6 @@ of students with Visual Impairments
 #########################################################################
 
 import json
-import os
-from csv import writer
 from pathlib import Path
 
 from nicegui import app, ui
@@ -106,13 +104,13 @@ def create() -> None:
                     "trial 10": trial10,
                     "trial 11": trial11,
                 }
-                with open(tmppath, "w") as filename:
+                with open(tmppath, "w", encoding="utf-8") as filename:
                     json.dump(anecdotal_dictionary, filename)
 
                     tmppath = Path(USER_DIR).joinpath(
                         "StudentDatabase", "StudentDataFiles", "Filenames.txt"
                     )
-                    filename = open(tmppath, "a")
+                with open(tmppath, "a") as filename:
                     tmppath = Path(USER_DIR).joinpath(
                         "StudentDatabase",
                         "StudentDataFiles",
@@ -131,7 +129,7 @@ def create() -> None:
                 on_change=lambda e: ui.notify(e.value),
             ).bind_value(u_studentname, "value").classes("w-[300px]").props('aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
             ).tooltip(
-                "Type Student Name, it will " "autocomplete AS you type"
+                "Type Student Name, it will autocomplete as you type"
             )
         with ui.input("Date").classes("w-[300px]").props('aria-label="Date. Please type in date using the YYYY-MM-DD format"'
         ).tooltip("Date. Please type in date using the YYYY-MM-DD format") as date:

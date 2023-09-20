@@ -21,9 +21,7 @@ teachers of students with Visual Impairments
 #   language governing permissions and limitations under the License.   #
 #########################################################################
 
-import os
 import sqlite3
-from csv import writer
 from pathlib import Path
 
 import json
@@ -199,32 +197,19 @@ def create() -> None:
                     "ios_trial610" : ios_trial610,
                     "ios_trial611" : ios_trial611
                 }
-                with open(tmppath, "w") as filename:
+                with open(tmppath, "w", encoding="utf-8") as filename:
                     json.dump(ios_dictionary,filename)
                     tmppath = Path(USER_DIR).joinpath(
                         "StudentDatabase", "StudentDataFiles", "Filenames.txt"
                     )
-                    filename = open(tmppath, "a")
-                    tmppath = Path(USER_DIR).joinpath(
-                        "StudentDatabase",
-                        "StudentDataFiles",
-                        studentname,
-                        studentdatabasename + ".json",
-                    )
-                    filename.write(f"'{tmppath}'" + "\n")
-                    filename.close()
-                    tmppath = Path(USER_DIR).joinpath(
-                        "StudentDatabase", "StudentDataFiles", "Filenames.txt"
-                    )
-                    filename = open(tmppath, "a")
-                    tmppath = Path(USER_DIR).joinpath(
-                        "StudentDatabase",
-                        "StudentDataFiles",
-                        studentname,
-                        studentdatabasename + ".txt",
-                    )
-                    filename.write(f"'{tmppath}'" + "\n")
-                    filename.close()
+                    open(tmppath, "a", encoding="utf-8") as filename:
+                        tmppath = Path(USER_DIR).joinpath(
+                            "StudentDatabase",
+                            "StudentDataFiles",
+                            studentname,
+                            studentdatabasename + ".json",
+                        )
+                        filename.write(f"'{tmppath}'" + "\n")
                     
                     # noinspection SqlResolve
                     def data_entry():

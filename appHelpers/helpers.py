@@ -81,7 +81,7 @@ def warningmessage(exception_type, exception_value, exception_traceback):
     exception_traceback (_type_): _description_
     """
     i = ""
-    message = "Please make sure all fields are selected / filled out " "properly\n\n"
+    message = "Please make sure all fields are selected / filled out properly\n\n"
     tb = traceback.format_exception(
         exception_type, exception_value, exception_traceback
     )
@@ -91,7 +91,7 @@ def warningmessage(exception_type, exception_value, exception_traceback):
     Path.touch(log_path)
     for i in tb:
         message += i
-    with open(log_path, "a") as log_file:
+    with open(log_path, "a", encoding="utf-8") as log_file:
         log_file.write(f"{date}\n{i}" + "\n")
         errortype = str(exception_type)
     ui.notify(f"{message}\n{errortype}", type="warn" "ing", close_button="OK")

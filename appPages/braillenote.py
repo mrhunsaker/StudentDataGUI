@@ -22,9 +22,7 @@ teachers of students with Visual Impairments
 #########################################################################
 
 import json
-import os
 import sqlite3
-from csv import writer
 from pathlib import Path
 
 import numpy as np
@@ -254,20 +252,19 @@ def create() -> None:
                     "bnt_trial123" : bnt_trial123,
                     "bnt_trial124" : bnt_trial124,
                 }
-                with open(tmppath, "w") as filename:
+                with open(tmppath, "w", encoding="utf-8") as filename:
                     json.dump(bnt_dictionary,filename)
                 tmppath = Path(USER_DIR).joinpath(
                     "StudentDatabase", "StudentDataFiles", "Filenames.txt"
                 )
-                filename = open(tmppath, "a")
-                tmppath = Path(USER_DIR).joinpath(
-                    "StudentDatabase",
-                    "StudentDataFiles",
-                    studentname,
-                    studentdatabasename + ".json",
-                )
-                filename.write(f"'{tmppath}'" + "\n")
-                filename.close()
+                with open(tmppath, "a",encoding="utf-8") as filename:
+                    tmppath = Path(USER_DIR).joinpath(
+                        "StudentDatabase",
+                        "StudentDataFiles",
+                        studentname,
+                        studentdatabasename + ".json",
+                    )
+                    filename.write(f"'{tmppath}'" + "\n")
                     # noinspection SqlResolve
                 def data_entry():
                     """ """
@@ -1734,8 +1731,8 @@ def create() -> None:
                 options=students,
                 with_input=True,
                 on_change=lambda e: ui.notify(e.value),
-            ).bind_value(u_studentname, "value").classes("w-[" "300px]").props('aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
-            ).tooltip("Type Student Name, it will autocomplete AS you type"
+            ).bind_value(u_studentname, "value").classes("w-[300px]").props('aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
+            ).tooltip("Type Student Name, it will autocomplete as you type"
             )
             with ui.input("Date").classes("w-[300px]").props('aria-label="Date. Please type in date using the YYYY-MM-DD format"'
             ).tooltip("Date. Please type in date using the YYYY-MM-DD format"
@@ -1764,14 +1761,14 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_bnt_trial11.set_value(e.value),
-            ).classes("w-[200px]").props('aria-label="Physical Layout"').tooltip("Physical Layout"),
+                ).classes("w-[200px]").props('aria-label="Physical Layout"').tooltip("Physical Layout"),
             ui.number(
                 label="1.2",
                 min=0,
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_bnt_trial12.set_value(e.value),
-            ).classes("w-[200px]").props('aria-label="Setup/Universal Commands"').tooltip("Setup/Universal Commands"),
+                ).classes("w-[200px]").props('aria-label="Setup/Universal Commands"').tooltip("Setup/Universal Commands"),
             ui.number(
                 label="1.3",
                 min=0,

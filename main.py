@@ -79,11 +79,12 @@ InstructionalMaterials.create()
 ########################################################################
 with ui.footer(value=True) as footer:
     with ui.row().classes(
-        "w-screen no-wrap justify-center items-center text-l font-bold"
-    ):
+            "w-screen no-wrap justify-center items-center text-l font-bold"
+            ):
         ui.label("Copyright © 2023 Michael Ryan Hunsaker, M.Ed., Ph.D.").classes("justify-center items-center")
     with ui.row().classes("w-screen no-wrap justify-center items-center text-l font-bold"):
-        ui.label("Report Bugs or Request Features by emailing hunsakerconsulting@gmail.com"
+        ui.label(
+                "Report Bugs or Request Features by emailing hunsakerconsulting@gmail.com"
                 ).classes("justify-center items-center")
 
 ########################################################################
@@ -96,10 +97,10 @@ for MONITOR in get_monitors():
 # RUN CALL
 ########################################################################
 ui.run(
-    native=True,
-    reload=False,
-    dark=False,
-    title="Student Skills Progressions",
-    fullscreen=False,
-    window_size=(MONITOR.width, MONITOR.height - 72),
-)
+        native=True,
+        reload=False,
+        dark=False,
+        title="Student Skills Progressions",
+        fullscreen=False,
+        window_size=(MONITOR.width, MONITOR.height - 72),
+        )

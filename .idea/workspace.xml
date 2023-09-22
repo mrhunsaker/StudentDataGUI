@@ -5,17 +5,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ce23218e-a8d9-4102-89c9-431635277b0c" name="Changes" comment="Linted code">
+      <change beforePath="$PROJECT_DIR$/.idea/StudentDataGUI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/StudentDataGUI.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/73329fa8-3f00-4500-8447-a87749f48b42.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/73329fa8-3f00-4500-8447-a87749f48b42.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2022-08-29_10_54.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2022-08-29_10_54.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_9_6_2022_11_07_AM.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_9_6_2022_11_07_AM.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appHelpers/helpers.py" beforeDir="false" afterPath="$PROJECT_DIR$/appHelpers/helpers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appHelpers/roster.py" beforeDir="false" afterPath="$PROJECT_DIR$/appHelpers/roster.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appPages/InstructionalMaterials.py" beforeDir="false" afterPath="$PROJECT_DIR$/appPages/InstructionalMaterials.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/appPages/abacus.py" beforeDir="false" afterPath="$PROJECT_DIR$/appPages/abacus.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/appPages/anecdotalnotes.py" beforeDir="false" afterPath="$PROJECT_DIR$/appPages/anecdotalnotes.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/appPages/braille.py" beforeDir="false" afterPath="$PROJECT_DIR$/appPages/braille.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/appPages/braillenote.py" beforeDir="false" afterPath="$PROJECT_DIR$/appPages/braillenote.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/appPages/contactlog.py" beforeDir="false" afterPath="$PROJECT_DIR$/appPages/contactlog.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/appPages/cvi.py" beforeDir="false" afterPath="$PROJECT_DIR$/appPages/cvi.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appPages/homepage.py" beforeDir="false" afterPath="$PROJECT_DIR$/appPages/homepage.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/appPages/ios.py" beforeDir="false" afterPath="$PROJECT_DIR$/appPages/ios.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/appPages/screenreader.py" beforeDir="false" afterPath="$PROJECT_DIR$/appPages/screenreader.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appTheming/menu.py" beforeDir="false" afterPath="$PROJECT_DIR$/appTheming/menu.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appTheming/theme.py" beforeDir="false" afterPath="$PROJECT_DIR$/appTheming/theme.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pylint_reports/pylint_report_20230920.json" beforeDir="false" afterPath="$PROJECT_DIR$/pylint_reports/pylint_report_20230920.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="true" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,27 +75,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Notification.DisplayName-DoNotAsk-Black Formatter Integration&quot;: &quot;Black&quot;,
-    &quot;Notification.DoNotAsk-Black Formatter Integration&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/ryhunsaker/GitHub/StudentDataGUI&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;aDefault&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.black.configuration.BlackFormatterConfigurable&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Notification.DisplayName-DoNotAsk-Black Formatter Integration": "Black",
+    "Notification.DoNotAsk-Black Formatter Integration": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/RYHUNSAKER/GitHubRepos/StudentDataGUI",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "run.code.analysis.last.selected.profile": "aDefault",
+    "settings.editor.selected.configurable": "Errors",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="Python_StudentDataGUI" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="StudentDataGUI" />
@@ -93,7 +105,6 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="SDK_NAME" value="Pipenv (StudentDataGUI)" />
       <option name="WORKING_DIRECTORY" value="" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -162,6 +173,8 @@
       <workItem from="1694907216862" duration="2283000" />
       <workItem from="1695081963813" duration="298000" />
       <workItem from="1695083881672" duration="431000" />
+      <workItem from="1695227638963" duration="451000" />
+      <workItem from="1695230776047" duration="6498000" />
     </task>
     <option name="localTasksCounter" value="2" />
     <servers />
@@ -186,15 +199,15 @@
     <option name="LAST_COMMIT_MESSAGE" value="Linted code" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/main_py$ios.coverage" NAME="ios Coverage Results" MODIFIED="1694188835652" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/StudentDataGUI$main.coverage" NAME="main Coverage Results" MODIFIED="1677268629456" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/main_py$theme.coverage" NAME="theme Coverage Results" MODIFIED="1694026218427" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/main_py$sqlgenerate.coverage" NAME="sqlgenerate Coverage Results" MODIFIED="1694541357026" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/main_py$main.coverage" NAME="main Coverage Results" MODIFIED="1695084298443" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/main_py$Python_StudentDataGUI.coverage" NAME="Python_StudentDataGUI Coverage Results" MODIFIED="1695084284787" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/main_py$menu.coverage" NAME="menu Coverage Results" MODIFIED="1693938873501" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/SiteAsPages" />
     <SUITE FILE_PATH="coverage/main_py$braillenote.coverage" NAME="braillenote Coverage Results" MODIFIED="1694544512402" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/main_py$menu.coverage" NAME="menu Coverage Results" MODIFIED="1693938873501" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/SiteAsPages" />
     <SUITE FILE_PATH="coverage/main_py$contactlog.coverage" NAME="contactlog Coverage Results" MODIFIED="1694008929622" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/main_py$Python_StudentDataGUI.coverage" NAME="Python_StudentDataGUI Coverage Results" MODIFIED="1695231498993" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/StudentDataGUI$main.coverage" NAME="main Coverage Results" MODIFIED="1677268629456" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/main_py$sqlgenerate.coverage" NAME="sqlgenerate Coverage Results" MODIFIED="1694541357026" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/main_py$ios.coverage" NAME="ios Coverage Results" MODIFIED="1694188835652" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/main_py$theme.coverage" NAME="theme Coverage Results" MODIFIED="1694026218427" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/main_py$main.coverage" NAME="main Coverage Results" MODIFIED="1695084298443" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/main_py$homepage.coverage" NAME="homepage Coverage Results" MODIFIED="1694012296383" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/SiteAsPages" />
   </component>
 </project>

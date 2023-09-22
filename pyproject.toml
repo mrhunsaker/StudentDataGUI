@@ -1,7 +1,7 @@
 [project]
 name = "Student Vision Skills Progression Data Collection GUI"
 version = "0.1.0a"
-authors = [{name = "Michael Ryan Hunsaker, M.Ed, Ph.D.", email = "hunsakerconsulting@gmail.com"}]
+authors = [{ name = "Michael Ryan Hunsaker, M.Ed, Ph.D.", email = "hunsakerconsulting@gmail.com" }]
 description = "  "
 
 [tools.flake8]
@@ -15,19 +15,33 @@ target-version = ['py37', 'py38', 'py39', 'py310', 'py311']
 
 [tool.pylint.'MESSAGES CONTROL']
 max-line-length = 512
-disable = [
-    "C0103", # (invalid-name)
-    "C0114", # (missing-module-docstring)
-    "C0115", # (missing-class-docstring)
-    "C0116", # (missing-function-docstring)
-    "R0903", # (too-few-public-methods)
-    "R0913", # (too-many-arguments)
-    "W0105", # (pointless-string-statement)
-    "R0915",
-    "W0109",
-    "W0108",
-    "C0103"
-]
-good-names=[
-    "i"
+disable = '''
+    C0103,
+    C0114,
+    C0115,
+    C0116,
+    R0903,
+    R0913,
+    W0105,
+    R0915,
+    W0109,
+    W0108,
+    C0103,
+    C0413,
+    E0401,
+    W0621,
+    R1734,
+    R0914,
+    R0912,
+    C0302,
+    W0612,
+    W0613,
+    R0801,
+    R1735
+'''
+good-names = [
+    "c",
+    "e",
+    "i",
+    "conn"
 ]

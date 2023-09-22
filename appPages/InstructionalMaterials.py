@@ -30,158 +30,158 @@ from appTheming import theme
 def create() -> None:
     with theme.frame("- INSTRUCTIONAL MATERIALS -"):
         ui.label("Instructional Materials").classes(
-            "text-h4 font-bold text-grey-8"
-        )
+                "text-h4 font-bold text-grey-8"
+                )
         with ui.row().classes("w-full no-wrap"):
             ui.label("MATERIALS").classes(
-                "text-h4 w-screen no-wrap py-4 text-black font-bold text-xl justify-center items-center"
-            )
+                    "text-h4 w-screen no-wrap py-4 text-black font-bold text-xl justify-center items-center"
+                    )
         with ui.row().classes("w-full no-wrap"):
             ui.label("ABACUS").classes(
-                "text-h4 w-screen no-wrap font-bold text-black text-xl justify-center items-center"
-            )
+                    "text-h4 w-screen no-wrap font-bold text-black text-xl justify-center items-center"
+                    )
         with ui.row().classes("w-full no-wrap py-4"):
             ui.link(
-                "Hadley Abacus Curriculum I",
-                "https://github.com/mrhunsaker/Materials/raw/main"
-                "/instructionMaterials/Abacus1.pdf",
-                new_tab=True,
-            ).classes("text-left w-full text-black align-left font-bold")
+                    "Hadley Abacus Curriculum I",
+                    "https://github.com/mrhunsaker/Materials/raw/main"
+                    "/instructionMaterials/Abacus1.pdf",
+                    new_tab=True,
+                    ).classes("text-left w-full text-black align-left font-bold")
         with ui.row().classes("w-full no-wrap py-4"):
             ui.link(
-                "Hadley Abacus Curriculum II",
-                "https://github.com/mrhunsaker/Materials/raw/main"
-                "/instructionMaterials/Abacus2.pdf",
-                new_tab=True,
-            ).classes("text-left w-full align-left text-black font-bold")
+                    "Hadley Abacus Curriculum II",
+                    "https://github.com/mrhunsaker/Materials/raw/main"
+                    "/instructionMaterials/Abacus2.pdf",
+                    new_tab=True,
+                    ).classes("text-left w-full align-left text-black font-bold")
         with ui.row().classes("w-full no-wrap py-4"):
             ui.link(
-                "Abacus Made Easy",
-                "https://github.com/mrhunsaker/Materials/raw/main"
-                "/instructionMaterials/AbacusMadeEasy.pdf",
-                new_tab=True,
-            ).classes("text-left w-full text-black align-left font-bold font-bold")
+                    "Abacus Made Easy",
+                    "https://github.com/mrhunsaker/Materials/raw/main"
+                    "/instructionMaterials/AbacusMadeEasy.pdf",
+                    new_tab=True,
+                    ).classes("text-left w-full text-black align-left font-bold font-bold")
         with ui.row().classes("w-full no-wrap py-4"):
             ui.link(
-                "Using the Cranmer Abacus",
-                "https://github.com/mrhunsaker/Materials/raw/main"
-                "/instructionMaterials/UsingCranmerAbacus.pdf",
-                new_tab=True,
-            ).classes("text-left w-full align-left text-black font-bold")
+                    "Using the Cranmer Abacus",
+                    "https://github.com/mrhunsaker/Materials/raw/main"
+                    "/instructionMaterials/UsingCranmerAbacus.pdf",
+                    new_tab=True,
+                    ).classes("text-left w-full align-left text-black font-bold")
         with ui.row().classes("w-full no-wrap py-4"):
             ui.link(
-                "Japanese Abacus Use and Theory",
-                "https://github.com/mrhunsaker/Materials/raw/main"
-                "/instructionMaterials/abacusUseTheory.pdf",
-                new_tab=True,
-            ).classes("text-left w-full text-black align-left font-bold")
+                    "Japanese Abacus Use and Theory",
+                    "https://github.com/mrhunsaker/Materials/raw/main"
+                    "/instructionMaterials/abacusUseTheory.pdf",
+                    new_tab=True,
+                    ).classes("text-left w-full text-black align-left font-bold")
         with ui.row().classes("w-full no-wrap py-4"):
             ui.link(
-                "Advanced Japanese Abacus",
-                "https://github.com/mrhunsaker/Materials/raw/main"
-                "/instructionMaterials/AdvancedAbacus.pdf",
-                new_tab=True,
-            ).classes("text-left w-full align-left text-black font-bold")
+                    "Advanced Japanese Abacus",
+                    "https://github.com/mrhunsaker/Materials/raw/main"
+                    "/instructionMaterials/AdvancedAbacus.pdf",
+                    new_tab=True,
+                    ).classes("text-left w-full align-left text-black font-bold")
         with ui.row().classes("w-full no-wrap"):
             ui.label("BRAILLE").classes(
-                "text-h4 w-screen no-wrap font-bold text-black text-xl justify-center items-center"
-            )
+                    "text-h4 w-screen no-wrap font-bold text-black text-xl justify-center items-center"
+                    )
         with ui.row().classes("w-full no-wrap py-4"):
             ui.link(
-                "NLS-IMBT UEB Literary Braille",
-                "https://github.com/mrhunsaker/Materials/raw/main"
-                "/instructionMaterials/NLSLOCLessons1-11.pdf",
-                new_tab=True,
-            ).classes("text-left w-full text-black align-left font-bold")
+                    "NLS-IMBT UEB Literary Braille",
+                    "https://github.com/mrhunsaker/Materials/raw/main"
+                    "/instructionMaterials/NLSLOCLessons1-11.pdf",
+                    new_tab=True,
+                    ).classes("text-left w-full text-black align-left font-bold")
         with ui.row().classes("w-full no-wrap py-4"):
             ui.link(
-                "UEB Australian Training Manual",
-                "https://github.com/mrhunsaker/Materials/raw/main"
-                "/instructionMaterials/UEBAustralianTrainingManual.pdf",
-                new_tab=True,
-            ).classes("text-left w-full align-left text-black font-bold")
+                    "UEB Australian Training Manual",
+                    "https://github.com/mrhunsaker/Materials/raw/main"
+                    "/instructionMaterials/UEBAustralianTrainingManual.pdf",
+                    new_tab=True,
+                    ).classes("text-left w-full align-left text-black font-bold")
         with ui.row().classes("w-full no-wrap py-4"):
             ui.link(
-                "UEB Technical Course",
-                "https://github.com/mrhunsaker/Materials/raw/main"
-                "/instructionMaterials/UEBTechnicalCourse.pdf",
-                new_tab=True,
-            ).classes("text-left w-full text-black align-left font-bold")
+                    "UEB Technical Course",
+                    "https://github.com/mrhunsaker/Materials/raw/main"
+                    "/instructionMaterials/UEBTechnicalCourse.pdf",
+                    new_tab=True,
+                    ).classes("text-left w-full text-black align-left font-bold")
         with ui.row().classes("w-full no-wrap py-4"):
             ui.link(
-                "UEB Technical Guidelines",
-                "https://github.com/mrhunsaker/Materials/raw/main"
-                "/instructionMaterials/UEBTechnicalGuidelines.pdf",
-                new_tab=True,
-            ).classes("text-left w-full align-left text-black font-bold")
+                    "UEB Technical Guidelines",
+                    "https://github.com/mrhunsaker/Materials/raw/main"
+                    "/instructionMaterials/UEBTechnicalGuidelines.pdf",
+                    new_tab=True,
+                    ).classes("text-left w-full align-left text-black font-bold")
         with ui.row().classes("w-full no-wrap py-4"):
             ui.link(
-                "UEB with Nemeth",
-                "https://github.com/mrhunsaker/Materials/raw/main"
-                "/instructionMaterials/NemethUEBContext.pdf",
-            ).classes("text-left w-full text-black align-left font-bold")
+                    "UEB with Nemeth",
+                    "https://github.com/mrhunsaker/Materials/raw/main"
+                    "/instructionMaterials/NemethUEBContext.pdf",
+                    ).classes("text-left w-full text-black align-left font-bold")
         with ui.row().classes("w-full no-wrap"):
             ui.label("SCREENREADER").classes(
-                "w-screen no-wrap font-bold text-black text-xl justify-center items-center"
-            )
+                    "w-screen no-wrap font-bold text-black text-xl justify-center items-center"
+                    )
         with ui.row().classes("w-full no-wrap py-4"):
             ui.link(
-                "NVDA Trainings",
-                "https://github.com/mrhunsaker/Materials/raw/main"
-                "/instructionMaterials/NVDATrainings.pdf",
-                new_tab=True,
-            ).classes("text-left w-full text-black align-left font-bold")
+                    "NVDA Trainings",
+                    "https://github.com/mrhunsaker/Materials/raw/main"
+                    "/instructionMaterials/NVDATrainings.pdf",
+                    new_tab=True,
+                    ).classes("text-left w-full text-black align-left font-bold")
         with ui.row().classes("w-full no-wrap py-4"):
             ui.link(
-                "Windows Screen Reader Primer",
-                "https://github.com/mrhunsaker/Materials/raw/main"
-                "/instructionMaterials/WindowsScreenreaderPrimer.zip",
-                new_tab=True,
-            ).classes("text-left w-full align-left text-black font-bold")
+                    "Windows Screen Reader Primer",
+                    "https://github.com/mrhunsaker/Materials/raw/main"
+                    "/instructionMaterials/WindowsScreenreaderPrimer.zip",
+                    new_tab=True,
+                    ).classes("text-left w-full align-left text-black font-bold")
         with ui.row().classes("w-full no-wrap py-4"):
             ui.link(
-                "Getting Started with Windows 11",
-                "https://github.com/mrhunsaker/Materials/blob/main"
-                "/instructionMaterials/GettingStartedWindows11.doc",
-                new_tab=True,
-            ).classes("text-left w-full text-black align-left font-bold")
+                    "Getting Started with Windows 11",
+                    "https://github.com/mrhunsaker/Materials/blob/main"
+                    "/instructionMaterials/GettingStartedWindows11.doc",
+                    new_tab=True,
+                    ).classes("text-left w-full text-black align-left font-bold")
         with ui.row().classes("w-full no-wrap"):
             ui.label("DATASHEETS").classes(
-                "text-h4 w-screen no-wrap content-center font-bold "
-                "text-black text-xl"
-            )
+                    "text-h4 w-screen no-wrap content-center font-bold "
+                    "text-black text-xl"
+                    )
         with ui.row().classes("w-full no-wrap py-4"):
             ui.link(
-                "Blank Vision Template",
-                "https://github.com/mrhunsaker/Materials/raw/main"
-                "/datasheets"
-                "/BlankVisionTemplate.pdf",
-                new_tab=True,
-            ).classes("text-left w-screen text-black align-left font-bold")
+                    "Blank Vision Template",
+                    "https://github.com/mrhunsaker/Materials/raw/main"
+                    "/datasheets"
+                    "/BlankVisionTemplate.pdf",
+                    new_tab=True,
+                    ).classes("text-left w-screen text-black align-left font-bold")
         with ui.row().classes("w-full no-wrap py-4"):
             ui.link(
-                "Generic Data Sheets",
-                "https://github.com/mrhunsaker/Materials/raw/main"
-                "/datasheets"
-                "/GenericDataSheets.pdf",
-                new_tab=True,
-            ).classes("text-left w-full align-left text-black font-bold")
+                    "Generic Data Sheets",
+                    "https://github.com/mrhunsaker/Materials/raw/main"
+                    "/datasheets"
+                    "/GenericDataSheets.pdf",
+                    new_tab=True,
+                    ).classes("text-left w-full align-left text-black font-bold")
         with ui.row().classes("w-full no-wrap py-4"):
             ui.link(
-                "Bi-Weekly Progress Monitoring",
-                "https://github.com/mrhunsaker/Materials/raw/main"
-                "/datasheets"
-                "/ProgressMonitoring.pdf",
-                new_tab=True,
-            ).classes("text-left w-full text-black align-left font-bold")
+                    "Bi-Weekly Progress Monitoring",
+                    "https://github.com/mrhunsaker/Materials/raw/main"
+                    "/datasheets"
+                    "/ProgressMonitoring.pdf",
+                    new_tab=True,
+                    ).classes("text-left w-full text-black align-left font-bold")
         with ui.row().classes("w-full no-wrap"):
             ui.label("ASSESSMENT FORMS").classes(
-                "text-h4 w-screen no-wrap py-4 font-bold text-black text-xl justify-center items-center"
-            )
+                    "text-h4 w-screen no-wrap py-4 font-bold text-black text-xl justify-center items-center"
+                    )
         with ui.row().classes("w-full no-wrap"):
             ui.link(
-                "Educational Vision Evaluation Forms",
-                "https://github.com/mrhunsaker/Materials/raw/main"
-                "/visionAssessments/EducationVisionAssessments.pdf",
-                new_tab=True,
-            ).classes("text-left w-full text-black align-left font-bold")
+                    "Educational Vision Evaluation Forms",
+                    "https://github.com/mrhunsaker/Materials/raw/main"
+                    "/visionAssessments/EducationVisionAssessments.pdf",
+                    new_tab=True,
+                    ).classes("text-left w-full text-black align-left font-bold")

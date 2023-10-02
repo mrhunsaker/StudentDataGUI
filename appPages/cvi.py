@@ -37,9 +37,10 @@ from appTheming import theme
 
 
 def create() -> None:
-    #########################################################################
-    # CVI PROGRESSION
-    ##########################################################################
+    """
+    CVI Progress Page Creation
+    """
+
     @ui.page("/cviprogress")
     def cviprogress():
         with theme.frame("- CVI PROGRESSION-"):

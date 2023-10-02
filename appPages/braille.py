@@ -273,7 +273,7 @@ def create() -> None:
                             studentname,
                             studentdatabasename + ".json",
                             )
-                filename.write(f"'{tmppath}'" + "\n")
+                    filename.write(f"'{tmppath}'" + "\n")
 
                 # noinspection SqlResolve
                 def data_entry():

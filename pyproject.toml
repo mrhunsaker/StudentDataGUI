@@ -2,7 +2,7 @@
 name = "Student Vision Skills Progression Data Collection GUI"
 version = "0.1.0a"
 authors = [{ name = "Michael Ryan Hunsaker, M.Ed, Ph.D.", email = "hunsakerconsulting@gmail.com" }]
-description = "  "
+description = "Data collection application for Teachers of Students with Visual Impairments"
 
 [tools.flake8]
 exclude = ""

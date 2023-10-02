@@ -114,12 +114,12 @@ def create() -> None:
                             )
                     filename.write(f"{tmppath}" + "\n")
 
-            ui.notify(
-                    "Saved successfully!",
-                    position="center",
-                    type="positive",
-                    close_button="OK",
-                    )
+                ui.notify(
+                        "Saved successfully!",
+                        position="center",
+                        type="positive",
+                        close_button="OK",
+                        )
 
         with ui.row().classes("w-full no-wrap py-4"):
             ui.label().classes("w-[250px]")

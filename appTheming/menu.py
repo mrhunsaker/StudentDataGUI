@@ -32,9 +32,12 @@ def menu() -> None:
             ui.menu_item("CONTACT LOG", lambda: ui.open("/contactlog")).classes(
                     replace="text-black"
                     )
-            ui.menu_item("ANECDOTAL NOTES", lambda: ui.open("/anecdotalnotes")).classes(
+            ui.menu_item("SESSION NOTES", lambda: ui.open("/sessionnotes")).classes(
                     replace="text-black"
                     )
+            ui.menu_item("OBSERVATIONS", lambda: ui.open("/observations")).classes(
+                    replace="text-black"
+                    )            
             ui.separator()
             with ui.row().classes("justify-center items-center"):
                 ui.label("TACTILE SKILLS").classes("font-bold")

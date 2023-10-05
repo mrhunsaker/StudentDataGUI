@@ -33,11 +33,11 @@ from appTheming import theme
 
 
 def create() -> None:
-    """Creates Anecdotal Notes Page"""
+    """Creates Session Notes Page"""
 
-    @ui.page("/anecdotalnotes")
-    def anecdotalnotes() -> None:
-        with theme.frame("- ANECDOTAL NOTES -"):
+    @ui.page("/sessionnotes")
+    def sessionnotes() -> None:
+        with theme.frame("- SESSION NOTES -"):
             ui.label("SESSION NOTES").classes("text-h4 text-grey-8")
             # ASSIGN VARIABLES
             u_studentname = ui.select(

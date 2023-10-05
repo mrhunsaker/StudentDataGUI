@@ -32,7 +32,7 @@ if module_path not in sys.path:
     sys.path.append(module_path)
 
 from appPages import abacus
-from appPages import anecdotalnotes
+from appPages import sessionnotes
 from appPages import braille
 from appPages import braillenote
 from appPages import contactlog
@@ -40,6 +40,7 @@ from appPages import cvi
 from appPages import homepage
 from appPages import InstructionalMaterials
 from appPages import ios
+from appPages import observations
 from appPages import screenreader
 from appTheming import theme
 from appHelpers.helpers import createFolderHierarchy, dataBasePath, warningmessage
@@ -60,7 +61,8 @@ def index_page() -> None:
 
 contactlog.create()
 abacus.create()
-anecdotalnotes.create()
+sessionnotes.create()
+observations.create()
 braille.create()
 braillenote.create()
 cvi.create()

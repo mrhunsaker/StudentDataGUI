@@ -1,6 +1,6 @@
 # StudentDataGUI
 
-*Student Data Input GUI using NiceGUI and SQLite designed be platform independent*
+*Student Data Input GUI using NiceGUI and SQLite designed be platform-independent*
 
 To use this package open *helpers.py* and edit the names for the *students* variable, following the pattern of surrounding text with single quotes (' ') and separating entries with commas.
 
@@ -69,28 +69,27 @@ Here is the tree view of this file structure:
 
 ## Set up the Program
 
-I set up and run this program using Pipenv on Python3.11 because it allows me to keep my system python3 installation streamlined and allows me to install everything with precision on multiple computers, but I am including a requirements.txt file as well for those who just want to install required modules globally.
+I set up and run this program using Poetry on Python3.11 because it allows me to keep my system python3 installation streamlined and allows me to install everything with precision on multiple computers, but I am including a requirements.txt file as well for those who just want to install required modules globally.
 
-By prefrence, I install either [pyenv](https://github.com/pyenv/pyenv) or [pyenv-win](https://github.com/pyenv-win/pyenv-win) to manage multiple python3 installations.
+By preference, I install either [pyenv](https://github.com/pyenv/pyenv) or [pyenv-win](https://github.com/pyenv-win/pyenv-win) to manage multiple python3 installations.
 
-### To Use pipenv
+### To Use Poetry
 
-#### Install Pipenv
+#### Install Poetry
 
 ```bash
-$ python3 -m pip install --user pipenv
+$ python3 -m pip install --user poetry
 ```
 
-Enter the project repository and set up the virtual environment using the information in Pipfile and Pipfile.lock
+Enter the project repository and set up the virtual environment using the information in pyproject.toml 
 
 ```bash
-$ cd </path/to/project>
-$ pipenv install
+$ poetry install
 ```
 
 #### To run program
 
 ```bash
 $ cd </path/to/project>
-$ pipenv run python3 main.py
+$ poetry run python main.py # poetry run python3 main.py for *nix systems
 ```

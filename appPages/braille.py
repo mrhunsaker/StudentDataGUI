@@ -2196,6 +2196,7 @@ def create() -> None:
                     ).tooltip(
                     "1.1 Track Left to Right"
                     )
+        with ui.row().classes("w-screen no-wrap py-4"): 
             ui.number(
                     label="1.2",
                     min=0,
@@ -2203,6 +2204,7 @@ def create() -> None:
                     format="%.0f",
                     on_change=lambda e: u_braille_trial12.set_value(e.value),
                     ).classes("w-[200px]").props('aria-label="1.2 Track Top to Bottom"')
+        with ui.row().classes("w-screen no-wrap py-4"): 
             ui.number(
                     label="1.3",
                     min=0,
@@ -2210,6 +2212,7 @@ def create() -> None:
                     format="%.0f",
                     on_change=lambda e: u_braille_trial13.set_value(e.value),
                     ).classes("w-[200px]").props('aria-label="1.3 Discriminate Shapes"')
+        with ui.row().classes("w-screen no-wrap py-4"): 
             ui.number(
                     label="1.4",
                     min=0,
@@ -2219,7 +2222,6 @@ def create() -> None:
                     ).classes("w-[200px]").props(
                     'aria-label="1.4 Discriminate Braille Characters"'
                     )
-            ui.label().classes("w-[200px]")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.label("PHASE 2: ").classes("justify-center items-center")
             ui.input().props('aria-label="PHASE 2: "').classes("sr-only")
@@ -2231,6 +2233,7 @@ def create() -> None:
                     format="%.0f",
                     on_change=lambda e: u_braille_trial21.set_value(e.value),
                     ).classes("w-[200px]").props('aria-label="2.1 Mangold Progression: G C L"')
+        with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                     label="2.2",
                     min=0,
@@ -2238,6 +2241,7 @@ def create() -> None:
                     format="%.0f",
                     on_change=lambda e: u_braille_trial22.set_value(e.value),
                     ).classes("w-[200px]").props('aria-label="2.2 Mangold Progression: D Y"')
+        with ui.row().classes("w-screen no-wrap py-4"): 
             ui.number(
                     label="2.3",
                     min=0,
@@ -2245,6 +2249,7 @@ def create() -> None:
                     format="%.0f",
                     on_change=lambda e: u_braille_trial23.set_value(e.value),
                     ).classes("w-[200px]").props('aria-label="2.3 Mangold Progression: A B"')
+        with ui.row().classes("w-screen no-wrap py-4"): 
             ui.number(
                     label="2.4",
                     min=0,
@@ -2252,6 +2257,7 @@ def create() -> None:
                     format="%.0f",
                     on_change=lambda e: u_braille_trial24.set_value(e.value),
                     ).classes("w-[200px]").props('aria-label="2.4 Mangold Progression: S"')
+        with ui.row().classes("w-screen no-wrap py-4"): 
             ui.number(
                     label="2.5",
                     min=0,
@@ -2267,6 +2273,7 @@ def create() -> None:
                     format="%.0f",
                     on_change=lambda e: u_braille_trial26.set_value(e.value),
                     ).classes("w-[200px]").props('aria-label="2.6 Mangold Progression: P O"')
+        with ui.row().classes("w-screen no-wrap py-4"): 
             ui.number(
                     label="2.7",
                     min=0,
@@ -2274,6 +2281,7 @@ def create() -> None:
                     format="%.0f",
                     on_change=lambda e: u_braille_trial27.set_value(e.value),
                     ).classes("w-[200px]").props('aria-label="2.7 Mangold Progression: K"')
+        with ui.row().classes("w-screen no-wrap py-4"): 
             ui.number(
                     label="2.8",
                     min=0,
@@ -2281,6 +2289,7 @@ def create() -> None:
                     format="%.0f",
                     on_change=lambda e: u_braille_trial28.set_value(e.value),
                     ).classes("w-[200px]").props('aria-label="2.8 Mangold Progression: R"')
+        with ui.row().classes("w-screen no-wrap py-4"): 
             ui.number(
                     label="2.9",
                     min=0,
@@ -2288,6 +2297,7 @@ def create() -> None:
                     format="%.0f",
                     on_change=lambda e: u_braille_trial29.set_value(e.value),
                     ).classes("w-[200px]").props('aria-label="2.9 Mangold Progression: M E"')
+        with ui.row().classes("w-screen no-wrap py-4"): 
             ui.number(
                     label="2.10",
                     min=0,
@@ -2303,6 +2313,7 @@ def create() -> None:
                     format="%.0f",
                     on_change=lambda e: u_braille_trial211.set_value(e.value),
                     ).classes("w-[200px]").props('aria-label="2.11 Mangold Progression: N X"')
+        with ui.row().classes("w-screen no-wrap py-4"): 
             ui.number(
                     label="2.12",
                     min=0,
@@ -2310,6 +2321,7 @@ def create() -> None:
                     format="%.0f",
                     on_change=lambda e: u_braille_trial212.set_value(e.value),
                     ).classes("w-[200px]").props('aria-label="2.12 Mangold Progression: Z F"')
+        with ui.row().classes("w-screen no-wrap py-4"): 
             ui.number(
                     label="2.13",
                     min=0,
@@ -2317,6 +2329,7 @@ def create() -> None:
                     format="%.0f",
                     on_change=lambda e: u_braille_trial213.set_value(e.value),
                     ).classes("w-[200px]").props('aria-label="2.13 Mangold Progression: U T"')
+        with ui.row().classes("w-screen no-wrap py-4"): 
             ui.number(
                     label="2.14",
                     min=0,
@@ -2324,6 +2337,7 @@ def create() -> None:
                     format="%.0f",
                     on_change=lambda e: u_braille_trial214.set_value(e.value),
                     ).classes("w-[200px]").props('aria-label="2.14 Mangold Progression: Q I"')
+        with ui.row().classes("w-screen no-wrap py-4"): 
             ui.number(
                     label="2.15",
                     min=0,
@@ -2342,6 +2356,7 @@ def create() -> None:
                     format="%.0f",
                     on_change=lambda e: u_braille_trial31.set_value(e.value),
                     ).classes("w-[200px]").props('aria-label="3.1 Alphabetic Wordsigns"')
+        with ui.row().classes("w-screen no-wrap py-4"): 
             ui.number(
                     label="3.2",
                     min=0,
@@ -2349,6 +2364,7 @@ def create() -> None:
                     format="%.0f",
                     on_change=lambda e: u_braille_trial32.set_value(e.value),
                     ).classes("w-[200px]").props('aria-label="3.2 Braille Numbers"')
+        with ui.row().classes("w-screen no-wrap py-4"): 
             ui.number(
                     label="3.3",
                     min=0,
@@ -2356,6 +2372,7 @@ def create() -> None:
                     format="%.0f",
                     on_change=lambda e: u_braille_trial33.set_value(e.value),
                     ).classes("w-[200px]").props('aria-label="3.3 Punctuation"')
+        with ui.row().classes("w-screen no-wrap py-4"): 
             ui.number(
                     label="3.4",
                     min=0,
@@ -2365,6 +2382,7 @@ def create() -> None:
                     ).classes("w-[200px]").props(
                     'aria-label="3.4 Strong Contractions - AND OF FOR WITH THE"'
                     )
+        with ui.row().classes("w-screen no-wrap py-4"): 
             ui.number(
                     label="3.5",
                     min=0,
@@ -2384,6 +2402,7 @@ def create() -> None:
                     ).classes("w-[200px]").props(
                     'aria-label="3.6 Strong Wordsigns - CH SH TH WH OU ST"'
                     )
+        with ui.row().classes("w-screen no-wrap py-4"): 
             ui.number(
                     label="3.7",
                     min=0,
@@ -2393,6 +2412,7 @@ def create() -> None:
                     ).classes("w-[200px]").props(
                     'aria-label="3.7 Lower Groupsigns - BE CON DIS"'
                     )
+        with ui.row().classes("w-screen no-wrap py-4"): 
             ui.number(
                     label="3.8",
                     min=0,
@@ -2402,6 +2422,7 @@ def create() -> None:
                     ).classes("w-[200px]").props(
                     'aria-label="3.8 Lower Groupsigns - EA BB CC FF GG"'
                     )
+        with ui.row().classes("w-screen no-wrap py-4"): 
             ui.number(
                     label="3.9",
                     min=0,
@@ -2411,6 +2432,7 @@ def create() -> None:
                     ).classes("w-[200px]").props(
                     'aria-label="3.9 Lower Group/Wordsigns - EN IN"'
                     )
+        with ui.row().classes("w-screen no-wrap py-4"): 
             ui.number(
                     label="3.10",
                     min=0,
@@ -2434,6 +2456,7 @@ def create() -> None:
                     ).tooltip(
                     "3.11 Dot 5 Contractions"
                     )
+        with ui.row().classes("w-screen no-wrap py-4"): 
             ui.number(
                     label="3.12",
                     min=0,
@@ -2445,6 +2468,7 @@ def create() -> None:
                     ).tooltip(
                     "3.12 Dot 45 Contractions"
                     )
+        with ui.row().classes("w-screen no-wrap py-4"): 
             ui.number(
                     label="3.13",
                     min=0,
@@ -2456,6 +2480,7 @@ def create() -> None:
                     ).tooltip(
                     "3.13 Dot 456 Contractions"
                     )
+        with ui.row().classes("w-screen no-wrap py-4"): 
             ui.number(
                     label="3.14",
                     min=0,
@@ -2467,6 +2492,7 @@ def create() -> None:
                     ).tooltip(
                     "3.14 Final Letter Groupsigns"
                     )
+        with ui.row().classes("w-screen no-wrap py-4"): 
             ui.number(
                     label="3.15",
                     min=0,
@@ -2489,6 +2515,7 @@ def create() -> None:
                     ).classes("w-[200px]").props('aria-label="4.1 Grade 1 Indicators"').tooltip(
                     "4.1 Grade 1 Indicators"
                     )
+        with ui.row().classes("w-screen no-wrap py-4"): 
             ui.number(
                     label="4.2",
                     min=0,
@@ -2500,6 +2527,7 @@ def create() -> None:
                     ).tooltip(
                     "4.2 Capitals Indicators"
                     )
+        with ui.row().classes("w-screen no-wrap py-4"): 
             ui.number(
                     label="4.3",
                     min=0,
@@ -2511,6 +2539,7 @@ def create() -> None:
                     ).tooltip(
                     "4.3 Numeric Mode and Spatial Math"
                     )
+        with ui.row().classes("w-screen no-wrap py-4"): 
             ui.number(
                     label="4.4",
                     min=0,
@@ -2536,6 +2565,7 @@ def create() -> None:
                     ).classes("w-[200px]").props('aria-label="5.1 Page Numbering"').tooltip(
                     "5.1 Page Numbering"
                     )
+        with ui.row().classes("w-screen no-wrap py-4"): 
             ui.number(
                     label="5.2",
                     min=0,
@@ -2545,13 +2575,15 @@ def create() -> None:
                     ).classes("w-[200px]").props('aria-label="5.2 Headings"').tooltip(
                     "5.2 Headings"
                     )
+        with ui.row().classes("w-screen no-wrap py-4"): 
             ui.number(
                     label="5.3",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial53.set_value(e.value),
-                    ).classes("w-[200px]").props('aria-label="5.3 Lists"').tooltip("5.3 Lists")
+                    ).classes("w-[200px]").props('aria-label="5.3 Lists"')
+        with ui.row().classes("w-screen no-wrap py-4"): 
             ui.number(
                     label="5.4",
                     min=0,
@@ -2561,7 +2593,6 @@ def create() -> None:
                     ).classes("w-[200px]").props('aria-label="5.4 Poetry / Drama"').tooltip(
                     "5.4 Poetry / Drama"
                     )
-            ui.label().classes("w-[200px]")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.label("PHASE 6: ").classes("justify-center items-center")
             ui.input().props('aria-label="PHASE 6: "').classes("sr-only")
@@ -2577,6 +2608,7 @@ def create() -> None:
                     ).tooltip(
                     "6.1 Operation and Comparison Signs"
                     )
+        with ui.row().classes("w-screen no-wrap py-4"): 
             ui.number(
                     label="6.2",
                     min=0,
@@ -2586,6 +2618,7 @@ def create() -> None:
                     ).classes("w-[200px]").props('aria-label="6.2 Grade 1 Mode"').tooltip(
                     "6.2 Grade 1 Mode"
                     )
+        with ui.row().classes("w-screen no-wrap py-4"): 
             ui.number(
                     label="6.3",
                     min=0,
@@ -2597,6 +2630,7 @@ def create() -> None:
                     ).tooltip(
                     "6.3 Special Print Symbols"
                     )
+        with ui.row().classes("w-screen no-wrap py-4"): 
             ui.number(
                     label="6.4",
                     min=0,
@@ -2606,6 +2640,7 @@ def create() -> None:
                     ).classes("w-[200px]").props('aria-label="6.4 Omission Marks"').tooltip(
                     "6.4 Omission Marks"
                     )
+        with ui.row().classes("w-screen no-wrap py-4"): 
             ui.number(
                     label="6.5",
                     min=0,
@@ -2625,6 +2660,7 @@ def create() -> None:
                     ).classes("w-[200px]").props('aria-label="6.6 Roman Numerals"').tooltip(
                     "6.6 Roman Numerals"
                     )
+        with ui.row().classes("w-screen no-wrap py-4"): 
             ui.number(
                     label="6.7",
                     min=0,
@@ -2634,9 +2670,6 @@ def create() -> None:
                     ).classes("w-[200px]").props('aria-label="6.7 Fractions"').tooltip(
                     "6.7 Fractions"
                     )
-            ui.label().classes("w-[200px]")
-            ui.label().classes(" w-[200px]")
-            ui.label().classes("w-[200px]")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.label("PHASE 7: ").classes("justify-center items-center")
             ui.input().props('aria-label="PHASE 7: "').classes("sr-only")
@@ -2652,6 +2685,7 @@ def create() -> None:
                     ).tooltip(
                     "7.1 Grade 1 Mode and algebra"
                     )
+        with ui.row().classes("w-screen no-wrap py-4"): 
             ui.number(
                     label="7.2",
                     min=0,
@@ -2663,6 +2697,7 @@ def create() -> None:
                     ).tooltip(
                     "7.2 Grade 1 Mode and Fractions"
                     )
+        with ui.row().classes("w-screen no-wrap py-4"): 
             ui.number(
                     label="7.3",
                     min=0,
@@ -2674,6 +2709,7 @@ def create() -> None:
                     ).tooltip(
                     "7.3 Advanced Operation and Comparison Signs"
                     )
+        with ui.row().classes("w-screen no-wrap py-4"): 
             ui.number(
                     label="7.4",
                     min=0,
@@ -2683,6 +2719,7 @@ def create() -> None:
                     ).classes("w-[200px]").props('aria-label="7.4 Indices"').tooltip(
                     "7.4 Indices"
                     )
+        with ui.row().classes("w-screen no-wrap py-4"): 
             ui.number(
                     label="7.5",
                     min=0,
@@ -2692,7 +2729,7 @@ def create() -> None:
                     ).classes("w-[200px]").props('aria-label="7.5 Roots and Radicals"').tooltip(
                     "7.5 Roots and Radicals"
                     )
-        with ui.row().classes("w-screen no-wrap py-4"):
+        with ui.row().classes("w-screen no-wrap py-4"): 
             ui.number(
                     label="7.6",
                     min=0,
@@ -2704,6 +2741,7 @@ def create() -> None:
                     ).tooltip(
                     "7.6 Miscellaneous Shape Indicators"
                     )
+        with ui.row().classes("w-screen no-wrap py-4"): 
             ui.number(
                     label="7.7",
                     min=0,
@@ -2713,6 +2751,7 @@ def create() -> None:
                     ).classes("w-[200px]").props('aria-label="7.7 Functions"').tooltip(
                     "7.7 Functions"
                     )
+        with ui.row().classes("w-screen no-wrap py-4"): 
             ui.number(
                     label="7.8",
                     min=0,
@@ -2722,8 +2761,6 @@ def create() -> None:
                     ).classes("w-[200px]").props('aria-label="7.8 Greek Letters"').tooltip(
                     "7.8 Greek Letters"
                     )
-            ui.label().classes("w-[200px]")
-            ui.label().classes("w-[200px]")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.label("PHASE 8: ").classes("justify-center items-center")
             ui.input().props('aria-label="PHASE 8:"').classes("sr-only")
@@ -2735,6 +2772,7 @@ def create() -> None:
                     format="%.0f",
                     on_change=lambda e: u_braille_trial81.set_value(e.value),
                     ).classes("w-[200px]").props('aria-label="8.1 Functions"')
+        with ui.row().classes("w-screen no-wrap py-4"): 
             ui.number(
                     label="8.2",
                     min=0,
@@ -2746,6 +2784,7 @@ def create() -> None:
                     ).tooltip(
                     "8.2 Modifiers: Bars and Dots"
                     )
+        with ui.row().classes("w-screen no-wrap py-4"): 
             ui.number(
                     label="8.3",
                     min=0,
@@ -2757,6 +2796,7 @@ def create() -> None:
                     ).tooltip(
                     "8.3 Modifiers: Arrows and Limits"
                     )
+        with ui.row().classes("w-screen no-wrap py-4"): 
             ui.number(
                     label="8.4",
                     min=0,
@@ -2766,6 +2806,7 @@ def create() -> None:
                     ).classes("w-[200px]").props('aria-label="8.4 Probability"').tooltip(
                     "8.4 Probability"
                     )
+        with ui.row().classes("w-screen no-wrap py-4"): 
             ui.number(
                     label="8.5",
                     min=0,
@@ -2789,6 +2830,7 @@ def create() -> None:
                     ).tooltip(
                     "8.6 Calculus: Integration"
                     )
+        with ui.row().classes("w-screen no-wrap py-4"): 
             ui.number(
                     label="8.7",
                     min=0,
@@ -2798,9 +2840,6 @@ def create() -> None:
                     ).classes("w-[200px]").props('aria-label="8.7 Vertical Bars"').tooltip(
                     "8.7 Vertical Bars"
                     )
-            ui.label().classes("w-[200px]")
-            ui.label().classes("w-[200px]")
-            ui.label().classes("w-[200px]")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.button("SAVE", color="#172554", on_click=save).classes("text-white")
             ui.button("GRAPH", color="#172554", on_click=graph).classes("text-white")

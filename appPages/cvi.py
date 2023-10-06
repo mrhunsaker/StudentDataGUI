@@ -840,6 +840,7 @@ def create() -> None:
                         ).tooltip(
                         "Color Preference"
                         )
+            with ui.row().classes("w-screen no-wrap py-4"):
                 ui.number(
                         label="Need for Movement",
                         min=0,
@@ -851,6 +852,7 @@ def create() -> None:
                         ).tooltip(
                         "Need for Movement"
                         )
+            with ui.row().classes("w-screen no-wrap py-4"):
                 ui.number(
                         label="Latency",
                         min=0,
@@ -860,6 +862,7 @@ def create() -> None:
                         ).classes("w-[200px]").props('aria-label="Latency"').tooltip(
                         "Latency"
                         )
+            with ui.row().classes("w-screen no-wrap py-4"):
                 ui.number(
                         label="Field Preference",
                         min=0,
@@ -871,6 +874,7 @@ def create() -> None:
                         ).tooltip(
                         "Field Preference"
                         )
+            with ui.row().classes("w-screen no-wrap py-4"):
                 ui.number(
                         label="Visual Complexity",
                         min=0,
@@ -894,6 +898,7 @@ def create() -> None:
                         ).tooltip(
                         "Nonpurposeful Gaze"
                         )
+            with ui.row().classes("w-screen no-wrap py-4"):
                 ui.number(
                         label="Distance Viewing",
                         min=0,
@@ -905,6 +910,7 @@ def create() -> None:
                         ).tooltip(
                         "Distance Viewing"
                         )
+            with ui.row().classes("w-screen no-wrap py-4"):
                 ui.number(
                         label="Atypical Reflexes",
                         min=0,
@@ -916,6 +922,7 @@ def create() -> None:
                         ).tooltip(
                         "Atypical Reflexes"
                         )
+            with ui.row().classes("w-screen no-wrap py-4"):
                 ui.number(
                         label="Visual Novelty",
                         min=0,
@@ -925,6 +932,7 @@ def create() -> None:
                         ).classes("w-[200px]").props('aria-label="Visual Novelty"').tooltip(
                         "Visual Novelty"
                         )
+            with ui.row().classes("w-screen no-wrap py-4"):
                 ui.number(
                         label="Visual Reach",
                         min=0,

@@ -83,6 +83,12 @@ def create() -> None:
                             )
                     filename.write(f"'{tmppath}'" + "\n")
                     filename.close()
+                ui.notify(
+                                "Saved successfully!",
+                                position="center",
+                                type="positive",
+                                close_button="OK",
+                                )
 
         with ui.row().classes("w-screen no-wrap"):
             ui.label("Observation Notes").classes("justify-center items-center")

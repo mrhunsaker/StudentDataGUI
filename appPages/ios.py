@@ -1186,6 +1186,7 @@ def create() -> None:
                     ).tooltip(
                     "Type Student Name, it will autocomplete AS you type"
                     )
+        with ui.row().classes("w-screen no-wrap"):
             with ui.input("Date").classes("w-[300px]").props('aria-label="Date. Please type in date using the YYYY-MM-DD format"').tooltip("Date. Please type in date using the YYYY-MM-DD format") as date:
                 with date.add_slot("append"):
                     ui.icon("edit_calendar").on("click", lambda: menu.open()).classes(
@@ -1204,7 +1205,7 @@ def create() -> None:
                     'aria-label="RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent" content-center'
                     ).classes("sr-only")
         with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
+            ui.number( 
                     label="1.1",
                     min=0,
                     max=3,
@@ -1213,7 +1214,8 @@ def create() -> None:
                     ).classes("w-[200px]").props('aria-label="Turn Device On/Off"').tooltip(
                     "Turn Device On/Off"
                     )
-            ui.number(
+        with ui.row().classes("w-screen no-wrap py-4"):
+            ui.number( 
                     label="1.2",
                     min=0,
                     max=3,
@@ -1222,21 +1224,24 @@ def create() -> None:
                     ).classes("w-[200px]").props('aria-label="Turn VoiceOver On/Off"').tooltip(
                     "Turn VoiceOver On/Off"
                     )
-            ui.number(
+        with ui.row().classes("w-screen no-wrap py-4"):
+            ui.number( 
                     label="1.3",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_ios_trial13.set_value(e.value),
                     ).classes("w-[200px]").props('aria-label="Simple Gestures to click on icons"').tooltip("Simple Gestures to click on icons")
-            ui.number(
+        with ui.row().classes("w-screen no-wrap py-4"):
+            ui.number( 
                     label="1.4",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_ios_trial14.set_value(e.value),
                     ).classes("w-[200px]").props('aria-label="Use home screen icons to open applications and documents"').tooltip("Use home screen icons to open applications and documents")
-            ui.number(
+        with ui.row().classes("w-screen no-wrap py-4"):
+            ui.number( 
                     label="1.5",
                     min=0,
                     max=3,
@@ -1245,28 +1250,32 @@ def create() -> None:
                     ).classes("w-[200px]").props('aria-label="Save Documents"').tooltip(
                     "Save Documents"
                     )
-            ui.number(
+        with ui.row().classes("w-screen no-wrap py-4"):
+            ui.number( 
                     label="1.6",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_ios_trial16.set_value(e.value),
                     ).classes("w-[200px]").props('aria-label="Explain and use age-appropriate online tools and resources "').tooltip("Explain and use age-appropriate online tools and resources ")
-            ui.number(
+        with ui.row().classes("w-screen no-wrap py-4"):
+            ui.number( 
                     label="1.7",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_ios_trial17.set_value(e.value),
                     ).classes("w-[200px]").props('aria-label="Keyboarding (Bluetooth keyboard and Braille display if appropriate)"').tooltip("Keyboarding (Bluetooth keyboard and Braille display if appropriate)")
-            ui.number(
+        with ui.row().classes("w-screen no-wrap py-4"):
+            ui.number( 
                     label="1.8",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_ios_trial18.set_value(e.value),
                     ).classes("w-[200px]").props('aria-label="Learn about and use different types of elements (e.g. address bar, tabs, menu)"').tooltip("Learn about and use different types of elements (e.g. address bar, tabs, menu)")
-            ui.number(
+        with ui.row().classes("w-screen no-wrap py-4"):
+            ui.number( 
                     label="1.9",
                     min=0,
                     max=3,
@@ -1274,21 +1283,23 @@ def create() -> None:
                     on_change=lambda e: u_ios_trial19.set_value(e.value),
                     ).classes("w-[200px]").props('aria-label="Learn about and use Control Center, Notification Center, App Switcher, Status Bar, etc."').tooltip("Learn about and use Control Center, Notification Center, App Switcher, Status Bar, etc.")
         with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
+            ui.number( 
                     label="2.1",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_ios_trial21.set_value(e.value),
                     ).classes("w-[200px]").props('aria-label="Use a word processing application to write, edit, print and save simple assignments"').tooltip("Use a word processing application to write, edit, print and save simple assignments")
-            ui.number(
+        with ui.row().classes("w-screen no-wrap py-4"):
+            ui.number( 
                     label="2.2",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_ios_trial22.set_value(e.value),
                     ).classes("w-[200px]").props('aria-label="Read and navigate documents"').tooltip("Read and navigate documents")
-            ui.number(
+        with ui.row().classes("w-screen no-wrap py-4"):
+            ui.number( 
                     label="2.3",
                     min=0,
                     max=3,
@@ -1298,21 +1309,24 @@ def create() -> None:
                     "Use menu/tool bar functions (e.g. font/size/style, line spacing, "
                     "margins) to format, edit and print a document"
                     )
-            ui.number(
+        with ui.row().classes("w-screen no-wrap py-4"):
+            ui.number( 
                     label="2.4",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_ios_trial24.set_value(e.value),
                     ).classes("w-[200px]").props('aria-label="Highlight text, copy and paste text"').tooltip("Highlight text, copy and paste text")
-            ui.number(
+        with ui.row().classes("w-screen no-wrap py-4"):
+            ui.number( 
                     label="2.5",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_ios_trial25.set_value(e.value),
                     ).classes("w-[200px]").props('aria-label="Copy and paste images within the document and from outside sources"').tooltip("Copy and paste images within the document and from outside sources")
-            ui.number(
+        with ui.row().classes("w-screen no-wrap py-4"):
+            ui.number( 
                     label="2.6",
                     min=0,
                     max=3,
@@ -1323,7 +1337,7 @@ def create() -> None:
                     "dictionary, spell checker, grammar, and thesaurus)"
                     )
         with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
+            ui.number( 
                     label="3.1",
                     min=0,
                     max=3,
@@ -1333,7 +1347,8 @@ def create() -> None:
                     "Demonstrate an understanding of the spreadsheet as a tool to record, "
                     "organize and graph information."
                     )
-            ui.number(
+        with ui.row().classes("w-screen no-wrap py-4"):
+            ui.number( 
                     label="3.2",
                     min=0,
                     max=3,
@@ -1344,21 +1359,24 @@ def create() -> None:
                     "spreadsheets (i.e. cell, column, row, values, labels, "
                     "chart graph)"
                     )
-            ui.number(
+        with ui.row().classes("w-screen no-wrap py-4"):
+            ui.number( 
                     label="3.3",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_ios_trial33.set_value(e.value),
                     ).classes("w-[200px]").props('aria-label="Enter/Edit data in spreadsheets and perform calculations using formulas"').tooltip("Enter/Edit data in spreadsheets and perform calculations using formulas")
-            ui.number(
+        with ui.row().classes("w-screen no-wrap py-4"):
+            ui.number( 
                     label="3.4",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_ios_trial34.set_value(e.value),
                     ).classes("w-[200px]").props('aria-label="Use mathematical symbols e.g. add, minus, multiply, divide, exponents ').tooltip("Use mathematical symbols e.g. add, minus, multiply, divide, exponents ")
-            ui.number(
+        with ui.row().classes("w-screen no-wrap py-4"):
+            ui.number( 
                     label="3.5",
                     min=0,
                     max=3,
@@ -1369,35 +1387,39 @@ def create() -> None:
                     "solve problems and conclusions. "
                     )
         with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
+            ui.number( 
                     label="4.1",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_ios_trial41.set_value(e.value),
                     ).classes("w-[200px]").props('aria-label="Navigate slides (book format)"').tooltip("Navigate slides (book format)")
-            ui.number(
+        with ui.row().classes("w-screen no-wrap py-4"):
+            ui.number( 
                     label="4.2",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_ios_trial42.set_value(e.value),
                     ).classes("w-[200px]").props('aria-label="Create, edit and format text on a slide "').tooltip("Create, edit and format text on a slide ")
-            ui.number(
+        with ui.row().classes("w-screen no-wrap py-4"):
+            ui.number( 
                     label="4.3",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_ios_trial43.set_value(e.value),
                     ).classes("w-[200px]").props('aria-label="Create a series of slides and organize them to present research or convey an idea "').tooltip("Create a series of slides and organize them to present research or convey an idea ")
-            ui.number(
+        with ui.row().classes("w-screen no-wrap py-4"):
+            ui.number( 
                     label="4.4",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_ios_trial44.set_value(e.value),
                     ).classes("w-[200px]").props('aria-label="Copy and paste or import graphics; change their size and position on a slide"').tooltip("Copy and paste or import graphics; change their size and position on a slide")
-            ui.number(
+        with ui.row().classes("w-screen no-wrap py-4"):
+            ui.number( 
                     label="4.5",
                     min=0,
                     max=3,
@@ -1405,7 +1427,7 @@ def create() -> None:
                     on_change=lambda e: u_ios_trial45.set_value(e.value),
                     ).classes("w-[200px]").props('aria-label="Use painting and drawing tools/applications to create and edit work ').tooltip("Use painting and drawing tools/applications to create and edit work ")
         with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
+            ui.number( 
                     label="5.1",
                     min=0,
                     max=3,
@@ -1417,7 +1439,8 @@ def create() -> None:
                     " Policy) regarding responsible use of "
                     "computers and networks"
                     )
-            ui.number(
+        with ui.row().classes("w-screen no-wrap py-4"):
+            ui.number( 
                     label="5.2",
                     min=0,
                     max=3,
@@ -1427,7 +1450,8 @@ def create() -> None:
                     "Explain responsible uses of technology and digital information; "
                     "describe possible consequences of inappropriate use"
                     )
-            ui.number(
+        with ui.row().classes("w-screen no-wrap py-4"):
+            ui.number( 
                     label="5.3",
                     min=0,
                     max=3,
@@ -1443,7 +1467,8 @@ def create() -> None:
                     "projects) and giving "
                     "credit to media creators"
                     )
-            ui.number(
+        with ui.row().classes("w-screen no-wrap py-4"):
+            ui.number( 
                     label="5.4",
                     min=0,
                     max=3,
@@ -1459,7 +1484,8 @@ def create() -> None:
                     "software, spam filters, "
                     "popup blockers)"
                     )
-            ui.number(
+        with ui.row().classes("w-screen no-wrap py-4"):
+            ui.number( 
                     label="5.5",
                     min=0,
                     max=3,
@@ -1470,14 +1496,16 @@ def create() -> None:
                     "recognition of the potentially public exposure of email "
                     "and appropriate email etiquette"
                     )
-            ui.number(
+        with ui.row().classes("w-screen no-wrap py-4"):
+            ui.number( 
                     label="5.6",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_ios_trial56.set_value(e.value),
                     ).classes("w-[200px]").props('aria-label="Identify cyberbullying and describe strategies to deal with such a situation"').tooltip("Identify cyberbullying and describe strategies to deal with such a situation")
-            ui.number(
+        with ui.row().classes("w-screen no-wrap py-4"):
+            ui.number( 
                     label="5.7",
                     min=0,
                     max=3,
@@ -1488,42 +1516,47 @@ def create() -> None:
                     "with various forms of online communications"
                     )
         with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
+            ui.number( 
                     label="6.1",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_ios_trial61.set_value(e.value),
                     ).classes("w-[200px]").props('aria-label="Be responsible for device(s)"').tooltip("Be responsible for device(s)")
-            ui.number(
+        with ui.row().classes("w-screen no-wrap py-4"):
+            ui.number( 
                     label="6.2",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_ios_trial62.set_value(e.value),
                     ).classes("w-[200px]").props('aria-label="Tactile graphics paired with digital graphics"').tooltip("Tactile graphics paired with digital graphics")
-            ui.number(
+        with ui.row().classes("w-screen no-wrap py-4"):
+            ui.number( 
                     label="6.3",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_ios_trial63.set_value(e.value),
                     ).classes("w-[200px]").props('aria-label="Understand and use Earcons (screen reader sound hints)"').tooltip("Understand and use Earcons (screen reader sound hints)")
-            ui.number(
+        with ui.row().classes("w-screen no-wrap py-4"):
+            ui.number( 
                     label="6.4",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_ios_trial64.set_value(e.value),
                     ).classes("w-[200px]").props('aria-label="Understand and use spatial relationships on the physical iPad screen').tooltip("Understand and use spatial relationships on the physical iPad screen ")
-            ui.number(
+        with ui.row().classes("w-screen no-wrap py-4"):
+            ui.number( 
                     label="6.5",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_ios_trial65.set_value(e.value),
                     ).classes("w-[200px]").props('aria-label="Use sonification to explore and understand digital graphics"').tooltip("Use sonification to explore and understand digital graphics")
-            ui.number(
+        with ui.row().classes("w-screen no-wrap py-4"):
+            ui.number( 
                     label="6.6",
                     min=0,
                     max=3,
@@ -1531,35 +1564,39 @@ def create() -> None:
                     on_change=lambda e: u_ios_trial66.set_value(e.value),
                     ).classes("w-[200px]").props('aria-label="Learn and use screen reader commands (gestures/keyboard/braille display)"').tooltip("Learn and use screen reader commands (gestures/keyboard/braille display)")
         with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
+            ui.number( 
                     label="6.7",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_ios_trial67.set_value(e.value),
                     ).classes("w-[200px]").props('aria-label="Increase listening speed (100% on the iPad for pleasure reading)"').tooltip("Increase listening speed (100% on the iPad for pleasure reading)")
-            ui.number(
+        with ui.row().classes("w-screen no-wrap py-4"):
+            ui.number( 
                     label="6.8",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_ios_trial68.set_value(e.value),
                     ).classes("w-[200px]").props('aria-label="Learn and use rotor commands"').tooltip("Learn and use rotor commands ")
-            ui.number(
+        with ui.row().classes("w-screen no-wrap py-4"):
+            ui.number( 
                     label="6.9",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_ios_trial69.set_value(e.value),
                     ).classes("w-[200px]").props('aria-label="Learn about accessibility features"').tooltip("Learn about accessibility features")
-            ui.number(
+        with ui.row().classes("w-screen no-wrap py-4"):
+            ui.number( 
                     label="6.10",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_ios_trial610.set_value(e.value),
                     ).classes("w-[200px]").props('aria-label="Learn note taking skills"').tooltip("Learn note taking skills")
-            ui.number(
+        with ui.row().classes("w-screen no-wrap py-4"):
+            ui.number( 
                     label="6.11",
                     min=0,
                     max=3,

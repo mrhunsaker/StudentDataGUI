@@ -10,18 +10,18 @@ packages = [{include = "student-skills-progression"}]
 repository = "https://github.com/mrhunsaker/StudentDataGUI"
 keywords = ["visual impairment", "education", "data collection"]
 classifiers = [
-"Development Status :: 4 - Beta",
-"Environment :: Win32 (MS Windows)",
-"Framework :: FastAPI",
-"Intended Audience :: Education",
-"Intended Audience :: End Users/Desktop",
-"License :: Freely Distributable",
-"Operating System :: POSIX :: Linux",
-"Operating System :: Microsoft :: Windows :: Windows 11",
-"Programming Language :: Python :: 3.11",
-"Topic :: Education",
-"Topic :: Education :: Testing"
-]
+            "Development Status :: 4 - Beta",
+            "Environment :: Win32 (MS Windows)",
+            "Framework :: FastAPI",
+            "Intended Audience :: Education",
+            "Intended Audience :: End Users/Desktop",
+            "License :: Freely Distributable",
+            "Operating System :: POSIX :: Linux",
+            "Operating System :: Microsoft :: Windows :: Windows 11",
+            "Programming Language :: Python :: 3.11",
+            "Topic :: Education",
+            "Topic :: Education :: Testing"
+            ]
 
 [tool.poetry.dependencies]
 python = ">=3.11,<3.12"

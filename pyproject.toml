@@ -47,14 +47,18 @@ pyright = "^1.1.329"
 ruff = "^0.0.292"
 pytest = "^7.4.2"
 flake8-pyproject = "^1.2.3"
-cefpython3 = {url = "https://github.com/cztomczak/cefpython/releases/download/v66.1/cefpython3-66.1-py2.py3-none-win_amd64.whl"}
+cefpython3 = {url = "https://github.com/cztomczak/cefpython/releases/download/v66.1/cefpython3-66.1-py2.py3-none-win_amd64.whl", platform="Windows"}
+pyqt5 = "^5.15.9"
+pycairo = "^1.25.0"
+pyobject = "^1.2.1"
 
-[tools.flake8]
+
+[tool.flake8]
 exclude = ""
 max-line-length = 512
 ignore = ["E201", "E202", "E203", "E266", "E265", "E402", "E501"]
 
-[tools.black]
+[tool.black]
 line-length = 512
 target-version = ['py37', 'py38', 'py39', 'py310', 'py311']
 

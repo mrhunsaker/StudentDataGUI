@@ -46,9 +46,7 @@ def create() -> None:
         with theme.frame("- ABACUS SKILLS -"):
             ui.label("ABACUS SKILLS").classes("text-h4 text-grey-8")
             datenow = datetime.datetime.now().strftime("%Y_%m_%d-%H%M%S_%p")
-            u_studentname = ui.select(
-                    options=students, value="DonaldChamberlain"
-                    ).classes("hidden")
+            u_studentname = ui.select(options=students, value="DonaldChamberlain").classes("hidden")
             date = ui.date().classes("hidden")
             u_abacus_trial11 = ui.number().classes("hidden")
             u_abacus_trial12 = ui.number().classes("hidden")
@@ -108,63 +106,59 @@ def create() -> None:
                 abacus_trial82 = int(u_abacus_trial82.value)
                 studentdatabasename = f"abacus{studentname.title()}{datenow}"
                 tmppath = Path(USER_DIR).joinpath(
+                    "StudentDatabase",
+                    "StudentDataFiles",
+                    studentname,
+                    studentdatabasename + ".json",
+                )
+                abacus_dictionary = {
+                    "studentname": u_studentname.value,
+                    "date": datenow,
+                    "abacus_trial11": abacus_trial11,
+                    "abacus_trial12": abacus_trial12,
+                    "abacus_trial13": abacus_trial13,
+                    "abacus_trial14": abacus_trial14,
+                    "abacus_trial21": abacus_trial21,
+                    "abacus_trial22": abacus_trial22,
+                    "abacus_trial23": abacus_trial23,
+                    "abacus_trial31": abacus_trial31,
+                    "abacus_trial32": abacus_trial32,
+                    "abacus_trial33": abacus_trial33,
+                    "abacus_trial41": abacus_trial41,
+                    "abacus_trial42": abacus_trial42,
+                    "abacus_trial51": abacus_trial51,
+                    "abacus_trial52": abacus_trial52,
+                    "abacus_trial61": abacus_trial61,
+                    "abacus_trial62": abacus_trial62,
+                    "abacus_trial63": abacus_trial63,
+                    "abacus_trial64": abacus_trial64,
+                    "abacus_trial71": abacus_trial71,
+                    "abacus_trial72": abacus_trial72,
+                    "abacus_trial73": abacus_trial73,
+                    "abacus_trial74": abacus_trial74,
+                    "abacus_trial81": abacus_trial81,
+                    "abacus_trial82": abacus_trial82,
+                }
+                with open(tmppath, "w", encoding="utf-8") as filename:
+                    json.dump(abacus_dictionary, filename)
+                    tmppath = Path(USER_DIR).joinpath("StudentDatabase", "StudentDataFiles", "Filenames.txt")
+                with open(tmppath, "a", encoding="utf-8") as filename:
+                    tmppath = Path(USER_DIR).joinpath(
                         "StudentDatabase",
                         "StudentDataFiles",
                         studentname,
                         studentdatabasename + ".json",
-                        )
-                abacus_dictionary = {
-                        "studentname"   : u_studentname.value,
-                        "date"          : datenow,
-                        "abacus_trial11": abacus_trial11,
-                        "abacus_trial12": abacus_trial12,
-                        "abacus_trial13": abacus_trial13,
-                        "abacus_trial14": abacus_trial14,
-                        "abacus_trial21": abacus_trial21,
-                        "abacus_trial22": abacus_trial22,
-                        "abacus_trial23": abacus_trial23,
-                        "abacus_trial31": abacus_trial31,
-                        "abacus_trial32": abacus_trial32,
-                        "abacus_trial33": abacus_trial33,
-                        "abacus_trial41": abacus_trial41,
-                        "abacus_trial42": abacus_trial42,
-                        "abacus_trial51": abacus_trial51,
-                        "abacus_trial52": abacus_trial52,
-                        "abacus_trial61": abacus_trial61,
-                        "abacus_trial62": abacus_trial62,
-                        "abacus_trial63": abacus_trial63,
-                        "abacus_trial64": abacus_trial64,
-                        "abacus_trial71": abacus_trial71,
-                        "abacus_trial72": abacus_trial72,
-                        "abacus_trial73": abacus_trial73,
-                        "abacus_trial74": abacus_trial74,
-                        "abacus_trial81": abacus_trial81,
-                        "abacus_trial82": abacus_trial82
-                        }
-                with open(tmppath, "w", encoding="utf-8") as filename:
-                    json.dump(abacus_dictionary, filename)
-                    tmppath = Path(USER_DIR).joinpath(
-                            "StudentDatabase", "StudentDataFiles", "Filenames.txt"
-                            )
-                with open(tmppath, "a", encoding="utf-8") as filename:
-                    tmppath = Path(USER_DIR).joinpath(
-                            "StudentDatabase",
-                            "StudentDataFiles",
-                            studentname,
-                            studentdatabasename + ".json",
-                            )
+                    )
                     filename.write(f"{tmppath}" + "\n")
 
                 # noinspection SqlResolve
                 def data_entry():
                     """ """
-                    dataBasePath = Path(USER_DIR).joinpath(
-                            "StudentDatabase", "students.db"
-                            )
+                    dataBasePath = Path(USER_DIR).joinpath("StudentDatabase", "students.db")
                     conn = sqlite3.connect(dataBasePath)
                     c = conn.cursor()
                     c.execute(
-                            """INSERT INTO ABACUSPROGRESS (
+                        """INSERT INTO ABACUSPROGRESS (
                                                             STUDENTNAME,
                                                             DATE,
                                                             P1_1,
@@ -219,42 +213,42 @@ def create() -> None:
                                                             ?,
                                                             ?,
                                                             ?)""",
-                            (
-                                    studentname,
-                                    datenow,
-                                    abacus_trial11,
-                                    abacus_trial12,
-                                    abacus_trial13,
-                                    abacus_trial14,
-                                    abacus_trial21,
-                                    abacus_trial22,
-                                    abacus_trial23,
-                                    abacus_trial31,
-                                    abacus_trial32,
-                                    abacus_trial33,
-                                    abacus_trial41,
-                                    abacus_trial42,
-                                    abacus_trial51,
-                                    abacus_trial52,
-                                    abacus_trial61,
-                                    abacus_trial62,
-                                    abacus_trial63,
-                                    abacus_trial64,
-                                    abacus_trial71,
-                                    abacus_trial72,
-                                    abacus_trial73,
-                                    abacus_trial74,
-                                    abacus_trial81,
-                                    abacus_trial82,
-                                    ),
-                            )
+                        (
+                            studentname,
+                            datenow,
+                            abacus_trial11,
+                            abacus_trial12,
+                            abacus_trial13,
+                            abacus_trial14,
+                            abacus_trial21,
+                            abacus_trial22,
+                            abacus_trial23,
+                            abacus_trial31,
+                            abacus_trial32,
+                            abacus_trial33,
+                            abacus_trial41,
+                            abacus_trial42,
+                            abacus_trial51,
+                            abacus_trial52,
+                            abacus_trial61,
+                            abacus_trial62,
+                            abacus_trial63,
+                            abacus_trial64,
+                            abacus_trial71,
+                            abacus_trial72,
+                            abacus_trial73,
+                            abacus_trial74,
+                            abacus_trial81,
+                            abacus_trial82,
+                        ),
+                    )
                     conn.commit()
                     ui.notify(
-                            "Saved successfully!",
-                            position="center",
-                            type="positive",
-                            close_button="OK",
-                            )
+                        "Saved successfully!",
+                        position="center",
+                        type="positive",
+                        close_button="OK",
+                    )
 
                 data_entry()
 
@@ -280,952 +274,918 @@ def create() -> None:
                 noise = np.random.normal(mu, sigma, [len(df.index), len(df.columns)])
                 df_noisy = df + noise
                 fig = make_subplots(
-                        rows=4,
-                        cols=2,
-                        subplot_titles=(
-                                "Phase 1: Foundation",
-                                "Phase 2: Addition",
-                                "Phase 3: Subtraction",
-                                "Phase 4: Multiplication",
-                                "Phase 5: Division",
-                                "Phase 6: Decimals",
-                                "Phase 7: Fractions",
-                                "Phase 8: Special Functions",
-                                ),
-                        print_grid=True,
-                        )
+                    rows=4,
+                    cols=2,
+                    subplot_titles=(
+                        "Phase 1: Foundation",
+                        "Phase 2: Addition",
+                        "Phase 3: Subtraction",
+                        "Phase 4: Multiplication",
+                        "Phase 5: Division",
+                        "Phase 6: Decimals",
+                        "Phase 7: Fractions",
+                        "Phase 8: Special Functions",
+                    ),
+                    print_grid=True,
+                )
                 fig.add_trace(
-                        go.Scatter(
-                                x=df_noisy.index,
-                                y=df_noisy["P1_1"],
-                                mode="lines+markers",
-                                name="Setting Numbers",
-                                legendgroup="Phase 1",
-                                legendgrouptitle_text="Phase 1",
-                                ),
-                        row=1,
-                        col=1,
-                        )
+                    go.Scatter(
+                        x=df_noisy.index,
+                        y=df_noisy["P1_1"],
+                        mode="lines+markers",
+                        name="Setting Numbers",
+                        legendgroup="Phase 1",
+                        legendgrouptitle_text="Phase 1",
+                    ),
+                    row=1,
+                    col=1,
+                )
                 fig.add_trace(
-                        go.Scatter(
-                                x=df_noisy.index,
-                                y=df_noisy["P1_2"],
-                                mode="lines+markers",
-                                name="Clearing Beads",
-                                legendgroup="Phase " "1",
-                                legendgrouptitle_text="Phase 1",
-                                ),
-                        row=1,
-                        col=1,
-                        )
+                    go.Scatter(
+                        x=df_noisy.index,
+                        y=df_noisy["P1_2"],
+                        mode="lines+markers",
+                        name="Clearing Beads",
+                        legendgroup="Phase " "1",
+                        legendgrouptitle_text="Phase 1",
+                    ),
+                    row=1,
+                    col=1,
+                )
                 fig.add_trace(
-                        go.Scatter(
-                                x=df_noisy.index,
-                                y=df_noisy["P1_3"],
-                                mode="lines+markers",
-                                name="Place Value",
-                                legendgroup="Phase " "1",
-                                legendgrouptitle_text="Phase 1",
-                                ),
-                        row=1,
-                        col=1,
-                        )
+                    go.Scatter(
+                        x=df_noisy.index,
+                        y=df_noisy["P1_3"],
+                        mode="lines+markers",
+                        name="Place Value",
+                        legendgroup="Phase " "1",
+                        legendgrouptitle_text="Phase 1",
+                    ),
+                    row=1,
+                    col=1,
+                )
                 fig.add_trace(
-                        go.Scatter(
-                                x=df_noisy.index,
-                                y=df_noisy["P1_4"],
-                                mode="lines+markers",
-                                name="Vocabulary",
-                                legendgroup="Phase " "1",
-                                legendgrouptitle_text="Phase 1",
-                                ),
-                        row=1,
-                        col=1,
-                        )
+                    go.Scatter(
+                        x=df_noisy.index,
+                        y=df_noisy["P1_4"],
+                        mode="lines+markers",
+                        name="Vocabulary",
+                        legendgroup="Phase " "1",
+                        legendgrouptitle_text="Phase 1",
+                    ),
+                    row=1,
+                    col=1,
+                )
                 fig.add_trace(
-                        go.Scatter(
-                                x=df_noisy.index,
-                                y=df_noisy["P2_1"],
-                                mode="lines+markers",
-                                name="Setting Numbers",
-                                legendgroup="Phase 2",
-                                legendgrouptitle_text="Phase 2",
-                                ),
-                        row=1,
-                        col=2,
-                        )
+                    go.Scatter(
+                        x=df_noisy.index,
+                        y=df_noisy["P2_1"],
+                        mode="lines+markers",
+                        name="Setting Numbers",
+                        legendgroup="Phase 2",
+                        legendgrouptitle_text="Phase 2",
+                    ),
+                    row=1,
+                    col=2,
+                )
                 fig.add_trace(
-                        go.Scatter(
-                                x=df_noisy.index,
-                                y=df_noisy["P2_2"],
-                                mode="lines+markers",
-                                name="Clearing Beads",
-                                legendgroup="Phase " "2",
-                                legendgrouptitle_text="Phase 2",
-                                ),
-                        row=1,
-                        col=2,
-                        )
+                    go.Scatter(
+                        x=df_noisy.index,
+                        y=df_noisy["P2_2"],
+                        mode="lines+markers",
+                        name="Clearing Beads",
+                        legendgroup="Phase " "2",
+                        legendgrouptitle_text="Phase 2",
+                    ),
+                    row=1,
+                    col=2,
+                )
                 fig.add_trace(
-                        go.Scatter(
-                                x=df_noisy.index,
-                                y=df_noisy["P2_3"],
-                                mode="lines+markers",
-                                name="Place Value",
-                                legendgroup="Phase " "2",
-                                legendgrouptitle_text="Phase 2",
-                                ),
-                        row=1,
-                        col=2,
-                        )
+                    go.Scatter(
+                        x=df_noisy.index,
+                        y=df_noisy["P2_3"],
+                        mode="lines+markers",
+                        name="Place Value",
+                        legendgroup="Phase " "2",
+                        legendgrouptitle_text="Phase 2",
+                    ),
+                    row=1,
+                    col=2,
+                )
                 fig.add_trace(
-                        go.Scatter(
-                                x=df_noisy.index,
-                                y=df_noisy["P3_1"],
-                                mode="lines+markers",
-                                name="Setting Numbers",
-                                legendgroup="Phase 3",
-                                legendgrouptitle_text="Phase 3",
-                                ),
-                        row=2,
-                        col=1,
-                        )
+                    go.Scatter(
+                        x=df_noisy.index,
+                        y=df_noisy["P3_1"],
+                        mode="lines+markers",
+                        name="Setting Numbers",
+                        legendgroup="Phase 3",
+                        legendgrouptitle_text="Phase 3",
+                    ),
+                    row=2,
+                    col=1,
+                )
                 fig.add_trace(
-                        go.Scatter(
-                                x=df_noisy.index,
-                                y=df_noisy["P3_2"],
-                                mode="lines+markers",
-                                name="Clearing Beads",
-                                legendgroup="Phase " "3",
-                                legendgrouptitle_text="Phase 3",
-                                ),
-                        row=2,
-                        col=1,
-                        )
+                    go.Scatter(
+                        x=df_noisy.index,
+                        y=df_noisy["P3_2"],
+                        mode="lines+markers",
+                        name="Clearing Beads",
+                        legendgroup="Phase " "3",
+                        legendgrouptitle_text="Phase 3",
+                    ),
+                    row=2,
+                    col=1,
+                )
                 fig.add_trace(
-                        go.Scatter(
-                                x=df_noisy.index,
-                                y=df_noisy["P3_3"],
-                                mode="lines+markers",
-                                name="Place Value",
-                                legendgroup="Phase " "3",
-                                legendgrouptitle_text="Phase 3",
-                                ),
-                        row=2,
-                        col=1,
-                        )
+                    go.Scatter(
+                        x=df_noisy.index,
+                        y=df_noisy["P3_3"],
+                        mode="lines+markers",
+                        name="Place Value",
+                        legendgroup="Phase " "3",
+                        legendgrouptitle_text="Phase 3",
+                    ),
+                    row=2,
+                    col=1,
+                )
                 fig.add_trace(
-                        go.Scatter(
-                                x=df_noisy.index,
-                                y=df_noisy["P4_1"],
-                                mode="lines+markers",
-                                name="Setting Numbers",
-                                legendgroup="Phase 4",
-                                legendgrouptitle_text="Phase 4",
-                                ),
-                        row=2,
-                        col=2,
-                        )
+                    go.Scatter(
+                        x=df_noisy.index,
+                        y=df_noisy["P4_1"],
+                        mode="lines+markers",
+                        name="Setting Numbers",
+                        legendgroup="Phase 4",
+                        legendgrouptitle_text="Phase 4",
+                    ),
+                    row=2,
+                    col=2,
+                )
                 fig.add_trace(
-                        go.Scatter(
-                                x=df_noisy.index,
-                                y=df_noisy["P4_2"],
-                                mode="lines+markers",
-                                name="Clearing Beads",
-                                legendgroup="Phase " "4",
-                                legendgrouptitle_text="Phase 4",
-                                ),
-                        row=2,
-                        col=2,
-                        )
+                    go.Scatter(
+                        x=df_noisy.index,
+                        y=df_noisy["P4_2"],
+                        mode="lines+markers",
+                        name="Clearing Beads",
+                        legendgroup="Phase " "4",
+                        legendgrouptitle_text="Phase 4",
+                    ),
+                    row=2,
+                    col=2,
+                )
                 fig.add_trace(
-                        go.Scatter(
-                                x=df_noisy.index,
-                                y=df_noisy["P5_1"],
-                                mode="lines+markers",
-                                name="Place Value",
-                                legendgroup="Phase " "5",
-                                legendgrouptitle_text="Phase 5",
-                                ),
-                        row=3,
-                        col=1,
-                        )
+                    go.Scatter(
+                        x=df_noisy.index,
+                        y=df_noisy["P5_1"],
+                        mode="lines+markers",
+                        name="Place Value",
+                        legendgroup="Phase " "5",
+                        legendgrouptitle_text="Phase 5",
+                    ),
+                    row=3,
+                    col=1,
+                )
                 fig.add_trace(
-                        go.Scatter(
-                                x=df_noisy.index,
-                                y=df_noisy["P5_2"],
-                                mode="lines+markers",
-                                name="Vocabulary",
-                                legendgroup="Phase " "5",
-                                legendgrouptitle_text="Phase 5",
-                                ),
-                        row=3,
-                        col=1,
-                        )
+                    go.Scatter(
+                        x=df_noisy.index,
+                        y=df_noisy["P5_2"],
+                        mode="lines+markers",
+                        name="Vocabulary",
+                        legendgroup="Phase " "5",
+                        legendgrouptitle_text="Phase 5",
+                    ),
+                    row=3,
+                    col=1,
+                )
                 fig.add_trace(
-                        go.Scatter(
-                                x=df_noisy.index,
-                                y=df_noisy["P6_1"],
-                                mode="lines+markers",
-                                name="Setting Numbers",
-                                legendgroup="Phase 6",
-                                legendgrouptitle_text="Phase 6",
-                                ),
-                        row=3,
-                        col=2,
-                        )
+                    go.Scatter(
+                        x=df_noisy.index,
+                        y=df_noisy["P6_1"],
+                        mode="lines+markers",
+                        name="Setting Numbers",
+                        legendgroup="Phase 6",
+                        legendgrouptitle_text="Phase 6",
+                    ),
+                    row=3,
+                    col=2,
+                )
                 fig.add_trace(
-                        go.Scatter(
-                                x=df_noisy.index,
-                                y=df_noisy["P6_2"],
-                                mode="lines+markers",
-                                name="Clearing Beads",
-                                legendgroup="Phase " "6",
-                                legendgrouptitle_text="Phase 6",
-                                ),
-                        row=3,
-                        col=2,
-                        )
+                    go.Scatter(
+                        x=df_noisy.index,
+                        y=df_noisy["P6_2"],
+                        mode="lines+markers",
+                        name="Clearing Beads",
+                        legendgroup="Phase " "6",
+                        legendgrouptitle_text="Phase 6",
+                    ),
+                    row=3,
+                    col=2,
+                )
                 fig.add_trace(
-                        go.Scatter(
-                                x=df_noisy.index,
-                                y=df_noisy["P6_3"],
-                                mode="lines+markers",
-                                name="Place Value",
-                                legendgroup="Phase " "6",
-                                legendgrouptitle_text="Phase 6",
-                                ),
-                        row=3,
-                        col=2,
-                        )
+                    go.Scatter(
+                        x=df_noisy.index,
+                        y=df_noisy["P6_3"],
+                        mode="lines+markers",
+                        name="Place Value",
+                        legendgroup="Phase " "6",
+                        legendgrouptitle_text="Phase 6",
+                    ),
+                    row=3,
+                    col=2,
+                )
                 fig.add_trace(
-                        go.Scatter(
-                                x=df_noisy.index,
-                                y=df_noisy["P6_4"],
-                                mode="lines+markers",
-                                name="Vocabulary",
-                                legendgroup="Phase " "6",
-                                legendgrouptitle_text="Phase 6",
-                                ),
-                        row=3,
-                        col=2,
-                        )
+                    go.Scatter(
+                        x=df_noisy.index,
+                        y=df_noisy["P6_4"],
+                        mode="lines+markers",
+                        name="Vocabulary",
+                        legendgroup="Phase " "6",
+                        legendgrouptitle_text="Phase 6",
+                    ),
+                    row=3,
+                    col=2,
+                )
                 fig.add_trace(
-                        go.Scatter(
-                                x=df_noisy.index,
-                                y=df_noisy["P7_1"],
-                                mode="lines+markers",
-                                name="Setting Numbers",
-                                legendgroup="Phase 7",
-                                legendgrouptitle_text="Phase 7",
-                                ),
-                        row=4,
-                        col=1,
-                        )
+                    go.Scatter(
+                        x=df_noisy.index,
+                        y=df_noisy["P7_1"],
+                        mode="lines+markers",
+                        name="Setting Numbers",
+                        legendgroup="Phase 7",
+                        legendgrouptitle_text="Phase 7",
+                    ),
+                    row=4,
+                    col=1,
+                )
                 fig.add_trace(
-                        go.Scatter(
-                                x=df_noisy.index,
-                                y=df_noisy["P7_2"],
-                                mode="lines+markers",
-                                name="Clearing Beads",
-                                legendgroup="Phase " "7",
-                                legendgrouptitle_text="Phase 7",
-                                ),
-                        row=4,
-                        col=1,
-                        )
+                    go.Scatter(
+                        x=df_noisy.index,
+                        y=df_noisy["P7_2"],
+                        mode="lines+markers",
+                        name="Clearing Beads",
+                        legendgroup="Phase " "7",
+                        legendgrouptitle_text="Phase 7",
+                    ),
+                    row=4,
+                    col=1,
+                )
                 fig.add_trace(
-                        go.Scatter(
-                                x=df_noisy.index,
-                                y=df_noisy["P7_3"],
-                                mode="lines+markers",
-                                name="Place Value",
-                                legendgroup="Phase " "7",
-                                legendgrouptitle_text="Phase 7",
-                                ),
-                        row=4,
-                        col=1,
-                        )
+                    go.Scatter(
+                        x=df_noisy.index,
+                        y=df_noisy["P7_3"],
+                        mode="lines+markers",
+                        name="Place Value",
+                        legendgroup="Phase " "7",
+                        legendgrouptitle_text="Phase 7",
+                    ),
+                    row=4,
+                    col=1,
+                )
                 fig.add_trace(
-                        go.Scatter(
-                                x=df_noisy.index,
-                                y=df_noisy["P7_4"],
-                                mode="lines+markers",
-                                name="Vocabulary",
-                                legendgroup="Phase " "7",
-                                legendgrouptitle_text="Phase 7",
-                                ),
-                        row=4,
-                        col=1,
-                        )
+                    go.Scatter(
+                        x=df_noisy.index,
+                        y=df_noisy["P7_4"],
+                        mode="lines+markers",
+                        name="Vocabulary",
+                        legendgroup="Phase " "7",
+                        legendgrouptitle_text="Phase 7",
+                    ),
+                    row=4,
+                    col=1,
+                )
                 fig.add_trace(
-                        go.Scatter(
-                                x=df_noisy.index,
-                                y=df_noisy["P8_1"],
-                                mode="lines+markers",
-                                name="Setting Numbers",
-                                legendgroup="Phase 8",
-                                legendgrouptitle_text="Phase 8",
-                                ),
-                        row=4,
-                        col=2,
-                        )
+                    go.Scatter(
+                        x=df_noisy.index,
+                        y=df_noisy["P8_1"],
+                        mode="lines+markers",
+                        name="Setting Numbers",
+                        legendgroup="Phase 8",
+                        legendgrouptitle_text="Phase 8",
+                    ),
+                    row=4,
+                    col=2,
+                )
                 fig.add_trace(
-                        go.Scatter(
-                                x=df_noisy.index,
-                                y=df_noisy["P8_2"],
-                                mode="lines+markers",
-                                name="Clearing Beads",
-                                legendgroup="Phase " "8",
-                                legendgrouptitle_text="Phase 8",
-                                ),
-                        row=4,
-                        col=2,
-                        )
+                    go.Scatter(
+                        x=df_noisy.index,
+                        y=df_noisy["P8_2"],
+                        mode="lines+markers",
+                        name="Clearing Beads",
+                        legendgroup="Phase " "8",
+                        legendgrouptitle_text="Phase 8",
+                    ),
+                    row=4,
+                    col=2,
+                )
                 fig.add_hrect(
-                        y0=-0.5,
-                        y1=0.5,
-                        line_width=0,
-                        fillcolor="#b3c7f7",
-                        opacity=0.2,
-                        row=1,
-                        col=1,
-                        )
+                    y0=-0.5,
+                    y1=0.5,
+                    line_width=0,
+                    fillcolor="#b3c7f7",
+                    opacity=0.2,
+                    row=1,
+                    col=1,
+                )
                 fig.add_hrect(
-                        y0=0.5,
-                        y1=1.5,
-                        line_width=0,
-                        fillcolor="orange",
-                        opacity=0.2,
-                        row=1,
-                        col=1,
-                        )
+                    y0=0.5,
+                    y1=1.5,
+                    line_width=0,
+                    fillcolor="orange",
+                    opacity=0.2,
+                    row=1,
+                    col=1,
+                )
                 fig.add_hrect(
-                        y0=1.5,
-                        y1=2.5,
-                        line_width=0,
-                        fillcolor="yellow",
-                        opacity=0.2,
-                        row=1,
-                        col=1,
-                        )
+                    y0=1.5,
+                    y1=2.5,
+                    line_width=0,
+                    fillcolor="yellow",
+                    opacity=0.2,
+                    row=1,
+                    col=1,
+                )
                 fig.add_hrect(
-                        y0=2.5,
-                        y1=3.5,
-                        line_width=0,
-                        fillcolor="green",
-                        opacity=0.2,
-                        row=1,
-                        col=1,
-                        )
+                    y0=2.5,
+                    y1=3.5,
+                    line_width=0,
+                    fillcolor="green",
+                    opacity=0.2,
+                    row=1,
+                    col=1,
+                )
                 fig.add_hrect(
-                        y0=-0.5,
-                        y1=0.5,
-                        line_width=0,
-                        fillcolor="#b3c7f7",
-                        opacity=0.2,
-                        row=1,
-                        col=2,
-                        )
+                    y0=-0.5,
+                    y1=0.5,
+                    line_width=0,
+                    fillcolor="#b3c7f7",
+                    opacity=0.2,
+                    row=1,
+                    col=2,
+                )
                 fig.add_hrect(
-                        y0=0.5,
-                        y1=1.5,
-                        line_width=0,
-                        fillcolor="orange",
-                        opacity=0.2,
-                        row=1,
-                        col=2,
-                        )
+                    y0=0.5,
+                    y1=1.5,
+                    line_width=0,
+                    fillcolor="orange",
+                    opacity=0.2,
+                    row=1,
+                    col=2,
+                )
                 fig.add_hrect(
-                        y0=1.5,
-                        y1=2.5,
-                        line_width=0,
-                        fillcolor="yellow",
-                        opacity=0.2,
-                        row=1,
-                        col=2,
-                        )
+                    y0=1.5,
+                    y1=2.5,
+                    line_width=0,
+                    fillcolor="yellow",
+                    opacity=0.2,
+                    row=1,
+                    col=2,
+                )
                 fig.add_hrect(
-                        y0=2.5,
-                        y1=3.5,
-                        line_width=0,
-                        fillcolor="green",
-                        opacity=0.2,
-                        row=1,
-                        col=2,
-                        )
+                    y0=2.5,
+                    y1=3.5,
+                    line_width=0,
+                    fillcolor="green",
+                    opacity=0.2,
+                    row=1,
+                    col=2,
+                )
                 fig.add_hrect(
-                        y0=-0.5,
-                        y1=0.5,
-                        line_width=0,
-                        fillcolor="#b3c7f7",
-                        opacity=0.2,
-                        row=2,
-                        col=1,
-                        )
+                    y0=-0.5,
+                    y1=0.5,
+                    line_width=0,
+                    fillcolor="#b3c7f7",
+                    opacity=0.2,
+                    row=2,
+                    col=1,
+                )
                 fig.add_hrect(
-                        y0=0.5,
-                        y1=1.5,
-                        line_width=0,
-                        fillcolor="orange",
-                        opacity=0.2,
-                        row=2,
-                        col=1,
-                        )
+                    y0=0.5,
+                    y1=1.5,
+                    line_width=0,
+                    fillcolor="orange",
+                    opacity=0.2,
+                    row=2,
+                    col=1,
+                )
                 fig.add_hrect(
-                        y0=1.5,
-                        y1=2.5,
-                        line_width=0,
-                        fillcolor="yellow",
-                        opacity=0.2,
-                        row=2,
-                        col=1,
-                        )
+                    y0=1.5,
+                    y1=2.5,
+                    line_width=0,
+                    fillcolor="yellow",
+                    opacity=0.2,
+                    row=2,
+                    col=1,
+                )
                 fig.add_hrect(
-                        y0=2.5,
-                        y1=3.5,
-                        line_width=0,
-                        fillcolor="green",
-                        opacity=0.2,
-                        row=2,
-                        col=1,
-                        )
+                    y0=2.5,
+                    y1=3.5,
+                    line_width=0,
+                    fillcolor="green",
+                    opacity=0.2,
+                    row=2,
+                    col=1,
+                )
                 fig.add_hrect(
-                        y0=-0.5,
-                        y1=0.5,
-                        line_width=0,
-                        fillcolor="#b3c7f7",
-                        opacity=0.2,
-                        row=2,
-                        col=2,
-                        )
+                    y0=-0.5,
+                    y1=0.5,
+                    line_width=0,
+                    fillcolor="#b3c7f7",
+                    opacity=0.2,
+                    row=2,
+                    col=2,
+                )
                 fig.add_hrect(
-                        y0=0.5,
-                        y1=1.5,
-                        line_width=0,
-                        fillcolor="orange",
-                        opacity=0.2,
-                        row=2,
-                        col=2,
-                        )
+                    y0=0.5,
+                    y1=1.5,
+                    line_width=0,
+                    fillcolor="orange",
+                    opacity=0.2,
+                    row=2,
+                    col=2,
+                )
                 fig.add_hrect(
-                        y0=1.5,
-                        y1=2.5,
-                        line_width=0,
-                        fillcolor="yellow",
-                        opacity=0.2,
-                        row=2,
-                        col=2,
-                        )
+                    y0=1.5,
+                    y1=2.5,
+                    line_width=0,
+                    fillcolor="yellow",
+                    opacity=0.2,
+                    row=2,
+                    col=2,
+                )
                 fig.add_hrect(
-                        y0=2.5,
-                        y1=3.5,
-                        line_width=0,
-                        fillcolor="green",
-                        opacity=0.2,
-                        row=2,
-                        col=2,
-                        )
+                    y0=2.5,
+                    y1=3.5,
+                    line_width=0,
+                    fillcolor="green",
+                    opacity=0.2,
+                    row=2,
+                    col=2,
+                )
                 fig.add_hrect(
-                        y0=-0.5,
-                        y1=0.5,
-                        line_width=0,
-                        fillcolor="#b3c7f7",
-                        opacity=0.2,
-                        row=3,
-                        col=1,
-                        )
+                    y0=-0.5,
+                    y1=0.5,
+                    line_width=0,
+                    fillcolor="#b3c7f7",
+                    opacity=0.2,
+                    row=3,
+                    col=1,
+                )
                 fig.add_hrect(
-                        y0=0.5,
-                        y1=1.5,
-                        line_width=0,
-                        fillcolor="orange",
-                        opacity=0.2,
-                        row=3,
-                        col=1,
-                        )
+                    y0=0.5,
+                    y1=1.5,
+                    line_width=0,
+                    fillcolor="orange",
+                    opacity=0.2,
+                    row=3,
+                    col=1,
+                )
                 fig.add_hrect(
-                        y0=1.5,
-                        y1=2.5,
-                        line_width=0,
-                        fillcolor="yellow",
-                        opacity=0.2,
-                        row=3,
-                        col=1,
-                        )
+                    y0=1.5,
+                    y1=2.5,
+                    line_width=0,
+                    fillcolor="yellow",
+                    opacity=0.2,
+                    row=3,
+                    col=1,
+                )
                 fig.add_hrect(
-                        y0=2.5,
-                        y1=3.5,
-                        line_width=0,
-                        fillcolor="green",
-                        opacity=0.2,
-                        row=3,
-                        col=1,
-                        )
+                    y0=2.5,
+                    y1=3.5,
+                    line_width=0,
+                    fillcolor="green",
+                    opacity=0.2,
+                    row=3,
+                    col=1,
+                )
                 fig.add_hrect(
-                        y0=-0.5,
-                        y1=0.5,
-                        line_width=0,
-                        fillcolor="#b3c7f7",
-                        opacity=0.2,
-                        row=3,
-                        col=2,
-                        )
+                    y0=-0.5,
+                    y1=0.5,
+                    line_width=0,
+                    fillcolor="#b3c7f7",
+                    opacity=0.2,
+                    row=3,
+                    col=2,
+                )
                 fig.add_hrect(
-                        y0=0.5,
-                        y1=1.5,
-                        line_width=0,
-                        fillcolor="orange",
-                        opacity=0.2,
-                        row=3,
-                        col=2,
-                        )
+                    y0=0.5,
+                    y1=1.5,
+                    line_width=0,
+                    fillcolor="orange",
+                    opacity=0.2,
+                    row=3,
+                    col=2,
+                )
                 fig.add_hrect(
-                        y0=1.5,
-                        y1=2.5,
-                        line_width=0,
-                        fillcolor="yellow",
-                        opacity=0.2,
-                        row=3,
-                        col=2,
-                        )
+                    y0=1.5,
+                    y1=2.5,
+                    line_width=0,
+                    fillcolor="yellow",
+                    opacity=0.2,
+                    row=3,
+                    col=2,
+                )
                 fig.add_hrect(
-                        y0=2.5,
-                        y1=3.5,
-                        line_width=0,
-                        fillcolor="green",
-                        opacity=0.2,
-                        row=3,
-                        col=2,
-                        )
+                    y0=2.5,
+                    y1=3.5,
+                    line_width=0,
+                    fillcolor="green",
+                    opacity=0.2,
+                    row=3,
+                    col=2,
+                )
                 fig.add_hrect(
-                        y0=-0.5,
-                        y1=0.5,
-                        line_width=0,
-                        fillcolor="#b3c7f7",
-                        opacity=0.2,
-                        row=4,
-                        col=1,
-                        )
+                    y0=-0.5,
+                    y1=0.5,
+                    line_width=0,
+                    fillcolor="#b3c7f7",
+                    opacity=0.2,
+                    row=4,
+                    col=1,
+                )
                 fig.add_hrect(
-                        y0=0.5,
-                        y1=1.5,
-                        line_width=0,
-                        fillcolor="orange",
-                        opacity=0.2,
-                        row=4,
-                        col=1,
-                        )
+                    y0=0.5,
+                    y1=1.5,
+                    line_width=0,
+                    fillcolor="orange",
+                    opacity=0.2,
+                    row=4,
+                    col=1,
+                )
                 fig.add_hrect(
-                        y0=1.5,
-                        y1=2.5,
-                        line_width=0,
-                        fillcolor="yellow",
-                        opacity=0.2,
-                        row=4,
-                        col=1,
-                        )
+                    y0=1.5,
+                    y1=2.5,
+                    line_width=0,
+                    fillcolor="yellow",
+                    opacity=0.2,
+                    row=4,
+                    col=1,
+                )
                 fig.add_hrect(
-                        y0=2.5,
-                        y1=3.5,
-                        line_width=0,
-                        fillcolor="green",
-                        opacity=0.2,
-                        row=4,
-                        col=1,
-                        )
+                    y0=2.5,
+                    y1=3.5,
+                    line_width=0,
+                    fillcolor="green",
+                    opacity=0.2,
+                    row=4,
+                    col=1,
+                )
                 fig.add_hrect(
-                        y0=-0.5,
-                        y1=0.5,
-                        line_width=0,
-                        fillcolor="#b3c7f7",
-                        opacity=0.2,
-                        row=4,
-                        col=2,
-                        )
+                    y0=-0.5,
+                    y1=0.5,
+                    line_width=0,
+                    fillcolor="#b3c7f7",
+                    opacity=0.2,
+                    row=4,
+                    col=2,
+                )
                 fig.add_hrect(
-                        y0=0.5,
-                        y1=1.5,
-                        line_width=0,
-                        fillcolor="orange",
-                        opacity=0.2,
-                        row=4,
-                        col=2,
-                        )
+                    y0=0.5,
+                    y1=1.5,
+                    line_width=0,
+                    fillcolor="orange",
+                    opacity=0.2,
+                    row=4,
+                    col=2,
+                )
                 fig.add_hrect(
-                        y0=1.5,
-                        y1=2.5,
-                        line_width=0,
-                        fillcolor="yellow",
-                        opacity=0.2,
-                        row=4,
-                        col=2,
-                        )
+                    y0=1.5,
+                    y1=2.5,
+                    line_width=0,
+                    fillcolor="yellow",
+                    opacity=0.2,
+                    row=4,
+                    col=2,
+                )
                 fig.add_hrect(
-                        y0=2.5,
-                        y1=3.5,
-                        line_width=0,
-                        fillcolor="green",
-                        opacity=0.2,
-                        row=4,
-                        col=2,
-                        )
+                    y0=2.5,
+                    y1=3.5,
+                    line_width=0,
+                    fillcolor="green",
+                    opacity=0.2,
+                    row=4,
+                    col=2,
+                )
                 fig.update_yaxes(
-                        range=[-0.5, 3.5],
-                        fixedrange=True,
-                        ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
-                        tickvals=[0.1, 1, 2, 3],
-                        row=1,
-                        col=1,
-                        )
+                    range=[-0.5, 3.5],
+                    fixedrange=True,
+                    ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
+                    tickvals=[0.1, 1, 2, 3],
+                    row=1,
+                    col=1,
+                )
                 fig.update_yaxes(
-                        range=[-0.5, 3.5],
-                        fixedrange=True,
-                        ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
-                        tickvals=[0.1, 1, 2, 3],
-                        row=1,
-                        col=2,
-                        )
+                    range=[-0.5, 3.5],
+                    fixedrange=True,
+                    ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
+                    tickvals=[0.1, 1, 2, 3],
+                    row=1,
+                    col=2,
+                )
                 fig.update_yaxes(
-                        range=[-0.5, 3.5],
-                        fixedrange=True,
-                        ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
-                        tickvals=[0.1, 1, 2, 3],
-                        row=2,
-                        col=1,
-                        )
+                    range=[-0.5, 3.5],
+                    fixedrange=True,
+                    ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
+                    tickvals=[0.1, 1, 2, 3],
+                    row=2,
+                    col=1,
+                )
                 fig.update_yaxes(
-                        range=[-0.5, 3.5],
-                        fixedrange=True,
-                        ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
-                        tickvals=[0.1, 1, 2, 3],
-                        row=2,
-                        col=2,
-                        )
+                    range=[-0.5, 3.5],
+                    fixedrange=True,
+                    ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
+                    tickvals=[0.1, 1, 2, 3],
+                    row=2,
+                    col=2,
+                )
                 fig.update_yaxes(
-                        range=[-0.5, 3.5],
-                        fixedrange=True,
-                        ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
-                        tickvals=[0.1, 1, 2, 3],
-                        row=3,
-                        col=1,
-                        )
+                    range=[-0.5, 3.5],
+                    fixedrange=True,
+                    ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
+                    tickvals=[0.1, 1, 2, 3],
+                    row=3,
+                    col=1,
+                )
                 fig.update_yaxes(
-                        range=[-0.5, 3.5],
-                        fixedrange=True,
-                        ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
-                        tickvals=[0.1, 1, 2, 3],
-                        row=3,
-                        col=2,
-                        )
+                    range=[-0.5, 3.5],
+                    fixedrange=True,
+                    ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
+                    tickvals=[0.1, 1, 2, 3],
+                    row=3,
+                    col=2,
+                )
                 fig.update_yaxes(
-                        range=[-0.5, 3.5],
-                        fixedrange=True,
-                        ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
-                        tickvals=[0.1, 1, 2, 3],
-                        row=4,
-                        col=1,
-                        )
+                    range=[-0.5, 3.5],
+                    fixedrange=True,
+                    ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
+                    tickvals=[0.1, 1, 2, 3],
+                    row=4,
+                    col=1,
+                )
                 fig.update_yaxes(
-                        range=[-0.5, 3.5],
-                        fixedrange=True,
-                        ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
-                        tickvals=[0.1, 1, 2, 3],
-                        row=4,
-                        col=2,
-                        )
+                    range=[-0.5, 3.5],
+                    fixedrange=True,
+                    ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
+                    tickvals=[0.1, 1, 2, 3],
+                    row=4,
+                    col=2,
+                )
                 fig.update_layout(
-                        template="simple_white",
-                        title_text=f"{studentname}: Abacus Skills Progression",
-                        )
+                    template="simple_white",
+                    title_text=f"{studentname}: Abacus Skills Progression",
+                )
                 tmppath = Path(USER_DIR).joinpath(
-                        "StudentDatabase",
-                        "StudentDataFiles",
-                        studentname,
-                        "AbacusSkillsProgression.html",
-                        )
+                    "StudentDatabase",
+                    "StudentDataFiles",
+                    studentname,
+                    "AbacusSkillsProgression.html",
+                )
                 fig.write_html(tmppath, auto_open=True)
                 # fig.show( )
                 ui.notify(
-                        "Graph Successful. The Graphs will open in a Browser Window",
-                        position="center",
-                        type="positive",
-                        close_button="OK",
-                        )
+                    "Graph Successful. The Graphs will open in a Browser Window",
+                    position="center",
+                    type="positive",
+                    close_button="OK",
+                )
 
             # ABACUS SKILLS PROGRESSION TAB
 
             with ui.row().classes("w-screen no-wrap"):
-                ui.label("ABACUS SKILLS PROGRESSION").classes(
-                        "justify-center items-center"
-                        )
+                ui.label("ABACUS SKILLS PROGRESSION").classes("justify-center items-center")
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.select(
-                        options=students,
-                        with_input=True,
-                        on_change=lambda e: ui.notify(e.value),
-                        ).bind_value(u_studentname, "value").classes("w-[300px]").props(
-                        'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
-                        ).tooltip(
-                        "Type Student Name, it will autocomplete AS you type"
-                        )
-        with ui.input("Date").classes("w-[300px]").props(
-                'aria-label="Date. Please type in date using the YYYY-MM-DD format"'
-                ).tooltip("Date. Please type in date using the YYYY-MM-DD format") as date:
+                    options=students,
+                    with_input=True,
+                    on_change=lambda e: ui.notify(e.value),
+                ).bind_value(
+                    u_studentname, "value"
+                ).classes("w-[300px]").props(
+                    'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
+                ).tooltip("Type Student Name, it will autocomplete AS you type")
+        with ui.input("Date").classes("w-[300px]").props('aria-label="Date. Please type in date using the YYYY-MM-DD format"').tooltip("Date. Please type in date using the YYYY-MM-DD format") as date:
             with date.add_slot("append"):
-                ui.icon("edit_calendar").on("click", lambda: menu.open()).classes(
-                        "cursor-pointer"
-                        )
+                ui.icon("edit_calendar").on("click", lambda: menu.open()).classes("cursor-pointer")
         with ui.menu() as menu:
             ui.date().bind_value(date)
         with ui.row().classes("w-screen no-wrap py-4"):
-            ui.label(
-                    "RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent"
-                    ).props(
-                    'aria-label="RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent"'
-                    )
-        ui.input().props(
-                'aria-label="RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent"'
-                ).classes("sr-only")
+            ui.label("RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent").props('aria-label="RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent"')
+        ui.input().props('aria-label="RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent"').classes("sr-only")
         with ui.row().classes("w-screen no-wrap py-4"):
-            ui.label("PHASE 1: Setting and Clearing Numbers").classes(
-                    "justify-center items-center"
-                    )
-        ui.input().props(
-                'aria-label="PHASE 1: Setting and Clearing Numbers"'
-                ).classes("sr-only")
+            ui.label("PHASE 1: Setting and Clearing Numbers").classes("justify-center items-center")
+        ui.input().props('aria-label="PHASE 1: Setting and Clearing Numbers"').classes("sr-only")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
-                    label="1.1 Setting Numbers",
-                    value="",
-                    on_change=lambda e: u_abacus_trial11.set_value(e.value),
-                    ).classes("w-[600px]").props(
-                    'aria-label="1.1 Setting Numbers"'
-                    ).tooltip(
-                    "1.1 Setting Numbers"
-                    )
+                label="1.1 Setting Numbers",
+                value="",
+                on_change=lambda e: u_abacus_trial11.set_value(e.value),
+            ).classes("w-[600px]").props(
+                'aria-label="1.1 Setting Numbers"'
+            ).tooltip("1.1 Setting Numbers")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="1.2 Clearing Numbers",
                 value="",
                 on_change=lambda e: u_abacus_trial12.set_value(e.value),
-                ).classes("w-[600px]").props(
+            ).classes("w-[600px]").props(
                 'aria-label="1.2 Clearing Numbers"'
-                ).tooltip(
-                "1.2 Clearing Numbers"
-                )
+            ).tooltip("1.2 Clearing Numbers")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="1.3 Place Value",
                 value="",
                 on_change=lambda e: u_abacus_trial13.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="1.3 Place Value"').tooltip(
-                "1.3 Place Value"
-                )
+            ).classes("w-[600px]").props(
+                'aria-label="1.3 Place Value"'
+            ).tooltip("1.3 Place Value")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="1.4 Vocabulary",
                 value="",
                 on_change=lambda e: u_abacus_trial14.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="1.4 Vocabulary"').tooltip(
-                "1.4 Vocabulary"
-                )
+            ).classes("w-[600px]").props(
+                'aria-label="1.4 Vocabulary"'
+            ).tooltip("1.4 Vocabulary")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.label("PHASE 2: Addition").classes("justify-center items-center")
-        ui.input().props(
-                'aria-label="PHASE 2: Addition"'
-                ).classes("sr-only")
+        ui.input().props('aria-label="PHASE 2: Addition"').classes("sr-only")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
-                    label="2.1 Addition of Single Digit Numbers",
-                    value="",
-                    on_change=lambda e: u_abacus_trial21.set_value(e.value),
-                    ).classes("w-[600px]").props(
-                    'aria-label="2.1 Addition of Single Digit Numbers"'
-                    )
-        with ui.row().classes("w-screen no-wrap py-4"):        
+                label="2.1 Addition of Single Digit Numbers",
+                value="",
+                on_change=lambda e: u_abacus_trial21.set_value(e.value),
+            ).classes(
+                "w-[600px]"
+            ).props('aria-label="2.1 Addition of Single Digit Numbers"')
+        with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="2.2 Addition of Multiple Digit Numbers – Direct",
                 value="",
                 on_change=lambda e: u_abacus_trial22.set_value(e.value),
-                ).classes("w-[600px]").props(
-                'aria-label="2.2 Addition of Multiple Digit Numbers – Direct"'
-                )
+            ).classes(
+                "w-[600px]"
+            ).props('aria-label="2.2 Addition of Multiple Digit Numbers – Direct"')
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="2.3 Addition of Multiple Digit Numbers – Indirect",
                 value="",
                 on_change=lambda e: u_abacus_trial23.set_value(e.value),
-                ).classes("w-[600px]").props(
-                'aria-label="2.3 Addition of Multiple Digit Numbers – Indirect"'
-                )
+            ).classes(
+                "w-[600px]"
+            ).props('aria-label="2.3 Addition of Multiple Digit Numbers – Indirect"')
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.label("PHASE 3: Subtraction").classes("justify-center items-center")
-            ui.input().props(
-                'aria-label="PHASE 3: Subtraction"'
-                ).classes("sr-only")
+            ui.input().props('aria-label="PHASE 3: Subtraction"').classes("sr-only")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
-                    label="3.1 Subtraction",
-                    value="",
-                    on_change=lambda e: u_abacus_trial31.set_value(e.value),
-                    ).classes("w-[600px]").props('aria-label="3.1 Subtraction"')
+                label="3.1 Subtraction",
+                value="",
+                on_change=lambda e: u_abacus_trial31.set_value(e.value),
+            ).classes(
+                "w-[600px]"
+            ).props('aria-label="3.1 Subtraction"')
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="3.2 Subtraction of Multiple Digit Numbers – Direct",
                 value="",
                 on_change=lambda e: u_abacus_trial32.set_value(e.value),
-                ).classes("w-[600px]").props(
-                'aria-label="3.2 Subtraction of Multiple Digit Numbers – Direct"'
-                )
+            ).classes(
+                "w-[600px]"
+            ).props('aria-label="3.2 Subtraction of Multiple Digit Numbers – Direct"')
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="3.3 Subtraction of Multiple Digit Numbers – Indirect",
                 value="",
                 on_change=lambda e: u_abacus_trial33.set_value(e.value),
-                ).classes("w-[600px]").props(
-                'aria-label="3.3 Subtraction of Multiple Digit Numbers – Indirect"'
-                )
+            ).classes(
+                "w-[600px]"
+            ).props('aria-label="3.3 Subtraction of Multiple Digit Numbers – Indirect"')
         with ui.row().classes("w-screen no-wrap py-4"):
-            ui.label("PHASE 4: Multiplication").classes(
-                    "justify-center items-center"
-                    )
-            ui.input().props(
-                'aria-label="PHASE 4: Multiplication"'
-                ).classes("sr-only")
+            ui.label("PHASE 4: Multiplication").classes("justify-center items-center")
+            ui.input().props('aria-label="PHASE 4: Multiplication"').classes("sr-only")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
-                    label="4.1 Multiplication – 2+ Digit Multiplicand 1-Digit Multiplier",
-                    value="",
-                    on_change=lambda e: u_abacus_trial41.set_value(e.value),
-                    ).classes("w-[600px]").props(
-                    'aria-label="4.1 Multiplication – 2+ Digit Multiplicand 1-Digit Multiplier"'
-                    )
+                label="4.1 Multiplication – 2+ Digit Multiplicand 1-Digit Multiplier",
+                value="",
+                on_change=lambda e: u_abacus_trial41.set_value(e.value),
+            ).classes(
+                "w-[600px]"
+            ).props('aria-label="4.1 Multiplication – 2+ Digit Multiplicand 1-Digit Multiplier"')
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="4.2 Multiplication – 2+ Digit Multiplicand AND Multiplier",
                 value="",
                 on_change=lambda e: u_abacus_trial42.set_value(e.value),
-                ).classes("w-[600px]").props(
-                'aria-label="4.2 Multiplication – 2+ Digit Multiplicand AND Multiplier"'
-                )
+            ).classes(
+                "w-[600px]"
+            ).props('aria-label="4.2 Multiplication – 2+ Digit Multiplicand AND Multiplier"')
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.label("PHASE 5: Division").classes("justify-center items-center")
-            ui.input().props(
-                'aria-label="PHASE 5: Division"'
-                ).classes("sr-only")
+            ui.input().props('aria-label="PHASE 5: Division"').classes("sr-only")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
-                    label="5.1 Division – 2+ Digit Dividend 1-Digit Divisor",
-                    value="",
-                    on_change=lambda e: u_abacus_trial51.set_value(e.value),
-                    ).classes("w-[600px]").props(
-                    'aria-label="5.1 Division – 2+ Digit Dividend 1-Digit Divisor"'
-                    )
+                label="5.1 Division – 2+ Digit Dividend 1-Digit Divisor",
+                value="",
+                on_change=lambda e: u_abacus_trial51.set_value(e.value),
+            ).classes(
+                "w-[600px]"
+            ).props('aria-label="5.1 Division – 2+ Digit Dividend 1-Digit Divisor"')
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="5.2 Division – 2+ Digit Dividend AND 1 Digit Divisor",
                 value="",
                 on_change=lambda e: u_abacus_trial52.set_value(e.value),
-                ).classes("w-[600px]").props(
-                'aria-label="5.2 Division – 2+ Digit Dividend AND 1 Digit Divisor"'
-                )
+            ).classes(
+                "w-[600px]"
+            ).props('aria-label="5.2 Division – 2+ Digit Dividend AND 1 Digit Divisor"')
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.label("PHASE 6: Decimals").classes("justify-center items-center")
-            ui.input().props(
-                'aria-label="PHASE 6: Decimals"'
-                ).classes("sr-only")
+            ui.input().props('aria-label="PHASE 6: Decimals"').classes("sr-only")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
-                    label="6.1 Addition of Decimals",
-                    value="",
-                    on_change=lambda e: u_abacus_trial61.set_value(e.value),
-                    ).classes("w-[600px]").props(
-                    'aria-label="6.1 Addition of Decimals"'
-                    )
+                label="6.1 Addition of Decimals",
+                value="",
+                on_change=lambda e: u_abacus_trial61.set_value(e.value),
+            ).classes(
+                "w-[600px]"
+            ).props('aria-label="6.1 Addition of Decimals"')
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="6.2 Subtraction of Decimals",
                 value="",
                 on_change=lambda e: u_abacus_trial62.set_value(e.value),
-                ).classes("w-[600px]").props(
-                'aria-label="6.2 Subtraction of Decimals"'
-                )
+            ).classes(
+                "w-[600px]"
+            ).props('aria-label="6.2 Subtraction of Decimals"')
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="6.3 Multiplication of Decimals",
                 value="",
                 on_change=lambda e: u_abacus_trial63.set_value(e.value),
-                ).classes("w-[600px]").props(
-                'aria-label="6.3 Multiplication of Decimals"'
-                )
+            ).classes(
+                "w-[600px]"
+            ).props('aria-label="6.3 Multiplication of Decimals"')
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="6.4 Division of Decimals",
                 value="",
                 on_change=lambda e: u_abacus_trial64.set_value(e.value),
-                ).classes("w-[600px]").props(
-                'aria-label="6.4 Division of Decimals"'
-                )
+            ).classes(
+                "w-[600px]"
+            ).props('aria-label="6.4 Division of Decimals"')
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.label("PHASE 7: Fractions").classes("justify-center items-center")
-            ui.input().props(
-                'aria-label="PHASE 7: Fractions"'
-                ).classes("sr-only")
+            ui.input().props('aria-label="PHASE 7: Fractions"').classes("sr-only")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
-                    label="7.1 Addition of Fractions",
-                    value="",
-                    on_change=lambda e: u_abacus_trial71.set_value(e.value),
-                    ).classes("w-[600px]").props(
-                    'aria-label="7.1 Addition of Fractions"'
-                    )
+                label="7.1 Addition of Fractions",
+                value="",
+                on_change=lambda e: u_abacus_trial71.set_value(e.value),
+            ).classes(
+                "w-[600px]"
+            ).props('aria-label="7.1 Addition of Fractions"')
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="7.2 Subtraction of Fractions",
                 value="",
                 on_change=lambda e: u_abacus_trial72.set_value(e.value),
-                ).classes("w-[600px]").props(
-                'aria-label="7.2 Subtraction of Fractions"'
-                )
+            ).classes(
+                "w-[600px]"
+            ).props('aria-label="7.2 Subtraction of Fractions"')
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="7.3 Multiplication of Fractions",
                 value="",
                 on_change=lambda e: u_abacus_trial73.set_value(e.value),
-                ).classes("w-[600px]").props(
-                'aria-label="7.3 Multiplication of Fractions"'
-                )
+            ).classes(
+                "w-[600px]"
+            ).props('aria-label="7.3 Multiplication of Fractions"')
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
-                label= "7.4 Division of Fractions",
+                label="7.4 Division of Fractions",
                 value="",
                 on_change=lambda e: u_abacus_trial74.set_value(e.value),
-                ).classes("w-[600px]").props(
-                'aria-label="7.4 Division of Fractions"'
-                )
+            ).classes(
+                "w-[600px]"
+            ).props('aria-label="7.4 Division of Fractions"')
         with ui.row().classes("w-screen no-wrap py-4"):
-            ui.label("PHASE 8: Roots and Percents").classes(
-                    "justify-center items-center"
-                    )
-            ui.input().props(
-                'aria-label="PHASE 8: Roots and Percents"'
-                ).classes("sr-only")
+            ui.label("PHASE 8: Roots and Percents").classes("justify-center items-center")
+            ui.input().props('aria-label="PHASE 8: Roots and Percents"').classes("sr-only")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
-                    label="8.1 Percent",
-                    value="",
-                    on_change=lambda e: u_abacus_trial81.set_value(e.value),
-                    ).classes("w-[600px]").props('aria-label="8.1 Percent"')
+                label="8.1 Percent",
+                value="",
+                on_change=lambda e: u_abacus_trial81.set_value(e.value),
+            ).classes(
+                "w-[600px]"
+            ).props('aria-label="8.1 Percent"')
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="8.2 Square Root",
                 value="",
                 on_change=lambda e: u_abacus_trial82.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="8.2 Square Root"')
+            ).classes(
+                "w-[600px]"
+            ).props('aria-label="8.2 Square Root"')
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.button("SAVE", color="#172554", on_click=save).classes("text-white")
         ui.button("GRAPH", color="#172554", on_click=graph).classes("text-white")
-        ui.button("EXIT", color="#172554", on_click=app.shutdown).classes(
-                "text-white"
-                )
+        ui.button("EXIT", color="#172554", on_click=app.shutdown).classes("text-white")

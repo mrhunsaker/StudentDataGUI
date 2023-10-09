@@ -28,19 +28,17 @@ from appTheming import theme
 
 def content() -> None:
     with theme.frame("- HOW TO USE THIS APP -"):
-        ui.label("VISION SKILLS PROGRESSIONS").classes(
-                "text-h4 font-bold text-grey-8 pl-10"
-                )
+        ui.label("VISION SKILLS PROGRESSIONS").classes("text-h4 font-bold text-grey-8 pl-10")
         with ui.row().classes("w-screen no-wrap py-4 pl-10"):
             ui.markdown(
-                    """
+                """
     ### About this app
     This app was designed to help TVIs engage in data-based decision making. The app is designed to be screenreader accessible using all known screenreaders (specifically tested with JAWS, NVDA, Dolphin ScreenReader, Narrator, and ZDSR).
                                                 """
-                    )
+            )
         with ui.row().classes("w-screen no-wrap py-4 pl-10"):
             ui.markdown(
-                    """
+                """
         ### Use Instructions
         - Navigation
             - The site is designed to be worked with a screenreader using the **TAB** key.
@@ -55,10 +53,10 @@ def content() -> None:
             - Press the "Graph" button to pull saved data and open interactive plots in a new window.
             - The graph is also saved in HTML format in the Student data folder
             """
-                    )
+            )
         with ui.row().classes("w-screen center  no-wrap py-4 pl-10"):
             ui.markdown(
-                    """
+                """
                                         ### Scoring Rubrics
                                         All measures are evaluated using the  following rubric
                                         
@@ -71,12 +69,12 @@ def content() -> None:
                                         
                                         The motivation for this system is from  the Screen Reader Skills  Progression course available at  eyeTvision.org
                                         """,
-                    extras=["tables"],
-                    )
+                extras=["tables"],
+            )
 
         with ui.row().classes("w-screen center  no-wrap py-4 pl-10"):
             ui.markdown(
-                    """
+                """
                                         ### Folder Structure
                                         
                                         On initial setup, the program tries to
@@ -129,5 +127,5 @@ def content() -> None:
                                         +-- students.db
                                         ```
                                         """,
-                    extras=["fenced-code-blocks"],
-                    )
+                extras=["fenced-code-blocks"],
+            )

@@ -999,7 +999,7 @@ def create() -> None:
                     label="1.1 Setting Numbers",
                     value="",
                     on_change=lambda e: u_abacus_trial11.set_value(e.value),
-                    ).classes("w-[400px]").props(
+                    ).classes("w-[600px]").props(
                     'aria-label="1.1 Setting Numbers"'
                     ).tooltip(
                     "1.1 Setting Numbers"
@@ -1009,7 +1009,7 @@ def create() -> None:
                 label="1.2 Clearing Numbers",
                 value="",
                 on_change=lambda e: u_abacus_trial12.set_value(e.value),
-                ).classes("w-[400px]").props(
+                ).classes("w-[600px]").props(
                 'aria-label="1.2 Clearing Numbers"'
                 ).tooltip(
                 "1.2 Clearing Numbers"
@@ -1019,7 +1019,7 @@ def create() -> None:
                 label="1.3 Place Value",
                 value="",
                 on_change=lambda e: u_abacus_trial13.set_value(e.value),
-                ).classes("w-[400px]").props('aria-label="1.3 Place Value"').tooltip(
+                ).classes("w-[600px]").props('aria-label="1.3 Place Value"').tooltip(
                 "1.3 Place Value"
                 )
         with ui.row().classes("w-screen no-wrap py-4"):
@@ -1027,7 +1027,7 @@ def create() -> None:
                 label="1.4 Vocabulary",
                 value="",
                 on_change=lambda e: u_abacus_trial14.set_value(e.value),
-                ).classes("w-[400px]").props('aria-label="1.4 Vocabulary"').tooltip(
+                ).classes("w-[600px]").props('aria-label="1.4 Vocabulary"').tooltip(
                 "1.4 Vocabulary"
                 )
         with ui.row().classes("w-screen no-wrap py-4"):
@@ -1040,7 +1040,7 @@ def create() -> None:
                     label="2.1 Addition of Single Digit Numbers",
                     value="",
                     on_change=lambda e: u_abacus_trial21.set_value(e.value),
-                    ).classes("w-[400px]").props(
+                    ).classes("w-[600px]").props(
                     'aria-label="2.1 Addition of Single Digit Numbers"'
                     )
         with ui.row().classes("w-screen no-wrap py-4"):        
@@ -1048,7 +1048,7 @@ def create() -> None:
                 label="2.2 Addition of Multiple Digit Numbers – Direct",
                 value="",
                 on_change=lambda e: u_abacus_trial22.set_value(e.value),
-                ).classes("w-[400px]").props(
+                ).classes("w-[600px]").props(
                 'aria-label="2.2 Addition of Multiple Digit Numbers – Direct"'
                 )
         with ui.row().classes("w-screen no-wrap py-4"):
@@ -1056,7 +1056,7 @@ def create() -> None:
                 label="2.3 Addition of Multiple Digit Numbers – Indirect",
                 value="",
                 on_change=lambda e: u_abacus_trial23.set_value(e.value),
-                ).classes("w-[400px]").props(
+                ).classes("w-[600px]").props(
                 'aria-label="2.3 Addition of Multiple Digit Numbers – Indirect"'
                 )
         with ui.row().classes("w-screen no-wrap py-4"):
@@ -1069,13 +1069,13 @@ def create() -> None:
                     label="3.1 Subtraction",
                     value="",
                     on_change=lambda e: u_abacus_trial31.set_value(e.value),
-                    ).classes("w-[400px]").props('aria-label="3.1 Subtraction"')
+                    ).classes("w-[600px]").props('aria-label="3.1 Subtraction"')
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="3.2 Subtraction of Multiple Digit Numbers – Direct",
                 value="",
                 on_change=lambda e: u_abacus_trial32.set_value(e.value),
-                ).classes("w-[400px]").props(
+                ).classes("w-[600px]").props(
                 'aria-label="3.2 Subtraction of Multiple Digit Numbers – Direct"'
                 )
         with ui.row().classes("w-screen no-wrap py-4"):
@@ -1083,7 +1083,7 @@ def create() -> None:
                 label="3.3 Subtraction of Multiple Digit Numbers – Indirect",
                 value="",
                 on_change=lambda e: u_abacus_trial33.set_value(e.value),
-                ).classes("w-[400px]").props(
+                ).classes("w-[600px]").props(
                 'aria-label="3.3 Subtraction of Multiple Digit Numbers – Indirect"'
                 )
         with ui.row().classes("w-screen no-wrap py-4"):
@@ -1098,7 +1098,7 @@ def create() -> None:
                     label="4.1 Multiplication – 2+ Digit Multiplicand 1-Digit Multiplier",
                     value="",
                     on_change=lambda e: u_abacus_trial41.set_value(e.value),
-                    ).classes("w-[400px]").props(
+                    ).classes("w-[600px]").props(
                     'aria-label="4.1 Multiplication – 2+ Digit Multiplicand 1-Digit Multiplier"'
                     )
         with ui.row().classes("w-screen no-wrap py-4"):
@@ -1106,7 +1106,7 @@ def create() -> None:
                 label="4.2 Multiplication – 2+ Digit Multiplicand AND Multiplier",
                 value="",
                 on_change=lambda e: u_abacus_trial42.set_value(e.value),
-                ).classes("w-[400px]").props(
+                ).classes("w-[600px]").props(
                 'aria-label="4.2 Multiplication – 2+ Digit Multiplicand AND Multiplier"'
                 )
         with ui.row().classes("w-screen no-wrap py-4"):
@@ -1119,7 +1119,7 @@ def create() -> None:
                     label="5.1 Division – 2+ Digit Dividend 1-Digit Divisor",
                     value="",
                     on_change=lambda e: u_abacus_trial51.set_value(e.value),
-                    ).classes("w-[400px]").props(
+                    ).classes("w-[600px]").props(
                     'aria-label="5.1 Division – 2+ Digit Dividend 1-Digit Divisor"'
                     )
         with ui.row().classes("w-screen no-wrap py-4"):
@@ -1127,7 +1127,7 @@ def create() -> None:
                 label="5.2 Division – 2+ Digit Dividend AND 1 Digit Divisor",
                 value="",
                 on_change=lambda e: u_abacus_trial52.set_value(e.value),
-                ).classes("w-[400px]").props(
+                ).classes("w-[600px]").props(
                 'aria-label="5.2 Division – 2+ Digit Dividend AND 1 Digit Divisor"'
                 )
         with ui.row().classes("w-screen no-wrap py-4"):
@@ -1140,7 +1140,7 @@ def create() -> None:
                     label="6.1 Addition of Decimals",
                     value="",
                     on_change=lambda e: u_abacus_trial61.set_value(e.value),
-                    ).classes("w-[400px]").props(
+                    ).classes("w-[600px]").props(
                     'aria-label="6.1 Addition of Decimals"'
                     )
         with ui.row().classes("w-screen no-wrap py-4"):
@@ -1148,7 +1148,7 @@ def create() -> None:
                 label="6.2 Subtraction of Decimals",
                 value="",
                 on_change=lambda e: u_abacus_trial62.set_value(e.value),
-                ).classes("w-[400px]").props(
+                ).classes("w-[600px]").props(
                 'aria-label="6.2 Subtraction of Decimals"'
                 )
         with ui.row().classes("w-screen no-wrap py-4"):
@@ -1156,7 +1156,7 @@ def create() -> None:
                 label="6.3 Multiplication of Decimals",
                 value="",
                 on_change=lambda e: u_abacus_trial63.set_value(e.value),
-                ).classes("w-[400px]").props(
+                ).classes("w-[600px]").props(
                 'aria-label="6.3 Multiplication of Decimals"'
                 )
         with ui.row().classes("w-screen no-wrap py-4"):
@@ -1164,7 +1164,7 @@ def create() -> None:
                 label="6.4 Division of Decimals",
                 value="",
                 on_change=lambda e: u_abacus_trial64.set_value(e.value),
-                ).classes("w-[400px]").props(
+                ).classes("w-[600px]").props(
                 'aria-label="6.4 Division of Decimals"'
                 )
         with ui.row().classes("w-screen no-wrap py-4"):
@@ -1177,7 +1177,7 @@ def create() -> None:
                     label="7.1 Addition of Fractions",
                     value="",
                     on_change=lambda e: u_abacus_trial71.set_value(e.value),
-                    ).classes("w-[400px]").props(
+                    ).classes("w-[600px]").props(
                     'aria-label="7.1 Addition of Fractions"'
                     )
         with ui.row().classes("w-screen no-wrap py-4"):
@@ -1185,7 +1185,7 @@ def create() -> None:
                 label="7.2 Subtraction of Fractions",
                 value="",
                 on_change=lambda e: u_abacus_trial72.set_value(e.value),
-                ).classes("w-[400px]").props(
+                ).classes("w-[600px]").props(
                 'aria-label="7.2 Subtraction of Fractions"'
                 )
         with ui.row().classes("w-screen no-wrap py-4"):
@@ -1193,7 +1193,7 @@ def create() -> None:
                 label="7.3 Multiplication of Fractions",
                 value="",
                 on_change=lambda e: u_abacus_trial73.set_value(e.value),
-                ).classes("w-[400px]").props(
+                ).classes("w-[600px]").props(
                 'aria-label="7.3 Multiplication of Fractions"'
                 )
         with ui.row().classes("w-screen no-wrap py-4"):
@@ -1201,7 +1201,7 @@ def create() -> None:
                 label= "7.4 Division of Fractions",
                 value="",
                 on_change=lambda e: u_abacus_trial74.set_value(e.value),
-                ).classes("w-[400px]").props(
+                ).classes("w-[600px]").props(
                 'aria-label="7.4 Division of Fractions"'
                 )
         with ui.row().classes("w-screen no-wrap py-4"):
@@ -1216,13 +1216,13 @@ def create() -> None:
                     label="8.1 Percent",
                     value="",
                     on_change=lambda e: u_abacus_trial81.set_value(e.value),
-                    ).classes("w-[400px]").props('aria-label="8.1 Percent"')
+                    ).classes("w-[600px]").props('aria-label="8.1 Percent"')
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="8.2 Square Root",
                 value="",
                 on_change=lambda e: u_abacus_trial82.set_value(e.value),
-                ).classes("w-[400px]").props('aria-label="8.2 Square Root"')
+                ).classes("w-[600px]").props('aria-label="8.2 Square Root"')
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.button("SAVE", color="#172554", on_click=save).classes("text-white")
         ui.button("GRAPH", color="#172554", on_click=graph).classes("text-white")

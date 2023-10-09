@@ -165,7 +165,7 @@ def create() -> None:
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_trial01.set_value(e.value),
-                    ).classes("w-[200px]").props(
+                    ).classes("w-[600px]").props(
                     'aria-label="Trial 1"'
                     )
             ui.number(
@@ -174,7 +174,7 @@ def create() -> None:
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_trial02.set_value(e.value),
-                    ).classes("w-[200px]").props(
+                    ).classes("w-[600px]").props(
                     'aria-label="Trial 2"'
                     )
             ui.number(
@@ -183,7 +183,7 @@ def create() -> None:
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_trial03.set_value(e.value),
-                    ).classes("w-[200px]").props(
+                    ).classes("w-[600px]").props(
                     'aria-label="Trial 3"'
                     )
             ui.number(
@@ -192,7 +192,7 @@ def create() -> None:
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_trial04.set_value(e.value),
-                    ).classes("w-[200px]").props(
+                    ).classes("w-[600px]").props(
                     'aria-label="Trial 4" '
                     )
             ui.number(
@@ -201,7 +201,7 @@ def create() -> None:
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_trial05.set_value(e.value),
-                    ).classes("w-[200px]").props(
+                    ).classes("w-[600px]").props(
                     'aria-label="Trial 5" '
                     )
             ui.number(
@@ -210,7 +210,7 @@ def create() -> None:
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_trial06.set_value(e.value),
-                    ).classes("w-[200px]").props(
+                    ).classes("w-[600px]").props(
                     'aria-label="Trial 6" '
                     )
             ui.number(
@@ -219,7 +219,7 @@ def create() -> None:
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_trial07.set_value(e.value),
-                    ).classes("w-[200px]").props(
+                    ).classes("w-[600px]").props(
                     'aria-label="Trial 7" '
                     )
             ui.number(
@@ -228,7 +228,7 @@ def create() -> None:
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_trial08.set_value(e.value),
-                    ).classes("w-[200px]").props(
+                    ).classes("w-[600px]").props(
                     'aria-label="Trial 8" '
                     )
             ui.number(
@@ -237,7 +237,7 @@ def create() -> None:
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_trial09.set_value(e.value),
-                    ).classes("w-[200px]").props(
+                    ).classes("w-[600px]").props(
                     'aria-label="Trial 9" '
                     )
             ui.number(
@@ -246,7 +246,7 @@ def create() -> None:
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_trial10.set_value(e.value),
-                    ).classes("w-[200px]").props(
+                    ).classes("w-[600px]").props(
                     'aria-label="Trial 10" '
                     )
             ui.number(
@@ -255,7 +255,7 @@ def create() -> None:
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_trial11.set_value(e.value),
-                    ).classes("w-[200px]").props(
+                    ).classes("w-[600px]").props(
                     'aria-label="Trial 11" '
                     )
         with ui.row().classes("w-screen no-wrap py-4"):

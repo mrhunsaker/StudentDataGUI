@@ -1074,125 +1074,99 @@ def create() -> None:
             ui.input().props('aria-label="PHASE 1: READING"').classes("sr-only")
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.number(
-                        label="1.1",
+                        label="1.1 Turn on and off the screen reader",
                         min=0,
                         max=3,
                         format="%.0f",
                         on_change=lambda e: u_screenreader_trial11.set_value(e.value),
-                        ).classes("w-[200px]").props(
+                        ).classes("w-[600px]").props(
                         'aria-label="1.1 Turn on and off the screen reader"'
-                        ).tooltip(
-                        "1.1 Turn on and off the screen reader"
                         )
             ui.number(
-                    label="1.2",
+                    label="1.2 Utilize modifier keys such as ctrl alt and shift",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_screenreader_trial12.set_value(e.value),
-                    ).classes("w-[200px]").props(
+                    ).classes("w-[600px]").props(
                     'aria-label="1.2 Utilize modifier keys such as ctrl alt and shift"'
-                    ).tooltip(
-                    "1.2 Utilize modifier keys such as ctrl alt and shift"
                     )
             ui.number(
-                    label="1.3",
+                    label="1.3 Read text using a variety of reading commands",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_screenreader_trial13.set_value(e.value),
-                    ).classes("w-[200px]").props(
+                    ).classes("w-[600px]").props(
                     'aria-label="1.3 Read text using a variety of reading commands"'
-                    ).tooltip(
-                    "1.3 Read text using a variety of reading commands"
                     )
             ui.number(
-                    label="1.4",
+                    label="1.4 Identify the titles and section titles of documents with Headings",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_screenreader_trial14.set_value(e.value),
-                    ).classes("w-[200px]").props(
+                    ).classes("w-[600px]").props(
                     'aria-label="1.4 Identify the titles and section titles of documents with Headings"'
-                    ).tooltip(
-                    "1.4 Identify the titles and section titles of documents with Headings"
                     )
             ui.number(
-                    label="1.5",
+                    label="1.5 Access documents open and close programs navigate to the  desktop",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_screenreader_trial15.set_value(e.value),
-                    ).classes("w-[200px]").props(
+                    ).classes("w-[600px]").props(
                     'aria-label="1.5 Access documents open and close programs  navigate to the  desktop"'
-                    ).tooltip(
-                    "1.5 Access documents open and close programs navigate to the  desktop"
                     )
             ui.number(
-                    label="1.6",
+                    label="1.6 Switch Program Focus",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_screenreader_trial16.set_value(e.value),
-                    ).classes("w-[200px]").props(
+                    ).classes("w-[600px]").props(
                     'aria-label="1.6 Switch Program Focus"'
-                    ).tooltip(
-                    "1.6 Switch Program Focus"
                     )
-            ui.label(" ").classes("w-[200px]")
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.label("PHASE 2: WRITING").classes("justify-center items-center")
-            ui.input().props('aria-label="PHASE 2: WRITING"').classes("sr-only")
+                ui.input().props('aria-label="PHASE 2: WRITING"').classes("sr-only")
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.number(
-                        label="2.1",
+                        label="2.1 Type with all alphanumeric keys on the keyboard",
                         min=0,
                         max=3,
                         format="%.0f",
                         on_change=lambda e: u_screenreader_trial21.set_value(e.value),
-                        ).classes("w-[200px]").props(
+                        ).classes("w-[600px]").props(
                         'aria-label="2.1 Type with all alphanumeric keys on the keyboard."'
-                        ).tooltip(
-                        "2.1 Type with all alphanumeric keys on the keyboard."
                         )
             ui.number(
-                    label="2.2",
+                    label="2.2 Navigate to and change screen reader settings",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_screenreader_trial22.set_value(e.value),
-                    ).classes("w-[200px]").props(
+                    ).classes("w-[600px]").props(
                     'aria-label="2.2 Navigate to and change screen reader settings"'
-                    ).tooltip(
-                    "2.2 Navigate to and change screen reader settings"
                     )
             ui.number(
-                    label="2.3",
+                    label="2.3 Write and edit documents using a basic understanding of cursor placement",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_screenreader_trial23.set_value(e.value),
-                    ).classes("w-[200px]").props(
+                    ).classes("w-[600px]").props(
                     'aria-label="2.3 Write and edit documents using a basic understanding of cursor placement"'
-                    ).tooltip(
-                    "2.3 Write and edit documents using a basic "
-                    "understanding of "
-                    "cursor placement"
                     )
             ui.number(
-                    label="2.4",
+                    label="2.4. Select copy and paste text",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_screenreader_trial24.set_value(e.value),
-                    ).classes("w-[200px]").props(
+                    ).classes("w-[600px]").props(
                     'aria-label="2.4. Select copy and paste text"'
-                    ).tooltip(
-                    "2.4. Select copy and paste text"
                     )
-            ui.label(" ").classes("w-[200px]")
-            ui.label(" ").classes("w-[200px]")
-            ui.label(" ").classes("w-[200px]")
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.label("PHASE 3: USING THE INTERNET").classes(
                         "justify-center items-center"
@@ -1202,128 +1176,108 @@ def create() -> None:
                     )
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.number(
-                        label="3.1",
+                        label="3.1 Define common element types on the internet such as Headings or Buttons",
                         min=0,
                         max=3,
                         format="%.0f",
                         on_change=lambda e: u_screenreader_trial31.set_value(e.value),
-                        ).classes("w-[200px]").props(
+                        ).classes("w-[600px]").props(
                         'aria-label="3.1 Define common element types on the internet such as Headings or Buttons"'
-                        ).tooltip(
-                        "3.1 Define common element types on the internet such as Headings or Buttons"
                         )
             ui.number(
-                    label="3.2",
+                    label="3.2 identify each element by type",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_screenreader_trial32.set_value(e.value),
-                    ).classes("w-[200px]").props(
+                    ).classes("w-[600px]").props(
                     'aria-label="3.2 identify each element by type."'
-                    ).tooltip(
-                    "3.2 identify each element by type."
                     )
             ui.number(
-                    label="3.3",
+                    label="3.3 navigate to the address bar",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_screenreader_trial33.set_value(e.value),
-                    ).classes("w-[200px]").props(
+                    ).classes("w-[600px]").props(
                     'aria-label="3.3 navigate to the address bar"'
-                    ).tooltip(
-                    "3.3 navigate to the address bar"
                     )
             ui.number(
-                    label="3.4",
+                    label="3.4 Use the “Tab” key to navigate to the next clickable object",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_screenreader_trial34.set_value(e.value),
-                    ).classes("w-[200px]").props(
+                    ).classes("w-[600px]").props(
                     'aria-label="3.4 Use the “Tab” key to navigate to the next clickable object"'
-                    ).tooltip(
-                    "3.4 Use the “Tab” key to navigate to the next clickable object"
                     )
             ui.number(
-                    label="3.5",
+                    label="3.5 Navigate by “Quick Keys” (h for heading b for button and u for link)",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_screenreader_trial35.set_value(e.value),
-                    ).classes("w-[200px]").props(
-                    'aira-label="3.5 Navigate by “Quick Keys” (h for heading b for button and u for link"'
+                    ).classes("w-[600px]").props(
+                    'aira-label="3.5 Navigate by “Quick Keys” (h for heading b for button and u for link)"'
                     )
             ui.number(
-                    label="3.6",
+                    label="3.6 Use Elements Lists on a website to navigate by element type",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_screenreader_trial36.set_value(e.value),
-                    ).classes("w-[200px]").props(
+                    ).classes("w-[600px]").props(
                     'aria-label="3.6 Use Elements Lists on a website to navigate by element type"'
-                    ).tooltip(
-                    "3.6 Use Elements Lists on a website to navigate by element type"
                     )
             ui.number(
-                    label="3.7",
+                    label="3.7 Justify why he/she/they selected a particular method xfor the situation",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_screenreader_trial37.set_value(e.value),
-                    ).classes("w-[200px]").props(
+                    ).classes("w-[600px]").props(
                     'aria-label="3.7 Justify why he/she/they selected a particular method for the situation"'
-                    ).tooltip(
-                    "3.7 Justify why he/she/they selected a particular method xfor the situation"
                     )
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.number(
-                        label="3.8",
+                        label="3.8 Switch tab focus",
                         min=0,
                         max=3,
                         format="%.0f",
                         on_change=lambda e: u_screenreader_trial38.set_value(e.value),
-                        ).classes("w-[200px]").props(
+                        ).classes("w-[600px]").props(
                         'aria-label="3.8 Switch tab focus"'
-                        ).tooltip(
-                        "3.8 Switch tab focus"
                         )
             ui.number(
-                    label="3.9",
+                    label="3.9 Switch between screen reader modes",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_screenreader_trial39.set_value(e.value),
-                    ).classes("w-[200px]").props(
+                    ).classes("w-[600px]").props(
                     'aria-label="3.9 Switch between screen reader modes"'
-                    ).tooltip(
-                    "3.9 Switch between screen reader modes"
                     )
             ui.number(
-                    label="3.10",
+                    label="3.10 Navigate a table",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_screenreader_trial310.set_value(e.value),
-                    ).classes("w-[200px]").props(
+                    ).classes("w-[600px]").props(
                     'aria-label="3.10 Navigate a table"'
-                    ).tooltip(
-                    "3.10 Navigate a table"
                     )
             ui.number(
-                    label="3.11",
+                    label="3.11 Develop a navigation sequence to access an unfamiliar website",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_screenreader_trial311.set_value(e.value),
-                    ).classes("w-[200px]").props(
+                    ).classes("w-[600px]").props(
                     'aria-label="3.11 Develop a navigation sequence to access an unfamiliar website"'
-                    ).tooltip(
-                    "3.11 Develop a navigation sequence to access an unfamiliar website"
                     )
-            ui.label(" ").classes("w-[200px]")
-            ui.label(" ").classes("w-[200px]")
-            ui.label(" ").classes("w-[200px]")
+            ui.label(" ").classes("w-[600px]")
+            ui.label(" ").classes("w-[600px]")
+            ui.label(" ").classes("w-[600px]")
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.label("PHASE 4: NAVIGATING AND FILE MANAGEMENT").classes(
                         "justify-center items-center"
@@ -1334,81 +1288,67 @@ def create() -> None:
 
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.number(
-                        label="4.1",
+                        label="4.1 Be able to save and open files using File Explorer",
                         min=0,
                         max=3,
                         format="%.0f",
                         on_change=lambda e: u_screenreader_trial41.set_value(e.value),
-                        ).classes("w-[200px]").props(
+                        ).classes("w-[600px]").props(
                         'aria-label="4.1 Be able to save and open files using File Explorer."'
-                        ).tooltip(
-                        "4.1 Be able to save and open files using File Explorer."
                         )
             ui.number(
-                    label="4.2",
+                    label="4.2 Create folders and move files in File Explorer",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_screenreader_trial42.set_value(e.value),
-                    ).classes("w-[200px]").props(
+                    ).classes("w-[600px]").props(
                     'aria-label="4.2 Create folders and move files in File Explorer"'
-                    ).tooltip(
-                    "4.2 Create folders and move files in File Explorer"
                     )
             ui.number(
-                    label="4.3",
+                    label="4.3 Navigate a cloud-based file management system (eg: Google Drive)",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_screenreader_trial43.set_value(e.value),
-                    ).classes("w-[200px]").props(
+                    ).classes("w-[600px]").props(
                     'aria-label="4.3 Navigate a cloud-based file management system (eg: Google Drive)"'
-                    ).tooltip(
-                    "4.3 Navigate a cloud-based file management system (eg: Google Drive)"
                     )
             ui.number(
-                    label="4.4",
+                    label="4.4 Download and save material from the internet",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_screenreader_trial44.set_value(e.value),
-                    ).classes("w-[200px]").props(
+                    ).classes("w-[600px]").props(
                     'aria-label="4.4 Download and save material from the internet"'
-                    ).tooltip(
-                    "4.4 Download and save material from the internet"
                     )
             ui.number(
-                    label="4.5",
+                    label="4.5 Extract zipped folders",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_screenreader_trial45.set_value(e.value),
-                    ).classes("w-[200px]").props(
+                    ).classes("w-[600px]").props(
                     'aria-label="4.5 Extract zipped folders"'
-                    ).tooltip(
-                    "4.5 Extract zipped folders"
                     )
             ui.number(
-                    label="4.6",
+                    label="4.6 Utilize the virtual cursor and mouse keys",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_screenreader_trial46.set_value(e.value),
-                    ).classes("w-[200px]").props(
+                    ).classes("w-[600px]").props(
                     'aria-label="4.6 Utilize the virtual cursor and mouse keys"'
-                    ).tooltip(
-                    "4.6 Utilize the virtual cursor and mouse keys"
                     )
             ui.number(
-                    label="4.7",
+                    label="4.7 To use OCR features to read inaccessible material",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_screenreader_trial47.set_value(e.value),
-                    ).classes("w-[200px]").props(
+                    ).classes("w-[600px]").props(
                     'aria-label="4.7 To use OCR features to read inaccessible material"'
-                    ).tooltip(
-                    "4.7 To use OCR features to read inaccessible material"
                     )
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.button("SAVE", color="#172554", on_click=save).classes("text-white")

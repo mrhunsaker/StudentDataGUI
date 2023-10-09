@@ -835,7 +835,7 @@ def create() -> None:
                         max=3,
                         format="%.0f",
                         on_change=lambda e: u_cvi_trial11.set_value(e.value),
-                        ).classes("w-[200px]").props(
+                        ).classes("w-[600px]").props(
                         'aria-label="Color Preference"'
                         ).tooltip(
                         "Color Preference"
@@ -847,7 +847,7 @@ def create() -> None:
                         max=3,
                         format="%.0f",
                         on_change=lambda e: u_cvi_trial12.set_value(e.value),
-                        ).classes("w-[200px]").props(
+                        ).classes("w-[600px]").props(
                         'aria-label="Need for Movement"'
                         ).tooltip(
                         "Need for Movement"
@@ -859,7 +859,7 @@ def create() -> None:
                         max=3,
                         format="%.0f",
                         on_change=lambda e: u_cvi_trial13.set_value(e.value),
-                        ).classes("w-[200px]").props('aria-label="Latency"').tooltip(
+                        ).classes("w-[600px]").props('aria-label="Latency"').tooltip(
                         "Latency"
                         )
             with ui.row().classes("w-screen no-wrap py-4"):
@@ -869,7 +869,7 @@ def create() -> None:
                         max=3,
                         format="%.0f",
                         on_change=lambda e: u_cvi_trial14.set_value(e.value),
-                        ).classes("w-[200px]").props(
+                        ).classes("w-[600px]").props(
                         'aria-label="Field Preference"'
                         ).tooltip(
                         "Field Preference"
@@ -881,7 +881,7 @@ def create() -> None:
                         max=3,
                         format="%.0f",
                         on_change=lambda e: u_cvi_trial21.set_value(e.value),
-                        ).classes("w-[200px]").props(
+                        ).classes("w-[600px]").props(
                         'aria-label="Visual Complexity"'
                         ).tooltip(
                         "Visual Complexity"
@@ -893,7 +893,7 @@ def create() -> None:
                         max=3,
                         format="%.0f",
                         on_change=lambda e: u_cvi_trial22.set_value(e.value),
-                        ).classes("w-[200px]").props(
+                        ).classes("w-[600px]").props(
                         'aria-label="Nonpurposeful Gaze"'
                         ).tooltip(
                         "Nonpurposeful Gaze"
@@ -905,7 +905,7 @@ def create() -> None:
                         max=3,
                         format="%.0f",
                         on_change=lambda e: u_cvi_trial23.set_value(e.value),
-                        ).classes("w-[200px]").props(
+                        ).classes("w-[600px]").props(
                         'aria-label="Distance Viewing"'
                         ).tooltip(
                         "Distance Viewing"
@@ -917,7 +917,7 @@ def create() -> None:
                         max=3,
                         format="%.0f",
                         on_change=lambda e: u_cvi_trial31.set_value(e.value),
-                        ).classes("w-[200px]").props(
+                        ).classes("w-[600px]").props(
                         'aria-label="Atypical Reflexes"'
                         ).tooltip(
                         "Atypical Reflexes"
@@ -929,7 +929,7 @@ def create() -> None:
                         max=3,
                         format="%.0f",
                         on_change=lambda e: u_cvi_trial32.set_value(e.value),
-                        ).classes("w-[200px]").props('aria-label="Visual Novelty"').tooltip(
+                        ).classes("w-[600px]").props('aria-label="Visual Novelty"').tooltip(
                         "Visual Novelty"
                         )
             with ui.row().classes("w-screen no-wrap py-4"):
@@ -939,7 +939,7 @@ def create() -> None:
                         max=3,
                         format="%.0f",
                         on_change=lambda e: u_cvi_trial33.set_value(e.value),
-                        ).classes("w-[200px]").props('aria-label="Visual Reach"').tooltip(
+                        ).classes("w-[600px]").props('aria-label="Visual Reach"').tooltip(
                         "Visual Reach"
                         )
             with ui.row().classes("w-screen no-wrap py-4"):

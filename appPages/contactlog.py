@@ -160,21 +160,23 @@ def create() -> None:
                     label="Guardian Name",
                     value="",
                     on_change=lambda e: u_guardianName.set_value(e.value),
-                    ).classes("w-[200px]").props('aria-label="Guardian Name"').tooltip(
+                    ).classes("w-[600px]").props('aria-label="Guardian Name"').tooltip(
                     "Guardian Name"
                     )
+        with ui.row().classes("w-screen no-wrap py-4"):
             ui.input(
                     label="Phone Number",
                     value="",
                     on_change=lambda e: u_phoneNumber.set_value(e.value),
-                    ).classes("w-[200px]").props('aria-label="Phone Number"').tooltip(
+                    ).classes("w-[600px]").props('aria-label="Phone Number"').tooltip(
                     "Phone Number"
                     )
+        with ui.row().classes("w-screen no-wrap py-4"):
             ui.input(
                     label="Email Address",
                     value="",
                     on_change=lambda e: u_emailAddress.set_value(e.value),
-                    ).classes("w-[200px]").props('aria-label="Email Address"').tooltip(
+                    ).classes("w-[600px]").props('aria-label="Email Address"').tooltip(
                     "Email Address"
                     )
         with ui.row().classes("w-screen no-wrap py-4"):
@@ -191,6 +193,7 @@ def create() -> None:
                     ).classes("w-[240px]").props('aria-label="Contact Method"').tooltip(
                     "Contact Method"
                     )
+        with ui.row().classes("w-screen no-wrap py-4"):
             ui.label("Contact Response").classes("w-[50px]")
             ui.select(
                     options=[

@@ -24,7 +24,7 @@ teachers of students with Visual Impairments
 import sqlite3
 from sqlite3 import Error
 
-from appHelpers.helpers import dataBasePath
+from appHelpers.helpers import dataBasePath, USER_DIR
 
 
 ##############################################################################
@@ -45,6 +45,7 @@ def create_connection(db_file):
         if conn:
             conn.close()
 
+create_connection(dataBasePath)
 
 def create_table(conn, sql_create_sql_table):
     """
@@ -60,8 +61,8 @@ def create_table(conn, sql_create_sql_table):
         print(e)
     conn.close()
 
-
-conn = sqlite3.connect(dataBasePath)
+print(dataBasePath)
+#conn = sqlite3.connect(dataBasePath)
 
 
 def createTables():

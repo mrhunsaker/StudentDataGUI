@@ -51,24 +51,25 @@ IMAGE_DIR = Path(ROOT_DIR).joinpath("images")
 ##############################################################################
 # Set User Directory based on OS
 ##############################################################################
-if os.name == "nt":
-    try:
-        tmp_path = Path(os.environ["USERPROFILE"]).joinpath("Documents")
-        Path.mkdir(tmp_path, parents=True, exist_ok=True)
-        USER_DIR = Path(tmp_path)
-    except Error as e:
-        print(f"{e}\n Cannot find %USERPROFILE")
-elif os.name == "posix":
-    try:
-        tmp_path = Path(os.environ["HOME"]).joinpath("Documents")
-        Path.mkdir(tmp_path, parents=True, exist_ok=True)
-        USER_DIR = Path(tmp_path)
-    except Error as e:
-        print(f"{e}\n Cannot find $HOME")
-else:
-    print("Cannot determine OS Type")
-os.chdir(USER_DIR)
-
+def set_directory_structure():
+    if os.name == "nt":
+        try:
+            tmp_path = Path(os.environ["USERPROFILE"]).joinpath("Documents")
+            Path.mkdir(tmp_path, parents=True, exist_ok=True)
+            USER_DIR = Path(tmp_path)
+        except Error as e:
+            print(f"{e}\n Cannot find %USERPROFILE")
+    elif os.name == "posix":
+        try:
+            tmp_path = Path(os.environ["HOME"]).joinpath("Documents")
+            Path.mkdir(tmp_path, parents=True, exist_ok=True)
+            USER_DIR = Path(tmp_path)
+        except Error as e:
+            print(f"{e}\n Cannot find $HOME")
+    else:
+        print("Cannot determine OS Type")
+    os.chdir(USER_DIR)
+    print(f"USER_DIR = {USER_DIR}")
 dataBasePath = Path(USER_DIR).joinpath("StudentDatabase", "students.db")
 
 

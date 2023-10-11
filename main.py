@@ -43,10 +43,12 @@ from appPages import ios
 from appPages import observations
 from appPages import screenreader
 from appTheming import theme
-from appHelpers.helpers import createFolderHierarchy, dataBasePath, warningmessage
+from appHelpers.helpers import createFolderHierarchy, dataBasePath, warningmessage, set_directory_structure, USER_DIR
 from appHelpers.sqlgenerate import create_connection, createTables
 
+set_directory_structure()
 createFolderHierarchy()
+print(f"USER_DIR = {USER_DIR}")
 create_connection(dataBasePath)
 createTables()
 sys.excepthook = warningmessage

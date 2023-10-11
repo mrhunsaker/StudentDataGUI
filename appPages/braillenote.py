@@ -31,7 +31,7 @@ import plotly.graph_objects as go
 from nicegui import app, ui
 from plotly.subplots import make_subplots
 
-from appHelpers.helpers import dataBasePath, datenow, USER_DIR
+from appHelpers.helpers import dataBasePath, datenow, USER_DIR, date_fmt
 from appHelpers.roster import students
 from appTheming import theme
 
@@ -439,6 +439,9 @@ def create() -> None:
             df = df_student.drop(columns=["ID", "STUDENTNAME"])
             print(df)
             df = df.rename(columns={"DATE": "date"})
+            df['date'] = df['date'].astype('string')
+            df['date'] = pd.to_datetime(df['date'], format=date_fmt)
+            df['date'].dtypes
             df = df.set_index("date")
             for column in df.columns:
                 if df[column].dtype == "object":

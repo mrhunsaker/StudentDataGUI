@@ -36,6 +36,7 @@ from appHelpers.roster import students
 ##############################################################################
 # Set User Directory based on OS
 ##############################################################################
+date_fmt="%Y_%m_%d-%H%M%S_%p"
 
 datenow = datetime.datetime.now().strftime("%Y_%m_%d-%H%M%S_%p")
 date = datetime.datetime.now().strftime("%Y_%m_%d-%H%M%S_%p")

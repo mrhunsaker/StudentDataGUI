@@ -4,22 +4,22 @@
 Program designed to be a data collection and instructional tool for
 teachers of students with Visual Impairments
 """
-#########################################################################
-#    Copyright 2023 Michael Ryan Hunsaker, M.Ed., Ph.D.                 #
-#    email: hunsakerconsulting@gmail.com                                #
-#                                                                       #
-#                                                                       #
-#    Licensed under the Apache License, Version 2.0 (the "License");    #
-#    you may not use this file except in compliance with the License.   #
-#    You may obtain a copy of the License at                            #
-#    http://www.apache.org/licenses/LICENSE-2.0                         #
-#                                                                       #
-#    Unless Required by applicable law or agreed to in writing,         #
-#    software distributed under the License is distributed on an        #
-#    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,       #
-#    either express or  implied.  See the License for the specific      #
-#   language governing permissions and limitations under the License.   #
-#########################################################################
+########################################################################
+#    Copyright 2023 Michael Ryan Hunsaker, M.Ed., Ph.D.                #
+#    email: hunsakerconsulting@gmail.com                               #
+#                                                                      #
+#                                                                      #
+#    Licensed under the Apache License, Version 2.0 (the "License");   #
+#    you may not use this file except in compliance with the License.  #
+#    You may obtain a copy of the License at                           #
+#    http://www.apache.org/licenses/LICENSE-2.0                        #
+#                                                                      #
+#    Unless Required by applicable law or agreed to in writing,        #
+#    software distributed under the License is distributed on an       #
+#    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,      #
+#    either express or  implied.  See the License for the specific     #
+#   language governing permissions and limitations under the License.  #
+########################################################################
 
 import json
 import sqlite3
@@ -31,7 +31,7 @@ import plotly.graph_objects as go
 from nicegui import app, ui
 from plotly.subplots import make_subplots
 
-from appHelpers.helpers import dataBasePath, datenow, USER_DIR
+from appHelpers.helpers import dataBasePath, datenow, USER_DIR, date_fmt
 from appHelpers.roster import students
 from appTheming import theme
 
@@ -494,7 +494,7 @@ def create() -> None:
                 """ """
                 dataBasePath = Path(USER_DIR).joinpath("StudentDatabase", "students.db")
                 studentname = u_studentname.value
-                conn = sqlite3.connect(dataBasePath)
+                conn = sqlite3.connect(dataBasePath)                
                 df_sql = pd.read_sql_query("SELECT * FROM BRAILLEPROGRESS", conn)
                 df_student = df_sql[df_sql.STUDENTNAME == studentname]
                 print(df_student)
@@ -502,12 +502,16 @@ def create() -> None:
                 df = df_student.drop(columns=["ID", "STUDENTNAME"])
                 print(df)
                 df = df.rename(columns={"DATE": "date"})
+                df['date'] = df['date'].astype('string')
+                df['date'] = pd.to_datetime(df['date'], format=date_fmt)
+                df['date'].dtypes
                 df = df.set_index("date")
                 print(df)
                 df = df.sort_values(by="date")
                 mu, sigma = 0, 0.1
                 noise = np.random.normal(mu, sigma, [len(df.index), len(df.columns)])
                 df_noisy = df + noise
+
                 fig = make_subplots(
                     rows=7,
                     cols=2,
@@ -1267,7 +1271,7 @@ def create() -> None:
                     y0=-0.5,
                     y1=0.5,
                     line_width=0,
-                    fillcolor="#b3c7f7",
+                    fillcolor="red",
                     opacity=0.2,
                     row=1,
                     col=1,
@@ -1303,7 +1307,7 @@ def create() -> None:
                     y0=-0.5,
                     y1=0.5,
                     line_width=0,
-                    fillcolor="#b3c7f7",
+                    fillcolor="red",
                     opacity=0.2,
                     row=1,
                     col=2,
@@ -1339,7 +1343,7 @@ def create() -> None:
                     y0=-0.5,
                     y1=0.5,
                     line_width=0,
-                    fillcolor="#b3c7f7",
+                    fillcolor="red",
                     opacity=0.2,
                     row=2,
                     col=1,
@@ -1375,7 +1379,7 @@ def create() -> None:
                     y0=-0.5,
                     y1=0.5,
                     line_width=0,
-                    fillcolor="#b3c7f7",
+                    fillcolor="red",
                     opacity=0.2,
                     row=3,
                     col=1,
@@ -1411,7 +1415,7 @@ def create() -> None:
                     y0=-0.5,
                     y1=0.5,
                     line_width=0,
-                    fillcolor="#b3c7f7",
+                    fillcolor="red",
                     opacity=0.2,
                     row=3,
                     col=2,
@@ -1447,7 +1451,7 @@ def create() -> None:
                     y0=-0.5,
                     y1=0.5,
                     line_width=0,
-                    fillcolor="#b3c7f7",
+                    fillcolor="red",
                     opacity=0.2,
                     row=5,
                     col=1,
@@ -1483,7 +1487,7 @@ def create() -> None:
                     y0=-0.5,
                     y1=0.5,
                     line_width=0,
-                    fillcolor="#b3c7f7",
+                    fillcolor="red",
                     opacity=0.2,
                     row=5,
                     col=2,
@@ -1519,7 +1523,7 @@ def create() -> None:
                     y0=-0.5,
                     y1=0.5,
                     line_width=0,
-                    fillcolor="#b3c7f7",
+                    fillcolor="red",
                     opacity=0.2,
                     row=7,
                     col=1,
@@ -1555,7 +1559,7 @@ def create() -> None:
                     y0=-0.5,
                     y1=0.5,
                     line_width=0,
-                    fillcolor="#b3c7f7",
+                    fillcolor="red",
                     opacity=0.2,
                     row=7,
                     col=2,
@@ -1996,7 +2000,7 @@ def create() -> None:
                     y0=-0.5,
                     y1=0.5,
                     line_width=0,
-                    fillcolor="#b3c7f7",
+                    fillcolor="red",
                     opacity=0.2,
                     row=1,
                     col=1,
@@ -2032,7 +2036,7 @@ def create() -> None:
                     y0=-0.5,
                     y1=0.5,
                     line_width=0,
-                    fillcolor="#b3c7f7",
+                    fillcolor="red",
                     opacity=0.2,
                     row=2,
                     col=1,
@@ -2068,7 +2072,7 @@ def create() -> None:
                     y0=-0.5,
                     y1=0.5,
                     line_width=0,
-                    fillcolor="#b3c7f7",
+                    fillcolor="red",
                     opacity=0.2,
                     row=3,
                     col=1,
@@ -2123,8 +2127,562 @@ def create() -> None:
                     close_button="OK",
                 )
 
-        # BRAILLE SKILLS PROGRESSION TAB
+                fig = make_subplots(
+                    rows=1,
+                    cols=2,
+                    column_widths=[0.2,0.8],
+                    subplot_titles=(
+                        "Phase 1: Tracking Skills Development",
+                        "Phase 2: Tactile Recognition Skills"
+                    ),
+                    print_grid=True,
+                )
+                fig.add_trace(
+                    go.Scatter(
+                        x=df_noisy.index,
+                        y=df_noisy["P1_1"],
+                        mode="lines+markers",
+                        name="Track left to right",
+                        legendgroup="Phase 1",
+                        legendgrouptitle_text="Phase 1",
+                    ),
+                    row=1,
+                    col=1,
+                )
+                fig.add_trace(
+                    go.Scatter(
+                        x=df_noisy.index,
+                        y=df_noisy["P1_2"],
+                        mode="lines+markers",
+                        name="Track top to bottom",
+                        legendgroup="Phase 1",
+                        legendgrouptitle_text="Phase 1",
+                    ),
+                    row=1,
+                    col=1,
+                )
+                fig.add_trace(
+                    go.Scatter(
+                        x=df_noisy.index,
+                        y=df_noisy["P1_3"].iloc[[-1]],
+                        mode="lines+markers",
+                        name="Discriminate shapes",
+                        legendgroup="Phase 1",
+                        legendgrouptitle_text="Phase 1",
+                    ),
+                    row=1,
+                    col=1,
+                )
+                fig.add_trace(
+                    go.Scatter(
+                        x=df_noisy.index,
+                        y=df_noisy["P1_4"],
+                        mode="lines+markers",
+                        name="Discriminate braille characters",
+                        legendgroup="Phase 1",
+                        legendgrouptitle_text="Phase 1",
+                    ),
+                    row=1,
+                    col=1,
+                )
+                fig.add_trace(
+                    go.Scatter(
+                        x=df_noisy.index,
+                        y=df_noisy["P2_1"],
+                        mode="lines+markers+text",
+                        name="G C L",
+                        legendgroup="Phase 2",
+                        legendgrouptitle_text="Phase 2",
+                        showlegend=True,
+                    ),
+                    row=1,
+                    col=2,
+                )
+                fig.add_trace(
+                    go.Scatter(
+                        x=df_noisy.index[[-1]],
+                        y=df_noisy["P2_1"].iloc[[-1]],
+                        mode="text",
+                        text=[" G C L"],
+                        textposition="middle right",
+                        legendgroup="Phase 2",
+                        legendgrouptitle_text="Phase 2",
+                        showlegend=False,
+                    ),
+                    row=1,
+                    col=2,
+                )
+                fig.add_trace(
+                    go.Scatter(
+                        x=df_noisy.index,
+                        y=df_noisy["P2_2"],
+                        mode="lines+markers+text",
+                        name="D Y",
+                        legendgroup="Phase 2",
+                        legendgrouptitle_text="Phase 2",
+                        showlegend=True,
+                    ),
+                    row=1,
+                    col=2,
+                )
+                fig.add_trace(
+                    go.Scatter(
+                        x=df_noisy.index[[-1]],
+                        y=df_noisy["P2_2"].iloc[[-1]],
+                        mode="text",
+                        text=[" D Y"],
+                        textposition="middle right",
+                        legendgroup="Phase 2",
+                        legendgrouptitle_text="Phase 2",
+                        showlegend=False,
+                    ),
+                    row=1,
+                    col=2,
+                )
+                fig.add_trace(
+                    go.Scatter(
+                        x=df_noisy.index,
+                        y=df_noisy["P2_3"],
+                        mode="lines+markers+text",
+                        name="A B",
+                        legendgroup="Phase 2",
+                        legendgrouptitle_text="Phase 2",
+                        showlegend=True,
+                    ),
+                    row=1,
+                    col=2,
+                )
+                fig.add_trace(
+                    go.Scatter(
+                        x=df_noisy.index[[-1]],
+                        y=df_noisy["P2_3"].iloc[[-1]],
+                        mode="text",
+                        text=[" A B"],
+                        textposition="middle right",
+                        legendgroup="Phase 2",
+                        legendgrouptitle_text="Phase 2",
+                        showlegend=False,
+                    ),
+                    row=1,
+                    col=2,
+                )
+                fig.add_trace(
+                    go.Scatter(
+                        x=df_noisy.index,
+                        y=df_noisy["P2_4"],
+                        mode="lines+markers+text",
+                        name="S",
+                        legendgroup="Phase 2",
+                        legendgrouptitle_text="Phase 2",
+                        showlegend=True,
+                    ),
+                    row=1,
+                    col=2,
+                )
+                fig.add_trace(
+                    go.Scatter(
+                        x=df_noisy.index[[-1]],
+                        y=df_noisy["P2_4"].iloc[[-1]],
+                        mode="text",
+                        text=[" S"],
+                        textposition="middle right",
+                        legendgroup="Phase 2",
+                        legendgrouptitle_text="Phase 2",
+                        showlegend=False,
+                    ),
+                    row=1,
+                    col=2,
+                )
+                fig.add_trace(
+                    go.Scatter(
+                        x=df_noisy.index,
+                        y=df_noisy["P2_5"],
+                        mode="lines+markers+text",
+                        name="W",
+                        legendgroup="Phase 2",
+                        legendgrouptitle_text="Phase 2",
+                        showlegend=True,
+                    ),
+                    row=1,
+                    col=2,
+                )
+                fig.add_trace(
+                    go.Scatter(
+                        x=df_noisy.index[[-1]],
+                        y=df_noisy["P2_5"].iloc[[-1]],
+                        mode="text",
+                        text=[" W"],
+                        textposition="middle right",
+                        legendgroup="Phase 2",
+                        legendgrouptitle_text="Phase 2",
+                        showlegend=False,
+                    ),
+                    row=1,
+                    col=2,
+                )
+                fig.add_trace(
+                    go.Scatter(
+                        x=df_noisy.index,
+                        y=df_noisy["P2_6"],
+                        mode="lines+markers+text",
+                        name="P O",
+                        legendgroup="Phase 2",
+                        legendgrouptitle_text="Phase 2",
+                        showlegend=True,
+                    ),
+                    row=1,
+                    col=2,
+                )
+                fig.add_trace(
+                    go.Scatter(
+                        x=df_noisy.index[[-1]],
+                        y=df_noisy["P2_6"].iloc[[-1]],
+                        mode="text",
+                        text=[" P O"],
+                        textposition="middle right",
+                        legendgroup="Phase 2",
+                        legendgrouptitle_text="Phase 2",
+                        showlegend=False,
+                    ),
+                    row=1,
+                    col=2,
+                )
+                fig.add_trace(
+                    go.Scatter(
+                        x=df_noisy.index,
+                        y=df_noisy["P2_7"],
+                        mode="lines+markers+text",
+                        name="K",
+                        legendgroup="Phase 2",
+                        legendgrouptitle_text="Phase 2",
+                        showlegend=True,
+                    ),
+                    row=1,
+                    col=2,
+                )
+                fig.add_trace(
+                    go.Scatter(
+                        x=df_noisy.index[[-1]],
+                        y=df_noisy["P2_7"].iloc[[-1]],
+                        mode="text",
+                        text=[" K"],
+                        textposition="middle right",
+                        legendgroup="Phase 2",
+                        legendgrouptitle_text="Phase 2",
+                        showlegend=False,
+                    ),
+                    row=1,
+                    col=2,
+                )
+                fig.add_trace(
+                    go.Scatter(
+                        x=df_noisy.index,
+                        y=df_noisy["P2_8"],
+                        mode="lines+markers+text",
+                        name="R",
+                        legendgroup="Phase 2",
+                        legendgrouptitle_text="Phase 2",
+                        showlegend=True,
+                    ),
+                    row=1,
+                    col=2,
+                )
+                fig.add_trace(
+                    go.Scatter(
+                        x=df_noisy.index[[-1]],
+                        y=df_noisy["P2_8"].iloc[[-1]],
+                        mode="text",
+                        text=[" R"],
+                        textposition="middle right",
+                        legendgroup="Phase 2",
+                        legendgrouptitle_text="Phase 2",
+                        showlegend=False,
+                    ),
+                    row=1,
+                    col=2,
+                )
+                fig.add_trace(
+                    go.Scatter(
+                        x=df_noisy.index,
+                        y=df_noisy["P2_9"],
+                        mode="lines+markers+text",
+                        name="M E",
+                        legendgroup="Phase 2",
+                        legendgrouptitle_text="Phase 2",
+                        showlegend=True,
+                    ),
+                    row=1,
+                    col=2,
+                )
+                fig.add_trace(
+                    go.Scatter(
+                        x=df_noisy.index[[-1]],
+                        y=df_noisy["P2_9"].iloc[[-1]],
+                        mode="text",
+                        text=[" M E"],
+                        textposition="middle right",
+                        legendgroup="Phase 2",
+                        legendgrouptitle_text="Phase 2",
+                        showlegend=False,
+                    ),
+                    row=1,
+                    col=2,
+                )
+                fig.add_trace(
+                    go.Scatter(
+                        x=df_noisy.index,
+                        y=df_noisy["P2_10"],
+                        mode="lines+markers+text",
+                        name="H",
+                        legendgroup="Phase 2",
+                        legendgrouptitle_text="Phase 2",
+                        showlegend=True,
+                    ),
+                    row=1,
+                    col=2,
+                )
+                fig.add_trace(
+                    go.Scatter(
+                        x=df_noisy.index[[-1]],
+                        y=df_noisy["P2_10"].iloc[[-1]],
+                        mode="text",
+                        text=[" H"],
+                        textposition="middle right",
+                        legendgroup="Phase 2",
+                        legendgrouptitle_text="Phase 2",
+                        showlegend=False,
+                    ),
+                    row=1,
+                    col=2,
+                )
+                fig.add_trace(
+                    go.Scatter(
+                        x=df_noisy.index,
+                        y=df_noisy["P2_11"],
+                        mode="lines+markers+text",
+                        name="N X",
+                        legendgroup="Phase 2",
+                        legendgrouptitle_text="Phase 2",
+                        showlegend=True,
+                    ),
+                    row=1,
+                    col=2,
+                )
+                fig.add_trace(
+                    go.Scatter(
+                        x=df_noisy.index[[-1]],
+                        y=df_noisy["P2_11"].iloc[[-1]],
+                        mode="text",
+                        text=[" N X"],
+                        textposition="middle right",
+                        legendgroup="Phase 2",
+                        legendgrouptitle_text="Phase 2",
+                        showlegend=False,
+                    ),
+                    row=1,
+                    col=2,
+                )
+                fig.add_trace(
+                    go.Scatter(
+                        x=df_noisy.index,
+                        y=df_noisy["P2_12"],
+                        mode="lines+markers+text",
+                        name="Z F",
+                        legendgroup="Phase 2",
+                        legendgrouptitle_text="Phase 2",
+                        showlegend=True,
+                    ),
+                    row=1,
+                    col=2,
+                )
+                fig.add_trace(
+                    go.Scatter(
+                        x=df_noisy.index[[-1]],
+                        y=df_noisy["P2_12"].iloc[[-1]],
+                        mode="text",
+                        text=[" Z F"],
+                        textposition="middle right",
+                        legendgroup="Phase 2",
+                        legendgrouptitle_text="Phase 2",
+                        showlegend=False,
+                    ),
+                    row=1,
+                    col=2,
+                )
+                fig.add_trace(
+                    go.Scatter(
+                        x=df_noisy.index,
+                        y=df_noisy["P2_13"],
+                        mode="lines+markers+text",
+                        name="U T",
+                        legendgroup="Phase 2",
+                        legendgrouptitle_text="Phase 2",
+                        showlegend=True,
+                    ),
+                    row=1,
+                    col=2,
+                )
+                fig.add_trace(
+                    go.Scatter(
+                        x=df_noisy.index[[-1]],
+                        y=df_noisy["P2_13"].iloc[[-1]],
+                        mode="text",
+                        text=[" U T"],
+                        textposition="middle right",
+                        legendgroup="Phase 2",
+                        legendgrouptitle_text="Phase 2",
+                        showlegend=False,
+                    ),
+                    row=1,
+                    col=2,
+                )
+                fig.add_trace(
+                    go.Scatter(
+                        x=df_noisy.index,
+                        y=df_noisy["P2_14"],
+                        mode="lines+markers+text",
+                        name="Q I",
+                        legendgroup="Phase 2",
+                        legendgrouptitle_text="Phase 2",
+                        showlegend=True,
+                    ),
+                    row=1,
+                    col=2,
+                )
+                fig.add_trace(
+                    go.Scatter(
+                        x=df_noisy.index[[-1]],
+                        y=df_noisy["P2_14"].iloc[[-1]],
+                        mode="text",
+                        text=[" Q I"],
+                        textposition="middle right",
+                        legendgroup="Phase 2",
+                        legendgrouptitle_text="Phase 2",
+                        showlegend=False,
+                    ),
+                    row=1,
+                    col=2,
+                )
+                fig.add_trace(
+                    go.Scatter(
+                        x=df_noisy.index,
+                        y=df_noisy["P2_15"],
+                        mode="lines+markers+text",
+                        name="V J ",
+                        legendgroup="Phase 2",
+                        legendgrouptitle_text="Phase 2",
+                        showlegend=True,
+                    ),
+                    row=1,
+                    col=2,
+                )
+                fig.add_trace(
+                    go.Scatter(
+                        x=df_noisy.index[[-1]],
+                        y=df_noisy["P2_15"].iloc[[-1]],
+                        mode="text",
+                        text=[" V J"],
+                        textposition="middle right",
+                        legendgroup="Phase 2",
+                        legendgrouptitle_text="Phase 2",
+                        showlegend=False,
+                    ),
+                    row=1,
+                    col=2,
+                )
+                fig.add_hrect(
+                    y0=-0.5,
+                    y1=0.5,
+                    line_width=0,
+                    fillcolor="red",
+                    opacity=0.2,
+                    row=1,
+                    col=1,
+                )
+                fig.add_hrect(
+                    y0=0.5,
+                    y1=1.5,
+                    line_width=0,
+                    fillcolor="orange",
+                    opacity=0.2,
+                    row=1,
+                    col=1,
+                )
+                fig.add_hrect(
+                    y0=1.5,
+                    y1=2.5,
+                    line_width=0,
+                    fillcolor="yellow",
+                    opacity=0.2,
+                    row=1,
+                    col=1,
+                )
+                fig.add_hrect(
+                    y0=2.5,
+                    y1=3.5,
+                    line_width=0,
+                    fillcolor="green",
+                    opacity=0.2,
+                    row=1,
+                    col=1,
+                )
+                fig.add_hrect(
+                    y0=-0.5,
+                    y1=0.5,
+                    line_width=0,
+                    fillcolor="red",
+                    opacity=0.2,
+                    row=1,
+                    col=2,
+                )
+                fig.add_hrect(
+                    y0=0.5,
+                    y1=1.5,
+                    line_width=0,
+                    fillcolor="orange",
+                    opacity=0.2,
+                    row=1,
+                    col=2,
+                )
+                fig.add_hrect(
+                    y0=1.5,
+                    y1=2.5,
+                    line_width=0,
+                    fillcolor="yellow",
+                    opacity=0.2,
+                    row=1,
+                    col=2,
+                )
+                fig.add_hrect(
+                    y0=2.5,
+                    y1=3.5,
+                    line_width=0,
+                    fillcolor="green",
+                    opacity=0.2,
+                    row=1,
+                    col=2,
+                )
+                fig.update_layout(
+                    xaxis_tickformat="%d %b",
+                    xaxis2_tickformat="%d %b",
+                    template="simple_white",
+                    title_text=f"{studentname}: Basic Tactile Recognition " f"Progression",
+                    legend=dict(font=dict(size=10)),
+                )
+                tmppath = Path(USER_DIR).joinpath(
+                    "StudentDatabase",
+                    "StudentDataFiles",
+                    studentname,
+                    "BasicTactileRecognition.html",
+                )
+                fig.write_html(tmppath, auto_open=True)
+                # fig.show()
+                ui.notify(
+                    "Graph Successful. The Graphs will open in a Browser Window",
+                    close_button="OK",
+                )
 
+        # BRAILLE SKILLS PROGRESSION
         with ui.row().classes("w-screen no-wrap"):
             ui.label("BRAILLE SKILLS PROGRESSION").classes("justify-center items-center")
         with ui.row().classes("w-screen no-wrap py-4"):

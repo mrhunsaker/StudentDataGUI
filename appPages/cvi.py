@@ -793,129 +793,128 @@ def create() -> None:
                     close_button="OK",
                 )
 
-            with ui.row().classes("w-screen no-wrap"):
-                ui.label("CVI PROGRESSION").classes("justify-center items-center")
-            with ui.row().classes("w-screen no-wrap"):
-                ui.select(
-                    options=students,
-                    with_input=True,
-                    on_change=lambda e: ui.notify(e.value),
-                ).bind_value(
-                    u_studentname, "value"
-                ).classes("w-[300px]").props(
-                    'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
-                ).tooltip("Type Student Name, it will autocomplete as you type")
-                with ui.input("Date").classes("w-[300px]").props('aria-label="Date. Please type in date using the YYYY-MM-DD format"').tooltip("Date. Please type in date using the YYYY-MM-DD format") as date:
-                    with date.add_slot("append"):
-                        ui.icon("edit_calendar").on("click", lambda: menu.open()).classes("cursor-pointer")
-                    with ui.menu() as menu:
-                        ui.date().bind_value(date)
-
-            with ui.row().classes("w-screen no-wrap py-4"):
-                ui.label("RUBRIC: 0=CVI Range 1-2 | 1=CVI Range 3-4 | 2=CVI Range 5-6 |  3=CVI Range 7-8").props('aria-label="RUBRIC: 0=CVI Range 1-2 | 1=CVI Range 3-4 | 2=CVI Range 5-6 |  3=CVI Range 7-8"')
-                ui.input().props('aria-label="RUBRIC: 0=CVI Range 1-2 | 1=CVI Range 3-4 | 2=CVI Range 5-6 |  3=CVI Range 7-8" content-center').classes("sr-only")
-
-            with ui.row().classes("w-screen no-wrap py-4"):
-                ui.number(
-                    label="Color Preference",
-                    min=0,
-                    max=3,
-                    format="%.0f",
-                    on_change=lambda e: u_cvi_trial11.set_value(e.value),
-                ).classes("w-[600px]").props(
-                    'aria-label="Color Preference"'
-                ).tooltip("Color Preference")
-            with ui.row().classes("w-screen no-wrap py-4"):
-                ui.number(
-                    label="Need for Movement",
-                    min=0,
-                    max=3,
-                    format="%.0f",
-                    on_change=lambda e: u_cvi_trial12.set_value(e.value),
-                ).classes("w-[600px]").props(
-                    'aria-label="Need for Movement"'
-                ).tooltip("Need for Movement")
-            with ui.row().classes("w-screen no-wrap py-4"):
-                ui.number(
-                    label="Latency",
-                    min=0,
-                    max=3,
-                    format="%.0f",
-                    on_change=lambda e: u_cvi_trial13.set_value(e.value),
-                ).classes("w-[600px]").props(
-                    'aria-label="Latency"'
-                ).tooltip("Latency")
-            with ui.row().classes("w-screen no-wrap py-4"):
-                ui.number(
-                    label="Field Preference",
-                    min=0,
-                    max=3,
-                    format="%.0f",
-                    on_change=lambda e: u_cvi_trial14.set_value(e.value),
-                ).classes("w-[600px]").props(
-                    'aria-label="Field Preference"'
-                ).tooltip("Field Preference")
-            with ui.row().classes("w-screen no-wrap py-4"):
-                ui.number(
-                    label="Visual Complexity",
-                    min=0,
-                    max=3,
-                    format="%.0f",
-                    on_change=lambda e: u_cvi_trial21.set_value(e.value),
-                ).classes("w-[600px]").props(
-                    'aria-label="Visual Complexity"'
-                ).tooltip("Visual Complexity")
-            with ui.row().classes("w-screen no-wrap py-4"):
-                ui.number(
-                    label="Nonpurposeful Gaze",
-                    min=0,
-                    max=3,
-                    format="%.0f",
-                    on_change=lambda e: u_cvi_trial22.set_value(e.value),
-                ).classes("w-[600px]").props(
-                    'aria-label="Nonpurposeful Gaze"'
-                ).tooltip("Nonpurposeful Gaze")
-            with ui.row().classes("w-screen no-wrap py-4"):
-                ui.number(
-                    label="Distance Viewing",
-                    min=0,
-                    max=3,
-                    format="%.0f",
-                    on_change=lambda e: u_cvi_trial23.set_value(e.value),
-                ).classes("w-[600px]").props(
-                    'aria-label="Distance Viewing"'
-                ).tooltip("Distance Viewing")
-            with ui.row().classes("w-screen no-wrap py-4"):
-                ui.number(
-                    label="Atypical Reflexes",
-                    min=0,
-                    max=3,
-                    format="%.0f",
-                    on_change=lambda e: u_cvi_trial31.set_value(e.value),
-                ).classes("w-[600px]").props(
-                    'aria-label="Atypical Reflexes"'
-                ).tooltip("Atypical Reflexes")
-            with ui.row().classes("w-screen no-wrap py-4"):
-                ui.number(
-                    label="Visual Novelty",
-                    min=0,
-                    max=3,
-                    format="%.0f",
-                    on_change=lambda e: u_cvi_trial32.set_value(e.value),
-                ).classes("w-[600px]").props(
-                    'aria-label="Visual Novelty"'
-                ).tooltip("Visual Novelty")
-            with ui.row().classes("w-screen no-wrap py-4"):
-                ui.number(
-                    label="Visual Reach",
-                    min=0,
-                    max=3,
-                    format="%.0f",
-                    on_change=lambda e: u_cvi_trial33.set_value(e.value),
-                ).classes("w-[600px]").props(
-                    'aria-label="Visual Reach"'
-                ).tooltip("Visual Reach")
-            with ui.row().classes("w-screen no-wrap py-4"):
-                ui.button("SAVE", color="#172554", on_click=save).classes("text-white")
-                ui.button("GRAPH", color="#172554", on_click=graph).classes("text-white")
-                ui.button("EXIT", color="#172554", on_click=app.shutdown).classes("text-white")
+                # GUI Input
+        with ui.row().classes("w-screen no-wrap py-4"):
+            ui.button("GRAPH", color="#172554", on_click=graph).classes("text-white")
+        with ui.row().classes("w-screen no-wrap"):
+            ui.select(
+                options=students,
+                with_input=True,
+                on_change=lambda e: ui.notify(e.value),
+            ).bind_value(
+                u_studentname, "value"
+            ).classes("w-[300px]").props(
+                'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
+            ).tooltip("Type Student Name, it will autocomplete as you type")
+            with ui.input("Date").classes("w-[300px]").props('aria-label="Date. Please type in date using the YYYY-MM-DD format"').tooltip("Date. Please type in date using the YYYY-MM-DD format") as date:
+                with date.add_slot("append"):
+                    ui.icon("edit_calendar").on("click", lambda: menu.open()).classes("cursor-pointer")
+                with ui.menu() as menu:
+                    ui.date().bind_value(date)
+        with ui.row().classes("w-screen no-wrap py-4"):
+            ui.label("RUBRIC: 0=CVI Range 1-2 | 1=CVI Range 3-4 | 2=CVI Range 5-6 |  3=CVI Range 7-8").props('aria-label="RUBRIC: 0=CVI Range 1-2 | 1=CVI Range 3-4 | 2=CVI Range 5-6 |  3=CVI Range 7-8"')
+            ui.input().props('aria-label="RUBRIC: 0=CVI Range 1-2 | 1=CVI Range 3-4 | 2=CVI Range 5-6 |  3=CVI Range 7-8" content-center').classes("sr-only")
+        with ui.row().classes("w-screen no-wrap py-4"):
+            ui.number(
+                label="Color Preference",
+                min=0,
+                max=3,
+                format="%.0f",
+                on_change=lambda e: u_cvi_trial11.set_value(e.value),
+            ).classes("w-[600px]").props(
+                'aria-label="Color Preference"'
+            ).tooltip("Color Preference")
+        with ui.row().classes("w-screen no-wrap py-4"):
+            ui.number(
+                label="Need for Movement",
+                min=0,
+                max=3,
+                format="%.0f",
+                on_change=lambda e: u_cvi_trial12.set_value(e.value),
+            ).classes("w-[600px]").props(
+                'aria-label="Need for Movement"'
+            ).tooltip("Need for Movement")
+        with ui.row().classes("w-screen no-wrap py-4"):
+            ui.number(
+                label="Latency",
+                min=0,
+                max=3,
+                format="%.0f",
+                on_change=lambda e: u_cvi_trial13.set_value(e.value),
+            ).classes("w-[600px]").props(
+                'aria-label="Latency"'
+            ).tooltip("Latency")
+        with ui.row().classes("w-screen no-wrap py-4"):
+            ui.number(
+                label="Field Preference",
+                min=0,
+                max=3,
+                format="%.0f",
+                on_change=lambda e: u_cvi_trial14.set_value(e.value),
+            ).classes("w-[600px]").props(
+                'aria-label="Field Preference"'
+            ).tooltip("Field Preference")
+        with ui.row().classes("w-screen no-wrap py-4"):
+            ui.number(
+                label="Visual Complexity",
+                min=0,
+                max=3,
+                format="%.0f",
+                on_change=lambda e: u_cvi_trial21.set_value(e.value),
+            ).classes("w-[600px]").props(
+                'aria-label="Visual Complexity"'
+            ).tooltip("Visual Complexity")
+        with ui.row().classes("w-screen no-wrap py-4"):
+            ui.number(
+                label="Nonpurposeful Gaze",
+                min=0,
+                max=3,
+                format="%.0f",
+                on_change=lambda e: u_cvi_trial22.set_value(e.value),
+            ).classes("w-[600px]").props(
+                'aria-label="Nonpurposeful Gaze"'
+            ).tooltip("Nonpurposeful Gaze")
+        with ui.row().classes("w-screen no-wrap py-4"):
+            ui.number(
+                label="Distance Viewing",
+                min=0,
+                max=3,
+                format="%.0f",
+                on_change=lambda e: u_cvi_trial23.set_value(e.value),
+            ).classes("w-[600px]").props(
+                'aria-label="Distance Viewing"'
+            ).tooltip("Distance Viewing")
+        with ui.row().classes("w-screen no-wrap py-4"):
+            ui.number(
+                label="Atypical Reflexes",
+                min=0,
+                max=3,
+                format="%.0f",
+                on_change=lambda e: u_cvi_trial31.set_value(e.value),
+            ).classes("w-[600px]").props(
+                'aria-label="Atypical Reflexes"'
+            ).tooltip("Atypical Reflexes")
+        with ui.row().classes("w-screen no-wrap py-4"):
+            ui.number(
+                label="Visual Novelty",
+                min=0,
+                max=3,
+                format="%.0f",
+                on_change=lambda e: u_cvi_trial32.set_value(e.value),
+            ).classes("w-[600px]").props(
+                'aria-label="Visual Novelty"'
+            ).tooltip("Visual Novelty")
+        with ui.row().classes("w-screen no-wrap py-4"):
+            ui.number(
+                label="Visual Reach",
+                min=0,
+                max=3,
+                format="%.0f",
+                on_change=lambda e: u_cvi_trial33.set_value(e.value),
+            ).classes("w-[600px]").props(
+                'aria-label="Visual Reach"'
+            ).tooltip("Visual Reach")
+        with ui.row().classes("w-screen no-wrap py-4"):
+            ui.button("SAVE", color="#172554", on_click=save).classes("text-white")
+            ui.button("GRAPH", color="#172554", on_click=graph).classes("text-white")
+            ui.button("EXIT", color="#172554", on_click=app.shutdown).classes("text-white")

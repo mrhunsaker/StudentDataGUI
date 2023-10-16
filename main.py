@@ -30,6 +30,16 @@ from screeninfo import get_monitors
 module_path = os.path.abspath(os.getcwd())
 if module_path not in sys.path:
     sys.path.append(module_path)
+from appTheming import theme
+from appHelpers.helpers import createFolderHierarchy, dataBasePath, warningmessage, USER_DIR, set_user_dir, create_roster
+from appHelpers.sqlgenerate import create_connection, createTables
+
+set_user_dir()
+create_roster()
+createFolderHierarchy()
+create_connection(dataBasePath)
+createTables()
+sys.excepthook = warningmessage
 
 from appPages import abacus
 from appPages import sessionnotes
@@ -42,15 +52,6 @@ from appPages import InstructionalMaterials
 from appPages import ios
 from appPages import observations
 from appPages import screenreader
-from appTheming import theme
-from appHelpers.helpers import createFolderHierarchy, dataBasePath, warningmessage
-from appHelpers.sqlgenerate import create_connection, createTables
-
-createFolderHierarchy()
-create_connection(dataBasePath)
-createTables()
-sys.excepthook = warningmessage
-
 
 @ui.page("/")
 def index_page() -> None:

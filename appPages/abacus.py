@@ -948,20 +948,19 @@ def create() -> None:
                     close_button="OK",
                 )
 
-            # ABACUS SKILLS PROGRESSION TAB
-
-            with ui.row().classes("w-screen no-wrap"):
-                ui.label("ABACUS SKILLS PROGRESSION").classes("justify-center items-center")
-            with ui.row().classes("w-screen no-wrap py-4"):
-                ui.select(
-                    options=students,
-                    with_input=True,
-                    on_change=lambda e: ui.notify(e.value),
-                ).bind_value(
-                    u_studentname, "value"
-                ).classes("w-[300px]").props(
-                    'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
-                ).tooltip("Type Student Name, it will autocomplete AS you type")
+        # GUI Input
+        with ui.row().classes("w-screen no-wrap py-4"):
+            ui.button("GRAPH", color="#172554", on_click=graph).classes("text-white")
+        with ui.row().classes("w-screen no-wrap py-4"):
+            ui.select(
+                options=students,
+                with_input=True,
+                on_change=lambda e: ui.notify(e.value),
+            ).bind_value(
+                u_studentname, "value"
+            ).classes("w-[300px]").props(
+                'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
+            ).tooltip("Type Student Name, it will autocomplete AS you type")
         with ui.input("Date").classes("w-[300px]").props('aria-label="Date. Please type in date using the YYYY-MM-DD format"').tooltip("Date. Please type in date using the YYYY-MM-DD format") as date:
             with date.add_slot("append"):
                 ui.icon("edit_calendar").on("click", lambda: menu.open()).classes("cursor-pointer")
@@ -1188,5 +1187,5 @@ def create() -> None:
             ).props('aria-label="8.2 Square Root"')
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.button("SAVE", color="#172554", on_click=save).classes("text-white")
-        ui.button("GRAPH", color="#172554", on_click=graph).classes("text-white")
-        ui.button("EXIT", color="#172554", on_click=app.shutdown).classes("text-white")
+            ui.button("GRAPH", color="#172554", on_click=graph).classes("text-white")
+            ui.button("EXIT", color="#172554", on_click=app.shutdown).classes("text-white")

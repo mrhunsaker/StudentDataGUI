@@ -26,7 +26,6 @@ import json
 from pathlib import Path
 
 from nicegui import app, ui
-
 from appHelpers.helpers import dataBasePath, datenow, USER_DIR, date_fmt
 from appHelpers.roster import students
 from appTheming import theme
@@ -85,8 +84,6 @@ def create() -> None:
                     close_button="OK",
                 )
 
-        with ui.row().classes("w-screen no-wrap"):
-            ui.label("Observation Notes").classes("justify-center items-center")
         with ui.row().classes("w-screen no-wrap"):
             ui.select(
                 options=students,

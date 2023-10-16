@@ -99,7 +99,12 @@ def create() -> None:
                     type="positive",
                     close_button="OK",
                 )
-
+                
+        # GUI Input
+        with ui.row().classes("w-screen no-wrap py-4"):
+            ui.button("SAVE", color="#172554", on_click=save).classes("text-white")
+            ui.button("GRAPH", color="#172554", on_click=graph).classes("text-white")
+            ui.button("EXIT", color="#172554", on_click=app.shutdown).classes("text-white")
         with ui.row().classes("w-full no-wrap py-4"):
             ui.label().classes("w-[250px]")
             ui.label("PARENT CONTACT LOG").classes("w-screen justify-center items-center text-lg font-bold")

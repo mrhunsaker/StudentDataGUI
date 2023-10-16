@@ -1172,7 +1172,10 @@ def create() -> None:
                 type="positive",
                 close_button="OK",
             )
-
+        
+        # GUI Input
+        with ui.row().classes("w-screen no-wrap py-4"):
+            ui.button("GRAPH", color="#172554", on_click=graph).classes("text-white")
         with ui.row().classes("w-screen no-wrap"):
             ui.label("iOS SKILLS PROGRESSION").classes("justify-center items-center")
         with ui.row().classes("w-screen no-wrap"):

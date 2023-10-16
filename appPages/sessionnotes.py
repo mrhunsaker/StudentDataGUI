@@ -27,7 +27,7 @@ from pathlib import Path
 
 from nicegui import app, ui
 
-from appHelpers.helpers import dataBasePath, datenow, USER_DIR, date_fmt
+from appHelpers.helpers import dataBasePath, datenow, USER_DIR, date_fmt, tasks
 from appHelpers.roster import students
 from appTheming import theme
 
@@ -114,8 +114,7 @@ def create() -> None:
                     filename.write(f"'{tmppath}'" + "\n")
                     filename.close()
 
-        with ui.row().classes("w-screen no-wrap"):
-            ui.label("Anecdotal Notes").classes("justify-center items-center")
+        # GUI Input
         with ui.row().classes("w-screen no-wrap"):
             ui.select(
                 options=students,

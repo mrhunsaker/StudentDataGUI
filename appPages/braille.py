@@ -35,7 +35,6 @@ from appHelpers.helpers import dataBasePath, datenow, USER_DIR, date_fmt
 from appHelpers.roster import students
 from appTheming import theme
 
-
 def create() -> None:
     ##########################################################################
     # BRAILLE SKILLS
@@ -2682,9 +2681,9 @@ def create() -> None:
                     close_button="OK",
                 )
 
-        # BRAILLE SKILLS PROGRESSION
-        with ui.row().classes("w-screen no-wrap"):
-            ui.label("BRAILLE SKILLS PROGRESSION").classes("justify-center items-center")
+        # GUI Input
+        with ui.row().classes("w-screen no-wrap py-4"):
+            ui.button("GRAPH", color="#172554", on_click=graph).classes("text-white")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.select(
                 options=students,

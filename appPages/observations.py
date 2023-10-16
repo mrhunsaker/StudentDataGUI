@@ -36,7 +36,7 @@ def create() -> None:
 
     @ui.page("/observations")
     def observations() -> None:
-        with theme.frame("- OBSERVATION NOTES -"):
+        with theme.frame("- DATA COLLECTION -"):
             ui.label("OBSERVATION NOTES").classes("text-h4 text-grey-8")
             # ASSIGN VARIABLES
             u_studentname = ui.select(

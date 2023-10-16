@@ -43,7 +43,7 @@ def create() -> None:
 
     @ui.page("/cviprogress")
     def cviprogress():
-        with theme.frame("- CVI PROGRESSION-"):
+        with theme.frame("- CORTICAL/NEUROLOGICAL VISION IMPAIRMENT-"):
             ui.label("CVI PROGRESSION").classes("text-h4 text-grey-8")
             u_studentname = ui.select(
                 options=students, value="DonaldChamberlain"

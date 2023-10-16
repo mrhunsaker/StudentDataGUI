@@ -1,12 +1,12 @@
 # StudentDataGUI
 
-*Student Data Input GUI using NiceGUI and SQLite designed be platform-independent*
+Student Data Input GUI using NiceGUI and SQLite designed be platform-independent.
 
 To use this package open *helpers.py* and edit the names for the *students* variable, following the pattern of surrounding text with single quotes (' ') and separating entries with commas.
 
 ex:
 
-```python
+```txt
 students = ('DonaldChamberlain', 'StudentOne', 'StudentTwo', 'StudentN')   
 ```
 
@@ -84,6 +84,7 @@ $ python3 -m pip install --user poetry
 Enter the project repository and set up the virtual environment using the information in pyproject.toml 
 
 ```bash
+$ poetry env 3.10.11
 $ poetry install
 ```
 

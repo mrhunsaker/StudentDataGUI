@@ -42,7 +42,7 @@ def create() -> None:
     ##########################################################################
     @ui.page("/screenreaderskills")
     def screenreaderskills() -> None:
-        with theme.frame("- SCREENREADER SKILLS -"):
+        with theme.frame("- TECHNOLOGY SKILLS -"):
             ui.label("SCREENREADER SKILLS").classes("text-h4 text-grey-8")
             u_studentname = ui.select(
                 options=students, value="DonaldChamberlain"

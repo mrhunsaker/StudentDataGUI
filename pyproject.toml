@@ -10,22 +10,22 @@ packages = [{include = "student-skills-progression"}]
 repository = "https://github.com/mrhunsaker/StudentDataGUI"
 keywords = ["visual impairment", "education", "data collection"]
 classifiers = [
-            "Development Status :: 4 - Beta",
-            "Environment :: Win32 (MS Windows)",
-            "Framework :: FastAPI",
-            "Intended Audience :: Education",
-            "Intended Audience :: End Users/Desktop",
-            "License :: Freely Distributable",
-            "Operating System :: POSIX :: Linux",
-            "Operating System :: Microsoft :: Windows :: Windows 11",
-            "Programming Language :: Python :: 3.11",
-            "Topic :: Education",
-            "Topic :: Education :: Testing"
-            ]
+    "Development Status :: 4 - Beta",
+    "Environment :: Win32 (MS Windows)",
+    "Framework :: FastAPI",
+    "Intended Audience :: Education",
+    "Intended Audience :: End Users/Desktop",
+    "License :: Freely Distributable",
+    "Operating System :: POSIX :: Linux",
+    "Operating System :: Microsoft :: Windows :: Windows 11",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Education",
+    "Topic :: Education :: Testing"
+]
 
 [tool.poetry.dependencies]
 python = ">=3.10,<3.11"
-attrdict = "^2.0.1"
+attrdict = "^2.0.1" 
 datetime = "^5.2"
 statistics = "^1.0.3.5"
 pandas = "^2.1.1"
@@ -38,7 +38,6 @@ screeninfo = "^0.8.1"
 pythonnet = "^3.0.3"
 pywebview = "^4.3.3"
 jedi = "^0.19.1"
-
 cefpython3 = {url = "https://files.pythonhosted.org/packages/3b/d4/f313221a999e4d295cc8fcb15fc4ac9c98f6759e50735d6f6ce84fd3e98a/cefpython3-66.1-py2.py3-none-win_amd64.whl"}
 clr-loader = {url = "https://files.pythonhosted.org/packages/b3/1a/2801c4e3888aac8fcd4d88d32a1155a778d1c01ca040ae8137d433a39cc6/clr_loader-0.2.6-py3-none-any.whl"}
 
@@ -48,10 +47,17 @@ black = "^23.9.1"
 
 [tool.black]
 line-length = 88
-target-version = ['py37', 'py38', 'py39', 'py310', 'py311', 'py312']
+target-version = [
+    'py37', 
+    'py38', 
+    'py39', 
+    'py310', 
+    'py311', 
+    'py312'
+]
 
 [tool.pylint.'MESSAGES CONTROL']
-max-line-length = 512
+max-line-length = 88
 disable = '''
     C0103,
     C0114,

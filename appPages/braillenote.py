@@ -42,7 +42,7 @@ def create() -> None:
     ##########################################################################
     @ui.page("/braillenotetouchskills")
     def braillenotetouchskills() -> None:
-        with theme.frame("- BRAILLENOTE TOUCH PLUS SKILLS -"):
+        with theme.frame("- TECHNOLOGY SKILLS -"):
             ui.label("BRAILLENOTE TOUCH PLUS SKILLS").classes("text-h4 text-grey-8")
 
             # ASSIGN VARIABLES

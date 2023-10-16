@@ -41,7 +41,7 @@ def create() -> None:
 
     @ui.page("/abacusskills")
     def abacusskills() -> None:
-        with theme.frame("- ABACUS SKILLS -"):
+        with theme.frame("- TACTILE SKILLS -"):
             ui.label("ABACUS SKILLS").classes("text-h4 text-grey-8")
             u_studentname = ui.select(
                 options=students, value="DonaldChamberlain"

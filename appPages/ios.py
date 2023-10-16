@@ -42,7 +42,7 @@ def create() -> None:
     ##########################################################################
     @ui.page("/iosskills")
     def iosskillsprogression() -> None:
-        with theme.frame("- iOS / iPad OS SKILLS -"):
+        with theme.frame("- TECHNOLOGY SKILLS -"):
             ui.label("iOS / iPad OS  SKILLS").classes("text-h4 text-grey-8")
             # ASSIGN VARIABLES
             u_studentname = ui.select(

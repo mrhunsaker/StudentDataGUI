@@ -136,3 +136,8 @@ poetry.lock
 
 # For privacy, I do not sync my Student roster
 appHelpers/roster.py
+
+# IDE files
+.idea/*
+.vscode/*
+

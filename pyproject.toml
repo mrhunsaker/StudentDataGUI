@@ -24,7 +24,7 @@ classifiers = [
             ]
 
 [tool.poetry.dependencies]
-python = ">=3.11,<3.12"
+python = ">=3.10,<3.11"
 attrdict = "^2.0.1"
 datetime = "^5.2"
 statistics = "^1.0.3.5"
@@ -50,13 +50,12 @@ flake8-pyproject = "^1.2.3"
 cefpython3 = {url = "https://github.com/cztomczak/cefpython/releases/download/v66.1/cefpython3-66.1-py2.py3-none-win_amd64.whl", platform="Windows"}
 pyqt5 = "^5.15.9"
 pycairo = "^1.25.0"
-pyobject = "^1.2.1"
+pygobject = "^3.46.0"
+pyside2 = "^5.15.2.1"
+qtpy = "^2.4.0"
+pyqtwebengine = "^5.15.6"
+gobject = "^0.1.0"
 
-
-[tool.flake8]
-exclude = ""
-max-line-length = 512
-ignore = ["E201", "E202", "E203", "E266", "E265", "E402", "E501"]
 
 [tool.black]
 line-length = 88

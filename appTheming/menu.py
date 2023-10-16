@@ -30,41 +30,47 @@ def menu() -> None:
             ui.menu_item("HOME", lambda: ui.open("/")).classes(replace="text-black")
             ui.separator()
             ui.menu_item("CONTACT LOG", lambda: ui.open("/contactlog")).classes(
-                    replace="text-black"
-                    )
-            ui.menu_item("ANECDOTAL NOTES", lambda: ui.open("/anecdotalnotes")).classes(
-                    replace="text-black"
-                    )
+                replace="text-black"
+            )
+            ui.separator()
+            with ui.row().classes("justify-center items-center"):
+                ui.label("DATA COLLECTION").classes("font-bold")
+            ui.menu_item("SESSION NOTES", lambda: ui.open("/sessionnotes")).classes(
+                replace="text-black"
+            )
+            ui.menu_item("OBSERVATIONS", lambda: ui.open("/observations")).classes(
+                replace="text-black"
+            )
             ui.separator()
             with ui.row().classes("justify-center items-center"):
                 ui.label("TACTILE SKILLS").classes("font-bold")
             ui.menu_item("ABACUS SKILLS", lambda: ui.open("/abacusskills")).classes(
-                    replace="text-black"
-                    )
+                replace="text-black"
+            )
             ui.menu_item("BRAILLE SKILLS", lambda: ui.open("/brailleskills")).classes(
-                    replace="text-black"
-                    )
+                replace="text-black"
+            )
             ui.separator()
             with ui.row().classes("justify-center items-center"):
                 ui.label("TECHNOLOGY SKILLS").classes("font-bold")
             ui.menu_item(
-                    "SCREENREADER SKILLS", lambda: ui.open("/screenreaderskills")
-                    ).classes(replace="text-black")
+                "SCREENREADER SKILLS", lambda: ui.open("/screenreaderskills")
+            ).classes(replace="text-black")
             ui.menu_item(
-                    "BRAILLENOTE TOUCH SKILLS", lambda: ui.open("/braillenotetouchskills")
-                    ).classes(replace="text-black")
+                "BRAILLENOTE TOUCH SKILLS", lambda: ui.open("/braillenotetouchskills")
+            ).classes(replace="text-black")
             ui.menu_item(
-                    "iOS/iPadOS VOICEOVER SKILLS", lambda: ui.open("/iosskills")
-                    ).classes(replace="text-black")
+                "iOS/iPadOS VOICEOVER SKILLS", lambda: ui.open("/iosskills")
+            ).classes(replace="text-black")
             ui.separator()
             with ui.row().classes("justify-center items-center"):
                 ui.label("CVI / NVI").classes("font-bold")
             ui.menu_item("CVI PROGRESS", lambda: ui.open("/cviprogress")).classes(
-                    replace="text-black"
-                    )
+                replace="text-black"
+            )
             ui.separator()
             with ui.row().classes("justify-center items-center py-2"):
                 ui.label("MATERIALS").classes("font-bold")
             ui.menu_item(
-                    "INSTRUCTIONAL MATERIALS", lambda: ui.open("/instructionalmaterials")
-                    ).classes(replace="text-black")
+                "INSTRUCTIONAL MATERIALS", lambda: ui.open("/instructionalmaterials")
+            ).classes(replace="text-black")

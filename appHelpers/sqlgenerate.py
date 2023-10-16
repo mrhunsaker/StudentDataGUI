@@ -23,7 +23,7 @@ teachers of students with Visual Impairments
 
 import sqlite3
 from sqlite3 import Error
-
+from nicegui import ui
 from appHelpers.helpers import dataBasePath
 
 
@@ -40,11 +40,17 @@ def create_connection(db_file):
         conn = sqlite3.connect(db_file)
         print(sqlite3.version)
     except Error as e:
-        print(e)
+        ui.notify(
+            e,
+            position="center",
+            type="negative",
+            close_button="OK",
+        )
     finally:
         if conn:
             conn.close()
 
+create_connection(dataBasePath)
 
 def create_table(conn, sql_create_sql_table):
     """
@@ -57,11 +63,13 @@ def create_table(conn, sql_create_sql_table):
         c = conn.cursor()
         c.execute(sql_create_sql_table)
     except Error as e:
-        print(e)
+        ui.notify(
+            e,
+            position="center",
+            type="negative",
+            close_button="OK",
+        )
     conn.close()
-
-
-conn = sqlite3.connect(dataBasePath)
 
 
 def createTables():
@@ -231,16 +239,16 @@ def createTables():
         ID INTEGER PRIMARY KEY AUTOINCREMENT,
         STUDENTNAME TEXT NOT NULL,
         DATE TEXT NOT NULL,
-        P1_1 INTEGER NOT NULL,
-        P1_2 INTEGER NOT NULL,
-        P1_3 INTEGER NOT NULL,
-        P1_4 INTEGER NOT NULL,
-        P1_5 INTEGER NOT NULL,
-        P1_6 INTEGER NOT NULL,
-        P2_1 INTEGER NOT NULL,
-        P2_2 INTEGER NOT NULL,
-        P2_3 INTEGER NOT NULL,
-        P2_4 INTEGER NOT NULL
+        P1_1 INTEGER,
+        P1_2 INTEGER,
+        P1_3 INTEGER,
+        P1_4 INTEGER,
+        P1_5 INTEGER,
+        P1_6 INTEGER,
+        P2_1 INTEGER,
+        P2_2 INTEGER,
+        P2_3 INTEGER,
+        P2_4 INTEGER
     );"""
 
     sql_create_iosdata_table = """CREATE TABLE IF NOT EXISTS
@@ -248,49 +256,49 @@ def createTables():
         ID INTEGER PRIMARY KEY AUTOINCREMENT,
         STUDENTNAME TEXT NOT NULL,
         DATE TEXT NOT NULL,
-        P1_1 INTEGER NOT NULL,
-        P1_2 INTEGER NOT NULL,
-        P1_3 INTEGER NOT NULL,
-        P1_4 INTEGER NOT NULL,
-        P1_5 INTEGER NOT NULL,
-        P1_6 INTEGER NOT NULL,
-        P1_7 INTEGER NOT NULL,
-        P1_8 INTEGER NOT NULL,
-        P1_9 INTEGER NOT NULL,
-        P2_1 INTEGER NOT NULL,
-        P2_2 INTEGER NOT NULL,
-        P2_3 INTEGER NOT NULL,
-        P2_4 INTEGER NOT NULL,
-        P2_5 INTEGER NOT NULL,
-        P2_6 INTEGER NOT NULL,
-        P3_1 INTEGER NOT NULL,
-        P3_2 INTEGER NOT NULL,
-        P3_3 INTEGER NOT NULL,
-        P3_4 INTEGER NOT NULL,
-        P3_5 INTEGER NOT NULL,
-        P4_1 INTEGER NOT NULL,
-        P4_2 INTEGER NOT NULL,
-        P4_3 INTEGER NOT NULL,
-        P4_4 INTEGER NOT NULL,
-        P4_5 INTEGER NOT NULL,
-        P5_1 INTEGER NOT NULL,
-        P5_2 INTEGER NOT NULL,
-        P5_3 INTEGER NOT NULL,
-        P5_4 INTEGER NOT NULL,
-        P5_5 INTEGER NOT NULL,
-        P5_6 INTEGER NOT NULL,
-        P5_7 INTEGER NOT NULL,
-        P6_1 INTEGER NOT NULL,
-        P6_2 INTEGER NOT NULL,
-        P6_3 INTEGER NOT NULL,
-        P6_4 INTEGER NOT NULL,
-        P6_5 INTEGER NOT NULL,
-        P6_6 INTEGER NOT NULL,
-        P6_7 INTEGER NOT NULL,
-        P6_8 INTEGER NOT NULL,
-        P6_9 INTEGER NOT NULL,
-        P6_10 INTEGER NOT NULL,
-        P6_11 INTEGER NOT NULL
+        P1_1 INTEGER,
+        P1_2 INTEGER,
+        P1_3 INTEGER,
+        P1_4 INTEGER,
+        P1_5 INTEGER,
+        P1_6 INTEGER,
+        P1_7 INTEGER,
+        P1_8 INTEGER,
+        P1_9 INTEGER,
+        P2_1 INTEGER,
+        P2_2 INTEGER,
+        P2_3 INTEGER,
+        P2_4 INTEGER,
+        P2_5 INTEGER,
+        P2_6 INTEGER,
+        P3_1 INTEGER,
+        P3_2 INTEGER,
+        P3_3 INTEGER,
+        P3_4 INTEGER,
+        P3_5 INTEGER,
+        P4_1 INTEGER,
+        P4_2 INTEGER,
+        P4_3 INTEGER,
+        P4_4 INTEGER,
+        P4_5 INTEGER,
+        P5_1 INTEGER,
+        P5_2 INTEGER,
+        P5_3 INTEGER,
+        P5_4 INTEGER,
+        P5_5 INTEGER,
+        P5_6 INTEGER,
+        P5_7 INTEGER,
+        P6_1 INTEGER,
+        P6_2 INTEGER,
+        P6_3 INTEGER,
+        P6_4 INTEGER,
+        P6_5 INTEGER,
+        P6_6 INTEGER,
+        P6_7 INTEGER,
+        P6_8 INTEGER,
+        P6_9 INTEGER,
+        P6_10 INTEGER,
+        P6_11 INTEGER
     );"""
 
     sql_create_bntdata_table = """CREATE TABLE IF NOT EXISTS
@@ -298,67 +306,67 @@ def createTables():
         ID INTEGER PRIMARY KEY AUTOINCREMENT,
         STUDENTNAME TEXT NOT NULL,
         DATE TEXT NOT NULL,
-        P1_1 INTEGER NOT NULL,
-        P1_2 INTEGER NOT NULL,
-        P1_3 INTEGER NOT NULL,
-        P1_4 INTEGER NOT NULL,
-        P1_5 INTEGER NOT NULL,
-        P1_6 INTEGER NOT NULL,
-        P1_7 INTEGER NOT NULL,
-        P1_8 INTEGER NOT NULL,
-        P1_9 INTEGER NOT NULL,
-        P2_1 INTEGER NOT NULL,
-        P2_2 INTEGER NOT NULL,
-        P2_3 INTEGER NOT NULL,
-        P2_4 INTEGER NOT NULL,
-        P2_5 INTEGER NOT NULL,
-        P2_6 INTEGER NOT NULL,
-        P2_7 INTEGER NOT NULL,
-        P3_1 INTEGER NOT NULL,
-        P3_2 INTEGER NOT NULL,
-        P3_3 INTEGER NOT NULL,
-        P3_4 INTEGER NOT NULL,
-        P3_5 INTEGER NOT NULL,
-        P3_6 INTEGER NOT NULL,
-        P3_7 INTEGER NOT NULL,
-        P4_1 INTEGER NOT NULL,
-        P4_2 INTEGER NOT NULL,
-        P4_3 INTEGER NOT NULL,
-        P5_1 INTEGER NOT NULL,
-        P5_2 INTEGER NOT NULL,
-        P5_3 INTEGER NOT NULL,
-        P5_4 INTEGER NOT NULL,
-        P5_5 INTEGER NOT NULL,
-        P5_6 INTEGER NOT NULL,
-        P5_7 INTEGER NOT NULL,
-        P6_1 INTEGER NOT NULL,
-        P6_2 INTEGER NOT NULL,
-        P6_3 INTEGER NOT NULL,
-        P7_1 INTEGER NOT NULL,
-        P7_2 INTEGER NOT NULL,
-        P7_3 INTEGER NOT NULL,
-        P7_4 INTEGER NOT NULL,
-        P8_1 INTEGER NOT NULL,
-        P8_2 INTEGER NOT NULL,
-        P8_3 INTEGER NOT NULL,
-        P8_4 INTEGER NOT NULL,
-        P8_5 INTEGER NOT NULL,
-        P9_1 INTEGER NOT NULL,
-        P9_2 INTEGER NOT NULL,
-        P9_3 INTEGER NOT NULL,
-        P9_4 INTEGER NOT NULL,
-        P10_1 INTEGER NOT NULL,
-        P10_2 INTEGER NOT NULL,
-        P10_3 INTEGER NOT NULL,
-        P11_1 INTEGER NOT NULL,
-        P11_2 INTEGER NOT NULL,
-        P11_3 INTEGER NOT NULL,
-        P11_4 INTEGER NOT NULL,
-        P11_5 INTEGER NOT NULL,
-        P12_1 INTEGER NOT NULL,
-        P12_2 INTEGER NOT NULL,
-        P12_3 INTEGER NOT NULL,
-        P12_4 INTEGER NOT NULL
+        P1_1 INTEGER,
+        P1_2 INTEGER,
+        P1_3 INTEGER,
+        P1_4 INTEGER,
+        P1_5 INTEGER,
+        P1_6 INTEGER,
+        P1_7 INTEGER,
+        P1_8 INTEGER,
+        P1_9 INTEGER,
+        P2_1 INTEGER,
+        P2_2 INTEGER,
+        P2_3 INTEGER,
+        P2_4 INTEGER,
+        P2_5 INTEGER,
+        P2_6 INTEGER,
+        P2_7 INTEGER,
+        P3_1 INTEGER,
+        P3_2 INTEGER,
+        P3_3 INTEGER,
+        P3_4 INTEGER,
+        P3_5 INTEGER,
+        P3_6 INTEGER,
+        P3_7 INTEGER,
+        P4_1 INTEGER,
+        P4_2 INTEGER,
+        P4_3 INTEGER,
+        P5_1 INTEGER,
+        P5_2 INTEGER,
+        P5_3 INTEGER,
+        P5_4 INTEGER,
+        P5_5 INTEGER,
+        P5_6 INTEGER,
+        P5_7 INTEGER,
+        P6_1 INTEGER,
+        P6_2 INTEGER,
+        P6_3 INTEGER,
+        P7_1 INTEGER,
+        P7_2 INTEGER,
+        P7_3 INTEGER,
+        P7_4 INTEGER,
+        P8_1 INTEGER,
+        P8_2 INTEGER,
+        P8_3 INTEGER,
+        P8_4 INTEGER,
+        P8_5 INTEGER,
+        P9_1 INTEGER,
+        P9_2 INTEGER,
+        P9_3 INTEGER,
+        P9_4 INTEGER,
+        P10_1 INTEGER,
+        P10_2 INTEGER,
+        P10_3 INTEGER,
+        P11_1 INTEGER,
+        P11_2 INTEGER,
+        P11_3 INTEGER,
+        P11_4 INTEGER,
+        P11_5 INTEGER,
+        P12_1 INTEGER,
+        P12_2 INTEGER,
+        P12_3 INTEGER,
+        P12_4 INTEGER
     );"""
 
     sql_create_elemdigitalliteracydata_table = """CREATE TABLE IF NOT
@@ -366,44 +374,44 @@ def createTables():
         ID INTEGER PRIMARY KEY AUTOINCREMENT,
         STUDENTNAME TEXT NOT NULL,
         DATE TEXT NOT NULL,
-        P1_1 INTEGER NOT NULL,
-        P1_2 INTEGER NOT NULL,
-        P1_3 INTEGER NOT NULL,
-        P1_4 INTEGER NOT NULL,
-        P1_5 INTEGER NOT NULL,
-        P1_6 INTEGER NOT NULL,
-        P2_1 INTEGER NOT NULL,
-        P2_2 INTEGER NOT NULL,
-        P2_3 INTEGER NOT NULL,
-        P2_4 INTEGER NOT NULL,
-        P2_5 INTEGER NOT NULL,
-        P2_6 INTEGER NOT NULL,
-        P3_1 INTEGER NOT NULL,
-        P3_2 INTEGER NOT NULL,
-        P3_3 INTEGER NOT NULL,
-        P3_4 INTEGER NOT NULL,
-        P3_5 INTEGER NOT NULL,
-        P4_1 INTEGER NOT NULL,
-        P4_2 INTEGER NOT NULL,
-        P4_3 INTEGER NOT NULL,
-        P4_4 INTEGER NOT NULL,
-        P4_5 INTEGER NOT NULL,
-        P5_1 INTEGER NOT NULL,
-        P5_2 INTEGER NOT NULL,
-        P5_3 INTEGER NOT NULL,
-        P5_4 INTEGER NOT NULL,
-        P5_5 INTEGER NOT NULL,
-        P5_6 INTEGER NOT NULL,
-        P5_7 INTEGER NOT NULL,
-        P6_1 INTEGER NOT NULL,
-        P6_2 INTEGER NOT NULL,
-        P6_3 INTEGER NOT NULL,
-        P6_4 INTEGER NOT NULL,
-        P7_1 INTEGER NOT NULL,
-        P7_2 INTEGER NOT NULL,
-        P7_3 INTEGER NOT NULL,
-        P7_4 INTEGER NOT NULL,
-        P7_5 INTEGER NOT NULL
+        P1_1 INTEGER,
+        P1_2 INTEGER,
+        P1_3 INTEGER,
+        P1_4 INTEGER,
+        P1_5 INTEGER,
+        P1_6 INTEGER,
+        P2_1 INTEGER,
+        P2_2 INTEGER,
+        P2_3 INTEGER,
+        P2_4 INTEGER,
+        P2_5 INTEGER,
+        P2_6 INTEGER,
+        P3_1 INTEGER,
+        P3_2 INTEGER,
+        P3_3 INTEGER,
+        P3_4 INTEGER,
+        P3_5 INTEGER,
+        P4_1 INTEGER,
+        P4_2 INTEGER,
+        P4_3 INTEGER,
+        P4_4 INTEGER,
+        P4_5 INTEGER,
+        P5_1 INTEGER,
+        P5_2 INTEGER,
+        P5_3 INTEGER,
+        P5_4 INTEGER,
+        P5_5 INTEGER,
+        P5_6 INTEGER,
+        P5_7 INTEGER,
+        P6_1 INTEGER,
+        P6_2 INTEGER,
+        P6_3 INTEGER,
+        P6_4 INTEGER,
+        P7_1 INTEGER,
+        P7_2 INTEGER,
+        P7_3 INTEGER,
+        P7_4 INTEGER,
+        P7_5 INTEGER
     );"""
 
     sql_create_hsdigitalliteracydata_table = """CREATE TABLE IF NOT
@@ -411,104 +419,149 @@ def createTables():
         ID INTEGER PRIMARY KEY AUTOINCREMENT,
         STUDENTNAME TEXT NOT NULL,
         DATE TEXT NOT NULL,
-        P1_1 INTEGER NOT NULL,
-        P1_2 INTEGER NOT NULL,
-        P1_3 INTEGER NOT NULL,
-        P1_4 INTEGER NOT NULL,
-        P1_5 INTEGER NOT NULL,
-        P2_1 INTEGER NOT NULL,
-        P2_2 INTEGER NOT NULL,
-        P2_3 INTEGER NOT NULL,
-        P2_4 INTEGER NOT NULL,
-        P2_5 INTEGER NOT NULL,
-        P2_6 INTEGER NOT NULL,
-        P2_7 INTEGER NOT NULL,
-        P3_1 INTEGER NOT NULL,
-        P3_2 INTEGER NOT NULL,
-        P3_3 INTEGER NOT NULL,
-        P3_4 INTEGER NOT NULL,
-        P3_5 INTEGER NOT NULL,
-        P3_6 INTEGER NOT NULL,
-        P3_7 INTEGER NOT NULL,
-        P4_1 INTEGER NOT NULL,
-        P4_2 INTEGER NOT NULL,
-        P4_3 INTEGER NOT NULL,
-        P5_1 INTEGER NOT NULL,
-        P5_2 INTEGER NOT NULL,
-        P5_3 INTEGER NOT NULL,
-        P5_4 INTEGER NOT NULL,
-        P5_5 INTEGER NOT NULL,
-        P6_1 INTEGER NOT NULL,
-        P6_2 INTEGER NOT NULL,
-        P6_3 INTEGER NOT NULL,
-        P6_4 INTEGER NOT NULL,
-        P6_5 INTEGER NOT NULL,
-        P7_1 INTEGER NOT NULL,
-        P7_2 INTEGER NOT NULL,
-        P7_3 INTEGER NOT NULL,
-        P7_4 INTEGER NOT NULL,
-        P7_5 INTEGER NOT NULL,
-        P7_6 INTEGER NOT NULL,
-        P7_7 INTEGER NOT NULL,
-        P7_8 INTEGER NOT NULL,
-        P7_9 INTEGER NOT NULL,
-        P8_1 INTEGER NOT NULL,
-        P8_2 INTEGER NOT NULL,
-        P8_3 INTEGER NOT NULL,
-        P8_4 INTEGER NOT NULL,
-        P8_5 INTEGER NOT NULL
+        P1_1 INTEGER,
+        P1_2 INTEGER,
+        P1_3 INTEGER,
+        P1_4 INTEGER,
+        P1_5 INTEGER,
+        P2_1 INTEGER,
+        P2_2 INTEGER,
+        P2_3 INTEGER,
+        P2_4 INTEGER,
+        P2_5 INTEGER,
+        P2_6 INTEGER,
+        P2_7 INTEGER,
+        P3_1 INTEGER,
+        P3_2 INTEGER,
+        P3_3 INTEGER,
+        P3_4 INTEGER,
+        P3_5 INTEGER,
+        P3_6 INTEGER,
+        P3_7 INTEGER,
+        P4_1 INTEGER,
+        P4_2 INTEGER,
+        P4_3 INTEGER,
+        P5_1 INTEGER,
+        P5_2 INTEGER,
+        P5_3 INTEGER,
+        P5_4 INTEGER,
+        P5_5 INTEGER,
+        P6_1 INTEGER,
+        P6_2 INTEGER,
+        P6_3 INTEGER,
+        P6_4 INTEGER,
+        P6_5 INTEGER,
+        P7_1 INTEGER,
+        P7_2 INTEGER,
+        P7_3 INTEGER,
+        P7_4 INTEGER,
+        P7_5 INTEGER,
+        P7_6 INTEGER,
+        P7_7 INTEGER,
+        P7_8 INTEGER,
+        P7_9 INTEGER,
+        P8_1 INTEGER,
+        P8_2 INTEGER,
+        P8_3 INTEGER,
+        P8_4 INTEGER,
+        P8_5 INTEGER
     );"""
     conn = sqlite3.connect(dataBasePath)
     if conn is not None:
         try:
             create_table(conn, sql_create_studentdata_table)
         except Error as e:
-            print(e)
+            ui.notify(
+                e,
+                position="center",
+                type="negative",
+                close_button="OK",
+            )
     conn = sqlite3.connect(dataBasePath)
     if conn is not None:
         try:
             create_table(conn, sql_create_brailledata_table)
         except Error as e:
-            print(e)
+            ui.notify(
+                e,
+                position="center",
+                type="negative",
+                close_button="OK",
+            )
     conn = sqlite3.connect(dataBasePath)
     if conn is not None:
         try:
             create_table(conn, sql_create_screenreaderdata_table)
         except Error as e:
-            print(e)
+            ui.notify(
+                e,
+                position="center",
+                type="negative",
+                close_button="OK",
+            )
     conn = sqlite3.connect(dataBasePath)
     if conn is not None:
         try:
             create_table(conn, sql_create_abacusdata_table)
         except Error as e:
-            print(e)
+            ui.notify(
+                e,
+                position="center",
+                type="negative",
+                close_button="OK",
+            )
     conn = sqlite3.connect(dataBasePath)
     if conn is not None:
         try:
             create_table(conn, sql_create_cvidata_table)
         except Error as e:
-            print(e)
+            ui.notify(
+                e,
+                position="center",
+                type="negative",
+                close_button="OK",
+            )
     conn = sqlite3.connect(dataBasePath)
     if conn is not None:
         try:
             create_table(conn, sql_create_iosdata_table)
         except Error as e:
-            print(e)
+            ui.notify(
+                e,
+                position="center",
+                type="negative",
+                close_button="OK",
+            )
     conn = sqlite3.connect(dataBasePath)
     if conn is not None:
         try:
             create_table(conn, sql_create_bntdata_table)
         except Error as e:
-            print(e)
+            ui.notify(
+                e,
+                position="center",
+                type="negative",
+                close_button="OK",
+            )
     conn = sqlite3.connect(dataBasePath)
     if conn is not None:
         try:
             create_table(conn, sql_create_elemdigitalliteracydata_table)
         except Error as e:
-            print(e)
+            ui.notify(
+                e,
+                position="center",
+                type="negative",
+                close_button="OK",
+            )
     conn = sqlite3.connect(dataBasePath)
     if conn is not None:
         try:
             create_table(conn, sql_create_hsdigitalliteracydata_table)
         except Error as e:
-            print(e)
+            ui.notify(
+                e,
+                position="center",
+                type="negative",
+                close_button="OK",
+            )

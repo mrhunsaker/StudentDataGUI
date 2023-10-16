@@ -33,8 +33,8 @@ def frame(navtitle: str):
     """Custom page frame to share the same styling and behavior
     across all pages"""
     ui.colors(
-            primary="#ffc8dd", secondary="#cdb4db", accent="#bde0fe", positive="#a2d2ff"
-            )
+        primary="#ffc8dd", secondary="#cdb4db", accent="#bde0fe", positive="#a2d2ff"
+    )
     with ui.header().classes("justify-between text-black"):
         with ui.row().classes("no-wrap text-l font-bold text-black"):
             ui.label(navtitle).classes("no-wrap text-2xl text-grey-8 font-bold ")
@@ -47,14 +47,14 @@ def frame(navtitle: str):
     ##############################################################################
     with ui.footer(value=True) as footer:
         with ui.row().classes(
-                "w-screen no-wrap justify-center items-center text-l font-bold"
-                ):
+            "w-screen no-wrap justify-center items-center text-l font-bold"
+        ):
             ui.label("Copyright © 2023 Michael Ryan Hunsaker, M.Ed., Ph.D.").classes(
-                    "justify-center items-center text-grey-8"
-                    )
+                "justify-center items-center text-grey-8"
+            )
         with ui.row().classes(
-                "w-screen no-wrap justify-center items-center text-l font-bold text-grey-8"
-                ):
+            "w-screen no-wrap justify-center items-center text-l font-bold text-grey-8"
+        ):
             ui.label(
-                    "Report Bugs or Request Features by emailing hunsakerconsulting@gmail.com"
-                    ).classes("justify-center items-center")
+                "Report Bugs or Request Features by emailing hunsakerconsulting@gmail.com"
+            ).classes("justify-center items-center")

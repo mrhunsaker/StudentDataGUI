@@ -4,22 +4,22 @@
 Program designed to be a data collection and instructional tool for
 teachers of students with Visual Impairments
 """
-#########################################################################
-#    Copyright 2023 Michael Ryan Hunsaker, M.Ed., Ph.D.                 #
-#    email: hunsakerconsulting@gmail.com                                #
-#                                                                       #
-#                                                                       #
-#    Licensed under the Apache License, Version 2.0 (the "License");    #
-#    you may not use this file except in compliance with the License.   #
-#    You may obtain a copy of the License at                            #
-#    http://www.apache.org/licenses/LICENSE-2.0                         #
-#                                                                       #
-#    Unless Required by applicable law or agreed to in writing,         #
-#    software distributed under the License is distributed on an        #
-#    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,       #
-#    either express or  implied.  See the License for the specific      #
-#   language governing permissions and limitations under the License.   #
-#########################################################################
+########################################################################
+#    Copyright 2023 Michael Ryan Hunsaker, M.Ed., Ph.D.                #
+#    email: hunsakerconsulting@gmail.com                               #
+#                                                                      #
+#                                                                      #
+#    Licensed under the Apache License, Version 2.0 (the "License");   #
+#    you may not use this file except in compliance with the License.  #
+#    You may obtain a copy of the License at                           #
+#    http://www.apache.org/licenses/LICENSE-2.0                        #
+#                                                                      #
+#    Unless Required by applicable law or agreed to in writing,        #
+#    software distributed under the License is distributed on an       #
+#    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,      #
+#    either express or  implied.  See the License for the specific     #
+#   language governing permissions and limitations under the License.  #
+########################################################################
 
 import os
 import sys
@@ -30,9 +30,25 @@ from screeninfo import get_monitors
 module_path = os.path.abspath(os.getcwd())
 if module_path not in sys.path:
     sys.path.append(module_path)
+from appTheming import theme
+from appHelpers.helpers import (
+    createFolderHierarchy,
+    dataBasePath,
+    warningmessage,
+    set_user_dir,
+    create_roster,
+)
+from appHelpers.sqlgenerate import create_connection, createTables
+
+set_user_dir()
+create_roster()
+createFolderHierarchy()
+create_connection(dataBasePath)
+createTables()
+sys.excepthook = warningmessage
 
 from appPages import abacus
-from appPages import anecdotalnotes
+from appPages import sessionnotes
 from appPages import braille
 from appPages import braillenote
 from appPages import contactlog
@@ -40,15 +56,8 @@ from appPages import cvi
 from appPages import homepage
 from appPages import InstructionalMaterials
 from appPages import ios
+from appPages import observations
 from appPages import screenreader
-from appTheming import theme
-from appHelpers.helpers import createFolderHierarchy, dataBasePath, warningmessage
-from appHelpers.sqlgenerate import create_connection, createTables
-
-createFolderHierarchy()
-create_connection(dataBasePath)
-createTables()
-sys.excepthook = warningmessage
 
 
 @ui.page("/")
@@ -60,7 +69,8 @@ def index_page() -> None:
 
 contactlog.create()
 abacus.create()
-anecdotalnotes.create()
+sessionnotes.create()
+observations.create()
 braille.create()
 braillenote.create()
 cvi.create()
@@ -70,23 +80,21 @@ InstructionalMaterials.create()
 
 with ui.footer(value=True) as footer:
     with ui.row().classes(
-            "w-screen no-wrap justify-center items-center text-l font-bold"
-            ):
-        ui.label("Copyright © 2023 Michael Ryan Hunsaker, M.Ed., Ph.D.").classes("justify-center items-center")
-    with ui.row().classes("w-screen no-wrap justify-center items-center text-l font-bold"):
+        "w-screen no-wrap justify-center items-center text-l font-bold"
+    ):
         ui.label(
-                "Report Bugs or Request Features by emailing hunsakerconsulting@gmail.com"
-                ).classes("justify-center items-center")
+            "Copyright © 2023 Michael Ryan Hunsaker, M.Ed., Ph.D.\nReport Bugs or Request Features by emailing hunsakerconsulting@gmail.com"
+        ).classes("justify-center items-center")
 
 MONITOR = ""
 for MONITOR in get_monitors():
     SCREENRESOLUTION = "{str(MONITOR.width)}x{str(MONITOR.height)}"
 
 ui.run(
-        native=True,
-        reload=False,
-        dark=False,
-        title="Student Skills Progressions",
-        fullscreen=False,
-        window_size=(MONITOR.width, MONITOR.height - 72),
-        )
+    native=True,
+    reload=False,
+    dark=False,
+    title="Student Skills Progressions",
+    fullscreen=False,
+    window_size=(MONITOR.width, MONITOR.height - 72),
+)

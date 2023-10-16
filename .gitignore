@@ -134,3 +134,5 @@ dmypy.json
 # Poetry; Since everything to build the project exists between the pyproject.toml and requirements.txt file
 poetry.lock
 
+# For privacy, I do not sync my Student roster
+appHelpers/roster.py

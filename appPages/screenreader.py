@@ -44,7 +44,9 @@ def create() -> None:
     def screenreaderskills() -> None:
         with theme.frame("- SCREENREADER SKILLS -"):
             ui.label("SCREENREADER SKILLS").classes("text-h4 text-grey-8")
-            u_studentname = ui.select(options=students, value="DonaldChamberlain").classes("hidden")
+            u_studentname = ui.select(
+                options=students, value="DonaldChamberlain"
+            ).classes("hidden")
             # ASSIGN VARIABLES
             date = ui.date().classes("hidden")
             u_screenreader_trial11 = ui.number().classes("hidden")
@@ -83,7 +85,6 @@ def create() -> None:
                 :type event:
                 """
                 studentname = u_studentname.value
-                date = datenow
                 screenreader_trial11 = int(u_screenreader_trial11.value)
                 screenreader_trial12 = int(u_screenreader_trial12.value)
                 screenreader_trial13 = int(u_screenreader_trial13.value)
@@ -154,7 +155,9 @@ def create() -> None:
                 with open(tmppath, "w", encoding="utf8") as filename:
                     json.dump(screenreader_dictionary, filename)
 
-                    tmppath = Path(USER_DIR).joinpath("StudentDatabase", "StudentDataFiles", "Filenames.txt")
+                    tmppath = Path(USER_DIR).joinpath(
+                        "StudentDatabase", "StudentDataFiles", "Filenames.txt"
+                    )
                 with open(tmppath, "a", encoding="utf8") as filename:
                     tmppath = Path(USER_DIR).joinpath(
                         "StudentDatabase",
@@ -293,9 +296,8 @@ def create() -> None:
                 df = df_student.drop(columns=["ID", "STUDENTNAME"])
                 print(df)
                 df = df.rename(columns={"DATE": "date"})
-                df['date'] = df['date'].astype('string')
-                df['date'] = pd.to_datetime(df['date'], format=date_fmt)
-                df['date'].dtypes
+                df["date"] = df["date"].astype("string")
+                df["date"] = pd.to_datetime(df["date"], format=date_fmt)
                 df = df.set_index("date")
                 print(df)
                 df = df.sort_values(by="date")
@@ -1039,19 +1041,29 @@ def create() -> None:
                 options=students,
                 with_input=True,
                 on_change=lambda e: ui.notify(e.value),
-            ).bind_value(
-                u_studentname, "value"
-            ).classes("w-[300px]").props(
+            ).bind_value(u_studentname, "value").classes("w-[300px]").props(
                 'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
-            ).tooltip("Type Student Name, it will autocomplete AS you type")
-        with ui.input("Date").classes("w-[300px]").props('aria-label="Date. Please type in date using the YYYY-MM-DD format"').tooltip("Date. Please type in date using the YYYY-MM-DD format") as date:
+            ).tooltip(
+                "Type Student Name, it will autocomplete AS you type"
+            )
+        with ui.input("Date").classes("w-[300px]").props(
+            'aria-label="Date. Please type in date using the YYYY-MM-DD format"'
+        ).tooltip("Date. Please type in date using the YYYY-MM-DD format") as date:
             with date.add_slot("append"):
-                ui.icon("edit_calendar").on("click", lambda: menu.open()).classes("cursor-pointer")
+                ui.icon("edit_calendar").on("click", lambda: menu.open()).classes(
+                    "cursor-pointer"
+                )
             with ui.menu() as menu:
                 ui.date().bind_value(date)
         with ui.row().classes("w-screen no-wrap py-4"):
-            ui.label("RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent").props('aria-label="RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent" content-center')
-            ui.input().props('aria-label="RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent" content-center').classes("sr-only")
+            ui.label(
+                "RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent"
+            ).props(
+                'aria-label="RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent" content-center'
+            )
+            ui.input().props(
+                'aria-label="RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent" content-center'
+            ).classes("sr-only")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.label("PHASE 1: READING").classes("justify-center items-center")
             ui.input().props('aria-label="PHASE 1: READING"').classes("sr-only")
@@ -1062,54 +1074,52 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_screenreader_trial11.set_value(e.value),
-            ).classes(
-                "w-[600px]"
-            ).props('aria-label="1.1 Turn on and off the screen reader"')
+            ).classes("w-[600px]").props(
+                'aria-label="1.1 Turn on and off the screen reader"'
+            )
         ui.number(
             label="1.2 Utilize modifier keys such as ctrl alt and shift",
             min=0,
             max=3,
             format="%.0f",
             on_change=lambda e: u_screenreader_trial12.set_value(e.value),
-        ).classes(
-            "w-[600px]"
-        ).props('aria-label="1.2 Utilize modifier keys such as ctrl alt and shift"')
+        ).classes("w-[600px]").props(
+            'aria-label="1.2 Utilize modifier keys such as ctrl alt and shift"'
+        )
         ui.number(
             label="1.3 Read text using a variety of reading commands",
             min=0,
             max=3,
             format="%.0f",
             on_change=lambda e: u_screenreader_trial13.set_value(e.value),
-        ).classes(
-            "w-[600px]"
-        ).props('aria-label="1.3 Read text using a variety of reading commands"')
+        ).classes("w-[600px]").props(
+            'aria-label="1.3 Read text using a variety of reading commands"'
+        )
         ui.number(
             label="1.4 Identify the titles and section titles of documents with Headings",
             min=0,
             max=3,
             format="%.0f",
             on_change=lambda e: u_screenreader_trial14.set_value(e.value),
-        ).classes(
-            "w-[600px]"
-        ).props('aria-label="1.4 Identify the titles and section titles of documents with Headings"')
+        ).classes("w-[600px]").props(
+            'aria-label="1.4 Identify the titles and section titles of documents with Headings"'
+        )
         ui.number(
             label="1.5 Access documents open and close programs navigate to the  desktop",
             min=0,
             max=3,
             format="%.0f",
             on_change=lambda e: u_screenreader_trial15.set_value(e.value),
-        ).classes(
-            "w-[600px]"
-        ).props('aria-label="1.5 Access documents open and close programs  navigate to the  desktop"')
+        ).classes("w-[600px]").props(
+            'aria-label="1.5 Access documents open and close programs  navigate to the  desktop"'
+        )
         ui.number(
             label="1.6 Switch Program Focus",
             min=0,
             max=3,
             format="%.0f",
             on_change=lambda e: u_screenreader_trial16.set_value(e.value),
-        ).classes(
-            "w-[600px]"
-        ).props('aria-label="1.6 Switch Program Focus"')
+        ).classes("w-[600px]").props('aria-label="1.6 Switch Program Focus"')
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.label("PHASE 2: WRITING").classes("justify-center items-center")
             ui.input().props('aria-label="PHASE 2: WRITING"').classes("sr-only")
@@ -1120,38 +1130,38 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_screenreader_trial21.set_value(e.value),
-            ).classes(
-                "w-[600px]"
-            ).props('aria-label="2.1 Type with all alphanumeric keys on the keyboard."')
+            ).classes("w-[600px]").props(
+                'aria-label="2.1 Type with all alphanumeric keys on the keyboard."'
+            )
         ui.number(
             label="2.2 Navigate to and change screen reader settings",
             min=0,
             max=3,
             format="%.0f",
             on_change=lambda e: u_screenreader_trial22.set_value(e.value),
-        ).classes(
-            "w-[600px]"
-        ).props('aria-label="2.2 Navigate to and change screen reader settings"')
+        ).classes("w-[600px]").props(
+            'aria-label="2.2 Navigate to and change screen reader settings"'
+        )
         ui.number(
             label="2.3 Write and edit documents using a basic understanding of cursor placement",
             min=0,
             max=3,
             format="%.0f",
             on_change=lambda e: u_screenreader_trial23.set_value(e.value),
-        ).classes(
-            "w-[600px]"
-        ).props('aria-label="2.3 Write and edit documents using a basic understanding of cursor placement"')
+        ).classes("w-[600px]").props(
+            'aria-label="2.3 Write and edit documents using a basic understanding of cursor placement"'
+        )
         ui.number(
             label="2.4. Select copy and paste text",
             min=0,
             max=3,
             format="%.0f",
             on_change=lambda e: u_screenreader_trial24.set_value(e.value),
-        ).classes(
-            "w-[600px]"
-        ).props('aria-label="2.4. Select copy and paste text"')
+        ).classes("w-[600px]").props('aria-label="2.4. Select copy and paste text"')
         with ui.row().classes("w-screen no-wrap py-4"):
-            ui.label("PHASE 3: USING THE INTERNET").classes("justify-center items-center")
+            ui.label("PHASE 3: USING THE INTERNET").classes(
+                "justify-center items-center"
+            )
         ui.input().props('aria-label="PHASE 3: USING THE INTERNET"').classes("sr-only")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
@@ -1160,63 +1170,59 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_screenreader_trial31.set_value(e.value),
-            ).classes(
-                "w-[600px]"
-            ).props('aria-label="3.1 Define common element types on the internet such as Headings or Buttons"')
+            ).classes("w-[600px]").props(
+                'aria-label="3.1 Define common element types on the internet such as Headings or Buttons"'
+            )
         ui.number(
             label="3.2 identify each element by type",
             min=0,
             max=3,
             format="%.0f",
             on_change=lambda e: u_screenreader_trial32.set_value(e.value),
-        ).classes(
-            "w-[600px]"
-        ).props('aria-label="3.2 identify each element by type."')
+        ).classes("w-[600px]").props('aria-label="3.2 identify each element by type."')
         ui.number(
             label="3.3 navigate to the address bar",
             min=0,
             max=3,
             format="%.0f",
             on_change=lambda e: u_screenreader_trial33.set_value(e.value),
-        ).classes(
-            "w-[600px]"
-        ).props('aria-label="3.3 navigate to the address bar"')
+        ).classes("w-[600px]").props('aria-label="3.3 navigate to the address bar"')
         ui.number(
             label="3.4 Use the “Tab” key to navigate to the next clickable object",
             min=0,
             max=3,
             format="%.0f",
             on_change=lambda e: u_screenreader_trial34.set_value(e.value),
-        ).classes(
-            "w-[600px]"
-        ).props('aria-label="3.4 Use the “Tab” key to navigate to the next clickable object"')
+        ).classes("w-[600px]").props(
+            'aria-label="3.4 Use the “Tab” key to navigate to the next clickable object"'
+        )
         ui.number(
             label="3.5 Navigate by “Quick Keys” (h for heading b for button and u for link)",
             min=0,
             max=3,
             format="%.0f",
             on_change=lambda e: u_screenreader_trial35.set_value(e.value),
-        ).classes(
-            "w-[600px]"
-        ).props('aira-label="3.5 Navigate by “Quick Keys” (h for heading b for button and u for link)"')
+        ).classes("w-[600px]").props(
+            'aira-label="3.5 Navigate by “Quick Keys” (h for heading b for button and u for link)"'
+        )
         ui.number(
             label="3.6 Use Elements Lists on a website to navigate by element type",
             min=0,
             max=3,
             format="%.0f",
             on_change=lambda e: u_screenreader_trial36.set_value(e.value),
-        ).classes(
-            "w-[600px]"
-        ).props('aria-label="3.6 Use Elements Lists on a website to navigate by element type"')
+        ).classes("w-[600px]").props(
+            'aria-label="3.6 Use Elements Lists on a website to navigate by element type"'
+        )
         ui.number(
             label="3.7 Justify why he/she/they selected a particular method xfor the situation",
             min=0,
             max=3,
             format="%.0f",
             on_change=lambda e: u_screenreader_trial37.set_value(e.value),
-        ).classes(
-            "w-[600px]"
-        ).props('aria-label="3.7 Justify why he/she/they selected a particular method for the situation"')
+        ).classes("w-[600px]").props(
+            'aria-label="3.7 Justify why he/she/they selected a particular method for the situation"'
+        )
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="3.8 Switch tab focus",
@@ -1224,39 +1230,39 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_screenreader_trial38.set_value(e.value),
-            ).classes(
-                "w-[600px]"
-            ).props('aria-label="3.8 Switch tab focus"')
+            ).classes("w-[600px]").props('aria-label="3.8 Switch tab focus"')
         ui.number(
             label="3.9 Switch between screen reader modes",
             min=0,
             max=3,
             format="%.0f",
             on_change=lambda e: u_screenreader_trial39.set_value(e.value),
-        ).classes(
-            "w-[600px]"
-        ).props('aria-label="3.9 Switch between screen reader modes"')
+        ).classes("w-[600px]").props(
+            'aria-label="3.9 Switch between screen reader modes"'
+        )
         ui.number(
             label="3.10 Navigate a table",
             min=0,
             max=3,
             format="%.0f",
             on_change=lambda e: u_screenreader_trial310.set_value(e.value),
-        ).classes(
-            "w-[600px]"
-        ).props('aria-label="3.10 Navigate a table"')
+        ).classes("w-[600px]").props('aria-label="3.10 Navigate a table"')
         ui.number(
             label="3.11 Develop a navigation sequence to access an unfamiliar website",
             min=0,
             max=3,
             format="%.0f",
             on_change=lambda e: u_screenreader_trial311.set_value(e.value),
-        ).classes(
-            "w-[600px]"
-        ).props('aria-label="3.11 Develop a navigation sequence to access an unfamiliar website"')
+        ).classes("w-[600px]").props(
+            'aria-label="3.11 Develop a navigation sequence to access an unfamiliar website"'
+        )
         with ui.row().classes("w-screen no-wrap py-4"):
-            ui.label("PHASE 4: NAVIGATING AND FILE MANAGEMENT").classes("justify-center items-center")
-        ui.input().props('aria-label="PHASE 4: NAVIGATING AND FILE MANAGEMENT"').classes("sr-only")
+            ui.label("PHASE 4: NAVIGATING AND FILE MANAGEMENT").classes(
+                "justify-center items-center"
+            )
+        ui.input().props(
+            'aria-label="PHASE 4: NAVIGATING AND FILE MANAGEMENT"'
+        ).classes("sr-only")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="4.1 Be able to save and open files using File Explorer",
@@ -1264,63 +1270,61 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_screenreader_trial41.set_value(e.value),
-            ).classes(
-                "w-[600px]"
-            ).props('aria-label="4.1 Be able to save and open files using File Explorer."')
+            ).classes("w-[600px]").props(
+                'aria-label="4.1 Be able to save and open files using File Explorer."'
+            )
         ui.number(
             label="4.2 Create folders and move files in File Explorer",
             min=0,
             max=3,
             format="%.0f",
             on_change=lambda e: u_screenreader_trial42.set_value(e.value),
-        ).classes(
-            "w-[600px]"
-        ).props('aria-label="4.2 Create folders and move files in File Explorer"')
+        ).classes("w-[600px]").props(
+            'aria-label="4.2 Create folders and move files in File Explorer"'
+        )
         ui.number(
             label="4.3 Navigate a cloud-based file management system (eg: Google Drive)",
             min=0,
             max=3,
             format="%.0f",
             on_change=lambda e: u_screenreader_trial43.set_value(e.value),
-        ).classes(
-            "w-[600px]"
-        ).props('aria-label="4.3 Navigate a cloud-based file management system (eg: Google Drive)"')
+        ).classes("w-[600px]").props(
+            'aria-label="4.3 Navigate a cloud-based file management system (eg: Google Drive)"'
+        )
         ui.number(
             label="4.4 Download and save material from the internet",
             min=0,
             max=3,
             format="%.0f",
             on_change=lambda e: u_screenreader_trial44.set_value(e.value),
-        ).classes(
-            "w-[600px]"
-        ).props('aria-label="4.4 Download and save material from the internet"')
+        ).classes("w-[600px]").props(
+            'aria-label="4.4 Download and save material from the internet"'
+        )
         ui.number(
             label="4.5 Extract zipped folders",
             min=0,
             max=3,
             format="%.0f",
             on_change=lambda e: u_screenreader_trial45.set_value(e.value),
-        ).classes(
-            "w-[600px]"
-        ).props('aria-label="4.5 Extract zipped folders"')
+        ).classes("w-[600px]").props('aria-label="4.5 Extract zipped folders"')
         ui.number(
             label="4.6 Utilize the virtual cursor and mouse keys",
             min=0,
             max=3,
             format="%.0f",
             on_change=lambda e: u_screenreader_trial46.set_value(e.value),
-        ).classes(
-            "w-[600px]"
-        ).props('aria-label="4.6 Utilize the virtual cursor and mouse keys"')
+        ).classes("w-[600px]").props(
+            'aria-label="4.6 Utilize the virtual cursor and mouse keys"'
+        )
         ui.number(
             label="4.7 To use OCR features to read inaccessible material",
             min=0,
             max=3,
             format="%.0f",
             on_change=lambda e: u_screenreader_trial47.set_value(e.value),
-        ).classes(
-            "w-[600px]"
-        ).props('aria-label="4.7 To use OCR features to read inaccessible material"')
+        ).classes("w-[600px]").props(
+            'aria-label="4.7 To use OCR features to read inaccessible material"'
+        )
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.button("SAVE", color="#172554", on_click=save).classes("text-white")
         ui.button("GRAPH", color="#172554", on_click=graph).classes("text-white")

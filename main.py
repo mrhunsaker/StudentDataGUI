@@ -31,7 +31,13 @@ module_path = os.path.abspath(os.getcwd())
 if module_path not in sys.path:
     sys.path.append(module_path)
 from appTheming import theme
-from appHelpers.helpers import createFolderHierarchy, dataBasePath, warningmessage, USER_DIR, set_user_dir, create_roster
+from appHelpers.helpers import (
+    createFolderHierarchy,
+    dataBasePath,
+    warningmessage,
+    set_user_dir,
+    create_roster,
+)
 from appHelpers.sqlgenerate import create_connection, createTables
 
 set_user_dir()
@@ -53,6 +59,7 @@ from appPages import ios
 from appPages import observations
 from appPages import screenreader
 
+
 @ui.page("/")
 def index_page() -> None:
     """Opens Homepage for App"""
@@ -72,8 +79,12 @@ screenreader.create()
 InstructionalMaterials.create()
 
 with ui.footer(value=True) as footer:
-    with ui.row().classes("w-screen no-wrap justify-center items-center text-l font-bold"):
-        ui.label("Copyright © 2023 Michael Ryan Hunsaker, M.Ed., Ph.D.\nReport Bugs or Request Features by emailing hunsakerconsulting@gmail.com").classes("justify-center items-center")
+    with ui.row().classes(
+        "w-screen no-wrap justify-center items-center text-l font-bold"
+    ):
+        ui.label(
+            "Copyright © 2023 Michael Ryan Hunsaker, M.Ed., Ph.D.\nReport Bugs or Request Features by emailing hunsakerconsulting@gmail.com"
+        ).classes("justify-center items-center")
 
 MONITOR = ""
 for MONITOR in get_monitors():

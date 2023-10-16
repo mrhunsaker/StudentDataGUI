@@ -59,8 +59,8 @@ max-line-length = 512
 ignore = ["E201", "E202", "E203", "E266", "E265", "E402", "E501"]
 
 [tool.black]
-line-length = 512
-target-version = ['py37', 'py38', 'py39', 'py310', 'py311']
+line-length = 88
+target-version = ['py37', 'py38', 'py39', 'py310', 'py311', 'py312']
 
 [tool.pylint.'MESSAGES CONTROL']
 max-line-length = 512

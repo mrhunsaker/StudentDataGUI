@@ -32,11 +32,10 @@ from sqlite3 import Error
 from nicegui import ui
 
 
-
 ##############################################################################
 # Set User Directory based on OS
 ##############################################################################
-date_fmt="%Y_%m_%d-%H%M%S_%p"
+date_fmt = "%Y_%m_%d-%H%M%S_%p"
 
 datenow = datetime.datetime.now().strftime("%Y_%m_%d-%H%M%S_%p")
 date = datetime.datetime.now().strftime("%Y_%m_%d-%H%M%S_%p")
@@ -47,6 +46,8 @@ os.chdir(os.path.dirname(os.path.abspath(__file__)))
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 USER_DIR = ""
 IMAGE_DIR = Path(ROOT_DIR).joinpath("images")
+
+
 ##############################################################################
 # Set User Directory based on OS
 ##############################################################################
@@ -68,16 +69,22 @@ def set_user_dir():
     else:
         print("Cannot determine OS Type")
     os.chdir(USER_DIR)
+
+
 set_user_dir()
 dataBasePath = Path(USER_DIR).joinpath("StudentDatabase", "students.db")
 
+
 def create_roster():
-    if not Path(ROOT_DIR).joinpath("appHelpers","roster").exists():
-        roster_path=Path(ROOT_DIR).joinpath("roster.py")
+    if not Path(ROOT_DIR).joinpath("appHelpers", "roster").exists():
+        roster_path = Path(ROOT_DIR).joinpath("roster.py")
         tmp_path = Path(USER_DIR).joinpath("roster.txt")
         shutil.copy2(tmp_path, roster_path)
+
+
 create_roster()
 from appHelpers.roster import students
+
 
 ##############################################################################
 # Error Logging
@@ -90,8 +97,12 @@ def warningmessage(exception_type, exception_value, exception_traceback):
     """
     i = ""
     message = "Please make sure all fields are selected / filled out properly\n\n"
-    tb = traceback.format_exception(exception_type, exception_value, exception_traceback)
-    log_path = Path(USER_DIR).joinpath("StudentDatabase", "errorLogs", f"logfile_{date}.log")
+    tb = traceback.format_exception(
+        exception_type, exception_value, exception_traceback
+    )
+    log_path = Path(USER_DIR).joinpath(
+        "StudentDatabase", "errorLogs", f"logfile_{date}.log"
+    )
     Path.touch(log_path)
     for i in tb:
         message += i
@@ -116,11 +127,23 @@ def createFolderHierarchy():
         if not Path(USER_DIR).joinpath("StudentDatabase", "StudentDataFiles").exists():
             tmppath = Path(USER_DIR).joinpath("StudentDatabase", "StudentDataFiles")
             Path.mkdir(tmppath, parents=True, exist_ok=True)
-        if not Path(USER_DIR).joinpath("StudentDatabase", "StudentDataFiles", name).exists():
-            tmppath = Path(USER_DIR).joinpath("StudentDatabase", "StudentDataFiles", name)
+        if (
+            not Path(USER_DIR)
+            .joinpath("StudentDatabase", "StudentDataFiles", name)
+            .exists()
+        ):
+            tmppath = Path(USER_DIR).joinpath(
+                "StudentDatabase", "StudentDataFiles", name
+            )
             Path.mkdir(tmppath, parents=True, exist_ok=True)
-        if not Path(USER_DIR).joinpath("StudentDatabase", "StudentDataFiles", name, "StudentDataSheets").exists():
-            tmppath = Path(USER_DIR).joinpath("StudentDatabase", "StudentDataFiles", name, "StudentDataSheets")
+        if (
+            not Path(USER_DIR)
+            .joinpath("StudentDatabase", "StudentDataFiles", name, "StudentDataSheets")
+            .exists()
+        ):
+            tmppath = Path(USER_DIR).joinpath(
+                "StudentDatabase", "StudentDataFiles", name, "StudentDataSheets"
+            )
             Path.mkdir(tmppath, parents=True, exist_ok=True)
         if (
             not Path(USER_DIR)
@@ -138,11 +161,27 @@ def createFolderHierarchy():
                 name,
                 "StudentInstructionMaterials",
             )
-        if not Path(USER_DIR).joinpath("StudentDatabase", "StudentDataFiles", name, "StudentVisionAssessments").exists():
-            tmppath = Path(USER_DIR).joinpath("StudentDatabase", "StudentDataFiles", name, "StudentVisionAssessments")
+        if (
+            not Path(USER_DIR)
+            .joinpath(
+                "StudentDatabase", "StudentDataFiles", name, "StudentVisionAssessments"
+            )
+            .exists()
+        ):
+            tmppath = Path(USER_DIR).joinpath(
+                "StudentDatabase", "StudentDataFiles", name, "StudentVisionAssessments"
+            )
             Path.mkdir(tmppath, parents=True, exist_ok=True)
-        if not Path(USER_DIR).joinpath("StudentDatabase", "StudentDataFiles", name, "omnibusDatabase.csv").exists():
-            tmppath = Path(USER_DIR).joinpath("StudentDatabase", "StudentDataFiles", name, "omnibusDatabase.csv")
+        if (
+            not Path(USER_DIR)
+            .joinpath(
+                "StudentDatabase", "StudentDataFiles", name, "omnibusDatabase.csv"
+            )
+            .exists()
+        ):
+            tmppath = Path(USER_DIR).joinpath(
+                "StudentDatabase", "StudentDataFiles", name, "omnibusDatabase.csv"
+            )
             Path.touch(tmppath)
             list_names = [
                 "student",
@@ -424,8 +463,14 @@ def createFolderHierarchy():
                 "AbacusSkillsProgression.html",
             )
             Path.touch(tmppath)
-        if not Path(USER_DIR).joinpath("StudentDatabase", "StudentDataFiles", name, "cviProgression.csv").exists():
-            tmppath = Path(USER_DIR).joinpath("StudentDatabase", "StudentDataFiles", name, "cviProgression.csv")
+        if (
+            not Path(USER_DIR)
+            .joinpath("StudentDatabase", "StudentDataFiles", name, "cviProgression.csv")
+            .exists()
+        ):
+            tmppath = Path(USER_DIR).joinpath(
+                "StudentDatabase", "StudentDataFiles", name, "cviProgression.csv"
+            )
             Path.touch(tmppath)
             list_names = [
                 "date",
@@ -444,8 +489,16 @@ def createFolderHierarchy():
                 writer_setup = writer(f_object)
                 writer_setup.writerow(list_names)
                 f_object.close()
-        if not Path(USER_DIR).joinpath("StudentDatabase", "StudentDataFiles", name, "cviProgression.html").exists():
-            tmppath = Path(USER_DIR).joinpath("StudentDatabase", "StudentDataFiles", name, "cviProgression.html")
+        if (
+            not Path(USER_DIR)
+            .joinpath(
+                "StudentDatabase", "StudentDataFiles", name, "cviProgression.html"
+            )
+            .exists()
+        ):
+            tmppath = Path(USER_DIR).joinpath(
+                "StudentDatabase", "StudentDataFiles", name, "cviProgression.html"
+            )
             Path.touch(tmppath)
         if (
             not Path(USER_DIR)
@@ -612,8 +665,14 @@ def createFolderHierarchy():
                 "elemdigitalliteracyProgression.html",
             )
             Path.touch(tmppath)
-        if not Path(USER_DIR).joinpath("StudentDatabase", "StudentDataFiles", name, "iosProgression.csv").exists():
-            tmppath = Path(USER_DIR).joinpath("StudentDatabase", "StudentDataFiles", name, "iosProgression.csv")
+        if (
+            not Path(USER_DIR)
+            .joinpath("StudentDatabase", "StudentDataFiles", name, "iosProgression.csv")
+            .exists()
+        ):
+            tmppath = Path(USER_DIR).joinpath(
+                "StudentDatabase", "StudentDataFiles", name, "iosProgression.csv"
+            )
             Path.touch(tmppath)
             list_names = [
                 "date",
@@ -665,11 +724,25 @@ def createFolderHierarchy():
                 writer_setup = writer(f_object)
                 writer_setup.writerow(list_names)
                 f_object.close()
-        if not Path(USER_DIR).joinpath("StudentDatabase", "StudentDataFiles", name, "iosProgression.html").exists():
-            tmppath = Path(USER_DIR).joinpath("StudentDatabase", "StudentDataFiles", name, "iosProgression.html")
+        if (
+            not Path(USER_DIR)
+            .joinpath(
+                "StudentDatabase", "StudentDataFiles", name, "iosProgression.html"
+            )
+            .exists()
+        ):
+            tmppath = Path(USER_DIR).joinpath(
+                "StudentDatabase", "StudentDataFiles", name, "iosProgression.html"
+            )
             Path.touch(tmppath)
-        if not Path(USER_DIR).joinpath("StudentDatabase", "StudentDataFiles", name, "bntProgression.csv").exists():
-            tmppath = Path(USER_DIR).joinpath("StudentDatabase", "StudentDataFiles", name, "bntProgression.csv")
+        if (
+            not Path(USER_DIR)
+            .joinpath("StudentDatabase", "StudentDataFiles", name, "bntProgression.csv")
+            .exists()
+        ):
+            tmppath = Path(USER_DIR).joinpath(
+                "StudentDatabase", "StudentDataFiles", name, "bntProgression.csv"
+            )
             Path.touch(tmppath)
             list_names = [
                 "date",
@@ -739,21 +812,35 @@ def createFolderHierarchy():
                 writer_setup = writer(f_object)
                 writer_setup.writerow(list_names)
                 f_object.close()
-        if not Path(USER_DIR).joinpath("StudentDatabase", "StudentDataFiles", name, "bntProgression.html").exists():
-            tmppath = Path(USER_DIR).joinpath("StudentDatabase", "StudentDataFiles", name, "bntProgression.html")
+        if (
+            not Path(USER_DIR)
+            .joinpath(
+                "StudentDatabase", "StudentDataFiles", name, "bntProgression.html"
+            )
+            .exists()
+        ):
+            tmppath = Path(USER_DIR).joinpath(
+                "StudentDatabase", "StudentDataFiles", name, "bntProgression.html"
+            )
             Path.touch(tmppath)
         sourceDir = Path(ROOT_DIR).joinpath("datasheets")
-        destinationDir = Path(USER_DIR).joinpath("StudentDatabase", "StudentDataFiles", name, "StudentDataSheets")
+        destinationDir = Path(USER_DIR).joinpath(
+            "StudentDatabase", "StudentDataFiles", name, "StudentDataSheets"
+        )
         files = os.listdir(sourceDir)
         for fileName in files:
             shutil.copy2(os.path.join(sourceDir, fileName), destinationDir)
         sourceDir = Path(ROOT_DIR).joinpath("instructionMaterials")
-        destinationDir = Path(USER_DIR).joinpath("StudentDatabase", "StudentDataFiles", name, "StudentInstructionMaterials")
+        destinationDir = Path(USER_DIR).joinpath(
+            "StudentDatabase", "StudentDataFiles", name, "StudentInstructionMaterials"
+        )
         files = os.listdir(sourceDir)
         for fileName in files:
             shutil.copy2(os.path.join(sourceDir, fileName), destinationDir)
         sourceDir = Path(ROOT_DIR).joinpath("visionAssessments")
-        destinationDir = Path(USER_DIR).joinpath("StudentDatabase", "StudentDataFiles", name, "StudentVisionAssessments")
+        destinationDir = Path(USER_DIR).joinpath(
+            "StudentDatabase", "StudentDataFiles", name, "StudentVisionAssessments"
+        )
         files = os.listdir(sourceDir)
         for fileName in files:
             shutil.copy2(os.path.join(sourceDir, fileName), destinationDir)

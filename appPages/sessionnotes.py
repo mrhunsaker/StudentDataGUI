@@ -27,7 +27,7 @@ from pathlib import Path
 
 from nicegui import app, ui
 
-from appHelpers.helpers import dataBasePath, datenow, USER_DIR, date_fmt, tasks
+from appHelpers.helpers import datenow, USER_DIR, tasks
 from appHelpers.roster import students
 from appTheming import theme
 
@@ -40,7 +40,9 @@ def create() -> None:
         with theme.frame("- SESSION NOTES -"):
             ui.label("SESSION NOTES").classes("text-h4 text-grey-8")
             # ASSIGN VARIABLES
-            u_studentname = ui.select(options=students, value="DonaldChamberlain").classes("hidden")
+            u_studentname = ui.select(
+                options=students, value="DonaldChamberlain"
+            ).classes("hidden")
             date = ui.date().classes("hidden")
             u_tasks = ui.select(options=tasks, value="Choose a Task").classes("hidden")
             u_anecdotalnotes = ui.textarea().classes("hidden")
@@ -62,7 +64,6 @@ def create() -> None:
                 :type event
                 """
                 studentname = u_studentname.value
-                date = datenow
                 anecdotalnotes = u_anecdotalnotes.value
                 task = u_tasks.value
                 trial01 = (str(int(u_trial01.value)),)
@@ -103,7 +104,9 @@ def create() -> None:
                 with open(tmppath, "w", encoding="utf-8") as filename:
                     json.dump(anecdotal_dictionary, filename)
 
-                    tmppath = Path(USER_DIR).joinpath("StudentDatabase", "StudentDataFiles", "Filenames.txt")
+                    tmppath = Path(USER_DIR).joinpath(
+                        "StudentDatabase", "StudentDataFiles", "Filenames.txt"
+                    )
                 with open(tmppath, "a", encoding="utf-8") as filename:
                     tmppath = Path(USER_DIR).joinpath(
                         "StudentDatabase",
@@ -120,21 +123,37 @@ def create() -> None:
                 options=students,
                 with_input=True,
                 on_change=lambda e: ui.notify(e.value),
-            ).bind_value(
-                u_studentname, "value"
-            ).classes("w-[300px]").props(
+            ).bind_value(u_studentname, "value").classes("w-[300px]").props(
                 'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
-            ).tooltip("Type Student Name, it will autocomplete as you type")
-        with ui.input("Date").classes("w-[300px]").props('aria-label="Date. Please type in date using the YYYY-MM-DD format"').tooltip("Date. Please type in date using the YYYY-MM-DD format") as date:
+            ).tooltip(
+                "Type Student Name, it will autocomplete as you type"
+            )
+        with ui.input("Date").classes("w-[300px]").props(
+            'aria-label="Date. Please type in date using the YYYY-MM-DD format"'
+        ).tooltip("Date. Please type in date using the YYYY-MM-DD format") as date:
             with date.add_slot("append"):
-                ui.icon("edit_calendar").on("click", lambda: menu.open()).classes("cursor-pointer")
+                ui.icon("edit_calendar").on("click", lambda: menu.open()).classes(
+                    "cursor-pointer"
+                )
             with ui.menu() as menu:
                 ui.date().bind_value(date)
         with ui.row().classes("w-screen no-wrap"):
-            ui.select(options=tasks, with_input=True, on_change=lambda e: ui.notify(e.value)).bind_value(u_tasks, "value").classes("w-[300px]").props('aria-label="Select Student from the Dropdown. It will autocomplete as you type"').tooltip("Type Taske, it will autocomplete as you type")
+            ui.select(
+                options=tasks, with_input=True, on_change=lambda e: ui.notify(e.value)
+            ).bind_value(u_tasks, "value").classes("w-[300px]").props(
+                'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
+            ).tooltip(
+                "Type Taske, it will autocomplete as you type"
+            )
         with ui.row().classes("w-screen no-wrap py-4"):
-            ui.label("RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent").props('aria-label="RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent" content-center')
-            ui.input().props('aria-label="RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent" content-center').classes("sr-only")
+            ui.label(
+                "RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent"
+            ).props(
+                'aria-label="RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent" content-center'
+            )
+            ui.input().props(
+                'aria-label="RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent" content-center'
+            ).classes("sr-only")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="Trial 1",
@@ -142,106 +161,86 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_trial01.set_value(e.value),
-            ).classes(
-                "w-[600px]"
-            ).props('aria-label="Trial 1"')
+            ).classes("w-[600px]").props('aria-label="Trial 1"')
             ui.number(
                 label="Trial 2",
                 min=0,
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_trial02.set_value(e.value),
-            ).classes(
-                "w-[600px]"
-            ).props('aria-label="Trial 2"')
+            ).classes("w-[600px]").props('aria-label="Trial 2"')
             ui.number(
                 label="Trial 3",
                 min=0,
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_trial03.set_value(e.value),
-            ).classes(
-                "w-[600px]"
-            ).props('aria-label="Trial 3"')
+            ).classes("w-[600px]").props('aria-label="Trial 3"')
             ui.number(
                 label="Trial 4",
                 min=0,
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_trial04.set_value(e.value),
-            ).classes(
-                "w-[600px]"
-            ).props('aria-label="Trial 4" ')
+            ).classes("w-[600px]").props('aria-label="Trial 4" ')
             ui.number(
                 label="Trial 5",
                 min=0,
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_trial05.set_value(e.value),
-            ).classes(
-                "w-[600px]"
-            ).props('aria-label="Trial 5" ')
+            ).classes("w-[600px]").props('aria-label="Trial 5" ')
             ui.number(
                 label="Trial 6",
                 min=0,
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_trial06.set_value(e.value),
-            ).classes(
-                "w-[600px]"
-            ).props('aria-label="Trial 6" ')
+            ).classes("w-[600px]").props('aria-label="Trial 6" ')
             ui.number(
                 label="Trial 7",
                 min=0,
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_trial07.set_value(e.value),
-            ).classes(
-                "w-[600px]"
-            ).props('aria-label="Trial 7" ')
+            ).classes("w-[600px]").props('aria-label="Trial 7" ')
             ui.number(
                 label="Trial 8",
                 min=0,
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_trial08.set_value(e.value),
-            ).classes(
-                "w-[600px]"
-            ).props('aria-label="Trial 8" ')
+            ).classes("w-[600px]").props('aria-label="Trial 8" ')
             ui.number(
                 label="Trial 9",
                 min=0,
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_trial09.set_value(e.value),
-            ).classes(
-                "w-[600px]"
-            ).props('aria-label="Trial 9" ')
+            ).classes("w-[600px]").props('aria-label="Trial 9" ')
             ui.number(
                 label="Trial 10",
                 min=0,
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_trial10.set_value(e.value),
-            ).classes(
-                "w-[600px]"
-            ).props('aria-label="Trial 10" ')
+            ).classes("w-[600px]").props('aria-label="Trial 10" ')
             ui.number(
                 label="Trial 11",
                 min=0,
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_trial11.set_value(e.value),
-            ).classes(
-                "w-[600px]"
-            ).props('aria-label="Trial 11" ')
+            ).classes("w-[600px]").props('aria-label="Trial 11" ')
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.textarea(
                 label="Input Anecdotal Notes In this Box and Press Save",
                 on_change=lambda e: u_anecdotalnotes.set_value(e.value),
-            ).classes(
-                "h-full h-min-[400px]"
-            ).props('cols=80 autogrow outlined aria-label="Please type anecdotal notes" square')
+            ).classes("h-full h-min-[400px]").props(
+                'cols=80 autogrow outlined aria-label="Please type anecdotal notes" square'
+            )
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.button("SAVE", color="#172554", on_click=save).classes("text-white")
-            ui.button("EXIT", color="#172554", on_click=app.shutdown).classes("text-white")
+            ui.button("EXIT", color="#172554", on_click=app.shutdown).classes(
+                "text-white"
+            )

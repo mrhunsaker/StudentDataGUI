@@ -26,7 +26,7 @@ from pathlib import Path
 
 from nicegui import app, ui
 
-from appHelpers.helpers import dataBasePath, datenow, USER_DIR, date_fmt
+from appHelpers.helpers import datenow, USER_DIR
 from appHelpers.roster import students
 from appTheming import theme
 
@@ -39,14 +39,22 @@ def create() -> None:
     def contactlog() -> None:
         with theme.frame("- CONTACT LOG -"):
             ui.label("CONTACT LOG").classes("text-h4 text-grey-8")
-            u_studentname = ui.select(options=students, value="DonaldChamberlain").classes("hidden")
+            u_studentname = ui.select(
+                options=students, value="DonaldChamberlain"
+            ).classes("hidden")
             date = ui.date().classes("hidden")
             u_guardianName = ui.input().classes("hidden")
-            u_contactMethod = ui.radio(["Phone", "Text", "In-Person", "Email"]).classes("hidden")
+            u_contactMethod = ui.radio(["Phone", "Text", "In-Person", "Email"]).classes(
+                "hidden"
+            )
             u_phoneNumber = ui.input().classes("hidden")
             u_emailAddress = ui.input().classes("hidden")
-            u_contactResponse = ui.radio(["Answered", "Left Message", "Unable to Leave Message", "Disconnected"]).classes("hidden")
-            u_contactGeneral = ui.radio(["IEP Related", "Discipline Related", "Student Requested"]).classes("hidden")
+            u_contactResponse = ui.radio(
+                ["Answered", "Left Message", "Unable to Leave Message", "Disconnected"]
+            ).classes("hidden")
+            u_contactGeneral = ui.radio(
+                ["IEP Related", "Discipline Related", "Student Requested"]
+            ).classes("hidden")
             u_contactSpecific = ui.radio(
                 [
                     "Schedule IEP Meeting",
@@ -63,7 +71,6 @@ def create() -> None:
                 :type event:
                 """
                 studentname = u_studentname.value
-                date = datenow
                 guardianName = u_guardianName.value
                 contactMethod = u_contactMethod.value
                 phoneNumber = u_phoneNumber.value
@@ -80,10 +87,23 @@ def create() -> None:
                     studentname,
                     studentdatabasename + ".json",
                 )
-                contactlog_dictionary = {"studentname": studentname, "date": datenow, "guardianName": guardianName, "contactMethod": contactMethod, "phoneNumber": phoneNumber, "emailAddress": emailAddress, "contactResponse": contactResponse, "contactGeneral": contactGeneral, "contactSpecific": contactSpecific, "contactNotes": contactNotes}
+                contactlog_dictionary = {
+                    "studentname": studentname,
+                    "date": datenow,
+                    "guardianName": guardianName,
+                    "contactMethod": contactMethod,
+                    "phoneNumber": phoneNumber,
+                    "emailAddress": emailAddress,
+                    "contactResponse": contactResponse,
+                    "contactGeneral": contactGeneral,
+                    "contactSpecific": contactSpecific,
+                    "contactNotes": contactNotes,
+                }
                 with open(tmppath, "w", encoding="utf-8") as filename:
                     json.dump(contactlog_dictionary, filename)
-                tmppath = Path(USER_DIR).joinpath("StudentDatabase", "StudentDataFiles", "Filenames.txt")
+                tmppath = Path(USER_DIR).joinpath(
+                    "StudentDatabase", "StudentDataFiles", "Filenames.txt"
+                )
                 with open(tmppath, "a", encoding="utf-8") as filename:
                     tmppath = Path(USER_DIR).joinpath(
                         "StudentDatabase",
@@ -99,72 +119,75 @@ def create() -> None:
                     type="positive",
                     close_button="OK",
                 )
-                
+
         # GUI Input
         with ui.row().classes("w-screen no-wrap py-4"):
-            ui.button("SAVE", color="#172554", on_click=save).classes("text-white")
-            ui.button("GRAPH", color="#172554", on_click=graph).classes("text-white")
-            ui.button("EXIT", color="#172554", on_click=app.shutdown).classes("text-white")
-        with ui.row().classes("w-full no-wrap py-4"):
-            ui.label().classes("w-[250px]")
-            ui.label("PARENT CONTACT LOG").classes("w-screen justify-center items-center text-lg font-bold")
-        with ui.row().classes("w-screen no-wrap py-4"):
             ui.label().classes("w-[50px]")
-            ui.label("STUDENT INFORMATION").classes("w-full justify-center items-center font-bold")
+            ui.label("STUDENT INFORMATION").classes(
+                "w-full justify-center items-center font-bold"
+            )
         with ui.row().classes("w-screen no-wrap"):
             ui.select(
                 options=students,
                 with_input=True,
                 on_change=lambda e: ui.notify(e.value),
-            ).bind_value(
-                u_studentname, "value"
-            ).classes("w-[300px]").props(
+            ).bind_value(u_studentname, "value").classes("w-[300px]").props(
                 'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
-            ).tooltip("Type Student Name, it will autocomplete AS you type")
-        with ui.input("Date").classes("w-[300px]").props('aria-label="Date. Please type in date using YYYY-MM-DD format"').tooltip("Date. Please type in date using the YYYY-MM-DD format") as date:
+            ).tooltip(
+                "Type Student Name, it will autocomplete AS you type"
+            )
+        with ui.input("Date").classes("w-[300px]").props(
+            'aria-label="Date. Please type in date using YYYY-MM-DD format"'
+        ).tooltip("Date. Please type in date using the YYYY-MM-DD format") as date:
             with date.add_slot("append"):
-                ui.icon("edit_calendar").on("click", lambda: menu.open()).classes("cursor-pointer")
+                ui.icon("edit_calendar").on("click", lambda: menu.open()).classes(
+                    "cursor-pointer"
+                )
         with ui.menu() as menu:
             ui.date().bind_value(date)
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.label().classes("w-[50px]")
-            ui.label("GUARDIAN INFORMATION").classes("w-screen justify-center items-center font-bold")
+            ui.label("GUARDIAN INFORMATION").classes(
+                "w-screen justify-center items-center font-bold"
+            )
         with ui.row().classes("w-screen no-wrap"):
             ui.input(
                 label="Guardian Name",
                 value="",
                 on_change=lambda e: u_guardianName.set_value(e.value),
-            ).classes("w-[600px]").props(
-                'aria-label="Guardian Name"'
-            ).tooltip("Guardian Name")
+            ).classes("w-[600px]").props('aria-label="Guardian Name"').tooltip(
+                "Guardian Name"
+            )
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.input(
                 label="Phone Number",
                 value="",
                 on_change=lambda e: u_phoneNumber.set_value(e.value),
-            ).classes("w-[600px]").props(
-                'aria-label="Phone Number"'
-            ).tooltip("Phone Number")
+            ).classes("w-[600px]").props('aria-label="Phone Number"').tooltip(
+                "Phone Number"
+            )
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.input(
                 label="Email Address",
                 value="",
                 on_change=lambda e: u_emailAddress.set_value(e.value),
-            ).classes("w-[600px]").props(
-                'aria-label="Email Address"'
-            ).tooltip("Email Address")
+            ).classes("w-[600px]").props('aria-label="Email Address"').tooltip(
+                "Email Address"
+            )
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.label().classes("w-[50px]")
-            ui.label("DETAILS OF CONTACT ATTEMPT").classes("w-screen justify-center items-center font-bold")
+            ui.label("DETAILS OF CONTACT ATTEMPT").classes(
+                "w-screen justify-center items-center font-bold"
+            )
         with ui.row().classes("w-screen no-wrap"):
             ui.label("Contact Method").classes("w-[50px]")
             ui.select(
                 options=["Phone", "Text", "In-Person", "Email"],
                 value="",
                 on_change=lambda e: u_contactMethod.set_value(e.value),
-            ).classes("w-[240px]").props(
-                'aria-label="Contact Method"'
-            ).tooltip("Contact Method")
+            ).classes("w-[240px]").props('aria-label="Contact Method"').tooltip(
+                "Contact Method"
+            )
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.label("Contact Response").classes("w-[50px]")
             ui.select(
@@ -176,12 +199,14 @@ def create() -> None:
                 ],
                 value="",
                 on_change=lambda e: u_contactResponse.set_value(e.value),
-            ).classes("w-[240px]").props(
-                'aria-label="Contact Response"'
-            ).tooltip("Contact Response")
+            ).classes("w-[240px]").props('aria-label="Contact Response"').tooltip(
+                "Contact Response"
+            )
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.label().classes("w-[50px]")
-            ui.label("TOPIC OF CONTACT").classes("w-screen justify-center items-center font-bold")
+            ui.label("TOPIC OF CONTACT").classes(
+                "w-screen justify-center items-center font-bold"
+            )
         with ui.row().classes("w-screen no-wrap"):
             ui.label("General Topic").classes("w-[50px]")
             ui.select(
@@ -190,7 +215,9 @@ def create() -> None:
                 on_change=lambda e: u_contactGeneral.set_value(e.value),
             ).classes("w-[240px]").props(
                 'aria-label="Reason for Contact - General Category"'
-            ).tooltip("Reason for Contact - General Category")
+            ).tooltip(
+                "Reason for Contact - General Category"
+            )
             ui.label("Specific Topic").classes("w-[50px]")
             ui.select(
                 options=[
@@ -203,7 +230,9 @@ def create() -> None:
                 on_change=lambda e: u_contactSpecific.set_value(e.value),
             ).classes("w-[240px]").props(
                 'aria-label="Reason for Contact - Specific Reason"'
-            ).tooltip("Reason for Contact - Specific Reason")
+            ).tooltip(
+                "Reason for Contact - Specific Reason"
+            )
         with ui.row().classes("w-screen no-wrap "):
             ui.textarea(
                 label="Contact Notes (if email please copy/paste email into the box)",
@@ -211,7 +240,11 @@ def create() -> None:
                 on_change=lambda e: u_contactNotes.set_value(e.value),
             ).classes("w-[640px]").props(
                 'aria-label="Contact Notes (if email please copy/paste email into the box)"'
-            ).tooltip("Contact Notes (if email please copy/paste email into the box)")
+            ).tooltip(
+                "Contact Notes (if email please copy/paste email into the box)"
+            )
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.button("SAVE", color="#172554", on_click=save).classes("text-white")
-            ui.button("EXIT", color="#172554", on_click=app.shutdown).classes("text-white")
+            ui.button("EXIT", color="#172554", on_click=app.shutdown).classes(
+                "text-white"
+            )

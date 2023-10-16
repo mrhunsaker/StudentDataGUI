@@ -31,9 +31,13 @@ def create() -> None:
     with theme.frame("- INSTRUCTIONAL MATERIALS -"):
         ui.label("Instructional Materials").classes("text-h4 font-bold text-grey-8")
         with ui.row().classes("w-full no-wrap"):
-            ui.label("MATERIALS").classes("text-h4 w-screen no-wrap py-4 text-black font-bold text-xl justify-center items-center")
+            ui.label("MATERIALS").classes(
+                "text-h4 w-screen no-wrap py-4 text-black font-bold text-xl justify-center items-center"
+            )
         with ui.row().classes("w-full no-wrap"):
-            ui.label("ABACUS").classes("text-h4 w-screen no-wrap font-bold text-black text-xl justify-center items-center")
+            ui.label("ABACUS").classes(
+                "text-h4 w-screen no-wrap font-bold text-black text-xl justify-center items-center"
+            )
         with ui.row().classes("w-full no-wrap py-4"):
             ui.link(
                 "Hadley Abacus Curriculum I",
@@ -71,7 +75,9 @@ def create() -> None:
                 new_tab=True,
             ).classes("text-left w-full align-left text-black font-bold")
         with ui.row().classes("w-full no-wrap"):
-            ui.label("BRAILLE").classes("text-h4 w-screen no-wrap font-bold text-black text-xl justify-center items-center")
+            ui.label("BRAILLE").classes(
+                "text-h4 w-screen no-wrap font-bold text-black text-xl justify-center items-center"
+            )
         with ui.row().classes("w-full no-wrap py-4"):
             ui.link(
                 "NLS-IMBT UEB Literary Braille",
@@ -102,7 +108,9 @@ def create() -> None:
                 "https://github.com/mrhunsaker/Materials/raw/main/instructionMaterials/NemethUEBContext.pdf",
             ).classes("text-left w-full text-black align-left font-bold")
         with ui.row().classes("w-full no-wrap"):
-            ui.label("SCREENREADER").classes("w-screen no-wrap font-bold text-black text-xl justify-center items-center")
+            ui.label("SCREENREADER").classes(
+                "w-screen no-wrap font-bold text-black text-xl justify-center items-center"
+            )
         with ui.row().classes("w-full no-wrap py-4"):
             ui.link(
                 "NVDA Trainings",
@@ -122,7 +130,9 @@ def create() -> None:
                 new_tab=True,
             ).classes("text-left w-full text-black align-left font-bold")
         with ui.row().classes("w-full no-wrap"):
-            ui.label("DATASHEETS").classes("text-h4 w-screen no-wrap content-center font-bold text-black text-xl")
+            ui.label("DATASHEETS").classes(
+                "text-h4 w-screen no-wrap content-center font-bold text-black text-xl"
+            )
         with ui.row().classes("w-full no-wrap py-4"):
             ui.link(
                 "Blank Vision Template",
@@ -142,7 +152,9 @@ def create() -> None:
                 new_tab=True,
             ).classes("text-left w-full text-black align-left font-bold")
         with ui.row().classes("w-full no-wrap"):
-            ui.label("ASSESSMENT FORMS").classes("text-h4 w-screen no-wrap py-4 font-bold text-black text-xl justify-center items-center")
+            ui.label("ASSESSMENT FORMS").classes(
+                "text-h4 w-screen no-wrap py-4 font-bold text-black text-xl justify-center items-center"
+            )
         with ui.row().classes("w-full no-wrap"):
             ui.link(
                 "Educational Vision Evaluation Forms",

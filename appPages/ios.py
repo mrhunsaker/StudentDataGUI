@@ -45,7 +45,9 @@ def create() -> None:
         with theme.frame("- iOS / iPad OS SKILLS -"):
             ui.label("iOS / iPad OS  SKILLS").classes("text-h4 text-grey-8")
             # ASSIGN VARIABLES
-            u_studentname = ui.select(options=students, value="DonaldChamberlain").classes("hidden")
+            u_studentname = ui.select(
+                options=students, value="DonaldChamberlain"
+            ).classes("hidden")
             date = ui.date().classes("hidden")
             u_ios_trial11 = ui.number().classes("hidden")
             u_ios_trial12 = ui.number().classes("hidden")
@@ -97,7 +99,6 @@ def create() -> None:
                 :type event
                 """
                 studentname = u_studentname.value
-                date = datenow
                 ios_trial11 = int(u_ios_trial11.value)
                 ios_trial12 = int(u_ios_trial12.value)
                 ios_trial13 = int(u_ios_trial13.value)
@@ -197,7 +198,9 @@ def create() -> None:
                 }
                 with open(tmppath, "w", encoding="utf-8") as filename:
                     json.dump(ios_dictionary, filename)
-                    tmppath = Path(USER_DIR).joinpath("StudentDatabase", "StudentDataFiles", "Filenames.txt")
+                    tmppath = Path(USER_DIR).joinpath(
+                        "StudentDatabase", "StudentDataFiles", "Filenames.txt"
+                    )
                     with open(tmppath, "a", encoding="utf-8") as filename:
                         tmppath = Path(USER_DIR).joinpath(
                             "StudentDatabase",
@@ -348,9 +351,8 @@ def create() -> None:
             df = df_student.drop(columns=["ID", "STUDENTNAME"])
             print(df)
             df = df.rename(columns={"DATE": "date"})
-            df['date'] = df['date'].astype('string')
-            df['date'] = pd.to_datetime(df['date'], format=date_fmt)
-            df['date'].dtypes
+            df["date"] = df["date"].astype("string")
+            df["date"] = pd.to_datetime(df["date"], format=date_fmt)
             df = df.set_index("date")
             print(df)
             print(df.dtypes)
@@ -1172,7 +1174,7 @@ def create() -> None:
                 type="positive",
                 close_button="OK",
             )
-        
+
         # GUI Input
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.button("GRAPH", color="#172554", on_click=graph).classes("text-white")
@@ -1183,21 +1185,31 @@ def create() -> None:
                 options=students,
                 with_input=True,
                 on_change=lambda e: ui.notify(e.value),
-            ).bind_value(
-                u_studentname, "value"
-            ).classes("w-[300px]").props(
+            ).bind_value(u_studentname, "value").classes("w-[300px]").props(
                 'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
-            ).tooltip("Type Student Name, it will autocomplete AS you type")
+            ).tooltip(
+                "Type Student Name, it will autocomplete AS you type"
+            )
         with ui.row().classes("w-screen no-wrap"):
-            with ui.input("Date").classes("w-[300px]").props('aria-label="Date. Please type in date using the YYYY-MM-DD format"') as date:
+            with ui.input("Date").classes("w-[300px]").props(
+                'aria-label="Date. Please type in date using the YYYY-MM-DD format"'
+            ) as date:
                 with date.add_slot("append"):
-                    ui.icon("edit_calendar").on("click", lambda: menu.open()).classes("cursor-pointer")
+                    ui.icon("edit_calendar").on("click", lambda: menu.open()).classes(
+                        "cursor-pointer"
+                    )
                 with ui.menu() as menu:
                     ui.date().bind_value(date)
 
         with ui.row().classes("w-screen no-wrap py-4"):
-            ui.label("RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent").props('aria-label="RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent" content-center')
-            ui.input().props('aria-label="RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent" content-center').classes("sr-only")
+            ui.label(
+                "RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent"
+            ).props(
+                'aria-label="RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent" content-center'
+            )
+            ui.input().props(
+                'aria-label="RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent" content-center'
+            ).classes("sr-only")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.label("PHASE 1: Navigation").classes("justify-center items-center")
             ui.input().props('aria-label="PHASE 1: Navigation"').classes("sr-only")
@@ -1208,9 +1220,7 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_ios_trial11.set_value(e.value),
-            ).classes(
-                "w-[600px]"
-            ).props('aria-label="Turn Device On/Off"')
+            ).classes("w-[600px]").props('aria-label="Turn Device On/Off"')
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="1.2 Turn VoiceOver On/Off",
@@ -1218,9 +1228,7 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_ios_trial12.set_value(e.value),
-            ).classes(
-                "w-[600px]"
-            ).props('aria-label="Turn VoiceOver On/Off"')
+            ).classes("w-[600px]").props('aria-label="Turn VoiceOver On/Off"')
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="1.3 Simple Gestures to click on icons",
@@ -1228,9 +1236,9 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_ios_trial13.set_value(e.value),
-            ).classes(
-                "w-[600px]"
-            ).props('aria-label="Simple Gestures to click on icons"')
+            ).classes("w-[600px]").props(
+                'aria-label="Simple Gestures to click on icons"'
+            )
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="1.4 Use home screen icons to open applications and documents",
@@ -1238,9 +1246,9 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_ios_trial14.set_value(e.value),
-            ).classes(
-                "w-[600px]"
-            ).props('aria-label="Use home screen icons to open applications and documents"')
+            ).classes("w-[600px]").props(
+                'aria-label="Use home screen icons to open applications and documents"'
+            )
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="1.5 Save Documents",
@@ -1248,9 +1256,7 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_ios_trial15.set_value(e.value),
-            ).classes(
-                "w-[600px]"
-            ).props('aria-label="Save Documents"')
+            ).classes("w-[600px]").props('aria-label="Save Documents"')
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="1.6 Explain and use age-appropriate online tools and resources",
@@ -1258,9 +1264,9 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_ios_trial16.set_value(e.value),
-            ).classes(
-                "w-[600px]"
-            ).props('aria-label="Explain and use age-appropriate online tools and resources "')
+            ).classes("w-[600px]").props(
+                'aria-label="Explain and use age-appropriate online tools and resources "'
+            )
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="1.7 Keyboarding (Bluetooth keyboard and Braille display if appropriate)",
@@ -1268,9 +1274,9 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_ios_trial17.set_value(e.value),
-            ).classes(
-                "w-[600px]"
-            ).props('aria-label="Keyboarding (Bluetooth keyboard and Braille display if appropriate)"')
+            ).classes("w-[600px]").props(
+                'aria-label="Keyboarding (Bluetooth keyboard and Braille display if appropriate)"'
+            )
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="1.8 Learn about and use different types of elements (e.g. address bar, tabs, menu)",
@@ -1278,9 +1284,9 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_ios_trial18.set_value(e.value),
-            ).classes(
-                "w-[600px]"
-            ).props('aria-label="Learn about and use different types of elements (e.g. address bar, tabs, menu)"')
+            ).classes("w-[600px]").props(
+                'aria-label="Learn about and use different types of elements (e.g. address bar, tabs, menu)"'
+            )
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="1.9 Learn about and use Control Center, Notification Center, App Switcher, Status Bar, etc.",
@@ -1288,9 +1294,9 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_ios_trial19.set_value(e.value),
-            ).classes(
-                "w-[600px]"
-            ).props('aria-label="Learn about and use Control Center, Notification Center, App Switcher, Status Bar, etc."')
+            ).classes("w-[600px]").props(
+                'aria-label="Learn about and use Control Center, Notification Center, App Switcher, Status Bar, etc."'
+            )
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.label("PHASE 2: Word Processing").classes("justify-center items-center")
             ui.input().props('aria-label="PHASE 2: Word Processing"').classes("sr-only")
@@ -1301,9 +1307,9 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_ios_trial21.set_value(e.value),
-            ).classes(
-                "w-[600px]"
-            ).props('aria-label="Use a word processing application to write, edit, print and save simple assignments"')
+            ).classes("w-[600px]").props(
+                'aria-label="Use a word processing application to write, edit, print and save simple assignments"'
+            )
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="2.2 Read and navigate documents",
@@ -1311,9 +1317,7 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_ios_trial22.set_value(e.value),
-            ).classes(
-                "w-[600px]"
-            ).props('aria-label="Read and navigate documents"')
+            ).classes("w-[600px]").props('aria-label="Read and navigate documents"')
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="2.3 Use menu/tool bar functions (e.g. font/size/style, line spacing, margins to format, edit and print a document",
@@ -1321,9 +1325,9 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_ios_trial23.set_value(e.value),
-            ).classes(
-                "w-[600px]"
-            ).props('aria-label="Use menu/tool bar functions (e.g. font/size/style, line spacing, margins) to format, edit and print a document"')
+            ).classes("w-[600px]").props(
+                'aria-label="Use menu/tool bar functions (e.g. font/size/style, line spacing, margins) to format, edit and print a document"'
+            )
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="2.4 Highlight text, copy and paste text",
@@ -1331,9 +1335,9 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_ios_trial24.set_value(e.value),
-            ).classes(
-                "w-[600px]"
-            ).props('aria-label="Highlight text, copy and paste text"')
+            ).classes("w-[600px]").props(
+                'aria-label="Highlight text, copy and paste text"'
+            )
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="2.5 Copy and paste images within the document and from outside sources",
@@ -1341,9 +1345,9 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_ios_trial25.set_value(e.value),
-            ).classes(
-                "w-[600px]"
-            ).props('aria-label="Copy and paste images within the document and from outside sources"')
+            ).classes("w-[600px]").props(
+                'aria-label="Copy and paste images within the document and from outside sources"'
+            )
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="2.6 Proofread and edit writing using appropriate resources (e.g. dictionary, spell checker, grammar, and thesaurus)",
@@ -1351,9 +1355,9 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_ios_trial26.set_value(e.value),
-            ).classes(
-                "w-[600px]"
-            ).props('aria-label="Proofread and edit writing using appropriate resources (e.g. dictionary, spell checker, grammar, and thesaurus)"')
+            ).classes("w-[600px]").props(
+                'aria-label="Proofread and edit writing using appropriate resources (e.g. dictionary, spell checker, grammar, and thesaurus)"'
+            )
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.label("PHASE 3: Spreadsheets").classes("justify-center items-center")
             ui.input().props('aria-label="PHASE 3: Spreadsheets"').classes("sr-only")
@@ -1364,9 +1368,9 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_ios_trial31.set_value(e.value),
-            ).classes(
-                "w-[600px]"
-            ).props('aria-label="Demonstrate an understanding of the spreadsheet as a tool to record, organize and graph information."')
+            ).classes("w-[600px]").props(
+                'aria-label="Demonstrate an understanding of the spreadsheet as a tool to record, organize and graph information."'
+            )
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="3.2 Identify and explain terms and concepts related to spreadsheets (i.e. cell, column, row, values, labels, chart graph)",
@@ -1374,9 +1378,9 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_ios_trial32.set_value(e.value),
-            ).classes(
-                "w-[600px]"
-            ).props('aria-label="Identify and explain terms and concepts related to spreadsheets (i.e. cell, column, row, values, labels, chart graph)"')
+            ).classes("w-[600px]").props(
+                'aria-label="Identify and explain terms and concepts related to spreadsheets (i.e. cell, column, row, values, labels, chart graph)"'
+            )
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="3.3 Enter/Edit data in spreadsheets and perform calculations using formulas",
@@ -1384,9 +1388,9 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_ios_trial33.set_value(e.value),
-            ).classes(
-                "w-[600px]"
-            ).props('aria-label="Enter/Edit data in spreadsheets and perform calculations using formulas"')
+            ).classes("w-[600px]").props(
+                'aria-label="Enter/Edit data in spreadsheets and perform calculations using formulas"'
+            )
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="3.4 Use mathematical symbols e.g. add, minus, multiply, divide, exponents",
@@ -1394,9 +1398,9 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_ios_trial34.set_value(e.value),
-            ).classes(
-                "w-[600px]"
-            ).props('aria-label="Use mathematical symbols e.g. add, minus, multiply, divide, exponents "')
+            ).classes("w-[600px]").props(
+                'aria-label="Use mathematical symbols e.g. add, minus, multiply, divide, exponents "'
+            )
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="3.5 Use spreadsheets and other applications to make predictions, solve problems and conclusions.",
@@ -1404,12 +1408,16 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_ios_trial35.set_value(e.value),
-            ).classes(
-                "w-[600px]"
-            ).props('aria-label="Use spreadsheets and other applications to make predictions, solve problems and draw conclusions. "')
+            ).classes("w-[600px]").props(
+                'aria-label="Use spreadsheets and other applications to make predictions, solve problems and draw conclusions. "'
+            )
         with ui.row().classes("w-screen no-wrap py-4"):
-            ui.label("PHASE 4: Presentation Tools").classes("justify-center items-center")
-            ui.input().props('aria-label="PHASE 4: Presentation Tools"').classes("sr-only")
+            ui.label("PHASE 4: Presentation Tools").classes(
+                "justify-center items-center"
+            )
+            ui.input().props('aria-label="PHASE 4: Presentation Tools"').classes(
+                "sr-only"
+            )
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="4.1 Navigate slides (book format)",
@@ -1417,9 +1425,7 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_ios_trial41.set_value(e.value),
-            ).classes(
-                "w-[600px]"
-            ).props('aria-label="Navigate slides (book format)"')
+            ).classes("w-[600px]").props('aria-label="Navigate slides (book format)"')
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="4.2 Create, edit and format text on a slide",
@@ -1427,9 +1433,9 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_ios_trial42.set_value(e.value),
-            ).classes(
-                "w-[600px]"
-            ).props('aria-label="Create, edit and format text on a slide "')
+            ).classes("w-[600px]").props(
+                'aria-label="Create, edit and format text on a slide "'
+            )
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="4.3 Create a series of slides and organize them to present research or convey an idea",
@@ -1437,9 +1443,9 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_ios_trial43.set_value(e.value),
-            ).classes(
-                "w-[600px]"
-            ).props('aria-label="Create a series of slides and organize them to present research or convey an idea "')
+            ).classes("w-[600px]").props(
+                'aria-label="Create a series of slides and organize them to present research or convey an idea "'
+            )
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="4.4 Copy and paste or import graphics; change their size and position on a slid",
@@ -1447,9 +1453,9 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_ios_trial44.set_value(e.value),
-            ).classes(
-                "w-[600px]"
-            ).props('aria-label="Copy and paste or import graphics; change their size and position on a slide"')
+            ).classes("w-[600px]").props(
+                'aria-label="Copy and paste or import graphics; change their size and position on a slide"'
+            )
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="4.5 Use painting and drawing tools/applications to create and edit work",
@@ -1457,12 +1463,14 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_ios_trial45.set_value(e.value),
-            ).classes(
-                "w-[600px]"
-            ).props('aria-label="Use painting and drawing tools/applications to create and edit work" ')
+            ).classes("w-[600px]").props(
+                'aria-label="Use painting and drawing tools/applications to create and edit work" '
+            )
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.label("PHASE 5: Digital Literacy").classes("justify-center items-center")
-            ui.input().props('aria-label="PHASE 5: Digital Literacy"').classes("sr-only")
+            ui.input().props('aria-label="PHASE 5: Digital Literacy"').classes(
+                "sr-only"
+            )
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="5.1 Explain and demonstrate compliance with classroom, school rules (Acceptable Use Policy) regarding responsible use of computers and networks",
@@ -1470,9 +1478,9 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_ios_trial51.set_value(e.value),
-            ).classes(
-                "w-[600px]"
-            ).props('aria-label="Explain and demonstrate compliance with classroom, school rules (Acceptable Use Policy) regarding responsible use of computers and networks"')
+            ).classes("w-[600px]").props(
+                'aria-label="Explain and demonstrate compliance with classroom, school rules (Acceptable Use Policy) regarding responsible use of computers and networks"'
+            )
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="5.2 Explain responsible uses of technology and digital information; describe possible consequences of inappropriate use",
@@ -1480,9 +1488,9 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_ios_trial52.set_value(e.value),
-            ).classes(
-                "w-[600px]"
-            ).props('aria-label="Explain responsible uses of technology and digital information; describe possible consequences of inappropriate use"')
+            ).classes("w-[600px]").props(
+                'aria-label="Explain responsible uses of technology and digital information; describe possible consequences of inappropriate use"'
+            )
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="5.3 Explain Fair Use  Guidelines for the use  of copyrighted  materials, (e.g. text, images, music, video in student projects) and giving credit to media creators",
@@ -1490,9 +1498,9 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_ios_trial53.set_value(e.value),
-            ).classes(
-                "w-[600px]"
-            ).props('aria-label="Explain Fair Use Guidelines for the use of copyrighted materials, (e.g. text, images, music, video in student projects) and giving credit to media creators"')
+            ).classes("w-[600px]").props(
+                'aria-label="Explain Fair Use Guidelines for the use of copyrighted materials, (e.g. text, images, music, video in student projects) and giving credit to media creators"'
+            )
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="5.4 Identify and explain the strategies for the safe and efficient use of computers (e.g. passwords, virus protection software, spam filters, popup blockers)",
@@ -1500,9 +1508,9 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_ios_trial54.set_value(e.value),
-            ).classes(
-                "w-[600px]"
-            ).props('aria-label="Identify and explain the strategies for the safe and efficient use of computers (e.g. passwords, virus protection software, spam filters, popup blockers)"')
+            ).classes("w-[600px]").props(
+                'aria-label="Identify and explain the strategies for the safe and efficient use of computers (e.g. passwords, virus protection software, spam filters, popup blockers)"'
+            )
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="5.5 Demonstrate safe email practices, recognition of the potentially public exposure of email and appropriate email etiquette",
@@ -1510,9 +1518,9 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_ios_trial55.set_value(e.value),
-            ).classes(
-                "w-[600px]"
-            ).props('aria-label="Demonstrate safe email practices, recognition of the potentially public exposure of email and appropriate email etiquette"')
+            ).classes("w-[600px]").props(
+                'aria-label="Demonstrate safe email practices, recognition of the potentially public exposure of email and appropriate email etiquette"'
+            )
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="5.6 Identify cyberbullying and describe strategies to deal with such a situation",
@@ -1520,9 +1528,9 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_ios_trial56.set_value(e.value),
-            ).classes(
-                "w-[600px]"
-            ).props('aria-label="Identify cyberbullying and describe strategies to deal with such a situation"')
+            ).classes("w-[600px]").props(
+                'aria-label="Identify cyberbullying and describe strategies to deal with such a situation"'
+            )
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="5.7 Recognize and describe the potential risks and dangers associated with various forms of online communications",
@@ -1530,9 +1538,9 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_ios_trial57.set_value(e.value),
-            ).classes(
-                "w-[600px]"
-            ).props('aria-label="Recognize and describe the potential risks and dangers associated with various forms of online communications"')
+            ).classes("w-[600px]").props(
+                'aria-label="Recognize and describe the potential risks and dangers associated with various forms of online communications"'
+            )
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.label("PHASE 6: Advanced Skills").classes("justify-center items-center")
             ui.input().props('aria-label="PHASE 6: Advanced Skills"').classes("sr-only")
@@ -1543,9 +1551,7 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_ios_trial61.set_value(e.value),
-            ).classes(
-                "w-[600px]"
-            ).props('aria-label="Be responsible for device(s)"')
+            ).classes("w-[600px]").props('aria-label="Be responsible for device(s)"')
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="6.2 Tactile graphics paired with digital graphics",
@@ -1553,9 +1559,9 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_ios_trial62.set_value(e.value),
-            ).classes(
-                "w-[600px]"
-            ).props('aria-label="Tactile graphics paired with digital graphics"')
+            ).classes("w-[600px]").props(
+                'aria-label="Tactile graphics paired with digital graphics"'
+            )
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="6.3 Understand and use Earcons (screen reader sound hints)",
@@ -1563,9 +1569,9 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_ios_trial63.set_value(e.value),
-            ).classes(
-                "w-[600px]"
-            ).props('aria-label="Understand and use Earcons (screen reader sound hints)"')
+            ).classes("w-[600px]").props(
+                'aria-label="Understand and use Earcons (screen reader sound hints)"'
+            )
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="6.4 Understand and use spatial relationships on the physical iPad screen",
@@ -1573,9 +1579,9 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_ios_trial64.set_value(e.value),
-            ).classes(
-                "w-[600px]"
-            ).props('aria-label="Understand and use spatial relationships on the physical iPad screen"')
+            ).classes("w-[600px]").props(
+                'aria-label="Understand and use spatial relationships on the physical iPad screen"'
+            )
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="6.5 Use sonification to explore and understand digital graphics",
@@ -1583,9 +1589,9 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_ios_trial65.set_value(e.value),
-            ).classes(
-                "w-[600px]"
-            ).props('aria-label="Use sonification to explore and understand digital graphics"')
+            ).classes("w-[600px]").props(
+                'aria-label="Use sonification to explore and understand digital graphics"'
+            )
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="6.6 Learn and use screen reader commands (gestures/keyboard/braille display)",
@@ -1593,9 +1599,9 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_ios_trial66.set_value(e.value),
-            ).classes(
-                "w-[600px]"
-            ).props('aria-label="Learn and use screen reader commands (gestures/keyboard/braille display)"')
+            ).classes("w-[600px]").props(
+                'aria-label="Learn and use screen reader commands (gestures/keyboard/braille display)"'
+            )
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="6.7 Increase listening speed (100% on the iPad for pleasure reading)",
@@ -1603,9 +1609,9 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_ios_trial67.set_value(e.value),
-            ).classes(
-                "w-[600px]"
-            ).props('aria-label="Increase listening speed (100 on the iPad for pleasure reading)"')
+            ).classes("w-[600px]").props(
+                'aria-label="Increase listening speed (100 on the iPad for pleasure reading)"'
+            )
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="6.8 Learn and use rotor commands",
@@ -1613,9 +1619,7 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_ios_trial68.set_value(e.value),
-            ).classes(
-                "w-[600px]"
-            ).props('aria-label="Learn and use rotor commands"')
+            ).classes("w-[600px]").props('aria-label="Learn and use rotor commands"')
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="6.9 Learn about accessibility features",
@@ -1623,9 +1627,9 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_ios_trial69.set_value(e.value),
-            ).classes(
-                "w-[600px]"
-            ).props('aria-label="Learn about accessibility features"')
+            ).classes("w-[600px]").props(
+                'aria-label="Learn about accessibility features"'
+            )
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="6.10 Learn note taking skills",
@@ -1633,9 +1637,7 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_ios_trial610.set_value(e.value),
-            ).classes(
-                "w-[600px]"
-            ).props('aria-label="Learn note taking skills"')
+            ).classes("w-[600px]").props('aria-label="Learn note taking skills"')
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="6.11 Learn and be able to explain what makes digital content accessible",
@@ -1643,10 +1645,12 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_ios_trial611.set_value(e.value),
-            ).classes(
-                "w-[600px]"
-            ).props('aria-label="Learn and be able to explain what makes digital content accessible"')
+            ).classes("w-[600px]").props(
+                'aria-label="Learn and be able to explain what makes digital content accessible"'
+            )
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.button("SAVE", color="#172554", on_click=save).classes("text-white")
             ui.button("GRAPH", color="#172554", on_click=graph).classes("text-white")
-            ui.button("EXIT", color="#172554", on_click=app.shutdown).classes("text-white")
+            ui.button("EXIT", color="#172554", on_click=app.shutdown).classes(
+                "text-white"
+            )

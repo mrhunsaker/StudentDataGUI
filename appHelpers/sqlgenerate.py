@@ -41,11 +41,11 @@ def create_connection(db_file):
         print(sqlite3.version)
     except Error as e:
         ui.notify(
-                e,
-                position="center",
-                type="negative",
-                close_button="OK",
-                )
+            e,
+            position="center",
+            type="negative",
+            close_button="OK",
+        )
     finally:
         if conn:
             conn.close()
@@ -63,11 +63,11 @@ def create_table(conn, sql_create_sql_table):
         c.execute(sql_create_sql_table)
     except Error as e:
         ui.notify(
-                e,
-                position="center",
-                type="negative",
-                close_button="OK",
-                )
+            e,
+            position="center",
+            type="negative",
+            close_button="OK",
+        )
     conn.close()
 
 
@@ -471,96 +471,96 @@ def createTables():
             create_table(conn, sql_create_studentdata_table)
         except Error as e:
             ui.notify(
-                    e,
-                    position="center",
-                    type="negative",
-                    close_button="OK",
-                    )
+                e,
+                position="center",
+                type="negative",
+                close_button="OK",
+            )
     conn = sqlite3.connect(dataBasePath)
     if conn is not None:
         try:
             create_table(conn, sql_create_brailledata_table)
         except Error as e:
             ui.notify(
-                    e,
-                    position="center",
-                    type="negative",
-                    close_button="OK",
-                    )
+                e,
+                position="center",
+                type="negative",
+                close_button="OK",
+            )
     conn = sqlite3.connect(dataBasePath)
     if conn is not None:
         try:
             create_table(conn, sql_create_screenreaderdata_table)
         except Error as e:
             ui.notify(
-                    e,
-                    position="center",
-                    type="negative",
-                    close_button="OK",
-                    )
+                e,
+                position="center",
+                type="negative",
+                close_button="OK",
+            )
     conn = sqlite3.connect(dataBasePath)
     if conn is not None:
         try:
             create_table(conn, sql_create_abacusdata_table)
         except Error as e:
             ui.notify(
-                    e,
-                    position="center",
-                    type="negative",
-                    close_button="OK",
-                    )
+                e,
+                position="center",
+                type="negative",
+                close_button="OK",
+            )
     conn = sqlite3.connect(dataBasePath)
     if conn is not None:
         try:
             create_table(conn, sql_create_cvidata_table)
         except Error as e:
             ui.notify(
-                    e,
-                    position="center",
-                    type="negative",
-                    close_button="OK",
-                    )
+                e,
+                position="center",
+                type="negative",
+                close_button="OK",
+            )
     conn = sqlite3.connect(dataBasePath)
     if conn is not None:
         try:
             create_table(conn, sql_create_iosdata_table)
         except Error as e:
             ui.notify(
-                    e,
-                    position="center",
-                    type="negative",
-                        close_button="OK",
-                    )
+                e,
+                position="center",
+                type="negative",
+                close_button="OK",
+            )
     conn = sqlite3.connect(dataBasePath)
     if conn is not None:
         try:
             create_table(conn, sql_create_bntdata_table)
         except Error as e:
             ui.notify(
-                    e,
-                    position="center",
-                    type="negative",
-                    close_button="OK",
-                    )
+                e,
+                position="center",
+                type="negative",
+                close_button="OK",
+            )
     conn = sqlite3.connect(dataBasePath)
     if conn is not None:
         try:
             create_table(conn, sql_create_elemdigitalliteracydata_table)
         except Error as e:
             ui.notify(
-                    e,
-                    position="center",
-                    type="negative",
-                    close_button="OK",
-                    )
+                e,
+                position="center",
+                type="negative",
+                close_button="OK",
+            )
     conn = sqlite3.connect(dataBasePath)
     if conn is not None:
         try:
             create_table(conn, sql_create_hsdigitalliteracydata_table)
         except Error as e:
             ui.notify(
-                    e,
-                    position="center",
-                    type="negative",
-                    close_button="OK",
-                    )
+                e,
+                position="center",
+                type="negative",
+                close_button="OK",
+            )

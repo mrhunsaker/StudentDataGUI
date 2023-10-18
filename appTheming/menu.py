@@ -68,20 +68,13 @@ def menu() -> None:
             ui.menu_item(
                 "iOS/iPadOS VOICEOVER SKILLS", lambda: ui.open("/iosskills")
             ).classes(replace="text-black")
-
             ui.separator()
             with ui.row().classes("justify-center items-center"):
                 ui.label("DIGITAL LITERACY").classes("font-bold")
             ui.label("coming soon")
-            """
             ui.menu_item(
-                "ELEM DIGITAL LITERACY", lambda: ui.open("/diglitelementary")
+                "DIGITAL LITERACY", lambda: ui.open("/digitalliteracy")
             ).classes(replace="text-black")
-            ui.menu_item(
-                "ESECONDARY DIGITAL LITERACY", lambda: ui.open("/diglitsecondary")
-            ).classes(replace="text-black")
-            """
-
             ui.separator()
             with ui.row().classes("justify-center items-center py-2"):
                 ui.label("MATERIALS").classes("font-bold")

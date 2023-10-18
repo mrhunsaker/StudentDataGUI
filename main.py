@@ -58,8 +58,7 @@ from appPages import InstructionalMaterials
 from appPages import ios
 from appPages import observations
 from appPages import screenreader
-# from appPages import digitalliteracyelem
-# from appPages import digitalliteracysecondary
+from appPages import digitalliteracy
 
 @ui.page("/")
 def index_page() -> None:
@@ -77,8 +76,7 @@ cvi.create()
 ios.create()
 screenreader.create()
 InstructionalMaterials.create()
-# digitalliteracyelem.create()
-# digitalliteracysecondary.create()
+digitalliteracy.create()
 
 with ui.footer(value=True) as footer:
     with ui.row().classes(

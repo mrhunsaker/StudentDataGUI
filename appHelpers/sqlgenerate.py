@@ -369,8 +369,8 @@ def createTables():
         P12_4 INTEGER
     );"""
 
-    sql_create_elemdigitalliteracydata_table = """CREATE TABLE IF NOT
-    EXISTS ELEMDIGITALLITERACY(
+    sql_create_digitalliteracydata_table = """CREATE TABLE IF NOT
+    EXISTS DIGITALLITERACYPROGRESS(
         ID INTEGER PRIMARY KEY AUTOINCREMENT,
         STUDENTNAME TEXT NOT NULL,
         DATE TEXT NOT NULL,
@@ -407,65 +407,59 @@ def createTables():
         P6_2 INTEGER,
         P6_3 INTEGER,
         P6_4 INTEGER,
-        P7_1 INTEGER,
-        P7_2 INTEGER,
-        P7_3 INTEGER,
-        P7_4 INTEGER,
-        P7_5 INTEGER
-    );"""
-
-    sql_create_hsdigitalliteracydata_table = """CREATE TABLE IF NOT
-    EXISTS HSDIGITALLITERACY(
-        ID INTEGER PRIMARY KEY AUTOINCREMENT,
-        STUDENTNAME TEXT NOT NULL,
-        DATE TEXT NOT NULL,
-        P1_1 INTEGER,
-        P1_2 INTEGER,
-        P1_3 INTEGER,
-        P1_4 INTEGER,
-        P1_5 INTEGER,
-        P2_1 INTEGER,
-        P2_2 INTEGER,
-        P2_3 INTEGER,
-        P2_4 INTEGER,
-        P2_5 INTEGER,
-        P2_6 INTEGER,
-        P2_7 INTEGER,
-        P3_1 INTEGER,
-        P3_2 INTEGER,
-        P3_3 INTEGER,
-        P3_4 INTEGER,
-        P3_5 INTEGER,
-        P3_6 INTEGER,
-        P3_7 INTEGER,
-        P4_1 INTEGER,
-        P4_2 INTEGER,
-        P4_3 INTEGER,
-        P5_1 INTEGER,
-        P5_2 INTEGER,
-        P5_3 INTEGER,
-        P5_4 INTEGER,
-        P5_5 INTEGER,
-        P6_1 INTEGER,
-        P6_2 INTEGER,
-        P6_3 INTEGER,
-        P6_4 INTEGER,
         P6_5 INTEGER,
         P7_1 INTEGER,
         P7_2 INTEGER,
         P7_3 INTEGER,
         P7_4 INTEGER,
         P7_5 INTEGER,
-        P7_6 INTEGER,
-        P7_7 INTEGER,
-        P7_8 INTEGER,
-        P7_9 INTEGER,
         P8_1 INTEGER,
         P8_2 INTEGER,
         P8_3 INTEGER,
         P8_4 INTEGER,
-        P8_5 INTEGER
+        P8_5 INTEGER,
+        P8_6 INTEGER,
+        P9_1 INTEGER,
+        P9_2 INTEGER,
+        P9_3 INTEGER,
+        P9_4 INTEGER,
+        P9_5 INTEGER,
+        P10_1 INTEGER,
+        P10_2 INTEGER,
+        P10_3 INTEGER,
+        P10_4 INTEGER,
+        P10_5 INTEGER,
+        P10_6 INTEGER,
+        P10_7 INTEGER,
+        P11_1 INTEGER,
+        P11_2 INTEGER,
+        P11_3 INTEGER,
+        P12_1 INTEGER,
+        P12_2 INTEGER,
+        P12_3 INTEGER,
+        P12_4 INTEGER,
+        P12_5 INTEGER,
+        P13_1 INTEGER,
+        P13_2 INTEGER,
+        P13_3 INTEGER,
+        P13_4 INTEGER,
+        P13_5 INTEGER,
+        P14_1 INTEGER,
+        P14_2 INTEGER,
+        P14_3 INTEGER,
+        P14_4 INTEGER,
+        P14_5 INTEGER,
+        P14_6 INTEGER,
+        P14_7 INTEGER, 
+        P14_8 INTEGER,
+        P14_9 INTEGER,
+        P15_1 INTEGER,
+        P15_2 INTEGER,
+        P15_3 INTEGER,
+        P15_4 INTEGER,
+        P15_5 INTEGER
     );"""
+
     conn = sqlite3.connect(dataBasePath)
     if conn is not None:
         try:
@@ -546,18 +540,7 @@ def createTables():
     conn = sqlite3.connect(dataBasePath)
     if conn is not None:
         try:
-            create_table(conn, sql_create_elemdigitalliteracydata_table)
-        except Error as e:
-            ui.notify(
-                e,
-                position="center",
-                type="negative",
-                close_button="OK",
-            )
-    conn = sqlite3.connect(dataBasePath)
-    if conn is not None:
-        try:
-            create_table(conn, sql_create_hsdigitalliteracydata_table)
+            create_table(conn, sql_create_digitalliteracydata_table)
         except Error as e:
             ui.notify(
                 e,

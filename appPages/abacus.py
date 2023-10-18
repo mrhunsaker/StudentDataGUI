@@ -295,7 +295,7 @@ def create() -> None:
                         mode="lines+markers",
                         name="Setting Numbers",
                         legendgroup="Phase 1",
-                        legendgrouptitle_text="Phase 1",
+                        legendgrouptitle_text="Phase 1",   hovertemplate = '  %{y:.1f} '
                     ),
                     row=1,
                     col=1,
@@ -307,7 +307,7 @@ def create() -> None:
                         mode="lines+markers",
                         name="Clearing Beads",
                         legendgroup="Phase " "1",
-                        legendgrouptitle_text="Phase 1",
+                        legendgrouptitle_text="Phase 1",   hovertemplate = '  %{y:.1f} '
                     ),
                     row=1,
                     col=1,
@@ -319,7 +319,7 @@ def create() -> None:
                         mode="lines+markers",
                         name="Place Value",
                         legendgroup="Phase " "1",
-                        legendgrouptitle_text="Phase 1",
+                        legendgrouptitle_text="Phase 1",   hovertemplate = '  %{y:.1f} '
                     ),
                     row=1,
                     col=1,
@@ -331,7 +331,7 @@ def create() -> None:
                         mode="lines+markers",
                         name="Vocabulary",
                         legendgroup="Phase " "1",
-                        legendgrouptitle_text="Phase 1",
+                        legendgrouptitle_text="Phase 1",   hovertemplate = '  %{y:.1f} '
                     ),
                     row=1,
                     col=1,
@@ -343,7 +343,7 @@ def create() -> None:
                         mode="lines+markers",
                         name="Setting Numbers",
                         legendgroup="Phase 2",
-                        legendgrouptitle_text="Phase 2",
+                        legendgrouptitle_text="Phase 2",   hovertemplate = '  %{y:.1f} '
                     ),
                     row=1,
                     col=2,
@@ -355,7 +355,7 @@ def create() -> None:
                         mode="lines+markers",
                         name="Clearing Beads",
                         legendgroup="Phase " "2",
-                        legendgrouptitle_text="Phase 2",
+                        legendgrouptitle_text="Phase 2",   hovertemplate = '  %{y:.1f} '
                     ),
                     row=1,
                     col=2,
@@ -367,7 +367,7 @@ def create() -> None:
                         mode="lines+markers",
                         name="Place Value",
                         legendgroup="Phase " "2",
-                        legendgrouptitle_text="Phase 2",
+                        legendgrouptitle_text="Phase 2",   hovertemplate = '  %{y:.1f} '
                     ),
                     row=1,
                     col=2,
@@ -379,7 +379,7 @@ def create() -> None:
                         mode="lines+markers",
                         name="Setting Numbers",
                         legendgroup="Phase 3",
-                        legendgrouptitle_text="Phase 3",
+                        legendgrouptitle_text="Phase 3",   hovertemplate = '  %{y:.1f} '
                     ),
                     row=2,
                     col=1,
@@ -391,7 +391,7 @@ def create() -> None:
                         mode="lines+markers",
                         name="Clearing Beads",
                         legendgroup="Phase " "3",
-                        legendgrouptitle_text="Phase 3",
+                        legendgrouptitle_text="Phase 3",   hovertemplate = '  %{y:.1f} '
                     ),
                     row=2,
                     col=1,
@@ -403,7 +403,7 @@ def create() -> None:
                         mode="lines+markers",
                         name="Place Value",
                         legendgroup="Phase " "3",
-                        legendgrouptitle_text="Phase 3",
+                        legendgrouptitle_text="Phase 3",   hovertemplate = '  %{y:.1f} '
                     ),
                     row=2,
                     col=1,
@@ -415,7 +415,7 @@ def create() -> None:
                         mode="lines+markers",
                         name="Setting Numbers",
                         legendgroup="Phase 4",
-                        legendgrouptitle_text="Phase 4",
+                        legendgrouptitle_text="Phase 4",   hovertemplate = '  %{y:.1f} '
                     ),
                     row=2,
                     col=2,
@@ -427,7 +427,7 @@ def create() -> None:
                         mode="lines+markers",
                         name="Clearing Beads",
                         legendgroup="Phase " "4",
-                        legendgrouptitle_text="Phase 4",
+                        legendgrouptitle_text="Phase 4",   hovertemplate = '  %{y:.1f} '
                     ),
                     row=2,
                     col=2,
@@ -439,7 +439,7 @@ def create() -> None:
                         mode="lines+markers",
                         name="Place Value",
                         legendgroup="Phase " "5",
-                        legendgrouptitle_text="Phase 5",
+                        legendgrouptitle_text="Phase 5",   hovertemplate = '  %{y:.1f} '
                     ),
                     row=3,
                     col=1,
@@ -451,7 +451,7 @@ def create() -> None:
                         mode="lines+markers",
                         name="Vocabulary",
                         legendgroup="Phase " "5",
-                        legendgrouptitle_text="Phase 5",
+                        legendgrouptitle_text="Phase 5",   hovertemplate = '  %{y:.1f} '
                     ),
                     row=3,
                     col=1,
@@ -463,7 +463,7 @@ def create() -> None:
                         mode="lines+markers",
                         name="Setting Numbers",
                         legendgroup="Phase 6",
-                        legendgrouptitle_text="Phase 6",
+                        legendgrouptitle_text="Phase 6",   hovertemplate = '  %{y:.1f} '
                     ),
                     row=3,
                     col=2,
@@ -475,7 +475,7 @@ def create() -> None:
                         mode="lines+markers",
                         name="Clearing Beads",
                         legendgroup="Phase " "6",
-                        legendgrouptitle_text="Phase 6",
+                        legendgrouptitle_text="Phase 6",   hovertemplate = '  %{y:.1f} '
                     ),
                     row=3,
                     col=2,
@@ -487,7 +487,7 @@ def create() -> None:
                         mode="lines+markers",
                         name="Place Value",
                         legendgroup="Phase " "6",
-                        legendgrouptitle_text="Phase 6",
+                        legendgrouptitle_text="Phase 6",   hovertemplate = '  %{y:.1f} '
                     ),
                     row=3,
                     col=2,
@@ -499,7 +499,7 @@ def create() -> None:
                         mode="lines+markers",
                         name="Vocabulary",
                         legendgroup="Phase " "6",
-                        legendgrouptitle_text="Phase 6",
+                        legendgrouptitle_text="Phase 6",   hovertemplate = '  %{y:.1f} '
                     ),
                     row=3,
                     col=2,
@@ -511,7 +511,7 @@ def create() -> None:
                         mode="lines+markers",
                         name="Setting Numbers",
                         legendgroup="Phase 7",
-                        legendgrouptitle_text="Phase 7",
+                        legendgrouptitle_text="Phase 7",   hovertemplate = '  %{y:.1f} '
                     ),
                     row=4,
                     col=1,
@@ -523,7 +523,7 @@ def create() -> None:
                         mode="lines+markers",
                         name="Clearing Beads",
                         legendgroup="Phase " "7",
-                        legendgrouptitle_text="Phase 7",
+                        legendgrouptitle_text="Phase 7",   hovertemplate = '  %{y:.1f} '
                     ),
                     row=4,
                     col=1,
@@ -535,7 +535,7 @@ def create() -> None:
                         mode="lines+markers",
                         name="Place Value",
                         legendgroup="Phase " "7",
-                        legendgrouptitle_text="Phase 7",
+                        legendgrouptitle_text="Phase 7",   hovertemplate = '  %{y:.1f} '
                     ),
                     row=4,
                     col=1,
@@ -547,7 +547,7 @@ def create() -> None:
                         mode="lines+markers",
                         name="Vocabulary",
                         legendgroup="Phase " "7",
-                        legendgrouptitle_text="Phase 7",
+                        legendgrouptitle_text="Phase 7",   hovertemplate = '  %{y:.1f} '
                     ),
                     row=4,
                     col=1,
@@ -559,7 +559,7 @@ def create() -> None:
                         mode="lines+markers",
                         name="Setting Numbers",
                         legendgroup="Phase 8",
-                        legendgrouptitle_text="Phase 8",
+                        legendgrouptitle_text="Phase 8",   hovertemplate = '  %{y:.1f} '
                     ),
                     row=4,
                     col=2,
@@ -571,7 +571,7 @@ def create() -> None:
                         mode="lines+markers",
                         name="Clearing Beads",
                         legendgroup="Phase " "8",
-                        legendgrouptitle_text="Phase 8",
+                        legendgrouptitle_text="Phase 8",   hovertemplate = '  %{y:.1f} '
                     ),
                     row=4,
                     col=2,
@@ -931,6 +931,8 @@ def create() -> None:
                 fig.update_layout(
                     template="simple_white",
                     title_text=f"{studentname}: Abacus Skills Progression",
+                    hovermode="x unified",
+                    hoverlabel = dict(namelength = -1),
                 )
                 tmppath = Path(USER_DIR).joinpath(
                     "StudentDatabase",

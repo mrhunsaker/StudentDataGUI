@@ -609,7 +609,7 @@ def create() -> None:
                         textposition="middle right",
                         legendgroup="Phase 2",
                         legendgrouptitle_text="Phase 2",
-                        showlegend=False,
+                        showlegend=False,   hovertemplate = '  %{y:.1f} '
                     ),
                     row=1,
                     col=2,
@@ -622,7 +622,7 @@ def create() -> None:
                         name="D Y",
                         legendgroup="Phase 2",
                         legendgrouptitle_text="Phase 2",
-                        showlegend=False,
+                        showlegend=False,   hovertemplate = '  %{y:.1f} '
                     ),
                     row=1,
                     col=2,
@@ -636,7 +636,7 @@ def create() -> None:
                         textposition="middle right",
                         legendgroup="Phase 2",
                         legendgrouptitle_text="Phase 2",
-                        showlegend=False,
+                        showlegend=False,   hovertemplate = '  %{y:.1f} '
                     ),
                     row=1,
                     col=2,
@@ -649,7 +649,7 @@ def create() -> None:
                         name="A B",
                         legendgroup="Phase 2",
                         legendgrouptitle_text="Phase 2",
-                        showlegend=False,
+                        showlegend=False,   hovertemplate = '  %{y:.1f} '
                     ),
                     row=1,
                     col=2,
@@ -663,7 +663,7 @@ def create() -> None:
                         textposition="middle right",
                         legendgroup="Phase 2",
                         legendgrouptitle_text="Phase 2",
-                        showlegend=False,
+                        showlegend=False,   hovertemplate = '  %{y:.1f} '
                     ),
                     row=1,
                     col=2,
@@ -676,7 +676,7 @@ def create() -> None:
                         name="S",
                         legendgroup="Phase 2",
                         legendgrouptitle_text="Phase 2",
-                        showlegend=False,
+                        showlegend=False,   hovertemplate = '  %{y:.1f} '
                     ),
                     row=1,
                     col=2,
@@ -690,7 +690,7 @@ def create() -> None:
                         textposition="middle right",
                         legendgroup="Phase 2",
                         legendgrouptitle_text="Phase 2",
-                        showlegend=False,
+                        showlegend=False,   hovertemplate = '  %{y:.1f} '
                     ),
                     row=1,
                     col=2,
@@ -703,7 +703,7 @@ def create() -> None:
                         name="W",
                         legendgroup="Phase 2",
                         legendgrouptitle_text="Phase 2",
-                        showlegend=False,
+                        showlegend=False,   hovertemplate = '  %{y:.1f} '
                     ),
                     row=1,
                     col=2,
@@ -717,7 +717,7 @@ def create() -> None:
                         textposition="middle right",
                         legendgroup="Phase 2",
                         legendgrouptitle_text="Phase 2",
-                        showlegend=False,
+                        showlegend=False,   hovertemplate = '  %{y:.1f} '
                     ),
                     row=1,
                     col=2,
@@ -730,7 +730,7 @@ def create() -> None:
                         name="P O",
                         legendgroup="Phase 2",
                         legendgrouptitle_text="Phase 2",
-                        showlegend=False,
+                        showlegend=False,   hovertemplate = '  %{y:.1f} '
                     ),
                     row=1,
                     col=2,
@@ -744,7 +744,7 @@ def create() -> None:
                         textposition="middle right",
                         legendgroup="Phase 2",
                         legendgrouptitle_text="Phase 2",
-                        showlegend=False,
+                        showlegend=False,   hovertemplate = '  %{y:.1f} '
                     ),
                     row=1,
                     col=2,
@@ -757,7 +757,7 @@ def create() -> None:
                         name="K",
                         legendgroup="Phase 2",
                         legendgrouptitle_text="Phase 2",
-                        showlegend=False,
+                        showlegend=False,   hovertemplate = '  %{y:.1f} '
                     ),
                     row=1,
                     col=2,
@@ -771,7 +771,7 @@ def create() -> None:
                         textposition="middle right",
                         legendgroup="Phase 2",
                         legendgrouptitle_text="Phase 2",
-                        showlegend=False,
+                        showlegend=False,   hovertemplate = '  %{y:.1f} '
                     ),
                     row=1,
                     col=2,
@@ -784,7 +784,7 @@ def create() -> None:
                         name="R",
                         legendgroup="Phase 2",
                         legendgrouptitle_text="Phase 2",
-                        showlegend=False,
+                        showlegend=False,   hovertemplate = '  %{y:.1f} '
                     ),
                     row=1,
                     col=2,
@@ -798,7 +798,7 @@ def create() -> None:
                         textposition="middle right",
                         legendgroup="Phase 2",
                         legendgrouptitle_text="Phase 2",
-                        showlegend=False,
+                        showlegend=False,   hovertemplate = '  %{y:.1f} '
                     ),
                     row=1,
                     col=2,
@@ -811,7 +811,7 @@ def create() -> None:
                         name="M E",
                         legendgroup="Phase 2",
                         legendgrouptitle_text="Phase 2",
-                        showlegend=False,
+                        showlegend=False,   hovertemplate = '  %{y:.1f} '
                     ),
                     row=1,
                     col=2,
@@ -825,7 +825,7 @@ def create() -> None:
                         textposition="middle right",
                         legendgroup="Phase 2",
                         legendgrouptitle_text="Phase 2",
-                        showlegend=False,
+                        showlegend=False,   hovertemplate = '  %{y:.1f} '
                     ),
                     row=1,
                     col=2,
@@ -838,7 +838,7 @@ def create() -> None:
                         name="H",
                         legendgroup="Phase 2",
                         legendgrouptitle_text="Phase 2",
-                        showlegend=False,
+                        showlegend=False,   hovertemplate = '  %{y:.1f} '
                     ),
                     row=1,
                     col=2,
@@ -852,7 +852,7 @@ def create() -> None:
                         textposition="middle right",
                         legendgroup="Phase 2",
                         legendgrouptitle_text="Phase 2",
-                        showlegend=False,
+                        showlegend=False,   hovertemplate = '  %{y:.1f} '
                     ),
                     row=1,
                     col=2,
@@ -865,7 +865,7 @@ def create() -> None:
                         name="N X",
                         legendgroup="Phase 2",
                         legendgrouptitle_text="Phase 2",
-                        showlegend=False,
+                        showlegend=False,   hovertemplate = '  %{y:.1f} '
                     ),
                     row=1,
                     col=2,
@@ -879,7 +879,7 @@ def create() -> None:
                         textposition="middle right",
                         legendgroup="Phase 2",
                         legendgrouptitle_text="Phase 2",
-                        showlegend=False,
+                        showlegend=False,   hovertemplate = '  %{y:.1f} '
                     ),
                     row=1,
                     col=2,
@@ -892,7 +892,7 @@ def create() -> None:
                         name="Z F",
                         legendgroup="Phase 2",
                         legendgrouptitle_text="Phase 2",
-                        showlegend=False,
+                        showlegend=False,   hovertemplate = '  %{y:.1f} '
                     ),
                     row=1,
                     col=2,
@@ -906,7 +906,7 @@ def create() -> None:
                         textposition="middle right",
                         legendgroup="Phase 2",
                         legendgrouptitle_text="Phase 2",
-                        showlegend=False,
+                        showlegend=False,   hovertemplate = '  %{y:.1f} '
                     ),
                     row=1,
                     col=2,
@@ -919,7 +919,7 @@ def create() -> None:
                         name="U T",
                         legendgroup="Phase 2",
                         legendgrouptitle_text="Phase 2",
-                        showlegend=False,
+                        showlegend=False,   hovertemplate = '  %{y:.1f} '
                     ),
                     row=1,
                     col=2,
@@ -933,7 +933,7 @@ def create() -> None:
                         textposition="middle right",
                         legendgroup="Phase 2",
                         legendgrouptitle_text="Phase 2",
-                        showlegend=False,
+                        showlegend=False,   hovertemplate = '  %{y:.1f} '
                     ),
                     row=1,
                     col=2,
@@ -946,7 +946,7 @@ def create() -> None:
                         name="Q I",
                         legendgroup="Phase 2",
                         legendgrouptitle_text="Phase 2",
-                        showlegend=False,
+                        showlegend=False,   hovertemplate = '  %{y:.1f} '
                     ),
                     row=1,
                     col=2,
@@ -960,7 +960,7 @@ def create() -> None:
                         textposition="middle right",
                         legendgroup="Phase 2",
                         legendgrouptitle_text="Phase 2",
-                        showlegend=False,
+                        showlegend=False,   hovertemplate = '  %{y:.1f} '
                     ),
                     row=1,
                     col=2,
@@ -973,7 +973,7 @@ def create() -> None:
                         name="V J ",
                         legendgroup="Phase 2",
                         legendgrouptitle_text="Phase 2",
-                        showlegend=False,
+                        showlegend=False,   hovertemplate = '  %{y:.1f} '
                     ),
                     row=1,
                     col=2,
@@ -987,7 +987,7 @@ def create() -> None:
                         textposition="middle right",
                         legendgroup="Phase 2",
                         legendgrouptitle_text="Phase 2",
-                        showlegend=False,
+                        showlegend=False,   hovertemplate = '  %{y:.1f} '
                     ),
                     row=1,
                     col=2,
@@ -1691,7 +1691,9 @@ def create() -> None:
                     xaxis9_tickformat="%d %b",
                     template="simple_white",
                     title_text=f"{studentname}: Literary UEB Skills " f"Progression",
-                    legend=dict(font=dict(size=10)),
+                    legend=dict(font=dict(size=10)),                               
+                    hovermode="x unified",
+                    hoverlabel = dict(namelength = -1),
                 )
                 tmppath = Path(USER_DIR).joinpath(
                     "StudentDatabase",
@@ -2120,7 +2122,9 @@ def create() -> None:
                     title_text=f""
                     f"{studentname}: Technical UEB Skills "
                     f"Progression",
-                    legend=dict(font=dict(size=10)),
+                    legend=dict(font=dict(size=10)),               
+                    hovermode="x unified",
+                    hoverlabel = dict(namelength = -1),
                 )
                 tmppath = Path(USER_DIR).joinpath(
                     "StudentDatabase",
@@ -2217,7 +2221,7 @@ def create() -> None:
                         textposition="middle right",
                         legendgroup="Phase 2",
                         legendgrouptitle_text="Phase 2",
-                        showlegend=False,
+                        showlegend=False,   hovertemplate = '  %{y:.1f} '
                     ),
                     row=1,
                     col=2,
@@ -2244,7 +2248,7 @@ def create() -> None:
                         textposition="middle right",
                         legendgroup="Phase 2",
                         legendgrouptitle_text="Phase 2",
-                        showlegend=False,
+                        showlegend=False,   hovertemplate = '  %{y:.1f} '
                     ),
                     row=1,
                     col=2,
@@ -2271,7 +2275,7 @@ def create() -> None:
                         textposition="middle right",
                         legendgroup="Phase 2",
                         legendgrouptitle_text="Phase 2",
-                        showlegend=False,
+                        showlegend=False,   hovertemplate = '  %{y:.1f} '
                     ),
                     row=1,
                     col=2,
@@ -2298,7 +2302,7 @@ def create() -> None:
                         textposition="middle right",
                         legendgroup="Phase 2",
                         legendgrouptitle_text="Phase 2",
-                        showlegend=False,
+                        showlegend=False,   hovertemplate = '  %{y:.1f} '
                     ),
                     row=1,
                     col=2,
@@ -2325,7 +2329,7 @@ def create() -> None:
                         textposition="middle right",
                         legendgroup="Phase 2",
                         legendgrouptitle_text="Phase 2",
-                        showlegend=False,
+                        showlegend=False,   hovertemplate = '  %{y:.1f} '
                     ),
                     row=1,
                     col=2,
@@ -2352,7 +2356,7 @@ def create() -> None:
                         textposition="middle right",
                         legendgroup="Phase 2",
                         legendgrouptitle_text="Phase 2",
-                        showlegend=False,
+                        showlegend=False,   hovertemplate = '  %{y:.1f} '
                     ),
                     row=1,
                     col=2,
@@ -2379,7 +2383,7 @@ def create() -> None:
                         textposition="middle right",
                         legendgroup="Phase 2",
                         legendgrouptitle_text="Phase 2",
-                        showlegend=False,
+                        showlegend=False,   hovertemplate = '  %{y:.1f} '
                     ),
                     row=1,
                     col=2,
@@ -2406,7 +2410,7 @@ def create() -> None:
                         textposition="middle right",
                         legendgroup="Phase 2",
                         legendgrouptitle_text="Phase 2",
-                        showlegend=False,
+                        showlegend=False,   hovertemplate = '  %{y:.1f} '
                     ),
                     row=1,
                     col=2,
@@ -2433,7 +2437,7 @@ def create() -> None:
                         textposition="middle right",
                         legendgroup="Phase 2",
                         legendgrouptitle_text="Phase 2",
-                        showlegend=False,
+                        showlegend=False,   hovertemplate = '  %{y:.1f} '
                     ),
                     row=1,
                     col=2,
@@ -2460,7 +2464,7 @@ def create() -> None:
                         textposition="middle right",
                         legendgroup="Phase 2",
                         legendgrouptitle_text="Phase 2",
-                        showlegend=False,
+                        showlegend=False,   hovertemplate = '  %{y:.1f} '
                     ),
                     row=1,
                     col=2,
@@ -2487,7 +2491,7 @@ def create() -> None:
                         textposition="middle right",
                         legendgroup="Phase 2",
                         legendgrouptitle_text="Phase 2",
-                        showlegend=False,
+                        showlegend=False,   hovertemplate = '  %{y:.1f} '
                     ),
                     row=1,
                     col=2,
@@ -2514,7 +2518,7 @@ def create() -> None:
                         textposition="middle right",
                         legendgroup="Phase 2",
                         legendgrouptitle_text="Phase 2",
-                        showlegend=False,
+                        showlegend=False,   hovertemplate = '  %{y:.1f} '
                     ),
                     row=1,
                     col=2,
@@ -2541,7 +2545,7 @@ def create() -> None:
                         textposition="middle right",
                         legendgroup="Phase 2",
                         legendgrouptitle_text="Phase 2",
-                        showlegend=False,
+                        showlegend=False,   hovertemplate = '  %{y:.1f} '
                     ),
                     row=1,
                     col=2,
@@ -2568,7 +2572,7 @@ def create() -> None:
                         textposition="middle right",
                         legendgroup="Phase 2",
                         legendgrouptitle_text="Phase 2",
-                        showlegend=False,
+                        showlegend=False,   hovertemplate = '  %{y:.1f} '
                     ),
                     row=1,
                     col=2,
@@ -2595,7 +2599,7 @@ def create() -> None:
                         textposition="middle right",
                         legendgroup="Phase 2",
                         legendgrouptitle_text="Phase 2",
-                        showlegend=False,
+                        showlegend=False,   hovertemplate = '  %{y:.1f} '
                     ),
                     row=1,
                     col=2,
@@ -2679,6 +2683,8 @@ def create() -> None:
                     title_text=f"{studentname}: Basic Tactile Recognition "
                     f"Progression",
                     legend=dict(font=dict(size=10)),
+                    hovermode="x unified",
+                    hoverlabel = dict(namelength = -1),
                 )
                 tmppath = Path(USER_DIR).joinpath(
                     "StudentDatabase",

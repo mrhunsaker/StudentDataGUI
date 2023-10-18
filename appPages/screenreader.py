@@ -333,7 +333,7 @@ def create() -> None:
                         mode="lines+markers",
                         name="Turn " "ON/OFF",
                         legendgroup="Phase 1a",
-                        legendgrouptitle_text="Phase 1a",
+                        legendgrouptitle_text="Phase 1a",   hovertemplate = '  %{y:.1f} '
                     ),
                     row=1,
                     col=1,
@@ -345,7 +345,7 @@ def create() -> None:
                         mode="lines+markers",
                         name="Use " "Modifier Keys",
                         legendgroup="Phase 1a",
-                        legendgrouptitle_text="Phase 1a",
+                        legendgrouptitle_text="Phase 1a",   hovertemplate = '  %{y:.1f} '
                     ),
                     row=1,
                     col=1,
@@ -357,7 +357,7 @@ def create() -> None:
                         mode="lines+markers",
                         name="Use " "Reading Commands",
                         legendgroup="Phase 1a",
-                        legendgrouptitle_text="Phase 1a",
+                        legendgrouptitle_text="Phase 1a",   hovertemplate = '  %{y:.1f} '
                     ),
                     row=1,
                     col=1,
@@ -369,7 +369,7 @@ def create() -> None:
                         mode="lines+markers",
                         name="ID " "Titles",
                         legendgroup="Phase 1b",
-                        legendgrouptitle_text=" ",
+                        legendgrouptitle_text=" ",   hovertemplate = '  %{y:.1f} '
                     ),
                     row=2,
                     col=1,
@@ -381,7 +381,7 @@ def create() -> None:
                         mode="lines+markers",
                         name="Access Documents",
                         legendgroup="Phase 1b",
-                        legendgrouptitle_text=" ",
+                        legendgrouptitle_text=" ",   hovertemplate = '  %{y:.1f} '
                     ),
                     row=2,
                     col=1,
@@ -393,7 +393,7 @@ def create() -> None:
                         mode="lines+markers",
                         name="Switch Program Focus",
                         legendgroup="Phase 1b",
-                        legendgrouptitle_text=" ",
+                        legendgrouptitle_text=" ",   hovertemplate = '  %{y:.1f} '
                     ),
                     row=2,
                     col=1,
@@ -405,7 +405,7 @@ def create() -> None:
                         mode="lines+markers",
                         name="Type " "with" " all " "keys",
                         legendgroup="Phase 2",
-                        legendgrouptitle_text="Phase 2",
+                        legendgrouptitle_text="Phase 2",   hovertemplate = '  %{y:.1f} '
                     ),
                     row=1,
                     col=2,
@@ -417,7 +417,7 @@ def create() -> None:
                         mode="lines+markers",
                         name="Change Screen Reader Settings",
                         legendgroup="Phase 2",
-                        legendgrouptitle_text="Phase 2",
+                        legendgrouptitle_text="Phase 2",   hovertemplate = '  %{y:.1f} '
                     ),
                     row=1,
                     col=2,
@@ -429,7 +429,7 @@ def create() -> None:
                         mode="lines+markers",
                         name="Write documents",
                         legendgroup="Phase 2",
-                        legendgrouptitle_text="Phase 2",
+                        legendgrouptitle_text="Phase 2",   hovertemplate = '  %{y:.1f} '
                     ),
                     row=1,
                     col=2,
@@ -441,7 +441,7 @@ def create() -> None:
                         mode="lines+markers",
                         name="Copy/Paste Text",
                         legendgroup="Phase 2",
-                        legendgrouptitle_text="Phase 2",
+                        legendgrouptitle_text="Phase 2",   hovertemplate = '  %{y:.1f} '
                     ),
                     row=1,
                     col=2,
@@ -453,7 +453,7 @@ def create() -> None:
                         mode="lines+markers",
                         name="TAB " "Navigation",
                         legendgroup="Phase 3a",
-                        legendgrouptitle_text="Phase 3a",
+                        legendgrouptitle_text="Phase 3a",   hovertemplate = '  %{y:.1f} '
                     ),
                     row=3,
                     col=1,
@@ -465,7 +465,7 @@ def create() -> None:
                         mode="lines+markers",
                         name="Quick Key Navigation",
                         legendgroup="Phase 3a",
-                        legendgrouptitle_text="Phase 3a",
+                        legendgrouptitle_text="Phase 3a",   hovertemplate = '  %{y:.1f} '
                     ),
                     row=3,
                     col=1,
@@ -477,7 +477,7 @@ def create() -> None:
                         mode="lines+markers",
                         name="Elements List Navigation",
                         legendgroup="Phase 3a",
-                        legendgrouptitle_text="Phase 3a",
+                        legendgrouptitle_text="Phase 3a",   hovertemplate = '  %{y:.1f} '
                     ),
                     row=3,
                     col=1,
@@ -489,7 +489,7 @@ def create() -> None:
                         mode="lines+markers",
                         name="Justify Navigation Method",
                         legendgroup="Phase 3a",
-                        legendgrouptitle_text="Phase 3a",
+                        legendgrouptitle_text="Phase 3a",   hovertemplate = '  %{y:.1f} '
                     ),
                     row=3,
                     col=1,
@@ -501,7 +501,7 @@ def create() -> None:
                         mode="lines+markers",
                         name="Define HTML Elements",
                         legendgroup="Phase 3b",
-                        legendgrouptitle_text="Phase 3b",
+                        legendgrouptitle_text="Phase 3b",   hovertemplate = '  %{y:.1f} '
                     ),
                     row=3,
                     col=2,
@@ -513,7 +513,7 @@ def create() -> None:
                         mode="lines+markers",
                         name="ID " "HTML" " Elements",
                         legendgroup="Phase 3b",
-                        legendgrouptitle_text="Phase 3b",
+                        legendgrouptitle_text="Phase 3b",   hovertemplate = '  %{y:.1f} '
                     ),
                     row=3,
                     col=2,
@@ -525,7 +525,7 @@ def create() -> None:
                         mode="lines+markers",
                         name="Navigate to Address Bar",
                         legendgroup="Phase 3b",
-                        legendgrouptitle_text="Phase 3b",
+                        legendgrouptitle_text="Phase 3b",   hovertemplate = '  %{y:.1f} '
                     ),
                     row=3,
                     col=2,
@@ -537,7 +537,7 @@ def create() -> None:
                         mode="lines+markers",
                         name="ALT-TAB Focus",
                         legendgroup="Phase " "3b",
-                        legendgrouptitle_text="Phase 3b",
+                        legendgrouptitle_text="Phase 3b",   hovertemplate = '  %{y:.1f} '
                     ),
                     row=3,
                     col=2,
@@ -549,7 +549,7 @@ def create() -> None:
                         mode="lines+markers",
                         name="Toggle Screen Reader Mode",
                         legendgroup="Phase 3c",
-                        legendgrouptitle_text="Phase 3c",
+                        legendgrouptitle_text="Phase 3c",   hovertemplate = '  %{y:.1f} '
                     ),
                     row=4,
                     col=2,
@@ -561,7 +561,7 @@ def create() -> None:
                         mode="lines+markers",
                         name="Navigate a Table",
                         legendgroup="Phase 3c",
-                        legendgrouptitle_text="Phase 3c",
+                        legendgrouptitle_text="Phase 3c",   hovertemplate = '  %{y:.1f} '
                     ),
                     row=4,
                     col=2,
@@ -573,7 +573,7 @@ def create() -> None:
                         mode="lines+markers",
                         name="Navigation Sequence",
                         legendgroup="Phase 3c",
-                        legendgrouptitle_text="Phase 3c",
+                        legendgrouptitle_text="Phase 3c",   hovertemplate = '  %{y:.1f} '
                     ),
                     row=4,
                     col=2,
@@ -585,7 +585,7 @@ def create() -> None:
                         mode="lines+markers",
                         name="Save " "and " "Open " "Files",
                         legendgroup="Phase 4a",
-                        legendgrouptitle_text="Phase 4a",
+                        legendgrouptitle_text="Phase 4a",   hovertemplate = '  %{y:.1f} '
                     ),
                     row=5,
                     col=1,
@@ -597,7 +597,7 @@ def create() -> None:
                         mode="lines+markers",
                         name="Create Folders",
                         legendgroup="Phase " "4a",
-                        legendgrouptitle_text="Phase 4a",
+                        legendgrouptitle_text="Phase 4a",   hovertemplate = '  %{y:.1f} '
                     ),
                     row=5,
                     col=1,
@@ -609,7 +609,7 @@ def create() -> None:
                         mode="lines+markers",
                         name="Navigate Cloud Storage",
                         legendgroup="Phase 4a",
-                        legendgrouptitle_text="Phase 4a",
+                        legendgrouptitle_text="Phase 4a",   hovertemplate = '  %{y:.1f} '
                     ),
                     row=5,
                     col=1,
@@ -621,7 +621,7 @@ def create() -> None:
                         mode="lines+markers",
                         name="Download from Internet",
                         legendgroup="Phase 4a",
-                        legendgrouptitle_text="Phase 4a",
+                        legendgrouptitle_text="Phase 4a",   hovertemplate = '  %{y:.1f} '
                     ),
                     row=5,
                     col=1,
@@ -633,7 +633,7 @@ def create() -> None:
                         mode="lines+markers",
                         name="UNZIP Folders",
                         legendgroup="Phase " "4b",
-                        legendgrouptitle_text="Phase 4b",
+                        legendgrouptitle_text="Phase 4b",   hovertemplate = '  %{y:.1f} '
                     ),
                     row=5,
                     col=2,
@@ -645,7 +645,7 @@ def create() -> None:
                         mode="lines+markers",
                         name="Use " "Virtual Cursor",
                         legendgroup="Phase 4b",
-                        legendgrouptitle_text="Phase 4b",
+                        legendgrouptitle_text="Phase 4b",   hovertemplate = '  %{y:.1f} '
                     ),
                     row=5,
                     col=2,
@@ -657,7 +657,7 @@ def create() -> None:
                         mode="lines+markers",
                         name="Use " "Built-In OCR",
                         legendgroup="Phase 4b",
-                        legendgrouptitle_text="Phase 4b",
+                        legendgrouptitle_text="Phase 4b",   hovertemplate = '  %{y:.1f} '
                     ),
                     row=5,
                     col=2,
@@ -1017,6 +1017,8 @@ def create() -> None:
                 fig.update_layout(
                     template="simple_white",
                     title_text=f"{studentname}: Screen Reader Skills Progression",
+                    hovermode="x unified",
+                    hoverlabel = dict(namelength = -1),
                 )
                 tmppath = Path(USER_DIR).joinpath(
                     "StudentDatabase",

@@ -251,705 +251,712 @@ def create() -> None:
 
                 data_entry()
 
-            def graph(event):
-                """
-                :param event:
-                :type event:
-                """
-                studentname = u_studentname.value
-                dataBasePath = Path(USER_DIR).joinpath("StudentDatabase", "students.db")
-                conn = sqlite3.connect(dataBasePath)
-                df_sql = pd.read_sql_query("SELECT * FROM ABACUSPROGRESS", conn)
-                df_student = df_sql[df_sql.STUDENTNAME == studentname]
-                print(df_student)
-                conn.close()
-                df = df_student.drop(columns=["ID", "STUDENTNAME"])
-                print(df)
-                df = df.rename(columns={"DATE": "date"})
-                df["date"] = df["date"].astype("string")
-                df["date"] = pd.to_datetime(df["date"], format=date_fmt)
-                df = df.set_index("date")
-                df = df.sort_values(by="date")
-                descriptiveStats = df.describe()
-                print(descriptiveStats)
-                mu, sigma = 0, 0.1
-                noise = np.random.normal(mu, sigma, [len(df.index), len(df.columns)])
-                df_noisy = df + noise
-                fig = make_subplots(
-                    rows=4,
-                    cols=2,
-                    subplot_titles=(
-                        "Phase 1: Foundation",
-                        "Phase 2: Addition",
-                        "Phase 3: Subtraction",
-                        "Phase 4: Multiplication",
-                        "Phase 5: Division",
-                        "Phase 6: Decimals",
-                        "Phase 7: Fractions",
-                        "Phase 8: Special Functions",
-                    ),
-                    print_grid=True,
-                )
-                fig.add_trace(
-                    go.Scatter(
-                        x=df_noisy.index,
-                        y=df_noisy["P1_1"],
-                        mode="lines+markers",
-                        name="Setting Numbers",
-                        legendgroup="Phase 1",
-                        legendgrouptitle_text="Phase 1",   hovertemplate = '  %{y:.1f} '
-                    ),
-                    row=1,
-                    col=1,
-                )
-                fig.add_trace(
-                    go.Scatter(
-                        x=df_noisy.index,
-                        y=df_noisy["P1_2"],
-                        mode="lines+markers",
-                        name="Clearing Beads",
-                        legendgroup="Phase " "1",
-                        legendgrouptitle_text="Phase 1",   hovertemplate = '  %{y:.1f} '
-                    ),
-                    row=1,
-                    col=1,
-                )
-                fig.add_trace(
-                    go.Scatter(
-                        x=df_noisy.index,
-                        y=df_noisy["P1_3"],
-                        mode="lines+markers",
-                        name="Place Value",
-                        legendgroup="Phase " "1",
-                        legendgrouptitle_text="Phase 1",   hovertemplate = '  %{y:.1f} '
-                    ),
-                    row=1,
-                    col=1,
-                )
-                fig.add_trace(
-                    go.Scatter(
-                        x=df_noisy.index,
-                        y=df_noisy["P1_4"],
-                        mode="lines+markers",
-                        name="Vocabulary",
-                        legendgroup="Phase " "1",
-                        legendgrouptitle_text="Phase 1",   hovertemplate = '  %{y:.1f} '
-                    ),
-                    row=1,
-                    col=1,
-                )
-                fig.add_trace(
-                    go.Scatter(
-                        x=df_noisy.index,
-                        y=df_noisy["P2_1"],
-                        mode="lines+markers",
-                        name="Setting Numbers",
-                        legendgroup="Phase 2",
-                        legendgrouptitle_text="Phase 2",   hovertemplate = '  %{y:.1f} '
-                    ),
-                    row=1,
-                    col=2,
-                )
-                fig.add_trace(
-                    go.Scatter(
-                        x=df_noisy.index,
-                        y=df_noisy["P2_2"],
-                        mode="lines+markers",
-                        name="Clearing Beads",
-                        legendgroup="Phase " "2",
-                        legendgrouptitle_text="Phase 2",   hovertemplate = '  %{y:.1f} '
-                    ),
-                    row=1,
-                    col=2,
-                )
-                fig.add_trace(
-                    go.Scatter(
-                        x=df_noisy.index,
-                        y=df_noisy["P2_3"],
-                        mode="lines+markers",
-                        name="Place Value",
-                        legendgroup="Phase " "2",
-                        legendgrouptitle_text="Phase 2",   hovertemplate = '  %{y:.1f} '
-                    ),
-                    row=1,
-                    col=2,
-                )
-                fig.add_trace(
-                    go.Scatter(
-                        x=df_noisy.index,
-                        y=df_noisy["P3_1"],
-                        mode="lines+markers",
-                        name="Setting Numbers",
-                        legendgroup="Phase 3",
-                        legendgrouptitle_text="Phase 3",   hovertemplate = '  %{y:.1f} '
-                    ),
-                    row=2,
-                    col=1,
-                )
-                fig.add_trace(
-                    go.Scatter(
-                        x=df_noisy.index,
-                        y=df_noisy["P3_2"],
-                        mode="lines+markers",
-                        name="Clearing Beads",
-                        legendgroup="Phase " "3",
-                        legendgrouptitle_text="Phase 3",   hovertemplate = '  %{y:.1f} '
-                    ),
-                    row=2,
-                    col=1,
-                )
-                fig.add_trace(
-                    go.Scatter(
-                        x=df_noisy.index,
-                        y=df_noisy["P3_3"],
-                        mode="lines+markers",
-                        name="Place Value",
-                        legendgroup="Phase " "3",
-                        legendgrouptitle_text="Phase 3",   hovertemplate = '  %{y:.1f} '
-                    ),
-                    row=2,
-                    col=1,
-                )
-                fig.add_trace(
-                    go.Scatter(
-                        x=df_noisy.index,
-                        y=df_noisy["P4_1"],
-                        mode="lines+markers",
-                        name="Setting Numbers",
-                        legendgroup="Phase 4",
-                        legendgrouptitle_text="Phase 4",   hovertemplate = '  %{y:.1f} '
-                    ),
-                    row=2,
-                    col=2,
-                )
-                fig.add_trace(
-                    go.Scatter(
-                        x=df_noisy.index,
-                        y=df_noisy["P4_2"],
-                        mode="lines+markers",
-                        name="Clearing Beads",
-                        legendgroup="Phase " "4",
-                        legendgrouptitle_text="Phase 4",   hovertemplate = '  %{y:.1f} '
-                    ),
-                    row=2,
-                    col=2,
-                )
-                fig.add_trace(
-                    go.Scatter(
-                        x=df_noisy.index,
-                        y=df_noisy["P5_1"],
-                        mode="lines+markers",
-                        name="Place Value",
-                        legendgroup="Phase " "5",
-                        legendgrouptitle_text="Phase 5",   hovertemplate = '  %{y:.1f} '
-                    ),
-                    row=3,
-                    col=1,
-                )
-                fig.add_trace(
-                    go.Scatter(
-                        x=df_noisy.index,
-                        y=df_noisy["P5_2"],
-                        mode="lines+markers",
-                        name="Vocabulary",
-                        legendgroup="Phase " "5",
-                        legendgrouptitle_text="Phase 5",   hovertemplate = '  %{y:.1f} '
-                    ),
-                    row=3,
-                    col=1,
-                )
-                fig.add_trace(
-                    go.Scatter(
-                        x=df_noisy.index,
-                        y=df_noisy["P6_1"],
-                        mode="lines+markers",
-                        name="Setting Numbers",
-                        legendgroup="Phase 6",
-                        legendgrouptitle_text="Phase 6",   hovertemplate = '  %{y:.1f} '
-                    ),
-                    row=3,
-                    col=2,
-                )
-                fig.add_trace(
-                    go.Scatter(
-                        x=df_noisy.index,
-                        y=df_noisy["P6_2"],
-                        mode="lines+markers",
-                        name="Clearing Beads",
-                        legendgroup="Phase " "6",
-                        legendgrouptitle_text="Phase 6",   hovertemplate = '  %{y:.1f} '
-                    ),
-                    row=3,
-                    col=2,
-                )
-                fig.add_trace(
-                    go.Scatter(
-                        x=df_noisy.index,
-                        y=df_noisy["P6_3"],
-                        mode="lines+markers",
-                        name="Place Value",
-                        legendgroup="Phase " "6",
-                        legendgrouptitle_text="Phase 6",   hovertemplate = '  %{y:.1f} '
-                    ),
-                    row=3,
-                    col=2,
-                )
-                fig.add_trace(
-                    go.Scatter(
-                        x=df_noisy.index,
-                        y=df_noisy["P6_4"],
-                        mode="lines+markers",
-                        name="Vocabulary",
-                        legendgroup="Phase " "6",
-                        legendgrouptitle_text="Phase 6",   hovertemplate = '  %{y:.1f} '
-                    ),
-                    row=3,
-                    col=2,
-                )
-                fig.add_trace(
-                    go.Scatter(
-                        x=df_noisy.index,
-                        y=df_noisy["P7_1"],
-                        mode="lines+markers",
-                        name="Setting Numbers",
-                        legendgroup="Phase 7",
-                        legendgrouptitle_text="Phase 7",   hovertemplate = '  %{y:.1f} '
-                    ),
-                    row=4,
-                    col=1,
-                )
-                fig.add_trace(
-                    go.Scatter(
-                        x=df_noisy.index,
-                        y=df_noisy["P7_2"],
-                        mode="lines+markers",
-                        name="Clearing Beads",
-                        legendgroup="Phase " "7",
-                        legendgrouptitle_text="Phase 7",   hovertemplate = '  %{y:.1f} '
-                    ),
-                    row=4,
-                    col=1,
-                )
-                fig.add_trace(
-                    go.Scatter(
-                        x=df_noisy.index,
-                        y=df_noisy["P7_3"],
-                        mode="lines+markers",
-                        name="Place Value",
-                        legendgroup="Phase " "7",
-                        legendgrouptitle_text="Phase 7",   hovertemplate = '  %{y:.1f} '
-                    ),
-                    row=4,
-                    col=1,
-                )
-                fig.add_trace(
-                    go.Scatter(
-                        x=df_noisy.index,
-                        y=df_noisy["P7_4"],
-                        mode="lines+markers",
-                        name="Vocabulary",
-                        legendgroup="Phase " "7",
-                        legendgrouptitle_text="Phase 7",   hovertemplate = '  %{y:.1f} '
-                    ),
-                    row=4,
-                    col=1,
-                )
-                fig.add_trace(
-                    go.Scatter(
-                        x=df_noisy.index,
-                        y=df_noisy["P8_1"],
-                        mode="lines+markers",
-                        name="Setting Numbers",
-                        legendgroup="Phase 8",
-                        legendgrouptitle_text="Phase 8",   hovertemplate = '  %{y:.1f} '
-                    ),
-                    row=4,
-                    col=2,
-                )
-                fig.add_trace(
-                    go.Scatter(
-                        x=df_noisy.index,
-                        y=df_noisy["P8_2"],
-                        mode="lines+markers",
-                        name="Clearing Beads",
-                        legendgroup="Phase " "8",
-                        legendgrouptitle_text="Phase 8",   hovertemplate = '  %{y:.1f} '
-                    ),
-                    row=4,
-                    col=2,
-                )
-                fig.add_hrect(
-                    y0=-0.5,
-                    y1=0.5,
-                    line_width=0,
-                    fillcolor="#b3c7f7",
-                    opacity=0.2,
-                    row=1,
-                    col=1,
-                )
-                fig.add_hrect(
-                    y0=0.5,
-                    y1=1.5,
-                    line_width=0,
-                    fillcolor="orange",
-                    opacity=0.2,
-                    row=1,
-                    col=1,
-                )
-                fig.add_hrect(
-                    y0=1.5,
-                    y1=2.5,
-                    line_width=0,
-                    fillcolor="yellow",
-                    opacity=0.2,
-                    row=1,
-                    col=1,
-                )
-                fig.add_hrect(
-                    y0=2.5,
-                    y1=3.5,
-                    line_width=0,
-                    fillcolor="green",
-                    opacity=0.2,
-                    row=1,
-                    col=1,
-                )
-                fig.add_hrect(
-                    y0=-0.5,
-                    y1=0.5,
-                    line_width=0,
-                    fillcolor="#b3c7f7",
-                    opacity=0.2,
-                    row=1,
-                    col=2,
-                )
-                fig.add_hrect(
-                    y0=0.5,
-                    y1=1.5,
-                    line_width=0,
-                    fillcolor="orange",
-                    opacity=0.2,
-                    row=1,
-                    col=2,
-                )
-                fig.add_hrect(
-                    y0=1.5,
-                    y1=2.5,
-                    line_width=0,
-                    fillcolor="yellow",
-                    opacity=0.2,
-                    row=1,
-                    col=2,
-                )
-                fig.add_hrect(
-                    y0=2.5,
-                    y1=3.5,
-                    line_width=0,
-                    fillcolor="green",
-                    opacity=0.2,
-                    row=1,
-                    col=2,
-                )
-                fig.add_hrect(
-                    y0=-0.5,
-                    y1=0.5,
-                    line_width=0,
-                    fillcolor="#b3c7f7",
-                    opacity=0.2,
-                    row=2,
-                    col=1,
-                )
-                fig.add_hrect(
-                    y0=0.5,
-                    y1=1.5,
-                    line_width=0,
-                    fillcolor="orange",
-                    opacity=0.2,
-                    row=2,
-                    col=1,
-                )
-                fig.add_hrect(
-                    y0=1.5,
-                    y1=2.5,
-                    line_width=0,
-                    fillcolor="yellow",
-                    opacity=0.2,
-                    row=2,
-                    col=1,
-                )
-                fig.add_hrect(
-                    y0=2.5,
-                    y1=3.5,
-                    line_width=0,
-                    fillcolor="green",
-                    opacity=0.2,
-                    row=2,
-                    col=1,
-                )
-                fig.add_hrect(
-                    y0=-0.5,
-                    y1=0.5,
-                    line_width=0,
-                    fillcolor="#b3c7f7",
-                    opacity=0.2,
-                    row=2,
-                    col=2,
-                )
-                fig.add_hrect(
-                    y0=0.5,
-                    y1=1.5,
-                    line_width=0,
-                    fillcolor="orange",
-                    opacity=0.2,
-                    row=2,
-                    col=2,
-                )
-                fig.add_hrect(
-                    y0=1.5,
-                    y1=2.5,
-                    line_width=0,
-                    fillcolor="yellow",
-                    opacity=0.2,
-                    row=2,
-                    col=2,
-                )
-                fig.add_hrect(
-                    y0=2.5,
-                    y1=3.5,
-                    line_width=0,
-                    fillcolor="green",
-                    opacity=0.2,
-                    row=2,
-                    col=2,
-                )
-                fig.add_hrect(
-                    y0=-0.5,
-                    y1=0.5,
-                    line_width=0,
-                    fillcolor="#b3c7f7",
-                    opacity=0.2,
-                    row=3,
-                    col=1,
-                )
-                fig.add_hrect(
-                    y0=0.5,
-                    y1=1.5,
-                    line_width=0,
-                    fillcolor="orange",
-                    opacity=0.2,
-                    row=3,
-                    col=1,
-                )
-                fig.add_hrect(
-                    y0=1.5,
-                    y1=2.5,
-                    line_width=0,
-                    fillcolor="yellow",
-                    opacity=0.2,
-                    row=3,
-                    col=1,
-                )
-                fig.add_hrect(
-                    y0=2.5,
-                    y1=3.5,
-                    line_width=0,
-                    fillcolor="green",
-                    opacity=0.2,
-                    row=3,
-                    col=1,
-                )
-                fig.add_hrect(
-                    y0=-0.5,
-                    y1=0.5,
-                    line_width=0,
-                    fillcolor="#b3c7f7",
-                    opacity=0.2,
-                    row=3,
-                    col=2,
-                )
-                fig.add_hrect(
-                    y0=0.5,
-                    y1=1.5,
-                    line_width=0,
-                    fillcolor="orange",
-                    opacity=0.2,
-                    row=3,
-                    col=2,
-                )
-                fig.add_hrect(
-                    y0=1.5,
-                    y1=2.5,
-                    line_width=0,
-                    fillcolor="yellow",
-                    opacity=0.2,
-                    row=3,
-                    col=2,
-                )
-                fig.add_hrect(
-                    y0=2.5,
-                    y1=3.5,
-                    line_width=0,
-                    fillcolor="green",
-                    opacity=0.2,
-                    row=3,
-                    col=2,
-                )
-                fig.add_hrect(
-                    y0=-0.5,
-                    y1=0.5,
-                    line_width=0,
-                    fillcolor="#b3c7f7",
-                    opacity=0.2,
-                    row=4,
-                    col=1,
-                )
-                fig.add_hrect(
-                    y0=0.5,
-                    y1=1.5,
-                    line_width=0,
-                    fillcolor="orange",
-                    opacity=0.2,
-                    row=4,
-                    col=1,
-                )
-                fig.add_hrect(
-                    y0=1.5,
-                    y1=2.5,
-                    line_width=0,
-                    fillcolor="yellow",
-                    opacity=0.2,
-                    row=4,
-                    col=1,
-                )
-                fig.add_hrect(
-                    y0=2.5,
-                    y1=3.5,
-                    line_width=0,
-                    fillcolor="green",
-                    opacity=0.2,
-                    row=4,
-                    col=1,
-                )
-                fig.add_hrect(
-                    y0=-0.5,
-                    y1=0.5,
-                    line_width=0,
-                    fillcolor="#b3c7f7",
-                    opacity=0.2,
-                    row=4,
-                    col=2,
-                )
-                fig.add_hrect(
-                    y0=0.5,
-                    y1=1.5,
-                    line_width=0,
-                    fillcolor="orange",
-                    opacity=0.2,
-                    row=4,
-                    col=2,
-                )
-                fig.add_hrect(
-                    y0=1.5,
-                    y1=2.5,
-                    line_width=0,
-                    fillcolor="yellow",
-                    opacity=0.2,
-                    row=4,
-                    col=2,
-                )
-                fig.add_hrect(
-                    y0=2.5,
-                    y1=3.5,
-                    line_width=0,
-                    fillcolor="green",
-                    opacity=0.2,
-                    row=4,
-                    col=2,
-                )
-                fig.update_yaxes(
-                    range=[-0.5, 3.5],
-                    fixedrange=True,
-                    ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
-                    tickvals=[0.1, 1, 2, 3],
-                    row=1,
-                    col=1,
-                )
-                fig.update_yaxes(
-                    range=[-0.5, 3.5],
-                    fixedrange=True,
-                    ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
-                    tickvals=[0.1, 1, 2, 3],
-                    row=1,
-                    col=2,
-                )
-                fig.update_yaxes(
-                    range=[-0.5, 3.5],
-                    fixedrange=True,
-                    ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
-                    tickvals=[0.1, 1, 2, 3],
-                    row=2,
-                    col=1,
-                )
-                fig.update_yaxes(
-                    range=[-0.5, 3.5],
-                    fixedrange=True,
-                    ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
-                    tickvals=[0.1, 1, 2, 3],
-                    row=2,
-                    col=2,
-                )
-                fig.update_yaxes(
-                    range=[-0.5, 3.5],
-                    fixedrange=True,
-                    ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
-                    tickvals=[0.1, 1, 2, 3],
-                    row=3,
-                    col=1,
-                )
-                fig.update_yaxes(
-                    range=[-0.5, 3.5],
-                    fixedrange=True,
-                    ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
-                    tickvals=[0.1, 1, 2, 3],
-                    row=3,
-                    col=2,
-                )
-                fig.update_yaxes(
-                    range=[-0.5, 3.5],
-                    fixedrange=True,
-                    ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
-                    tickvals=[0.1, 1, 2, 3],
-                    row=4,
-                    col=1,
-                )
-                fig.update_yaxes(
-                    range=[-0.5, 3.5],
-                    fixedrange=True,
-                    ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
-                    tickvals=[0.1, 1, 2, 3],
-                    row=4,
-                    col=2,
-                )
-                fig.update_layout(
-                    template="simple_white",
-                    title_text=f"{studentname}: Abacus Skills Progression",
-                    hovermode="x unified",
-                    hoverlabel = dict(namelength = -1),
-                )
-                tmppath = Path(USER_DIR).joinpath(
-                    "StudentDatabase",
-                    "StudentDataFiles",
-                    studentname,
-                    "AbacusSkillsProgression.html",
-                )
-                fig.write_html(tmppath, auto_open=True)
-                # fig.show( )
-                ui.notify(
-                    "Graph Successful. The Graphs will open in a Browser Window",
-                    position="center",
-                    type="positive",
-                    close_button="OK",
-                )
+        def graph(event):
+            """
+            :param event:
+            :type event:
+            """
+            studentname = u_studentname.value
+            dataBasePath = Path(USER_DIR).joinpath("StudentDatabase", "students.db")
+            conn = sqlite3.connect(dataBasePath)
+            df_sql = pd.read_sql_query("SELECT * FROM ABACUSPROGRESS", conn)
+            df_student = df_sql[df_sql.STUDENTNAME == studentname]
+            print(df_student)
+            conn.close()
+            df = df_student.drop(columns=["ID", "STUDENTNAME"])
+            print(df)
+            df = df.rename(columns={"DATE": "date"})
+            df["date"] = df["date"].astype("string")
+            df["date"] = pd.to_datetime(df["date"], format=date_fmt)
+            df = df.set_index("date")
+            print("Abacus Skills Progression")
+            print(df)
+            df = df.sort_values(by="date")
+            mu, sigma = 0, 0.1
+            noise = np.random.normal(mu, sigma, [len(df.index), len(df.columns)])
+            df_noisy = df + noise
+            descriptiveStats = df.describe()
+            print("Descriptive Statistics")
+            print(descriptiveStats)
+            growthCalculation = df.diff(periods=3)
+            growth = growthCalculation[-1:]
+            print("Growth Factor (Now vs 3 Measurements ago)")
+            print(growth)
+            fig = make_subplots(
+                rows=4,
+                cols=2,
+                subplot_titles=(
+                    "Phase 1: Foundation",
+                    "Phase 2: Addition",
+                    "Phase 3: Subtraction",
+                    "Phase 4: Multiplication",
+                    "Phase 5: Division",
+                    "Phase 6: Decimals",
+                    "Phase 7: Fractions",
+                    "Phase 8: Special Functions",
+                ),
+                print_grid=True,
+            )
+            fig.add_trace(
+                go.Scatter(
+                    x=df_noisy.index,
+                    y=df_noisy["P1_1"],
+                    mode="lines+markers",
+                    name="Setting Numbers",
+                    legendgroup="Phase 1",
+                    legendgrouptitle_text="Phase 1",   hovertemplate = '  %{y:.1f} '
+                ),
+                row=1,
+                col=1,
+            )
+            fig.add_trace(
+                go.Scatter(
+                    x=df_noisy.index,
+                    y=df_noisy["P1_2"],
+                    mode="lines+markers",
+                    name="Clearing Beads",
+                    legendgroup="Phase " "1",
+                    legendgrouptitle_text="Phase 1",   hovertemplate = '  %{y:.1f} '
+                ),
+                row=1,
+                col=1,
+            )
+            fig.add_trace(
+                go.Scatter(
+                    x=df_noisy.index,
+                    y=df_noisy["P1_3"],
+                    mode="lines+markers",
+                    name="Place Value",
+                    legendgroup="Phase " "1",
+                    legendgrouptitle_text="Phase 1",   hovertemplate = '  %{y:.1f} '
+                ),
+                row=1,
+                col=1,
+            )
+            fig.add_trace(
+                go.Scatter(
+                    x=df_noisy.index,
+                    y=df_noisy["P1_4"],
+                    mode="lines+markers",
+                    name="Vocabulary",
+                    legendgroup="Phase " "1",
+                    legendgrouptitle_text="Phase 1",   hovertemplate = '  %{y:.1f} '
+                ),
+                row=1,
+                col=1,
+            )
+            fig.add_trace(
+                go.Scatter(
+                    x=df_noisy.index,
+                    y=df_noisy["P2_1"],
+                    mode="lines+markers",
+                    name="Setting Numbers",
+                    legendgroup="Phase 2",
+                    legendgrouptitle_text="Phase 2",   hovertemplate = '  %{y:.1f} '
+                ),
+                row=1,
+                col=2,
+            )
+            fig.add_trace(
+                go.Scatter(
+                    x=df_noisy.index,
+                    y=df_noisy["P2_2"],
+                    mode="lines+markers",
+                    name="Clearing Beads",
+                    legendgroup="Phase " "2",
+                    legendgrouptitle_text="Phase 2",   hovertemplate = '  %{y:.1f} '
+                ),
+                row=1,
+                col=2,
+            )
+            fig.add_trace(
+                go.Scatter(
+                    x=df_noisy.index,
+                    y=df_noisy["P2_3"],
+                    mode="lines+markers",
+                    name="Place Value",
+                    legendgroup="Phase " "2",
+                    legendgrouptitle_text="Phase 2",   hovertemplate = '  %{y:.1f} '
+                ),
+                row=1,
+                col=2,
+            )
+            fig.add_trace(
+                go.Scatter(
+                    x=df_noisy.index,
+                    y=df_noisy["P3_1"],
+                    mode="lines+markers",
+                    name="Setting Numbers",
+                    legendgroup="Phase 3",
+                    legendgrouptitle_text="Phase 3",   hovertemplate = '  %{y:.1f} '
+                ),
+                row=2,
+                col=1,
+            )
+            fig.add_trace(
+                go.Scatter(
+                    x=df_noisy.index,
+                    y=df_noisy["P3_2"],
+                    mode="lines+markers",
+                    name="Clearing Beads",
+                    legendgroup="Phase " "3",
+                    legendgrouptitle_text="Phase 3",   hovertemplate = '  %{y:.1f} '
+                ),
+                row=2,
+                col=1,
+            )
+            fig.add_trace(
+                go.Scatter(
+                    x=df_noisy.index,
+                    y=df_noisy["P3_3"],
+                    mode="lines+markers",
+                    name="Place Value",
+                    legendgroup="Phase " "3",
+                    legendgrouptitle_text="Phase 3",   hovertemplate = '  %{y:.1f} '
+                ),
+                row=2,
+                col=1,
+            )
+            fig.add_trace(
+                go.Scatter(
+                    x=df_noisy.index,
+                    y=df_noisy["P4_1"],
+                    mode="lines+markers",
+                    name="Setting Numbers",
+                    legendgroup="Phase 4",
+                    legendgrouptitle_text="Phase 4",   hovertemplate = '  %{y:.1f} '
+                ),
+                row=2,
+                col=2,
+            )
+            fig.add_trace(
+                go.Scatter(
+                    x=df_noisy.index,
+                    y=df_noisy["P4_2"],
+                    mode="lines+markers",
+                    name="Clearing Beads",
+                    legendgroup="Phase " "4",
+                    legendgrouptitle_text="Phase 4",   hovertemplate = '  %{y:.1f} '
+                ),
+                row=2,
+                col=2,
+            )
+            fig.add_trace(
+                go.Scatter(
+                    x=df_noisy.index,
+                    y=df_noisy["P5_1"],
+                    mode="lines+markers",
+                    name="Place Value",
+                    legendgroup="Phase " "5",
+                    legendgrouptitle_text="Phase 5",   hovertemplate = '  %{y:.1f} '
+                ),
+                row=3,
+                col=1,
+            )
+            fig.add_trace(
+                go.Scatter(
+                    x=df_noisy.index,
+                    y=df_noisy["P5_2"],
+                    mode="lines+markers",
+                    name="Vocabulary",
+                    legendgroup="Phase " "5",
+                    legendgrouptitle_text="Phase 5",   hovertemplate = '  %{y:.1f} '
+                ),
+                row=3,
+                col=1,
+            )
+            fig.add_trace(
+                go.Scatter(
+                    x=df_noisy.index,
+                    y=df_noisy["P6_1"],
+                    mode="lines+markers",
+                    name="Setting Numbers",
+                    legendgroup="Phase 6",
+                    legendgrouptitle_text="Phase 6",   hovertemplate = '  %{y:.1f} '
+                ),
+                row=3,
+                col=2,
+            )
+            fig.add_trace(
+                go.Scatter(
+                    x=df_noisy.index,
+                    y=df_noisy["P6_2"],
+                    mode="lines+markers",
+                    name="Clearing Beads",
+                    legendgroup="Phase " "6",
+                    legendgrouptitle_text="Phase 6",   hovertemplate = '  %{y:.1f} '
+                ),
+                row=3,
+                col=2,
+            )
+            fig.add_trace(
+                go.Scatter(
+                    x=df_noisy.index,
+                    y=df_noisy["P6_3"],
+                    mode="lines+markers",
+                    name="Place Value",
+                    legendgroup="Phase " "6",
+                    legendgrouptitle_text="Phase 6",   hovertemplate = '  %{y:.1f} '
+                ),
+                row=3,
+                col=2,
+            )
+            fig.add_trace(
+                go.Scatter(
+                    x=df_noisy.index,
+                    y=df_noisy["P6_4"],
+                    mode="lines+markers",
+                    name="Vocabulary",
+                    legendgroup="Phase " "6",
+                    legendgrouptitle_text="Phase 6",   hovertemplate = '  %{y:.1f} '
+                ),
+                row=3,
+                col=2,
+            )
+            fig.add_trace(
+                go.Scatter(
+                    x=df_noisy.index,
+                    y=df_noisy["P7_1"],
+                    mode="lines+markers",
+                    name="Setting Numbers",
+                    legendgroup="Phase 7",
+                    legendgrouptitle_text="Phase 7",   hovertemplate = '  %{y:.1f} '
+                ),
+                row=4,
+                col=1,
+            )
+            fig.add_trace(
+                go.Scatter(
+                    x=df_noisy.index,
+                    y=df_noisy["P7_2"],
+                    mode="lines+markers",
+                    name="Clearing Beads",
+                    legendgroup="Phase " "7",
+                    legendgrouptitle_text="Phase 7",   hovertemplate = '  %{y:.1f} '
+                ),
+                row=4,
+                col=1,
+            )
+            fig.add_trace(
+                go.Scatter(
+                    x=df_noisy.index,
+                    y=df_noisy["P7_3"],
+                    mode="lines+markers",
+                    name="Place Value",
+                    legendgroup="Phase " "7",
+                    legendgrouptitle_text="Phase 7",   hovertemplate = '  %{y:.1f} '
+                ),
+                row=4,
+                col=1,
+            )
+            fig.add_trace(
+                go.Scatter(
+                    x=df_noisy.index,
+                    y=df_noisy["P7_4"],
+                    mode="lines+markers",
+                    name="Vocabulary",
+                    legendgroup="Phase " "7",
+                    legendgrouptitle_text="Phase 7",   hovertemplate = '  %{y:.1f} '
+                ),
+                row=4,
+                col=1,
+            )
+            fig.add_trace(
+                go.Scatter(
+                    x=df_noisy.index,
+                    y=df_noisy["P8_1"],
+                    mode="lines+markers",
+                    name="Setting Numbers",
+                    legendgroup="Phase 8",
+                    legendgrouptitle_text="Phase 8",   hovertemplate = '  %{y:.1f} '
+                ),
+                row=4,
+                col=2,
+            )
+            fig.add_trace(
+                go.Scatter(
+                    x=df_noisy.index,
+                    y=df_noisy["P8_2"],
+                    mode="lines+markers",
+                    name="Clearing Beads",
+                    legendgroup="Phase " "8",
+                    legendgrouptitle_text="Phase 8",   hovertemplate = '  %{y:.1f} '
+                ),
+                row=4,
+                col=2,
+            )
+            fig.add_hrect(
+                y0=-0.5,
+                y1=0.5,
+                line_width=0,
+                fillcolor="#b3c7f7",
+                opacity=0.2,
+                row=1,
+                col=1,
+            )
+            fig.add_hrect(
+                y0=0.5,
+                y1=1.5,
+                line_width=0,
+                fillcolor="orange",
+                opacity=0.2,
+                row=1,
+                col=1,
+            )
+            fig.add_hrect(
+                y0=1.5,
+                y1=2.5,
+                line_width=0,
+                fillcolor="yellow",
+                opacity=0.2,
+                row=1,
+                col=1,
+            )
+            fig.add_hrect(
+                y0=2.5,
+                y1=3.5,
+                line_width=0,
+                fillcolor="green",
+                opacity=0.2,
+                row=1,
+                col=1,
+            )
+            fig.add_hrect(
+                y0=-0.5,
+                y1=0.5,
+                line_width=0,
+                fillcolor="#b3c7f7",
+                opacity=0.2,
+                row=1,
+                col=2,
+            )
+            fig.add_hrect(
+                y0=0.5,
+                y1=1.5,
+                line_width=0,
+                fillcolor="orange",
+                opacity=0.2,
+                row=1,
+                col=2,
+            )
+            fig.add_hrect(
+                y0=1.5,
+                y1=2.5,
+                line_width=0,
+                fillcolor="yellow",
+                opacity=0.2,
+                row=1,
+                col=2,
+            )
+            fig.add_hrect(
+                y0=2.5,
+                y1=3.5,
+                line_width=0,
+                fillcolor="green",
+                opacity=0.2,
+                row=1,
+                col=2,
+            )
+            fig.add_hrect(
+                y0=-0.5,
+                y1=0.5,
+                line_width=0,
+                fillcolor="#b3c7f7",
+                opacity=0.2,
+                row=2,
+                col=1,
+            )
+            fig.add_hrect(
+                y0=0.5,
+                y1=1.5,
+                line_width=0,
+                fillcolor="orange",
+                opacity=0.2,
+                row=2,
+                col=1,
+            )
+            fig.add_hrect(
+                y0=1.5,
+                y1=2.5,
+                line_width=0,
+                fillcolor="yellow",
+                opacity=0.2,
+                row=2,
+                col=1,
+            )
+            fig.add_hrect(
+                y0=2.5,
+                y1=3.5,
+                line_width=0,
+                fillcolor="green",
+                opacity=0.2,
+                row=2,
+                col=1,
+            )
+            fig.add_hrect(
+                y0=-0.5,
+                y1=0.5,
+                line_width=0,
+                fillcolor="#b3c7f7",
+                opacity=0.2,
+                row=2,
+                col=2,
+            )
+            fig.add_hrect(
+                y0=0.5,
+                y1=1.5,
+                line_width=0,
+                fillcolor="orange",
+                opacity=0.2,
+                row=2,
+                col=2,
+            )
+            fig.add_hrect(
+                y0=1.5,
+                y1=2.5,
+                line_width=0,
+                fillcolor="yellow",
+                opacity=0.2,
+                row=2,
+                col=2,
+            )
+            fig.add_hrect(
+                y0=2.5,
+                y1=3.5,
+                line_width=0,
+                fillcolor="green",
+                opacity=0.2,
+                row=2,
+                col=2,
+            )
+            fig.add_hrect(
+                y0=-0.5,
+                y1=0.5,
+                line_width=0,
+                fillcolor="#b3c7f7",
+                opacity=0.2,
+                row=3,
+                col=1,
+            )
+            fig.add_hrect(
+                y0=0.5,
+                y1=1.5,
+                line_width=0,
+                fillcolor="orange",
+                opacity=0.2,
+                row=3,
+                col=1,
+            )
+            fig.add_hrect(
+                y0=1.5,
+                y1=2.5,
+                line_width=0,
+                fillcolor="yellow",
+                opacity=0.2,
+                row=3,
+                col=1,
+            )
+            fig.add_hrect(
+                y0=2.5,
+                y1=3.5,
+                line_width=0,
+                fillcolor="green",
+                opacity=0.2,
+                row=3,
+                col=1,
+            )
+            fig.add_hrect(
+                y0=-0.5,
+                y1=0.5,
+                line_width=0,
+                fillcolor="#b3c7f7",
+                opacity=0.2,
+                row=3,
+                col=2,
+            )
+            fig.add_hrect(
+                y0=0.5,
+                y1=1.5,
+                line_width=0,
+                fillcolor="orange",
+                opacity=0.2,
+                row=3,
+                col=2,
+            )
+            fig.add_hrect(
+                y0=1.5,
+                y1=2.5,
+                line_width=0,
+                fillcolor="yellow",
+                opacity=0.2,
+                row=3,
+                col=2,
+            )
+            fig.add_hrect(
+                y0=2.5,
+                y1=3.5,
+                line_width=0,
+                fillcolor="green",
+                opacity=0.2,
+                row=3,
+                col=2,
+            )
+            fig.add_hrect(
+                y0=-0.5,
+                y1=0.5,
+                line_width=0,
+                fillcolor="#b3c7f7",
+                opacity=0.2,
+                row=4,
+                col=1,
+            )
+            fig.add_hrect(
+                y0=0.5,
+                y1=1.5,
+                line_width=0,
+                fillcolor="orange",
+                opacity=0.2,
+                row=4,
+                col=1,
+            )
+            fig.add_hrect(
+                y0=1.5,
+                y1=2.5,
+                line_width=0,
+                fillcolor="yellow",
+                opacity=0.2,
+                row=4,
+                col=1,
+            )
+            fig.add_hrect(
+                y0=2.5,
+                y1=3.5,
+                line_width=0,
+                fillcolor="green",
+                opacity=0.2,
+                row=4,
+                col=1,
+            )
+            fig.add_hrect(
+                y0=-0.5,
+                y1=0.5,
+                line_width=0,
+                fillcolor="#b3c7f7",
+                opacity=0.2,
+                row=4,
+                col=2,
+            )
+            fig.add_hrect(
+                y0=0.5,
+                y1=1.5,
+                line_width=0,
+                fillcolor="orange",
+                opacity=0.2,
+                row=4,
+                col=2,
+            )
+            fig.add_hrect(
+                y0=1.5,
+                y1=2.5,
+                line_width=0,
+                fillcolor="yellow",
+                opacity=0.2,
+                row=4,
+                col=2,
+            )
+            fig.add_hrect(
+                y0=2.5,
+                y1=3.5,
+                line_width=0,
+                fillcolor="green",
+                opacity=0.2,
+                row=4,
+                col=2,
+            )
+            fig.update_yaxes(
+                range=[-0.5, 3.5],
+                fixedrange=True,
+                ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
+                tickvals=[0.1, 1, 2, 3],
+                row=1,
+                col=1,
+            )
+            fig.update_yaxes(
+                range=[-0.5, 3.5],
+                fixedrange=True,
+                ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
+                tickvals=[0.1, 1, 2, 3],
+                row=1,
+                col=2,
+            )
+            fig.update_yaxes(
+                range=[-0.5, 3.5],
+                fixedrange=True,
+                ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
+                tickvals=[0.1, 1, 2, 3],
+                row=2,
+                col=1,
+            )
+            fig.update_yaxes(
+                range=[-0.5, 3.5],
+                fixedrange=True,
+                ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
+                tickvals=[0.1, 1, 2, 3],
+                row=2,
+                col=2,
+            )
+            fig.update_yaxes(
+                range=[-0.5, 3.5],
+                fixedrange=True,
+                ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
+                tickvals=[0.1, 1, 2, 3],
+                row=3,
+                col=1,
+            )
+            fig.update_yaxes(
+                range=[-0.5, 3.5],
+                fixedrange=True,
+                ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
+                tickvals=[0.1, 1, 2, 3],
+                row=3,
+                col=2,
+            )
+            fig.update_yaxes(
+                range=[-0.5, 3.5],
+                fixedrange=True,
+                ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
+                tickvals=[0.1, 1, 2, 3],
+                row=4,
+                col=1,
+            )
+            fig.update_yaxes(
+                range=[-0.5, 3.5],
+                fixedrange=True,
+                ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
+                tickvals=[0.1, 1, 2, 3],
+                row=4,
+                col=2,
+            )
+            fig.update_layout(
+                template="simple_white",
+                title_text=f"{studentname}: Abacus Skills Progression",
+                hovermode="x unified",
+                hoverlabel = dict(namelength = -1),
+            )
+            tmppath = Path(USER_DIR).joinpath(
+                "StudentDatabase",
+                "StudentDataFiles",
+                studentname,
+                "AbacusSkillsProgression.html",
+            )
+            fig.write_html(tmppath, auto_open=True)
+            # fig.show( )
+            ui.notify(
+                "Graph Successful. The Graphs will open in a Browser Window",
+                position="center",
+                type="positive",
+                close_button="OK",
+            )
 
         # GUI Input
         with ui.row().classes("w-screen no-wrap py-4"):

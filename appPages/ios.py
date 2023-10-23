@@ -354,14 +354,22 @@ def create() -> None:
             df["date"] = df["date"].astype("string")
             df["date"] = pd.to_datetime(df["date"], format=date_fmt)
             df = df.set_index("date")
+            for column in df.columns:
+                if df[column].dtype == "object":
+                    df[column] = df[column].astype("int64")
+            print("CVI Progression")
             print(df)
-            print(df.dtypes)
             df = df.sort_values(by="date")
             mu, sigma = 0, 0.1
             noise = np.random.normal(mu, sigma, [len(df.index), len(df.columns)])
             df_noisy = df + noise
             descriptiveStats = df.describe()
+            print("Descriptive Statistics")
             print(descriptiveStats)
+            growthCalculation = df.diff(periods=3)
+            growth = growthCalculation[-1:]
+            print("Growth Factor (Now vs 3 Measurements ago)")
+            print(growth)
 
             fig = make_subplots(
                 rows=3,

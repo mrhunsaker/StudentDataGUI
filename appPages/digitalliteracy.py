@@ -614,1962 +614,1971 @@ def create() -> None:
 
                 data_entry()
 
-            def graph(event):
-                """ """
-                dataBasePath = Path(USER_DIR).joinpath("StudentDatabase", "students.db")
-                studentname = u_studentname.value
-                conn = sqlite3.connect(dataBasePath)
-                df_sql = pd.read_sql_query("SELECT * FROM DIGITALLITERACYPROGRESS", conn)
-                df_student = df_sql[df_sql.STUDENTNAME == studentname]
-                print(df_student)
-                conn.close()
-                df = df_student.drop(columns=["ID", "STUDENTNAME"])
-                print(df)
-                df = df.rename(columns={"DATE": "date"})
-                df["date"] = df["date"].astype("string")
-                df["date"] = pd.to_datetime(df["date"], format=date_fmt)
-                df = df.set_index("date")
-                print(df)
-                df = df.sort_values(by="date")
-                mu, sigma = 0, 0.1
-                noise = np.random.normal(mu, sigma, [len(df.index), len(df.columns)])
-                df_noisy = df + noise
-                descriptiveStats = df.describe()
-                print(descriptiveStats)
+        def graph(event):
+            """ """
+            dataBasePath = Path(USER_DIR).joinpath("StudentDatabase", "students.db")
+            studentname = u_studentname.value
+            conn = sqlite3.connect(dataBasePath)
+            df_sql = pd.read_sql_query("SELECT * FROM DIGITALLITERACYPROGRESS", conn)
+            df_student = df_sql[df_sql.STUDENTNAME == studentname]
+            print(df_student)
+            conn.close()
+            df = df_student.drop(columns=["ID", "STUDENTNAME"])
+            print(df)
+            df = df.rename(columns={"DATE": "date"})
+            df["date"] = df["date"].astype("string")
+            df["date"] = pd.to_datetime(df["date"], format=date_fmt)
+            df = df.set_index("date")
+            for column in df.columns:
+                if df[column].dtype == "object":
+                    df[column] = df[column].astype("int64")
+            print("Digital Literacy Skills Progression")
+            print(df)
+            df = df.sort_values(by="date")
+            mu, sigma = 0, 0.1
+            noise = np.random.normal(mu, sigma, [len(df.index), len(df.columns)])
+            df_noisy = df + noise
+            descriptiveStats = df.describe()
+            print("Descriptive Statistics")
+            print(descriptiveStats)
+            growthCalculation = df.diff(periods=3)
+            growth = growthCalculation[-1:]
+            print("Growth Factor (Now vs 3 Measurements ago)")
+            print(growth)
 
-                fig = make_subplots(
-                    rows=4,
-                    cols=2,
-                    specs=[[{'colspan':2},None],[{},{}],[{},{}],[{}, {}]],
-                    subplot_titles=(
-                        "Basic Operations",
-                        "Word Processing",
-                        "Spreadsheets",
-                        "Presentation Tools",
-                        "Copyright and Plagiarism",
-                        "Research and Gathering Information",
-                        "Communication and Collaboration"
-                    ),
-                    print_grid=True,
-                )
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P1_1"],
-                    mode="lines+markers",
-                    name="Turn computer on and off",
-                    legendgroup="Phase 1",
-                    legendgrouptitle_text="Phase 1",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
+            fig = make_subplots(
+                rows=4,
+                cols=2,
+                specs=[[{'colspan':2},None],[{},{}],[{},{}],[{}, {}]],
+                subplot_titles=(
+                    "Basic Operations",
+                    "Word Processing",
+                    "Spreadsheets",
+                    "Presentation Tools",
+                    "Copyright and Plagiarism",
+                    "Research and Gathering Information",
+                    "Communication and Collaboration"
                 ),
-                    row=1, 
-                    col=1,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P1_2"],
-                    mode="lines+markers",
-                    name="Use pointing device such as a mouse",
-                    legendgroup="Phase 1",
-                    legendgrouptitle_text="Phase 1",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=1, 
-                    col=1,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P1_3"],
-                    mode="lines+markers",
-                    name="Use icons, windows and menus to open documents ",
-                    legendgroup="Phase 1",
-                    legendgrouptitle_text="Phase 1",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=1, 
-                    col=1,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P1_4"],
-                    mode="lines+markers",
-                    name=" File management-saving documents",
-                    legendgroup="Phase 1",
-                    legendgrouptitle_text="Phase 1",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=1, 
-                    col=1,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P1_5"],
-                    mode="lines+markers",
-                    name="Explain and use age-appropriate online tools and resources",
-                    legendgroup="Phase 1",
-                    legendgrouptitle_text="Phase 1",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=1, 
-                    col=1,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P1_6"],
-                    mode="lines+markers",
-                    name="Keyboarding<br> (Use proper posture and ergonomics,<br> Locate and use letter and numbers keys with left and right hand placement,<br> Locate and use correct finger, hand for space bar,return/enter and shift key,<br> Gain proficiency and speed in touch typing)",
-                    legendgroup="Phase 1",
-                    legendgrouptitle_text="Phase 1",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=1, 
-                    col=1,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P2_1"],
-                    mode="lines+markers",
-                    name=" write, edit, print and save",
-                    legendgroup="Phase 1",
-                    legendgrouptitle_text="Phase 1",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=2, 
-                    col=1,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P2_2"],
-                    mode="lines+markers",
-                    name="Use menu/tool bar to format, edit and print a document ",
-                    legendgroup="Phase 1",
-                    legendgrouptitle_text="Phase 1",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=2, 
-                    col=1,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P2_3"],
-                    mode="lines+markers",
-                    name="Highlight text, copy and paste text ",
-                    legendgroup="Phase 1",
-                    legendgrouptitle_text="Phase 1",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=2, 
-                    col=1,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P2_4"],
-                    mode="lines+markers",
-                    name="Copy and paste images within the document and from outside sources ",
-                    legendgroup="Phase 1",
-                    legendgrouptitle_text="Phase 1",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=2, 
-                    col=1,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P2_5"],
-                    mode="lines+markers",
-                    name="Insert and size a graphic in a document ",
-                    legendgroup="Phase 1",
-                    legendgrouptitle_text="Phase 1",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=2, 
-                    col=1,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P2_6"],
-                    mode="lines+markers",
-                    name="Proofread and edit writing using appropriate resources",
-                    legendgroup="Phase 1",
-                    legendgrouptitle_text="Phase 1",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=2, 
-                    col=1,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P3_1"],
-                    mode="lines+markers",
-                    name="Use spreadsheet to record, organize and graph information ",
-                    legendgroup="Phase 1",
-                    legendgrouptitle_text="Phase 1",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=2, 
-                    col=2,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P3_2"],
-                    mode="lines+markers",
-                    name="Identify/explain spreadsheet terms and concepts ",
-                    legendgroup="Phase 1",
-                    legendgrouptitle_text="Phase 1",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=2, 
-                    col=2,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P3_3"],
-                    mode="lines+markers",
-                    name="Perform calculations using formulas ",
-                    legendgroup="Phase 1",
-                    legendgrouptitle_text="Phase 1",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=2, 
-                    col=2,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P3_4"],
-                    mode="lines+markers",
-                    name="Use mathematical symbols e.g. + add, - minus, *multiply, /divide, ^ exponents ",
-                    legendgroup="Phase 1",
-                    legendgrouptitle_text="Phase 1",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=2, 
-                    col=2,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P3_5"],
-                    mode="lines+markers",
-                    name="Use spreadsheets to solve problems and draw conclusions ",
-                    legendgroup="Phase 1",
-                    legendgrouptitle_text="Phase 1",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=2, 
-                    col=2,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P4_1"],
-                    mode="lines+markers",
-                    name="Create, edit and format text on a slide ",
-                    legendgroup="Phase 1",
-                    legendgrouptitle_text="Phase 1",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=3, 
-                    col=1,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P4_2"],
-                    mode="lines+markers",
-                    name="Create a  slides and organize them to present",
-                    legendgroup="Phase 1",
-                    legendgrouptitle_text="Phase 1",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=3, 
-                    col=1,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P4_3"],
-                    mode="lines+markers",
-                    name="Copy and paste or import graphics;<br> change their size and position on a slide ",
-                    legendgroup="Phase 1",
-                    legendgrouptitle_text="Phase 1",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=3, 
-                    col=1,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P4_4"],
-                    mode="lines+markers",
-                    name="Use painting and drawing tools to create and edit work ",
-                    legendgroup="Phase 1",
-                    legendgrouptitle_text="Phase 1",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=3, 
-                    col=1,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P4_5"],
-                    mode="lines+markers",
-                    name="Watch online videos and use play, pause, rewind and forward buttons",
-                    legendgroup="Phase 1",
-                    legendgrouptitle_text="Phase 1",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=3, 
-                    col=1,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P5_1"],
-                    mode="lines+markers",
-                    name="Explain and demonstrate compliance with classroom rules regarding use of computers and networks ",
-                    legendgroup="Phase 1",
-                    legendgrouptitle_text="Phase 1",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=3, 
-                    col=2,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P5_2"],
-                    mode="lines+markers",
-                    name="Explain responsible uses of technology and digital information;<br> describe possible consequences of inappropriate use ",
-                    legendgroup="Phase 1",
-                    legendgrouptitle_text="Phase 1",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=3, 
-                    col=2,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P5_3"],
-                    mode="lines+markers",
-                    name="Explain Fair Use Guidelines for the use of copyrighted materials and giving credit to media creators ",
-                    legendgroup="Phase 1",
-                    legendgrouptitle_text="Phase 1",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=3, 
-                    col=2,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P5_4"],
-                    mode="lines+markers",
-                    name="Explain the strategies for the safe and efficient use of computers",
-                    legendgroup="Phase 1",
-                    legendgrouptitle_text="Phase 1",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=3, 
-                    col=2,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P5_5"],
-                    mode="lines+markers",
-                    name="Demonstrate safe email practices",
-                    legendgroup="Phase 1",
-                    legendgrouptitle_text="Phase 1",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=3, 
-                    col=2,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P5_6"],
-                    mode="lines+markers",
-                    name="Identify cyberbullying",
-                    legendgroup="Phase 1",
-                    legendgrouptitle_text="Phase 1",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=3, 
-                    col=2,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P5_7"],
-                    mode="lines+markers",
-                    name="Describe potential risks associated with online communications ",
-                    legendgroup="Phase 1",
-                    legendgrouptitle_text="Phase 1",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=3, 
-                    col=2,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P6_1"],
-                    mode="lines+markers",
-                    name="Use age appropriate technologies to locate, collect,<br> organize content from media collection for specific purposes, citing sources ",
-                    legendgroup="Phase 1",
-                    legendgrouptitle_text="Phase 1",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=4, 
-                    col=1,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P6_2"],
-                    mode="lines+markers",
-                    name="Perform basic searches on databases to locate information.<br> Evaluate internet resources",
-                    legendgroup="Phase 1",
-                    legendgrouptitle_text="Phase 1",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=4, 
-                    col=1,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P6_3"],
-                    mode="lines+markers",
-                    name="Use content specific technology to gather and analyze data. ",
-                    legendgroup="Phase 1",
-                    legendgrouptitle_text="Phase 1",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=4, 
-                    col=1,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P6_4"],
-                    mode="lines+markers",
-                    name="Use Web 2.0 tools to gather and share information  ",
-                    legendgroup="Phase 1",
-                    legendgrouptitle_text="Phase 1",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=4, 
-                    col=1,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P6_5"],
-                    mode="lines+markers",
-                    name="Identify and analyze the purpose of a media message",
-                    legendgroup="Phase 1",
-                    legendgrouptitle_text="Phase 1",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=4, 
-                    col=1,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P7_1"],
-                    mode="lines+markers",
-                    name="Work collaboratively online with other students",
-                    legendgroup="Phase 1",
-                    legendgrouptitle_text="Phase 1",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=4, 
-                    col=2,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P7_2"],
-                    mode="lines+markers",
-                    name="Use a variety of age-appropriate technologies to communicate and exchange ideas ",
-                    legendgroup="Phase 1",
-                    legendgrouptitle_text="Phase 1",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=4, 
-                    col=2,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P7_3"],
-                    mode="lines+markers",
-                    name="Create projects that use text and various forms of graphics, audio, and video to communicate ideas. ",
-                    legendgroup="Phase 1",
-                    legendgrouptitle_text="Phase 1",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=4, 
-                    col=2,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P7_4"],
-                    mode="lines+markers",
-                    name="Evaluate multimedia presentations for organization, content, design, presentation and appropriateness of citations ",
-                    legendgroup="Phase 1",
-                    legendgrouptitle_text="Phase 1",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=4, 
-                    col=2,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P7_5"],
-                    mode="lines+markers",
-                    name="Use district approved Web 2.0 tools for communication and collaboration ",
-                    legendgroup="Phase 1",
-                    legendgrouptitle_text="Phase 1",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=4, 
-                    col=2,
-                    )
-                fig.add_hrect(
-                    y0=-0.5,
-                    y1=0.5,
-                    line_width=0,
-                    fillcolor="red",
-                    opacity=0.2,
-                    row=1,
-                    col=1,
+                print_grid=True,
+            )
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P1_1"],
+                mode="lines+markers",
+                name="Turn computer on and off",
+                legendgroup="Phase 1",
+                legendgrouptitle_text="Phase 1",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=1, 
+                col=1,
                 )
-                fig.add_hrect(
-                    y0=0.5,
-                    y1=1.5,
-                    line_width=0,
-                    fillcolor="orange",
-                    opacity=0.2,
-                    row=1,
-                    col=1,
-                )
-                fig.add_hrect(
-                    y0=1.5,
-                    y1=2.5,
-                    line_width=0,
-                    fillcolor="yellow",
-                    opacity=0.2,
-                    row=1,
-                    col=1,
-                )
-                fig.add_hrect(
-                    y0=2.5,
-                    y1=3.5,
-                    line_width=0,
-                    fillcolor="green",
-                    opacity=0.2,
-                    row=1,
-                    col=1,
-                )
-                fig.add_hrect(
-                    y0=-0.5,
-                    y1=0.5,
-                    line_width=0,
-                    fillcolor="red",
-                    opacity=0.2,
-                    row=2,
-                    col=1,
-                )
-                fig.add_hrect(
-                    y0=0.5,
-                    y1=1.5,
-                    line_width=0,
-                    fillcolor="orange",
-                    opacity=0.2,
-                    row=2,
-                    col=1,
-                )
-                fig.add_hrect(
-                    y0=1.5,
-                    y1=2.5,
-                    line_width=0,
-                    fillcolor="yellow",
-                    opacity=0.2,
-                    row=2,
-                    col=1,
-                )
-                fig.add_hrect(
-                    y0=2.5,
-                    y1=3.5,
-                    line_width=0,
-                    fillcolor="green",
-                    opacity=0.2,
-                    row=2,
-                    col=1,
-                )
-                fig.add_hrect(
-                    y0=-0.5,
-                    y1=0.5,
-                    line_width=0,
-                    fillcolor="red",
-                    opacity=0.2,
-                    row=2,
-                    col=2,
-                )
-                fig.add_hrect(
-                    y0=0.5,
-                    y1=1.5,
-                    line_width=0,
-                    fillcolor="orange",
-                    opacity=0.2,
-                    row=2,
-                    col=2,
-                )
-                fig.add_hrect(
-                    y0=1.5,
-                    y1=2.5,
-                    line_width=0,
-                    fillcolor="yellow",
-                    opacity=0.2,
-                    row=2,
-                    col=2,
-                )
-                fig.add_hrect(
-                    y0=2.5,
-                    y1=3.5,
-                    line_width=0,
-                    fillcolor="green",
-                    opacity=0.2,
-                    row=2,
-                    col=2,
-                )
-                fig.add_hrect(
-                    y0=-0.5,
-                    y1=0.5,
-                    line_width=0,
-                    fillcolor="red",
-                    opacity=0.2,
-                    row=3,
-                    col=1,
-                )
-                fig.add_hrect(
-                    y0=0.5,
-                    y1=1.5,
-                    line_width=0,
-                    fillcolor="orange",
-                    opacity=0.2,
-                    row=3,
-                    col=1,
-                )
-                fig.add_hrect(
-                    y0=1.5,
-                    y1=2.5,
-                    line_width=0,
-                    fillcolor="yellow",
-                    opacity=0.2,
-                    row=3,
-                    col=1,
-                )
-                fig.add_hrect(
-                    y0=2.5,
-                    y1=3.5,
-                    line_width=0,
-                    fillcolor="green",
-                    opacity=0.2,
-                    row=3,
-                    col=1,
-                )
-                fig.add_hrect(
-                    y0=-0.5,
-                    y1=0.5,
-                    line_width=0,
-                    fillcolor="red",
-                    opacity=0.2,
-                    row=3,
-                    col=2,
-                )
-                fig.add_hrect(
-                    y0=0.5,
-                    y1=1.5,
-                    line_width=0,
-                    fillcolor="orange",
-                    opacity=0.2,
-                    row=3,
-                    col=2,
-                )
-                fig.add_hrect(
-                    y0=1.5,
-                    y1=2.5,
-                    line_width=0,
-                    fillcolor="yellow",
-                    opacity=0.2,
-                    row=3,
-                    col=2,
-                )
-                fig.add_hrect(
-                    y0=2.5,
-                    y1=3.5,
-                    line_width=0,
-                    fillcolor="green",
-                    opacity=0.2,
-                    row=3,
-                    col=2,
-                )
-                fig.add_hrect(
-                    y0=-0.5,
-                    y1=0.5,
-                    line_width=0,
-                    fillcolor="red",
-                    opacity=0.2,
-                    row=4,
-                    col=1,
-                )
-                fig.add_hrect(
-                    y0=0.5,
-                    y1=1.5,
-                    line_width=0,
-                    fillcolor="orange",
-                    opacity=0.2,
-                    row=4,
-                    col=1,
-                )
-                fig.add_hrect(
-                    y0=1.5,
-                    y1=2.5,
-                    line_width=0,
-                    fillcolor="yellow",
-                    opacity=0.2,
-                    row=4,
-                    col=1,
-                )
-                fig.add_hrect(
-                    y0=2.5,
-                    y1=3.5,
-                    line_width=0,
-                    fillcolor="green",
-                    opacity=0.2,
-                    row=4,
-                    col=1,
-                )
-                fig.add_hrect(
-                    y0=-0.5,
-                    y1=0.5,
-                    line_width=0,
-                    fillcolor="red",
-                    opacity=0.2,
-                    row=4,
-                    col=2,
-                )
-                fig.add_hrect(
-                    y0=0.5,
-                    y1=1.5,
-                    line_width=0,
-                    fillcolor="orange",
-                    opacity=0.2,
-                    row=4,
-                    col=2,
-                )
-                fig.add_hrect(
-                    y0=1.5,
-                    y1=2.5,
-                    line_width=0,
-                    fillcolor="yellow",
-                    opacity=0.2,
-                    row=4,
-                    col=2,
-                )
-                fig.add_hrect(
-                    y0=2.5,
-                    y1=3.5,
-                    line_width=0,
-                    fillcolor="green",
-                    opacity=0.2,
-                    row=4,
-                    col=2,
-                )
-                fig.update_yaxes(
-                    range=[-0.5, 3.5],
-                    fixedrange=True,
-                    ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
-                    tickvals=[0.1, 1, 2, 3],
-                    row=1,
-                    col=1,
-                )
-                fig.update_yaxes(
-                    range=[-0.5, 3.5],
-                    fixedrange=True,
-                    ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
-                    tickvals=[0.1, 1, 2, 3],
-                    row=2,
-                    col=1,
-                )
-                fig.update_yaxes(
-                    range=[-0.5, 3.5],
-                    fixedrange=True,
-                    ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
-                    tickvals=[0.1, 1, 2, 3],
-                    row=2,
-                    col=2,
-                )
-                fig.update_yaxes(
-                    range=[-0.5, 3.5],
-                    fixedrange=True,
-                    ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
-                    tickvals=[0.1, 1, 2, 3],
-                    row=3,
-                    col=1,
-                )
-                fig.update_yaxes(
-                    range=[-0.5, 3.5],
-                    fixedrange=True,
-                    ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
-                    tickvals=[0.1, 1, 2, 3],
-                    row=3,
-                    col=2,
-                )
-                fig.update_yaxes(
-                    range=[-0.5, 3.5],
-                    fixedrange=True,
-                    ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
-                    tickvals=[0.1, 1, 2, 3],
-                    row=4,
-                    col=1,
-                )
-                fig.update_yaxes(
-                    range=[-0.5, 3.5],
-                    fixedrange=True,
-                    ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
-                    tickvals=[0.1, 1, 2, 3],
-                    row=4,
-                    col=2,
-                )
-                fig.update_layout(
-                    xaxis_tickformat="%d %b",
-                    xaxis2_tickformat="%d %b",
-                    xaxis3_tickformat="%d %b",
-                    xaxis4_tickformat="%d %b",
-                    xaxis5_tickformat="%d %b",
-                    xaxis6_tickformat="%d %b",
-                    xaxis7_tickformat="%d %b",
-                    template="simple_white",
-                    title_text=f"{studentname}: Elementary Digital Literacy Skills Progression",
-                    legend=dict(font=dict(size=10)),
-                    hovermode="x unified",
-                    hoverlabel = dict(namelength = -1),
 
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P1_2"],
+                mode="lines+markers",
+                name="Use pointing device such as a mouse",
+                legendgroup="Phase 1",
+                legendgrouptitle_text="Phase 1",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=1, 
+                col=1,
                 )
-                tmppath = Path(USER_DIR).joinpath(
-                    "StudentDatabase",
-                    "StudentDataFiles",
-                    studentname,
-                    "ElementaryDigitalLiteracyProgression.html",
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P1_3"],
+                mode="lines+markers",
+                name="Use icons, windows and menus to open documents ",
+                legendgroup="Phase 1",
+                legendgrouptitle_text="Phase 1",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=1, 
+                col=1,
                 )
-                fig.write_html(tmppath, auto_open=True)
-                # fig.show()
-                ui.notify(
-                    "Graph Successful. The Graphs will open in a Browser Window!",
-                    position="center",
-                    type="positive",
-                    close_button="OK",
-                )                
-                fig = make_subplots(
-                    rows=4,
-                    cols=2,
-                    specs=[
-                        [{},{}],
-                        [{},{}],
-                        [{},{}],
-                        [{}, {}],
-                    ],
-                    subplot_titles=(
-                        "Basic Operations",
-                        "Word Processing",
-                        "Spreadsheets",
-                        "Mathematical Operations",
-                        "Presentation Tools",
-                        "Copyright and Plagiarism",
-                        "Research and Gathering Information",
-                        "Communication and Collaboration"
-                    ),
-                    print_grid=True,
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P1_4"],
+                mode="lines+markers",
+                name=" File management-saving documents",
+                legendgroup="Phase 1",
+                legendgrouptitle_text="Phase 1",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=1, 
+                col=1,
                 )
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P8_1"],
-                    mode="lines+markers",
-                    name="Identify successful troubleshooting strategies for minor hardware and software issues/problems (e.g., “frozen screen”) ",
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P1_5"],
+                mode="lines+markers",
+                name="Explain and use age-appropriate online tools and resources",
+                legendgroup="Phase 1",
+                legendgrouptitle_text="Phase 1",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=1, 
+                col=1,
+                )
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P1_6"],
+                mode="lines+markers",
+                name="Keyboarding<br> (Use proper posture and ergonomics,<br> Locate and use letter and numbers keys with left and right hand placement,<br> Locate and use correct finger, hand for space bar,return/enter and shift key,<br> Gain proficiency and speed in touch typing)",
+                legendgroup="Phase 1",
+                legendgrouptitle_text="Phase 1",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=1, 
+                col=1,
+                )
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P2_1"],
+                mode="lines+markers",
+                name=" write, edit, print and save",
+                legendgroup="Phase 1",
+                legendgrouptitle_text="Phase 1",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=2, 
+                col=1,
+                )
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P2_2"],
+                mode="lines+markers",
+                name="Use menu/tool bar to format, edit and print a document ",
+                legendgroup="Phase 1",
+                legendgrouptitle_text="Phase 1",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=2, 
+                col=1,
+                )
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P2_3"],
+                mode="lines+markers",
+                name="Highlight text, copy and paste text ",
+                legendgroup="Phase 1",
+                legendgrouptitle_text="Phase 1",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=2, 
+                col=1,
+                )
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P2_4"],
+                mode="lines+markers",
+                name="Copy and paste images within the document and from outside sources ",
+                legendgroup="Phase 1",
+                legendgrouptitle_text="Phase 1",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=2, 
+                col=1,
+                )
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P2_5"],
+                mode="lines+markers",
+                name="Insert and size a graphic in a document ",
+                legendgroup="Phase 1",
+                legendgrouptitle_text="Phase 1",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=2, 
+                col=1,
+                )
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P2_6"],
+                mode="lines+markers",
+                name="Proofread and edit writing using appropriate resources",
+                legendgroup="Phase 1",
+                legendgrouptitle_text="Phase 1",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=2, 
+                col=1,
+                )
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P3_1"],
+                mode="lines+markers",
+                name="Use spreadsheet to record, organize and graph information ",
+                legendgroup="Phase 1",
+                legendgrouptitle_text="Phase 1",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=2, 
+                col=2,
+                )
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P3_2"],
+                mode="lines+markers",
+                name="Identify/explain spreadsheet terms and concepts ",
+                legendgroup="Phase 1",
+                legendgrouptitle_text="Phase 1",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=2, 
+                col=2,
+                )
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P3_3"],
+                mode="lines+markers",
+                name="Perform calculations using formulas ",
+                legendgroup="Phase 1",
+                legendgrouptitle_text="Phase 1",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=2, 
+                col=2,
+                )
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P3_4"],
+                mode="lines+markers",
+                name="Use mathematical symbols e.g. + add, - minus, *multiply, /divide, ^ exponents ",
+                legendgroup="Phase 1",
+                legendgrouptitle_text="Phase 1",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=2, 
+                col=2,
+                )
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P3_5"],
+                mode="lines+markers",
+                name="Use spreadsheets to solve problems and draw conclusions ",
+                legendgroup="Phase 1",
+                legendgrouptitle_text="Phase 1",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=2, 
+                col=2,
+                )
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P4_1"],
+                mode="lines+markers",
+                name="Create, edit and format text on a slide ",
+                legendgroup="Phase 1",
+                legendgrouptitle_text="Phase 1",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=3, 
+                col=1,
+                )
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P4_2"],
+                mode="lines+markers",
+                name="Create a  slides and organize them to present",
+                legendgroup="Phase 1",
+                legendgrouptitle_text="Phase 1",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=3, 
+                col=1,
+                )
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P4_3"],
+                mode="lines+markers",
+                name="Copy and paste or import graphics;<br> change their size and position on a slide ",
+                legendgroup="Phase 1",
+                legendgrouptitle_text="Phase 1",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=3, 
+                col=1,
+                )
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P4_4"],
+                mode="lines+markers",
+                name="Use painting and drawing tools to create and edit work ",
+                legendgroup="Phase 1",
+                legendgrouptitle_text="Phase 1",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=3, 
+                col=1,
+                )
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P4_5"],
+                mode="lines+markers",
+                name="Watch online videos and use play, pause, rewind and forward buttons",
+                legendgroup="Phase 1",
+                legendgrouptitle_text="Phase 1",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=3, 
+                col=1,
+                )
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P5_1"],
+                mode="lines+markers",
+                name="Explain and demonstrate compliance with classroom rules regarding use of computers and networks ",
+                legendgroup="Phase 1",
+                legendgrouptitle_text="Phase 1",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=3, 
+                col=2,
+                )
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P5_2"],
+                mode="lines+markers",
+                name="Explain responsible uses of technology and digital information;<br> describe possible consequences of inappropriate use ",
+                legendgroup="Phase 1",
+                legendgrouptitle_text="Phase 1",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=3, 
+                col=2,
+                )
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P5_3"],
+                mode="lines+markers",
+                name="Explain Fair Use Guidelines for the use of copyrighted materials and giving credit to media creators ",
+                legendgroup="Phase 1",
+                legendgrouptitle_text="Phase 1",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=3, 
+                col=2,
+                )
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P5_4"],
+                mode="lines+markers",
+                name="Explain the strategies for the safe and efficient use of computers",
+                legendgroup="Phase 1",
+                legendgrouptitle_text="Phase 1",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=3, 
+                col=2,
+                )
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P5_5"],
+                mode="lines+markers",
+                name="Demonstrate safe email practices",
+                legendgroup="Phase 1",
+                legendgrouptitle_text="Phase 1",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=3, 
+                col=2,
+                )
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P5_6"],
+                mode="lines+markers",
+                name="Identify cyberbullying",
+                legendgroup="Phase 1",
+                legendgrouptitle_text="Phase 1",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=3, 
+                col=2,
+                )
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P5_7"],
+                mode="lines+markers",
+                name="Describe potential risks associated with online communications ",
+                legendgroup="Phase 1",
+                legendgrouptitle_text="Phase 1",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=3, 
+                col=2,
+                )
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P6_1"],
+                mode="lines+markers",
+                name="Use age appropriate technologies to locate, collect,<br> organize content from media collection for specific purposes, citing sources ",
+                legendgroup="Phase 1",
+                legendgrouptitle_text="Phase 1",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=4, 
+                col=1,
+                )
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P6_2"],
+                mode="lines+markers",
+                name="Perform basic searches on databases to locate information.<br> Evaluate internet resources",
+                legendgroup="Phase 1",
+                legendgrouptitle_text="Phase 1",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=4, 
+                col=1,
+                )
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P6_3"],
+                mode="lines+markers",
+                name="Use content specific technology to gather and analyze data. ",
+                legendgroup="Phase 1",
+                legendgrouptitle_text="Phase 1",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=4, 
+                col=1,
+                )
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P6_4"],
+                mode="lines+markers",
+                name="Use Web 2.0 tools to gather and share information  ",
+                legendgroup="Phase 1",
+                legendgrouptitle_text="Phase 1",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=4, 
+                col=1,
+                )
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P6_5"],
+                mode="lines+markers",
+                name="Identify and analyze the purpose of a media message",
+                legendgroup="Phase 1",
+                legendgrouptitle_text="Phase 1",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=4, 
+                col=1,
+                )
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P7_1"],
+                mode="lines+markers",
+                name="Work collaboratively online with other students",
+                legendgroup="Phase 1",
+                legendgrouptitle_text="Phase 1",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=4, 
+                col=2,
+                )
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P7_2"],
+                mode="lines+markers",
+                name="Use a variety of age-appropriate technologies to communicate and exchange ideas ",
+                legendgroup="Phase 1",
+                legendgrouptitle_text="Phase 1",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=4, 
+                col=2,
+                )
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P7_3"],
+                mode="lines+markers",
+                name="Create projects that use text and various forms of graphics, audio, and video to communicate ideas. ",
+                legendgroup="Phase 1",
+                legendgrouptitle_text="Phase 1",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=4, 
+                col=2,
+                )
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P7_4"],
+                mode="lines+markers",
+                name="Evaluate multimedia presentations for organization, content, design, presentation and appropriateness of citations ",
+                legendgroup="Phase 1",
+                legendgrouptitle_text="Phase 1",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=4, 
+                col=2,
+                )
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P7_5"],
+                mode="lines+markers",
+                name="Use district approved Web 2.0 tools for communication and collaboration ",
+                legendgroup="Phase 1",
+                legendgrouptitle_text="Phase 1",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=4, 
+                col=2,
+                )
+            fig.add_hrect(
+                y0=-0.5,
+                y1=0.5,
+                line_width=0,
+                fillcolor="red",
+                opacity=0.2,
+                row=1,
+                col=1,
+            )
+            fig.add_hrect(
+                y0=0.5,
+                y1=1.5,
+                line_width=0,
+                fillcolor="orange",
+                opacity=0.2,
+                row=1,
+                col=1,
+            )
+            fig.add_hrect(
+                y0=1.5,
+                y1=2.5,
+                line_width=0,
+                fillcolor="yellow",
+                opacity=0.2,
+                row=1,
+                col=1,
+            )
+            fig.add_hrect(
+                y0=2.5,
+                y1=3.5,
+                line_width=0,
+                fillcolor="green",
+                opacity=0.2,
+                row=1,
+                col=1,
+            )
+            fig.add_hrect(
+                y0=-0.5,
+                y1=0.5,
+                line_width=0,
+                fillcolor="red",
+                opacity=0.2,
+                row=2,
+                col=1,
+            )
+            fig.add_hrect(
+                y0=0.5,
+                y1=1.5,
+                line_width=0,
+                fillcolor="orange",
+                opacity=0.2,
+                row=2,
+                col=1,
+            )
+            fig.add_hrect(
+                y0=1.5,
+                y1=2.5,
+                line_width=0,
+                fillcolor="yellow",
+                opacity=0.2,
+                row=2,
+                col=1,
+            )
+            fig.add_hrect(
+                y0=2.5,
+                y1=3.5,
+                line_width=0,
+                fillcolor="green",
+                opacity=0.2,
+                row=2,
+                col=1,
+            )
+            fig.add_hrect(
+                y0=-0.5,
+                y1=0.5,
+                line_width=0,
+                fillcolor="red",
+                opacity=0.2,
+                row=2,
+                col=2,
+            )
+            fig.add_hrect(
+                y0=0.5,
+                y1=1.5,
+                line_width=0,
+                fillcolor="orange",
+                opacity=0.2,
+                row=2,
+                col=2,
+            )
+            fig.add_hrect(
+                y0=1.5,
+                y1=2.5,
+                line_width=0,
+                fillcolor="yellow",
+                opacity=0.2,
+                row=2,
+                col=2,
+            )
+            fig.add_hrect(
+                y0=2.5,
+                y1=3.5,
+                line_width=0,
+                fillcolor="green",
+                opacity=0.2,
+                row=2,
+                col=2,
+            )
+            fig.add_hrect(
+                y0=-0.5,
+                y1=0.5,
+                line_width=0,
+                fillcolor="red",
+                opacity=0.2,
+                row=3,
+                col=1,
+            )
+            fig.add_hrect(
+                y0=0.5,
+                y1=1.5,
+                line_width=0,
+                fillcolor="orange",
+                opacity=0.2,
+                row=3,
+                col=1,
+            )
+            fig.add_hrect(
+                y0=1.5,
+                y1=2.5,
+                line_width=0,
+                fillcolor="yellow",
+                opacity=0.2,
+                row=3,
+                col=1,
+            )
+            fig.add_hrect(
+                y0=2.5,
+                y1=3.5,
+                line_width=0,
+                fillcolor="green",
+                opacity=0.2,
+                row=3,
+                col=1,
+            )
+            fig.add_hrect(
+                y0=-0.5,
+                y1=0.5,
+                line_width=0,
+                fillcolor="red",
+                opacity=0.2,
+                row=3,
+                col=2,
+            )
+            fig.add_hrect(
+                y0=0.5,
+                y1=1.5,
+                line_width=0,
+                fillcolor="orange",
+                opacity=0.2,
+                row=3,
+                col=2,
+            )
+            fig.add_hrect(
+                y0=1.5,
+                y1=2.5,
+                line_width=0,
+                fillcolor="yellow",
+                opacity=0.2,
+                row=3,
+                col=2,
+            )
+            fig.add_hrect(
+                y0=2.5,
+                y1=3.5,
+                line_width=0,
+                fillcolor="green",
+                opacity=0.2,
+                row=3,
+                col=2,
+            )
+            fig.add_hrect(
+                y0=-0.5,
+                y1=0.5,
+                line_width=0,
+                fillcolor="red",
+                opacity=0.2,
+                row=4,
+                col=1,
+            )
+            fig.add_hrect(
+                y0=0.5,
+                y1=1.5,
+                line_width=0,
+                fillcolor="orange",
+                opacity=0.2,
+                row=4,
+                col=1,
+            )
+            fig.add_hrect(
+                y0=1.5,
+                y1=2.5,
+                line_width=0,
+                fillcolor="yellow",
+                opacity=0.2,
+                row=4,
+                col=1,
+            )
+            fig.add_hrect(
+                y0=2.5,
+                y1=3.5,
+                line_width=0,
+                fillcolor="green",
+                opacity=0.2,
+                row=4,
+                col=1,
+            )
+            fig.add_hrect(
+                y0=-0.5,
+                y1=0.5,
+                line_width=0,
+                fillcolor="red",
+                opacity=0.2,
+                row=4,
+                col=2,
+            )
+            fig.add_hrect(
+                y0=0.5,
+                y1=1.5,
+                line_width=0,
+                fillcolor="orange",
+                opacity=0.2,
+                row=4,
+                col=2,
+            )
+            fig.add_hrect(
+                y0=1.5,
+                y1=2.5,
+                line_width=0,
+                fillcolor="yellow",
+                opacity=0.2,
+                row=4,
+                col=2,
+            )
+            fig.add_hrect(
+                y0=2.5,
+                y1=3.5,
+                line_width=0,
+                fillcolor="green",
+                opacity=0.2,
+                row=4,
+                col=2,
+            )
+            fig.update_yaxes(
+                range=[-0.5, 3.5],
+                fixedrange=True,
+                ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
+                tickvals=[0.1, 1, 2, 3],
+                row=1,
+                col=1,
+            )
+            fig.update_yaxes(
+                range=[-0.5, 3.5],
+                fixedrange=True,
+                ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
+                tickvals=[0.1, 1, 2, 3],
+                row=2,
+                col=1,
+            )
+            fig.update_yaxes(
+                range=[-0.5, 3.5],
+                fixedrange=True,
+                ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
+                tickvals=[0.1, 1, 2, 3],
+                row=2,
+                col=2,
+            )
+            fig.update_yaxes(
+                range=[-0.5, 3.5],
+                fixedrange=True,
+                ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
+                tickvals=[0.1, 1, 2, 3],
+                row=3,
+                col=1,
+            )
+            fig.update_yaxes(
+                range=[-0.5, 3.5],
+                fixedrange=True,
+                ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
+                tickvals=[0.1, 1, 2, 3],
+                row=3,
+                col=2,
+            )
+            fig.update_yaxes(
+                range=[-0.5, 3.5],
+                fixedrange=True,
+                ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
+                tickvals=[0.1, 1, 2, 3],
+                row=4,
+                col=1,
+            )
+            fig.update_yaxes(
+                range=[-0.5, 3.5],
+                fixedrange=True,
+                ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
+                tickvals=[0.1, 1, 2, 3],
+                row=4,
+                col=2,
+            )
+            fig.update_layout(
+                xaxis_tickformat="%d %b",
+                xaxis2_tickformat="%d %b",
+                xaxis3_tickformat="%d %b",
+                xaxis4_tickformat="%d %b",
+                xaxis5_tickformat="%d %b",
+                xaxis6_tickformat="%d %b",
+                xaxis7_tickformat="%d %b",
+                template="simple_white",
+                title_text=f"{studentname}: Elementary Digital Literacy Skills Progression",
+                legend=dict(font=dict(size=10)),
+                hovermode="x unified",
+                hoverlabel = dict(namelength = -1),
+
+            )
+            tmppath = Path(USER_DIR).joinpath(
+                "StudentDatabase",
+                "StudentDataFiles",
+                studentname,
+                "ElementaryDigitalLiteracyProgression.html",
+            )
+            fig.write_html(tmppath, auto_open=True)
+            # fig.show()
+            ui.notify(
+                "Graph Successful. The Graphs will open in a Browser Window!",
+                position="center",
+                type="positive",
+                close_button="OK",
+            )                
+            fig = make_subplots(
+                rows=4,
+                cols=2,
+                specs=[
+                    [{},{}],
+                    [{},{}],
+                    [{},{}],
+                    [{}, {}],
+                ],
+                subplot_titles=(
+                    "Basic Operations",
+                    "Word Processing",
+                    "Spreadsheets",
+                    "Mathematical Operations",
+                    "Presentation Tools",
+                    "Copyright and Plagiarism",
+                    "Research and Gathering Information",
+                    "Communication and Collaboration"
+                ),
+                print_grid=True,
+            )
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P8_1"],
+                mode="lines+markers",
+                name="Identify successful troubleshooting strategies for minor hardware and software issues/problems (e.g., “frozen screen”) ",
+                legendgroup="Phase 2",
+                legendgrouptitle_text="Phase 2",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=1, 
+                col=1,
+                )
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P8_2"],
+                mode="lines+markers",
+                name="Independently operate peripheral equipment (e.g., scanner, digital camera, camcorder), if available ",
+                legendgroup="Phase 2",
+                legendgrouptitle_text="Phase 2",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=1, 
+                col=1,
+                )
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P8_3"],
+                mode="lines+markers",
+                name="Compress and expand large files  ",
+                legendgroup="Phase 2",
+                legendgrouptitle_text="Phase 2",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=1, 
+                col=1,
+                )
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P8_4"],
+                mode="lines+markers",
+                name="Identify and use a variety of storage media (e.g., CDs, DVDs, flash drives, school servers, and online storage spaces), and provide a rationale for using a certain medium for a specific purpose ",
+                legendgroup="Phase 2",
+                legendgrouptitle_text="Phase 2",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=1, 
+                col=1,
+                )
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P8_5"],
+                mode="lines+markers",
+                name="Demonstrate automaticity in keyboarding skills by increasing accuracy and speed (For students with disabilities, demonstrate alternate input techniques as appropriate.) ",
+                legendgroup="Phase 2",
+                legendgrouptitle_text="Phase 2",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=1, 
+                col=1,
+                )
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P8_6"],
+                mode="lines+markers",
+                name="Identify and assess the capabilities and limitations of emerging technologies ",
+                legendgroup="Phase 2",
+                legendgrouptitle_text="Phase 2",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=1, 
+                col=1,
+                )
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P9_1"],
+                mode="lines+markers",
+                name="Demonstrate use of intermediate features in word processing application (e.g., tabs, indents, headers and footers, end notes, bullet and numbering, tables) ",
+                legendgroup="Phase 2",
+                legendgrouptitle_text="Phase 2",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=1, 
+                col=2,
+                )
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P9_2"],
+                mode="lines+markers",
+                name="Apply advanced formatting and page layout features when appropriate (e.g., columns, templates, and styles) to improve the appearance of documents and materials ",
+                legendgroup="Phase 2",
+                legendgrouptitle_text="Phase 2",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=1, 
+                col=2,
+                )
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P9_3"],
+                mode="lines+markers",
+                name="Highlight text, copy and paste text ",
+                legendgroup="Phase 2",
+                legendgrouptitle_text="Phase 2",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=1, 
+                col=2,
+                )
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P9_4"],
+                mode="lines+markers",
+                name="Use the Comment function in Review for peer editing of documents ",
+                legendgroup="Phase 2",
+                legendgrouptitle_text="Phase 2",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=1, 
+                col=2,
+                )
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P9_5"],
+                mode="lines+markers",
+                name="Use the Track Changes feature in Review for peer editing of documents ",
+                legendgroup="Phase 2",
+                legendgrouptitle_text="Phase 2",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=1, 
+                col=2,
+                )
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P10_1"],
+                mode="lines+markers",
+                name="Use spreadsheets to calculate, graph, organize, and present data in a variety of real-world settings and choose the most appropriate type to represent given data ",
+                legendgroup="Phase 2",
+                legendgrouptitle_text="Phase 2",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=2, 
+                col=1,
+                )
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P10_2"],
+                mode="lines+markers",
+                name="Enter formulas and functions; use the auto-fill feature in a spreadsheet application ",
+                legendgroup="Phase 2",
+                legendgrouptitle_text="Phase 2",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=2, 
+                col=1,
+                )
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P10_3"],
+                mode="lines+markers",
+                name="Use functions of a spreadsheet application (e.g., sort, filter, find) ",
+                legendgroup="Phase 2",
+                legendgrouptitle_text="Phase 2",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=2, 
+                col=1,
+                )
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P10_4"],
+                mode="lines+markers",
+                name="Use various number formats (e.g. scientific notations, percentages, exponents) as appropriate ",
+                legendgroup="Phase 2",
+                legendgrouptitle_text="Phase 2",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=2, 
+                col=1,
+                )
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P10_5"],
+                mode="lines+markers",
+                name="Use various number formats (e.g. scientific notations, percentages, exponents) as appropriate ",
+                legendgroup="Phase 2",
+                legendgrouptitle_text="Phase 2",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=2, 
+                col=1,
+                )
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P10_6"],
+                mode="lines+markers",
+                name="Differentiate between formulas with absolute and relative cell references ",
+                legendgroup="Phase 2",
+                legendgrouptitle_text="Phase 2",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=2, 
+                col=1,
+                )
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P10_7"],
+                mode="lines+markers",
+                name="Use multiple sheets within a workbook, and create links among worksheets to solve problems ",
+                legendgroup="Phase 2",
+                legendgrouptitle_text="Phase 2",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=2, 
+                col=1,
+                )
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P11_1"],
+                mode="lines+markers",
+                name="Draw two and three dimensional geometric shapes using a variety of technology tools ",
+                legendgroup="Phase 2",
+                legendgrouptitle_text="Phase 2",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=2, 
+                col=2,
+                )
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P11_2"],
+                mode="lines+markers",
+                name="Use and interpret scientific notations using a variety of technology applications ",
+                legendgroup="Phase 2",
+                legendgrouptitle_text="Phase 2",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=2, 
+                col=2,
+                )
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P11_3"],
+                mode="lines+markers",
+                name="Explain and demonstrate how specialized technology tools can be used for problem solving, decision making, and creativity in all subject areas (e.g., simulation software, environmental probes, computer aided design, geographic information systems, dynamic geometric software, graphing calculators) ",
+                legendgroup="Phase 2",
+                legendgrouptitle_text="Phase 2",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=2, 
+                col=2,
+                )
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P12_1"],
+                mode="lines+markers",
+                name="Create presentations for a variety of audiences and purposes with use of appropriate transitions and animations to add interest ",
+                legendgroup="Phase 2",
+                legendgrouptitle_text="Phase 2",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=3, 
+                col=1,
+                )
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P12_2"],
+                mode="lines+markers",
+                name="Use a variety of technology tools (e.g., dictionary, thesaurus, grammar checker, calculator/graphing calculator) to maximize the accuracy of work. Make strategic use of digital media to enhance understanding ",
+                legendgroup="Phase 2",
+                legendgrouptitle_text="Phase 2",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=3, 
+                col=1,
+                )
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P12_3"],
+                mode="lines+markers",
+                name="Use painting and drawing tools/ applications to create and edit work ",
+                legendgroup="Phase 2",
+                legendgrouptitle_text="Phase 2",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=3, 
+                col=1,
+                )
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P12_4"],
+                mode="lines+markers",
+                name="Use note-taking skills while viewing online videos and using the play, pause, rewind and stop buttons ",
                     legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=1, 
-                    col=1,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P8_2"],
-                    mode="lines+markers",
-                    name="Independently operate peripheral equipment (e.g., scanner, digital camera, camcorder), if available ",
-                    legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=1, 
-                    col=1,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P8_3"],
-                    mode="lines+markers",
-                    name="Compress and expand large files  ",
-                    legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=1, 
-                    col=1,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P8_4"],
-                    mode="lines+markers",
-                    name="Identify and use a variety of storage media (e.g., CDs, DVDs, flash drives, school servers, and online storage spaces), and provide a rationale for using a certain medium for a specific purpose ",
-                    legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=1, 
-                    col=1,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P8_5"],
-                    mode="lines+markers",
-                    name="Demonstrate automaticity in keyboarding skills by increasing accuracy and speed (For students with disabilities, demonstrate alternate input techniques as appropriate.) ",
-                    legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=1, 
-                    col=1,
-                    )
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P8_6"],
-                    mode="lines+markers",
-                    name="Identify and assess the capabilities and limitations of emerging technologies ",
-                    legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=1, 
-                    col=1,
-                    )
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P9_1"],
-                    mode="lines+markers",
-                    name="Demonstrate use of intermediate features in word processing application (e.g., tabs, indents, headers and footers, end notes, bullet and numbering, tables) ",
-                    legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=1, 
-                    col=2,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P9_2"],
-                    mode="lines+markers",
-                    name="Apply advanced formatting and page layout features when appropriate (e.g., columns, templates, and styles) to improve the appearance of documents and materials ",
-                    legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=1, 
-                    col=2,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P9_3"],
-                    mode="lines+markers",
-                    name="Highlight text, copy and paste text ",
-                    legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=1, 
-                    col=2,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P9_4"],
-                    mode="lines+markers",
-                    name="Use the Comment function in Review for peer editing of documents ",
-                    legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=1, 
-                    col=2,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P9_5"],
-                    mode="lines+markers",
-                    name="Use the Track Changes feature in Review for peer editing of documents ",
-                    legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=1, 
-                    col=2,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P10_1"],
-                    mode="lines+markers",
-                    name="Use spreadsheets to calculate, graph, organize, and present data in a variety of real-world settings and choose the most appropriate type to represent given data ",
-                    legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=2, 
-                    col=1,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P10_2"],
-                    mode="lines+markers",
-                    name="Enter formulas and functions; use the auto-fill feature in a spreadsheet application ",
-                    legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=2, 
-                    col=1,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P10_3"],
-                    mode="lines+markers",
-                    name="Use functions of a spreadsheet application (e.g., sort, filter, find) ",
-                    legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=2, 
-                    col=1,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P10_4"],
-                    mode="lines+markers",
-                    name="Use various number formats (e.g. scientific notations, percentages, exponents) as appropriate ",
-                    legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=2, 
-                    col=1,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P10_5"],
-                    mode="lines+markers",
-                    name="Use various number formats (e.g. scientific notations, percentages, exponents) as appropriate ",
-                    legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=2, 
-                    col=1,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P10_6"],
-                    mode="lines+markers",
-                    name="Differentiate between formulas with absolute and relative cell references ",
-                    legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=2, 
-                    col=1,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P10_7"],
-                    mode="lines+markers",
-                    name="Use multiple sheets within a workbook, and create links among worksheets to solve problems ",
-                    legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=2, 
-                    col=1,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P11_1"],
-                    mode="lines+markers",
-                    name="Draw two and three dimensional geometric shapes using a variety of technology tools ",
-                    legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=2, 
-                    col=2,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P11_2"],
-                    mode="lines+markers",
-                    name="Use and interpret scientific notations using a variety of technology applications ",
-                    legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=2, 
-                    col=2,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P11_3"],
-                    mode="lines+markers",
-                    name="Explain and demonstrate how specialized technology tools can be used for problem solving, decision making, and creativity in all subject areas (e.g., simulation software, environmental probes, computer aided design, geographic information systems, dynamic geometric software, graphing calculators) ",
-                    legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=2, 
-                    col=2,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P12_1"],
-                    mode="lines+markers",
-                    name="Create presentations for a variety of audiences and purposes with use of appropriate transitions and animations to add interest ",
-                    legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=3, 
-                    col=1,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P12_2"],
-                    mode="lines+markers",
-                    name="Use a variety of technology tools (e.g., dictionary, thesaurus, grammar checker, calculator/graphing calculator) to maximize the accuracy of work. Make strategic use of digital media to enhance understanding ",
-                    legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=3, 
-                    col=1,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P12_3"],
-                    mode="lines+markers",
-                    name="Use painting and drawing tools/ applications to create and edit work ",
-                    legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=3, 
-                    col=1,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P12_4"],
-                    mode="lines+markers",
-                    name="Use note-taking skills while viewing online videos and using the play, pause, rewind and stop buttons ",
-                     legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=3, 
-                    col=1,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P12_5"],
-                    mode="lines+markers",
-                    name="Independently use appropriate technology tools (e.g., graphic organizer, audio, visual) to define problems and propose hypotheses ",
-                    legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=3, 
-                    col=1,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P13_1"],
-                    mode="lines+markers",
-                    name="Comply with the district’s Acceptable Use Policy related to ethical use, cyberbullying, privacy, plagiarism, spam, viruses, hacking, and file sharing ",
-                    legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=3, 
-                    col=2,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P13_2"],
-                    mode="lines+markers",
-                    name="Explain Fair Use guidelines for using copyrighted materials and possible consequences (e.g., images, music, video, text) in school projects ",
-                    legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=3, 
-                    col=2,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P13_3"],
-                    mode="lines+markers",
-                    name="Analyze and explain how media and technology can be used to distort, exaggerate, and misrepresent information ",
-                    legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=3, 
-                    col=2,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P13_4"],
-                    mode="lines+markers",
-                    name="Give examples of hardware and applications that enable people with disabilities to use technology ",
-                    legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=3, 
-                    col=2,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P13_5"],
-                    mode="lines+markers",
-                    name="Explain the potential risks associated with the use of networked digital environments (e.g., internet, mobile phones, wireless, LANs) and sharing personal information ",
-                    legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=3, 
-                    col=2,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P14_1"],
-                    mode="lines+markers",
-                    name="Identify probable types and locations of Web sites by examining their domain names (e.g., edu, com, org, gov, au) ",
-                    legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=4, 
-                    col=1,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P14_2"],
-                    mode="lines+markers",
-                    name="Use effective search strategies for locating and retrieving electronic information (e.g., using syntax and Boolean logic operators) ",
-                    legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=4, 
-                    col=1,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P14_3"],
-                    mode="lines+markers",
-                    name="Use search engines and online directories. Explain the differences among various search engines and how they rank results ",
-                    legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=4, 
-                    col=1,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P14_4"],
-                    mode="lines+markers",
-                    name="Use appropriate academic language in online learning environments (e.g., post, thread, intranet, discussion forum, drop box, account, and password) ",
-                    legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=4, 
-                    col=1,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P14_5"],
-                    mode="lines+markers",
-                    name="Explain how technology can support communication and collaboration, personal and professional productivity, and lifelong learning ",
-                    legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=4, 
-                    col=1,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P14_6"],
-                    mode="lines+markers",
-                    name="Write correct in-text citations and reference lists for text and images gathered from electronic sources ",
-                    legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=4, 
-                    col=1,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P14_7"],
-                    mode="lines+markers",
-                    name="Use Web browsing to access information (e.g., enter a URL, access links, create bookmarks/favorites, print Web pages) ",
-                    legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=4, 
-                    col=1,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P14_8"],
-                    mode="lines+markers",
-                    name="Use and modify databases and spreadsheets to analyze data and propose solutions ",
-                    legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=4, 
-                    col=1,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P14_9"],
-                    mode="lines+markers",
-                    name="Develop and use guidelines to evaluate the content, organization, design, use of citations, and presentation of technologically enhanced projects ",
-                    legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=4, 
-                    col=1,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P15_1"],
-                    mode="lines+markers",
-                    name="Use a variety of media to present information for specific purposes (e.g., reports, research papers, presentations, newsletters, Web sites, podcasts, blogs), citing sources ",
-                    legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=4, 
-                    col=2,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P15_2"],
-                    mode="lines+markers",
-                    name="Demonstrate how the use of various techniques and effect (e.g., editing, music, color, rhetorical devices) can be used to convey meaning in media ",
-                    legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=4, 
-                    col=2,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P15_3"],
-                    mode="lines+markers",
-                    name="Use a variety of district approved Web 2.0 tools (e.g., email discussion groups, blogs, etc.) to collaborate and communicate with peers, experts, and other audiences using appropriate academic language ",
-                    legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=4, 
-                    col=2,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P15_4"],
-                    mode="lines+markers",
-                    name="Use teacher developed guidelines to evaluate multimedia presentations for organization, content, design, presentation and appropriateness of citations ",
-                    legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                    row=4, 
-                    col=2,
-                    )
-
-                fig.add_trace(
-                    go.Scatter(
-                    x=df_noisy.index,
-                    y=df_noisy["P15_5"],
-                    mode="lines+markers",
-                    name="Plan and implement a collaborative project with students in other classrooms and schools using telecommunications tools (e.g., e-mail, discussion forums, groupware, interactive Web sites, videoconferencing) ",
-                    legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '%{text}   %{y:.0f} '
-                ),
-                    row=4, 
-                    col=2,
-                    )
-
-                fig.update_yaxes(
-                    range=[-0.5, 3.5],
-                    fixedrange=True,
-                    ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
-                    tickvals=[0.1, 1, 2, 3],
-                    row=1,
-                    col=1,
-                )
-                fig.update_yaxes(
-                    range=[-0.5, 3.5],
-                    fixedrange=True,
-                    ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
-                    tickvals=[0.1, 1, 2, 3],
-                    row=1,
-                    col=2,
-                )
-                fig.update_yaxes(
-                    range=[-0.5, 3.5],
-                    fixedrange=True,
-                    ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
-                    tickvals=[0.1, 1, 2, 3],
-                    row=2,
-                    col=1,
-                )
-                fig.update_yaxes(
-                    range=[-0.5, 3.5],
-                    fixedrange=True,
-                    ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
-                    tickvals=[0.1, 1, 2, 3],
-                    row=2,
-                    col=2,
-                )
-                fig.update_yaxes(
-                    range=[-0.5, 3.5],
-                    fixedrange=True,
-                    ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
-                    tickvals=[0.1, 1, 2, 3],
-                    row=3,
-                    col=1,
-                )
-                fig.update_yaxes(
-                    range=[-0.5, 3.5],
-                    fixedrange=True,
-                    ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
-                    tickvals=[0.1, 1, 2, 3],
-                    row=3,
-                    col=2,
-                )
-                fig.update_yaxes(
-                    range=[-0.5, 3.5],
-                    fixedrange=True,
-                    ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
-                    tickvals=[0.1, 1, 2, 3],
-                    row=4,
-                    col=1,
-                )
-                fig.update_yaxes(
-                    range=[-0.5, 3.5],
-                    fixedrange=True,
-                    ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
-                    tickvals=[0.1, 1, 2, 3],
-                    row=4,
-                    col=2,
+                legendgrouptitle_text="Phase 2",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=3, 
+                col=1,
                 )
 
-                fig.add_hrect(
-                    y0=-0.5,
-                    y1=0.5,
-                    line_width=0,
-                    fillcolor="red",
-                    opacity=0.2,
-                    row=1,
-                    col=1,
-                )
-                fig.add_hrect(
-                    y0=0.5,
-                    y1=1.5,
-                    line_width=0,
-                    fillcolor="orange",
-                    opacity=0.2,
-                    row=1,
-                    col=1,
-                )
-                fig.add_hrect(
-                    y0=1.5,
-                    y1=2.5,
-                    line_width=0,
-                    fillcolor="yellow",
-                    opacity=0.2,
-                    row=1,
-                    col=1,
-                )
-                fig.add_hrect(
-                    y0=2.5,
-                    y1=3.5,
-                    line_width=0,
-                    fillcolor="green",
-                    opacity=0.2,
-                    row=1,
-                    col=1,
-                )
-                fig.add_hrect(
-                    y0=-0.5,
-                    y1=0.5,
-                    line_width=0,
-                    fillcolor="red",
-                    opacity=0.2,
-                    row=1,
-                    col=2,
-                )
-                fig.add_hrect(
-                    y0=0.5,
-                    y1=1.5,
-                    line_width=0,
-                    fillcolor="orange",
-                    opacity=0.2,
-                    row=1,
-                    col=2,
-                )
-                fig.add_hrect(
-                    y0=1.5,
-                    y1=2.5,
-                    line_width=0,
-                    fillcolor="yellow",
-                    opacity=0.2,
-                    row=1,
-                    col=2,
-                )
-                fig.add_hrect(
-                    y0=2.5,
-                    y1=3.5,
-                    line_width=0,
-                    fillcolor="green",
-                    opacity=0.2,
-                    row=1,
-                    col=2,
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P12_5"],
+                mode="lines+markers",
+                name="Independently use appropriate technology tools (e.g., graphic organizer, audio, visual) to define problems and propose hypotheses ",
+                legendgroup="Phase 2",
+                legendgrouptitle_text="Phase 2",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=3, 
+                col=1,
                 )
 
-                fig.add_hrect(
-                    y0=-0.5,
-                    y1=0.5,
-                    line_width=0,
-                    fillcolor="red",
-                    opacity=0.2,
-                    row=2,
-                    col=1,
-                )
-                fig.add_hrect(
-                    y0=0.5,
-                    y1=1.5,
-                    line_width=0,
-                    fillcolor="orange",
-                    opacity=0.2,
-                    row=2,
-                    col=1,
-                )
-                fig.add_hrect(
-                    y0=1.5,
-                    y1=2.5,
-                    line_width=0,
-                    fillcolor="yellow",
-                    opacity=0.2,
-                    row=2,
-                    col=1,
-                )
-                fig.add_hrect(
-                    y0=2.5,
-                    y1=3.5,
-                    line_width=0,
-                    fillcolor="green",
-                    opacity=0.2,
-                    row=2,
-                    col=1,
-                )
-                fig.add_hrect(
-                    y0=-0.5,
-                    y1=0.5,
-                    line_width=0,
-                    fillcolor="red",
-                    opacity=0.2,
-                    row=2,
-                    col=2,
-                )
-                fig.add_hrect(
-                    y0=0.5,
-                    y1=1.5,
-                    line_width=0,
-                    fillcolor="orange",
-                    opacity=0.2,
-                    row=2,
-                    col=2,
-                )
-                fig.add_hrect(
-                    y0=1.5,
-                    y1=2.5,
-                    line_width=0,
-                    fillcolor="yellow",
-                    opacity=0.2,
-                    row=2,
-                    col=2,
-                )
-                fig.add_hrect(
-                    y0=2.5,
-                    y1=3.5,
-                    line_width=0,
-                    fillcolor="green",
-                    opacity=0.2,
-                    row=2,
-                    col=2,
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P13_1"],
+                mode="lines+markers",
+                name="Comply with the district’s Acceptable Use Policy related to ethical use, cyberbullying, privacy, plagiarism, spam, viruses, hacking, and file sharing ",
+                legendgroup="Phase 2",
+                legendgrouptitle_text="Phase 2",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=3, 
+                col=2,
                 )
 
-                fig.add_hrect(
-                    y0=-0.5,
-                    y1=0.5,
-                    line_width=0,
-                    fillcolor="red",
-                    opacity=0.2,
-                    row=3,
-                    col=1,
-                )
-                fig.add_hrect(
-                    y0=0.5,
-                    y1=1.5,
-                    line_width=0,
-                    fillcolor="orange",
-                    opacity=0.2,
-                    row=3,
-                    col=1,
-                )
-                fig.add_hrect(
-                    y0=1.5,
-                    y1=2.5,
-                    line_width=0,
-                    fillcolor="yellow",
-                    opacity=0.2,
-                    row=3,
-                    col=1,
-                )
-                fig.add_hrect(
-                    y0=2.5,
-                    y1=3.5,
-                    line_width=0,
-                    fillcolor="green",
-                    opacity=0.2,
-                    row=3,
-                    col=1,
-                )
-                fig.add_hrect(
-                    y0=-0.5,
-                    y1=0.5,
-                    line_width=0,
-                    fillcolor="red",
-                    opacity=0.2,
-                    row=3,
-                    col=2,
-                )
-                fig.add_hrect(
-                    y0=0.5,
-                    y1=1.5,
-                    line_width=0,
-                    fillcolor="orange",
-                    opacity=0.2,
-                    row=3,
-                    col=2,
-                )
-                fig.add_hrect(
-                    y0=1.5,
-                    y1=2.5,
-                    line_width=0,
-                    fillcolor="yellow",
-                    opacity=0.2,
-                    row=3,
-                    col=2,
-                )
-                fig.add_hrect(
-                    y0=2.5,
-                    y1=3.5,
-                    line_width=0,
-                    fillcolor="green",
-                    opacity=0.2,
-                    row=3,
-                    col=2,
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P13_2"],
+                mode="lines+markers",
+                name="Explain Fair Use guidelines for using copyrighted materials and possible consequences (e.g., images, music, video, text) in school projects ",
+                legendgroup="Phase 2",
+                legendgrouptitle_text="Phase 2",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=3, 
+                col=2,
                 )
 
-                fig.add_hrect(
-                    y0=-0.5,
-                    y1=0.5,
-                    line_width=0,
-                    fillcolor="red",
-                    opacity=0.2,
-                    row=4,
-                    col=1,
-                )
-                fig.add_hrect(
-                    y0=0.5,
-                    y1=1.5,
-                    line_width=0,
-                    fillcolor="orange",
-                    opacity=0.2,
-                    row=4,
-                    col=1,
-                )
-                fig.add_hrect(
-                    y0=1.5,
-                    y1=2.5,
-                    line_width=0,
-                    fillcolor="yellow",
-                    opacity=0.2,
-                    row=4,
-                    col=1,
-                )
-                fig.add_hrect(
-                    y0=2.5,
-                    y1=3.5,
-                    line_width=0,
-                    fillcolor="green",
-                    opacity=0.2,
-                    row=4,
-                    col=1,
-                )
-                fig.add_hrect(
-                    y0=-0.5,
-                    y1=0.5,
-                    line_width=0,
-                    fillcolor="red",
-                    opacity=0.2,
-                    row=4,
-                    col=2,
-                )
-                fig.add_hrect(
-                    y0=0.5,
-                    y1=1.5,
-                    line_width=0,
-                    fillcolor="orange",
-                    opacity=0.2,
-                    row=4,
-                    col=2,
-                )
-                fig.add_hrect(
-                    y0=1.5,
-                    y1=2.5,
-                    line_width=0,
-                    fillcolor="yellow",
-                    opacity=0.2,
-                    row=4,
-                    col=2,
-                )
-                fig.add_hrect(
-                    y0=2.5,
-                    y1=3.5,
-                    line_width=0,
-                    fillcolor="green",
-                    opacity=0.2,
-                    row=4,
-                    col=2,
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P13_3"],
+                mode="lines+markers",
+                name="Analyze and explain how media and technology can be used to distort, exaggerate, and misrepresent information ",
+                legendgroup="Phase 2",
+                legendgrouptitle_text="Phase 2",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=3, 
+                col=2,
                 )
 
-                fig.update_layout(
-                    xaxis_tickformat="%d %b",
-                    xaxis2_tickformat="%d %b",
-                    xaxis3_tickformat="%d %b",
-                    xaxis4_tickformat="%d %b",
-                    xaxis5_tickformat="%d %b",
-                    xaxis6_tickformat="%d %b",
-                    xaxis7_tickformat="%d %b",
-                    xaxis8_tickformat="%d %b",
-                    #xaxis9_tickformat="%d %b",
-                    template="simple_white",
-                    title_text=f"{studentname}:Secondary Digital Literacy Skills Progression",
-                    legend=dict(font=dict(size=10)),
-                    hovermode="x unified",
-                    hoverlabel = dict(namelength = -1),
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P13_4"],
+                mode="lines+markers",
+                name="Give examples of hardware and applications that enable people with disabilities to use technology ",
+                legendgroup="Phase 2",
+                legendgrouptitle_text="Phase 2",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=3, 
+                col=2,
                 )
-                tmppath = Path(USER_DIR).joinpath(
-                    "StudentDatabase",
-                    "StudentDataFiles",
-                    studentname,
-                    "Secondary DigitalLiteracyProgression.html",
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P13_5"],
+                mode="lines+markers",
+                name="Explain the potential risks associated with the use of networked digital environments (e.g., internet, mobile phones, wireless, LANs) and sharing personal information ",
+                legendgroup="Phase 2",
+                legendgrouptitle_text="Phase 2",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=3, 
+                col=2,
                 )
-                fig.write_html(tmppath, auto_open=True)
-                # fig.show()
-                ui.notify(
-                    "Graph Successful. The Graphs will open in a Browser Window!",
-                    position="center",
-                    type="positive",
-                    close_button="OK",
-                )    
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P14_1"],
+                mode="lines+markers",
+                name="Identify probable types and locations of Web sites by examining their domain names (e.g., edu, com, org, gov, au) ",
+                legendgroup="Phase 2",
+                legendgrouptitle_text="Phase 2",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=4, 
+                col=1,
+                )
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P14_2"],
+                mode="lines+markers",
+                name="Use effective search strategies for locating and retrieving electronic information (e.g., using syntax and Boolean logic operators) ",
+                legendgroup="Phase 2",
+                legendgrouptitle_text="Phase 2",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=4, 
+                col=1,
+                )
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P14_3"],
+                mode="lines+markers",
+                name="Use search engines and online directories. Explain the differences among various search engines and how they rank results ",
+                legendgroup="Phase 2",
+                legendgrouptitle_text="Phase 2",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=4, 
+                col=1,
+                )
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P14_4"],
+                mode="lines+markers",
+                name="Use appropriate academic language in online learning environments (e.g., post, thread, intranet, discussion forum, drop box, account, and password) ",
+                legendgroup="Phase 2",
+                legendgrouptitle_text="Phase 2",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=4, 
+                col=1,
+                )
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P14_5"],
+                mode="lines+markers",
+                name="Explain how technology can support communication and collaboration, personal and professional productivity, and lifelong learning ",
+                legendgroup="Phase 2",
+                legendgrouptitle_text="Phase 2",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=4, 
+                col=1,
+                )
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P14_6"],
+                mode="lines+markers",
+                name="Write correct in-text citations and reference lists for text and images gathered from electronic sources ",
+                legendgroup="Phase 2",
+                legendgrouptitle_text="Phase 2",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=4, 
+                col=1,
+                )
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P14_7"],
+                mode="lines+markers",
+                name="Use Web browsing to access information (e.g., enter a URL, access links, create bookmarks/favorites, print Web pages) ",
+                legendgroup="Phase 2",
+                legendgrouptitle_text="Phase 2",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=4, 
+                col=1,
+                )
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P14_8"],
+                mode="lines+markers",
+                name="Use and modify databases and spreadsheets to analyze data and propose solutions ",
+                legendgroup="Phase 2",
+                legendgrouptitle_text="Phase 2",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=4, 
+                col=1,
+                )
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P14_9"],
+                mode="lines+markers",
+                name="Develop and use guidelines to evaluate the content, organization, design, use of citations, and presentation of technologically enhanced projects ",
+                legendgroup="Phase 2",
+                legendgrouptitle_text="Phase 2",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=4, 
+                col=1,
+                )
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P15_1"],
+                mode="lines+markers",
+                name="Use a variety of media to present information for specific purposes (e.g., reports, research papers, presentations, newsletters, Web sites, podcasts, blogs), citing sources ",
+                legendgroup="Phase 2",
+                legendgrouptitle_text="Phase 2",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=4, 
+                col=2,
+                )
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P15_2"],
+                mode="lines+markers",
+                name="Demonstrate how the use of various techniques and effect (e.g., editing, music, color, rhetorical devices) can be used to convey meaning in media ",
+                legendgroup="Phase 2",
+                legendgrouptitle_text="Phase 2",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=4, 
+                col=2,
+                )
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P15_3"],
+                mode="lines+markers",
+                name="Use a variety of district approved Web 2.0 tools (e.g., email discussion groups, blogs, etc.) to collaborate and communicate with peers, experts, and other audiences using appropriate academic language ",
+                legendgroup="Phase 2",
+                legendgrouptitle_text="Phase 2",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=4, 
+                col=2,
+                )
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P15_4"],
+                mode="lines+markers",
+                name="Use teacher developed guidelines to evaluate multimedia presentations for organization, content, design, presentation and appropriateness of citations ",
+                legendgroup="Phase 2",
+                legendgrouptitle_text="Phase 2",
+                showlegend=False,   hovertemplate = '  %{y:.1f} '
+            ),
+                row=4, 
+                col=2,
+                )
+
+            fig.add_trace(
+                go.Scatter(
+                x=df_noisy.index,
+                y=df_noisy["P15_5"],
+                mode="lines+markers",
+                name="Plan and implement a collaborative project with students in other classrooms and schools using telecommunications tools (e.g., e-mail, discussion forums, groupware, interactive Web sites, videoconferencing) ",
+                legendgroup="Phase 2",
+                legendgrouptitle_text="Phase 2",
+                showlegend=False,   hovertemplate = '%{text}   %{y:.0f} '
+            ),
+                row=4, 
+                col=2,
+                )
+
+            fig.update_yaxes(
+                range=[-0.5, 3.5],
+                fixedrange=True,
+                ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
+                tickvals=[0.1, 1, 2, 3],
+                row=1,
+                col=1,
+            )
+            fig.update_yaxes(
+                range=[-0.5, 3.5],
+                fixedrange=True,
+                ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
+                tickvals=[0.1, 1, 2, 3],
+                row=1,
+                col=2,
+            )
+            fig.update_yaxes(
+                range=[-0.5, 3.5],
+                fixedrange=True,
+                ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
+                tickvals=[0.1, 1, 2, 3],
+                row=2,
+                col=1,
+            )
+            fig.update_yaxes(
+                range=[-0.5, 3.5],
+                fixedrange=True,
+                ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
+                tickvals=[0.1, 1, 2, 3],
+                row=2,
+                col=2,
+            )
+            fig.update_yaxes(
+                range=[-0.5, 3.5],
+                fixedrange=True,
+                ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
+                tickvals=[0.1, 1, 2, 3],
+                row=3,
+                col=1,
+            )
+            fig.update_yaxes(
+                range=[-0.5, 3.5],
+                fixedrange=True,
+                ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
+                tickvals=[0.1, 1, 2, 3],
+                row=3,
+                col=2,
+            )
+            fig.update_yaxes(
+                range=[-0.5, 3.5],
+                fixedrange=True,
+                ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
+                tickvals=[0.1, 1, 2, 3],
+                row=4,
+                col=1,
+            )
+            fig.update_yaxes(
+                range=[-0.5, 3.5],
+                fixedrange=True,
+                ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
+                tickvals=[0.1, 1, 2, 3],
+                row=4,
+                col=2,
+            )
+
+            fig.add_hrect(
+                y0=-0.5,
+                y1=0.5,
+                line_width=0,
+                fillcolor="red",
+                opacity=0.2,
+                row=1,
+                col=1,
+            )
+            fig.add_hrect(
+                y0=0.5,
+                y1=1.5,
+                line_width=0,
+                fillcolor="orange",
+                opacity=0.2,
+                row=1,
+                col=1,
+            )
+            fig.add_hrect(
+                y0=1.5,
+                y1=2.5,
+                line_width=0,
+                fillcolor="yellow",
+                opacity=0.2,
+                row=1,
+                col=1,
+            )
+            fig.add_hrect(
+                y0=2.5,
+                y1=3.5,
+                line_width=0,
+                fillcolor="green",
+                opacity=0.2,
+                row=1,
+                col=1,
+            )
+            fig.add_hrect(
+                y0=-0.5,
+                y1=0.5,
+                line_width=0,
+                fillcolor="red",
+                opacity=0.2,
+                row=1,
+                col=2,
+            )
+            fig.add_hrect(
+                y0=0.5,
+                y1=1.5,
+                line_width=0,
+                fillcolor="orange",
+                opacity=0.2,
+                row=1,
+                col=2,
+            )
+            fig.add_hrect(
+                y0=1.5,
+                y1=2.5,
+                line_width=0,
+                fillcolor="yellow",
+                opacity=0.2,
+                row=1,
+                col=2,
+            )
+            fig.add_hrect(
+                y0=2.5,
+                y1=3.5,
+                line_width=0,
+                fillcolor="green",
+                opacity=0.2,
+                row=1,
+                col=2,
+            )
+
+            fig.add_hrect(
+                y0=-0.5,
+                y1=0.5,
+                line_width=0,
+                fillcolor="red",
+                opacity=0.2,
+                row=2,
+                col=1,
+            )
+            fig.add_hrect(
+                y0=0.5,
+                y1=1.5,
+                line_width=0,
+                fillcolor="orange",
+                opacity=0.2,
+                row=2,
+                col=1,
+            )
+            fig.add_hrect(
+                y0=1.5,
+                y1=2.5,
+                line_width=0,
+                fillcolor="yellow",
+                opacity=0.2,
+                row=2,
+                col=1,
+            )
+            fig.add_hrect(
+                y0=2.5,
+                y1=3.5,
+                line_width=0,
+                fillcolor="green",
+                opacity=0.2,
+                row=2,
+                col=1,
+            )
+            fig.add_hrect(
+                y0=-0.5,
+                y1=0.5,
+                line_width=0,
+                fillcolor="red",
+                opacity=0.2,
+                row=2,
+                col=2,
+            )
+            fig.add_hrect(
+                y0=0.5,
+                y1=1.5,
+                line_width=0,
+                fillcolor="orange",
+                opacity=0.2,
+                row=2,
+                col=2,
+            )
+            fig.add_hrect(
+                y0=1.5,
+                y1=2.5,
+                line_width=0,
+                fillcolor="yellow",
+                opacity=0.2,
+                row=2,
+                col=2,
+            )
+            fig.add_hrect(
+                y0=2.5,
+                y1=3.5,
+                line_width=0,
+                fillcolor="green",
+                opacity=0.2,
+                row=2,
+                col=2,
+            )
+
+            fig.add_hrect(
+                y0=-0.5,
+                y1=0.5,
+                line_width=0,
+                fillcolor="red",
+                opacity=0.2,
+                row=3,
+                col=1,
+            )
+            fig.add_hrect(
+                y0=0.5,
+                y1=1.5,
+                line_width=0,
+                fillcolor="orange",
+                opacity=0.2,
+                row=3,
+                col=1,
+            )
+            fig.add_hrect(
+                y0=1.5,
+                y1=2.5,
+                line_width=0,
+                fillcolor="yellow",
+                opacity=0.2,
+                row=3,
+                col=1,
+            )
+            fig.add_hrect(
+                y0=2.5,
+                y1=3.5,
+                line_width=0,
+                fillcolor="green",
+                opacity=0.2,
+                row=3,
+                col=1,
+            )
+            fig.add_hrect(
+                y0=-0.5,
+                y1=0.5,
+                line_width=0,
+                fillcolor="red",
+                opacity=0.2,
+                row=3,
+                col=2,
+            )
+            fig.add_hrect(
+                y0=0.5,
+                y1=1.5,
+                line_width=0,
+                fillcolor="orange",
+                opacity=0.2,
+                row=3,
+                col=2,
+            )
+            fig.add_hrect(
+                y0=1.5,
+                y1=2.5,
+                line_width=0,
+                fillcolor="yellow",
+                opacity=0.2,
+                row=3,
+                col=2,
+            )
+            fig.add_hrect(
+                y0=2.5,
+                y1=3.5,
+                line_width=0,
+                fillcolor="green",
+                opacity=0.2,
+                row=3,
+                col=2,
+            )
+
+            fig.add_hrect(
+                y0=-0.5,
+                y1=0.5,
+                line_width=0,
+                fillcolor="red",
+                opacity=0.2,
+                row=4,
+                col=1,
+            )
+            fig.add_hrect(
+                y0=0.5,
+                y1=1.5,
+                line_width=0,
+                fillcolor="orange",
+                opacity=0.2,
+                row=4,
+                col=1,
+            )
+            fig.add_hrect(
+                y0=1.5,
+                y1=2.5,
+                line_width=0,
+                fillcolor="yellow",
+                opacity=0.2,
+                row=4,
+                col=1,
+            )
+            fig.add_hrect(
+                y0=2.5,
+                y1=3.5,
+                line_width=0,
+                fillcolor="green",
+                opacity=0.2,
+                row=4,
+                col=1,
+            )
+            fig.add_hrect(
+                y0=-0.5,
+                y1=0.5,
+                line_width=0,
+                fillcolor="red",
+                opacity=0.2,
+                row=4,
+                col=2,
+            )
+            fig.add_hrect(
+                y0=0.5,
+                y1=1.5,
+                line_width=0,
+                fillcolor="orange",
+                opacity=0.2,
+                row=4,
+                col=2,
+            )
+            fig.add_hrect(
+                y0=1.5,
+                y1=2.5,
+                line_width=0,
+                fillcolor="yellow",
+                opacity=0.2,
+                row=4,
+                col=2,
+            )
+            fig.add_hrect(
+                y0=2.5,
+                y1=3.5,
+                line_width=0,
+                fillcolor="green",
+                opacity=0.2,
+                row=4,
+                col=2,
+            )
+
+            fig.update_layout(
+                xaxis_tickformat="%d %b",
+                xaxis2_tickformat="%d %b",
+                xaxis3_tickformat="%d %b",
+                xaxis4_tickformat="%d %b",
+                xaxis5_tickformat="%d %b",
+                xaxis6_tickformat="%d %b",
+                xaxis7_tickformat="%d %b",
+                xaxis8_tickformat="%d %b",
+                #xaxis9_tickformat="%d %b",
+                template="simple_white",
+                title_text=f"{studentname}:Secondary Digital Literacy Skills Progression",
+                legend=dict(font=dict(size=10)),
+                hovermode="x unified",
+                hoverlabel = dict(namelength = -1),
+            )
+            tmppath = Path(USER_DIR).joinpath(
+                "StudentDatabase",
+                "StudentDataFiles",
+                studentname,
+                "Secondary DigitalLiteracyProgression.html",
+            )
+            fig.write_html(tmppath, auto_open=True)
+            # fig.show()
+            ui.notify(
+                "Graph Successful. The Graphs will open in a Browser Window!",
+                position="center",
+                type="positive",
+                close_button="OK",
+            )    
 
         # GUI Input
         with ui.row().classes("w-screen no-wrap py-4"):

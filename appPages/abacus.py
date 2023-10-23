@@ -270,6 +270,8 @@ def create() -> None:
                 df["date"] = pd.to_datetime(df["date"], format=date_fmt)
                 df = df.set_index("date")
                 df = df.sort_values(by="date")
+                descriptiveStats = df.describe()
+                print(descriptiveStats)
                 mu, sigma = 0, 0.1
                 noise = np.random.normal(mu, sigma, [len(df.index), len(df.columns)])
                 df_noisy = df + noise

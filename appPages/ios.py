@@ -360,6 +360,9 @@ def create() -> None:
             mu, sigma = 0, 0.1
             noise = np.random.normal(mu, sigma, [len(df.index), len(df.columns)])
             df_noisy = df + noise
+            descriptiveStats = df.describe()
+            print(descriptiveStats)
+
             fig = make_subplots(
                 rows=3,
                 cols=2,

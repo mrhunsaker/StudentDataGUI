@@ -42,7 +42,7 @@ def create() -> None:
     ##########################################################################
     @ui.page("/braillenotetouchskills")
     def braillenotetouchskills() -> None:
-        with theme.frame("- BRAILLENOTE TOUCH PLUS SKILLS -"):
+        with theme.frame("- TECHNOLOGY SKILLS -"):
             ui.label("BRAILLENOTE TOUCH PLUS SKILLS").classes("text-h4 text-grey-8")
 
             # ASSIGN VARIABLES
@@ -448,13 +448,19 @@ def create() -> None:
             for column in df.columns:
                 if df[column].dtype == "object":
                     df[column] = df[column].astype("int64")
+            print("Braillenote Touch Plus Skills Progression")
             print(df)
-            print(df.dtypes)
             df = df.sort_values(by="date")
             mu, sigma = 0, 0.1
             noise = np.random.normal(mu, sigma, [len(df.index), len(df.columns)])
-            # df_noisy = df
             df_noisy = df + noise
+            descriptiveStats = df.describe()
+            print("Descriptive Statistics")
+            print(descriptiveStats)
+            growthCalculation = df.diff(periods=3)
+            growth = growthCalculation[-1:]
+            print("Growth Factor (Now vs 3 Measurements ago)")
+            print(growth)
             fig = make_subplots(
                 rows=3,
                 cols=4,
@@ -481,7 +487,7 @@ def create() -> None:
                     mode="lines+markers",
                     name="Physical Layout",
                     legendgroup=" ",
-                    legendgrouptitle_text=" ",
+                    legendgrouptitle_text=" ",   hovertemplate = '  %{y:.1f} '
                 ),
                 row=1,
                 col=1,
@@ -493,7 +499,7 @@ def create() -> None:
                     mode="lines+markers",
                     name="Setup/Universal Commands",
                     legendgroup=" ",
-                    legendgrouptitle_text=" ",
+                    legendgrouptitle_text=" ",   hovertemplate = '  %{y:.1f} '
                 ),
                 row=1,
                 col=1,
@@ -505,7 +511,7 @@ def create() -> None:
                     mode="lines+markers",
                     name="BNT+ Navigation",
                     legendgroup=" ",
-                    legendgrouptitle_text=" ",
+                    legendgrouptitle_text=" ",   hovertemplate = '  %{y:.1f} '
                 ),
                 row=1,
                 col=1,
@@ -517,7 +523,7 @@ def create() -> None:
                     mode="lines+markers",
                     name="File System navigation",
                     legendgroup=" ",
-                    legendgrouptitle_text=" ",
+                    legendgrouptitle_text=" ",   hovertemplate = '  %{y:.1f} '
                 ),
                 row=1,
                 col=1,
@@ -529,7 +535,7 @@ def create() -> None:
                     mode="lines+markers",
                     name="Main Menu Options",
                     legendgroup=" ",
-                    legendgrouptitle_text=" ",
+                    legendgrouptitle_text=" ",   hovertemplate = '  %{y:.1f} '
                 ),
                 row=1,
                 col=1,
@@ -541,7 +547,7 @@ def create() -> None:
                     mode="lines+markers",
                     name="Settings Menus",
                     legendgroup=" ",
-                    legendgrouptitle_text=" ",
+                    legendgrouptitle_text=" ",   hovertemplate = '  %{y:.1f} '
                 ),
                 row=1,
                 col=1,
@@ -553,7 +559,7 @@ def create() -> None:
                     mode="lines+markers",
                     name="Read Book with EasyReader Plus",
                     legendgroup=" ",
-                    legendgrouptitle_text=" ",
+                    legendgrouptitle_text=" ",   hovertemplate = '  %{y:.1f} '
                 ),
                 row=1,
                 col=1,
@@ -565,7 +571,7 @@ def create() -> None:
                     mode="lines+markers",
                     name="Braille Terminal",
                     legendgroup=" ",
-                    legendgrouptitle_text=" ",
+                    legendgrouptitle_text=" ",   hovertemplate = '  %{y:.1f} '
                 ),
                 row=1,
                 col=1,
@@ -577,7 +583,7 @@ def create() -> None:
                     mode="lines+markers",
                     name="System Updates",
                     legendgroup=" ",
-                    legendgrouptitle_text=" ",
+                    legendgrouptitle_text=" ",   hovertemplate = '  %{y:.1f} '
                 ),
                 row=1,
                 col=1,
@@ -589,7 +595,7 @@ def create() -> None:
                     mode="lines+markers",
                     name="Creating folders",
                     legendgroup=" ",
-                    legendgrouptitle_text=" ",
+                    legendgrouptitle_text=" ",   hovertemplate = '  %{y:.1f} '
                 ),
                 row=2,
                 col=1,
@@ -601,7 +607,7 @@ def create() -> None:
                     mode="lines+markers",
                     name="Differences among drives, folders, and files",
                     legendgroup=" ",
-                    legendgrouptitle_text=" ",
+                    legendgrouptitle_text=" ",   hovertemplate = '  %{y:.1f} '
                 ),
                 row=2,
                 col=1,
@@ -613,7 +619,7 @@ def create() -> None:
                     mode="lines+markers",
                     name="Navigating in the file browser",
                     legendgroup=" ",
-                    legendgrouptitle_text=" ",
+                    legendgrouptitle_text=" ",   hovertemplate = '  %{y:.1f} '
                 ),
                 row=2,
                 col=1,
@@ -625,7 +631,7 @@ def create() -> None:
                     mode="lines+markers",
                     name="Moving, copying and pasting file and folders",
                     legendgroup=" ",
-                    legendgrouptitle_text=" ",
+                    legendgrouptitle_text=" ",   hovertemplate = '  %{y:.1f} '
                 ),
                 row=2,
                 col=1,
@@ -637,7 +643,7 @@ def create() -> None:
                     mode="lines+markers",
                     name="Renaming a file or a folder",
                     legendgroup=" ",
-                    legendgrouptitle_text=" ",
+                    legendgrouptitle_text=" ",   hovertemplate = '  %{y:.1f} '
                 ),
                 row=2,
                 col=1,
@@ -649,7 +655,7 @@ def create() -> None:
                     mode="lines+markers",
                     name="Sharing files",
                     legendgroup=" ",
-                    legendgrouptitle_text=" ",
+                    legendgrouptitle_text=" ",   hovertemplate = '  %{y:.1f} '
                 ),
                 row=2,
                 col=1,
@@ -661,7 +667,7 @@ def create() -> None:
                     mode="lines+markers",
                     name="File and folder commands",
                     legendgroup=" ",
-                    legendgrouptitle_text=" ",
+                    legendgrouptitle_text=" ",   hovertemplate = '  %{y:.1f} '
                 ),
                 row=2,
                 col=1,
@@ -673,7 +679,7 @@ def create() -> None:
                     mode="lines+markers",
                     name="Editing Document in Keyword",
                     legendgroup=" ",
-                    legendgrouptitle_text=" ",
+                    legendgrouptitle_text=" ",   hovertemplate = '  %{y:.1f} '
                 ),
                 row=3,
                 col=1,
@@ -685,7 +691,7 @@ def create() -> None:
                     mode="lines+markers",
                     name="Create a Document",
                     legendgroup=" ",
-                    legendgrouptitle_text=" ",
+                    legendgrouptitle_text=" ",   hovertemplate = '  %{y:.1f} '
                 ),
                 row=3,
                 col=1,
@@ -697,7 +703,7 @@ def create() -> None:
                     mode="lines+markers",
                     name="Open a Document",
                     legendgroup=" ",
-                    legendgrouptitle_text=" ",
+                    legendgrouptitle_text=" ",   hovertemplate = '  %{y:.1f} '
                 ),
                 row=3,
                 col=1,
@@ -709,7 +715,7 @@ def create() -> None:
                     mode="lines+markers",
                     name="Save a Document",
                     legendgroup=" ",
-                    legendgrouptitle_text=" ",
+                    legendgrouptitle_text=" ",   hovertemplate = '  %{y:.1f} '
                 ),
                 row=3,
                 col=1,
@@ -721,7 +727,7 @@ def create() -> None:
                     mode="lines+markers",
                     name="Read a Document",
                     legendgroup=" ",
-                    legendgrouptitle_text=" ",
+                    legendgrouptitle_text=" ",   hovertemplate = '  %{y:.1f} '
                 ),
                 row=3,
                 col=1,
@@ -733,7 +739,7 @@ def create() -> None:
                     mode="lines+markers",
                     name="Visual Preview",
                     legendgroup=" ",
-                    legendgrouptitle_text=" ",
+                    legendgrouptitle_text=" ",   hovertemplate = '  %{y:.1f} '
                 ),
                 row=3,
                 col=1,
@@ -745,7 +751,7 @@ def create() -> None:
                     mode="lines+markers",
                     name="Save as .docx Word File",
                     legendgroup=" ",
-                    legendgrouptitle_text=" ",
+                    legendgrouptitle_text=" ",   hovertemplate = '  %{y:.1f} '
                 ),
                 row=3,
                 col=1,
@@ -757,7 +763,7 @@ def create() -> None:
                     mode="lines+markers",
                     name="Create and edit math object",
                     legendgroup=" ",
-                    legendgrouptitle_text=" ",
+                    legendgrouptitle_text=" ",   hovertemplate = '  %{y:.1f} '
                 ),
                 row=1,
                 col=2,
@@ -769,7 +775,7 @@ def create() -> None:
                     mode="lines+markers",
                     name="Paste into KeyWord",
                     legendgroup=" ",
-                    legendgrouptitle_text=" ",
+                    legendgrouptitle_text=" ",   hovertemplate = '  %{y:.1f} '
                 ),
                 row=1,
                 col=2,
@@ -781,7 +787,7 @@ def create() -> None:
                     mode="lines+markers",
                     name="Generate and Read Graphics",
                     legendgroup=" ",
-                    legendgrouptitle_text=" ",
+                    legendgrouptitle_text=" ",   hovertemplate = '  %{y:.1f} '
                 ),
                 row=1,
                 col=2,
@@ -793,7 +799,7 @@ def create() -> None:
                     mode="lines+markers",
                     name="Setting up an email account",
                     legendgroup=" ",
-                    legendgrouptitle_text=" ",
+                    legendgrouptitle_text=" ",   hovertemplate = '  %{y:.1f} '
                 ),
                 row=2,
                 col=2,
@@ -805,7 +811,7 @@ def create() -> None:
                     mode="lines+markers",
                     name="Writing and sending emails",
                     legendgroup=" ",
-                    legendgrouptitle_text=" ",
+                    legendgrouptitle_text=" ",   hovertemplate = '  %{y:.1f} '
                 ),
                 row=2,
                 col=2,
@@ -817,7 +823,7 @@ def create() -> None:
                     mode="lines+markers",
                     name="Attaching a file",
                     legendgroup=" ",
-                    legendgrouptitle_text=" ",
+                    legendgrouptitle_text=" ",   hovertemplate = '  %{y:.1f} '
                 ),
                 row=2,
                 col=2,
@@ -829,7 +835,7 @@ def create() -> None:
                     mode="lines+markers",
                     name="Reading and searching for emails",
                     legendgroup=" ",
-                    legendgrouptitle_text=" ",
+                    legendgrouptitle_text=" ",   hovertemplate = '  %{y:.1f} '
                 ),
                 row=2,
                 col=2,
@@ -841,7 +847,7 @@ def create() -> None:
                     mode="lines+markers",
                     name="Viewing attached files",
                     legendgroup=" ",
-                    legendgrouptitle_text=" ",
+                    legendgrouptitle_text=" ",   hovertemplate = '  %{y:.1f} '
                 ),
                 row=2,
                 col=2,
@@ -853,7 +859,7 @@ def create() -> None:
                     mode="lines+markers",
                     name="Marking, highlighting, deleting, and other email  options",
                     legendgroup=" ",
-                    legendgrouptitle_text=" ",
+                    legendgrouptitle_text=" ",   hovertemplate = '  %{y:.1f} '
                 ),
                 row=2,
                 col=2,
@@ -865,7 +871,7 @@ def create() -> None:
                     mode="lines+markers",
                     name="Deleting an email account",
                     legendgroup=" ",
-                    legendgrouptitle_text=" ",
+                    legendgrouptitle_text=" ",   hovertemplate = '  %{y:.1f} '
                 ),
                 row=2,
                 col=2,
@@ -877,7 +883,7 @@ def create() -> None:
                     mode="lines+markers",
                     name="Launching KeySlides",
                     legendgroup=" ",
-                    legendgrouptitle_text=" ",
+                    legendgrouptitle_text=" ",   hovertemplate = '  %{y:.1f} '
                 ),
                 row=3,
                 col=2,
@@ -889,7 +895,7 @@ def create() -> None:
                     mode="lines+markers",
                     name="Opening a PowerPoint document",
                     legendgroup=" ",
-                    legendgrouptitle_text=" ",
+                    legendgrouptitle_text=" ",   hovertemplate = '  %{y:.1f} '
                 ),
                 row=3,
                 col=2,
@@ -901,7 +907,7 @@ def create() -> None:
                     mode="lines+markers",
                     name="Navigating in your presentation document",
                     legendgroup=" ",
-                    legendgrouptitle_text=" ",
+                    legendgrouptitle_text=" ",   hovertemplate = '  %{y:.1f} '
                 ),
                 row=3,
                 col=2,
@@ -913,7 +919,7 @@ def create() -> None:
                     mode="lines+markers",
                     name="Creating appointments",
                     legendgroup=" ",
-                    legendgrouptitle_text=" ",
+                    legendgrouptitle_text=" ",   hovertemplate = '  %{y:.1f} '
                 ),
                 row=1,
                 col=3,
@@ -925,7 +931,7 @@ def create() -> None:
                     mode="lines+markers",
                     name="Viewing, editing and deleting appointments",
                     legendgroup=" ",
-                    legendgrouptitle_text=" ",
+                    legendgrouptitle_text=" ",   hovertemplate = '  %{y:.1f} '
                 ),
                 row=1,
                 col=3,
@@ -937,7 +943,7 @@ def create() -> None:
                     mode="lines+markers",
                     name="Navigating the agenda",
                     legendgroup=" ",
-                    legendgrouptitle_text=" ",
+                    legendgrouptitle_text=" ",   hovertemplate = '  %{y:.1f} '
                 ),
                 row=1,
                 col=3,
@@ -949,7 +955,7 @@ def create() -> None:
                     mode="lines+markers",
                     name="Navigating Day View",
                     legendgroup=" ",
-                    legendgrouptitle_text=" ",
+                    legendgrouptitle_text=" ",   hovertemplate = '  %{y:.1f} '
                 ),
                 row=1,
                 col=3,
@@ -961,7 +967,7 @@ def create() -> None:
                     mode="lines+markers",
                     name="Internet Browsing with Chrome",
                     legendgroup=" ",
-                    legendgrouptitle_text=" ",
+                    legendgrouptitle_text=" ",   hovertemplate = '  %{y:.1f} '
                 ),
                 row=2,
                 col=3,
@@ -973,7 +979,7 @@ def create() -> None:
                     mode="lines+markers",
                     name="Internet Navigation",
                     legendgroup=" ",
-                    legendgrouptitle_text=" ",
+                    legendgrouptitle_text=" ",   hovertemplate = '  %{y:.1f} '
                 ),
                 row=2,
                 col=3,
@@ -985,7 +991,7 @@ def create() -> None:
                     mode="lines+markers",
                     name="Bookmarks",
                     legendgroup=" ",
-                    legendgrouptitle_text=" ",
+                    legendgrouptitle_text=" ",   hovertemplate = '  %{y:.1f} '
                 ),
                 row=2,
                 col=3,
@@ -997,7 +1003,7 @@ def create() -> None:
                     mode="lines+markers",
                     name="History",
                     legendgroup=" ",
-                    legendgrouptitle_text=" ",
+                    legendgrouptitle_text=" ",   hovertemplate = '  %{y:.1f} '
                 ),
                 row=2,
                 col=3,
@@ -1009,7 +1015,7 @@ def create() -> None:
                     mode="lines+markers",
                     name="Downloading Files",
                     legendgroup=" ",
-                    legendgrouptitle_text=" ",
+                    legendgrouptitle_text=" ",   hovertemplate = '  %{y:.1f} '
                 ),
                 row=2,
                 col=3,
@@ -1021,7 +1027,7 @@ def create() -> None:
                     mode="lines+markers",
                     name="Inputting calculations",
                     legendgroup=" ",
-                    legendgrouptitle_text=" ",
+                    legendgrouptitle_text=" ",   hovertemplate = '  %{y:.1f} '
                 ),
                 row=3,
                 col=3,
@@ -1033,7 +1039,7 @@ def create() -> None:
                     mode="lines+markers",
                     name="Inserting a Math symbol in KeyCalc",
                     legendgroup=" ",
-                    legendgrouptitle_text=" ",
+                    legendgrouptitle_text=" ",   hovertemplate = '  %{y:.1f} '
                 ),
                 row=3,
                 col=3,
@@ -1045,7 +1051,7 @@ def create() -> None:
                     mode="lines+markers",
                     name="Show results as fractions or decimals",
                     legendgroup=" ",
-                    legendgrouptitle_text=" ",
+                    legendgrouptitle_text=" ",   hovertemplate = '  %{y:.1f} '
                 ),
                 row=3,
                 col=3,
@@ -1057,7 +1063,7 @@ def create() -> None:
                     mode="lines+markers",
                     name="History",
                     legendgroup=" ",
-                    legendgrouptitle_text=" ",
+                    legendgrouptitle_text=" ",   hovertemplate = '  %{y:.1f} '
                 ),
                 row=3,
                 col=3,
@@ -1069,7 +1075,7 @@ def create() -> None:
                     mode="lines+markers",
                     name="Opening .brf and .brl files",
                     legendgroup=" ",
-                    legendgrouptitle_text=" ",
+                    legendgrouptitle_text=" ",   hovertemplate = '  %{y:.1f} '
                 ),
                 row=1,
                 col=4,
@@ -1081,7 +1087,7 @@ def create() -> None:
                     mode="lines+markers",
                     name="Creating a .brf or .brl file",
                     legendgroup=" ",
-                    legendgrouptitle_text=" ",
+                    legendgrouptitle_text=" ",   hovertemplate = '  %{y:.1f} '
                 ),
                 row=1,
                 col=4,
@@ -1093,7 +1099,7 @@ def create() -> None:
                     mode="lines+markers",
                     name="Finding Braille Text",
                     legendgroup=" ",
-                    legendgrouptitle_text=" ",
+                    legendgrouptitle_text=" ",   hovertemplate = '  %{y:.1f} '
                 ),
                 row=1,
                 col=4,
@@ -1105,7 +1111,7 @@ def create() -> None:
                     mode="lines+markers",
                     name="Creating a Python File",
                     legendgroup=" ",
-                    legendgrouptitle_text=" ",
+                    legendgrouptitle_text=" ",   hovertemplate = '  %{y:.1f} '
                 ),
                 row=2,
                 col=4,
@@ -1117,7 +1123,7 @@ def create() -> None:
                     mode="lines+markers",
                     name="Opening, Navigating and Editing a Python File",
                     legendgroup=" ",
-                    legendgrouptitle_text=" ",
+                    legendgrouptitle_text=" ",   hovertemplate = '  %{y:.1f} '
                 ),
                 row=2,
                 col=4,
@@ -1129,7 +1135,7 @@ def create() -> None:
                     mode="lines+markers",
                     name="Indentations",
                     legendgroup=" ",
-                    legendgrouptitle_text=" ",
+                    legendgrouptitle_text=" ",   hovertemplate = '  %{y:.1f} '
                 ),
                 row=2,
                 col=4,
@@ -1141,7 +1147,7 @@ def create() -> None:
                     mode="lines+markers",
                     name="Saving a Python File",
                     legendgroup=" ",
-                    legendgrouptitle_text=" ",
+                    legendgrouptitle_text=" ",   hovertemplate = '  %{y:.1f} '
                 ),
                 row=2,
                 col=4,
@@ -1153,7 +1159,7 @@ def create() -> None:
                     mode="lines+markers",
                     name="Coding with KeyCode",
                     legendgroup=" ",
-                    legendgrouptitle_text=" ",
+                    legendgrouptitle_text=" ",   hovertemplate = '  %{y:.1f} '
                 ),
                 row=2,
                 col=4,
@@ -1165,7 +1171,7 @@ def create() -> None:
                     mode="lines+markers",
                     name="Third Party Apps",
                     legendgroup=" ",
-                    legendgrouptitle_text=" ",
+                    legendgrouptitle_text=" ",   hovertemplate = '  %{y:.1f} '
                 ),
                 row=3,
                 col=4,
@@ -1177,7 +1183,7 @@ def create() -> None:
                     mode="lines+markers",
                     name="Downloading Third-Party Apps",
                     legendgroup=" ",
-                    legendgrouptitle_text=" ",
+                    legendgrouptitle_text=" ",   hovertemplate = '  %{y:.1f} '
                 ),
                 row=3,
                 col=4,
@@ -1189,7 +1195,7 @@ def create() -> None:
                     mode="lines+markers",
                     name="Deleting Third-Party Apps",
                     legendgroup=" ",
-                    legendgrouptitle_text=" ",
+                    legendgrouptitle_text=" ",   hovertemplate = '  %{y:.1f} '
                 ),
                 row=3,
                 col=4,
@@ -1201,7 +1207,7 @@ def create() -> None:
                     mode="lines+markers",
                     name="Third-Part App Usage",
                     legendgroup=" ",
-                    legendgrouptitle_text=" ",
+                    legendgrouptitle_text=" ",   hovertemplate = '  %{y:.1f} '
                 ),
                 row=3,
                 col=4,
@@ -1666,6 +1672,8 @@ def create() -> None:
             fig.update_layout(
                 template="simple_white",
                 title_text=f"{studentname}: iOS Skills Progression",
+                hovermode="x unified",
+                hoverlabel = dict(namelength = -1),
             )
             tmppath = Path(USER_DIR).joinpath(
                 "StudentDatabase",

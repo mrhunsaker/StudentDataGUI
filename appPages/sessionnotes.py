@@ -37,7 +37,7 @@ def create() -> None:
 
     @ui.page("/sessionnotes")
     def sessionnotes() -> None:
-        with theme.frame("- SESSION NOTES -"):
+        with theme.frame("- DATA COLLECTION -"):
             ui.label("SESSION NOTES").classes("text-h4 text-grey-8")
             # ASSIGN VARIABLES
             u_studentname = ui.select(

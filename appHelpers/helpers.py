@@ -330,6 +330,21 @@ def createFolderHierarchy():
             )
             Path.touch(tmppath)
         if (
+            not Path(USER_DIR).joinpath(
+                "StudentDatabase",
+                "StudentDataFiles",
+                studentname,
+                "BasicTactileRecognition.html",
+            ).exists()
+        ):
+            tmppath = Path(USER_DIR).joinpath(
+                "StudentDatabase",
+                "StudentDataFiles",
+                studentname,
+                "BasicTactileRecognition.html",
+            )
+            Path.touch(tmppath)
+        if (
             not Path(USER_DIR)
             .joinpath(
                 "StudentDatabase",
@@ -506,7 +521,7 @@ def createFolderHierarchy():
                 "StudentDatabase",
                 "StudentDataFiles",
                 name,
-                "hsdigitalliteracyProgression.csv",
+                "digitalliteracyProgression.csv",
             )
             .exists()
         ):
@@ -514,98 +529,12 @@ def createFolderHierarchy():
                 "StudentDatabase",
                 "StudentDataFiles",
                 name,
-                "hsdigitalliteracyProgression.csv",
+                "digitalliteracyProgression.csv",
             )
             Path.touch(tmppath)
             list_names = [
                 "date",
                 "P1_1",
-                "P1_2",
-                "P1_3",
-                "P1_4",
-                "P1_5",
-                "P2_1",
-                "P2_2",
-                "P2_3",
-                "P2_4",
-                "P2_5",
-                "P2_6",
-                "P2_7",
-                "P3_1",
-                "P3_2",
-                "P3_3",
-                "P3_4",
-                "P3_5",
-                "P3_6",
-                "P3_7",
-                "P4_1",
-                "P4_2",
-                "P4_3",
-                "P5_1",
-                "P5_2",
-                "P5_3",
-                "P5_4",
-                "P5_5",
-                "P6_1",
-                "P6_2",
-                "P6_3",
-                "P6_4",
-                "P6_5",
-                "P7_1",
-                "P7_2",
-                "P7_3",
-                "P7_4",
-                "P7_5",
-                "P7_6",
-                "P7_7",
-                "P7_8",
-                "P7_9",
-                "P8_1",
-                "P8_2",
-                "P8_3",
-                "P8_4",
-                "P8_5",
-            ]
-            with open(tmppath, "a", newline="", encoding="UTF-8") as f_object:
-                writer_setup = writer(f_object)
-                writer_setup.writerow(list_names)
-                f_object.close()
-        if (
-            not Path(USER_DIR)
-            .joinpath(
-                "StudentDatabase",
-                "StudentDataFiles",
-                name,
-                "hsdigitalliteracyProgression.html",
-            )
-            .exists()
-        ):
-            tmppath = Path(USER_DIR).joinpath(
-                "StudentDatabase",
-                "StudentDataFiles",
-                name,
-                "hsdigitalliteracyProgression.html",
-            )
-            Path.touch(tmppath)
-        if (
-            not Path(USER_DIR)
-            .joinpath(
-                "StudentDatabase",
-                "StudentDataFiles",
-                name,
-                "elemdigitalliteracyProgression.csv",
-            )
-            .exists()
-        ):
-            tmppath = Path(USER_DIR).joinpath(
-                "StudentDatabase",
-                "StudentDataFiles",
-                name,
-                "elemdigitalliteracyProgression.csv",
-            )
-            Path.touch(tmppath)
-            list_names = [
-                "date",
                 "P1_2",
                 "P1_3",
                 "P1_4",
@@ -638,11 +567,57 @@ def createFolderHierarchy():
                 "P6_2",
                 "P6_3",
                 "P6_4",
+                "P6_5",
                 "P7_1",
                 "P7_2",
                 "P7_3",
                 "P7_4",
                 "P7_5",
+                "P8_1",
+                "P8_2",
+                "P8_3",
+                "P8_4",
+                "P8_5",
+                "P8_6",
+                "P9_1",
+                "P9_2",
+                "P9_3",
+                "P9_4",
+                "P9_5",
+                "P10_1",
+                "P10_2",
+                "P10_3",
+                "P10_4",
+                "P10_5",
+                "P10_6",
+                "P10_7",
+                "P11_1",
+                "P11_2",
+                "P11_3",
+                "P12_1",
+                "P12_2",
+                "P12_3",
+                "P12_4",
+                "P12_5",
+                "P13_1",
+                "P13_2",
+                "P13_3",
+                "P13_4",
+                "P13_5",
+                "P14_1",
+                "P14_2",
+                "P14_3",
+                "P14_4",
+                "P14_5",
+                "P14_6",
+                "P14_7",
+                "P14_8",
+                "P14_9",
+                "P15_1",
+                "P15_2",
+                "P15_3",
+                "P15_4",
+                "P15_5"
             ]
             with open(tmppath, "a", newline="", encoding="UTF-8") as f_object:
                 writer_setup = writer(f_object)
@@ -654,7 +629,7 @@ def createFolderHierarchy():
                 "StudentDatabase",
                 "StudentDataFiles",
                 name,
-                "elemdigitalliteracyProgression.html",
+                "digitalliteracyProgression.html",
             )
             .exists()
         ):
@@ -662,7 +637,7 @@ def createFolderHierarchy():
                 "StudentDatabase",
                 "StudentDataFiles",
                 name,
-                "elemdigitalliteracyProgression.html",
+                "digitalliteracyProgression.html",
             )
             Path.touch(tmppath)
         if (

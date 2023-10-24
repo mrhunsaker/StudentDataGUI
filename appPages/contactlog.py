@@ -37,7 +37,7 @@ def create() -> None:
     ##########################################################################
     @ui.page("/contactlog")
     def contactlog() -> None:
-        with theme.frame("- CONTACT LOG -"):
+        with theme.frame("- COMMUNICATION LOG -"):
             ui.label("CONTACT LOG").classes("text-h4 text-grey-8")
             u_studentname = ui.select(
                 options=students, value="DonaldChamberlain"

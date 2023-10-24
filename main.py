@@ -58,14 +58,13 @@ from appPages import InstructionalMaterials
 from appPages import ios
 from appPages import observations
 from appPages import screenreader
-
+from appPages import digitalliteracy
 
 @ui.page("/")
 def index_page() -> None:
     """Opens Homepage for App"""
     with theme.frame("Student Skills Progressions"):
         homepage.content()
-
 
 contactlog.create()
 abacus.create()
@@ -77,6 +76,7 @@ cvi.create()
 ios.create()
 screenreader.create()
 InstructionalMaterials.create()
+digitalliteracy.create()
 
 with ui.footer(value=True) as footer:
     with ui.row().classes(

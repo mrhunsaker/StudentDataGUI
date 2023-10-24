@@ -43,6 +43,12 @@ def menu() -> None:
             )
             ui.separator()
             with ui.row().classes("justify-center items-center"):
+                ui.label("CVI / NVI").classes("font-bold")
+            ui.menu_item("CVI PROGRESS", lambda: ui.open("/cviprogress")).classes(
+                replace="text-black"
+            )
+            ui.separator()
+            with ui.row().classes("justify-center items-center"):
                 ui.label("TACTILE SKILLS").classes("font-bold")
             ui.menu_item("ABACUS SKILLS", lambda: ui.open("/abacusskills")).classes(
                 replace="text-black"
@@ -64,10 +70,11 @@ def menu() -> None:
             ).classes(replace="text-black")
             ui.separator()
             with ui.row().classes("justify-center items-center"):
-                ui.label("CVI / NVI").classes("font-bold")
-            ui.menu_item("CVI PROGRESS", lambda: ui.open("/cviprogress")).classes(
-                replace="text-black"
-            )
+                ui.label("DIGITAL LITERACY").classes("font-bold")
+            ui.label("coming soon")
+            ui.menu_item(
+                "DIGITAL LITERACY", lambda: ui.open("/digitalliteracy")
+            ).classes(replace="text-black")
             ui.separator()
             with ui.row().classes("justify-center items-center py-2"):
                 ui.label("MATERIALS").classes("font-bold")

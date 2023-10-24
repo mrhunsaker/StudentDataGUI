@@ -330,6 +330,21 @@ def createFolderHierarchy():
             )
             Path.touch(tmppath)
         if (
+            not Path(USER_DIR).joinpath(
+                "StudentDatabase",
+                "StudentDataFiles",
+                studentname,
+                "BasicTactileRecognition.html",
+            ).exists()
+        ):
+            tmppath = Path(USER_DIR).joinpath(
+                "StudentDatabase",
+                "StudentDataFiles",
+                studentname,
+                "BasicTactileRecognition.html",
+            )
+            Path.touch(tmppath)
+        if (
             not Path(USER_DIR)
             .joinpath(
                 "StudentDatabase",

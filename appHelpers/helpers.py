@@ -333,14 +333,14 @@ def createFolderHierarchy():
             not Path(USER_DIR).joinpath(
                 "StudentDatabase",
                 "StudentDataFiles",
-                studentname,
+                name,
                 "BasicTactileRecognition.html",
             ).exists()
         ):
             tmppath = Path(USER_DIR).joinpath(
                 "StudentDatabase",
                 "StudentDataFiles",
-                studentname,
+                name,
                 "BasicTactileRecognition.html",
             )
             Path.touch(tmppath)

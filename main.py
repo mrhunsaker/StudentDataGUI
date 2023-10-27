@@ -60,11 +60,13 @@ from appPages import observations
 from appPages import screenreader
 from appPages import digitalliteracy
 
+
 @ui.page("/")
 def index_page() -> None:
     """Opens Homepage for App"""
     with theme.frame("Student Skills Progressions"):
         homepage.content()
+
 
 contactlog.create()
 abacus.create()

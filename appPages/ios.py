@@ -393,7 +393,8 @@ def create() -> None:
                     mode="lines+markers",
                     name="Turn Device On/Off",
                     legendgroup="Phase 1",
-                    legendgrouptitle_text="Basic Operations",   hovertemplate = '  %{y:.1f} '
+                    legendgrouptitle_text="Basic Operations",
+                    hovertemplate="  %{y:.1f} ",
                 ),
                 row=1,
                 col=1,
@@ -405,7 +406,8 @@ def create() -> None:
                     mode="lines+markers",
                     name="Turn VoiceOver On/Off",
                     legendgroup="Phase 1",
-                    legendgrouptitle_text="Basic Operations",   hovertemplate = '  %{y:.1f} '
+                    legendgrouptitle_text="Basic Operations",
+                    hovertemplate="  %{y:.1f} ",
                 ),
                 row=1,
                 col=1,
@@ -417,7 +419,8 @@ def create() -> None:
                     mode="lines+markers",
                     name="Gestures to Click Icons",
                     legendgroup="Phase 1",
-                    legendgrouptitle_text="Basic Operations",   hovertemplate = '  %{y:.1f} '
+                    legendgrouptitle_text="Basic Operations",
+                    hovertemplate="  %{y:.1f} ",
                 ),
                 row=1,
                 col=1,
@@ -429,7 +432,8 @@ def create() -> None:
                     mode="lines+markers",
                     name="Home Screen Icons to Open Documents",
                     legendgroup="Phase 1",
-                    legendgrouptitle_text="Basic Operations",   hovertemplate = '  %{y:.1f} '
+                    legendgrouptitle_text="Basic Operations",
+                    hovertemplate="  %{y:.1f} ",
                 ),
                 row=1,
                 col=1,
@@ -441,7 +445,8 @@ def create() -> None:
                     mode="lines+markers",
                     name="Save Documents",
                     legendgroup="Phase 1",
-                    legendgrouptitle_text="Basic Operations",   hovertemplate = '  %{y:.1f} '
+                    legendgrouptitle_text="Basic Operations",
+                    hovertemplate="  %{y:.1f} ",
                 ),
                 row=1,
                 col=1,
@@ -453,7 +458,8 @@ def create() -> None:
                     mode="lines+markers",
                     name="Online Tools/Resources",
                     legendgroup="Phase 1",
-                    legendgrouptitle_text="Basic Operations",   hovertemplate = '  %{y:.1f} '
+                    legendgrouptitle_text="Basic Operations",
+                    hovertemplate="  %{y:.1f} ",
                 ),
                 row=1,
                 col=1,
@@ -465,7 +471,8 @@ def create() -> None:
                     mode="lines+markers",
                     name="Keyboarding",
                     legendgroup="Phase 1",
-                    legendgrouptitle_text="Basic Operations",   hovertemplate = '  %{y:.1f} '
+                    legendgrouptitle_text="Basic Operations",
+                    hovertemplate="  %{y:.1f} ",
                 ),
                 row=1,
                 col=1,
@@ -477,7 +484,8 @@ def create() -> None:
                     mode="lines+markers",
                     name="Use Different Elements",
                     legendgroup="Phase 1",
-                    legendgrouptitle_text="Basic Operations",   hovertemplate = '  %{y:.1f} '
+                    legendgrouptitle_text="Basic Operations",
+                    hovertemplate="  %{y:.1f} ",
                 ),
                 row=1,
                 col=1,
@@ -489,7 +497,8 @@ def create() -> None:
                     mode="lines+markers",
                     name="Control Center, App Switcher...",
                     legendgroup="Phase 1",
-                    legendgrouptitle_text="Basic Operations",   hovertemplate = '  %{y:.1f} '
+                    legendgrouptitle_text="Basic Operations",
+                    hovertemplate="  %{y:.1f} ",
                 ),
                 row=1,
                 col=1,
@@ -501,7 +510,8 @@ def create() -> None:
                     mode="lines+markers",
                     name="Write, edit save",
                     legendgroup="Phase 2",
-                    legendgrouptitle_text="Word Processing",   hovertemplate = '  %{y:.1f} '
+                    legendgrouptitle_text="Word Processing",
+                    hovertemplate="  %{y:.1f} ",
                 ),
                 row=2,
                 col=1,
@@ -513,7 +523,8 @@ def create() -> None:
                     mode="lines+markers",
                     name="Read, Navigate Document",
                     legendgroup="Phase 2",
-                    legendgrouptitle_text="Word Processing",   hovertemplate = '  %{y:.1f} '
+                    legendgrouptitle_text="Word Processing",
+                    hovertemplate="  %{y:.1f} ",
                 ),
                 row=2,
                 col=1,
@@ -525,7 +536,8 @@ def create() -> None:
                     mode="lines+markers",
                     name="Use Menubar",
                     legendgroup="Phase 2",
-                    legendgrouptitle_text="Word Processing",   hovertemplate = '  %{y:.1f} '
+                    legendgrouptitle_text="Word Processing",
+                    hovertemplate="  %{y:.1f} ",
                 ),
                 row=2,
                 col=1,
@@ -537,7 +549,8 @@ def create() -> None:
                     mode="lines+markers",
                     name="Highlight text, copy and paste text",
                     legendgroup="Phase 2",
-                    legendgrouptitle_text="Word Processing",   hovertemplate = '  %{y:.1f} '
+                    legendgrouptitle_text="Word Processing",
+                    hovertemplate="  %{y:.1f} ",
                 ),
                 row=2,
                 col=1,
@@ -549,7 +562,8 @@ def create() -> None:
                     mode="lines+markers",
                     name="Copy and paste images",
                     legendgroup="Phase 2",
-                    legendgrouptitle_text="Word Processing",   hovertemplate = '  %{y:.1f} '
+                    legendgrouptitle_text="Word Processing",
+                    hovertemplate="  %{y:.1f} ",
                 ),
                 row=2,
                 col=1,
@@ -561,7 +575,8 @@ def create() -> None:
                     mode="lines+markers",
                     name="Proofread and edit",
                     legendgroup="Phase 2",
-                    legendgrouptitle_text="Word Processing",   hovertemplate = '  %{y:.1f} '
+                    legendgrouptitle_text="Word Processing",
+                    hovertemplate="  %{y:.1f} ",
                 ),
                 row=2,
                 col=1,
@@ -573,7 +588,8 @@ def create() -> None:
                     mode="lines+markers",
                     name="Describe Spreadsheet",
                     legendgroup="Phase 3",
-                    legendgrouptitle_text="Spreadsheet",   hovertemplate = '  %{y:.1f} '
+                    legendgrouptitle_text="Spreadsheet",
+                    hovertemplate="  %{y:.1f} ",
                 ),
                 row=3,
                 col=1,
@@ -585,7 +601,8 @@ def create() -> None:
                     mode="lines+markers",
                     name="Explain terms and concepts ",
                     legendgroup="Phase 3",
-                    legendgrouptitle_text="Spreadsheet",   hovertemplate = '  %{y:.1f} '
+                    legendgrouptitle_text="Spreadsheet",
+                    hovertemplate="  %{y:.1f} ",
                 ),
                 row=3,
                 col=1,
@@ -597,7 +614,8 @@ def create() -> None:
                     mode="lines+markers",
                     name="Enter/Edit data",
                     legendgroup="Phase 3",
-                    legendgrouptitle_text="Spreadsheet",   hovertemplate = '  %{y:.1f} '
+                    legendgrouptitle_text="Spreadsheet",
+                    hovertemplate="  %{y:.1f} ",
                 ),
                 row=3,
                 col=1,
@@ -609,7 +627,8 @@ def create() -> None:
                     mode="lines+markers",
                     name="Use mathematical symbols",
                     legendgroup="Phase 3",
-                    legendgrouptitle_text="Spreadsheet",   hovertemplate = '  %{y:.1f} '
+                    legendgrouptitle_text="Spreadsheet",
+                    hovertemplate="  %{y:.1f} ",
                 ),
                 row=3,
                 col=1,
@@ -621,7 +640,8 @@ def create() -> None:
                     mode="lines+markers",
                     name="Use Spreadsheet to Solve Problems",
                     legendgroup="Phase 3",
-                    legendgrouptitle_text="Spreadsheet",   hovertemplate = '  %{y:.1f} '
+                    legendgrouptitle_text="Spreadsheet",
+                    hovertemplate="  %{y:.1f} ",
                 ),
                 row=3,
                 col=1,
@@ -633,7 +653,8 @@ def create() -> None:
                     mode="lines+markers",
                     name="Navigate slides ",
                     legendgroup="Phase 4",
-                    legendgrouptitle_text="Presentation Tools",   hovertemplate = '  %{y:.1f} '
+                    legendgrouptitle_text="Presentation Tools",
+                    hovertemplate="  %{y:.1f} ",
                 ),
                 row=1,
                 col=2,
@@ -645,7 +666,8 @@ def create() -> None:
                     mode="lines+markers",
                     name="Create, edit and format text",
                     legendgroup="Phase 4",
-                    legendgrouptitle_text="Presentation Tools",   hovertemplate = '  %{y:.1f} '
+                    legendgrouptitle_text="Presentation Tools",
+                    hovertemplate="  %{y:.1f} ",
                 ),
                 row=1,
                 col=2,
@@ -657,7 +679,8 @@ def create() -> None:
                     mode="lines+markers",
                     name="Create a series of slides ",
                     legendgroup="Phase 4",
-                    legendgrouptitle_text="Presentation Tools",   hovertemplate = '  %{y:.1f} '
+                    legendgrouptitle_text="Presentation Tools",
+                    hovertemplate="  %{y:.1f} ",
                 ),
                 row=1,
                 col=2,
@@ -669,7 +692,8 @@ def create() -> None:
                     mode="lines+markers",
                     name="Copy and paste or import graphics",
                     legendgroup="Phase 4",
-                    legendgrouptitle_text="Presentation Tools",   hovertemplate = '  %{y:.1f} '
+                    legendgrouptitle_text="Presentation Tools",
+                    hovertemplate="  %{y:.1f} ",
                 ),
                 row=1,
                 col=2,
@@ -681,7 +705,8 @@ def create() -> None:
                     mode="lines+markers",
                     name="Use painting and drawing tools",
                     legendgroup="Phase 4",
-                    legendgrouptitle_text="Presentation Tools",   hovertemplate = '  %{y:.1f} '
+                    legendgrouptitle_text="Presentation Tools",
+                    hovertemplate="  %{y:.1f} ",
                 ),
                 row=1,
                 col=2,
@@ -693,7 +718,8 @@ def create() -> None:
                     mode="lines+markers",
                     name="Explain Acceptable Use Policy",
                     legendgroup="Phase 5",
-                    legendgrouptitle_text="Acceptable Use",   hovertemplate = '  %{y:.1f} '
+                    legendgrouptitle_text="Acceptable Use",
+                    hovertemplate="  %{y:.1f} ",
                 ),
                 row=2,
                 col=2,
@@ -705,7 +731,8 @@ def create() -> None:
                     mode="lines+markers",
                     name="Explain responsible uses of technology",
                     legendgroup="Phase 5",
-                    legendgrouptitle_text="Acceptable Use",   hovertemplate = '  %{y:.1f} '
+                    legendgrouptitle_text="Acceptable Use",
+                    hovertemplate="  %{y:.1f} ",
                 ),
                 row=2,
                 col=2,
@@ -717,7 +744,8 @@ def create() -> None:
                     mode="lines+markers",
                     name="Explain Fair Use Guidelines",
                     legendgroup="Phase 5",
-                    legendgrouptitle_text="Acceptable Use",   hovertemplate = '  %{y:.1f} '
+                    legendgrouptitle_text="Acceptable Use",
+                    hovertemplate="  %{y:.1f} ",
                 ),
                 row=2,
                 col=2,
@@ -729,7 +757,8 @@ def create() -> None:
                     mode="lines+markers",
                     name="Safe and efficient use of computers",
                     legendgroup="Phase 5",
-                    legendgrouptitle_text="Acceptable Use",   hovertemplate = '  %{y:.1f} '
+                    legendgrouptitle_text="Acceptable Use",
+                    hovertemplate="  %{y:.1f} ",
                 ),
                 row=2,
                 col=2,
@@ -741,7 +770,8 @@ def create() -> None:
                     mode="lines+markers",
                     name="Demonstrate safe email practices",
                     legendgroup="Phase 5",
-                    legendgrouptitle_text="Acceptable Use",   hovertemplate = '  %{y:.1f} '
+                    legendgrouptitle_text="Acceptable Use",
+                    hovertemplate="  %{y:.1f} ",
                 ),
                 row=2,
                 col=2,
@@ -753,7 +783,8 @@ def create() -> None:
                     mode="lines+markers",
                     name="Identify cyberbullying ",
                     legendgroup="Phase 5",
-                    legendgrouptitle_text="Acceptable Use",   hovertemplate = '  %{y:.1f} '
+                    legendgrouptitle_text="Acceptable Use",
+                    hovertemplate="  %{y:.1f} ",
                 ),
                 row=2,
                 col=2,
@@ -765,7 +796,8 @@ def create() -> None:
                     mode="lines+markers",
                     name="Describe the potential risks and dangers",
                     legendgroup="Phase 5",
-                    legendgrouptitle_text="Acceptable Use",   hovertemplate = '  %{y:.1f} '
+                    legendgrouptitle_text="Acceptable Use",
+                    hovertemplate="  %{y:.1f} ",
                 ),
                 row=2,
                 col=2,
@@ -777,7 +809,8 @@ def create() -> None:
                     mode="lines+markers",
                     name="Be responsible for device",
                     legendgroup="Phase 6",
-                    legendgrouptitle_text="Additional AT Skills",   hovertemplate = '  %{y:.1f} '
+                    legendgrouptitle_text="Additional AT Skills",
+                    hovertemplate="  %{y:.1f} ",
                 ),
                 row=3,
                 col=2,
@@ -789,7 +822,8 @@ def create() -> None:
                     mode="lines+markers",
                     name="Tactile graphics paired with digital graphics",
                     legendgroup="Phase 6",
-                    legendgrouptitle_text="Additional AT Skills",   hovertemplate = '  %{y:.1f} '
+                    legendgrouptitle_text="Additional AT Skills",
+                    hovertemplate="  %{y:.1f} ",
                 ),
                 row=3,
                 col=2,
@@ -801,7 +835,8 @@ def create() -> None:
                     mode="lines+markers",
                     name="Understand and use Earcons",
                     legendgroup="Phase 6",
-                    legendgrouptitle_text="Additional AT Skills",   hovertemplate = '  %{y:.1f} '
+                    legendgrouptitle_text="Additional AT Skills",
+                    hovertemplate="  %{y:.1f} ",
                 ),
                 row=3,
                 col=2,
@@ -813,7 +848,8 @@ def create() -> None:
                     mode="lines+markers",
                     name="Spatial relationships on the physical iPad screen ",
                     legendgroup="Phase 6",
-                    legendgrouptitle_text="Additional AT Skills",   hovertemplate = '  %{y:.1f} '
+                    legendgrouptitle_text="Additional AT Skills",
+                    hovertemplate="  %{y:.1f} ",
                 ),
                 row=3,
                 col=2,
@@ -825,7 +861,8 @@ def create() -> None:
                     mode="lines+markers",
                     name="Use sonification",
                     legendgroup="Phase 6",
-                    legendgrouptitle_text="Additional AT Skills",   hovertemplate = '  %{y:.1f} '
+                    legendgrouptitle_text="Additional AT Skills",
+                    hovertemplate="  %{y:.1f} ",
                 ),
                 row=3,
                 col=2,
@@ -837,7 +874,8 @@ def create() -> None:
                     mode="lines+markers",
                     name="Learn and use screen reader commands",
                     legendgroup="Phase 6",
-                    legendgrouptitle_text="Additional AT Skills",   hovertemplate = '  %{y:.1f} '
+                    legendgrouptitle_text="Additional AT Skills",
+                    hovertemplate="  %{y:.1f} ",
                 ),
                 row=3,
                 col=2,
@@ -849,7 +887,8 @@ def create() -> None:
                     mode="lines+markers",
                     name="Increase listening speed",
                     legendgroup="Phase 6",
-                    legendgrouptitle_text="Additional AT Skills",   hovertemplate = '  %{y:.1f} '
+                    legendgrouptitle_text="Additional AT Skills",
+                    hovertemplate="  %{y:.1f} ",
                 ),
                 row=3,
                 col=2,
@@ -861,7 +900,8 @@ def create() -> None:
                     mode="lines+markers",
                     name="Learn and use rotor commands ",
                     legendgroup="Phase 6",
-                    legendgrouptitle_text="Additional AT Skills",   hovertemplate = '  %{y:.1f} '
+                    legendgrouptitle_text="Additional AT Skills",
+                    hovertemplate="  %{y:.1f} ",
                 ),
                 row=3,
                 col=2,
@@ -873,7 +913,8 @@ def create() -> None:
                     mode="lines+markers",
                     name="Learn about accessibility features",
                     legendgroup="Phase 6",
-                    legendgrouptitle_text="Additional AT Skills",   hovertemplate = '  %{y:.1f} '
+                    legendgrouptitle_text="Additional AT Skills",
+                    hovertemplate="  %{y:.1f} ",
                 ),
                 row=3,
                 col=2,
@@ -885,7 +926,8 @@ def create() -> None:
                     mode="lines+markers",
                     name="Learn note taking skills",
                     legendgroup="Phase 6",
-                    legendgrouptitle_text="Additional AT Skills",   hovertemplate = '  %{y:.1f} '
+                    legendgrouptitle_text="Additional AT Skills",
+                    hovertemplate="  %{y:.1f} ",
                 ),
                 row=3,
                 col=2,
@@ -897,7 +939,8 @@ def create() -> None:
                     mode="lines+markers",
                     name="Explain what makes digital content accessible",
                     legendgroup="Phase 6",
-                    legendgrouptitle_text="Additional AT Skills",   hovertemplate = '  %{y:.1f} '
+                    legendgrouptitle_text="Additional AT Skills",
+                    hovertemplate="  %{y:.1f} ",
                 ),
                 row=3,
                 col=2,
@@ -1171,7 +1214,7 @@ def create() -> None:
                 template="simple_white",
                 title_text=f"{studentname}: iOS SKills  Progression",
                 hovermode="x unified",
-                hoverlabel = dict(namelength = -1),
+                hoverlabel=dict(namelength=-1),
             )
             tmppath = Path(USER_DIR).joinpath(
                 "StudentDatabase",

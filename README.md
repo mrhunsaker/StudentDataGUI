@@ -7,7 +7,12 @@ To use this package open *helpers.py* and edit the names for the *students* vari
 ex:
 
 ```txt
-students = ('DonaldChamberlain', 'StudentOne', 'StudentTwo', 'StudentN')   
+students = [
+    'DonaldChamberlain', 
+    'StudentOne', 
+    'StudentTwo', 
+    'StudentN'
+]
 ```
 
 I recommend leaving the first entry as it is, unless of course you have a student with that name. It is just a cheeky reference to one of the inventors of SQL and a fake student I can use to test settings without accidentally inserting data into a database that I later would have to remove.

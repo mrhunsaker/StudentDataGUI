@@ -330,12 +330,14 @@ def createFolderHierarchy():
             )
             Path.touch(tmppath)
         if (
-            not Path(USER_DIR).joinpath(
+            not Path(USER_DIR)
+            .joinpath(
                 "StudentDatabase",
                 "StudentDataFiles",
                 name,
                 "BasicTactileRecognition.html",
-            ).exists()
+            )
+            .exists()
         ):
             tmppath = Path(USER_DIR).joinpath(
                 "StudentDatabase",
@@ -617,7 +619,7 @@ def createFolderHierarchy():
                 "P15_2",
                 "P15_3",
                 "P15_4",
-                "P15_5"
+                "P15_5",
             ]
             with open(tmppath, "a", newline="", encoding="UTF-8") as f_object:
                 writer_setup = writer(f_object)

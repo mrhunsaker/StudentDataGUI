@@ -574,18 +574,6 @@ def create() -> None:
             fig.add_trace(
                 go.Scatter(
                     x=df_noisy.index,
-                    y=df_noisy["P1_3"].iloc[[-1]],
-                    mode="lines+markers",
-                    name="Discriminate shapes",
-                    legendgroup="Phase 1",
-                    legendgrouptitle_text="Phase 1",
-                ),
-                row=2,
-                col=1,
-            )
-            fig.add_trace(
-                go.Scatter(
-                    x=df_noisy.index,
                     y=df_noisy["P1_4"],
                     mode="lines+markers",
                     name="Discriminate braille characters",
@@ -610,41 +598,14 @@ def create() -> None:
             )
             fig.add_trace(
                 go.Scatter(
-                    x=df_noisy.index[[-1]],
-                    y=df_noisy["P2_1"].iloc[[-1]],
-                    mode="text",
-                    text=[" G C L"],
-                    textposition="middle right",
-                    legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                row=1,
-                col=2,
-            )
-            fig.add_trace(
-                go.Scatter(
                     x=df_noisy.index,
                     y=df_noisy["P2_2"],
                     mode="lines+markers+text",
                     name="D Y",
                     legendgroup="Phase 2",
                     legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                row=1,
-                col=2,
-            )
-            fig.add_trace(
-                go.Scatter(
-                    x=df_noisy.index[[-1]],
-                    y=df_noisy["P2_2"].iloc[[-1]],
-                    mode="text",
-                    text=[" D Y"],
-                    textposition="middle right",
-                    legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
+                    showlegend=False,
+                    hovertemplate="  %{y:.1f} ",
                 ),
                 row=1,
                 col=2,
@@ -657,21 +618,8 @@ def create() -> None:
                     name="A B",
                     legendgroup="Phase 2",
                     legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                row=1,
-                col=2,
-            )
-            fig.add_trace(
-                go.Scatter(
-                    x=df_noisy.index[[-1]],
-                    y=df_noisy["P2_3"].iloc[[-1]],
-                    mode="text",
-                    text=[" A B"],
-                    textposition="middle right",
-                    legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
+                    showlegend=False,
+                    hovertemplate="  %{y:.1f} ",
                 ),
                 row=1,
                 col=2,
@@ -684,25 +632,13 @@ def create() -> None:
                     name="S",
                     legendgroup="Phase 2",
                     legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
+                    showlegend=False,
+                    hovertemplate="  %{y:.1f} ",
                 ),
                 row=1,
                 col=2,
             )
-            fig.add_trace(
-                go.Scatter(
-                    x=df_noisy.index[[-1]],
-                    y=df_noisy["P2_4"].iloc[[-1]],
-                    mode="text",
-                    text=[" S"],
-                    textposition="middle right",
-                    legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                row=1,
-                col=2,
-            )
+
             fig.add_trace(
                 go.Scatter(
                     x=df_noisy.index,
@@ -711,21 +647,8 @@ def create() -> None:
                     name="W",
                     legendgroup="Phase 2",
                     legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                row=1,
-                col=2,
-            )
-            fig.add_trace(
-                go.Scatter(
-                    x=df_noisy.index[[-1]],
-                    y=df_noisy["P2_5"].iloc[[-1]],
-                    mode="text",
-                    text=[" W"],
-                    textposition="middle right",
-                    legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
+                    showlegend=False,
+                    hovertemplate="  %{y:.1f} ",
                 ),
                 row=1,
                 col=2,
@@ -738,21 +661,8 @@ def create() -> None:
                     name="P O",
                     legendgroup="Phase 2",
                     legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                row=1,
-                col=2,
-            )
-            fig.add_trace(
-                go.Scatter(
-                    x=df_noisy.index[[-1]],
-                    y=df_noisy["P2_6"].iloc[[-1]],
-                    mode="text",
-                    text=[" P O"],
-                    textposition="middle right",
-                    legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
+                    showlegend=False,
+                    hovertemplate="  %{y:.1f} ",
                 ),
                 row=1,
                 col=2,
@@ -765,21 +675,8 @@ def create() -> None:
                     name="K",
                     legendgroup="Phase 2",
                     legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                row=1,
-                col=2,
-            )
-            fig.add_trace(
-                go.Scatter(
-                    x=df_noisy.index[[-1]],
-                    y=df_noisy["P2_7"].iloc[[-1]],
-                    mode="text",
-                    text=[" K"],
-                    textposition="middle right",
-                    legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
+                    showlegend=False,
+                    hovertemplate="  %{y:.1f} ",
                 ),
                 row=1,
                 col=2,
@@ -792,21 +689,8 @@ def create() -> None:
                     name="R",
                     legendgroup="Phase 2",
                     legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                row=1,
-                col=2,
-            )
-            fig.add_trace(
-                go.Scatter(
-                    x=df_noisy.index[[-1]],
-                    y=df_noisy["P2_8"].iloc[[-1]],
-                    mode="text",
-                    text=[" R"],
-                    textposition="middle right",
-                    legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
+                    showlegend=False,
+                    hovertemplate="  %{y:.1f} ",
                 ),
                 row=1,
                 col=2,
@@ -819,21 +703,8 @@ def create() -> None:
                     name="M E",
                     legendgroup="Phase 2",
                     legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                row=1,
-                col=2,
-            )
-            fig.add_trace(
-                go.Scatter(
-                    x=df_noisy.index[[-1]],
-                    y=df_noisy["P2_9"].iloc[[-1]],
-                    mode="text",
-                    text=[" M E"],
-                    textposition="middle right",
-                    legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
+                    showlegend=False,
+                    hovertemplate="  %{y:.1f} ",
                 ),
                 row=1,
                 col=2,
@@ -846,21 +717,8 @@ def create() -> None:
                     name="H",
                     legendgroup="Phase 2",
                     legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                row=1,
-                col=2,
-            )
-            fig.add_trace(
-                go.Scatter(
-                    x=df_noisy.index[[-1]],
-                    y=df_noisy["P2_10"].iloc[[-1]],
-                    mode="text",
-                    text=[" H"],
-                    textposition="middle right",
-                    legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
+                    showlegend=False,
+                    hovertemplate="  %{y:.1f} ",
                 ),
                 row=1,
                 col=2,
@@ -873,21 +731,8 @@ def create() -> None:
                     name="N X",
                     legendgroup="Phase 2",
                     legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                row=1,
-                col=2,
-            )
-            fig.add_trace(
-                go.Scatter(
-                    x=df_noisy.index[[-1]],
-                    y=df_noisy["P2_11"].iloc[[-1]],
-                    mode="text",
-                    text=[" N X"],
-                    textposition="middle right",
-                    legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
+                    showlegend=False,
+                    hovertemplate="  %{y:.1f} ",
                 ),
                 row=1,
                 col=2,
@@ -900,21 +745,8 @@ def create() -> None:
                     name="Z F",
                     legendgroup="Phase 2",
                     legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                row=1,
-                col=2,
-            )
-            fig.add_trace(
-                go.Scatter(
-                    x=df_noisy.index[[-1]],
-                    y=df_noisy["P2_12"].iloc[[-1]],
-                    mode="text",
-                    text=[" Z F"],
-                    textposition="middle right",
-                    legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
+                    showlegend=False,
+                    hovertemplate="  %{y:.1f} ",
                 ),
                 row=1,
                 col=2,
@@ -927,21 +759,8 @@ def create() -> None:
                     name="U T",
                     legendgroup="Phase 2",
                     legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                row=1,
-                col=2,
-            )
-            fig.add_trace(
-                go.Scatter(
-                    x=df_noisy.index[[-1]],
-                    y=df_noisy["P2_13"].iloc[[-1]],
-                    mode="text",
-                    text=[" U T"],
-                    textposition="middle right",
-                    legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
+                    showlegend=False,
+                    hovertemplate="  %{y:.1f} ",
                 ),
                 row=1,
                 col=2,
@@ -954,21 +773,8 @@ def create() -> None:
                     name="Q I",
                     legendgroup="Phase 2",
                     legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                row=1,
-                col=2,
-            )
-            fig.add_trace(
-                go.Scatter(
-                    x=df_noisy.index[[-1]],
-                    y=df_noisy["P2_14"].iloc[[-1]],
-                    mode="text",
-                    text=[" Q I"],
-                    textposition="middle right",
-                    legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
+                    showlegend=False,
+                    hovertemplate="  %{y:.1f} ",
                 ),
                 row=1,
                 col=2,
@@ -981,21 +787,8 @@ def create() -> None:
                     name="V J ",
                     legendgroup="Phase 2",
                     legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                row=1,
-                col=2,
-            )
-            fig.add_trace(
-                go.Scatter(
-                    x=df_noisy.index[[-1]],
-                    y=df_noisy["P2_15"].iloc[[-1]],
-                    mode="text",
-                    text=[" V J"],
-                    textposition="middle right",
-                    legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
+                    showlegend=False,
+                    hovertemplate="  %{y:.1f} ",
                 ),
                 row=1,
                 col=2,
@@ -1699,9 +1492,9 @@ def create() -> None:
                 xaxis9_tickformat="%d %b",
                 template="simple_white",
                 title_text=f"{studentname}: Literary UEB Skills " f"Progression",
-                legend=dict(font=dict(size=10)),                               
+                legend=dict(font=dict(size=10)),
                 hovermode="x unified",
-                hoverlabel = dict(namelength = -1),
+                hoverlabel=dict(namelength=-1),
             )
             tmppath = Path(USER_DIR).joinpath(
                 "StudentDatabase",
@@ -2127,12 +1920,10 @@ def create() -> None:
                 xaxis2_tickformat="%d %b",
                 xaxis3_tickformat="%d %b",
                 template="simple_white",
-                title_text=f""
-                f"{studentname}: Technical UEB Skills "
-                f"Progression",
-                legend=dict(font=dict(size=10)),               
+                title_text=f"" f"{studentname}: Technical UEB Skills " f"Progression",
+                legend=dict(font=dict(size=10)),
                 hovermode="x unified",
-                hoverlabel = dict(namelength = -1),
+                hoverlabel=dict(namelength=-1),
             )
             tmppath = Path(USER_DIR).joinpath(
                 "StudentDatabase",
@@ -2222,20 +2013,6 @@ def create() -> None:
             )
             fig.add_trace(
                 go.Scatter(
-                    x=df_noisy.index[[-1]],
-                    y=df_noisy["P2_1"].iloc[[-1]],
-                    mode="text",
-                    text=[" G C L"],
-                    textposition="middle right",
-                    legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                row=1,
-                col=2,
-            )
-            fig.add_trace(
-                go.Scatter(
                     x=df_noisy.index,
                     y=df_noisy["P2_2"],
                     mode="lines+markers+text",
@@ -2243,20 +2020,6 @@ def create() -> None:
                     legendgroup="Phase 2",
                     legendgrouptitle_text="Phase 2",
                     showlegend=True,
-                ),
-                row=1,
-                col=2,
-            )
-            fig.add_trace(
-                go.Scatter(
-                    x=df_noisy.index[[-1]],
-                    y=df_noisy["P2_2"].iloc[[-1]],
-                    mode="text",
-                    text=[" D Y"],
-                    textposition="middle right",
-                    legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
                 ),
                 row=1,
                 col=2,
@@ -2276,20 +2039,6 @@ def create() -> None:
             )
             fig.add_trace(
                 go.Scatter(
-                    x=df_noisy.index[[-1]],
-                    y=df_noisy["P2_3"].iloc[[-1]],
-                    mode="text",
-                    text=[" A B"],
-                    textposition="middle right",
-                    legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                row=1,
-                col=2,
-            )
-            fig.add_trace(
-                go.Scatter(
                     x=df_noisy.index,
                     y=df_noisy["P2_4"],
                     mode="lines+markers+text",
@@ -2297,20 +2046,6 @@ def create() -> None:
                     legendgroup="Phase 2",
                     legendgrouptitle_text="Phase 2",
                     showlegend=True,
-                ),
-                row=1,
-                col=2,
-            )
-            fig.add_trace(
-                go.Scatter(
-                    x=df_noisy.index[[-1]],
-                    y=df_noisy["P2_4"].iloc[[-1]],
-                    mode="text",
-                    text=[" S"],
-                    textposition="middle right",
-                    legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
                 ),
                 row=1,
                 col=2,
@@ -2330,20 +2065,6 @@ def create() -> None:
             )
             fig.add_trace(
                 go.Scatter(
-                    x=df_noisy.index[[-1]],
-                    y=df_noisy["P2_5"].iloc[[-1]],
-                    mode="text",
-                    text=[" W"],
-                    textposition="middle right",
-                    legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                row=1,
-                col=2,
-            )
-            fig.add_trace(
-                go.Scatter(
                     x=df_noisy.index,
                     y=df_noisy["P2_6"],
                     mode="lines+markers+text",
@@ -2351,20 +2072,6 @@ def create() -> None:
                     legendgroup="Phase 2",
                     legendgrouptitle_text="Phase 2",
                     showlegend=True,
-                ),
-                row=1,
-                col=2,
-            )
-            fig.add_trace(
-                go.Scatter(
-                    x=df_noisy.index[[-1]],
-                    y=df_noisy["P2_6"].iloc[[-1]],
-                    mode="text",
-                    text=[" P O"],
-                    textposition="middle right",
-                    legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
                 ),
                 row=1,
                 col=2,
@@ -2384,20 +2091,6 @@ def create() -> None:
             )
             fig.add_trace(
                 go.Scatter(
-                    x=df_noisy.index[[-1]],
-                    y=df_noisy["P2_7"].iloc[[-1]],
-                    mode="text",
-                    text=[" K"],
-                    textposition="middle right",
-                    legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                row=1,
-                col=2,
-            )
-            fig.add_trace(
-                go.Scatter(
                     x=df_noisy.index,
                     y=df_noisy["P2_8"],
                     mode="lines+markers+text",
@@ -2409,20 +2102,7 @@ def create() -> None:
                 row=1,
                 col=2,
             )
-            fig.add_trace(
-                go.Scatter(
-                    x=df_noisy.index[[-1]],
-                    y=df_noisy["P2_8"].iloc[[-1]],
-                    mode="text",
-                    text=[" R"],
-                    textposition="middle right",
-                    legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                row=1,
-                col=2,
-            )
+
             fig.add_trace(
                 go.Scatter(
                     x=df_noisy.index,
@@ -2436,20 +2116,7 @@ def create() -> None:
                 row=1,
                 col=2,
             )
-            fig.add_trace(
-                go.Scatter(
-                    x=df_noisy.index[[-1]],
-                    y=df_noisy["P2_9"].iloc[[-1]],
-                    mode="text",
-                    text=[" M E"],
-                    textposition="middle right",
-                    legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                row=1,
-                col=2,
-            )
+
             fig.add_trace(
                 go.Scatter(
                     x=df_noisy.index,
@@ -2463,20 +2130,7 @@ def create() -> None:
                 row=1,
                 col=2,
             )
-            fig.add_trace(
-                go.Scatter(
-                    x=df_noisy.index[[-1]],
-                    y=df_noisy["P2_10"].iloc[[-1]],
-                    mode="text",
-                    text=[" H"],
-                    textposition="middle right",
-                    legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                row=1,
-                col=2,
-            )
+ 
             fig.add_trace(
                 go.Scatter(
                     x=df_noisy.index,
@@ -2490,20 +2144,7 @@ def create() -> None:
                 row=1,
                 col=2,
             )
-            fig.add_trace(
-                go.Scatter(
-                    x=df_noisy.index[[-1]],
-                    y=df_noisy["P2_11"].iloc[[-1]],
-                    mode="text",
-                    text=[" N X"],
-                    textposition="middle right",
-                    legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                row=1,
-                col=2,
-            )
+
             fig.add_trace(
                 go.Scatter(
                     x=df_noisy.index,
@@ -2517,20 +2158,7 @@ def create() -> None:
                 row=1,
                 col=2,
             )
-            fig.add_trace(
-                go.Scatter(
-                    x=df_noisy.index[[-1]],
-                    y=df_noisy["P2_12"].iloc[[-1]],
-                    mode="text",
-                    text=[" Z F"],
-                    textposition="middle right",
-                    legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                row=1,
-                col=2,
-            )
+
             fig.add_trace(
                 go.Scatter(
                     x=df_noisy.index,
@@ -2544,20 +2172,7 @@ def create() -> None:
                 row=1,
                 col=2,
             )
-            fig.add_trace(
-                go.Scatter(
-                    x=df_noisy.index[[-1]],
-                    y=df_noisy["P2_13"].iloc[[-1]],
-                    mode="text",
-                    text=[" U T"],
-                    textposition="middle right",
-                    legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                row=1,
-                col=2,
-            )
+
             fig.add_trace(
                 go.Scatter(
                     x=df_noisy.index,
@@ -2571,20 +2186,7 @@ def create() -> None:
                 row=1,
                 col=2,
             )
-            fig.add_trace(
-                go.Scatter(
-                    x=df_noisy.index[[-1]],
-                    y=df_noisy["P2_14"].iloc[[-1]],
-                    mode="text",
-                    text=[" Q I"],
-                    textposition="middle right",
-                    legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                row=1,
-                col=2,
-            )
+
             fig.add_trace(
                 go.Scatter(
                     x=df_noisy.index,
@@ -2598,20 +2200,7 @@ def create() -> None:
                 row=1,
                 col=2,
             )
-            fig.add_trace(
-                go.Scatter(
-                    x=df_noisy.index[[-1]],
-                    y=df_noisy["P2_15"].iloc[[-1]],
-                    mode="text",
-                    text=[" V J"],
-                    textposition="middle right",
-                    legendgroup="Phase 2",
-                    legendgrouptitle_text="Phase 2",
-                    showlegend=False,   hovertemplate = '  %{y:.1f} '
-                ),
-                row=1,
-                col=2,
-            )
+
             fig.add_hrect(
                 y0=-0.5,
                 y1=0.5,
@@ -2688,11 +2277,10 @@ def create() -> None:
                 xaxis_tickformat="%d %b",
                 xaxis2_tickformat="%d %b",
                 template="simple_white",
-                title_text=f"{studentname}: Basic Tactile Recognition "
-                f"Progression",
+                title_text=f"{studentname}: Basic Tactile Recognition " f"Progression",
                 legend=dict(font=dict(size=10)),
                 hovermode="x unified",
-                hoverlabel = dict(namelength = -1),
+                hoverlabel=dict(namelength=-1),
             )
             tmppath = Path(USER_DIR).joinpath(
                 "StudentDatabase",

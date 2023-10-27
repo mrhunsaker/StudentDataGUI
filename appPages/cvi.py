@@ -235,7 +235,8 @@ def create() -> None:
                     mode="lines+markers",
                     name="Color Preference",
                     legendgroup="",
-                    legendgrouptitle_text=" ",   hovertemplate = '  %{y:.1f} '
+                    legendgrouptitle_text=" ",
+                    hovertemplate="  %{y:.1f} ",
                 ),
                 row=1,
                 col=1,
@@ -247,7 +248,8 @@ def create() -> None:
                     mode="lines+markers",
                     name="Need " "for " "Movement",
                     legendgroup="Phase 1",
-                    legendgrouptitle_text="Phase 1",   hovertemplate = '  %{y:.1f} '
+                    legendgrouptitle_text="Phase 1",
+                    hovertemplate="  %{y:.1f} ",
                 ),
                 row=1,
                 col=2,
@@ -259,7 +261,8 @@ def create() -> None:
                     mode="lines+markers",
                     name="Latency",
                     legendgroup="",
-                    legendgrouptitle_text=" ",   hovertemplate = '  %{y:.1f} '
+                    legendgrouptitle_text=" ",
+                    hovertemplate="  %{y:.1f} ",
                 ),
                 row=2,
                 col=1,
@@ -271,7 +274,8 @@ def create() -> None:
                     mode="lines+markers",
                     name="Field Prefence",
                     legendgroup="",
-                    legendgrouptitle_text=" ",   hovertemplate = '  %{y:.1f} '
+                    legendgrouptitle_text=" ",
+                    hovertemplate="  %{y:.1f} ",
                 ),
                 row=2,
                 col=2,
@@ -283,7 +287,8 @@ def create() -> None:
                     mode="lines+markers",
                     name="Visual Complexity",
                     legendgroup="",
-                    legendgrouptitle_text=" ",   hovertemplate = '  %{y:.1f} '
+                    legendgrouptitle_text=" ",
+                    hovertemplate="  %{y:.1f} ",
                 ),
                 row=3,
                 col=1,
@@ -295,7 +300,8 @@ def create() -> None:
                     mode="lines+markers",
                     name="Nonpurposeful Gaze",
                     legendgroup="",
-                    legendgrouptitle_text=" ",   hovertemplate = '  %{y:.1f} '
+                    legendgrouptitle_text=" ",
+                    hovertemplate="  %{y:.1f} ",
                 ),
                 row=3,
                 col=2,
@@ -307,7 +313,8 @@ def create() -> None:
                     mode="lines+markers",
                     name="Distance Viewing",
                     legendgroup="",
-                    legendgrouptitle_text=" ",   hovertemplate = '  %{y:.1f} '
+                    legendgrouptitle_text=" ",
+                    hovertemplate="  %{y:.1f} ",
                 ),
                 row=4,
                 col=1,
@@ -319,7 +326,8 @@ def create() -> None:
                     mode="lines+markers",
                     name="Atypical Reflexes",
                     legendgroup="",
-                    legendgrouptitle_text=" ",   hovertemplate = '  %{y:.1f} '
+                    legendgrouptitle_text=" ",
+                    hovertemplate="  %{y:.1f} ",
                 ),
                 row=4,
                 col=2,
@@ -331,7 +339,8 @@ def create() -> None:
                     mode="lines+markers",
                     name="Visual Novelty",
                     legendgroup="",
-                    legendgrouptitle_text=" ",   hovertemplate = '  %{y:.1f} '
+                    legendgrouptitle_text=" ",
+                    hovertemplate="  %{y:.1f} ",
                 ),
                 row=5,
                 col=1,
@@ -343,7 +352,8 @@ def create() -> None:
                     mode="lines+markers",
                     name="Visual Reach",
                     legendgroup="Phase " "3",
-                    legendgrouptitle_text=" ",   hovertemplate = '  %{y:.1f} '
+                    legendgrouptitle_text=" ",
+                    hovertemplate="  %{y:.1f} ",
                 ),
                 row=5,
                 col=2,
@@ -792,7 +802,7 @@ def create() -> None:
                 template="simple_white",
                 title_text=f"{studentname}: CVI " f"Progression",
                 hovermode="x unified",
-                hoverlabel = dict(namelength = -1),
+                hoverlabel=dict(namelength=-1),
             )
             tmppath = Path(USER_DIR).joinpath(
                 "StudentDatabase",
@@ -809,7 +819,7 @@ def create() -> None:
                 close_button="OK",
             )
 
-                # GUI Input
+            # GUI Input
 
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.button("GRAPH", color="#172554", on_click=graph).classes("text-white")

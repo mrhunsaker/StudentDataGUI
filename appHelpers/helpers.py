@@ -38,7 +38,6 @@ from nicegui import ui
 date_fmt = "%Y_%m_%d-%H%M%S_%p"
 
 datenow = datetime.datetime.now().strftime("%Y_%m_%d-%H%M%S_%p")
-date = datetime.datetime.now().strftime("%Y_%m_%d-%H%M%S_%p")
 ##############################################################################
 # Set User Directory based on OS
 ##############################################################################
@@ -46,44 +45,63 @@ os.chdir(os.path.dirname(os.path.abspath(__file__)))
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 USER_DIR = ""
 IMAGE_DIR = Path(ROOT_DIR).joinpath("images")
+START_DIR = ""
 
 
 ##############################################################################
 # Set User Directory based on OS
 ##############################################################################
-def set_user_dir():
+def set_start_dir():
     if os.name == "nt":
         try:
             tmp_path = Path(os.environ["USERPROFILE"]).joinpath("Documents")
             Path.mkdir(tmp_path, parents=True, exist_ok=True)
-            USER_DIR = Path(tmp_path)
+            START_DIR = Path(tmp_path)
         except Error as e:
             print(f"{e}\n Cannot find %USERPROFILE")
     elif os.name == "posix":
         try:
             tmp_path = Path(os.environ["HOME"]).joinpath("Documents")
             Path.mkdir(tmp_path, parents=True, exist_ok=True)
-            USER_DIR = Path(tmp_path)
+            START_DIR = Path(tmp_path)
         except Error as e:
             print(f"{e}\n Cannot find $HOME")
     else:
         print("Cannot determine OS Type")
-    os.chdir(USER_DIR)
+    os.chdir(START_DIR)
+    return START_DIR
 
 
-set_user_dir()
-dataBasePath = Path(USER_DIR).joinpath("StudentDatabase", "students.db")
+START_DIR = set_start_dir()
+
+
+def working_dir():
+    if not Path(ROOT_DIR).joinpath("appHelpers", "workingdirectory.py").exists():
+        workingdirectory_path = Path(ROOT_DIR).joinpath("workingdirectory.py")
+        tmp_path = Path(START_DIR).joinpath("workingdirectory.txt")
+        shutil.copy2(tmp_path, workingdirectory_path)
+
+
+working_dir()
 
 
 def create_roster():
     if not Path(ROOT_DIR).joinpath("appHelpers", "roster").exists():
         roster_path = Path(ROOT_DIR).joinpath("roster.py")
-        tmp_path = Path(USER_DIR).joinpath("roster.txt")
+        tmp_path = Path(START_DIR).joinpath("roster.txt")
         shutil.copy2(tmp_path, roster_path)
 
 
 create_roster()
+
 from appHelpers.roster import students
+from appHelpers.workingdirectory import create_user_dir
+
+create_user_dir()
+
+USER_DIR = create_user_dir()
+
+dataBasePath = Path(USER_DIR).joinpath("StudentDatabase", "students.db")
 
 
 ##############################################################################

@@ -31,7 +31,8 @@ import plotly.graph_objects as go
 from nicegui import app, ui
 from plotly.subplots import make_subplots
 
-from appHelpers.helpers import dataBasePath, datenow, USER_DIR, date_fmt
+from appHelpers.helpers import dataBasePath, datenow, date_fmt, USER_DIR
+
 from appHelpers.roster import students
 from appTheming import theme
 
@@ -2102,7 +2103,6 @@ def create() -> None:
                 row=1,
                 col=2,
             )
-
             fig.add_trace(
                 go.Scatter(
                     x=df_noisy.index,
@@ -2116,7 +2116,6 @@ def create() -> None:
                 row=1,
                 col=2,
             )
-
             fig.add_trace(
                 go.Scatter(
                     x=df_noisy.index,
@@ -2144,7 +2143,6 @@ def create() -> None:
                 row=1,
                 col=2,
             )
-
             fig.add_trace(
                 go.Scatter(
                     x=df_noisy.index,
@@ -2158,7 +2156,6 @@ def create() -> None:
                 row=1,
                 col=2,
             )
-
             fig.add_trace(
                 go.Scatter(
                     x=df_noisy.index,
@@ -2172,7 +2169,6 @@ def create() -> None:
                 row=1,
                 col=2,
             )
-
             fig.add_trace(
                 go.Scatter(
                     x=df_noisy.index,
@@ -2186,7 +2182,6 @@ def create() -> None:
                 row=1,
                 col=2,
             )
-
             fig.add_trace(
                 go.Scatter(
                     x=df_noisy.index,
@@ -2200,7 +2195,6 @@ def create() -> None:
                 row=1,
                 col=2,
             )
-
             fig.add_hrect(
                 y0=-0.5,
                 y1=0.5,

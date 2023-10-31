@@ -35,12 +35,16 @@ from appHelpers.helpers import (
     createFolderHierarchy,
     dataBasePath,
     warningmessage,
-    set_user_dir,
+    set_start_dir,
+    working_dir,
     create_roster,
 )
+from appHelpers.workingdirectory import create_user_dir
 from appHelpers.sqlgenerate import create_connection, createTables
 
-set_user_dir()
+set_start_dir()
+working_dir()
+create_user_dir()
 create_roster()
 createFolderHierarchy()
 create_connection(dataBasePath)
@@ -60,11 +64,13 @@ from appPages import observations
 from appPages import screenreader
 from appPages import digitalliteracy
 
+
 @ui.page("/")
 def index_page() -> None:
     """Opens Homepage for App"""
     with theme.frame("Student Skills Progressions"):
         homepage.content()
+
 
 contactlog.create()
 abacus.create()

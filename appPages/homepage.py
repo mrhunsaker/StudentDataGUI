@@ -31,6 +31,7 @@ def content() -> None:
         ui.label("VISION SKILLS PROGRESSIONS").classes(
             "text-h4 font-bold text-grey-8 pl-10"
         )
+        # fmt: off
         with ui.row().classes("w-screen no-wrap py-4 pl-10"):
             ui.markdown(
                 """
@@ -131,3 +132,6 @@ def content() -> None:
                                         """,
                 extras=["fenced-code-blocks"],
             )
+
+
+# fmt: on

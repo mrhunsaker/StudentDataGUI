@@ -42,6 +42,8 @@ cefpython3 = {url = "https://files.pythonhosted.org/packages/3b/d4/f313221a999e4
 clr-loader = {url = "https://files.pythonhosted.org/packages/b3/1a/2801c4e3888aac8fcd4d88d32a1155a778d1c01ca040ae8137d433a39cc6/clr_loader-0.2.6-py3-none-any.whl"}
 pylint = "^3.0.2"
 black = "^23.10.1"
+ruff = "^0.1.3"
+autotyping = "^23.3.0"
 
 
 [tool.poetry.group.dev.dependencies]
@@ -59,6 +61,11 @@ name = "student_skills_progression"
 url = "https://github.com/mrhunsaker/StudentDataGUI"
 priority = "primary"
 
+
+[[tool.poetry.source]]
+name = "PyPI"
+priority = "primary"
+
 [tool.black]
 line-length = 88
 target-version = [
@@ -69,6 +76,23 @@ target-version = [
     'py311', 
     'py312'
 ]
+include = '\pyi?$'
+
+exclude = '''
+/(
+    \.git
+    | \.tox
+    \.venv
+)/
+'''
+preview = true
+skip_magic_trailing_comma = true
+
+[tool.pyanalyze]
+missing_parameter_annotation = true
+missing_return_annotation = true
+incompatible_override = true
+
 
 [tool.pylint.'MESSAGES CONTROL']
 max-line-length = 88

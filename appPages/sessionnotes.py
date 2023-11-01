@@ -27,7 +27,7 @@ from pathlib import Path
 
 from nicegui import app, ui
 
-from appHelpers.helpers import dataBasePath, datenow, date_fmt, USER_DIR
+from appHelpers.helpers import datenow, USER_DIR, tasks
 
 from appHelpers.roster import students
 from appTheming import theme
@@ -126,9 +126,7 @@ def create() -> None:
                 on_change=lambda e: ui.notify(e.value),
             ).bind_value(u_studentname, "value").classes("w-[300px]").props(
                 'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
-            ).tooltip(
-                "Type Student Name, it will autocomplete as you type"
-            )
+            ).tooltip("Type Student Name, it will autocomplete as you type")
         with ui.input("Date").classes("w-[300px]").props(
             'aria-label="Date. Please type in date using the YYYY-MM-DD format"'
         ).tooltip("Date. Please type in date using the YYYY-MM-DD format") as date:
@@ -143,9 +141,7 @@ def create() -> None:
                 options=tasks, with_input=True, on_change=lambda e: ui.notify(e.value)
             ).bind_value(u_tasks, "value").classes("w-[300px]").props(
                 'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
-            ).tooltip(
-                "Type Taske, it will autocomplete as you type"
-            )
+            ).tooltip("Type Taske, it will autocomplete as you type")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.label(
                 "RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent"

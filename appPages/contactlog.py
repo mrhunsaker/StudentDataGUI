@@ -26,7 +26,7 @@ from pathlib import Path
 
 from nicegui import app, ui
 
-from appHelpers.helpers import dataBasePath, datenow, date_fmt, USER_DIR
+from appHelpers.helpers import datenow, USER_DIR
 
 from appHelpers.roster import students
 from appTheming import theme
@@ -134,9 +134,7 @@ def create() -> None:
                 on_change=lambda e: ui.notify(e.value),
             ).bind_value(u_studentname, "value").classes("w-[300px]").props(
                 'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
-            ).tooltip(
-                "Type Student Name, it will autocomplete AS you type"
-            )
+            ).tooltip("Type Student Name, it will autocomplete AS you type")
         with ui.input("Date").classes("w-[300px]").props(
             'aria-label="Date. Please type in date using YYYY-MM-DD format"'
         ).tooltip("Date. Please type in date using the YYYY-MM-DD format") as date:
@@ -216,9 +214,7 @@ def create() -> None:
                 on_change=lambda e: u_contactGeneral.set_value(e.value),
             ).classes("w-[240px]").props(
                 'aria-label="Reason for Contact - General Category"'
-            ).tooltip(
-                "Reason for Contact - General Category"
-            )
+            ).tooltip("Reason for Contact - General Category")
             ui.label("Specific Topic").classes("w-[50px]")
             ui.select(
                 options=[
@@ -231,9 +227,7 @@ def create() -> None:
                 on_change=lambda e: u_contactSpecific.set_value(e.value),
             ).classes("w-[240px]").props(
                 'aria-label="Reason for Contact - Specific Reason"'
-            ).tooltip(
-                "Reason for Contact - Specific Reason"
-            )
+            ).tooltip("Reason for Contact - Specific Reason")
         with ui.row().classes("w-screen no-wrap "):
             ui.textarea(
                 label="Contact Notes (if email please copy/paste email into the box)",
@@ -241,9 +235,7 @@ def create() -> None:
                 on_change=lambda e: u_contactNotes.set_value(e.value),
             ).classes("w-[640px]").props(
                 'aria-label="Contact Notes (if email please copy/paste email into the box)"'
-            ).tooltip(
-                "Contact Notes (if email please copy/paste email into the box)"
-            )
+            ).tooltip("Contact Notes (if email please copy/paste email into the box)")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.button("SAVE", color="#172554", on_click=save).classes("text-white")
             ui.button("EXIT", color="#172554", on_click=app.shutdown).classes(

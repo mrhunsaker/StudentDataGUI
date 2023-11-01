@@ -27,7 +27,6 @@ import shutil
 import traceback
 from csv import writer
 from pathlib import Path
-from sqlite3 import Error
 
 from nicegui import ui
 
@@ -51,20 +50,20 @@ START_DIR = ""
 ##############################################################################
 # Set User Directory based on OS
 ##############################################################################
-def set_start_dir():
+def set_start_dir() -> Path:
     if os.name == "nt":
         try:
             tmp_path = Path(os.environ["USERPROFILE"]).joinpath("Documents")
             Path.mkdir(tmp_path, parents=True, exist_ok=True)
             START_DIR = Path(tmp_path)
-        except Error as e:
+        except NameError  as e:
             print(f"{e}\n Cannot find %USERPROFILE")
     elif os.name == "posix":
         try:
             tmp_path = Path(os.environ["HOME"]).joinpath("Documents")
             Path.mkdir(tmp_path, parents=True, exist_ok=True)
             START_DIR = Path(tmp_path)
-        except Error as e:
+        except NameError  as e:
             print(f"{e}\n Cannot find $HOME")
     else:
         print("Cannot determine OS Type")
@@ -75,7 +74,7 @@ def set_start_dir():
 START_DIR = set_start_dir()
 
 
-def working_dir():
+def working_dir() -> None:
     if not Path(ROOT_DIR).joinpath("appHelpers", "workingdirectory.py").exists():
         workingdirectory_path = Path(ROOT_DIR).joinpath("workingdirectory.py")
         tmp_path = Path(START_DIR).joinpath("workingdirectory.txt")
@@ -85,7 +84,7 @@ def working_dir():
 working_dir()
 
 
-def create_roster():
+def create_roster() -> None:
     if not Path(ROOT_DIR).joinpath("appHelpers", "roster").exists():
         roster_path = Path(ROOT_DIR).joinpath("roster.py")
         tmp_path = Path(START_DIR).joinpath("roster.txt")
@@ -107,7 +106,7 @@ dataBasePath = Path(USER_DIR).joinpath("StudentDatabase", "students.db")
 ##############################################################################
 # Error Logging
 ##############################################################################
-def warningmessage(exception_type, exception_value, exception_traceback):
+def warningmessage(exception_type, exception_value, exception_traceback) -> None:
     """
     exception_type (_type_): _description_
     exception_value (_type_): _description_
@@ -119,13 +118,13 @@ def warningmessage(exception_type, exception_value, exception_traceback):
         exception_type, exception_value, exception_traceback
     )
     log_path = Path(USER_DIR).joinpath(
-        "StudentDatabase", "errorLogs", f"logfile_{date}.log"
+        "StudentDatabase", "errorLogs", f"logfile_{datenow}.log"
     )
     Path.touch(log_path)
     for i in tb:
         message += i
     with open(log_path, "a", encoding="utf-8") as log_file:
-        log_file.write(f"{date}\n{i}" + "\n")
+        log_file.write(f"{datenow}\n{i}" + "\n")
         errortype = str(exception_type)
     ui.notify(f"{message}\n{errortype}", type="warn" "ing", close_button="OK")
 
@@ -133,7 +132,7 @@ def warningmessage(exception_type, exception_value, exception_traceback):
 ##############################################################################
 # Set User Folders and necessary files in ~/Documents for each Student
 ##############################################################################
-def createFolderHierarchy():
+def createFolderHierarchy()-> None:
     """creates folder hierarchy on user computer"""
     for name in students:
         if not Path(USER_DIR).joinpath("StudentDatabase").exists():
@@ -856,4 +855,5 @@ tasks = [
     "abacus division",
     "screenreader usage",
     "ios usage",
+    "digital literacy"
 ]

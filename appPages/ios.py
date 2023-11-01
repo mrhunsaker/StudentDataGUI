@@ -1243,9 +1243,7 @@ def create() -> None:
                 on_change=lambda e: ui.notify(e.value),
             ).bind_value(u_studentname, "value").classes("w-[300px]").props(
                 'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
-            ).tooltip(
-                "Type Student Name, it will autocomplete AS you type"
-            )
+            ).tooltip("Type Student Name, it will autocomplete AS you type")
         with ui.row().classes("w-screen no-wrap"):
             with ui.input("Date").classes("w-[300px]").props(
                 'aria-label="Date. Please type in date using the YYYY-MM-DD format"'

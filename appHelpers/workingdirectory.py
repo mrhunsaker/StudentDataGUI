@@ -46,7 +46,7 @@ def create_user_dir():
             )
             Path.mkdir(tmp_path, parents=True, exist_ok=True)
             USER_DIR = Path(tmp_path)
-        except Error as e:
+        except NameError  as e:
             print(f"{e}\n Cannot find %USERPROFILE")
     elif os.name == "posix":
         try:
@@ -55,6 +55,6 @@ def create_user_dir():
             )
             Path.mkdir(tmp_path, parents=True, exist_ok=True)
             USER_DIR = Path(tmp_path)
-        except Error as e:
+        except NameError  as e:
             print(f"{e}\n Cannot find $HOME")
     return USER_DIR

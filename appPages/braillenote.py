@@ -1762,9 +1762,7 @@ def create() -> None:
                 on_change=lambda e: ui.notify(e.value),
             ).bind_value(u_studentname, "value").classes("w-[300px]").props(
                 'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
-            ).tooltip(
-                "Type Student Name, it will autocomplete as you type"
-            )
+            ).tooltip("Type Student Name, it will autocomplete as you type")
         with ui.row().classes("w-screen no-wrap"):
             with ui.input("Date").classes("w-[300px]").props(
                 'aria-label="Date. Please type in date using the YYYY-MM-DD format"'
@@ -1806,9 +1804,7 @@ def create() -> None:
                 on_change=lambda e: u_bnt_trial12.set_value(e.value),
             ).classes("w-[400px]").props(
                 'aria-label="Setup/Universal Commands"'
-            ).tooltip(
-                "Setup/Universal Commands"
-            )
+            ).tooltip("Setup/Universal Commands")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="1.3 BNT+ Navigation",
@@ -1858,9 +1854,7 @@ def create() -> None:
                 on_change=lambda e: u_bnt_trial17.set_value(e.value),
             ).classes("w-[400px]").props(
                 'aria-label="Read Book with EasyReader Plus"'
-            ).tooltip(
-                "Read Book with EasyReader Plus"
-            )
+            ).tooltip("Read Book with EasyReader Plus")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="1.8 Braille Terminal",
@@ -1907,9 +1901,7 @@ def create() -> None:
                 on_change=lambda e: u_bnt_trial22.set_value(e.value),
             ).classes("w-[400px]").props(
                 'aria-label="Differences among drives, folders, and files"'
-            ).tooltip(
-                "Differences among drives, folders, and files"
-            )
+            ).tooltip("Differences among drives, folders, and files")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="2.3 Navigating in the file browser",
@@ -1919,9 +1911,7 @@ def create() -> None:
                 on_change=lambda e: u_bnt_trial23.set_value(e.value),
             ).classes("w-[400px]").props(
                 'aria-label="Navigating in the file browser"'
-            ).tooltip(
-                "Navigating in the file browser"
-            )
+            ).tooltip("Navigating in the file browser")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="2.4 Moving, copying and pasting file and folders",
@@ -1931,9 +1921,7 @@ def create() -> None:
                 on_change=lambda e: u_bnt_trial24.set_value(e.value),
             ).classes("w-[400px]").props(
                 'aria-label="Moving, copying and pasting file and folders"'
-            ).tooltip(
-                "Moving, copying and pasting file and folders"
-            )
+            ).tooltip("Moving, copying and pasting file and folders")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="2.5 Renaming a file or a folder",
@@ -1943,9 +1931,7 @@ def create() -> None:
                 on_change=lambda e: u_bnt_trial25.set_value(e.value),
             ).classes("w-[400px]").props(
                 'aria-label="Renaming a file or a folder"'
-            ).tooltip(
-                "Renaming a file or a folder"
-            )
+            ).tooltip("Renaming a file or a folder")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="2.6 Sharing files",
@@ -1965,9 +1951,7 @@ def create() -> None:
                 on_change=lambda e: u_bnt_trial27.set_value(e.value),
             ).classes("w-[400px]").props(
                 'aria-label="File and folder commands"'
-            ).tooltip(
-                "File and folder commands"
-            )
+            ).tooltip("File and folder commands")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.label("Phase 3: KeySoft Programs - KeyWord").classes(
                 "justify-center items-center"
@@ -1984,9 +1968,7 @@ def create() -> None:
                 on_change=lambda e: u_bnt_trial31.set_value(e.value),
             ).classes("w-[400px]").props(
                 'aria-label="Editing Document in Keyword"'
-            ).tooltip(
-                "Editing Document in Keyword"
-            )
+            ).tooltip("Editing Document in Keyword")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="3.2 Create a Document in Keyword",
@@ -1996,9 +1978,7 @@ def create() -> None:
                 on_change=lambda e: u_bnt_trial32.set_value(e.value),
             ).classes("w-[400px]").props(
                 'aria-label="Create a Document in Keyword"'
-            ).tooltip(
-                "Create a Document in Keyword"
-            )
+            ).tooltip("Create a Document in Keyword")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="3.3 Open a Document in Keyword",
@@ -2008,9 +1988,7 @@ def create() -> None:
                 on_change=lambda e: u_bnt_trial33.set_value(e.value),
             ).classes("w-[400px]").props(
                 'aria-label="Open a Document in Keyword"'
-            ).tooltip(
-                "Open a Document in Keyword"
-            )
+            ).tooltip("Open a Document in Keyword")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="3.4 Save a Document in Keyword",
@@ -2020,9 +1998,7 @@ def create() -> None:
                 on_change=lambda e: u_bnt_trial34.set_value(e.value),
             ).classes("w-[400px]").props(
                 'aria-label="Save a Document in Keyword"'
-            ).tooltip(
-                "Save a Document in Keyword"
-            )
+            ).tooltip("Save a Document in Keyword")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="3.5 Read a Document in Keyword",
@@ -2032,9 +2008,7 @@ def create() -> None:
                 on_change=lambda e: u_bnt_trial35.set_value(e.value),
             ).classes("w-[400px]").props(
                 'aria-label="Read a Document in Keyword"'
-            ).tooltip(
-                "Read a Document in Keyword"
-            )
+            ).tooltip("Read a Document in Keyword")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="3.6 Visual Preview",
@@ -2071,9 +2045,7 @@ def create() -> None:
                 on_change=lambda e: u_bnt_trial41.set_value(e.value),
             ).classes("w-[400px]").props(
                 'aria-label="Create and edit math object"'
-            ).tooltip(
-                "Create and edit math object"
-            )
+            ).tooltip("Create and edit math object")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="4.2 Paste into KeyWord",
@@ -2093,9 +2065,7 @@ def create() -> None:
                 on_change=lambda e: u_bnt_trial43.set_value(e.value),
             ).classes("w-[400px]").props(
                 'aria-label="Generate and Read Graphics"'
-            ).tooltip(
-                "Generate and Read Graphics"
-            )
+            ).tooltip("Generate and Read Graphics")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.label("Phase 5: KeySoft Programs - KeyMail").classes(
                 "justify-center items-center"
@@ -2112,9 +2082,7 @@ def create() -> None:
                 on_change=lambda e: u_bnt_trial51.set_value(e.value),
             ).classes("w-[400px]").props(
                 'aria-label="Setting up an email account"'
-            ).tooltip(
-                "Setting up an email account"
-            )
+            ).tooltip("Setting up an email account")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="5.2 Writing and sending emails",
@@ -2124,9 +2092,7 @@ def create() -> None:
                 on_change=lambda e: u_bnt_trial52.set_value(e.value),
             ).classes("w-[400px]").props(
                 'aria-label="Writing and sending emails"'
-            ).tooltip(
-                "Writing and sending emails"
-            )
+            ).tooltip("Writing and sending emails")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="5.3 Attaching a file",
@@ -2146,9 +2112,7 @@ def create() -> None:
                 on_change=lambda e: u_bnt_trial54.set_value(e.value),
             ).classes("w-[400px]").props(
                 'aria-label="Reading and searching for emails"'
-            ).tooltip(
-                "Reading and searching for emails"
-            )
+            ).tooltip("Reading and searching for emails")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="5.5 Viewing attached files",
@@ -2168,9 +2132,7 @@ def create() -> None:
                 on_change=lambda e: u_bnt_trial56.set_value(e.value),
             ).classes("w-[400px]").props(
                 'aria-label="Marking, highlighting, deleting, and other email  options"'
-            ).tooltip(
-                "Marking, highlighting, deleting, and other email  options"
-            )
+            ).tooltip("Marking, highlighting, deleting, and other email  options")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="5.7 Deleting an email account",
@@ -2180,9 +2142,7 @@ def create() -> None:
                 on_change=lambda e: u_bnt_trial57.set_value(e.value),
             ).classes("w-[400px]").props(
                 'aria-label="Deleting an email account"'
-            ).tooltip(
-                "Deleting an email account"
-            )
+            ).tooltip("Deleting an email account")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.label("Phase 6: KeySoft Programs - KeySlides").classes(
                 "justify-center items-center"
@@ -2209,9 +2169,7 @@ def create() -> None:
                 on_change=lambda e: u_bnt_trial62.set_value(e.value),
             ).classes("w-[400px]").props(
                 'aria-label="Opening a PowerPoint document"'
-            ).tooltip(
-                "Opening a PowerPoint document"
-            )
+            ).tooltip("Opening a PowerPoint document")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="6.3 Navigating in your presentation document",
@@ -2221,9 +2179,7 @@ def create() -> None:
                 on_change=lambda e: u_bnt_trial63.set_value(e.value),
             ).classes("w-[400px]").props(
                 'aria-label="Navigating in your presentation document"'
-            ).tooltip(
-                "Navigating in your presentation document"
-            )
+            ).tooltip("Navigating in your presentation document")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.label("Phase 7: KeySoft Programs - Calendar").classes(
                 "justify-center items-center"
@@ -2250,9 +2206,7 @@ def create() -> None:
                 on_change=lambda e: u_bnt_trial72.set_value(e.value),
             ).classes("w-[400px]").props(
                 'aria-label="Viewing, editing and deleting appointments"'
-            ).tooltip(
-                "Viewing, editing and deleting appointments"
-            )
+            ).tooltip("Viewing, editing and deleting appointments")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="7.3 Navigating the agenda",
@@ -2289,9 +2243,7 @@ def create() -> None:
                 on_change=lambda e: u_bnt_trial81.set_value(e.value),
             ).classes("w-[400px]").props(
                 'aria-label="Internet Browsing with Chrome"'
-            ).tooltip(
-                "Internet Browsing with Chrome"
-            )
+            ).tooltip("Internet Browsing with Chrome")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="8.2 Internet Navigation",
@@ -2354,9 +2306,7 @@ def create() -> None:
                 on_change=lambda e: u_bnt_trial92.set_value(e.value),
             ).classes("w-[400px]").props(
                 'aria-label="Inserting a Math symbol in KeyCalc"'
-            ).tooltip(
-                "Inserting a Math symbol in KeyCalc"
-            )
+            ).tooltip("Inserting a Math symbol in KeyCalc")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="9.3 Show results as fractions or decimals",
@@ -2366,9 +2316,7 @@ def create() -> None:
                 on_change=lambda e: u_bnt_trial93.set_value(e.value),
             ).classes("w-[400px]").props(
                 'aria-label="Show results as fractions or decimals"'
-            ).tooltip(
-                "Show results as fractions or decimals"
-            )
+            ).tooltip("Show results as fractions or decimals")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="9.4 History",
@@ -2393,9 +2341,7 @@ def create() -> None:
                 on_change=lambda e: u_bnt_trial101.set_value(e.value),
             ).classes("w-[400px]").props(
                 'aria-label="Opening .brf and .brl files"'
-            ).tooltip(
-                "Opening .brf and .brl files"
-            )
+            ).tooltip("Opening .brf and .brl files")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="10.2 Creating a .brf or .brl file",
@@ -2405,9 +2351,7 @@ def create() -> None:
                 on_change=lambda e: u_bnt_trial102.set_value(e.value),
             ).classes("w-[400px]").props(
                 'aria-label="Creating a .brf or .brl file"'
-            ).tooltip(
-                "Creating a .brf or .brl file"
-            )
+            ).tooltip("Creating a .brf or .brl file")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="10.3 Finding Braille Text",
@@ -2444,9 +2388,7 @@ def create() -> None:
                 on_change=lambda e: u_bnt_trial112.set_value(e.value),
             ).classes("w-[400px]").props(
                 'aria-label="Opening, Navigating and Editing a Python File"'
-            ).tooltip(
-                "Opening, Navigating and Editing a Python File"
-            )
+            ).tooltip("Opening, Navigating and Editing a Python File")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="11.3 Indentations",

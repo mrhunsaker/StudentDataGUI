@@ -2129,7 +2129,7 @@ def create() -> None:
                 row=1,
                 col=2,
             )
- 
+
             fig.add_trace(
                 go.Scatter(
                     x=df_noisy.index,
@@ -2299,9 +2299,7 @@ def create() -> None:
                 on_change=lambda e: ui.notify(e.value),
             ).bind_value(u_studentname, "value").classes("w-[300px]").props(
                 'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
-            ).tooltip(
-                "Type Student Name, it will autocomplete AS you type"
-            )
+            ).tooltip("Type Student Name, it will autocomplete AS you type")
             with ui.input("Date").classes("w-[300px]").props(
                 'aria-label="Date. Please type in date using the YYYY-MM-DD format"'
             ).tooltip("Date. Please type in date using the YYYY-MM-DD format") as date:
@@ -2336,9 +2334,7 @@ def create() -> None:
                 on_change=lambda e: u_braille_trial11.set_value(e.value),
             ).classes("w-[600px]").props(
                 'aria-label="1.1 Track Left to Right"'
-            ).tooltip(
-                "1.1 Track Left to Right"
-            )
+            ).tooltip("1.1 Track Left to Right")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="1.2 Track Top to Bottom",
@@ -2592,9 +2588,7 @@ def create() -> None:
                 on_change=lambda e: u_braille_trial310.set_value(e.value),
             ).classes("w-[600px]").props(
                 'aria-label="3.10 Lower Wordsigns - BE HIS WAS WERE"'
-            ).tooltip(
-                "3.10 Lower Wordsigns - BE HIS WAS WERE"
-            )
+            ).tooltip("3.10 Lower Wordsigns - BE HIS WAS WERE")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="3.11 Dot 5 Contractions",
@@ -2604,9 +2598,7 @@ def create() -> None:
                 on_change=lambda e: u_braille_trial311.set_value(e.value),
             ).classes("w-[600px]").props(
                 'aria-label="3.11 Dot 5 Contractions"'
-            ).tooltip(
-                "3.11 Dot 5 Contractions"
-            )
+            ).tooltip("3.11 Dot 5 Contractions")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="3.12 Dot 45 Contractions",
@@ -2616,9 +2608,7 @@ def create() -> None:
                 on_change=lambda e: u_braille_trial312.set_value(e.value),
             ).classes("w-[600px]").props(
                 'aria-label="3.12 Dot 45 Contractions"'
-            ).tooltip(
-                "3.12 Dot 45 Contractions"
-            )
+            ).tooltip("3.12 Dot 45 Contractions")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="3.13 Dot 456 Contractions",
@@ -2628,9 +2618,7 @@ def create() -> None:
                 on_change=lambda e: u_braille_trial313.set_value(e.value),
             ).classes("w-[600px]").props(
                 'aria-label="3.13 Dot 456 Contractions"'
-            ).tooltip(
-                "3.13 Dot 456 Contractions"
-            )
+            ).tooltip("3.13 Dot 456 Contractions")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="3.14 Final Letter Groupsigns",
@@ -2640,9 +2628,7 @@ def create() -> None:
                 on_change=lambda e: u_braille_trial314.set_value(e.value),
             ).classes("w-[600px]").props(
                 'aria-label="3.14 Final Letter Groupsigns"'
-            ).tooltip(
-                "3.14 Final Letter Groupsigns"
-            )
+            ).tooltip("3.14 Final Letter Groupsigns")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="3.15 Shortform Words",
@@ -2675,9 +2661,7 @@ def create() -> None:
                 on_change=lambda e: u_braille_trial42.set_value(e.value),
             ).classes("w-[600px]").props(
                 'aria-label="4.2 Capitals Indicators"'
-            ).tooltip(
-                "4.2 Capitals Indicators"
-            )
+            ).tooltip("4.2 Capitals Indicators")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="4.3 Numeric Mode and Spatial Math",
@@ -2687,9 +2671,7 @@ def create() -> None:
                 on_change=lambda e: u_braille_trial43.set_value(e.value),
             ).classes("w-[600px]").props(
                 'aria-label="4.3 Numeric Mode and Spatial Math"'
-            ).tooltip(
-                "4.3 Numeric Mode and Spatial Math"
-            )
+            ).tooltip("4.3 Numeric Mode and Spatial Math")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="4.4 Typeform Indicators - ITALIC BOLD UNDERLINE SCRIPT",
@@ -2699,9 +2681,7 @@ def create() -> None:
                 on_change=lambda e: u_braille_trial44.set_value(e.value),
             ).classes("w-[600px]").props(
                 'aria-label="4.4 Typeform Indicators - ITALIC BOLD UNDERLINE SCRIPT"'
-            ).tooltip(
-                "4.4 Typeform Indicators - ITALIC BOLD UNDERLINE SCRIPT"
-            )
+            ).tooltip("4.4 Typeform Indicators - ITALIC BOLD UNDERLINE SCRIPT")
             ui.label().classes("w-[600px]")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.label("PHASE 5: Advanced Document Formatting").classes(
@@ -2762,9 +2742,7 @@ def create() -> None:
                 on_change=lambda e: u_braille_trial61.set_value(e.value),
             ).classes("w-[600px]").props(
                 'aria-label="6.1 Operation and Comparison Signs"'
-            ).tooltip(
-                "6.1 Operation and Comparison Signs"
-            )
+            ).tooltip("6.1 Operation and Comparison Signs")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="6.2 Grade 1 Mode",
@@ -2784,9 +2762,7 @@ def create() -> None:
                 on_change=lambda e: u_braille_trial63.set_value(e.value),
             ).classes("w-[600px]").props(
                 'aria-label="6.3 Special Print Symbols"'
-            ).tooltip(
-                "6.3 Special Print Symbols"
-            )
+            ).tooltip("6.3 Special Print Symbols")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="6.4 Omission Marks",
@@ -2843,9 +2819,7 @@ def create() -> None:
                 on_change=lambda e: u_braille_trial71.set_value(e.value),
             ).classes("w-[600px]").props(
                 'aria-label="7.1 Grade 1 Mode and algebra"'
-            ).tooltip(
-                "7.1 Grade 1 Mode and algebra"
-            )
+            ).tooltip("7.1 Grade 1 Mode and algebra")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="7.2 Grade 1 Mode and Fractions",
@@ -2855,9 +2829,7 @@ def create() -> None:
                 on_change=lambda e: u_braille_trial72.set_value(e.value),
             ).classes("w-[600px]").props(
                 'aria-label="7.2 Grade 1 Mode and Fractions"'
-            ).tooltip(
-                "7.2 Grade 1 Mode and Fractions"
-            )
+            ).tooltip("7.2 Grade 1 Mode and Fractions")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="7.3 Advanced Operation and Comparison Signs",
@@ -2867,9 +2839,7 @@ def create() -> None:
                 on_change=lambda e: u_braille_trial73.set_value(e.value),
             ).classes("w-[600px]").props(
                 'aria-label="7.3 Advanced Operation and Comparison Signs"'
-            ).tooltip(
-                "7.3 Advanced Operation and Comparison Signs"
-            )
+            ).tooltip("7.3 Advanced Operation and Comparison Signs")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="7.4 Indices",
@@ -2899,9 +2869,7 @@ def create() -> None:
                 on_change=lambda e: u_braille_trial76.set_value(e.value),
             ).classes("w-[600px]").props(
                 'aria-label="7.6 Miscellaneous Shape Indicators"'
-            ).tooltip(
-                "7.6 Miscellaneous Shape Indicators"
-            )
+            ).tooltip("7.6 Miscellaneous Shape Indicators")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="7.7 Functions",
@@ -2946,9 +2914,7 @@ def create() -> None:
                 on_change=lambda e: u_braille_trial82.set_value(e.value),
             ).classes("w-[600px]").props(
                 'aria-label="8.2 Modifiers: Bars and Dots"'
-            ).tooltip(
-                "8.2 Modifiers: Bars and Dots"
-            )
+            ).tooltip("8.2 Modifiers: Bars and Dots")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="8.3 Modifiers: Arrows and Limits",
@@ -2958,9 +2924,7 @@ def create() -> None:
                 on_change=lambda e: u_braille_trial83.set_value(e.value),
             ).classes("w-[600px]").props(
                 'aria-label="8.3 Modifiers: Arrows and Limits"'
-            ).tooltip(
-                "8.3 Modifiers: Arrows and Limits"
-            )
+            ).tooltip("8.3 Modifiers: Arrows and Limits")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="8.4 Probability",
@@ -2980,9 +2944,7 @@ def create() -> None:
                 on_change=lambda e: u_braille_trial85.set_value(e.value),
             ).classes("w-[600px]").props(
                 'aria-label="8.5 Calculus: Differentiation"'
-            ).tooltip(
-                "8.5 Calculus: Differentiation"
-            )
+            ).tooltip("8.5 Calculus: Differentiation")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="8.6 Calculus: Integration",
@@ -2992,9 +2954,7 @@ def create() -> None:
                 on_change=lambda e: u_braille_trial86.set_value(e.value),
             ).classes("w-[600px]").props(
                 'aria-label="8.6 Calculus: Integration"'
-            ).tooltip(
-                "8.6 Calculus: Integration"
-            )
+            ).tooltip("8.6 Calculus: Integration")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
                 label="8.7 Vertical Bars",

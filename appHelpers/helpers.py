@@ -75,7 +75,7 @@ START_DIR = set_start_dir()
 
 
 def working_dir() -> None:
-    if not Path(ROOT_DIR).joinpath("appHelpers", "workingdirectory.py").exists():
+    if not Path(ROOT_DIR).joinpath("workingdirectory.py").exists():
         workingdirectory_path = Path(ROOT_DIR).joinpath("workingdirectory.py")
         tmp_path = Path(START_DIR).joinpath("workingdirectory.txt")
         shutil.copy2(tmp_path, workingdirectory_path)

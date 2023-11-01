@@ -38,7 +38,7 @@ import os
 from pathlib import Path
 
 
-def create_user_dir():
+def create_user_dir()->None:
     if os.name == "nt":
         try:
             tmp_path = Path(os.environ["USERPROFILE"]).joinpath(

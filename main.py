@@ -93,9 +93,12 @@ with ui.footer(value=True) as footer:
         ).classes("justify-center items-center")
 
 MONITOR = ""
-for MONITOR in get_monitors():
-    SCREENRESOLUTION = "{str(MONITOR.width)}x{str(MONITOR.height)}"
-
+def getresolution() -> str:
+    for SCREEN in get_monitors():
+        SCREENRESOLUTION = "{str(SCREEN.width)}x{str(SCREEN.height)}"
+    return SCREEN 
+MONITOR = getresolution()
+print(MONITOR)
 ui.run(
     native=True,
     reload=False,

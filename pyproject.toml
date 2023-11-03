@@ -120,7 +120,6 @@ good-names = [
 ]
 
 [tool.ruff]
-# Exclude a variety of commonly ignored directories.
 exclude = [
     ".bzr",
     ".direnv",
@@ -144,37 +143,70 @@ exclude = [
     "node_modules",
     "venv",
 ]
-
-# Same as Black.
 line-length = 88
 indent-width = 4
-
-# Assume Python 3.8
+include = ["*.py"]
+preview = true
+respect-gitignore = false
 target-version = "py310"
-
+select = ["D"]
+ignore = ["D417"]
 [tool.ruff.lint]
-# Enable Pyflakes (`F`) and a subset of the pycodestyle (`E`)  codes by default.
 select = ["E4", "E7", "E9", "F"]
 ignore = []
-
-# Allow fix for all enabled rules (when `--fix`) is provided.
 fixable = ["ALL"]
 unfixable = []
-
-# Allow unused variables when underscore-prefixed.
 dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
 
 [tool.ruff.format]
-# Like Black, use double quotes for strings.
 quote-style = "double"
-
-# Like Black, indent with spaces, rather than tabs.
+indent-width = 4
+line-ending = "native"
 indent-style = "space"
-
-# Like Black, respect magic trailing commas.
 skip-magic-trailing-comma = false
 
-# Like Black, automatically detect the appropriate line ending.
-line-ending = "auto"
+[tool.ruff.isort]
+case-sensitive = true
+combine-as-imports = true
+force-single-line = true
+force-sort-within-sections = true
+force-wrap-aliases = true
+lines-after-imports = 2
+lines-between-types = 1
+order-by-type = true
+relative-imports-order = "closest-to0furthest"
 
+[tool.ruff.pycodestyle]
+max-line-length = 120
 
+[tool.ruff.pydocstyle]
+convention = "google"
+
+[tool.ruff.pylint]
+max-branches = 25
+max-public-methods = 25
+
+[tool.ruff.flake8-copyright]
+author = "Michael Ryan Hunsaker, M.Ed., Ph.D."
+
+[tool.ruff.flake8-import-conventions]
+[tool.ruff.flake8-import-conventions.aliases]
+altair = "alt"
+"matplotlib.pyplot" = "plt"
+numpy = "np"
+pandas = "pd"
+seaborn = "sns"
+scipy = "sp"
+"plotly.graph_objects" = "go"
+tkinter = "tk"
+"plotly.express" = "px"
+polars = "pl"
+pyarrow = "pa"
+tensorflow = "tf"
+
+[tyool.ruff.flake8-quotes]
+avoid-escape = true
+docstring-quotes = "double"
+inline-quotes = "single"
+multiline-quotes = "double"
+indent-style = "space"

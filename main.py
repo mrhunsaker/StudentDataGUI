@@ -22,7 +22,10 @@ teachers of students with Visual Impairments
 ########################################################################
 
 import os
+import sqlite3
 import sys
+import traceback
+from pathlib import Path
 
 from nicegui import ui
 from screeninfo import get_monitors
@@ -34,11 +37,12 @@ from appTheming import theme
 from appHelpers.helpers import (
     createFolderHierarchy,
     dataBasePath,
-    warningmessage,
     set_start_dir,
     working_dir,
     create_roster,
-)
+    USER_DIR,
+    datenow,
+    )
 from appHelpers.workingdirectory import create_user_dir
 from appHelpers.sqlgenerate import create_connection, createTables
 
@@ -49,7 +53,6 @@ create_roster()
 createFolderHierarchy()
 create_connection(dataBasePath)
 createTables()
-sys.excepthook = warningmessage
 
 from appPages import abacus
 from appPages import sessionnotes
@@ -63,6 +66,29 @@ from appPages import ios
 from appPages import observations
 from appPages import screenreader
 from appPages import digitalliteracy
+
+
+def warningmessage(exception_type, exception_value, exception_traceback) -> None:
+    """
+    exception_type (_type_): _description_
+    exception_value (_type_): _description_
+    exception_traceback (_type_): _description_
+    """
+    i = ""
+    message = "Please make sure all fields are selected / filled out properly\n\n"
+    tb = traceback.format_exception(
+            exception_type, exception_value, exception_traceback
+            )
+    log_path = Path(USER_DIR).joinpath(
+            "StudentDatabase", "errorLogs", f"logfile_{datenow}.log"
+            )
+    Path.touch(log_path)
+    for i in tb:
+        message += i
+    with open(log_path, "a", encoding="utf-8") as log_file:
+        log_file.write(f"{datenow}\n{i}" + "\n")
+        errortype = str(exception_type)
+    ui.notify(f"{message}\n{errortype}", type="warn" "ing", close_button="OK")
 
 
 @ui.page("/")
@@ -86,24 +112,30 @@ digitalliteracy.create()
 
 with ui.footer(value=True) as footer:
     with ui.row().classes(
-        "w-screen no-wrap justify-center items-center text-l font-bold"
-    ):
+            "w-screen no-wrap justify-center items-center text-l font-bold"
+            ):
         ui.label(
-            "Copyright © 2023 Michael Ryan Hunsaker, M.Ed., Ph.D.\nReport Bugs or Request Features by emailing hunsakerconsulting@gmail.com"
-        ).classes("justify-center items-center")
+                "Copyright © 2023 Michael Ryan Hunsaker, M.Ed., Ph.D.\nReport Bugs or Request Features by emailing hunsakerconsulting@gmail.com"
+                ).classes("justify-center items-center")
 
 MONITOR = ""
+
+
 def getresolution() -> str:
     for SCREEN in get_monitors():
         SCREENRESOLUTION = "{str(SCREEN.width)}x{str(SCREEN.height)}"
-    return SCREEN 
+    return SCREEN
+
+
 MONITOR = getresolution()
-print(MONITOR)
+print(f'SQLite Version is: {sqlite3.sqlite_version}')
+print(f'SQLite DB-API Version is: {sqlite3.version}')
+print(f'Monitor: \nwidth = {MONITOR.width} \nheight = {MONITOR.height}')
 ui.run(
-    native=True,
-    reload=False,
-    dark=False,
-    title="Student Skills Progressions",
-    fullscreen=False,
-    window_size=(MONITOR.width, MONITOR.height - 72),
-)
+        native=False,
+        reload=False,
+        dark=False,
+        title="Student Skills Progressions",
+        fullscreen=False,
+        window_size=(MONITOR.width, MONITOR.height - 72),
+        )

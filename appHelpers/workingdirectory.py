@@ -38,23 +38,23 @@ import os
 from pathlib import Path
 
 
-def create_user_dir():
+def create_user_dir() -> None:
     if os.name == "nt":
         try:
             tmp_path = Path(os.environ["USERPROFILE"]).joinpath(
-                "OneDrive - Davis School District", "Documents"
-            )
+                    "OneDrive - Davis School District", "Documents"
+                    )
             Path.mkdir(tmp_path, parents=True, exist_ok=True)
             USER_DIR = Path(tmp_path)
-        except Error as e:
+        except NameError as e:
             print(f"{e}\n Cannot find %USERPROFILE")
     elif os.name == "posix":
         try:
             tmp_path = Path(os.environ["HOME"]).joinpath(
-                "OneDrive - Davis School District", "Documents"
-            )
+                    "OneDrive - Davis School District", "Documents"
+                    )
             Path.mkdir(tmp_path, parents=True, exist_ok=True)
             USER_DIR = Path(tmp_path)
-        except Error as e:
+        except NameError as e:
             print(f"{e}\n Cannot find $HOME")
     return USER_DIR

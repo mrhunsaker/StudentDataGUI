@@ -1,12 +1,12 @@
 [tool.poetry]
 name = "student-skills-progression"
-version = "0.1.0"
+version = "0.1.5"
 authors = ["Michael Ryan Hunsaker <hunsakerconsulting@gmail.com>"]
 description = "Data collection application for Teachers of Students with Visual Impairments"
 maintainers = ["Michael Ryan Hunsaker, M.Ed., Ph.D. <hunsakerconsulting@gmail.com>"]
 license = "Apache-2.0"
 readme = "README.md"
-packages = [{include = "student-skills-progression"}]
+packages = [{ include = "student-skills-progression" }]
 repository = "https://github.com/mrhunsaker/StudentDataGUI"
 keywords = ["visual impairment", "education", "data collection"]
 classifiers = [
@@ -24,31 +24,28 @@ classifiers = [
 ]
 
 [tool.poetry.dependencies]
-python = ">=3.10,<3.11"
+python = ">=3.10,<3.13"
 attrdict = "^2.0.1"
 datetime = "^5.2"
 statistics = "^1.0.3.5"
 pandas = "^2.1.2"
 plotly = "^5.18.0"
 numpy = "^1.26.1"
-matplotlib = "^3.8.0"
+matplotlib = "^3.8.1"
 pathlib = "^1.0.1"
 nicegui = "^1.4.1"
 screeninfo = "^0.8.1"
 pythonnet = "^3.0.3"
-pywebview = "^4.4"
+pywebview = "^4.4.1"
 jedi = "^0.19.1"
-cefpython3 = {url = "https://files.pythonhosted.org/packages/3b/d4/f313221a999e4d295cc8fcb15fc4ac9c98f6759e50735d6f6ce84fd3e98a/cefpython3-66.1-py2.py3-none-win_amd64.whl"}
-clr-loader = {url = "https://files.pythonhosted.org/packages/b3/1a/2801c4e3888aac8fcd4d88d32a1155a778d1c01ca040ae8137d433a39cc6/clr_loader-0.2.6-py3-none-any.whl"}
-pylint = "^3.0.2"
-black = "^23.10.1"
-
+cefpython3 = { url = "https://files.pythonhosted.org/packages/3b/d4/f313221a999e4d295cc8fcb15fc4ac9c98f6759e50735d6f6ce84fd3e98a/cefpython3-66.1-py2.py3-none-win_amd64.whl" }
+clr-loader = { url = "https://files.pythonhosted.org/packages/b3/1a/2801c4e3888aac8fcd4d88d32a1155a778d1c01ca040ae8137d433a39cc6/clr_loader-0.2.6-py3-none-any.whl" }
+aiohttp = "3.9.0b0"
 
 [tool.poetry.group.dev.dependencies]
-pylint = "^3.0.1"
-black = "^23.9.1"
+pylint = "^3.0.2"
+black = "^23.10.1"
 ruff = "^0.1.3"
-
 
 [build-system]
 requires = ["poetry-core>=1.2.0"]
@@ -59,16 +56,35 @@ name = "student_skills_progression"
 url = "https://github.com/mrhunsaker/StudentDataGUI"
 priority = "primary"
 
+[[tool.poetry.source]]
+name = "PyPI"
+priority = "primary"
+
 [tool.black]
 line-length = 88
 target-version = [
-    'py37', 
-    'py38', 
-    'py39', 
-    'py310', 
-    'py311', 
+    'py37',
+    'py38',
+    'py39',
+    'py310',
+    'py311',
     'py312'
 ]
+include = '\pyi?$'
+exclude = '''
+/(
+    \.git
+    | \.tox
+    \.venv
+)/
+'''
+preview = true
+skip_magic_trailing_comma = true
+
+[tool.pyanalyze]
+missing_parameter_annotation = true
+missing_return_annotation = true
+incompatible_override = true
 
 [tool.pylint.'MESSAGES CONTROL']
 max-line-length = 88
@@ -104,7 +120,6 @@ good-names = [
 ]
 
 [tool.ruff]
-# Exclude a variety of commonly ignored directories.
 exclude = [
     ".bzr",
     ".direnv",
@@ -128,37 +143,70 @@ exclude = [
     "node_modules",
     "venv",
 ]
-
-# Same as Black.
 line-length = 88
 indent-width = 4
-
-# Assume Python 3.8
-target-version = "py38"
-
+include = ["*.py"]
+preview = true
+respect-gitignore = false
+target-version = "py310"
+select = ["D"]
+ignore = ["D417"]
 [tool.ruff.lint]
-# Enable Pyflakes (`F`) and a subset of the pycodestyle (`E`)  codes by default.
 select = ["E4", "E7", "E9", "F"]
 ignore = []
-
-# Allow fix for all enabled rules (when `--fix`) is provided.
 fixable = ["ALL"]
 unfixable = []
-
-# Allow unused variables when underscore-prefixed.
 dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
 
 [tool.ruff.format]
-# Like Black, use double quotes for strings.
 quote-style = "double"
-
-# Like Black, indent with spaces, rather than tabs.
+indent-width = 4
+line-ending = "native"
 indent-style = "space"
-
-# Like Black, respect magic trailing commas.
 skip-magic-trailing-comma = false
 
-# Like Black, automatically detect the appropriate line ending.
-line-ending = "auto"
+[tool.ruff.isort]
+case-sensitive = true
+combine-as-imports = true
+force-single-line = true
+force-sort-within-sections = true
+force-wrap-aliases = true
+lines-after-imports = 2
+lines-between-types = 1
+order-by-type = true
+relative-imports-order = "closest-to0furthest"
 
+[tool.ruff.pycodestyle]
+max-line-length = 120
 
+[tool.ruff.pydocstyle]
+convention = "google"
+
+[tool.ruff.pylint]
+max-branches = 25
+max-public-methods = 25
+
+[tool.ruff.flake8-copyright]
+author = "Michael Ryan Hunsaker, M.Ed., Ph.D."
+
+[tool.ruff.flake8-import-conventions]
+[tool.ruff.flake8-import-conventions.aliases]
+altair = "alt"
+"matplotlib.pyplot" = "plt"
+numpy = "np"
+pandas = "pd"
+seaborn = "sns"
+scipy = "sp"
+"plotly.graph_objects" = "go"
+tkinter = "tk"
+"plotly.express" = "px"
+polars = "pl"
+pyarrow = "pa"
+tensorflow = "tf"
+
+[tyool.ruff.flake8-quotes]
+avoid-escape = true
+docstring-quotes = "double"
+inline-quotes = "single"
+multiline-quotes = "double"
+indent-style = "space"

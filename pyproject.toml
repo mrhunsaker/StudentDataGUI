@@ -151,6 +151,7 @@ respect-gitignore = false
 target-version = "py310"
 select = ["D"]
 ignore = ["D417"]
+
 [tool.ruff.lint]
 select = ["E4", "E7", "E9", "F"]
 ignore = []
@@ -174,7 +175,7 @@ force-wrap-aliases = true
 lines-after-imports = 2
 lines-between-types = 1
 order-by-type = true
-relative-imports-order = "closest-to0furthest"
+relative-imports-order = "closest-to-furthest"
 
 [tool.ruff.pycodestyle]
 max-line-length = 120
@@ -204,7 +205,7 @@ polars = "pl"
 pyarrow = "pa"
 tensorflow = "tf"
 
-[tyool.ruff.flake8-quotes]
+[tool.ruff.flake8-quotes]
 avoid-escape = true
 docstring-quotes = "double"
 inline-quotes = "single"

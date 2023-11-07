@@ -43,7 +43,7 @@ def create() -> None:
             u_studentname = ui.select(
                     options=students, value="DonaldChamberlain"
                     ).classes("hidden")
-            date = ui.date().classes("hidden")
+            u_today_date = ui.date().classes("hidden")
             u_observationnotes = ui.textarea().classes("hidden")
 
             def save(event):
@@ -52,6 +52,7 @@ def create() -> None:
                 :type event
                 """
                 studentname = u_studentname.value
+                today_date = u_today_date.value
                 observationnotes = u_observationnotes.value
                 studentdatabasename = f"observationnotes{studentname.title()}{datenow}"
                 tmppath = Path(USER_DIR).joinpath(
@@ -62,7 +63,7 @@ def create() -> None:
                         )
                 observation_dictionary = {
                         "studentname"     : studentname,
-                        "date"            : datenow,
+                        "date"            : today_date,
                         "observationnotes": observationnotes,
                         }
                 with open(tmppath, "w", encoding="utf-8") as filename:
@@ -94,15 +95,7 @@ def create() -> None:
                     ).bind_value(u_studentname, "value").classes("w-[300px]").props(
                     'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
                     ).tooltip("Type Student Name, it will autocomplete as you type")
-        with ui.input("Date").classes("w-[300px]").props(
-                'aria-label="Date. Please type in date using the YYYY-MM-DD format"'
-                ).tooltip("Date. Please type in date using the YYYY-MM-DD format") as date:
-            with date.add_slot("append"):
-                ui.icon("edit_calendar").on("click", lambda: menu.open()).classes(
-                        "cursor-pointer"
-                        )
-            with ui.menu() as menu:
-                ui.date().bind_value(date)
+            ui.date(value = 'f{datenow}', on_change = lambda e: u_today_date.set_value(e.value)).classes('w-1/2')
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.textarea(
                     label="Input Observation Notes In this Box and Press Save",

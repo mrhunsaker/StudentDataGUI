@@ -42,7 +42,7 @@ def create() -> None:
             u_studentname = ui.select(
                     options=students, value="DonaldChamberlain"
                     ).classes("hidden")
-            date = ui.date().classes("hidden")
+            u_today_date = ui.date().classes("hidden")
             u_guardianName = ui.input().classes("hidden")
             u_contactMethod = ui.radio(["Phone", "Text", "In-Person", "Email"]).classes(
                     "hidden"
@@ -71,6 +71,7 @@ def create() -> None:
                 :type event:
                 """
                 studentname = u_studentname.value
+                today_date  =   u_today_date
                 guardianName = u_guardianName.value
                 contactMethod = u_contactMethod.value
                 phoneNumber = u_phoneNumber.value
@@ -89,7 +90,7 @@ def create() -> None:
                         )
                 contactlog_dictionary = {
                         "studentname"    : studentname,
-                        "date"           : datenow,
+                        "date"           : today_date,
                         "guardianName"   : guardianName,
                         "contactMethod"  : contactMethod,
                         "phoneNumber"    : phoneNumber,
@@ -134,15 +135,7 @@ def create() -> None:
                     ).bind_value(u_studentname, "value").classes("w-[300px]").props(
                     'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
                     ).tooltip("Type Student Name, it will autocomplete AS you type")
-        with ui.input("Date").classes("w-[300px]").props(
-                'aria-label="Date. Please type in date using YYYY-MM-DD format"'
-                ).tooltip("Date. Please type in date using the YYYY-MM-DD format") as date:
-            with date.add_slot("append"):
-                ui.icon("edit_calendar").on("click", lambda: menu.open()).classes(
-                        "cursor-pointer"
-                        )
-        with ui.menu() as menu:
-            ui.date().bind_value(date)
+            ui.date(value = 'f{datenow}', on_change = lambda e: u_today_date.set_value(e.value)).classes('w-1/2')
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.label().classes("w-[50px]")
             ui.label("GUARDIAN INFORMATION").classes(

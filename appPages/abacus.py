@@ -46,7 +46,7 @@ def create() -> None:
             u_studentname = ui.select(
                     options=students, value="DonaldChamberlain"
                     ).classes("hidden")
-            date = ui.date().classes("hidden")
+            u_today_date = ui.date().classes("hidden")
             u_abacus_trial11 = ui.number().classes("hidden")
             u_abacus_trial12 = ui.number().classes("hidden")
             u_abacus_trial13 = ui.number().classes("hidden")
@@ -78,6 +78,7 @@ def create() -> None:
                 :type event:
                 """
                 studentname = u_studentname.value
+                today_date = u_today_date.value
                 abacus_trial11 = int(u_abacus_trial11.value)
                 abacus_trial12 = int(u_abacus_trial12.value)
                 abacus_trial13 = int(u_abacus_trial13.value)
@@ -111,7 +112,7 @@ def create() -> None:
                         )
                 abacus_dictionary = {
                         "studentname"   : u_studentname.value,
-                        "date"          : datenow,
+                        "date"          : today_date,
                         "abacus_trial11": abacus_trial11,
                         "abacus_trial12": abacus_trial12,
                         "abacus_trial13": abacus_trial13,
@@ -214,7 +215,7 @@ def create() -> None:
                                                                 ?)""",
                             (
                                     studentname,
-                                    datenow,
+                                    today_date,
                                     abacus_trial11,
                                     abacus_trial12,
                                     abacus_trial13,
@@ -993,15 +994,7 @@ def create() -> None:
                     ).bind_value(u_studentname, "value").classes("w-[300px]").props(
                     'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
                     ).tooltip("Type Student Name, it will autocomplete AS you type")
-        with ui.input("Date").classes("w-[300px]").props(
-                'aria-label="Date. Please type in date using the YYYY-MM-DD format"'
-                ).tooltip("Date. Please type in date using the YYYY-MM-DD format") as date:
-            with date.add_slot("append"):
-                ui.icon("edit_calendar").on("click", lambda: menu.open()).classes(
-                        "cursor-pointer"
-                        )
-        with ui.menu() as menu:
-            ui.date().bind_value(date)
+            ui.date(value = 'f{datenow}', on_change = lambda e: u_today_date.set_value(e.value)).classes('w-1/2')
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.label(
                     "RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent"

@@ -42,6 +42,19 @@ USER_DIR = ""
 IMAGE_DIR = Path(ROOT_DIR).joinpath("images")
 START_DIR = ""
 
+'''
+def github() -> ui.html:
+    return ui.html(Path(ROOT_DIR).joinpath('github.svg').read_text())
+
+with ui.link(target='https://github.com/mrhunsaker/StudentDataGUI').classes('max-[305px]:hidden').tooltip('GitHub'):
+            github().classes('fill-white scale-125 m-1')
+
+
+def branding()) -> ui.html:
+    return ui.html(Path(ROOT_DIR).joinpath('dsd-mark-white.png).read_text())
+with ui.link(target='https://davis.k12.ut.us').classes('max-[305px]:hidden').tooltip('GitHub'):
+            branding().classes('m-1')
+'''
 
 ##############################################################################
 # Set User Directory based on OS

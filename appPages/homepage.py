@@ -28,9 +28,7 @@ from appTheming import theme
 
 def content() -> None:
     with theme.frame("- HOW TO USE THIS APP -"):
-        ui.label("VISION SKILLS PROGRESSIONS").classes(
-                "text-h4 font-bold pl-10"
-                )
+        ui.label("VISION SKILLS PROGRESSIONS").classes("text-h4 font-bold pl-10")
         # fmt: off
         with ui.row().classes("w-screen no-wrap py-4 pl-10"):
             ui.markdown(
@@ -132,4 +130,6 @@ def content() -> None:
                                             """,
                     extras=["fenced-code-blocks"],
                     )
+
+
 # fmt: on

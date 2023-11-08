@@ -45,8 +45,8 @@ def create() -> None:
         with theme.frame("- TECHNOLOGY SKILLS -"):
             ui.label("SCREENREADER SKILLS").classes("text-h4 text-grey-8")
             u_studentname = ui.select(
-                    options=students, value="DonaldChamberlain"
-                    ).classes("hidden")
+                options=students, value="DonaldChamberlain"
+            ).classes("hidden")
             # ASSIGN VARIABLES
             u_today_date = ui.date().classes("hidden")
             u_screenreader_trial11 = ui.number().classes("hidden")
@@ -85,7 +85,7 @@ def create() -> None:
                 :type event:
                 """
                 studentname = u_studentname.value
-                today_date           = u_today_date.value
+                today_date = u_today_date.value
                 screenreader_trial11 = int(u_screenreader_trial11.value)
                 screenreader_trial12 = int(u_screenreader_trial12.value)
                 screenreader_trial13 = int(u_screenreader_trial13.value)
@@ -116,56 +116,56 @@ def create() -> None:
                 screenreader_trial47 = int(u_screenreader_trial47.value)
                 studentdatabasename = f"screenreader{studentname.title()}{datenow}"
                 tmppath = Path(USER_DIR).joinpath(
-                        "StudentDatabase",
-                        "StudentDataFiles",
-                        studentname,
-                        studentdatabasename + ".json",
-                        )
+                    "StudentDatabase",
+                    "StudentDataFiles",
+                    studentname,
+                    studentdatabasename + ".json",
+                )
                 screenreader_dictionary = {
-                        "studentname"          : studentname,
-                        "date"                 : today_date,
-                        "screenreader_trial11" : screenreader_trial11,
-                        "screenreader_trial12" : screenreader_trial12,
-                        "screenreader_trial13" : screenreader_trial13,
-                        "screenreader_trial14" : screenreader_trial14,
-                        "screenreader_trial15" : screenreader_trial15,
-                        "screenreader_trial16" : screenreader_trial16,
-                        "screenreader_trial21" : screenreader_trial21,
-                        "screenreader_trial22" : screenreader_trial22,
-                        "screenreader_trial23" : screenreader_trial23,
-                        "screenreader_trial24" : screenreader_trial24,
-                        "screenreader_trial31" : screenreader_trial31,
-                        "screenreader_trial32" : screenreader_trial32,
-                        "screenreader_trial33" : screenreader_trial33,
-                        "screenreader_trial34" : screenreader_trial34,
-                        "screenreader_trial35" : screenreader_trial35,
-                        "screenreader_trial36" : screenreader_trial36,
-                        "screenreader_trial37" : screenreader_trial37,
-                        "screenreader_trial38" : screenreader_trial38,
-                        "screenreader_trial39" : screenreader_trial39,
-                        "screenreader_trial310": screenreader_trial310,
-                        "screenreader_trial311": screenreader_trial311,
-                        "screenreader_trial41" : screenreader_trial41,
-                        "screenreader_trial42" : screenreader_trial42,
-                        "screenreader_trial43" : screenreader_trial43,
-                        "screenreader_trial44" : screenreader_trial44,
-                        "screenreader_trial45" : screenreader_trial45,
-                        "screenreader_trial46" : screenreader_trial46,
-                        "screenreader_trial47" : screenreader_trial47,
-                        }
+                    "studentname": studentname,
+                    "date": today_date,
+                    "screenreader_trial11": screenreader_trial11,
+                    "screenreader_trial12": screenreader_trial12,
+                    "screenreader_trial13": screenreader_trial13,
+                    "screenreader_trial14": screenreader_trial14,
+                    "screenreader_trial15": screenreader_trial15,
+                    "screenreader_trial16": screenreader_trial16,
+                    "screenreader_trial21": screenreader_trial21,
+                    "screenreader_trial22": screenreader_trial22,
+                    "screenreader_trial23": screenreader_trial23,
+                    "screenreader_trial24": screenreader_trial24,
+                    "screenreader_trial31": screenreader_trial31,
+                    "screenreader_trial32": screenreader_trial32,
+                    "screenreader_trial33": screenreader_trial33,
+                    "screenreader_trial34": screenreader_trial34,
+                    "screenreader_trial35": screenreader_trial35,
+                    "screenreader_trial36": screenreader_trial36,
+                    "screenreader_trial37": screenreader_trial37,
+                    "screenreader_trial38": screenreader_trial38,
+                    "screenreader_trial39": screenreader_trial39,
+                    "screenreader_trial310": screenreader_trial310,
+                    "screenreader_trial311": screenreader_trial311,
+                    "screenreader_trial41": screenreader_trial41,
+                    "screenreader_trial42": screenreader_trial42,
+                    "screenreader_trial43": screenreader_trial43,
+                    "screenreader_trial44": screenreader_trial44,
+                    "screenreader_trial45": screenreader_trial45,
+                    "screenreader_trial46": screenreader_trial46,
+                    "screenreader_trial47": screenreader_trial47,
+                }
                 with open(tmppath, "w", encoding="utf8") as filename:
                     json.dump(screenreader_dictionary, filename)
 
                     tmppath = Path(USER_DIR).joinpath(
-                            "StudentDatabase", "StudentDataFiles", "Filenames.txt"
-                            )
+                        "StudentDatabase", "StudentDataFiles", "Filenames.txt"
+                    )
                 with open(tmppath, "a", encoding="utf8") as filename:
                     tmppath = Path(USER_DIR).joinpath(
-                            "StudentDatabase",
-                            "StudentDataFiles",
-                            studentname,
-                            studentdatabasename + ".json",
-                            )
+                        "StudentDatabase",
+                        "StudentDataFiles",
+                        studentname,
+                        studentdatabasename + ".json",
+                    )
                     filename.write(f"'{tmppath}'" + "\n")
 
                 # noinspection SqlResolve
@@ -174,7 +174,7 @@ def create() -> None:
                     conn = sqlite3.connect(dataBasePath)
                     c = conn.cursor()
                     c.execute(
-                            """INSERT INTO SCREENREADERPROGRESS (
+                        """INSERT INTO SCREENREADERPROGRESS (
                                                                         STUDENTNAME,
                                                                         DATE,
                                                                         P1_1,
@@ -238,46 +238,46 @@ def create() -> None:
                                                                             ?,
                                                                             ?
                                                                             )""",
-                            (
-                                    studentname,
-                                    today_date,
-                                    screenreader_trial11,
-                                    screenreader_trial12,
-                                    screenreader_trial13,
-                                    screenreader_trial14,
-                                    screenreader_trial15,
-                                    screenreader_trial16,
-                                    screenreader_trial21,
-                                    screenreader_trial22,
-                                    screenreader_trial23,
-                                    screenreader_trial24,
-                                    screenreader_trial31,
-                                    screenreader_trial32,
-                                    screenreader_trial33,
-                                    screenreader_trial34,
-                                    screenreader_trial35,
-                                    screenreader_trial36,
-                                    screenreader_trial37,
-                                    screenreader_trial38,
-                                    screenreader_trial39,
-                                    screenreader_trial310,
-                                    screenreader_trial311,
-                                    screenreader_trial41,
-                                    screenreader_trial42,
-                                    screenreader_trial43,
-                                    screenreader_trial44,
-                                    screenreader_trial45,
-                                    screenreader_trial46,
-                                    screenreader_trial47,
-                                    ),
-                            )
+                        (
+                            studentname,
+                            today_date,
+                            screenreader_trial11,
+                            screenreader_trial12,
+                            screenreader_trial13,
+                            screenreader_trial14,
+                            screenreader_trial15,
+                            screenreader_trial16,
+                            screenreader_trial21,
+                            screenreader_trial22,
+                            screenreader_trial23,
+                            screenreader_trial24,
+                            screenreader_trial31,
+                            screenreader_trial32,
+                            screenreader_trial33,
+                            screenreader_trial34,
+                            screenreader_trial35,
+                            screenreader_trial36,
+                            screenreader_trial37,
+                            screenreader_trial38,
+                            screenreader_trial39,
+                            screenreader_trial310,
+                            screenreader_trial311,
+                            screenreader_trial41,
+                            screenreader_trial42,
+                            screenreader_trial43,
+                            screenreader_trial44,
+                            screenreader_trial45,
+                            screenreader_trial46,
+                            screenreader_trial47,
+                        ),
+                    )
                     conn.commit()
                     ui.notify(
-                            "Saved successfully!",
-                            position="center",
-                            type="positive",
-                            close_button="OK",
-                            )
+                        "Saved successfully!",
+                        position="center",
+                        type="positive",
+                        close_button="OK",
+                    )
 
                 data_entry()
 
@@ -318,1046 +318,1048 @@ def create() -> None:
             print(growth)
 
             fig = make_subplots(
-                    rows=5,
-                    cols=2,
-                    specs=[
-                            [{}, {"rowspan": 2}],
-                            [{}, None],
-                            [{"rowspan": 2}, {}],
-                            [None, {}],
-                            [{}, {}],
-                            ],
-                    subplot_titles=(
-                            "Phase 1a: Reading",
-                            "Phase 2: Writing",
-                            "Phase 1b: Reading",
-                            "Phase 3a: Internet",
-                            "Phase 3b: Internet",
-                            "Phase 3c: Internet",
-                            "Phase 4a: File Management",
-                            "Phase 4b: File Management",
-                            ),
-                    print_grid=True,
-                    )
+                rows=5,
+                cols=2,
+                specs=[
+                    [{}, {"rowspan": 2}],
+                    [{}, None],
+                    [{"rowspan": 2}, {}],
+                    [None, {}],
+                    [{}, {}],
+                ],
+                subplot_titles=(
+                    "Phase 1a: Reading",
+                    "Phase 2: Writing",
+                    "Phase 1b: Reading",
+                    "Phase 3a: Internet",
+                    "Phase 3b: Internet",
+                    "Phase 3c: Internet",
+                    "Phase 4a: File Management",
+                    "Phase 4b: File Management",
+                ),
+                print_grid=True,
+            )
             fig.add_trace(
-                    go.Scatter(
-                            x=df_noisy.index,
-                            y=df_noisy["P1_1"],
-                            mode="lines+markers",
-                            name="Turn " "ON/OFF",
-                            legendgroup="Phase 1a",
-                            legendgrouptitle_text="Phase 1a",
-                            hovertemplate="  %{y:.1f} ",
-                            ),
-                    row=1,
-                    col=1,
-                    )
+                go.Scatter(
+                    x=df_noisy.index,
+                    y=df_noisy["P1_1"],
+                    mode="lines+markers",
+                    name="Turn " "ON/OFF",
+                    legendgroup="Phase 1a",
+                    legendgrouptitle_text="Phase 1a",
+                    hovertemplate="  %{y:.1f} ",
+                ),
+                row=1,
+                col=1,
+            )
             fig.add_trace(
-                    go.Scatter(
-                            x=df_noisy.index,
-                            y=df_noisy["P1_2"],
-                            mode="lines+markers",
-                            name="Use " "Modifier Keys",
-                            legendgroup="Phase 1a",
-                            legendgrouptitle_text="Phase 1a",
-                            hovertemplate="  %{y:.1f} ",
-                            ),
-                    row=1,
-                    col=1,
-                    )
+                go.Scatter(
+                    x=df_noisy.index,
+                    y=df_noisy["P1_2"],
+                    mode="lines+markers",
+                    name="Use " "Modifier Keys",
+                    legendgroup="Phase 1a",
+                    legendgrouptitle_text="Phase 1a",
+                    hovertemplate="  %{y:.1f} ",
+                ),
+                row=1,
+                col=1,
+            )
             fig.add_trace(
-                    go.Scatter(
-                            x=df_noisy.index,
-                            y=df_noisy["P1_3"],
-                            mode="lines+markers",
-                            name="Use " "Reading Commands",
-                            legendgroup="Phase 1a",
-                            legendgrouptitle_text="Phase 1a",
-                            hovertemplate="  %{y:.1f} ",
-                            ),
-                    row=1,
-                    col=1,
-                    )
+                go.Scatter(
+                    x=df_noisy.index,
+                    y=df_noisy["P1_3"],
+                    mode="lines+markers",
+                    name="Use " "Reading Commands",
+                    legendgroup="Phase 1a",
+                    legendgrouptitle_text="Phase 1a",
+                    hovertemplate="  %{y:.1f} ",
+                ),
+                row=1,
+                col=1,
+            )
             fig.add_trace(
-                    go.Scatter(
-                            x=df_noisy.index,
-                            y=df_noisy["P1_4"],
-                            mode="lines+markers",
-                            name="ID " "Titles",
-                            legendgroup="Phase 1b",
-                            legendgrouptitle_text=" ",
-                            hovertemplate="  %{y:.1f} ",
-                            ),
-                    row=2,
-                    col=1,
-                    )
+                go.Scatter(
+                    x=df_noisy.index,
+                    y=df_noisy["P1_4"],
+                    mode="lines+markers",
+                    name="ID " "Titles",
+                    legendgroup="Phase 1b",
+                    legendgrouptitle_text=" ",
+                    hovertemplate="  %{y:.1f} ",
+                ),
+                row=2,
+                col=1,
+            )
             fig.add_trace(
-                    go.Scatter(
-                            x=df_noisy.index,
-                            y=df_noisy["P1_5"],
-                            mode="lines+markers",
-                            name="Access Documents",
-                            legendgroup="Phase 1b",
-                            legendgrouptitle_text=" ",
-                            hovertemplate="  %{y:.1f} ",
-                            ),
-                    row=2,
-                    col=1,
-                    )
+                go.Scatter(
+                    x=df_noisy.index,
+                    y=df_noisy["P1_5"],
+                    mode="lines+markers",
+                    name="Access Documents",
+                    legendgroup="Phase 1b",
+                    legendgrouptitle_text=" ",
+                    hovertemplate="  %{y:.1f} ",
+                ),
+                row=2,
+                col=1,
+            )
             fig.add_trace(
-                    go.Scatter(
-                            x=df_noisy.index,
-                            y=df_noisy["P1_6"],
-                            mode="lines+markers",
-                            name="Switch Program Focus",
-                            legendgroup="Phase 1b",
-                            legendgrouptitle_text=" ",
-                            hovertemplate="  %{y:.1f} ",
-                            ),
-                    row=2,
-                    col=1,
-                    )
+                go.Scatter(
+                    x=df_noisy.index,
+                    y=df_noisy["P1_6"],
+                    mode="lines+markers",
+                    name="Switch Program Focus",
+                    legendgroup="Phase 1b",
+                    legendgrouptitle_text=" ",
+                    hovertemplate="  %{y:.1f} ",
+                ),
+                row=2,
+                col=1,
+            )
             fig.add_trace(
-                    go.Scatter(
-                            x=df_noisy.index,
-                            y=df_noisy["P2_1"],
-                            mode="lines+markers",
-                            name="Type " "with" " all " "keys",
-                            legendgroup="Phase 2",
-                            legendgrouptitle_text="Phase 2",
-                            hovertemplate="  %{y:.1f} ",
-                            ),
-                    row=1,
-                    col=2,
-                    )
+                go.Scatter(
+                    x=df_noisy.index,
+                    y=df_noisy["P2_1"],
+                    mode="lines+markers",
+                    name="Type " "with" " all " "keys",
+                    legendgroup="Phase 2",
+                    legendgrouptitle_text="Phase 2",
+                    hovertemplate="  %{y:.1f} ",
+                ),
+                row=1,
+                col=2,
+            )
             fig.add_trace(
-                    go.Scatter(
-                            x=df_noisy.index,
-                            y=df_noisy["P2_2"],
-                            mode="lines+markers",
-                            name="Change Screen Reader Settings",
-                            legendgroup="Phase 2",
-                            legendgrouptitle_text="Phase 2",
-                            hovertemplate="  %{y:.1f} ",
-                            ),
-                    row=1,
-                    col=2,
-                    )
+                go.Scatter(
+                    x=df_noisy.index,
+                    y=df_noisy["P2_2"],
+                    mode="lines+markers",
+                    name="Change Screen Reader Settings",
+                    legendgroup="Phase 2",
+                    legendgrouptitle_text="Phase 2",
+                    hovertemplate="  %{y:.1f} ",
+                ),
+                row=1,
+                col=2,
+            )
             fig.add_trace(
-                    go.Scatter(
-                            x=df_noisy.index,
-                            y=df_noisy["P2_3"],
-                            mode="lines+markers",
-                            name="Write documents",
-                            legendgroup="Phase 2",
-                            legendgrouptitle_text="Phase 2",
-                            hovertemplate="  %{y:.1f} ",
-                            ),
-                    row=1,
-                    col=2,
-                    )
+                go.Scatter(
+                    x=df_noisy.index,
+                    y=df_noisy["P2_3"],
+                    mode="lines+markers",
+                    name="Write documents",
+                    legendgroup="Phase 2",
+                    legendgrouptitle_text="Phase 2",
+                    hovertemplate="  %{y:.1f} ",
+                ),
+                row=1,
+                col=2,
+            )
             fig.add_trace(
-                    go.Scatter(
-                            x=df_noisy.index,
-                            y=df_noisy["P2_4"],
-                            mode="lines+markers",
-                            name="Copy/Paste Text",
-                            legendgroup="Phase 2",
-                            legendgrouptitle_text="Phase 2",
-                            hovertemplate="  %{y:.1f} ",
-                            ),
-                    row=1,
-                    col=2,
-                    )
+                go.Scatter(
+                    x=df_noisy.index,
+                    y=df_noisy["P2_4"],
+                    mode="lines+markers",
+                    name="Copy/Paste Text",
+                    legendgroup="Phase 2",
+                    legendgrouptitle_text="Phase 2",
+                    hovertemplate="  %{y:.1f} ",
+                ),
+                row=1,
+                col=2,
+            )
             fig.add_trace(
-                    go.Scatter(
-                            x=df_noisy.index,
-                            y=df_noisy["P3_4"],
-                            mode="lines+markers",
-                            name="TAB " "Navigation",
-                            legendgroup="Phase 3a",
-                            legendgrouptitle_text="Phase 3a",
-                            hovertemplate="  %{y:.1f} ",
-                            ),
-                    row=3,
-                    col=1,
-                    )
+                go.Scatter(
+                    x=df_noisy.index,
+                    y=df_noisy["P3_4"],
+                    mode="lines+markers",
+                    name="TAB " "Navigation",
+                    legendgroup="Phase 3a",
+                    legendgrouptitle_text="Phase 3a",
+                    hovertemplate="  %{y:.1f} ",
+                ),
+                row=3,
+                col=1,
+            )
             fig.add_trace(
-                    go.Scatter(
-                            x=df_noisy.index,
-                            y=df_noisy["P3_5"],
-                            mode="lines+markers",
-                            name="Quick Key Navigation",
-                            legendgroup="Phase 3a",
-                            legendgrouptitle_text="Phase 3a",
-                            hovertemplate="  %{y:.1f} ",
-                            ),
-                    row=3,
-                    col=1,
-                    )
+                go.Scatter(
+                    x=df_noisy.index,
+                    y=df_noisy["P3_5"],
+                    mode="lines+markers",
+                    name="Quick Key Navigation",
+                    legendgroup="Phase 3a",
+                    legendgrouptitle_text="Phase 3a",
+                    hovertemplate="  %{y:.1f} ",
+                ),
+                row=3,
+                col=1,
+            )
             fig.add_trace(
-                    go.Scatter(
-                            x=df_noisy.index,
-                            y=df_noisy["P3_6"],
-                            mode="lines+markers",
-                            name="Elements List Navigation",
-                            legendgroup="Phase 3a",
-                            legendgrouptitle_text="Phase 3a",
-                            hovertemplate="  %{y:.1f} ",
-                            ),
-                    row=3,
-                    col=1,
-                    )
+                go.Scatter(
+                    x=df_noisy.index,
+                    y=df_noisy["P3_6"],
+                    mode="lines+markers",
+                    name="Elements List Navigation",
+                    legendgroup="Phase 3a",
+                    legendgrouptitle_text="Phase 3a",
+                    hovertemplate="  %{y:.1f} ",
+                ),
+                row=3,
+                col=1,
+            )
             fig.add_trace(
-                    go.Scatter(
-                            x=df_noisy.index,
-                            y=df_noisy["P3_7"],
-                            mode="lines+markers",
-                            name="Justify Navigation Method",
-                            legendgroup="Phase 3a",
-                            legendgrouptitle_text="Phase 3a",
-                            hovertemplate="  %{y:.1f} ",
-                            ),
-                    row=3,
-                    col=1,
-                    )
+                go.Scatter(
+                    x=df_noisy.index,
+                    y=df_noisy["P3_7"],
+                    mode="lines+markers",
+                    name="Justify Navigation Method",
+                    legendgroup="Phase 3a",
+                    legendgrouptitle_text="Phase 3a",
+                    hovertemplate="  %{y:.1f} ",
+                ),
+                row=3,
+                col=1,
+            )
             fig.add_trace(
-                    go.Scatter(
-                            x=df_noisy.index,
-                            y=df_noisy["P3_1"],
-                            mode="lines+markers",
-                            name="Define HTML Elements",
-                            legendgroup="Phase 3b",
-                            legendgrouptitle_text="Phase 3b",
-                            hovertemplate="  %{y:.1f} ",
-                            ),
-                    row=3,
-                    col=2,
-                    )
+                go.Scatter(
+                    x=df_noisy.index,
+                    y=df_noisy["P3_1"],
+                    mode="lines+markers",
+                    name="Define HTML Elements",
+                    legendgroup="Phase 3b",
+                    legendgrouptitle_text="Phase 3b",
+                    hovertemplate="  %{y:.1f} ",
+                ),
+                row=3,
+                col=2,
+            )
             fig.add_trace(
-                    go.Scatter(
-                            x=df_noisy.index,
-                            y=df_noisy["P3_2"],
-                            mode="lines+markers",
-                            name="ID " "HTML" " Elements",
-                            legendgroup="Phase 3b",
-                            legendgrouptitle_text="Phase 3b",
-                            hovertemplate="  %{y:.1f} ",
-                            ),
-                    row=3,
-                    col=2,
-                    )
+                go.Scatter(
+                    x=df_noisy.index,
+                    y=df_noisy["P3_2"],
+                    mode="lines+markers",
+                    name="ID " "HTML" " Elements",
+                    legendgroup="Phase 3b",
+                    legendgrouptitle_text="Phase 3b",
+                    hovertemplate="  %{y:.1f} ",
+                ),
+                row=3,
+                col=2,
+            )
             fig.add_trace(
-                    go.Scatter(
-                            x=df_noisy.index,
-                            y=df_noisy["P3_3"],
-                            mode="lines+markers",
-                            name="Navigate to Address Bar",
-                            legendgroup="Phase 3b",
-                            legendgrouptitle_text="Phase 3b",
-                            hovertemplate="  %{y:.1f} ",
-                            ),
-                    row=3,
-                    col=2,
-                    )
+                go.Scatter(
+                    x=df_noisy.index,
+                    y=df_noisy["P3_3"],
+                    mode="lines+markers",
+                    name="Navigate to Address Bar",
+                    legendgroup="Phase 3b",
+                    legendgrouptitle_text="Phase 3b",
+                    hovertemplate="  %{y:.1f} ",
+                ),
+                row=3,
+                col=2,
+            )
             fig.add_trace(
-                    go.Scatter(
-                            x=df_noisy.index,
-                            y=df_noisy["P3_8"],
-                            mode="lines+markers",
-                            name="ALT-TAB Focus",
-                            legendgroup="Phase " "3b",
-                            legendgrouptitle_text="Phase 3b",
-                            hovertemplate="  %{y:.1f} ",
-                            ),
-                    row=3,
-                    col=2,
-                    )
+                go.Scatter(
+                    x=df_noisy.index,
+                    y=df_noisy["P3_8"],
+                    mode="lines+markers",
+                    name="ALT-TAB Focus",
+                    legendgroup="Phase " "3b",
+                    legendgrouptitle_text="Phase 3b",
+                    hovertemplate="  %{y:.1f} ",
+                ),
+                row=3,
+                col=2,
+            )
             fig.add_trace(
-                    go.Scatter(
-                            x=df_noisy.index,
-                            y=df_noisy["P3_9"],
-                            mode="lines+markers",
-                            name="Toggle Screen Reader Mode",
-                            legendgroup="Phase 3c",
-                            legendgrouptitle_text="Phase 3c",
-                            hovertemplate="  %{y:.1f} ",
-                            ),
-                    row=4,
-                    col=2,
-                    )
+                go.Scatter(
+                    x=df_noisy.index,
+                    y=df_noisy["P3_9"],
+                    mode="lines+markers",
+                    name="Toggle Screen Reader Mode",
+                    legendgroup="Phase 3c",
+                    legendgrouptitle_text="Phase 3c",
+                    hovertemplate="  %{y:.1f} ",
+                ),
+                row=4,
+                col=2,
+            )
             fig.add_trace(
-                    go.Scatter(
-                            x=df_noisy.index,
-                            y=df_noisy["P3_10"],
-                            mode="lines+markers",
-                            name="Navigate a Table",
-                            legendgroup="Phase 3c",
-                            legendgrouptitle_text="Phase 3c",
-                            hovertemplate="  %{y:.1f} ",
-                            ),
-                    row=4,
-                    col=2,
-                    )
+                go.Scatter(
+                    x=df_noisy.index,
+                    y=df_noisy["P3_10"],
+                    mode="lines+markers",
+                    name="Navigate a Table",
+                    legendgroup="Phase 3c",
+                    legendgrouptitle_text="Phase 3c",
+                    hovertemplate="  %{y:.1f} ",
+                ),
+                row=4,
+                col=2,
+            )
             fig.add_trace(
-                    go.Scatter(
-                            x=df_noisy.index,
-                            y=df_noisy["P3_11"],
-                            mode="lines+markers",
-                            name="Navigation Sequence",
-                            legendgroup="Phase 3c",
-                            legendgrouptitle_text="Phase 3c",
-                            hovertemplate="  %{y:.1f} ",
-                            ),
-                    row=4,
-                    col=2,
-                    )
+                go.Scatter(
+                    x=df_noisy.index,
+                    y=df_noisy["P3_11"],
+                    mode="lines+markers",
+                    name="Navigation Sequence",
+                    legendgroup="Phase 3c",
+                    legendgrouptitle_text="Phase 3c",
+                    hovertemplate="  %{y:.1f} ",
+                ),
+                row=4,
+                col=2,
+            )
             fig.add_trace(
-                    go.Scatter(
-                            x=df_noisy.index,
-                            y=df_noisy["P4_1"],
-                            mode="lines+markers",
-                            name="Save " "and " "Open " "Files",
-                            legendgroup="Phase 4a",
-                            legendgrouptitle_text="Phase 4a",
-                            hovertemplate="  %{y:.1f} ",
-                            ),
-                    row=5,
-                    col=1,
-                    )
+                go.Scatter(
+                    x=df_noisy.index,
+                    y=df_noisy["P4_1"],
+                    mode="lines+markers",
+                    name="Save " "and " "Open " "Files",
+                    legendgroup="Phase 4a",
+                    legendgrouptitle_text="Phase 4a",
+                    hovertemplate="  %{y:.1f} ",
+                ),
+                row=5,
+                col=1,
+            )
             fig.add_trace(
-                    go.Scatter(
-                            x=df_noisy.index,
-                            y=df_noisy["P4_2"],
-                            mode="lines+markers",
-                            name="Create Folders",
-                            legendgroup="Phase " "4a",
-                            legendgrouptitle_text="Phase 4a",
-                            hovertemplate="  %{y:.1f} ",
-                            ),
-                    row=5,
-                    col=1,
-                    )
+                go.Scatter(
+                    x=df_noisy.index,
+                    y=df_noisy["P4_2"],
+                    mode="lines+markers",
+                    name="Create Folders",
+                    legendgroup="Phase " "4a",
+                    legendgrouptitle_text="Phase 4a",
+                    hovertemplate="  %{y:.1f} ",
+                ),
+                row=5,
+                col=1,
+            )
             fig.add_trace(
-                    go.Scatter(
-                            x=df_noisy.index,
-                            y=df_noisy["P4_3"],
-                            mode="lines+markers",
-                            name="Navigate Cloud Storage",
-                            legendgroup="Phase 4a",
-                            legendgrouptitle_text="Phase 4a",
-                            hovertemplate="  %{y:.1f} ",
-                            ),
-                    row=5,
-                    col=1,
-                    )
+                go.Scatter(
+                    x=df_noisy.index,
+                    y=df_noisy["P4_3"],
+                    mode="lines+markers",
+                    name="Navigate Cloud Storage",
+                    legendgroup="Phase 4a",
+                    legendgrouptitle_text="Phase 4a",
+                    hovertemplate="  %{y:.1f} ",
+                ),
+                row=5,
+                col=1,
+            )
             fig.add_trace(
-                    go.Scatter(
-                            x=df_noisy.index,
-                            y=df_noisy["P4_4"],
-                            mode="lines+markers",
-                            name="Download from Internet",
-                            legendgroup="Phase 4a",
-                            legendgrouptitle_text="Phase 4a",
-                            hovertemplate="  %{y:.1f} ",
-                            ),
-                    row=5,
-                    col=1,
-                    )
+                go.Scatter(
+                    x=df_noisy.index,
+                    y=df_noisy["P4_4"],
+                    mode="lines+markers",
+                    name="Download from Internet",
+                    legendgroup="Phase 4a",
+                    legendgrouptitle_text="Phase 4a",
+                    hovertemplate="  %{y:.1f} ",
+                ),
+                row=5,
+                col=1,
+            )
             fig.add_trace(
-                    go.Scatter(
-                            x=df_noisy.index,
-                            y=df_noisy["P4_5"],
-                            mode="lines+markers",
-                            name="UNZIP Folders",
-                            legendgroup="Phase " "4b",
-                            legendgrouptitle_text="Phase 4b",
-                            hovertemplate="  %{y:.1f} ",
-                            ),
-                    row=5,
-                    col=2,
-                    )
+                go.Scatter(
+                    x=df_noisy.index,
+                    y=df_noisy["P4_5"],
+                    mode="lines+markers",
+                    name="UNZIP Folders",
+                    legendgroup="Phase " "4b",
+                    legendgrouptitle_text="Phase 4b",
+                    hovertemplate="  %{y:.1f} ",
+                ),
+                row=5,
+                col=2,
+            )
             fig.add_trace(
-                    go.Scatter(
-                            x=df_noisy.index,
-                            y=df_noisy["P4_6"],
-                            mode="lines+markers",
-                            name="Use " "Virtual Cursor",
-                            legendgroup="Phase 4b",
-                            legendgrouptitle_text="Phase 4b",
-                            hovertemplate="  %{y:.1f} ",
-                            ),
-                    row=5,
-                    col=2,
-                    )
+                go.Scatter(
+                    x=df_noisy.index,
+                    y=df_noisy["P4_6"],
+                    mode="lines+markers",
+                    name="Use " "Virtual Cursor",
+                    legendgroup="Phase 4b",
+                    legendgrouptitle_text="Phase 4b",
+                    hovertemplate="  %{y:.1f} ",
+                ),
+                row=5,
+                col=2,
+            )
             fig.add_trace(
-                    go.Scatter(
-                            x=df_noisy.index,
-                            y=df_noisy["P4_7"],
-                            mode="lines+markers",
-                            name="Use " "Built-In OCR",
-                            legendgroup="Phase 4b",
-                            legendgrouptitle_text="Phase 4b",
-                            hovertemplate="  %{y:.1f} ",
-                            ),
-                    row=5,
-                    col=2,
-                    )
+                go.Scatter(
+                    x=df_noisy.index,
+                    y=df_noisy["P4_7"],
+                    mode="lines+markers",
+                    name="Use " "Built-In OCR",
+                    legendgroup="Phase 4b",
+                    legendgrouptitle_text="Phase 4b",
+                    hovertemplate="  %{y:.1f} ",
+                ),
+                row=5,
+                col=2,
+            )
             fig.add_hrect(
-                    y0=-0.5,
-                    y1=0.5,
-                    line_width=0,
-                    fillcolor="#b3c7f7",
-                    opacity=0.2,
-                    row=1,
-                    col=1,
-                    )
+                y0=-0.5,
+                y1=0.5,
+                line_width=0,
+                fillcolor="#b3c7f7",
+                opacity=0.2,
+                row=1,
+                col=1,
+            )
             fig.add_hrect(
-                    y0=0.5,
-                    y1=1.5,
-                    line_width=0,
-                    fillcolor="orange",
-                    opacity=0.2,
-                    row=1,
-                    col=1,
-                    )
+                y0=0.5,
+                y1=1.5,
+                line_width=0,
+                fillcolor="orange",
+                opacity=0.2,
+                row=1,
+                col=1,
+            )
             fig.add_hrect(
-                    y0=1.5,
-                    y1=2.5,
-                    line_width=0,
-                    fillcolor="yellow",
-                    opacity=0.2,
-                    row=1,
-                    col=1,
-                    )
+                y0=1.5,
+                y1=2.5,
+                line_width=0,
+                fillcolor="yellow",
+                opacity=0.2,
+                row=1,
+                col=1,
+            )
             fig.add_hrect(
-                    y0=2.5,
-                    y1=3.5,
-                    line_width=0,
-                    fillcolor="green",
-                    opacity=0.2,
-                    row=1,
-                    col=1,
-                    )
+                y0=2.5,
+                y1=3.5,
+                line_width=0,
+                fillcolor="green",
+                opacity=0.2,
+                row=1,
+                col=1,
+            )
             fig.add_hrect(
-                    y0=-0.5,
-                    y1=0.5,
-                    line_width=0,
-                    fillcolor="#b3c7f7",
-                    opacity=0.2,
-                    row=2,
-                    col=1,
-                    )
+                y0=-0.5,
+                y1=0.5,
+                line_width=0,
+                fillcolor="#b3c7f7",
+                opacity=0.2,
+                row=2,
+                col=1,
+            )
             fig.add_hrect(
-                    y0=0.5,
-                    y1=1.5,
-                    line_width=0,
-                    fillcolor="orange",
-                    opacity=0.2,
-                    row=2,
-                    col=1,
-                    )
+                y0=0.5,
+                y1=1.5,
+                line_width=0,
+                fillcolor="orange",
+                opacity=0.2,
+                row=2,
+                col=1,
+            )
             fig.add_hrect(
-                    y0=1.5,
-                    y1=2.5,
-                    line_width=0,
-                    fillcolor="yellow",
-                    opacity=0.2,
-                    row=2,
-                    col=1,
-                    )
+                y0=1.5,
+                y1=2.5,
+                line_width=0,
+                fillcolor="yellow",
+                opacity=0.2,
+                row=2,
+                col=1,
+            )
             fig.add_hrect(
-                    y0=2.5,
-                    y1=3.5,
-                    line_width=0,
-                    fillcolor="green",
-                    opacity=0.2,
-                    row=2,
-                    col=1,
-                    )
+                y0=2.5,
+                y1=3.5,
+                line_width=0,
+                fillcolor="green",
+                opacity=0.2,
+                row=2,
+                col=1,
+            )
             fig.add_hrect(
-                    y0=-0.5,
-                    y1=0.5,
-                    line_width=0,
-                    fillcolor="#b3c7f7",
-                    opacity=0.2,
-                    row=1,
-                    col=2,
-                    )
+                y0=-0.5,
+                y1=0.5,
+                line_width=0,
+                fillcolor="#b3c7f7",
+                opacity=0.2,
+                row=1,
+                col=2,
+            )
             fig.add_hrect(
-                    y0=0.5,
-                    y1=1.5,
-                    line_width=0,
-                    fillcolor="orange",
-                    opacity=0.2,
-                    row=1,
-                    col=2,
-                    )
+                y0=0.5,
+                y1=1.5,
+                line_width=0,
+                fillcolor="orange",
+                opacity=0.2,
+                row=1,
+                col=2,
+            )
             fig.add_hrect(
-                    y0=1.5,
-                    y1=2.5,
-                    line_width=0,
-                    fillcolor="yellow",
-                    opacity=0.2,
-                    row=1,
-                    col=2,
-                    )
+                y0=1.5,
+                y1=2.5,
+                line_width=0,
+                fillcolor="yellow",
+                opacity=0.2,
+                row=1,
+                col=2,
+            )
             fig.add_hrect(
-                    y0=2.5,
-                    y1=3.5,
-                    line_width=0,
-                    fillcolor="green",
-                    opacity=0.2,
-                    row=1,
-                    col=2,
-                    )
+                y0=2.5,
+                y1=3.5,
+                line_width=0,
+                fillcolor="green",
+                opacity=0.2,
+                row=1,
+                col=2,
+            )
             fig.add_hrect(
-                    y0=-0.5,
-                    y1=0.5,
-                    line_width=0,
-                    fillcolor="#b3c7f7",
-                    opacity=0.2,
-                    row=3,
-                    col=1,
-                    )
+                y0=-0.5,
+                y1=0.5,
+                line_width=0,
+                fillcolor="#b3c7f7",
+                opacity=0.2,
+                row=3,
+                col=1,
+            )
             fig.add_hrect(
-                    y0=0.5,
-                    y1=1.5,
-                    line_width=0,
-                    fillcolor="orange",
-                    opacity=0.2,
-                    row=3,
-                    col=1,
-                    )
+                y0=0.5,
+                y1=1.5,
+                line_width=0,
+                fillcolor="orange",
+                opacity=0.2,
+                row=3,
+                col=1,
+            )
             fig.add_hrect(
-                    y0=1.5,
-                    y1=2.5,
-                    line_width=0,
-                    fillcolor="yellow",
-                    opacity=0.2,
-                    row=3,
-                    col=1,
-                    )
+                y0=1.5,
+                y1=2.5,
+                line_width=0,
+                fillcolor="yellow",
+                opacity=0.2,
+                row=3,
+                col=1,
+            )
             fig.add_hrect(
-                    y0=2.5,
-                    y1=3.5,
-                    line_width=0,
-                    fillcolor="green",
-                    opacity=0.2,
-                    row=3,
-                    col=1,
-                    )
+                y0=2.5,
+                y1=3.5,
+                line_width=0,
+                fillcolor="green",
+                opacity=0.2,
+                row=3,
+                col=1,
+            )
             fig.add_hrect(
-                    y0=-0.5,
-                    y1=0.5,
-                    line_width=0,
-                    fillcolor="#b3c7f7",
-                    opacity=0.2,
-                    row=3,
-                    col=2,
-                    )
+                y0=-0.5,
+                y1=0.5,
+                line_width=0,
+                fillcolor="#b3c7f7",
+                opacity=0.2,
+                row=3,
+                col=2,
+            )
             fig.add_hrect(
-                    y0=0.5,
-                    y1=1.5,
-                    line_width=0,
-                    fillcolor="orange",
-                    opacity=0.2,
-                    row=3,
-                    col=2,
-                    )
+                y0=0.5,
+                y1=1.5,
+                line_width=0,
+                fillcolor="orange",
+                opacity=0.2,
+                row=3,
+                col=2,
+            )
             fig.add_hrect(
-                    y0=1.5,
-                    y1=2.5,
-                    line_width=0,
-                    fillcolor="yellow",
-                    opacity=0.2,
-                    row=3,
-                    col=2,
-                    )
+                y0=1.5,
+                y1=2.5,
+                line_width=0,
+                fillcolor="yellow",
+                opacity=0.2,
+                row=3,
+                col=2,
+            )
             fig.add_hrect(
-                    y0=2.5,
-                    y1=3.5,
-                    line_width=0,
-                    fillcolor="green",
-                    opacity=0.2,
-                    row=3,
-                    col=2,
-                    )
+                y0=2.5,
+                y1=3.5,
+                line_width=0,
+                fillcolor="green",
+                opacity=0.2,
+                row=3,
+                col=2,
+            )
             fig.add_hrect(
-                    y0=-0.5,
-                    y1=0.5,
-                    line_width=0,
-                    fillcolor="#b3c7f7",
-                    opacity=0.2,
-                    row=4,
-                    col=2,
-                    )
+                y0=-0.5,
+                y1=0.5,
+                line_width=0,
+                fillcolor="#b3c7f7",
+                opacity=0.2,
+                row=4,
+                col=2,
+            )
             fig.add_hrect(
-                    y0=0.5,
-                    y1=1.5,
-                    line_width=0,
-                    fillcolor="orange",
-                    opacity=0.2,
-                    row=4,
-                    col=2,
-                    )
+                y0=0.5,
+                y1=1.5,
+                line_width=0,
+                fillcolor="orange",
+                opacity=0.2,
+                row=4,
+                col=2,
+            )
             fig.add_hrect(
-                    y0=1.5,
-                    y1=2.5,
-                    line_width=0,
-                    fillcolor="yellow",
-                    opacity=0.2,
-                    row=4,
-                    col=2,
-                    )
+                y0=1.5,
+                y1=2.5,
+                line_width=0,
+                fillcolor="yellow",
+                opacity=0.2,
+                row=4,
+                col=2,
+            )
             fig.add_hrect(
-                    y0=2.5,
-                    y1=3.5,
-                    line_width=0,
-                    fillcolor="green",
-                    opacity=0.2,
-                    row=4,
-                    col=2,
-                    )
+                y0=2.5,
+                y1=3.5,
+                line_width=0,
+                fillcolor="green",
+                opacity=0.2,
+                row=4,
+                col=2,
+            )
             fig.add_hrect(
-                    y0=-0.5,
-                    y1=0.5,
-                    line_width=0,
-                    fillcolor="#b3c7f7",
-                    opacity=0.2,
-                    row=5,
-                    col=1,
-                    )
+                y0=-0.5,
+                y1=0.5,
+                line_width=0,
+                fillcolor="#b3c7f7",
+                opacity=0.2,
+                row=5,
+                col=1,
+            )
             fig.add_hrect(
-                    y0=0.5,
-                    y1=1.5,
-                    line_width=0,
-                    fillcolor="orange",
-                    opacity=0.2,
-                    row=5,
-                    col=1,
-                    )
+                y0=0.5,
+                y1=1.5,
+                line_width=0,
+                fillcolor="orange",
+                opacity=0.2,
+                row=5,
+                col=1,
+            )
             fig.add_hrect(
-                    y0=1.5,
-                    y1=2.5,
-                    line_width=0,
-                    fillcolor="yellow",
-                    opacity=0.2,
-                    row=5,
-                    col=1,
-                    )
+                y0=1.5,
+                y1=2.5,
+                line_width=0,
+                fillcolor="yellow",
+                opacity=0.2,
+                row=5,
+                col=1,
+            )
             fig.add_hrect(
-                    y0=2.5,
-                    y1=3.5,
-                    line_width=0,
-                    fillcolor="green",
-                    opacity=0.2,
-                    row=5,
-                    col=1,
-                    )
+                y0=2.5,
+                y1=3.5,
+                line_width=0,
+                fillcolor="green",
+                opacity=0.2,
+                row=5,
+                col=1,
+            )
             fig.add_hrect(
-                    y0=-0.5,
-                    y1=0.5,
-                    line_width=0,
-                    fillcolor="#b3c7f7",
-                    opacity=0.2,
-                    row=5,
-                    col=2,
-                    )
+                y0=-0.5,
+                y1=0.5,
+                line_width=0,
+                fillcolor="#b3c7f7",
+                opacity=0.2,
+                row=5,
+                col=2,
+            )
             fig.add_hrect(
-                    y0=0.5,
-                    y1=1.5,
-                    line_width=0,
-                    fillcolor="orange",
-                    opacity=0.2,
-                    row=5,
-                    col=2,
-                    )
+                y0=0.5,
+                y1=1.5,
+                line_width=0,
+                fillcolor="orange",
+                opacity=0.2,
+                row=5,
+                col=2,
+            )
             fig.add_hrect(
-                    y0=1.5,
-                    y1=2.5,
-                    line_width=0,
-                    fillcolor="yellow",
-                    opacity=0.2,
-                    row=5,
-                    col=2,
-                    )
+                y0=1.5,
+                y1=2.5,
+                line_width=0,
+                fillcolor="yellow",
+                opacity=0.2,
+                row=5,
+                col=2,
+            )
             fig.add_hrect(
-                    y0=2.5,
-                    y1=3.5,
-                    line_width=0,
-                    fillcolor="green",
-                    opacity=0.2,
-                    row=5,
-                    col=2,
-                    )
+                y0=2.5,
+                y1=3.5,
+                line_width=0,
+                fillcolor="green",
+                opacity=0.2,
+                row=5,
+                col=2,
+            )
             fig.update_yaxes(
-                    range=[-0.5, 3.5],
-                    fixedrange=True,
-                    ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
-                    tickvals=[0.1, 1, 2, 3],
-                    row=1,
-                    col=1,
-                    )
+                range=[-0.5, 3.5],
+                fixedrange=True,
+                ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
+                tickvals=[0.1, 1, 2, 3],
+                row=1,
+                col=1,
+            )
             fig.update_yaxes(
-                    range=[-0.5, 3.5],
-                    fixedrange=True,
-                    ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
-                    tickvals=[0.1, 1, 2, 3],
-                    row=2,
-                    col=1,
-                    )
+                range=[-0.5, 3.5],
+                fixedrange=True,
+                ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
+                tickvals=[0.1, 1, 2, 3],
+                row=2,
+                col=1,
+            )
             fig.update_yaxes(
-                    range=[-0.5, 3.5],
-                    fixedrange=True,
-                    ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
-                    tickvals=[0.1, 1, 2, 3],
-                    row=1,
-                    col=2,
-                    )
+                range=[-0.5, 3.5],
+                fixedrange=True,
+                ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
+                tickvals=[0.1, 1, 2, 3],
+                row=1,
+                col=2,
+            )
             fig.update_yaxes(
-                    range=[-0.5, 3.5],
-                    fixedrange=True,
-                    ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
-                    tickvals=[0.1, 1, 2, 3],
-                    row=3,
-                    col=1,
-                    )
+                range=[-0.5, 3.5],
+                fixedrange=True,
+                ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
+                tickvals=[0.1, 1, 2, 3],
+                row=3,
+                col=1,
+            )
             fig.update_yaxes(
-                    range=[-0.5, 3.5],
-                    fixedrange=True,
-                    ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
-                    tickvals=[0.1, 1, 2, 3],
-                    row=3,
-                    col=2,
-                    )
+                range=[-0.5, 3.5],
+                fixedrange=True,
+                ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
+                tickvals=[0.1, 1, 2, 3],
+                row=3,
+                col=2,
+            )
             fig.update_yaxes(
-                    range=[-0.5, 3.5],
-                    fixedrange=True,
-                    ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
-                    tickvals=[0.1, 1, 2, 3],
-                    row=4,
-                    col=2,
-                    )
+                range=[-0.5, 3.5],
+                fixedrange=True,
+                ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
+                tickvals=[0.1, 1, 2, 3],
+                row=4,
+                col=2,
+            )
             fig.update_yaxes(
-                    range=[-0.5, 3.5],
-                    fixedrange=True,
-                    ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
-                    tickvals=[0.1, 1, 2, 3],
-                    row=5,
-                    col=1,
-                    )
+                range=[-0.5, 3.5],
+                fixedrange=True,
+                ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
+                tickvals=[0.1, 1, 2, 3],
+                row=5,
+                col=1,
+            )
             fig.update_yaxes(
-                    range=[-0.5, 3.5],
-                    fixedrange=True,
-                    ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
-                    tickvals=[0.1, 1, 2, 3],
-                    row=5,
-                    col=2,
-                    )
+                range=[-0.5, 3.5],
+                fixedrange=True,
+                ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
+                tickvals=[0.1, 1, 2, 3],
+                row=5,
+                col=2,
+            )
             fig.update_layout(
-                    template="simple_white",
-                    title_text=f"{studentname}: Screen Reader Skills Progression",
-                    hovermode="x unified",
-                    hoverlabel=dict(namelength=-1),
-                    )
+                template="simple_white",
+                title_text=f"{studentname}: Screen Reader Skills Progression",
+                hovermode="x unified",
+                hoverlabel=dict(namelength=-1),
+            )
             tmppath = Path(USER_DIR).joinpath(
-                    "StudentDatabase",
-                    "StudentDataFiles",
-                    studentname,
-                    "ScreenReaderSkillsProgression.html",
-                    )
+                "StudentDatabase",
+                "StudentDataFiles",
+                studentname,
+                "ScreenReaderSkillsProgression.html",
+            )
             fig.write_html(tmppath, auto_open=True)
             # fig.show()
             ui.notify(
-                    "Graph Successful. The Graphs will open in a Browser Window",
-                    position="center",
-                    type="positive",
-                    close_button="OK",
-                    )
+                "Graph Successful. The Graphs will open in a Browser Window",
+                position="center",
+                type="positive",
+                close_button="OK",
+            )
 
         # GUI Input
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.button("GRAPH", color="#172554", on_click=graph).classes("text-white")
         with ui.row().classes("w-screen no-wrap"):
             ui.select(
-                    options=students,
-                    with_input=True,
-                    on_change=lambda e: ui.notify(e.value),
-                    ).bind_value(u_studentname, "value").classes("w-[300px]").props(
-                    'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
-                    ).tooltip("Type Student Name, it will autocomplete AS you type")
-            ui.date(value = 'f{datenow}', on_change = lambda e: u_today_date.set_value(e.value)).classes('w-1/2')
+                options=students,
+                with_input=True,
+                on_change=lambda e: ui.notify(e.value),
+            ).bind_value(u_studentname, "value").classes("w-[300px]").props(
+                'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
+            ).tooltip("Type Student Name, it will autocomplete AS you type")
+            ui.date(
+                value="f{datenow}", on_change=lambda e: u_today_date.set_value(e.value)
+            ).classes("w-1/2")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.label(
-                    "RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent"
-                    ).props(
-                    'aria-label="RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent" content-center'
-                    )
+                "RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent"
+            ).props(
+                'aria-label="RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent" content-center'
+            )
             ui.input().props(
-                    'aria-label="RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent" content-center'
-                    ).classes("sr-only")
+                'aria-label="RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent" content-center'
+            ).classes("sr-only")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.label("PHASE 1: READING").classes("justify-center items-center")
             ui.input().props('aria-label="PHASE 1: READING"').classes("sr-only")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
-                    label="1.1 Turn on and off the screen reader",
-                    min=0,
-                    max=3,
-                    format="%.0f",
-                    on_change=lambda e: u_screenreader_trial11.set_value(e.value),
-                    ).classes("w-[600px]").props(
-                    'aria-label="1.1 Turn on and off the screen reader"'
-                    )
-        ui.number(
-                label="1.2 Utilize modifier keys such as ctrl alt and shift",
+                label="1.1 Turn on and off the screen reader",
                 min=0,
                 max=3,
                 format="%.0f",
-                on_change=lambda e: u_screenreader_trial12.set_value(e.value),
-                ).classes("w-[600px]").props(
-                'aria-label="1.2 Utilize modifier keys such as ctrl alt and shift"'
-                )
+                on_change=lambda e: u_screenreader_trial11.set_value(e.value),
+            ).classes("w-[600px]").props(
+                'aria-label="1.1 Turn on and off the screen reader"'
+            )
         ui.number(
-                label="1.3 Read text using a variety of reading commands",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_screenreader_trial13.set_value(e.value),
-                ).classes("w-[600px]").props(
-                'aria-label="1.3 Read text using a variety of reading commands"'
-                )
+            label="1.2 Utilize modifier keys such as ctrl alt and shift",
+            min=0,
+            max=3,
+            format="%.0f",
+            on_change=lambda e: u_screenreader_trial12.set_value(e.value),
+        ).classes("w-[600px]").props(
+            'aria-label="1.2 Utilize modifier keys such as ctrl alt and shift"'
+        )
         ui.number(
-                label="1.4 Identify the titles and section titles of documents with Headings",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_screenreader_trial14.set_value(e.value),
-                ).classes("w-[600px]").props(
-                'aria-label="1.4 Identify the titles and section titles of documents with Headings"'
-                )
+            label="1.3 Read text using a variety of reading commands",
+            min=0,
+            max=3,
+            format="%.0f",
+            on_change=lambda e: u_screenreader_trial13.set_value(e.value),
+        ).classes("w-[600px]").props(
+            'aria-label="1.3 Read text using a variety of reading commands"'
+        )
         ui.number(
-                label="1.5 Access documents open and close programs navigate to the  desktop",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_screenreader_trial15.set_value(e.value),
-                ).classes("w-[600px]").props(
-                'aria-label="1.5 Access documents open and close programs  navigate to the  desktop"'
-                )
+            label="1.4 Identify the titles and section titles of documents with Headings",
+            min=0,
+            max=3,
+            format="%.0f",
+            on_change=lambda e: u_screenreader_trial14.set_value(e.value),
+        ).classes("w-[600px]").props(
+            'aria-label="1.4 Identify the titles and section titles of documents with Headings"'
+        )
         ui.number(
-                label="1.6 Switch Program Focus",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_screenreader_trial16.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="1.6 Switch Program Focus"')
+            label="1.5 Access documents open and close programs navigate to the  desktop",
+            min=0,
+            max=3,
+            format="%.0f",
+            on_change=lambda e: u_screenreader_trial15.set_value(e.value),
+        ).classes("w-[600px]").props(
+            'aria-label="1.5 Access documents open and close programs  navigate to the  desktop"'
+        )
+        ui.number(
+            label="1.6 Switch Program Focus",
+            min=0,
+            max=3,
+            format="%.0f",
+            on_change=lambda e: u_screenreader_trial16.set_value(e.value),
+        ).classes("w-[600px]").props('aria-label="1.6 Switch Program Focus"')
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.label("PHASE 2: WRITING").classes("justify-center items-center")
             ui.input().props('aria-label="PHASE 2: WRITING"').classes("sr-only")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
-                    label="2.1 Type with all alphanumeric keys on the keyboard",
-                    min=0,
-                    max=3,
-                    format="%.0f",
-                    on_change=lambda e: u_screenreader_trial21.set_value(e.value),
-                    ).classes("w-[600px]").props(
-                    'aria-label="2.1 Type with all alphanumeric keys on the keyboard."'
-                    )
-        ui.number(
-                label="2.2 Navigate to and change screen reader settings",
+                label="2.1 Type with all alphanumeric keys on the keyboard",
                 min=0,
                 max=3,
                 format="%.0f",
-                on_change=lambda e: u_screenreader_trial22.set_value(e.value),
-                ).classes("w-[600px]").props(
-                'aria-label="2.2 Navigate to and change screen reader settings"'
-                )
+                on_change=lambda e: u_screenreader_trial21.set_value(e.value),
+            ).classes("w-[600px]").props(
+                'aria-label="2.1 Type with all alphanumeric keys on the keyboard."'
+            )
         ui.number(
-                label="2.3 Write and edit documents using a basic understanding of cursor placement",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_screenreader_trial23.set_value(e.value),
-                ).classes("w-[600px]").props(
-                'aria-label="2.3 Write and edit documents using a basic understanding of cursor placement"'
-                )
+            label="2.2 Navigate to and change screen reader settings",
+            min=0,
+            max=3,
+            format="%.0f",
+            on_change=lambda e: u_screenreader_trial22.set_value(e.value),
+        ).classes("w-[600px]").props(
+            'aria-label="2.2 Navigate to and change screen reader settings"'
+        )
         ui.number(
-                label="2.4. Select copy and paste text",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_screenreader_trial24.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="2.4. Select copy and paste text"')
+            label="2.3 Write and edit documents using a basic understanding of cursor placement",
+            min=0,
+            max=3,
+            format="%.0f",
+            on_change=lambda e: u_screenreader_trial23.set_value(e.value),
+        ).classes("w-[600px]").props(
+            'aria-label="2.3 Write and edit documents using a basic understanding of cursor placement"'
+        )
+        ui.number(
+            label="2.4. Select copy and paste text",
+            min=0,
+            max=3,
+            format="%.0f",
+            on_change=lambda e: u_screenreader_trial24.set_value(e.value),
+        ).classes("w-[600px]").props('aria-label="2.4. Select copy and paste text"')
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.label("PHASE 3: USING THE INTERNET").classes(
-                    "justify-center items-center"
-                    )
+                "justify-center items-center"
+            )
         ui.input().props('aria-label="PHASE 3: USING THE INTERNET"').classes("sr-only")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
-                    label="3.1 Define common element types on the internet such as Headings or Buttons",
-                    min=0,
-                    max=3,
-                    format="%.0f",
-                    on_change=lambda e: u_screenreader_trial31.set_value(e.value),
-                    ).classes("w-[600px]").props(
-                    'aria-label="3.1 Define common element types on the internet such as Headings or Buttons"'
-                    )
-        ui.number(
-                label="3.2 identify each element by type",
+                label="3.1 Define common element types on the internet such as Headings or Buttons",
                 min=0,
                 max=3,
                 format="%.0f",
-                on_change=lambda e: u_screenreader_trial32.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="3.2 identify each element by type."')
+                on_change=lambda e: u_screenreader_trial31.set_value(e.value),
+            ).classes("w-[600px]").props(
+                'aria-label="3.1 Define common element types on the internet such as Headings or Buttons"'
+            )
         ui.number(
-                label="3.3 navigate to the address bar",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_screenreader_trial33.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="3.3 navigate to the address bar"')
+            label="3.2 identify each element by type",
+            min=0,
+            max=3,
+            format="%.0f",
+            on_change=lambda e: u_screenreader_trial32.set_value(e.value),
+        ).classes("w-[600px]").props('aria-label="3.2 identify each element by type."')
         ui.number(
-                label="3.4 Use the “Tab” key to navigate to the next clickable object",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_screenreader_trial34.set_value(e.value),
-                ).classes("w-[600px]").props(
-                'aria-label="3.4 Use the “Tab” key to navigate to the next clickable object"'
-                )
+            label="3.3 navigate to the address bar",
+            min=0,
+            max=3,
+            format="%.0f",
+            on_change=lambda e: u_screenreader_trial33.set_value(e.value),
+        ).classes("w-[600px]").props('aria-label="3.3 navigate to the address bar"')
         ui.number(
-                label="3.5 Navigate by “Quick Keys” (h for heading b for button and u for link)",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_screenreader_trial35.set_value(e.value),
-                ).classes("w-[600px]").props(
-                'aira-label="3.5 Navigate by “Quick Keys” (h for heading b for button and u for link)"'
-                )
+            label="3.4 Use the “Tab” key to navigate to the next clickable object",
+            min=0,
+            max=3,
+            format="%.0f",
+            on_change=lambda e: u_screenreader_trial34.set_value(e.value),
+        ).classes("w-[600px]").props(
+            'aria-label="3.4 Use the “Tab” key to navigate to the next clickable object"'
+        )
         ui.number(
-                label="3.6 Use Elements Lists on a website to navigate by element type",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_screenreader_trial36.set_value(e.value),
-                ).classes("w-[600px]").props(
-                'aria-label="3.6 Use Elements Lists on a website to navigate by element type"'
-                )
+            label="3.5 Navigate by “Quick Keys” (h for heading b for button and u for link)",
+            min=0,
+            max=3,
+            format="%.0f",
+            on_change=lambda e: u_screenreader_trial35.set_value(e.value),
+        ).classes("w-[600px]").props(
+            'aira-label="3.5 Navigate by “Quick Keys” (h for heading b for button and u for link)"'
+        )
         ui.number(
-                label="3.7 Justify why he/she/they selected a particular method xfor the situation",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_screenreader_trial37.set_value(e.value),
-                ).classes("w-[600px]").props(
-                'aria-label="3.7 Justify why he/she/they selected a particular method for the situation"'
-                )
+            label="3.6 Use Elements Lists on a website to navigate by element type",
+            min=0,
+            max=3,
+            format="%.0f",
+            on_change=lambda e: u_screenreader_trial36.set_value(e.value),
+        ).classes("w-[600px]").props(
+            'aria-label="3.6 Use Elements Lists on a website to navigate by element type"'
+        )
+        ui.number(
+            label="3.7 Justify why he/she/they selected a particular method xfor the situation",
+            min=0,
+            max=3,
+            format="%.0f",
+            on_change=lambda e: u_screenreader_trial37.set_value(e.value),
+        ).classes("w-[600px]").props(
+            'aria-label="3.7 Justify why he/she/they selected a particular method for the situation"'
+        )
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
-                    label="3.8 Switch tab focus",
-                    min=0,
-                    max=3,
-                    format="%.0f",
-                    on_change=lambda e: u_screenreader_trial38.set_value(e.value),
-                    ).classes("w-[600px]").props('aria-label="3.8 Switch tab focus"')
-        ui.number(
-                label="3.9 Switch between screen reader modes",
+                label="3.8 Switch tab focus",
                 min=0,
                 max=3,
                 format="%.0f",
-                on_change=lambda e: u_screenreader_trial39.set_value(e.value),
-                ).classes("w-[600px]").props(
-                'aria-label="3.9 Switch between screen reader modes"'
-                )
+                on_change=lambda e: u_screenreader_trial38.set_value(e.value),
+            ).classes("w-[600px]").props('aria-label="3.8 Switch tab focus"')
         ui.number(
-                label="3.10 Navigate a table",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_screenreader_trial310.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="3.10 Navigate a table"')
+            label="3.9 Switch between screen reader modes",
+            min=0,
+            max=3,
+            format="%.0f",
+            on_change=lambda e: u_screenreader_trial39.set_value(e.value),
+        ).classes("w-[600px]").props(
+            'aria-label="3.9 Switch between screen reader modes"'
+        )
         ui.number(
-                label="3.11 Develop a navigation sequence to access an unfamiliar website",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_screenreader_trial311.set_value(e.value),
-                ).classes("w-[600px]").props(
-                'aria-label="3.11 Develop a navigation sequence to access an unfamiliar website"'
-                )
+            label="3.10 Navigate a table",
+            min=0,
+            max=3,
+            format="%.0f",
+            on_change=lambda e: u_screenreader_trial310.set_value(e.value),
+        ).classes("w-[600px]").props('aria-label="3.10 Navigate a table"')
+        ui.number(
+            label="3.11 Develop a navigation sequence to access an unfamiliar website",
+            min=0,
+            max=3,
+            format="%.0f",
+            on_change=lambda e: u_screenreader_trial311.set_value(e.value),
+        ).classes("w-[600px]").props(
+            'aria-label="3.11 Develop a navigation sequence to access an unfamiliar website"'
+        )
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.label("PHASE 4: NAVIGATING AND FILE MANAGEMENT").classes(
-                    "justify-center items-center"
-                    )
+                "justify-center items-center"
+            )
         ui.input().props(
-                'aria-label="PHASE 4: NAVIGATING AND FILE MANAGEMENT"'
-                ).classes("sr-only")
+            'aria-label="PHASE 4: NAVIGATING AND FILE MANAGEMENT"'
+        ).classes("sr-only")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.number(
-                    label="4.1 Be able to save and open files using File Explorer",
-                    min=0,
-                    max=3,
-                    format="%.0f",
-                    on_change=lambda e: u_screenreader_trial41.set_value(e.value),
-                    ).classes("w-[600px]").props(
-                    'aria-label="4.1 Be able to save and open files using File Explorer."'
-                    )
-        ui.number(
-                label="4.2 Create folders and move files in File Explorer",
+                label="4.1 Be able to save and open files using File Explorer",
                 min=0,
                 max=3,
                 format="%.0f",
-                on_change=lambda e: u_screenreader_trial42.set_value(e.value),
-                ).classes("w-[600px]").props(
-                'aria-label="4.2 Create folders and move files in File Explorer"'
-                )
+                on_change=lambda e: u_screenreader_trial41.set_value(e.value),
+            ).classes("w-[600px]").props(
+                'aria-label="4.1 Be able to save and open files using File Explorer."'
+            )
         ui.number(
-                label="4.3 Navigate a cloud-based file management system (eg: Google Drive)",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_screenreader_trial43.set_value(e.value),
-                ).classes("w-[600px]").props(
-                'aria-label="4.3 Navigate a cloud-based file management system (eg: Google Drive)"'
-                )
+            label="4.2 Create folders and move files in File Explorer",
+            min=0,
+            max=3,
+            format="%.0f",
+            on_change=lambda e: u_screenreader_trial42.set_value(e.value),
+        ).classes("w-[600px]").props(
+            'aria-label="4.2 Create folders and move files in File Explorer"'
+        )
         ui.number(
-                label="4.4 Download and save material from the internet",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_screenreader_trial44.set_value(e.value),
-                ).classes("w-[600px]").props(
-                'aria-label="4.4 Download and save material from the internet"'
-                )
+            label="4.3 Navigate a cloud-based file management system (eg: Google Drive)",
+            min=0,
+            max=3,
+            format="%.0f",
+            on_change=lambda e: u_screenreader_trial43.set_value(e.value),
+        ).classes("w-[600px]").props(
+            'aria-label="4.3 Navigate a cloud-based file management system (eg: Google Drive)"'
+        )
         ui.number(
-                label="4.5 Extract zipped folders",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_screenreader_trial45.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="4.5 Extract zipped folders"')
+            label="4.4 Download and save material from the internet",
+            min=0,
+            max=3,
+            format="%.0f",
+            on_change=lambda e: u_screenreader_trial44.set_value(e.value),
+        ).classes("w-[600px]").props(
+            'aria-label="4.4 Download and save material from the internet"'
+        )
         ui.number(
-                label="4.6 Utilize the virtual cursor and mouse keys",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_screenreader_trial46.set_value(e.value),
-                ).classes("w-[600px]").props(
-                'aria-label="4.6 Utilize the virtual cursor and mouse keys"'
-                )
+            label="4.5 Extract zipped folders",
+            min=0,
+            max=3,
+            format="%.0f",
+            on_change=lambda e: u_screenreader_trial45.set_value(e.value),
+        ).classes("w-[600px]").props('aria-label="4.5 Extract zipped folders"')
         ui.number(
-                label="4.7 To use OCR features to read inaccessible material",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_screenreader_trial47.set_value(e.value),
-                ).classes("w-[600px]").props(
-                'aria-label="4.7 To use OCR features to read inaccessible material"'
-                )
+            label="4.6 Utilize the virtual cursor and mouse keys",
+            min=0,
+            max=3,
+            format="%.0f",
+            on_change=lambda e: u_screenreader_trial46.set_value(e.value),
+        ).classes("w-[600px]").props(
+            'aria-label="4.6 Utilize the virtual cursor and mouse keys"'
+        )
+        ui.number(
+            label="4.7 To use OCR features to read inaccessible material",
+            min=0,
+            max=3,
+            format="%.0f",
+            on_change=lambda e: u_screenreader_trial47.set_value(e.value),
+        ).classes("w-[600px]").props(
+            'aria-label="4.7 To use OCR features to read inaccessible material"'
+        )
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.button("SAVE", color="#172554", on_click=save).classes("text-white")
         ui.button("GRAPH", color="#172554", on_click=graph).classes("text-white")

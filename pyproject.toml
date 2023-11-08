@@ -144,7 +144,6 @@ exclude = [
     "venv",
 ]
 line-length = 88
-indent-width = 4
 include = ["*.py"]
 preview = true
 respect-gitignore = false
@@ -161,9 +160,7 @@ dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
 
 [tool.ruff.format]
 quote-style = "double"
-indent-width = 4
 line-ending = "native"
-indent-style = "space"
 skip-magic-trailing-comma = false
 
 [tool.ruff.isort]
@@ -210,4 +207,3 @@ avoid-escape = true
 docstring-quotes = "double"
 inline-quotes = "single"
 multiline-quotes = "double"
-indent-style = "space"

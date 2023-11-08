@@ -41,7 +41,7 @@ from appHelpers.helpers import (
     create_roster,
     USER_DIR,
     datenow,
-    )
+)
 from appHelpers.workingdirectory import create_user_dir
 from appHelpers.sqlgenerate import create_connection, createTables
 
@@ -76,11 +76,11 @@ def warningmessage(exception_type, exception_value, exception_traceback) -> None
     i = ""
     message = "Please make sure all fields are selected / filled out properly\n\n"
     tb = traceback.format_exception(
-            exception_type, exception_value, exception_traceback
-            )
+        exception_type, exception_value, exception_traceback
+    )
     log_path = Path(USER_DIR).joinpath(
-            "StudentDatabase", "errorLogs", f"logfile_{datenow}.log"
-            )
+        "StudentDatabase", "errorLogs", f"logfile_{datenow}.log"
+    )
     Path.touch(log_path)
     for i in tb:
         message += i
@@ -111,11 +111,11 @@ digitalliteracy.create()
 
 with ui.footer(value=True) as footer:
     with ui.row().classes(
-            "w-screen no-wrap justify-center items-center text-l font-bold"
-            ):
+        "w-screen no-wrap justify-center items-center text-l font-bold"
+    ):
         ui.label(
-                "Copyright © 2023 Michael Ryan Hunsaker, M.Ed., Ph.D.\nReport Bugs or Request Features by emailing hunsakerconsulting@gmail.com"
-                ).classes("justify-center items-center")
+            "Copyright © 2023 Michael Ryan Hunsaker, M.Ed., Ph.D.\nReport Bugs or Request Features by emailing hunsakerconsulting@gmail.com"
+        ).classes("justify-center items-center")
 
 MONITOR = ""
 
@@ -128,14 +128,14 @@ def getresolution() -> str:
 
 
 MONITOR = getresolution()
-print(f'SQLite Version is: {sqlite3.sqlite_version}')
-print(f'SQLite DB-API Version is: {sqlite3.version}')
-print(f'Monitor: \nwidth = {MONITOR.width} \nheight = {MONITOR.height}')
+print(f"SQLite Version is: {sqlite3.sqlite_version}")
+print(f"SQLite DB-API Version is: {sqlite3.version}")
+print(f"Monitor: \nwidth = {MONITOR.width} \nheight = {MONITOR.height}")
 ui.run(
-        native=False,
-        reload=False,
-        dark=False,
-        title="Student Skills Progressions",
-        fullscreen=False,
-        window_size=(MONITOR.width, MONITOR.height - 72),
-        )
+    native=False,
+    reload=False,
+    dark=False,
+    title="Student Skills Progressions",
+    fullscreen=False,
+    window_size=(MONITOR.width, MONITOR.height - 72),
+)

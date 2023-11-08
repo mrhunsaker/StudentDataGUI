@@ -41,8 +41,8 @@ def create() -> None:
             ui.label("OBSERVATION NOTES").classes("text-h4 text-grey-8")
             # ASSIGN VARIABLES
             u_studentname = ui.select(
-                    options=students, value="DonaldChamberlain"
-                    ).classes("hidden")
+                options=students, value="DonaldChamberlain"
+            ).classes("hidden")
             u_today_date = ui.date().classes("hidden")
             u_observationnotes = ui.textarea().classes("hidden")
 
@@ -56,55 +56,57 @@ def create() -> None:
                 observationnotes = u_observationnotes.value
                 studentdatabasename = f"observationnotes{studentname.title()}{datenow}"
                 tmppath = Path(USER_DIR).joinpath(
+                    "StudentDatabase",
+                    "StudentDataFiles",
+                    studentname,
+                    studentdatabasename + ".json",
+                )
+                observation_dictionary = {
+                    "studentname": studentname,
+                    "date": today_date,
+                    "observationnotes": observationnotes,
+                }
+                with open(tmppath, "w", encoding="utf-8") as filename:
+                    json.dump(observation_dictionary, filename)
+                    tmppath = Path(USER_DIR).joinpath(
+                        "StudentDatabase", "StudentDataFiles", "Filenames.txt"
+                    )
+                with open(tmppath, "a", encoding="utf-8") as filename:
+                    tmppath = Path(USER_DIR).joinpath(
                         "StudentDatabase",
                         "StudentDataFiles",
                         studentname,
                         studentdatabasename + ".json",
-                        )
-                observation_dictionary = {
-                        "studentname"     : studentname,
-                        "date"            : today_date,
-                        "observationnotes": observationnotes,
-                        }
-                with open(tmppath, "w", encoding="utf-8") as filename:
-                    json.dump(observation_dictionary, filename)
-                    tmppath = Path(USER_DIR).joinpath(
-                            "StudentDatabase", "StudentDataFiles", "Filenames.txt"
-                            )
-                with open(tmppath, "a", encoding="utf-8") as filename:
-                    tmppath = Path(USER_DIR).joinpath(
-                            "StudentDatabase",
-                            "StudentDataFiles",
-                            studentname,
-                            studentdatabasename + ".json",
-                            )
+                    )
                     filename.write(f"'{tmppath}'" + "\n")
                     filename.close()
                 ui.notify(
-                        "Saved successfully!",
-                        position="center",
-                        type="positive",
-                        close_button="OK",
-                        )
+                    "Saved successfully!",
+                    position="center",
+                    type="positive",
+                    close_button="OK",
+                )
 
         with ui.row().classes("w-screen no-wrap"):
             ui.select(
-                    options=students,
-                    with_input=True,
-                    on_change=lambda e: ui.notify(e.value),
-                    ).bind_value(u_studentname, "value").classes("w-[300px]").props(
-                    'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
-                    ).tooltip("Type Student Name, it will autocomplete as you type")
-            ui.date(value = 'f{datenow}', on_change = lambda e: u_today_date.set_value(e.value)).classes('w-1/2')
+                options=students,
+                with_input=True,
+                on_change=lambda e: ui.notify(e.value),
+            ).bind_value(u_studentname, "value").classes("w-[300px]").props(
+                'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
+            ).tooltip("Type Student Name, it will autocomplete as you type")
+            ui.date(
+                value="f{datenow}", on_change=lambda e: u_today_date.set_value(e.value)
+            ).classes("w-1/2")
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.textarea(
-                    label="Input Observation Notes In this Box and Press Save",
-                    on_change=lambda e: u_observationnotes.set_value(e.value),
-                    ).classes("v-min-[600px]").props(
-                    'cols=200 autogrow outlined aria-label="Please type observation notes" square'
-                    )
+                label="Input Observation Notes In this Box and Press Save",
+                on_change=lambda e: u_observationnotes.set_value(e.value),
+            ).classes("v-min-[600px]").props(
+                'cols=200 autogrow outlined aria-label="Please type observation notes" square'
+            )
         with ui.row().classes("w-screen no-wrap py-4"):
             ui.button("SAVE", color="#172554", on_click=save).classes("text-white")
             ui.button("EXIT", color="#172554", on_click=app.shutdown).classes(
-                    "text-white"
-                    )
+                "text-white"
+            )

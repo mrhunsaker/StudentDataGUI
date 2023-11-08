@@ -65,6 +65,7 @@ from appPages import ios
 from appPages import observations
 from appPages import screenreader
 from appPages import digitalliteracy
+from appPages import keyboarding
 
 
 def warningmessage(exception_type, exception_value, exception_traceback) -> None:
@@ -108,6 +109,7 @@ ios.create()
 screenreader.create()
 InstructionalMaterials.create()
 digitalliteracy.create()
+keyboarding.create()
 
 with ui.footer(value=True) as footer:
     with ui.row().classes(

@@ -1,25 +1,26 @@
 #!/usr/bin/env python3
+
+"""
+ Copyright 2023  Michael Ryan Hunsaker, M.Ed., Ph.D.
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+      https://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ """
+
 # coding=utf-8
 """
 Program designed to be a data collection and instructional tool for
 teachers of students with Visual Impairments
 """
-#########################################################################
-#    Copyright 2023 Michael Ryan Hunsaker, M.Ed., Ph.D.                 #
-#    email: hunsakerconsulting@gmail.com                                #
-#                                                                       #
-#                                                                       #
-#    Licensed under the Apache License, Version 2.0 (the "License");    #
-#    you may not use this file except in compliance with the License.   #
-#    You may obtain a copy of the License at                            #
-#    http://www.apache.org/licenses/LICENSE-2.0                         #
-#                                                                       #
-#    Unless Required by applicable law or agreed to in writing,         #
-#    software distributed under the License is distributed on an        #
-#    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,       #
-#    either express or  implied.  See the License for the specific      #
-#   language governing permissions and limitations under the License.   #
-#########################################################################
 
 import json
 from pathlib import Path
@@ -93,13 +94,45 @@ def create() -> None:
                         studentdatabasename + ".json",
                     )
                     filename.write(f"{tmppath}" + "\n")
-
-                ui.notify(
-                    "Saved successfully!",
-                    position="center",
-                    type="positive",
-                    close_button="OK",
-                )
+                # noinspection SqlResolve
+                def data_entry():
+                    """ """
+                    conn = sqlite3.connect(dataBasePath)
+                    c = conn.cursor()
+                    c.execute(
+                        """INSERT INTO KEYBOARDING (
+                                                STUDENTNAME,
+                                                DATE,
+                                                PROGRAM,
+                                                TOPIC,
+                                                SPEED,
+                                                ACCURACY
+                                                )
+                                                VALUES (
+                                                    ?,
+                                                    ?,
+                                                    ?,
+                                                    ?,
+                                                    ?,
+                                                    ?
+                                                    )""",
+                        (
+                        studentname,
+                        today_date,
+                        keyboarding_program,
+                        topic_covered,
+                        typing_speed,
+                        typing_accuracy
+                        ),
+                    )
+                    conn.commit()
+                    ui.notify(
+                        "Saved successfully!",
+                        position="center",
+                        type="positive",
+                        close_button="OK",
+                    )
+                data_entry()
 
         # GUI Input
         with ui.row().classes("w-screen no-wrap py-4"):

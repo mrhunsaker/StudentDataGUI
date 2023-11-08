@@ -1,25 +1,26 @@
 #!/usr/bin/env python3
+
+"""
+ Copyright 2023  Michael Ryan Hunsaker, M.Ed., Ph.D.
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+      https://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ """
+
 # coding=utf-8
 """
 Program designed to be a data collection and instructional tool for
 teachers of students with Visual Impairments
 """
-#########################################################################
-#    Copyright 2023 Michael Ryan Hunsaker, M.Ed., Ph.D.                 #
-#    email: hunsakerconsulting@gmail.com                                #
-#                                                                       #
-#                                                                       #
-#    Licensed under the Apache License, Version 2.0 (the "License");    #
-#    you may not use this file except in compliance with the License.   #
-#    You may obtain a copy of the License at                            #
-#    http://www.apache.org/licenses/LICENSE-2.0                         #
-#                                                                       #
-#    Unless Required by applicable law or agreed to in writing,         #
-#    software distributed under the License is distributed on an        #
-#    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,       #
-#    either express or  implied.  See the License for the specific      #
-#   language governing permissions and limitations under the License.   #
-#########################################################################
 
 import sqlite3
 from sqlite3 import Error
@@ -78,6 +79,16 @@ def create_table(conn, sql_create_sql_table):
 
 def createTables():
     """create tables within SQL database for all projects"""
+    sql_create_keyboarding_table = """CREATE TABLE IF NOT EXISTS
+    KEYBOARDING(
+        ID INTEGER PRIMARY KEY AUTOINCREMENT,
+        STUDENTNAME TEXT NOT NULL,
+        DATE TEXT NOT NULL,
+        PROGRAM TEXT NOT NULL,
+        TOPIC TEXT NOT NULL,
+        SPEED INT NOT NULL,
+        ACCURACY INT NOT NULL
+    );"""
     sql_create_studentdata_table = """CREATE TABLE IF NOT EXISTS
     STUDENTDATA(
         ID INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -464,6 +475,17 @@ def createTables():
         P15_5 INTEGER
     );"""
 
+    conn = sqlite3.connect(dataBasePath)
+    if conn is not None:
+        try:
+            create_table(conn, sql_create_keyboarding_table)
+        except Error as e:
+            ui.notify(
+                e,
+                position="center",
+                type="negative",
+                close_button="OK",
+            )
     conn = sqlite3.connect(dataBasePath)
     if conn is not None:
         try:

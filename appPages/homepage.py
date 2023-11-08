@@ -72,7 +72,6 @@ def content() -> None:
                                             """,
                     extras=["tables"],
                     )
-
         with ui.row().classes("w-[800px]  center  no-wrap py-4 pl-10"):
             ui.markdown(
                     """
@@ -130,6 +129,4 @@ def content() -> None:
                                             """,
                     extras=["fenced-code-blocks"],
                     )
-
-
 # fmt: on

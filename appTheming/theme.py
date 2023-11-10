@@ -77,7 +77,7 @@ def branding() -> ui.html:
 
 
 @contextmanager
-def frame(navtitle: str):
+def frame(navtitle: str) -> None:
     """
     Custom page frame to share the same styling and behavior across all pages.
 
@@ -109,6 +109,35 @@ def frame(navtitle: str):
 
     with ui.header().classes("justify-between text-black"):
         """
+        Create a custom layout using the NiceGUI UI framework.
+
+        Parameters:
+        - navtitle (str): The title to be displayed in the navigation bar.
+
+        Usage:
+        ```python
+        with nicegui_custom_layout("Page Title"):
+            # Content to be displayed in the custom layout
+            # ...
+        ```
+
+        This function defines a layout structure using the NiceGUI UI framework, consisting of a header with a navigation title,
+        a menu section, and a main content column. The `navtitle` parameter specifies the title to be displayed in the navigation bar.
+
+        Example:
+        ```python
+        with nicegui_custom_layout("Home"):
+            # Main content goes here
+            # ...
+        ```
+
+        Note:
+        - This function is designed to be used within a context manager (i.e., with statement).
+        - The layout structure is implemented using NiceGUI UI components and styling classes.
+        - The `yield` statement is used to allow the caller to insert their custom content within the main content column.
+
+        See Also:
+        - NiceGUI UI framework documentation for more details on the UI components and styling classes.
         """
         with ui.row().classes("no-wrap text-l font-bold text-black"):
             ui.label(navtitle).classes("no-wrap text-2xl text-white font-bold ")
@@ -116,9 +145,7 @@ def frame(navtitle: str):
             menu()
     with ui.column().classes(""):
         yield
-    ##############################################################################
-    # FOOTER
-    ##############################################################################
+
     with ui.footer(value=True) as footer:
         with ui.row().classes(
             "w-screen no-wrap justify-center items-center text-l font-bold text-white"

@@ -27,6 +27,35 @@ from pathlib import Path
 
 
 def create_user_dir() -> None:
+    """
+    Create or retrieve the user directory path.
+
+    This function determines the appropriate user directory path based on the operating system
+    (Windows or POSIX) and creates the directory structure if it doesn't exist. The user directory
+    path is typically used for storing application-related data.
+
+    Returns
+    -------
+    Path
+        The path to the user directory.
+
+    Raises
+    ------
+    NameError
+        If the environment variable representing the user directory is not found.
+
+    Examples
+    --------
+    >>> user_directory = create_user_dir()
+    >>> # Use user_directory for storing application-related data
+    >>> # ...
+
+    Notes
+    -----
+    The user directory path may vary depending on the operating system:
+    - On Windows, it is typically under "%USERPROFILE%\OneDrive - Davis School District\Documents".
+    - On POSIX systems, it is typically under "$HOME/OneDrive - Davis School District/Documents".
+    """
     if os.name == "nt":
         try:
             tmp_path = Path(os.environ["USERPROFILE"]).joinpath(

@@ -61,9 +61,42 @@ def create() -> None:
 
             def save(event):
                 """
-                :param event
-                :type event
-                """
+                    Save data for a student.
+
+                    Parameters
+                    ----------
+                    event : SomeEventType
+                        The event triggering the save function.
+
+                    Returns
+                    -------
+                    None
+
+                    Notes
+                    -----
+                    This function assumes the existence of various UI elements (e.g., `u_studentname`,
+                    `u_today_date`, ...), `datenow`, `json`,
+                    `Path`, and other variables related to the application.
+
+                    The function extracts abacus trial data and student information from UI elements,
+                    creates a dictionary with this data, and saves it as a JSON file in the student's
+                    directory within the "StudentDataFiles" folder. The filename is constructed based
+                    on the student's name and the current date.
+
+                    The function also appends the filename to a "Filenames.txt" file for reference.
+
+                    Examples
+                    --------
+                    >>> save(some_event)
+                    >>> # Trial data and student information saved successfully.
+                    >>> # The data is stored in a JSON file named based on the student's name and date.
+
+                    See Also
+                    --------
+                    Some related functions or classes that might be useful.
+
+                    """
+
                 studentname = u_studentname.value
                 today_date = u_today_date.value
                 anecdotalnotes = u_anecdotalnotes.value
@@ -124,121 +157,148 @@ def create() -> None:
                         type="positive",
                         close_button="OK",
                     )
+        def create_ui() -> None:
+            """
+            Create a GUI layout for entering student information and trial data.
 
-        # GUI Input
-        with ui.row().classes("w-screen no-wrap"):
-            ui.select(
-                options=students,
-                with_input=True,
-                on_change=lambda e: ui.notify(e.value),
-            ).bind_value(u_studentname, "value").classes("w-[300px]").props(
-                'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
-            ).tooltip("Type Student Name, it will autocomplete as you type")
-            ui.date(
-                value="f{datenow}", on_change=lambda e: u_today_date.set_value(e.value)
-            ).classes("w-1/2")
-        with ui.row().classes("w-screen no-wrap"):
-            ui.select(
-                options=tasks, with_input=True, on_change=lambda e: ui.notify(e.value)
-            ).bind_value(u_tasks, "value").classes("w-[300px]").props(
-                'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
-            ).tooltip("Type Taske, it will autocomplete as you type")
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.label(
-                "RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent"
-            ).props(
-                'aria-label="RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent" content-center'
-            )
-            ui.input().props(
-                'aria-label="RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent" content-center'
-            ).classes("sr-only")
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Trial 1",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_trial01.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="Trial 1"')
-            ui.number(
-                label="Trial 2",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_trial02.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="Trial 2"')
-            ui.number(
-                label="Trial 3",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_trial03.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="Trial 3"')
-            ui.number(
-                label="Trial 4",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_trial04.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="Trial 4" ')
-            ui.number(
-                label="Trial 5",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_trial05.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="Trial 5" ')
-            ui.number(
-                label="Trial 6",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_trial06.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="Trial 6" ')
-            ui.number(
-                label="Trial 7",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_trial07.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="Trial 7" ')
-            ui.number(
-                label="Trial 8",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_trial08.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="Trial 8" ')
-            ui.number(
-                label="Trial 9",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_trial09.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="Trial 9" ')
-            ui.number(
-                label="Trial 10",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_trial10.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="Trial 10" ')
-            ui.number(
-                label="Trial 11",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_trial11.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="Trial 11" ')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.textarea(
-                label="Input Anecdotal Notes In this Box and Press Save",
-                on_change=lambda e: u_anecdotalnotes.set_value(e.value),
-            ).classes("h-full h-min-[400px]").props(
-                'cols=80 autogrow outlined aria-label="Please type anecdotal notes" square'
-            )
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.button("SAVE", color="#172554", on_click=save).classes("text-white")
-            ui.button("EXIT", color="#172554", on_click=app.shutdown).classes(
-                "text-white"
-            )
+            Returns
+            -------
+            None
+
+            Notes
+            -----
+            This function assumes the existence of various UI elements (e.g., `u_studentname`,
+            `u_today_date`, ...`), and other variables related to the application.
+
+            The UI consists of several rows with different input elements for selecting a
+            student, entering the date, selecting a task, providing a rubric, entering trial
+            data, inputting anecdotal notes, and buttons for saving and exiting.
+
+            Examples
+            --------
+            >>> create_ui()
+            >>> # GUI layout created with various input elements and buttons.
+            >>> # Users can interact with the UI to enter student information and trial data.
+
+            See Also
+            --------
+            Some related functions or classes that might be useful.
+
+            """
+            with ui.row().classes("w-screen no-wrap"):
+                ui.select(
+                    options=students,
+                    with_input=True,
+                    on_change=lambda e: ui.notify(e.value),
+                ).bind_value(u_studentname, "value").classes("w-[300px]").props(
+                    'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
+                ).tooltip("Type Student Name, it will autocomplete as you type")
+                ui.date(
+                    value="f{datenow}", on_change=lambda e: u_today_date.set_value(e.value)
+                ).classes("w-1/2")
+            with ui.row().classes("w-screen no-wrap"):
+                ui.select(
+                    options=tasks, with_input=True, on_change=lambda e: ui.notify(e.value)
+                ).bind_value(u_tasks, "value").classes("w-[300px]").props(
+                    'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
+                ).tooltip("Type Taske, it will autocomplete as you type")
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.label(
+                    "RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent"
+                ).props(
+                    'aria-label="RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent" content-center'
+                )
+                ui.input().props(
+                    'aria-label="RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent" content-center'
+                ).classes("sr-only")
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Trial 1",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_trial01.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="Trial 1"')
+                ui.number(
+                    label="Trial 2",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_trial02.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="Trial 2"')
+                ui.number(
+                    label="Trial 3",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_trial03.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="Trial 3"')
+                ui.number(
+                    label="Trial 4",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_trial04.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="Trial 4" ')
+                ui.number(
+                    label="Trial 5",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_trial05.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="Trial 5" ')
+                ui.number(
+                    label="Trial 6",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_trial06.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="Trial 6" ')
+                ui.number(
+                    label="Trial 7",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_trial07.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="Trial 7" ')
+                ui.number(
+                    label="Trial 8",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_trial08.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="Trial 8" ')
+                ui.number(
+                    label="Trial 9",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_trial09.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="Trial 9" ')
+                ui.number(
+                    label="Trial 10",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_trial10.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="Trial 10" ')
+                ui.number(
+                    label="Trial 11",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_trial11.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="Trial 11" ')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.textarea(
+                    label="Input Anecdotal Notes In this Box and Press Save",
+                    on_change=lambda e: u_anecdotalnotes.set_value(e.value),
+                ).classes("h-full h-min-[400px]").props(
+                    'cols=80 autogrow outlined aria-label="Please type anecdotal notes" square'
+                )
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.button("SAVE", color="#172554", on_click=save).classes("text-white")
+                ui.button("EXIT", color="#172554", on_click=app.shutdown).classes(
+                    "text-white"
+                )
+        create_ui()

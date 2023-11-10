@@ -87,27 +87,55 @@ def create() -> None:
                     type="positive",
                     close_button="OK",
                 )
+        def create_ui() -> None:
+            """
+            Create a GUI layout for entering student information and trial data.
 
-        with ui.row().classes("w-screen no-wrap"):
-            ui.select(
-                options=students,
-                with_input=True,
-                on_change=lambda e: ui.notify(e.value),
-            ).bind_value(u_studentname, "value").classes("w-[300px]").props(
-                'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
-            ).tooltip("Type Student Name, it will autocomplete as you type")
-            ui.date(
-                value="f{datenow}", on_change=lambda e: u_today_date.set_value(e.value)
-            ).classes("w-1/2")
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.textarea(
-                label="Input Observation Notes In this Box and Press Save",
-                on_change=lambda e: u_observationnotes.set_value(e.value),
-            ).classes("v-min-[600px]").props(
-                'cols=200 autogrow outlined aria-label="Please type observation notes" square'
-            )
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.button("SAVE", color="#172554", on_click=save).classes("text-white")
-            ui.button("EXIT", color="#172554", on_click=app.shutdown).classes(
-                "text-white"
-            )
+            Returns
+            -------
+            None
+
+            Notes
+            -----
+            This function assumes the existence of various UI elements (e.g., `u_studentname`,
+            `u_today_date`, ...`), and other variables related to the application.
+
+            The UI consists of several rows with different input elements for selecting a
+            student, entering the date, selecting a task, providing a rubric, entering trial
+            data, inputting anecdotal notes, and buttons for saving and exiting.
+
+            Examples
+            --------
+            >>> create_ui()
+            >>> # GUI layout created with various input elements and buttons.
+            >>> # Users can interact with the UI to enter student information and trial data.
+
+            See Also
+            --------
+            Some related functions or classes that might be useful.
+
+            """
+            with ui.row().classes("w-screen no-wrap"):
+                ui.select(
+                    options=students,
+                    with_input=True,
+                    on_change=lambda e: ui.notify(e.value),
+                ).bind_value(u_studentname, "value").classes("w-[300px]").props(
+                    'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
+                ).tooltip("Type Student Name, it will autocomplete as you type")
+                ui.date(
+                    value="f{datenow}", on_change=lambda e: u_today_date.set_value(e.value)
+                ).classes("w-1/2")
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.textarea(
+                    label="Input Observation Notes In this Box and Press Save",
+                    on_change=lambda e: u_observationnotes.set_value(e.value),
+                ).classes("v-min-[600px]").props(
+                    'cols=200 autogrow outlined aria-label="Please type observation notes" square'
+                )
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.button("SAVE", color="#172554", on_click=save).classes("text-white")
+                ui.button("EXIT", color="#172554", on_click=app.shutdown).classes(
+                    "text-white"
+                )
+        create_ui()

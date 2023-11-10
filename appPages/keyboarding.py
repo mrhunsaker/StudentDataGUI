@@ -56,9 +56,42 @@ def create() -> None:
 
             def save(event):
                 """
-                :param event:
-                :type event:
-                """
+                    Save data for a student.
+
+                    Parameters
+                    ----------
+                    event : SomeEventType
+                        The event triggering the save function.
+
+                    Returns
+                    -------
+                    None
+
+                    Notes
+                    -----
+                    This function assumes the existence of various UI elements (e.g., `u_studentname`,
+                    `u_today_date`, ...), `datenow`, `json`,
+                    `Path`, and other variables related to the application.
+
+                    The function extracts abacus trial data and student information from UI elements,
+                    creates a dictionary with this data, and saves it as a JSON file in the student's
+                    directory within the "StudentDataFiles" folder. The filename is constructed based
+                    on the student's name and the current date.
+
+                    The function also appends the filename to a "Filenames.txt" file for reference.
+
+                    Examples
+                    --------
+                    >>> save(some_event)
+                    >>> # Trial data and student information saved successfully.
+                    >>> # The data is stored in a JSON file named based on the student's name and date.
+
+                    See Also
+                    --------
+                    Some related functions or classes that might be useful.
+
+                    """
+
                 studentname = u_studentname.value
                 today_date = u_today_date
                 keyboarding_program = u_keyboarding_program.value
@@ -96,7 +129,40 @@ def create() -> None:
                     filename.write(f"{tmppath}" + "\n")
                 # noinspection SqlResolve
                 def data_entry():
-                    """ """
+                    """
+                    Write progress data to the database.
+
+                    Connects to the SQLite database specified by `dataBasePath` and inserts a new row
+                    into the appropriate table with the provided abacus progress data.
+
+                    Parameters
+                    ----------
+                    None
+
+                    Returns
+                    -------
+                    None
+
+                    Notes
+                    -----
+                    This function assumes the existence of variables such as `dataBasePath`,
+                    `studentname`, `today_date`,  and  `sqlite3`
+
+                    The function establishes a connection to the database, creates a cursor, executes an
+                    SQL INSERT command with the abacus progress data, commits the changes, and notifies
+                    the user of successful data entry.
+
+                    Examples
+                    --------
+                    >>> data_entry()
+                    >>> # Progress data successfully written to the database.
+                    >>> # The user is notified of successful data entry.
+
+                    See Also
+                    --------
+                    Some related functions or classes that might be useful.
+
+                    """
                     conn = sqlite3.connect(dataBasePath)
                     c = conn.cursor()
                     c.execute(
@@ -134,69 +200,97 @@ def create() -> None:
                     )
                 data_entry()
 
-        # GUI Input
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.label().classes("w-[50px]")
-            ui.label("STUDENT INFORMATION").classes(
-                "w-full justify-center items-center font-bold"
-            )
-        with ui.row().classes("w-screen no-wrap"):
-            ui.select(
-                options=students,
-                with_input=True,
-                on_change=lambda e: ui.notify(e.value),
-            ).bind_value(u_studentname, "value").classes("w-[300px]").props(
-                'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
-            ).tooltip("Type Student Name, it will autocomplete AS you type")
-            ui.date(
-                value="f{datenow}", on_change=lambda e: u_today_date.set_value(e.value)
-            ).classes("w-1/2")
-        with ui.row().classes("w-screen no-wrap"):
-            ui.label("Keyboarding Program").classes("w-[50px]")
-            ui.select(
-                options=["Typio", "TypeAbility", "APH Typer", "Typing Club", "MonkeyType", "Custom Assignment"],
-                value="",
-                on_change=lambda e: u_keyboarding_program.set_value(e.value),
-            ).classes("w-[240px]").props('aria-label="Keyboarding Program"').tooltip(
-                "Keyboarding Program"
-            )
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.label("Topic Covered").classes("w-[50px]")
-            ui.select(
-                options=[
-                    "Home Row", "Top Row", "Bottom Row", "Numbers", "Modifier Keys","F-Keys", "Shortcut Keystrokes"
-                ],
-                value="",
-                on_change=lambda e: u_topic_covered.set_value(e.value),
-            ).classes("w-[240px]").props('aria-label="Topic Covered"').tooltip(
-                "Topic Covered"
-            )
-        with ui.row().classes("w-screen no-wrap"):
-            ui.label("Typing Speed").classes("w-[50px]")
-            ui.number(
-                min=0,
-                max=150,
-                format="%.0f",
-                label="Typing Speed",
-                value="",
-                on_change=lambda e: u_typing_speed.set_value(e.value),
-            ).classes("w-[240px]").props(
-                'aria-label="Typing Speed"'
-            ).tooltip("Typing Speed")
-        with ui.row().classes("w-screen no-wrap"):
-            ui.label("Typing Speed").classes("w-[50px]")
-            ui.number(
-                min=0,
-                max=100,
-                format="%.0f",
-                label = "Typing Accuracy",
-                value="",
-                on_change=lambda e: u_typing_accuracy.set_value(e.value),
-            ).classes("w-[240px]").props(
-                'aria-label="Typing Accuracy"'
-            ).tooltip("Typing Accuracy")
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.button("SAVE", color="#172554", on_click=save).classes("text-white")
-            ui.button("EXIT", color="#172554", on_click=app.shutdown).classes(
-                "text-white"
-            )
+        def create_ui() -> None:
+            """
+            Create a GUI layout for entering student information and trial data.
+
+            Returns
+            -------
+            None
+
+            Notes
+            -----
+            This function assumes the existence of various UI elements (e.g., `u_studentname`,
+            `u_today_date`, ...`), and other variables related to the application.
+
+            The UI consists of several rows with different input elements for selecting a
+            student, entering the date, selecting a task, providing a rubric, entering trial
+            data, inputting anecdotal notes, and buttons for saving and exiting.
+
+            Examples
+            --------
+            >>> create_ui()
+            >>> # GUI layout created with various input elements and buttons.
+            >>> # Users can interact with the UI to enter student information and trial data.
+
+            See Also
+            --------
+            Some related functions or classes that might be useful.
+
+            """
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.label().classes("w-[50px]")
+                ui.label("STUDENT INFORMATION").classes(
+                    "w-full justify-center items-center font-bold"
+                )
+            with ui.row().classes("w-screen no-wrap"):
+                ui.select(
+                    options=students,
+                    with_input=True,
+                    on_change=lambda e: ui.notify(e.value),
+                ).bind_value(u_studentname, "value").classes("w-[300px]").props(
+                    'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
+                ).tooltip("Type Student Name, it will autocomplete AS you type")
+                ui.date(
+                    value="f{datenow}", on_change=lambda e: u_today_date.set_value(e.value)
+                ).classes("w-1/2")
+            with ui.row().classes("w-screen no-wrap"):
+                ui.label("Keyboarding Program").classes("w-[50px]")
+                ui.select(
+                    options=["Typio", "TypeAbility", "APH Typer", "Typing Club", "MonkeyType", "Custom Assignment"],
+                    value="",
+                    on_change=lambda e: u_keyboarding_program.set_value(e.value),
+                ).classes("w-[240px]").props('aria-label="Keyboarding Program"').tooltip(
+                    "Keyboarding Program"
+                )
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.label("Topic Covered").classes("w-[50px]")
+                ui.select(
+                    options=[
+                        "Home Row", "Top Row", "Bottom Row", "Numbers", "Modifier Keys","F-Keys", "Shortcut Keystrokes"
+                    ],
+                    value="",
+                    on_change=lambda e: u_topic_covered.set_value(e.value),
+                ).classes("w-[240px]").props('aria-label="Topic Covered"').tooltip(
+                    "Topic Covered"
+                )
+            with ui.row().classes("w-screen no-wrap"):
+                ui.label("Typing Speed").classes("w-[50px]")
+                ui.number(
+                    min=0,
+                    max=150,
+                    format="%.0f",
+                    label="Typing Speed",
+                    value="",
+                    on_change=lambda e: u_typing_speed.set_value(e.value),
+                ).classes("w-[240px]").props(
+                    'aria-label="Typing Speed"'
+                ).tooltip("Typing Speed")
+            with ui.row().classes("w-screen no-wrap"):
+                ui.label("Typing Speed").classes("w-[50px]")
+                ui.number(
+                    min=0,
+                    max=100,
+                    format="%.0f",
+                    label = "Typing Accuracy",
+                    value="",
+                    on_change=lambda e: u_typing_accuracy.set_value(e.value),
+                ).classes("w-[240px]").props(
+                    'aria-label="Typing Accuracy"'
+                ).tooltip("Typing Accuracy")
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.button("SAVE", color="#172554", on_click=save).classes("text-white")
+                ui.button("EXIT", color="#172554", on_click=app.shutdown).classes(
+                    "text-white"
+                )
+        create_ui()

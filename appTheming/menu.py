@@ -25,6 +25,23 @@ from nicegui import ui
 
 
 def menu() -> None:
+    """
+    Create and display the application menu.
+
+    This function generates and displays a user interface menu using the `ui` module. The menu
+    includes various options for navigation within the application, such as accessing the home
+    page, contact log, data collection sections (session notes and observations), CVI/NVI
+    progress, tactile skills (abacus and braille), technology skills (keyboarding, screen reader,
+    braille note touch, iOS VoiceOver), digital literacy, and instructional materials.
+
+    Returns
+    -------
+    None
+
+    Examples
+    --------
+    >>> menu()
+    """
     with ui.button(icon="menu").classes():
         with ui.menu().classes("w-[250px]") as menu:
             ui.menu_item("HOME", lambda: ui.open("/")).classes(replace="text-black")

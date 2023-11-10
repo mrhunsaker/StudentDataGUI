@@ -75,8 +75,40 @@ def create() -> None:
 
             def save(event):
                 """
-                :param event:
-                :type event:
+                Save abacus trial data for a student.
+
+                Parameters
+                ----------
+                event : SomeEventType
+                    The event triggering the save function.
+
+                Returns
+                -------
+                None
+
+                Notes
+                -----
+                This function assumes the existence of various UI elements (e.g., `u_studentname`,
+                `u_today_date`, `u_abacus_trial11`, ..., `u_abacus_trial82`), `datenow`, `json`,
+                `Path`, and other variables related to the application.
+
+                The function extracts abacus trial data and student information from UI elements,
+                creates a dictionary with this data, and saves it as a JSON file in the student's
+                directory within the "StudentDataFiles" folder. The filename is constructed based
+                on the student's name and the current date.
+
+                The function also appends the filename to a "Filenames.txt" file for reference.
+
+                Examples
+                --------
+                >>> save(some_event)
+                >>> # Abacus trial data and student information saved successfully.
+                >>> # The data is stored in a JSON file named based on the student's name and date.
+
+                See Also
+                --------
+                Some related functions or classes that might be useful.
+
                 """
                 studentname = u_studentname.value
                 today_date = u_today_date.value
@@ -155,7 +187,41 @@ def create() -> None:
 
                 # noinspection SqlResolve
                 def data_entry():
-                    """write data to database"""
+                    """
+                    Write abacus progress data to the database.
+
+                    Connects to the SQLite database specified by `dataBasePath` and inserts a new row
+                    into the 'ABACUSPROGRESS' table with the provided abacus progress data.
+
+                    Parameters
+                    ----------
+                    None
+
+                    Returns
+                    -------
+                    None
+
+                    Notes
+                    -----
+                    This function assumes the existence of variables such as `dataBasePath`,
+                    `studentname`, `today_date`, `abacus_trial11`, ..., `abacus_trial82`, `sqlite3`,
+                    and `ui`.
+
+                    The function establishes a connection to the database, creates a cursor, executes an
+                    SQL INSERT command with the abacus progress data, commits the changes, and notifies
+                    the user of successful data entry.
+
+                    Examples
+                    --------
+                    >>> data_entry()
+                    >>> # Abacus progress data successfully written to the database.
+                    >>> # The user is notified of successful data entry.
+
+                    See Also
+                    --------
+                    Some related functions or classes that might be useful.
+
+                    """
                     conn = sqlite3.connect(dataBasePath)
                     c = conn.cursor()
                     c.execute(
@@ -255,8 +321,40 @@ def create() -> None:
 
         def graph(event):
             """
-            :param event:
-            :type event:
+            Generate and display Abacus Skills Progression graphs for a specific student.
+
+            Parameters
+            ----------
+            event : SomeEventType
+                The event triggering the graph generation (not used in the function).
+
+            Returns
+            -------
+            None
+
+            Notes
+            -----
+            This function assumes the existence of variables such as `u_studentname.value`,
+            `dataBasePath`, `USER_DIR`, `sqlite3`, `pd`, `np`, `go`, `make_subplots`,
+            `date_fmt`, `ui`, and other global variables.
+
+            The function connects to the SQLite database, retrieves the abacus progress data
+            for the specified student, preprocesses the data, adds noise, performs descriptive
+            statistics, calculates growth factors, creates subplots for each abacus phase,
+            and generates an HTML file with the interactive graph. The generated HTML file is
+            opened in a browser window, and the user is notified of successful graph
+            generation.
+
+            Examples
+            --------
+            >>> graph(some_event)
+            >>> # Abacus Skills Progression graphs for the specified student are generated.
+            >>> # The graphs are displayed in a browser window, and the user is notified.
+
+            See Also
+            --------
+            Some related functions or classes that might be useful.
+
             """
             studentname = u_studentname.value
             dataBasePath = Path(USER_DIR).joinpath("StudentDatabase", "students.db")
@@ -983,235 +1081,262 @@ def create() -> None:
                 type="positive",
                 close_button="OK",
             )
+        def create_ui() -> None:
+            """
+            Create a GUI layout for entering student information and trial data.
 
-        # GUI Input
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.button("GRAPH", color="#172554", on_click=graph).classes("text-white")
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.select(
-                options=students,
-                with_input=True,
-                on_change=lambda e: ui.notify(e.value),
-            ).bind_value(u_studentname, "value").classes("w-[300px]").props(
-                'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
-            ).tooltip("Type Student Name, it will autocomplete AS you type")
-            ui.date(
-                value="f{datenow}", on_change=lambda e: u_today_date.set_value(e.value)
-            ).classes("w-1/2")
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.label(
-                "RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent"
-            ).props(
+            Returns
+            -------
+            None
+
+            Notes
+            -----
+            This function assumes the existence of various UI elements (e.g., `u_studentname`,
+            `u_today_date`, ...`), and other variables related to the application.
+
+            The UI consists of several rows with different input elements for selecting a
+            student, entering the date, selecting a task, providing a rubric, entering trial
+            data, inputting anecdotal notes, and buttons for saving and exiting.
+
+            Examples
+            --------
+            >>> create_ui()
+            >>> # GUI layout created with various input elements and buttons.
+            >>> # Users can interact with the UI to enter student information and trial data.
+
+            See Also
+            --------
+            Some related functions or classes that might be useful.
+
+            """
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.button("GRAPH", color="#172554", on_click=graph).classes("text-white")
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.select(
+                    options=students,
+                    with_input=True,
+                    on_change=lambda e: ui.notify(e.value),
+                ).bind_value(u_studentname, "value").classes("w-[300px]").props(
+                    'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
+                ).tooltip("Type Student Name, it will autocomplete AS you type")
+                ui.date(
+                    value="f{datenow}", on_change=lambda e: u_today_date.set_value(e.value)
+                ).classes("w-1/2")
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.label(
+                    "RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent"
+                ).props(
+                    'aria-label="RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent"'
+                )
+            ui.input().props(
                 'aria-label="RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent"'
-            )
-        ui.input().props(
-            'aria-label="RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent"'
-        ).classes("sr-only")
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.label("PHASE 1: Setting and Clearing Numbers").classes(
-                "justify-center items-center"
-            )
-        ui.input().props('aria-label="PHASE 1: Setting and Clearing Numbers"').classes(
-            "sr-only"
-        )
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="1.1 Setting Numbers",
-                value="",
-                on_change=lambda e: u_abacus_trial11.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="1.1 Setting Numbers"').tooltip(
-                "1.1 Setting Numbers"
-            )
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="1.2 Clearing Numbers",
-                value="",
-                on_change=lambda e: u_abacus_trial12.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="1.2 Clearing Numbers"').tooltip(
-                "1.2 Clearing Numbers"
-            )
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="1.3 Place Value",
-                value="",
-                on_change=lambda e: u_abacus_trial13.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="1.3 Place Value"').tooltip(
-                "1.3 Place Value"
-            )
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="1.4 Vocabulary",
-                value="",
-                on_change=lambda e: u_abacus_trial14.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="1.4 Vocabulary"').tooltip(
-                "1.4 Vocabulary"
-            )
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.label("PHASE 2: Addition").classes("justify-center items-center")
-        ui.input().props('aria-label="PHASE 2: Addition"').classes("sr-only")
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="2.1 Addition of Single Digit Numbers",
-                value="",
-                on_change=lambda e: u_abacus_trial21.set_value(e.value),
-            ).classes("w-[600px]").props(
-                'aria-label="2.1 Addition of Single Digit Numbers"'
-            )
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="2.2 Addition of Multiple Digit Numbers – Direct",
-                value="",
-                on_change=lambda e: u_abacus_trial22.set_value(e.value),
-            ).classes("w-[600px]").props(
-                'aria-label="2.2 Addition of Multiple Digit Numbers – Direct"'
-            )
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="2.3 Addition of Multiple Digit Numbers – Indirect",
-                value="",
-                on_change=lambda e: u_abacus_trial23.set_value(e.value),
-            ).classes("w-[600px]").props(
-                'aria-label="2.3 Addition of Multiple Digit Numbers – Indirect"'
-            )
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.label("PHASE 3: Subtraction").classes("justify-center items-center")
-            ui.input().props('aria-label="PHASE 3: Subtraction"').classes("sr-only")
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="3.1 Subtraction",
-                value="",
-                on_change=lambda e: u_abacus_trial31.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="3.1 Subtraction"')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="3.2 Subtraction of Multiple Digit Numbers – Direct",
-                value="",
-                on_change=lambda e: u_abacus_trial32.set_value(e.value),
-            ).classes("w-[600px]").props(
-                'aria-label="3.2 Subtraction of Multiple Digit Numbers – Direct"'
-            )
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="3.3 Subtraction of Multiple Digit Numbers – Indirect",
-                value="",
-                on_change=lambda e: u_abacus_trial33.set_value(e.value),
-            ).classes("w-[600px]").props(
-                'aria-label="3.3 Subtraction of Multiple Digit Numbers – Indirect"'
-            )
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.label("PHASE 4: Multiplication").classes("justify-center items-center")
-            ui.input().props('aria-label="PHASE 4: Multiplication"').classes("sr-only")
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="4.1 Multiplication – 2+ Digit Multiplicand 1-Digit Multiplier",
-                value="",
-                on_change=lambda e: u_abacus_trial41.set_value(e.value),
-            ).classes("w-[600px]").props(
-                'aria-label="4.1 Multiplication – 2+ Digit Multiplicand 1-Digit Multiplier"'
-            )
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="4.2 Multiplication – 2+ Digit Multiplicand AND Multiplier",
-                value="",
-                on_change=lambda e: u_abacus_trial42.set_value(e.value),
-            ).classes("w-[600px]").props(
-                'aria-label="4.2 Multiplication – 2+ Digit Multiplicand AND Multiplier"'
-            )
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.label("PHASE 5: Division").classes("justify-center items-center")
-            ui.input().props('aria-label="PHASE 5: Division"').classes("sr-only")
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="5.1 Division – 2+ Digit Dividend 1-Digit Divisor",
-                value="",
-                on_change=lambda e: u_abacus_trial51.set_value(e.value),
-            ).classes("w-[600px]").props(
-                'aria-label="5.1 Division – 2+ Digit Dividend 1-Digit Divisor"'
-            )
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="5.2 Division – 2+ Digit Dividend AND 1 Digit Divisor",
-                value="",
-                on_change=lambda e: u_abacus_trial52.set_value(e.value),
-            ).classes("w-[600px]").props(
-                'aria-label="5.2 Division – 2+ Digit Dividend AND 1 Digit Divisor"'
-            )
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.label("PHASE 6: Decimals").classes("justify-center items-center")
-            ui.input().props('aria-label="PHASE 6: Decimals"').classes("sr-only")
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="6.1 Addition of Decimals",
-                value="",
-                on_change=lambda e: u_abacus_trial61.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="6.1 Addition of Decimals"')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="6.2 Subtraction of Decimals",
-                value="",
-                on_change=lambda e: u_abacus_trial62.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="6.2 Subtraction of Decimals"')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="6.3 Multiplication of Decimals",
-                value="",
-                on_change=lambda e: u_abacus_trial63.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="6.3 Multiplication of Decimals"')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="6.4 Division of Decimals",
-                value="",
-                on_change=lambda e: u_abacus_trial64.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="6.4 Division of Decimals"')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.label("PHASE 7: Fractions").classes("justify-center items-center")
-            ui.input().props('aria-label="PHASE 7: Fractions"').classes("sr-only")
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="7.1 Addition of Fractions",
-                value="",
-                on_change=lambda e: u_abacus_trial71.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="7.1 Addition of Fractions"')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="7.2 Subtraction of Fractions",
-                value="",
-                on_change=lambda e: u_abacus_trial72.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="7.2 Subtraction of Fractions"')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="7.3 Multiplication of Fractions",
-                value="",
-                on_change=lambda e: u_abacus_trial73.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="7.3 Multiplication of Fractions"')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="7.4 Division of Fractions",
-                value="",
-                on_change=lambda e: u_abacus_trial74.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="7.4 Division of Fractions"')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.label("PHASE 8: Roots and Percents").classes(
-                "justify-center items-center"
-            )
-            ui.input().props('aria-label="PHASE 8: Roots and Percents"').classes(
+            ).classes("sr-only")
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.label("PHASE 1: Setting and Clearing Numbers").classes(
+                    "justify-center items-center"
+                )
+            ui.input().props('aria-label="PHASE 1: Setting and Clearing Numbers"').classes(
                 "sr-only"
             )
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="8.1 Percent",
-                value="",
-                on_change=lambda e: u_abacus_trial81.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="8.1 Percent"')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="8.2 Square Root",
-                value="",
-                on_change=lambda e: u_abacus_trial82.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="8.2 Square Root"')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.button("SAVE", color="#172554", on_click=save).classes("text-white")
-            ui.button("GRAPH", color="#172554", on_click=graph).classes("text-white")
-            ui.button("EXIT", color="#172554", on_click=app.shutdown).classes(
-                "text-white"
-            )
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="1.1 Setting Numbers",
+                    value="",
+                    on_change=lambda e: u_abacus_trial11.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="1.1 Setting Numbers"').tooltip(
+                    "1.1 Setting Numbers"
+                )
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="1.2 Clearing Numbers",
+                    value="",
+                    on_change=lambda e: u_abacus_trial12.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="1.2 Clearing Numbers"').tooltip(
+                    "1.2 Clearing Numbers"
+                )
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="1.3 Place Value",
+                    value="",
+                    on_change=lambda e: u_abacus_trial13.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="1.3 Place Value"').tooltip(
+                    "1.3 Place Value"
+                )
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="1.4 Vocabulary",
+                    value="",
+                    on_change=lambda e: u_abacus_trial14.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="1.4 Vocabulary"').tooltip(
+                    "1.4 Vocabulary"
+                )
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.label("PHASE 2: Addition").classes("justify-center items-center")
+            ui.input().props('aria-label="PHASE 2: Addition"').classes("sr-only")
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="2.1 Addition of Single Digit Numbers",
+                    value="",
+                    on_change=lambda e: u_abacus_trial21.set_value(e.value),
+                ).classes("w-[600px]").props(
+                    'aria-label="2.1 Addition of Single Digit Numbers"'
+                )
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="2.2 Addition of Multiple Digit Numbers – Direct",
+                    value="",
+                    on_change=lambda e: u_abacus_trial22.set_value(e.value),
+                ).classes("w-[600px]").props(
+                    'aria-label="2.2 Addition of Multiple Digit Numbers – Direct"'
+                )
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="2.3 Addition of Multiple Digit Numbers – Indirect",
+                    value="",
+                    on_change=lambda e: u_abacus_trial23.set_value(e.value),
+                ).classes("w-[600px]").props(
+                    'aria-label="2.3 Addition of Multiple Digit Numbers – Indirect"'
+                )
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.label("PHASE 3: Subtraction").classes("justify-center items-center")
+                ui.input().props('aria-label="PHASE 3: Subtraction"').classes("sr-only")
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="3.1 Subtraction",
+                    value="",
+                    on_change=lambda e: u_abacus_trial31.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="3.1 Subtraction"')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="3.2 Subtraction of Multiple Digit Numbers – Direct",
+                    value="",
+                    on_change=lambda e: u_abacus_trial32.set_value(e.value),
+                ).classes("w-[600px]").props(
+                    'aria-label="3.2 Subtraction of Multiple Digit Numbers – Direct"'
+                )
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="3.3 Subtraction of Multiple Digit Numbers – Indirect",
+                    value="",
+                    on_change=lambda e: u_abacus_trial33.set_value(e.value),
+                ).classes("w-[600px]").props(
+                    'aria-label="3.3 Subtraction of Multiple Digit Numbers – Indirect"'
+                )
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.label("PHASE 4: Multiplication").classes("justify-center items-center")
+                ui.input().props('aria-label="PHASE 4: Multiplication"').classes("sr-only")
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="4.1 Multiplication – 2+ Digit Multiplicand 1-Digit Multiplier",
+                    value="",
+                    on_change=lambda e: u_abacus_trial41.set_value(e.value),
+                ).classes("w-[600px]").props(
+                    'aria-label="4.1 Multiplication – 2+ Digit Multiplicand 1-Digit Multiplier"'
+                )
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="4.2 Multiplication – 2+ Digit Multiplicand AND Multiplier",
+                    value="",
+                    on_change=lambda e: u_abacus_trial42.set_value(e.value),
+                ).classes("w-[600px]").props(
+                    'aria-label="4.2 Multiplication – 2+ Digit Multiplicand AND Multiplier"'
+                )
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.label("PHASE 5: Division").classes("justify-center items-center")
+                ui.input().props('aria-label="PHASE 5: Division"').classes("sr-only")
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="5.1 Division – 2+ Digit Dividend 1-Digit Divisor",
+                    value="",
+                    on_change=lambda e: u_abacus_trial51.set_value(e.value),
+                ).classes("w-[600px]").props(
+                    'aria-label="5.1 Division – 2+ Digit Dividend 1-Digit Divisor"'
+                )
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="5.2 Division – 2+ Digit Dividend AND 1 Digit Divisor",
+                    value="",
+                    on_change=lambda e: u_abacus_trial52.set_value(e.value),
+                ).classes("w-[600px]").props(
+                    'aria-label="5.2 Division – 2+ Digit Dividend AND 1 Digit Divisor"'
+                )
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.label("PHASE 6: Decimals").classes("justify-center items-center")
+                ui.input().props('aria-label="PHASE 6: Decimals"').classes("sr-only")
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="6.1 Addition of Decimals",
+                    value="",
+                    on_change=lambda e: u_abacus_trial61.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="6.1 Addition of Decimals"')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="6.2 Subtraction of Decimals",
+                    value="",
+                    on_change=lambda e: u_abacus_trial62.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="6.2 Subtraction of Decimals"')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="6.3 Multiplication of Decimals",
+                    value="",
+                    on_change=lambda e: u_abacus_trial63.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="6.3 Multiplication of Decimals"')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="6.4 Division of Decimals",
+                    value="",
+                    on_change=lambda e: u_abacus_trial64.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="6.4 Division of Decimals"')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.label("PHASE 7: Fractions").classes("justify-center items-center")
+                ui.input().props('aria-label="PHASE 7: Fractions"').classes("sr-only")
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="7.1 Addition of Fractions",
+                    value="",
+                    on_change=lambda e: u_abacus_trial71.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="7.1 Addition of Fractions"')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="7.2 Subtraction of Fractions",
+                    value="",
+                    on_change=lambda e: u_abacus_trial72.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="7.2 Subtraction of Fractions"')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="7.3 Multiplication of Fractions",
+                    value="",
+                    on_change=lambda e: u_abacus_trial73.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="7.3 Multiplication of Fractions"')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="7.4 Division of Fractions",
+                    value="",
+                    on_change=lambda e: u_abacus_trial74.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="7.4 Division of Fractions"')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.label("PHASE 8: Roots and Percents").classes(
+                    "justify-center items-center"
+                )
+                ui.input().props('aria-label="PHASE 8: Roots and Percents"').classes(
+                    "sr-only"
+                )
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="8.1 Percent",
+                    value="",
+                    on_change=lambda e: u_abacus_trial81.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="8.1 Percent"')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="8.2 Square Root",
+                    value="",
+                    on_change=lambda e: u_abacus_trial82.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="8.2 Square Root"')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.button("SAVE", color="#172554", on_click=save).classes("text-white")
+                ui.button("GRAPH", color="#172554", on_click=graph).classes("text-white")
+                ui.button("EXIT", color="#172554", on_click=app.shutdown).classes(
+                    "text-white"
+                )
+        create_ui()        

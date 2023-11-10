@@ -35,8 +35,33 @@ from appHelpers.helpers import dataBasePath
 ##############################################################################
 def create_connection(db_file):
     """
-    :param db_file:
-    :type db_file:
+    Create a SQLite database connection.
+
+    Parameters
+    ----------
+    db_file : str
+        The path to the SQLite database file.
+
+    Returns
+    -------
+    sqlite3.Connection
+        A connection object to the SQLite database.
+
+    Raises
+    ------
+    Error
+        If an error occurs while connecting to the database.
+
+    Examples
+    --------
+    >>> db_connection = create_connection("example.db")
+    >>> # Use db_connection for database operations
+    >>> # ...
+
+    Note
+    ----
+    It is recommended to close the database connection after usage by calling the `close` method
+    on the returned connection object.
     """
     conn = None
     try:
@@ -52,6 +77,7 @@ def create_connection(db_file):
     finally:
         if conn:
             conn.close()
+    return conn
 
 
 # create_connection(dataBasePath)
@@ -59,10 +85,28 @@ def create_connection(db_file):
 
 def create_table(conn, sql_create_sql_table):
     """
-    :param conn:
-    :type conn:
-    :param sql_create_sql_table:
-    :type sql_create_sql_table:
+    Create a table in the SQLite database.
+
+    Parameters
+    ----------
+    conn : sqlite3.Connection
+        The SQLite database connection.
+    sql_create_table : str
+        The SQL statement to create the table.
+
+    Returns
+    -------
+    None
+
+    Raises
+    ------
+    Error
+        If an error occurs while creating the table.
+
+    Examples
+    --------
+    >>> # Assuming 'conn' is a valid SQLite database connection
+    >>> create_table(conn, "CREATE TABLE IF NOT EXISTS example_table (id INTEGER PRIMARY KEY, name TEXT);")
     """
     try:
         c = conn.cursor()
@@ -78,7 +122,22 @@ def create_table(conn, sql_create_sql_table):
 
 
 def createTables():
-    """create tables within SQL database for all projects"""
+    """
+    Create tables within the SQLite database for all projects.
+
+    This function creates multiple tables in the SQLite database, each designed
+    to store progress data for different projects such as keyboarding, student data,
+    braille progress, screen reader progress, abacus progress, CVI progress, iOS progress,
+    braille note progress, and digital literacy progress.
+
+    Returns
+    -------
+    None
+
+    Examples
+    --------
+    >>> createTables()
+    """
     sql_create_keyboarding_table = """CREATE TABLE IF NOT EXISTS
     KEYBOARDING(
         ID INTEGER PRIMARY KEY AUTOINCREMENT,

@@ -35,17 +35,71 @@ ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
 def github() -> ui.html:
+    """
+    Retrieve and display the GitHub icon as HTML.
+
+    This function reads the content of the 'github.svg' file located in the root directory
+    and returns it as an HTML object. The SVG content is typically an icon representing the
+    GitHub logo.
+
+    Returns
+    -------
+    ui.html
+        An HTML object containing the GitHub icon.
+
+    Examples
+    --------
+    >>> github()
+    <ui.html object representing the GitHub icon>
+    """
     return ui.html(Path(ROOT_DIR).joinpath("github.svg").read_text())
 
 
 def branding() -> ui.html:
+    """
+    Retrieve and display the branding icon as HTML.
+
+    This function reads the content of the 'dsd-mark-white.svg' file located in the root directory
+    and returns it as an HTML object. The SVG content is typically an icon representing the
+    GitHub logo.
+
+    Returns
+    -------
+    ui.html
+        An HTML object containing the GitHub icon.
+
+    Examples
+    --------
+    >>> branding()
+    <ui.html object representing the branding icon>
+    """
     return ui.html(Path(ROOT_DIR).joinpath("dsd-mark-white.svg").read_text())
 
 
 @contextmanager
 def frame(navtitle: str):
-    """Custom page frame to share the same styling and behavior
-    across all pages"""
+    """
+    Custom page frame to share the same styling and behavior across all pages.
+
+    This function sets up a custom page frame with consistent styling and behavior
+    for all pages in the application. It includes a header with a navigation title,
+    color configurations, and a menu.
+
+    Parameters
+    ----------
+    navtitle : str
+        The title to be displayed in the navigation bar.
+
+    Yields
+    ------
+    None
+
+    Examples
+    --------
+    >>> with frame("Home"):
+    ...     # Code for the content of the page goes here
+    """
+
     ui.colors(
         primary="#183969", secondary="#bed2e3", positive="#ffca58", accent="#cfcac1"
     )

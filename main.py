@@ -73,9 +73,28 @@ from appPages import keyboarding
 
 def warningmessage(exception_type, exception_value, exception_traceback) -> None:
     """
-    exception_type (_type_): _description_
-    exception_value (_type_): _description_
-    exception_traceback (_type_): _description_
+    Log an error message and display a warning notification.
+
+    Parameters
+    ----------
+    exception_type : type
+        The type of the exception.
+    exception_value : Exception
+        The value of the exception.
+    exception_traceback : traceback.TracebackType
+        The traceback object containing information about the exception.
+
+    Returns
+    -------
+    None
+
+    Examples
+    --------
+    >>> try:
+    ...     # Code that may raise an exception
+    ...     result = 1 / 0
+    ... except Exception as e:
+    ...     warningmessage(type(e), e, traceback.extract_tb(e.__traceback__))
     """
     i = ""
     message = "Please make sure all fields are selected / filled out properly\n\n"
@@ -96,7 +115,22 @@ def warningmessage(exception_type, exception_value, exception_traceback) -> None
 
 @ui.page("/")
 def index_page() -> None:
-    """Opens Homepage for App"""
+    """
+    Opens the homepage for the app.
+
+    This function initializes the homepage of the app by creating various elements
+    such as contact logs, abacus, session notes, observations, braille, braille note,
+    CVI (Cortical Visual Impairment), iOS, screen reader, instructional materials,
+    digital literacy, and keyboarding.
+
+    Returns
+    -------
+    None
+
+    Examples
+    --------
+    >>> index_page()
+    """
     with theme.frame("Student Skills Progressions"):
         homepage.content()
 
@@ -126,6 +160,23 @@ MONITOR = ""
 
 
 def getresolution() -> str:
+    """
+    Retrieve the screen resolution of the primary monitor.
+
+    This function iterates through the available monitors using the `get_monitors` function
+    from the `screeninfo` module and returns the resolution of the primary monitor in the
+    format "width x height".
+
+    Returns
+    -------
+    str
+        A string representing the screen resolution in the format "width x height".
+
+    Examples
+    --------
+    >>> getresolution()
+    '1920x1080'
+    """
     SCREEN = " "
     for SCREEN in get_monitors():
         SCREENRESOLUTION = "{str(SCREEN.width)}x{str(SCREEN.height)}"

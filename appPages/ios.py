@@ -96,9 +96,42 @@ def create() -> None:
 
             def save(event):
                 """
-                :param event
-                :type event
-                """
+                    Save data for a student.
+
+                    Parameters
+                    ----------
+                    event : SomeEventType
+                        The event triggering the save function.
+
+                    Returns
+                    -------
+                    None
+
+                    Notes
+                    -----
+                    This function assumes the existence of various UI elements (e.g., `u_studentname`,
+                    `u_today_date`, ...), `datenow`, `json`,
+                    `Path`, and other variables related to the application.
+
+                    The function extracts abacus trial data and student information from UI elements,
+                    creates a dictionary with this data, and saves it as a JSON file in the student's
+                    directory within the "StudentDataFiles" folder. The filename is constructed based
+                    on the student's name and the current date.
+
+                    The function also appends the filename to a "Filenames.txt" file for reference.
+
+                    Examples
+                    --------
+                    >>> save(some_event)
+                    >>> # Trial data and student information saved successfully.
+                    >>> # The data is stored in a JSON file named based on the student's name and date.
+
+                    See Also
+                    --------
+                    Some related functions or classes that might be useful.
+
+                    """
+
                 studentname = u_studentname.value
                 today_date = u_today_date.value
                 ios_trial11 = int(u_ios_trial11.value)
@@ -214,7 +247,40 @@ def create() -> None:
 
                     # noinspection SqlResolve
                     def data_entry():
-                        """ """
+                    """
+                    Write progress data to the database.
+
+                    Connects to the SQLite database specified by `dataBasePath` and inserts a new row
+                    into the appropriate table with the provided abacus progress data.
+
+                    Parameters
+                    ----------
+                    None
+
+                    Returns
+                    -------
+                    None
+
+                    Notes
+                    -----
+                    This function assumes the existence of variables such as `dataBasePath`,
+                    `studentname`, `today_date`,  and  `sqlite3`
+
+                    The function establishes a connection to the database, creates a cursor, executes an
+                    SQL INSERT command with the abacus progress data, commits the changes, and notifies
+                    the user of successful data entry.
+
+                    Examples
+                    --------
+                    >>> data_entry()
+                    >>> # Progress data successfully written to the database.
+                    >>> # The user is notified of successful data entry.
+
+                    See Also
+                    --------
+                    Some related functions or classes that might be useful.
+
+                    """
                         conn = sqlite3.connect(dataBasePath)
                         c = conn.cursor()
                         c.execute(
@@ -339,9 +405,39 @@ def create() -> None:
 
         def graph(event):
             """
+            Generate and display graphs for a specific student.
 
-            :param event:
-            :type event:
+            Parameters
+            ----------
+            event : SomeEventType
+                The event triggering the graph generation (not used in the function).
+
+            Returns
+            -------
+            None
+
+            Notes
+            -----
+            This function assumes the existence of variables such as `u_studentname.value`,
+            `dataBasePath`, `USER_DIR`, `sqlite3`, pandas = `pd`, numpy = `np`, plotly graph-objects = `go`, and other global variables.
+
+            The function connects to the SQLite database, retrieves the abacus progress data
+            for the specified student, preprocesses the data, adds noise, performs descriptive
+            statistics, calculates growth factors, creates subplots for each abacus phase,
+            and generates an HTML file with the interactive graph. The generated HTML file is
+            opened in a browser window, and the user is notified of successful graph
+            generation.
+
+            Examples
+            --------
+            >>> graph(some_event)
+            >>> # iOS Skills Progression graphs for the specified student are generated.
+            >>> # The graphs are displayed in a browser window, and the user is notified.
+
+            See Also
+            --------
+            Some related functions or classes that might be useful.
+
             """
             dataBasePath = Path(USER_DIR).joinpath("StudentDatabase", "students.db")
             studentname = u_studentname.value
@@ -1233,472 +1329,500 @@ def create() -> None:
                 close_button="OK",
             )
 
-        # GUI Input
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.button("GRAPH", color="#172554", on_click=graph).classes("text-white")
-        with ui.row().classes("w-screen no-wrap"):
-            ui.label("iOS SKILLS PROGRESSION").classes("justify-center items-center")
-        with ui.row().classes("w-screen no-wrap"):
-            ui.select(
-                options=students,
-                with_input=True,
-                on_change=lambda e: ui.notify(e.value),
-            ).bind_value(u_studentname, "value").classes("w-[300px]").props(
-                'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
-            ).tooltip("Type Student Name, it will autocomplete AS you type")
-            ui.date(
-                value="f{datenow}", on_change=lambda e: u_today_date.set_value(e.value)
-            ).classes("w-1/2")
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.label(
-                "RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent"
-            ).props(
-                'aria-label="RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent" content-center'
-            )
-            ui.input().props(
-                'aria-label="RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent" content-center'
-            ).classes("sr-only")
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.label("PHASE 1: Navigation").classes("justify-center items-center")
-            ui.input().props('aria-label="PHASE 1: Navigation"').classes("sr-only")
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Turn Device On/Off",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_ios_trial11.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="Turn Device On/Off"')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="1.2 Turn VoiceOver On/Off",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_ios_trial12.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="Turn VoiceOver On/Off"')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="1.3 Simple Gestures to click on icons",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_ios_trial13.set_value(e.value),
-            ).classes("w-[600px]").props(
-                'aria-label="Simple Gestures to click on icons"'
-            )
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="1.4 Use home screen icons to open applications and documents",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_ios_trial14.set_value(e.value),
-            ).classes("w-[600px]").props(
-                'aria-label="Use home screen icons to open applications and documents"'
-            )
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="1.5 Save Documents",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_ios_trial15.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="Save Documents"')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="1.6 Explain and use age-appropriate online tools and resources",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_ios_trial16.set_value(e.value),
-            ).classes("w-[600px]").props(
-                'aria-label="Explain and use age-appropriate online tools and resources "'
-            )
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="1.7 Keyboarding (Bluetooth keyboard and Braille display if appropriate)",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_ios_trial17.set_value(e.value),
-            ).classes("w-[600px]").props(
-                'aria-label="Keyboarding (Bluetooth keyboard and Braille display if appropriate)"'
-            )
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="1.8 Learn about and use different types of elements (e.g. address bar, tabs, menu)",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_ios_trial18.set_value(e.value),
-            ).classes("w-[600px]").props(
-                'aria-label="Learn about and use different types of elements (e.g. address bar, tabs, menu)"'
-            )
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="1.9 Learn about and use Control Center, Notification Center, App Switcher, Status Bar, etc.",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_ios_trial19.set_value(e.value),
-            ).classes("w-[600px]").props(
-                'aria-label="Learn about and use Control Center, Notification Center, App Switcher, Status Bar, etc."'
-            )
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.label("PHASE 2: Word Processing").classes("justify-center items-center")
-            ui.input().props('aria-label="PHASE 2: Word Processing"').classes("sr-only")
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="2.1 Use a word processing application to write, edit, print and save simple assignments",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_ios_trial21.set_value(e.value),
-            ).classes("w-[600px]").props(
-                'aria-label="Use a word processing application to write, edit, print and save simple assignments"'
-            )
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="2.2 Read and navigate documents",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_ios_trial22.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="Read and navigate documents"')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="2.3 Use menu/tool bar functions (e.g. font/size/style, line spacing, margins to format, edit and print a document",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_ios_trial23.set_value(e.value),
-            ).classes("w-[600px]").props(
-                'aria-label="Use menu/tool bar functions (e.g. font/size/style, line spacing, margins) to format, edit and print a document"'
-            )
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="2.4 Highlight text, copy and paste text",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_ios_trial24.set_value(e.value),
-            ).classes("w-[600px]").props(
-                'aria-label="Highlight text, copy and paste text"'
-            )
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="2.5 Copy and paste images within the document and from outside sources",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_ios_trial25.set_value(e.value),
-            ).classes("w-[600px]").props(
-                'aria-label="Copy and paste images within the document and from outside sources"'
-            )
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="2.6 Proofread and edit writing using appropriate resources (e.g. dictionary, spell checker, grammar, and thesaurus)",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_ios_trial26.set_value(e.value),
-            ).classes("w-[600px]").props(
-                'aria-label="Proofread and edit writing using appropriate resources (e.g. dictionary, spell checker, grammar, and thesaurus)"'
-            )
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.label("PHASE 3: Spreadsheets").classes("justify-center items-center")
-            ui.input().props('aria-label="PHASE 3: Spreadsheets"').classes("sr-only")
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="3.1 Demonstrate an understanding of the spreadsheet as a tool to record, organize and graph information.",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_ios_trial31.set_value(e.value),
-            ).classes("w-[600px]").props(
-                'aria-label="Demonstrate an understanding of the spreadsheet as a tool to record, organize and graph information."'
-            )
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="3.2 Identify and explain terms and concepts related to spreadsheets (i.e. cell, column, row, values, labels, chart graph)",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_ios_trial32.set_value(e.value),
-            ).classes("w-[600px]").props(
-                'aria-label="Identify and explain terms and concepts related to spreadsheets (i.e. cell, column, row, values, labels, chart graph)"'
-            )
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="3.3 Enter/Edit data in spreadsheets and perform calculations using formulas",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_ios_trial33.set_value(e.value),
-            ).classes("w-[600px]").props(
-                'aria-label="Enter/Edit data in spreadsheets and perform calculations using formulas"'
-            )
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="3.4 Use mathematical symbols e.g. add, minus, multiply, divide, exponents",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_ios_trial34.set_value(e.value),
-            ).classes("w-[600px]").props(
-                'aria-label="Use mathematical symbols e.g. add, minus, multiply, divide, exponents "'
-            )
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="3.5 Use spreadsheets and other applications to make predictions, solve problems and conclusions.",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_ios_trial35.set_value(e.value),
-            ).classes("w-[600px]").props(
-                'aria-label="Use spreadsheets and other applications to make predictions, solve problems and draw conclusions. "'
-            )
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.label("PHASE 4: Presentation Tools").classes(
-                "justify-center items-center"
-            )
-            ui.input().props('aria-label="PHASE 4: Presentation Tools"').classes(
-                "sr-only"
-            )
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="4.1 Navigate slides (book format)",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_ios_trial41.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="Navigate slides (book format)"')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="4.2 Create, edit and format text on a slide",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_ios_trial42.set_value(e.value),
-            ).classes("w-[600px]").props(
-                'aria-label="Create, edit and format text on a slide "'
-            )
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="4.3 Create a series of slides and organize them to present research or convey an idea",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_ios_trial43.set_value(e.value),
-            ).classes("w-[600px]").props(
-                'aria-label="Create a series of slides and organize them to present research or convey an idea "'
-            )
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="4.4 Copy and paste or import graphics; change their size and position on a slid",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_ios_trial44.set_value(e.value),
-            ).classes("w-[600px]").props(
-                'aria-label="Copy and paste or import graphics; change their size and position on a slide"'
-            )
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="4.5 Use painting and drawing tools/applications to create and edit work",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_ios_trial45.set_value(e.value),
-            ).classes("w-[600px]").props(
-                'aria-label="Use painting and drawing tools/applications to create and edit work" '
-            )
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.label("PHASE 5: Digital Literacy").classes("justify-center items-center")
-            ui.input().props('aria-label="PHASE 5: Digital Literacy"').classes(
-                "sr-only"
-            )
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="5.1 Explain and demonstrate compliance with classroom, school rules (Acceptable Use Policy) regarding responsible use of computers and networks",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_ios_trial51.set_value(e.value),
-            ).classes("w-[600px]").props(
-                'aria-label="Explain and demonstrate compliance with classroom, school rules (Acceptable Use Policy) regarding responsible use of computers and networks"'
-            )
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="5.2 Explain responsible uses of technology and digital information; describe possible consequences of inappropriate use",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_ios_trial52.set_value(e.value),
-            ).classes("w-[600px]").props(
-                'aria-label="Explain responsible uses of technology and digital information; describe possible consequences of inappropriate use"'
-            )
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="5.3 Explain Fair Use  Guidelines for the use  of copyrighted  materials, (e.g. text, images, music, video in student projects) and giving credit to media creators",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_ios_trial53.set_value(e.value),
-            ).classes("w-[600px]").props(
-                'aria-label="Explain Fair Use Guidelines for the use of copyrighted materials, (e.g. text, images, music, video in student projects) and giving credit to media creators"'
-            )
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="5.4 Identify and explain the strategies for the safe and efficient use of computers (e.g. passwords, virus protection software, spam filters, popup blockers)",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_ios_trial54.set_value(e.value),
-            ).classes("w-[600px]").props(
-                'aria-label="Identify and explain the strategies for the safe and efficient use of computers (e.g. passwords, virus protection software, spam filters, popup blockers)"'
-            )
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="5.5 Demonstrate safe email practices, recognition of the potentially public exposure of email and appropriate email etiquette",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_ios_trial55.set_value(e.value),
-            ).classes("w-[600px]").props(
-                'aria-label="Demonstrate safe email practices, recognition of the potentially public exposure of email and appropriate email etiquette"'
-            )
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="5.6 Identify cyberbullying and describe strategies to deal with such a situation",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_ios_trial56.set_value(e.value),
-            ).classes("w-[600px]").props(
-                'aria-label="Identify cyberbullying and describe strategies to deal with such a situation"'
-            )
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="5.7 Recognize and describe the potential risks and dangers associated with various forms of online communications",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_ios_trial57.set_value(e.value),
-            ).classes("w-[600px]").props(
-                'aria-label="Recognize and describe the potential risks and dangers associated with various forms of online communications"'
-            )
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.label("PHASE 6: Advanced Skills").classes("justify-center items-center")
-            ui.input().props('aria-label="PHASE 6: Advanced Skills"').classes("sr-only")
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="6.1 Be responsible for device(s)",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_ios_trial61.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="Be responsible for device(s)"')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="6.2 Tactile graphics paired with digital graphics",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_ios_trial62.set_value(e.value),
-            ).classes("w-[600px]").props(
-                'aria-label="Tactile graphics paired with digital graphics"'
-            )
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="6.3 Understand and use Earcons (screen reader sound hints)",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_ios_trial63.set_value(e.value),
-            ).classes("w-[600px]").props(
-                'aria-label="Understand and use Earcons (screen reader sound hints)"'
-            )
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="6.4 Understand and use spatial relationships on the physical iPad screen",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_ios_trial64.set_value(e.value),
-            ).classes("w-[600px]").props(
-                'aria-label="Understand and use spatial relationships on the physical iPad screen"'
-            )
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="6.5 Use sonification to explore and understand digital graphics",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_ios_trial65.set_value(e.value),
-            ).classes("w-[600px]").props(
-                'aria-label="Use sonification to explore and understand digital graphics"'
-            )
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="6.6 Learn and use screen reader commands (gestures/keyboard/braille display)",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_ios_trial66.set_value(e.value),
-            ).classes("w-[600px]").props(
-                'aria-label="Learn and use screen reader commands (gestures/keyboard/braille display)"'
-            )
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="6.7 Increase listening speed (100% on the iPad for pleasure reading)",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_ios_trial67.set_value(e.value),
-            ).classes("w-[600px]").props(
-                'aria-label="Increase listening speed (100 on the iPad for pleasure reading)"'
-            )
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="6.8 Learn and use rotor commands",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_ios_trial68.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="Learn and use rotor commands"')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="6.9 Learn about accessibility features",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_ios_trial69.set_value(e.value),
-            ).classes("w-[600px]").props(
-                'aria-label="Learn about accessibility features"'
-            )
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="6.10 Learn note taking skills",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_ios_trial610.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="Learn note taking skills"')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="6.11 Learn and be able to explain what makes digital content accessible",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_ios_trial611.set_value(e.value),
-            ).classes("w-[600px]").props(
-                'aria-label="Learn and be able to explain what makes digital content accessible"'
-            )
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.button("SAVE", color="#172554", on_click=save).classes("text-white")
-            ui.button("GRAPH", color="#172554", on_click=graph).classes("text-white")
-            ui.button("EXIT", color="#172554", on_click=app.shutdown).classes(
-                "text-white"
-            )
+        def create_ui() -> None:
+            """
+            Create a GUI layout for entering student information and trial data.
+
+            Returns
+            -------
+            None
+
+            Notes
+            -----
+            This function assumes the existence of various UI elements (e.g., `u_studentname`,
+            `u_today_date`, ...`), and other variables related to the application.
+
+            The UI consists of several rows with different input elements for selecting a
+            student, entering the date, selecting a task, providing a rubric, entering trial
+            data, inputting anecdotal notes, and buttons for saving and exiting.
+
+            Examples
+            --------
+            >>> create_ui()
+            >>> # GUI layout created with various input elements and buttons.
+            >>> # Users can interact with the UI to enter student information and trial data.
+
+            See Also
+            --------
+            Some related functions or classes that might be useful.
+
+            """
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.button("GRAPH", color="#172554", on_click=graph).classes("text-white")
+            with ui.row().classes("w-screen no-wrap"):
+                ui.label("iOS SKILLS PROGRESSION").classes("justify-center items-center")
+            with ui.row().classes("w-screen no-wrap"):
+                ui.select(
+                    options=students,
+                    with_input=True,
+                    on_change=lambda e: ui.notify(e.value),
+                ).bind_value(u_studentname, "value").classes("w-[300px]").props(
+                    'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
+                ).tooltip("Type Student Name, it will autocomplete AS you type")
+                ui.date(
+                    value="f{datenow}", on_change=lambda e: u_today_date.set_value(e.value)
+                ).classes("w-1/2")
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.label(
+                    "RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent"
+                ).props(
+                    'aria-label="RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent" content-center'
+                )
+                ui.input().props(
+                    'aria-label="RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent" content-center'
+                ).classes("sr-only")
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.label("PHASE 1: Navigation").classes("justify-center items-center")
+                ui.input().props('aria-label="PHASE 1: Navigation"').classes("sr-only")
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Turn Device On/Off",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_ios_trial11.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="Turn Device On/Off"')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="1.2 Turn VoiceOver On/Off",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_ios_trial12.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="Turn VoiceOver On/Off"')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="1.3 Simple Gestures to click on icons",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_ios_trial13.set_value(e.value),
+                ).classes("w-[600px]").props(
+                    'aria-label="Simple Gestures to click on icons"'
+                )
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="1.4 Use home screen icons to open applications and documents",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_ios_trial14.set_value(e.value),
+                ).classes("w-[600px]").props(
+                    'aria-label="Use home screen icons to open applications and documents"'
+                )
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="1.5 Save Documents",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_ios_trial15.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="Save Documents"')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="1.6 Explain and use age-appropriate online tools and resources",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_ios_trial16.set_value(e.value),
+                ).classes("w-[600px]").props(
+                    'aria-label="Explain and use age-appropriate online tools and resources "'
+                )
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="1.7 Keyboarding (Bluetooth keyboard and Braille display if appropriate)",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_ios_trial17.set_value(e.value),
+                ).classes("w-[600px]").props(
+                    'aria-label="Keyboarding (Bluetooth keyboard and Braille display if appropriate)"'
+                )
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="1.8 Learn about and use different types of elements (e.g. address bar, tabs, menu)",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_ios_trial18.set_value(e.value),
+                ).classes("w-[600px]").props(
+                    'aria-label="Learn about and use different types of elements (e.g. address bar, tabs, menu)"'
+                )
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="1.9 Learn about and use Control Center, Notification Center, App Switcher, Status Bar, etc.",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_ios_trial19.set_value(e.value),
+                ).classes("w-[600px]").props(
+                    'aria-label="Learn about and use Control Center, Notification Center, App Switcher, Status Bar, etc."'
+                )
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.label("PHASE 2: Word Processing").classes("justify-center items-center")
+                ui.input().props('aria-label="PHASE 2: Word Processing"').classes("sr-only")
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="2.1 Use a word processing application to write, edit, print and save simple assignments",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_ios_trial21.set_value(e.value),
+                ).classes("w-[600px]").props(
+                    'aria-label="Use a word processing application to write, edit, print and save simple assignments"'
+                )
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="2.2 Read and navigate documents",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_ios_trial22.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="Read and navigate documents"')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="2.3 Use menu/tool bar functions (e.g. font/size/style, line spacing, margins to format, edit and print a document",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_ios_trial23.set_value(e.value),
+                ).classes("w-[600px]").props(
+                    'aria-label="Use menu/tool bar functions (e.g. font/size/style, line spacing, margins) to format, edit and print a document"'
+                )
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="2.4 Highlight text, copy and paste text",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_ios_trial24.set_value(e.value),
+                ).classes("w-[600px]").props(
+                    'aria-label="Highlight text, copy and paste text"'
+                )
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="2.5 Copy and paste images within the document and from outside sources",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_ios_trial25.set_value(e.value),
+                ).classes("w-[600px]").props(
+                    'aria-label="Copy and paste images within the document and from outside sources"'
+                )
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="2.6 Proofread and edit writing using appropriate resources (e.g. dictionary, spell checker, grammar, and thesaurus)",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_ios_trial26.set_value(e.value),
+                ).classes("w-[600px]").props(
+                    'aria-label="Proofread and edit writing using appropriate resources (e.g. dictionary, spell checker, grammar, and thesaurus)"'
+                )
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.label("PHASE 3: Spreadsheets").classes("justify-center items-center")
+                ui.input().props('aria-label="PHASE 3: Spreadsheets"').classes("sr-only")
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="3.1 Demonstrate an understanding of the spreadsheet as a tool to record, organize and graph information.",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_ios_trial31.set_value(e.value),
+                ).classes("w-[600px]").props(
+                    'aria-label="Demonstrate an understanding of the spreadsheet as a tool to record, organize and graph information."'
+                )
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="3.2 Identify and explain terms and concepts related to spreadsheets (i.e. cell, column, row, values, labels, chart graph)",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_ios_trial32.set_value(e.value),
+                ).classes("w-[600px]").props(
+                    'aria-label="Identify and explain terms and concepts related to spreadsheets (i.e. cell, column, row, values, labels, chart graph)"'
+                )
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="3.3 Enter/Edit data in spreadsheets and perform calculations using formulas",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_ios_trial33.set_value(e.value),
+                ).classes("w-[600px]").props(
+                    'aria-label="Enter/Edit data in spreadsheets and perform calculations using formulas"'
+                )
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="3.4 Use mathematical symbols e.g. add, minus, multiply, divide, exponents",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_ios_trial34.set_value(e.value),
+                ).classes("w-[600px]").props(
+                    'aria-label="Use mathematical symbols e.g. add, minus, multiply, divide, exponents "'
+                )
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="3.5 Use spreadsheets and other applications to make predictions, solve problems and conclusions.",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_ios_trial35.set_value(e.value),
+                ).classes("w-[600px]").props(
+                    'aria-label="Use spreadsheets and other applications to make predictions, solve problems and draw conclusions. "'
+                )
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.label("PHASE 4: Presentation Tools").classes(
+                    "justify-center items-center"
+                )
+                ui.input().props('aria-label="PHASE 4: Presentation Tools"').classes(
+                    "sr-only"
+                )
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="4.1 Navigate slides (book format)",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_ios_trial41.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="Navigate slides (book format)"')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="4.2 Create, edit and format text on a slide",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_ios_trial42.set_value(e.value),
+                ).classes("w-[600px]").props(
+                    'aria-label="Create, edit and format text on a slide "'
+                )
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="4.3 Create a series of slides and organize them to present research or convey an idea",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_ios_trial43.set_value(e.value),
+                ).classes("w-[600px]").props(
+                    'aria-label="Create a series of slides and organize them to present research or convey an idea "'
+                )
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="4.4 Copy and paste or import graphics; change their size and position on a slid",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_ios_trial44.set_value(e.value),
+                ).classes("w-[600px]").props(
+                    'aria-label="Copy and paste or import graphics; change their size and position on a slide"'
+                )
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="4.5 Use painting and drawing tools/applications to create and edit work",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_ios_trial45.set_value(e.value),
+                ).classes("w-[600px]").props(
+                    'aria-label="Use painting and drawing tools/applications to create and edit work" '
+                )
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.label("PHASE 5: Digital Literacy").classes("justify-center items-center")
+                ui.input().props('aria-label="PHASE 5: Digital Literacy"').classes(
+                    "sr-only"
+                )
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="5.1 Explain and demonstrate compliance with classroom, school rules (Acceptable Use Policy) regarding responsible use of computers and networks",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_ios_trial51.set_value(e.value),
+                ).classes("w-[600px]").props(
+                    'aria-label="Explain and demonstrate compliance with classroom, school rules (Acceptable Use Policy) regarding responsible use of computers and networks"'
+                )
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="5.2 Explain responsible uses of technology and digital information; describe possible consequences of inappropriate use",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_ios_trial52.set_value(e.value),
+                ).classes("w-[600px]").props(
+                    'aria-label="Explain responsible uses of technology and digital information; describe possible consequences of inappropriate use"'
+                )
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="5.3 Explain Fair Use  Guidelines for the use  of copyrighted  materials, (e.g. text, images, music, video in student projects) and giving credit to media creators",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_ios_trial53.set_value(e.value),
+                ).classes("w-[600px]").props(
+                    'aria-label="Explain Fair Use Guidelines for the use of copyrighted materials, (e.g. text, images, music, video in student projects) and giving credit to media creators"'
+                )
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="5.4 Identify and explain the strategies for the safe and efficient use of computers (e.g. passwords, virus protection software, spam filters, popup blockers)",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_ios_trial54.set_value(e.value),
+                ).classes("w-[600px]").props(
+                    'aria-label="Identify and explain the strategies for the safe and efficient use of computers (e.g. passwords, virus protection software, spam filters, popup blockers)"'
+                )
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="5.5 Demonstrate safe email practices, recognition of the potentially public exposure of email and appropriate email etiquette",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_ios_trial55.set_value(e.value),
+                ).classes("w-[600px]").props(
+                    'aria-label="Demonstrate safe email practices, recognition of the potentially public exposure of email and appropriate email etiquette"'
+                )
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="5.6 Identify cyberbullying and describe strategies to deal with such a situation",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_ios_trial56.set_value(e.value),
+                ).classes("w-[600px]").props(
+                    'aria-label="Identify cyberbullying and describe strategies to deal with such a situation"'
+                )
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="5.7 Recognize and describe the potential risks and dangers associated with various forms of online communications",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_ios_trial57.set_value(e.value),
+                ).classes("w-[600px]").props(
+                    'aria-label="Recognize and describe the potential risks and dangers associated with various forms of online communications"'
+                )
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.label("PHASE 6: Advanced Skills").classes("justify-center items-center")
+                ui.input().props('aria-label="PHASE 6: Advanced Skills"').classes("sr-only")
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="6.1 Be responsible for device(s)",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_ios_trial61.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="Be responsible for device(s)"')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="6.2 Tactile graphics paired with digital graphics",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_ios_trial62.set_value(e.value),
+                ).classes("w-[600px]").props(
+                    'aria-label="Tactile graphics paired with digital graphics"'
+                )
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="6.3 Understand and use Earcons (screen reader sound hints)",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_ios_trial63.set_value(e.value),
+                ).classes("w-[600px]").props(
+                    'aria-label="Understand and use Earcons (screen reader sound hints)"'
+                )
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="6.4 Understand and use spatial relationships on the physical iPad screen",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_ios_trial64.set_value(e.value),
+                ).classes("w-[600px]").props(
+                    'aria-label="Understand and use spatial relationships on the physical iPad screen"'
+                )
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="6.5 Use sonification to explore and understand digital graphics",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_ios_trial65.set_value(e.value),
+                ).classes("w-[600px]").props(
+                    'aria-label="Use sonification to explore and understand digital graphics"'
+                )
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="6.6 Learn and use screen reader commands (gestures/keyboard/braille display)",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_ios_trial66.set_value(e.value),
+                ).classes("w-[600px]").props(
+                    'aria-label="Learn and use screen reader commands (gestures/keyboard/braille display)"'
+                )
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="6.7 Increase listening speed (100% on the iPad for pleasure reading)",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_ios_trial67.set_value(e.value),
+                ).classes("w-[600px]").props(
+                    'aria-label="Increase listening speed (100 on the iPad for pleasure reading)"'
+                )
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="6.8 Learn and use rotor commands",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_ios_trial68.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="Learn and use rotor commands"')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="6.9 Learn about accessibility features",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_ios_trial69.set_value(e.value),
+                ).classes("w-[600px]").props(
+                    'aria-label="Learn about accessibility features"'
+                )
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="6.10 Learn note taking skills",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_ios_trial610.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="Learn note taking skills"')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="6.11 Learn and be able to explain what makes digital content accessible",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_ios_trial611.set_value(e.value),
+                ).classes("w-[600px]").props(
+                    'aria-label="Learn and be able to explain what makes digital content accessible"'
+                )
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.button("SAVE", color="#172554", on_click=save).classes("text-white")
+                ui.button("GRAPH", color="#172554", on_click=graph).classes("text-white")
+                ui.button("EXIT", color="#172554", on_click=app.shutdown).classes(
+                    "text-white"
+                )
+        create_ui()

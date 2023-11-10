@@ -28,40 +28,48 @@ import shutil
 from csv import writer
 from pathlib import Path
 
-##############################################################################
-# Set User Directory based on OS
-##############################################################################
+
 date_fmt = "%Y_%m_%d-%H%M%S_%p"
 
 datenow = datetime.datetime.now().strftime("%Y_%m_%d-%H%M%S_%p")
-##############################################################################
-# Set User Directory based on OS
-##############################################################################
+
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 USER_DIR = ""
 IMAGE_DIR = Path(ROOT_DIR).joinpath("images")
 START_DIR = ""
 
-"""
-def github() -> ui.html:
-    return ui.html(Path(ROOT_DIR).joinpath('github.svg').read_text())
 
-with ui.link(target='https://github.com/mrhunsaker/StudentDataGUI').classes('max-[305px]:hidden').tooltip('GitHub'):
-            github().classes('fill-white scale-125 m-1')
-
-
-def branding()) -> ui.html:
-    return ui.html(Path(ROOT_DIR).joinpath('dsd-mark-white.png).read_text())
-with ui.link(target='https://davis.k12.ut.us').classes('max-[305px]:hidden').tooltip('GitHub'):
-            branding().classes('m-1')
-"""
-
-
-##############################################################################
-# Set User Directory based on OS
-##############################################################################
 def set_start_dir() -> Path:
+    """
+    Create or retrieve the user directory path.
+
+    This function determines the appropriate user directory path based on the operating system
+    (Windows or POSIX) and creates the directory structure if it doesn't exist. The user directory
+    path is typically used for storing application-related data.
+
+    Returns
+    -------
+    Path
+        The path to the user directory.
+
+    Raises
+    ------
+    NameError
+        If the environment variable representing the user directory is not found.
+
+    Examples
+    --------
+    >>> user_directory = create_user_dir()
+    >>> # Use user_directory for storing application-related data
+    >>> # ...
+
+    Notes
+    -----
+    The user directory path may vary depending on the operating system:
+    - On Windows, it is typically under "%USERPROFILE%\OneDrive - Davis School District\Documents".
+    - On POSIX systems, it is typically under "$HOME/OneDrive - Davis School District/Documents".
+    """
     if os.name == "nt":
         try:
             tmp_path = Path(os.environ["USERPROFILE"]).joinpath("Documents")
@@ -86,22 +94,64 @@ START_DIR = set_start_dir()
 
 
 def working_dir() -> None:
+    """
+    Copy the working directory information to the application's root.
+
+    This function checks if the 'workingdirectory.py' file exists in the application's
+    root directory. If not, it copies the 'workingdirectory.txt' file from the
+    'START_DIR' (presumably a predefined starting directory) to the application's root
+    directory, naming the copy 'workingdirectory.py'.
+
+    Returns
+    -------
+    None
+
+    Examples
+    --------
+    >>> working_dir()
+    >>> # 'workingdirectory.py' is copied to the application's root directory
+    >>> # ...
+
+    Notes
+    -----
+    This function assumes the existence of 'ROOT_DIR' and 'START_DIR' variables
+    representing the application's root and starting directories, respectively.
+    """
     if not Path(ROOT_DIR).joinpath("workingdirectory.py").exists():
         workingdirectory_path = Path(ROOT_DIR).joinpath("workingdirectory.py")
         tmp_path = Path(START_DIR).joinpath("workingdirectory.txt")
         shutil.copy2(tmp_path, workingdirectory_path)
-
-
 working_dir()
 
 
 def create_roster() -> None:
+    """
+    Create the roster file for the application.
+
+    This function checks if the 'roster' directory exists in the 'appHelpers'
+    subdirectory of the application's root directory. If not, it copies the
+    'roster.txt' file from the 'START_DIR' (presumably a predefined starting
+    directory) to the 'appHelpers' subdirectory, naming the copy 'roster.py'.
+
+    Returns
+    -------
+    None
+
+    Examples
+    --------
+    >>> create_roster()
+    >>> # 'roster.py' is created in the 'appHelpers' subdirectory
+    >>> # ...
+
+    Notes
+    -----
+    This function assumes the existence of 'ROOT_DIR' and 'START_DIR' variables
+    representing the application's root and starting directories, respectively.
+    """
     if not Path(ROOT_DIR).joinpath("appHelpers", "roster").exists():
         roster_path = Path(ROOT_DIR).joinpath("roster.py")
         tmp_path = Path(START_DIR).joinpath("roster.txt")
         shutil.copy2(tmp_path, roster_path)
-
-
 create_roster()
 
 from appHelpers.roster import students
@@ -114,16 +164,58 @@ USER_DIR = create_user_dir()
 dataBasePath = Path(USER_DIR).joinpath("StudentDatabase", "students.db")
 
 
-##############################################################################
-# Error Logging
-##############################################################################
 
-
-##############################################################################
-# Set User Folders and necessary files in ~/Documents for each Student
-##############################################################################
 def createFolderHierarchy() -> None:
-    """creates folder hierarchy on user computer"""
+    """
+    Create a folder hierarchy on the user's computer for student data.
+
+    This function iterates over a list of student names and checks if the
+    corresponding folder structure exists in the specified user directory
+    (`USER_DIR`). If not, it creates the required directory structure and
+    initializes necessary files.
+
+    Returns
+    -------
+    None
+
+    Examples
+    --------
+    >>> createFolderHierarchy()
+    >>> # Folder hierarchy and files created in the specified user directory
+    >>> # ...
+
+    Notes
+    -----
+    This function assumes the existence of the `students`, `USER_DIR`, `ROOT_DIR`,
+    `workingdirectory.py`, and other variables representing the application's
+    student data and file paths.
+
+    The function creates the following directory structure:
+    - StudentDatabase
+        - errorLogs
+        - StudentDataFiles
+            - [StudentName]
+                - StudentDataSheets
+                - StudentInstructionMaterials
+                - StudentVisionAssessments
+                - omnibusDatabase.csv
+                - BrailleSkillsProgression.csv
+                - UEBLiterarySkillsProgression.html
+                - UEBTechnicalSkillsProgression.html
+                - BasicTactileRecognition.html
+                - ScreenReaderSkillsProgression.csv
+                - ScreenReaderSkillsProgression.html
+                - AbacusSkillsProgression.csv
+                - AbacusSkillsProgression.html
+                - cviProgression.csv
+                - cviProgression.html
+                - digitalliteracyProgression.csv
+                - digitalliteracyProgression.html
+                - iosProgression.csv
+                - iosProgression.html
+                - bntProgression.csv
+                - bntProgression.html
+    """
     for name in students:
         if not Path(USER_DIR).joinpath("StudentDatabase").exists():
             tmppath = Path(USER_DIR).joinpath("StudentDatabase")

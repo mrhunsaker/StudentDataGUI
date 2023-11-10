@@ -64,9 +64,42 @@ def create() -> None:
 
             def save(event):
                 """
-                :param event:
-                :type event:
-                """
+                    Save data for a student.
+
+                    Parameters
+                    ----------
+                    event : SomeEventType
+                        The event triggering the save function.
+
+                    Returns
+                    -------
+                    None
+
+                    Notes
+                    -----
+                    This function assumes the existence of various UI elements (e.g., `u_studentname`,
+                    `u_today_date`, ...), `datenow`, `json`,
+                    `Path`, and other variables related to the application.
+
+                    The function extracts abacus trial data and student information from UI elements,
+                    creates a dictionary with this data, and saves it as a JSON file in the student's
+                    directory within the "StudentDataFiles" folder. The filename is constructed based
+                    on the student's name and the current date.
+
+                    The function also appends the filename to a "Filenames.txt" file for reference.
+
+                    Examples
+                    --------
+                    >>> save(some_event)
+                    >>> # Trial data and student information saved successfully.
+                    >>> # The data is stored in a JSON file named based on the student's name and date.
+
+                    See Also
+                    --------
+                    Some related functions or classes that might be useful.
+
+                    """
+
                 studentname = u_studentname.value
                 today_date = u_today_date.value
                 cvi_trial11 = int(u_cvi_trial11.value)
@@ -120,7 +153,40 @@ def create() -> None:
                     # noinspection SqlResolve
 
                 def data_entry():
-                    """ """
+                    """
+                    Write progress data to the database.
+
+                    Connects to the SQLite database specified by `dataBasePath` and inserts a new row
+                    into the appropriate table with the provided abacus progress data.
+
+                    Parameters
+                    ----------
+                    None
+
+                    Returns
+                    -------
+                    None
+
+                    Notes
+                    -----
+                    This function assumes the existence of variables such as `dataBasePath`,
+                    `studentname`, `today_date`,  and  `sqlite3`
+
+                    The function establishes a connection to the database, creates a cursor, executes an
+                    SQL INSERT command with the abacus progress data, commits the changes, and notifies
+                    the user of successful data entry.
+
+                    Examples
+                    --------
+                    >>> data_entry()
+                    >>> # Progress data successfully written to the database.
+                    >>> # The user is notified of successful data entry.
+
+                    See Also
+                    --------
+                    Some related functions or classes that might be useful.
+
+                    """
                     conn = sqlite3.connect(dataBasePath)
                     c = conn.cursor()
                     c.execute(
@@ -179,9 +245,39 @@ def create() -> None:
 
         def graph(event):
             """
+            Generate and display graphs for a specific student.
 
-            :param event:
-            :type event:
+            Parameters
+            ----------
+            event : SomeEventType
+                The event triggering the graph generation (not used in the function).
+
+            Returns
+            -------
+            None
+
+            Notes
+            -----
+            This function assumes the existence of variables such as `u_studentname.value`,
+            `dataBasePath`, `USER_DIR`, `sqlite3`, pandas = `pd`, numpy = `np`, plotly graph-objects = `go`, and other global variables.
+
+            The function connects to the SQLite database, retrieves the abacus progress data
+            for the specified student, preprocesses the data, adds noise, performs descriptive
+            statistics, calculates growth factors, creates subplots for each abacus phase,
+            and generates an HTML file with the interactive graph. The generated HTML file is
+            opened in a browser window, and the user is notified of successful graph
+            generation.
+
+            Examples
+            --------
+            >>> graph(some_event)
+            >>> # CVI Progression graphs for the specified student are generated.
+            >>> # The graphs are displayed in a browser window, and the user is notified.
+
+            See Also
+            --------
+            Some related functions or classes that might be useful.
+
             """
             dataBasePath = Path(USER_DIR).joinpath("StudentDatabase", "students.db")
             studentname = u_studentname.value
@@ -821,131 +917,158 @@ def create() -> None:
                 close_button="OK",
             )
 
-            # GUI Input
+        def create_ui() -> None:
+            """
+            Create a GUI layout for entering student information and trial data.
 
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.button("GRAPH", color="#172554", on_click=graph).classes("text-white")
-        with ui.row().classes("w-screen no-wrap"):
-            ui.select(
-                options=students,
-                with_input=True,
-                on_change=lambda e: ui.notify(e.value),
-            ).bind_value(u_studentname, "value").classes("w-[300px]").props(
-                'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
-            ).tooltip("Type Student Name, it will autocomplete as you type")
-            ui.date(
-                value="f{datenow}", on_change=lambda e: u_today_date.set_value(e.value)
-            ).classes("w-1/2")
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.label(
-                "RUBRIC: 0=CVI Range 1-2 | 1=CVI Range 3-4 | 2=CVI Range 5-6 |  3=CVI Range 7-8"
-            ).props(
-                'aria-label="RUBRIC: 0=CVI Range 1-2 | 1=CVI Range 3-4 | 2=CVI Range 5-6 |  3=CVI Range 7-8"'
-            )
-            ui.input().props(
-                'aria-label="RUBRIC: 0=CVI Range 1-2 | 1=CVI Range 3-4 | 2=CVI Range 5-6 |  3=CVI Range 7-8" content-center'
-            ).classes("sr-only")
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Color Preference",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_cvi_trial11.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="Color Preference"').tooltip(
-                "Color Preference"
-            )
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Need for Movement",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_cvi_trial12.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="Need for Movement"').tooltip(
-                "Need for Movement"
-            )
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Latency",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_cvi_trial13.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="Latency"').tooltip("Latency")
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Field Preference",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_cvi_trial14.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="Field Preference"').tooltip(
-                "Field Preference"
-            )
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Visual Complexity",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_cvi_trial21.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="Visual Complexity"').tooltip(
-                "Visual Complexity"
-            )
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Nonpurposeful Gaze",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_cvi_trial22.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="Nonpurposeful Gaze"').tooltip(
-                "Nonpurposeful Gaze"
-            )
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Distance Viewing",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_cvi_trial23.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="Distance Viewing"').tooltip(
-                "Distance Viewing"
-            )
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Atypical Reflexes",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_cvi_trial31.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="Atypical Reflexes"').tooltip(
-                "Atypical Reflexes"
-            )
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Visual Novelty",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_cvi_trial32.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="Visual Novelty"').tooltip(
-                "Visual Novelty"
-            )
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Visual Reach",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_cvi_trial33.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="Visual Reach"').tooltip(
-                "Visual Reach"
-            )
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.button("SAVE", color="#172554", on_click=save).classes("text-white")
-            ui.button("GRAPH", color="#172554", on_click=graph).classes("text-white")
-            ui.button("EXIT", color="#172554", on_click=app.shutdown).classes(
-                "text-white"
-            )
+            Returns
+            -------
+            None
+
+            Notes
+            -----
+            This function assumes the existence of various UI elements (e.g., `u_studentname`,
+            `u_today_date`, ...`), and other variables related to the application.
+
+            The UI consists of several rows with different input elements for selecting a
+            student, entering the date, selecting a task, providing a rubric, entering trial
+            data, inputting anecdotal notes, and buttons for saving and exiting.
+
+            Examples
+            --------
+            >>> create_ui()
+            >>> # GUI layout created with various input elements and buttons.
+            >>> # Users can interact with the UI to enter student information and trial data.
+
+            See Also
+            --------
+            Some related functions or classes that might be useful.
+
+            """
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.button("GRAPH", color="#172554", on_click=graph).classes("text-white")
+            with ui.row().classes("w-screen no-wrap"):
+                ui.select(
+                    options=students,
+                    with_input=True,
+                    on_change=lambda e: ui.notify(e.value),
+                ).bind_value(u_studentname, "value").classes("w-[300px]").props(
+                    'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
+                ).tooltip("Type Student Name, it will autocomplete as you type")
+                ui.date(
+                    value="f{datenow}", on_change=lambda e: u_today_date.set_value(e.value)
+                ).classes("w-1/2")
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.label(
+                    "RUBRIC: 0=CVI Range 1-2 | 1=CVI Range 3-4 | 2=CVI Range 5-6 |  3=CVI Range 7-8"
+                ).props(
+                    'aria-label="RUBRIC: 0=CVI Range 1-2 | 1=CVI Range 3-4 | 2=CVI Range 5-6 |  3=CVI Range 7-8"'
+                )
+                ui.input().props(
+                    'aria-label="RUBRIC: 0=CVI Range 1-2 | 1=CVI Range 3-4 | 2=CVI Range 5-6 |  3=CVI Range 7-8" content-center'
+                ).classes("sr-only")
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Color Preference",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_cvi_trial11.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="Color Preference"').tooltip(
+                    "Color Preference"
+                )
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Need for Movement",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_cvi_trial12.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="Need for Movement"').tooltip(
+                    "Need for Movement"
+                )
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Latency",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_cvi_trial13.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="Latency"').tooltip("Latency")
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Field Preference",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_cvi_trial14.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="Field Preference"').tooltip(
+                    "Field Preference"
+                )
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Visual Complexity",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_cvi_trial21.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="Visual Complexity"').tooltip(
+                    "Visual Complexity"
+                )
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Nonpurposeful Gaze",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_cvi_trial22.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="Nonpurposeful Gaze"').tooltip(
+                    "Nonpurposeful Gaze"
+                )
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Distance Viewing",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_cvi_trial23.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="Distance Viewing"').tooltip(
+                    "Distance Viewing"
+                )
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Atypical Reflexes",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_cvi_trial31.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="Atypical Reflexes"').tooltip(
+                    "Atypical Reflexes"
+                )
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Visual Novelty",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_cvi_trial32.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="Visual Novelty"').tooltip(
+                    "Visual Novelty"
+                )
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Visual Reach",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_cvi_trial33.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="Visual Reach"').tooltip(
+                    "Visual Reach"
+                )
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.button("SAVE", color="#172554", on_click=save).classes("text-white")
+                ui.button("GRAPH", color="#172554", on_click=graph).classes("text-white")
+                ui.button("EXIT", color="#172554", on_click=app.shutdown).classes(
+                    "text-white"
+                )
+        create_ui()

@@ -2,7 +2,7 @@
 
 Student Data Input GUI using NiceGUI and SQLite designed be platform-independent.
 
-To use this package, first create a file called "roster.txt" in your ~/Documents on linux/MacOS or %userprofile%/Documents in Windows Add student names following the pattern of surrounding text with single quotes (' ') and separating entries with commas. The program will use this file to create a roster.py file in the correct location and use these student names.
+To use this package, first create a file called "roster.txt" in your ~/Documents on linux/MacOS or %userprofile%\Documents in Windows Add student names following the pattern of surrounding text with single quotes (' ') and separating entries with commas. The program will use this file to create a roster.py file in the correct location and use these student names.
 ex:
 
 ```txt
@@ -12,6 +12,32 @@ students = [
     'StudentTwo', 
     'StudentN'
 ]
+```
+
+Also create a file called "workingdirectory" in your ~/Documents (/home/<username>/Documents) on linux/MacOS or %userprofile%\Documents in windows. 
+
+Copy the following code into the file, changing <path - to - folder> to where you want to store the documents created by this program. The program will place files in <path - to - folder> in a Documents folder. So if you want to place it in the ~/Documents folder the <path - to -folder> would be "/home/<username>"
+```txt
+    if os.name == "nt":
+        try:
+            tmp_path = Path(os.environ["USERPROFILE"]).joinpath(
+                "<path - to - folder>", "Documents"
+            )
+            Path.mkdir(tmp_path, parents=True, exist_ok=True)
+            USER_DIR = Path(tmp_path)
+        except NameError as e:
+            print(f"{e}\n Cannot find %USERPROFILE")
+    elif os.name == "posix":
+        try:
+            tmp_path = Path(os.environ["HOME"]).joinpath(
+                "OneDrive - Davis School District", "Documents"
+            )
+            Path.mkdir(tmp_path, parents=True, exist_ok=True)
+            USER_DIR = Path(tmp_path)
+        except NameError as e:
+            print(f"{e}\n Cannot find $HOME")
+    return USER_DIR
+
 ```
 
 I recommend leaving the first entry as it is, unless of course you have a student with that name. It is just a cheeky reference to one of the inventors of SQL and a fake student I can use to test settings without accidentally inserting data into a database that I later would have to remove.
@@ -26,7 +52,7 @@ ability for you to import files into each student folder as desired.
 Here is the tree view of this file structure:
 
 ```bash
- ~/Documents # or %userprofile%\Documents on Windows
+ <path - to -folder>/Documents # or <path - to -folder>\Documents on Windows
  +---StudentDatabase
    +-- errorLogs
    +-- StudentDataFiles
@@ -73,7 +99,7 @@ Here is the tree view of this file structure:
 
 ## Set up the Program
 
-I set up and run this program using Poetry on Python3.11 because it allows me to keep my system python3 installation streamlined and allows me to install everything with precision on multiple computers, but I am including a requirements.txt file as well for those who just want to install required modules globally.
+I set up and run this program using Poetry on Python3.12 because it allows me to keep my system python3 installation streamlined and allows me to install everything with precision on multiple computers, but I am including a requirements.txt file as well for those who just want to install required modules globally.
 
 By preference, I install either [pyenv](https://github.com/pyenv/pyenv) or [pyenv-win](https://github.com/pyenv-win/pyenv-win) to manage multiple python/python3 installations.
 
@@ -85,11 +111,11 @@ By preference, I install either [pyenv](https://github.com/pyenv/pyenv) or [pyen
 $ python3 -m pip install --user poetry
 ```
 
-Enter the project repository and set up the virtual environment using the information in pyproject.toml 
+Enter the project repository and set up the virtual environment using the information in pyproject.toml. The program currenty works with python 3.10-3.12
 
 ```bash
-$ poetry env 3.10.11
-$ poetry install
+$ poetry env 3.12
+$ poetry update
 ```
 
 ## Clone the project 
@@ -101,12 +127,12 @@ $ cd ~/GitHubRepos # cd ~\GitHubRepos on Windows
 $ git clone https://github.com/mrhunsaker/StudentDataGUI 
 ```
 
-This makes a folder named StudentDataGUI inside the GitHubRepos folder (~/GitHubRepos/StudentDataGUI)
+This makes a folder named StudentDataGUI inside the GitHubRepos folder (I use %userprofile%/GitHubRepos/StudentDataGUI)
 
 #### To run program
 
 ```bash
-$ cd </path/to/project>
+$ cd </path/to/project> # cd ~/GitHubRepos/StudentDataGUI on my WIndows system
 $ poetry run python main.py # poetry run python3 main.py for *nix systems
 ```
 

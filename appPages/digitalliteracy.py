@@ -137,10 +137,42 @@ def create() -> None:
 
             def save(event):
                 """
+                    Save data for a student.
 
-                :param event:
-                :type event:
-                """
+                    Parameters
+                    ----------
+                    event : SomeEventType
+                        The event triggering the save function.
+
+                    Returns
+                    -------
+                    None
+
+                    Notes
+                    -----
+                    This function assumes the existence of various UI elements (e.g., `u_studentname`,
+                    `u_today_date`, ...), `datenow`, `json`,
+                    `Path`, and other variables related to the application.
+
+                    The function extracts abacus trial data and student information from UI elements,
+                    creates a dictionary with this data, and saves it as a JSON file in the student's
+                    directory within the "StudentDataFiles" folder. The filename is constructed based
+                    on the student's name and the current date.
+
+                    The function also appends the filename to a "Filenames.txt" file for reference.
+
+                    Examples
+                    --------
+                    >>> save(some_event)
+                    >>> # Trial data and student information saved successfully.
+                    >>> # The data is stored in a JSON file named based on the student's name and date.
+
+                    See Also
+                    --------
+                    Some related functions or classes that might be useful.
+
+                    """
+
                 studentname = u_studentname.value
                 today_date = u_today_date.value
                 digitalliteracy_trial11 = int(u_digitalliteracy_trial11.value)
@@ -338,7 +370,40 @@ def create() -> None:
 
                 # noinspection SqlResolve
                 def data_entry():
-                    """ """
+                    """
+                    Write progress data to the database.
+
+                    Connects to the SQLite database specified by `dataBasePath` and inserts a new row
+                    into the appropriate table with the provided abacus progress data.
+
+                    Parameters
+                    ----------
+                    None
+
+                    Returns
+                    -------
+                    None
+
+                    Notes
+                    -----
+                    This function assumes the existence of variables such as `dataBasePath`,
+                    `studentname`, `today_date`,  and  `sqlite3`
+
+                    The function establishes a connection to the database, creates a cursor, executes an
+                    SQL INSERT command with the abacus progress data, commits the changes, and notifies
+                    the user of successful data entry.
+
+                    Examples
+                    --------
+                    >>> data_entry()
+                    >>> # Progress data successfully written to the database.
+                    >>> # The user is notified of successful data entry.
+
+                    See Also
+                    --------
+                    Some related functions or classes that might be useful.
+
+                    """
                     conn = sqlite3.connect(dataBasePath)
                     c = conn.cursor()
                     c.execute(
@@ -617,7 +682,41 @@ def create() -> None:
                 data_entry()
 
         def graph(event):
-            """ """
+            """
+            Generate and display graphs for a specific student.
+
+            Parameters
+            ----------
+            event : SomeEventType
+                The event triggering the graph generation (not used in the function).
+
+            Returns
+            -------
+            None
+
+            Notes
+            -----
+            This function assumes the existence of variables such as `u_studentname.value`,
+            `dataBasePath`, `USER_DIR`, `sqlite3`, pandas = `pd`, numpy = `np`, plotly graph-objects = `go`, and other global variables.
+
+            The function connects to the SQLite database, retrieves the abacus progress data
+            for the specified student, preprocesses the data, adds noise, performs descriptive
+            statistics, calculates growth factors, creates subplots for each abacus phase,
+            and generates an HTML file with the interactive graph. The generated HTML file is
+            opened in a browser window, and the user is notified of successful graph
+            generation.
+
+            Examples
+            --------
+            >>> graph(some_event)
+            >>> # Abacus Skills Progression graphs for the specified student are generated.
+            >>> # The graphs are displayed in a browser window, and the user is notified.
+
+            See Also
+            --------
+            Some related functions or classes that might be useful.
+
+            """
             dataBasePath = Path(USER_DIR).joinpath("StudentDatabase", "students.db")
             studentname = u_studentname.value
             conn = sqlite3.connect(dataBasePath)
@@ -2667,784 +2766,812 @@ def create() -> None:
                 close_button="OK",
             )
 
-        # GUI Input
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.button("GRAPH", color="#172554", on_click=graph).classes("text-white")
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.select(
-                options=students,
-                with_input=True,
-                on_change=lambda e: ui.notify(e.value),
-            ).bind_value(u_studentname, "value").classes("w-[300px]").props(
-                'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
-            ).tooltip("Type Student Name, it will autocomplete AS you type")
-            ui.date(
-                value="f{datenow}", on_change=lambda e: u_today_date.set_value(e.value)
-            ).classes("w-1/2")
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.label(
-                "RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent"
-            ).props(
-                'aria-label="RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent" content-center'
-            )
-            ui.input().props(
-                'aria-label="RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent" content-center'
-            ).classes("sr-only")
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.label("PHASE 1: Elementary Digital Literacy Skills").classes(
-                "justify-center items-center"
-            )
-            ui.input().props(
-                'aria-label="PHASE 1: Elementary Digital Literacy Skills"'
-            ).classes("sr-only")
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.label("Basic Operations").classes("justify-center items-center")
-            ui.input().props('aria-label=Basic Operations"').classes("sr-only")
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Turn computer on and off",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial11.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Use pointing device such as a mouse to manipulate shapes, icons; click on urls, radio buttons, check boxes; use scroll bar ",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial12.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Use desktop icons, windows and menus to open applications and documents ",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial13.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Save documents ",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial14.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Explain and use age-appropriate online tools and resources (e.g. tutorial, assessment, web browser) ",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial15.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Keyboarding (Use proper posture and ergonomics, Locate and use letter and numbers keys with left and right hand placement, Locate and use correct finger, hand for space bar,return/enter and shift key, "
-                "Gain proficiency and speed in touch typing)",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial16.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.label("Word Processing").classes("justify-center items-center")
-            ui.input().props('aria-label="Word Processing"').classes("sr-only")
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Use a word processing application to write, edit, print and save simple assignments ",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial21.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Use menu/tool bar functions (e.g. font/size/style/, line spacing, margins) to format, edit and print a document ",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial22.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Highlight text, copy and paste text ",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial23.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Copy and paste images within the document and from outside sources ",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial24.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Insert and size a graphic in a document ",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial25.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Proofread and edit writing using appropriate resources (e.g. dictionary, spell checker, grammar, and thesaurus) ",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial26.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.label("Spreadsheets").classes("justify-center items-center")
-            ui.input().props('aria-label="Spreadsheets"').classes("sr-only")
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Demonstrate an understanding of the spreadsheet as a tool to record, organize and graph information. ",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial31.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Identify and explain terms and concepts related to spreadsheets (i.e. cell, column, row, values, labels, chart graph) ",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial32.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Enter/edit data in spreadsheets and perform calculations using formulas ",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial33.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Use mathematical symbols e.g. + add, - minus, *multiply, /divide, ^ exponents ",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial34.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Use spreadsheets and other applications to make predictions, solve problems and draw conclusions ",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial35.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.label("Presentation Tools").classes("justify-center items-center")
-            ui.input().props('aria-label="Presentation Tools"').classes("sr-only")
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Create, edit and format text on a slide ",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial41.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Create a series of slides and organize them to present research or convey an idea ",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial42.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Copy and paste or import graphics; change their size and position on a slide ",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial43.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Use painting and drawing tools/ applications to create and edit work ",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial44.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Watch online videos and use play, pause, rewind and forward buttons while taking notes ",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial45.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.label("Copyright and Plagiarism").classes("justify-center items-center")
-            ui.input().props('aria-label="Copyright and Plagiarism"').classes("sr-only")
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Explain and demonstrate compliance with classroom, school rules (Acceptable Use Policy) regarding responsible use of computers and networks ",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial51.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Explain responsible uses of technology and digital information; describe possible consequences of inappropriate use ",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial52.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Explain Fair Use Guidelines for the use of copyrighted materials,(e.g. text, images, music, video in student projects) and giving credit to media creators ",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial53.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Identify and explain the strategies for the safe and efficient use of computers (e.g. passwords, virus protection software, spam filters, popup blockers)",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial54.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Demonstrate safe email practices, recognition of the potentially public exposure of email and appropriate email etiquette ",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial55.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Identify cyberbullying and describe strategies to deal with such a situation  ",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial56.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Recognize and describe the potential risks and dangers associated with various forms of online communications ",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial57.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.label("Research and Gathering Information").classes(
-                "justify-center items-center"
-            )
-            ui.input().props('aria-label="Research and Gathering Information"').classes(
-                "sr-only"
-            )
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Use age appropriate technologies to locate, collect, organize content from media collection for specific purposes, citing sources ",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial61.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Perform basic searches on databases, (e.g. library, card catalog, encyclopedia) to locate information. Evaluate teacher-selected or self-selected Internet resources in terms of their usefulness for research ",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial62.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Use content specific technology tools (e.g. environmental probes, sensors, and measuring devices, simulations) to gather and analyze data. ",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial63.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Use Web 2.0 tools (e.g. online discussions, blogs and wikis) to gather and share information  ",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial64.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Identify and analyze the purpose of a media message (to inform, persuade and entertain) ",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial65.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.label("Communication and Collaboration").classes(
-                "justify-center items-center"
-            )
-            ui.input().props('aria-label="Communication and Collaboration"').classes(
-                "sr-only"
-            )
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Work collaboratively online with other students under teacher supervision  ",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial71.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Use a variety of age-appropriate technologies (e.g. drawing program, presentation software) to communicate and exchange ideas ",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial72.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Create projects that use text and various forms of graphics, audio, and video, (with proper citations) to communicate ideas. ",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial73.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Use teacher developed guidelines to evaluate multimedia presentations for organization, content, design, presentation and appropriateness of citations. ",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial74.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Use district approved Web 2.0 tools for communication and collaboration ",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial75.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.label("PHASE 2: Secondary Digital Literacy").classes(
-                "justify-center items-center"
-            )
-            ui.input().props(
-                'aria-label="PHASE 2: Secondary Digital Literacy"'
-            ).classes("sr-only")
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.label("Basic Operations").classes("justify-center items-center")
-            ui.input().props('aria-label="Basic Operations"').classes("sr-only")
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label=" Identify successful troubleshooting strategies for minor hardware and software issues/problems (e.g., “frozen screen”)",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial81.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Independently operate peripheral equipment (e.g., scanner, digital camera, camcorder), if available.  ",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial82.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Compress and expand large files  ",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial83.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Identify and use a variety of storage media (e.g., CDs, DVDs, flash drives, school servers, and online storage spaces), and provide a rationale for using a certain medium for a specific purpose.",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial84.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Demonstrate automaticity in keyboarding skills by increasing accuracy and speed (For students with disabilities, demonstrate alternate input techniques as appropriate.)",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial85.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Identify and assess the capabilities and limitations of emerging technologies. ",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial86.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.label("Word Processing").classes("justify-center items-center")
-            ui.input().props('aria-label="Word Processing"').classes("sr-only")
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Demonstrate use of intermediate features in word processing application (e.g., tabs, indents, headers and footers, end notes, bullet and numbering, tables). ",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial91.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Apply advanced formatting and page layout features when appropriate (e.g., columns, templates, and styles) to improve the appearance of documents and materials.",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial92.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Highlight text, copy and paste text ",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial93.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Use the Comment function in Review for peer editing of documents ",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial94.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Use the Track Changes feature in Review for peer editing of documents ",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial95.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.label("Spreadsheets").classes("justify-center items-center")
-            ui.input().props('aria-label="Spreadsheets"').classes("sr-only")
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Use spreadsheets to calculate, graph, organize, and present data in a variety of real-world settings and choose the most appropriate type to represent given data",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial101.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Enter formulas and functions; use the auto-fill feature in a spreadsheet application.",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial102.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Use functions of a spreadsheet application (e.g., sort, filter, find).",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial103.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Use various number formats (e.g. scientific notations, percentages, exponents) as appropriate ",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial104.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Use various number formats (e.g. scientific notations, percentages, exponents) as appropriate ",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial105.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Differentiate between formulas with absolute and relative cell references. ",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial106.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Use multiple sheets within a workbook, and create links among worksheets to solve problems. ",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial107.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.label("Mathematical Applications").classes("justify-center items-center")
-            ui.input().props('aria-label="Mathematical Applications"').classes(
-                "sr-only"
-            )
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Draw two and three dimensional geometric shapes using a variety of technology tools ",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial111.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Use and interpret scientific notations using a variety of technology applications ",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial112.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Explain and demonstrate how specialized technology tools can be used for problem solving, decision making, and creativity in all subject areas (e.g., simulation software, environmental probes, computer aided design, "
-                "geographic information systems, dynamic geometric software, graphing calculators).",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial113.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.label("Presentation Tools").classes("justify-center items-center")
-            ui.input().props('aria-label="Presentation Tools"').classes("sr-only")
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Create presentations for a variety of audiences and purposes with use of appropriate transitions and animations to add interest. ",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial121.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label=" Use a variety of technology tools (e.g., dictionary, thesaurus, grammar checker, calculator/graphing calculator) to maximize the accuracy of work. Make strategic use of digital media to enhance understanding ",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial122.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Use painting and drawing tools/ applications to create and edit work ",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial123.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Use note-taking skills while viewing online videos and using the play, pause, rewind and stop buttons. ",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial124.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Independently use appropriate technology tools (e.g., graphic organizer, audio, visual) to define problems and propose hypotheses. ",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial125.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.label("Copyright and Plagiarism").classes("justify-center items-center")
-            ui.input().props('aria-label="Copyright and Plagiarism"').classes("sr-only")
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Comply with the district’s Acceptable Use Policy related to ethical use, cyberbullying, privacy, plagiarism, spam, viruses, hacking, and file sharing. ",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial131.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Explain Fair Use guidelines for using copyrighted materials and possible consequences (e.g., images, music, video, text) in school projects. ",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial132.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Analyze and explain how media and technology can be used to distort, exaggerate, and misrepresent information. ",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial133.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Give examples of hardware and applications that enable people with disabilities to use technology. ",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial134.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Explain the potential risks associated with the use of networked digital environments (e.g., internet, mobile phones, wireless, LANs) and sharing personal information. ",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial135.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.label("Research and Gathering Information").classes(
-                "justify-center items-center"
-            )
-            ui.input().props('aria-label="Research and Gathering Information"').classes(
-                "sr-only"
-            )
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label=" Identify probable types and locations of Web sites by examining their domain names (e.g., edu, com, org, gov, au)",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial141.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Use effective search strategies for locating and retrieving electronic information (e.g., using syntax and Boolean logic operators) ",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial142.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Use search engines and online directories. Explain the differences among various search engines and how they rank results. ",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial143.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Use appropriate academic language in online learning environments (e.g., post, thread, intranet, discussion forum, drop box, account, and password). ",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial144.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Explain how technology can support communication and collaboration, personal and professional productivity, and lifelong learning. ",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial145.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Write correct in-text citations and reference lists for text and images gathered from electronic sources. ",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial146.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Use Web browsing to access information (e.g., enter a URL, access links, create bookmarks/favorites, print Web pages) ",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial147.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Use and modify databases and spreadsheets to analyze data and propose solutions. ",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial148.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Develop and use guidelines to evaluate the content, organization, design, use of citations, and presentation of technologically enhanced projects. ",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial149.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.label("Communication and Collaboration").classes(
-                "justify-center items-center"
-            )
-            ui.input().props('aria-label="Communication and Collaboration"').classes(
-                "sr-only"
-            )
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Use a variety of media to present information for specific purposes (e.g., reports, research papers, presentations, newsletters, Web sites, podcasts, blogs), citing sources. ",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial151.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Demonstrate how the use of various techniques and effect (e.g., editing, music, color, rhetorical devices) can be used to convey meaning in media. ",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial152.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Use a variety of district approved Web 2.0 tools (e.g., email discussion groups, blogs, etc.) to collaborate and communicate with peers, experts, and other audiences using appropriate academic language. ",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial153.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label="Use teacher developed guidelines to evaluate multimedia presentations for organization, content, design, presentation and appropriateness of citations ",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial154.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.number(
-                label=" Plan and implement a collaborative project with students in other classrooms and schools using telecommunications tools (e.g., e-mail, discussion forums, groupware, interactive Web sites, videoconferencing) ",
-                min=0,
-                max=3,
-                format="%.0f",
-                on_change=lambda e: u_digitalliteracy_trial155.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="  "')
+        def create_ui() -> None:
+            """
+            Create a GUI layout for entering student information and trial data.
 
-        with ui.row().classes("w-screen no-wrap py-4"):
-            ui.button("SAVE", color="#172554", on_click=save).classes("text-white")
-            ui.button("GRAPH", color="#172554", on_click=graph).classes("text-white")
-            ui.button("EXIT", color="#172554", on_click=app.shutdown).classes(
-                "text-white"
-            )
+            Returns
+            -------
+            None
+
+            Notes
+            -----
+            This function assumes the existence of various UI elements (e.g., `u_studentname`,
+            `u_today_date`, ...`), and other variables related to the application.
+
+            The UI consists of several rows with different input elements for selecting a
+            student, entering the date, selecting a task, providing a rubric, entering trial
+            data, inputting anecdotal notes, and buttons for saving and exiting.
+
+            Examples
+            --------
+            >>> create_ui()
+            >>> # GUI layout created with various input elements and buttons.
+            >>> # Users can interact with the UI to enter student information and trial data.
+
+            See Also
+            --------
+            Some related functions or classes that might be useful.
+
+            """
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.button("GRAPH", color="#172554", on_click=graph).classes("text-white")
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.select(
+                    options=students,
+                    with_input=True,
+                    on_change=lambda e: ui.notify(e.value),
+                ).bind_value(u_studentname, "value").classes("w-[300px]").props(
+                    'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
+                ).tooltip("Type Student Name, it will autocomplete AS you type")
+                ui.date(
+                    value="f{datenow}", on_change=lambda e: u_today_date.set_value(e.value)
+                ).classes("w-1/2")
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.label(
+                    "RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent"
+                ).props(
+                    'aria-label="RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent" content-center'
+                )
+                ui.input().props(
+                    'aria-label="RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent" content-center'
+                ).classes("sr-only")
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.label("PHASE 1: Elementary Digital Literacy Skills").classes(
+                    "justify-center items-center"
+                )
+                ui.input().props(
+                    'aria-label="PHASE 1: Elementary Digital Literacy Skills"'
+                ).classes("sr-only")
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.label("Basic Operations").classes("justify-center items-center")
+                ui.input().props('aria-label=Basic Operations"').classes("sr-only")
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Turn computer on and off",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial11.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Use pointing device such as a mouse to manipulate shapes, icons; click on urls, radio buttons, check boxes; use scroll bar ",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial12.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Use desktop icons, windows and menus to open applications and documents ",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial13.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Save documents ",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial14.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Explain and use age-appropriate online tools and resources (e.g. tutorial, assessment, web browser) ",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial15.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Keyboarding (Use proper posture and ergonomics, Locate and use letter and numbers keys with left and right hand placement, Locate and use correct finger, hand for space bar,return/enter and shift key, "
+                    "Gain proficiency and speed in touch typing)",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial16.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.label("Word Processing").classes("justify-center items-center")
+                ui.input().props('aria-label="Word Processing"').classes("sr-only")
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Use a word processing application to write, edit, print and save simple assignments ",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial21.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Use menu/tool bar functions (e.g. font/size/style/, line spacing, margins) to format, edit and print a document ",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial22.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Highlight text, copy and paste text ",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial23.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Copy and paste images within the document and from outside sources ",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial24.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Insert and size a graphic in a document ",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial25.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Proofread and edit writing using appropriate resources (e.g. dictionary, spell checker, grammar, and thesaurus) ",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial26.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.label("Spreadsheets").classes("justify-center items-center")
+                ui.input().props('aria-label="Spreadsheets"').classes("sr-only")
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Demonstrate an understanding of the spreadsheet as a tool to record, organize and graph information. ",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial31.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Identify and explain terms and concepts related to spreadsheets (i.e. cell, column, row, values, labels, chart graph) ",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial32.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Enter/edit data in spreadsheets and perform calculations using formulas ",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial33.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Use mathematical symbols e.g. + add, - minus, *multiply, /divide, ^ exponents ",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial34.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Use spreadsheets and other applications to make predictions, solve problems and draw conclusions ",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial35.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.label("Presentation Tools").classes("justify-center items-center")
+                ui.input().props('aria-label="Presentation Tools"').classes("sr-only")
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Create, edit and format text on a slide ",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial41.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Create a series of slides and organize them to present research or convey an idea ",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial42.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Copy and paste or import graphics; change their size and position on a slide ",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial43.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Use painting and drawing tools/ applications to create and edit work ",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial44.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Watch online videos and use play, pause, rewind and forward buttons while taking notes ",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial45.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.label("Copyright and Plagiarism").classes("justify-center items-center")
+                ui.input().props('aria-label="Copyright and Plagiarism"').classes("sr-only")
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Explain and demonstrate compliance with classroom, school rules (Acceptable Use Policy) regarding responsible use of computers and networks ",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial51.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Explain responsible uses of technology and digital information; describe possible consequences of inappropriate use ",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial52.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Explain Fair Use Guidelines for the use of copyrighted materials,(e.g. text, images, music, video in student projects) and giving credit to media creators ",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial53.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Identify and explain the strategies for the safe and efficient use of computers (e.g. passwords, virus protection software, spam filters, popup blockers)",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial54.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Demonstrate safe email practices, recognition of the potentially public exposure of email and appropriate email etiquette ",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial55.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Identify cyberbullying and describe strategies to deal with such a situation  ",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial56.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Recognize and describe the potential risks and dangers associated with various forms of online communications ",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial57.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.label("Research and Gathering Information").classes(
+                    "justify-center items-center"
+                )
+                ui.input().props('aria-label="Research and Gathering Information"').classes(
+                    "sr-only"
+                )
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Use age appropriate technologies to locate, collect, organize content from media collection for specific purposes, citing sources ",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial61.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Perform basic searches on databases, (e.g. library, card catalog, encyclopedia) to locate information. Evaluate teacher-selected or self-selected Internet resources in terms of their usefulness for research ",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial62.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Use content specific technology tools (e.g. environmental probes, sensors, and measuring devices, simulations) to gather and analyze data. ",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial63.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Use Web 2.0 tools (e.g. online discussions, blogs and wikis) to gather and share information  ",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial64.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Identify and analyze the purpose of a media message (to inform, persuade and entertain) ",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial65.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.label("Communication and Collaboration").classes(
+                    "justify-center items-center"
+                )
+                ui.input().props('aria-label="Communication and Collaboration"').classes(
+                    "sr-only"
+                )
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Work collaboratively online with other students under teacher supervision  ",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial71.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Use a variety of age-appropriate technologies (e.g. drawing program, presentation software) to communicate and exchange ideas ",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial72.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Create projects that use text and various forms of graphics, audio, and video, (with proper citations) to communicate ideas. ",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial73.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Use teacher developed guidelines to evaluate multimedia presentations for organization, content, design, presentation and appropriateness of citations. ",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial74.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Use district approved Web 2.0 tools for communication and collaboration ",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial75.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.label("PHASE 2: Secondary Digital Literacy").classes(
+                    "justify-center items-center"
+                )
+                ui.input().props(
+                    'aria-label="PHASE 2: Secondary Digital Literacy"'
+                ).classes("sr-only")
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.label("Basic Operations").classes("justify-center items-center")
+                ui.input().props('aria-label="Basic Operations"').classes("sr-only")
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label=" Identify successful troubleshooting strategies for minor hardware and software issues/problems (e.g., “frozen screen”)",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial81.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Independently operate peripheral equipment (e.g., scanner, digital camera, camcorder), if available.  ",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial82.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Compress and expand large files  ",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial83.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Identify and use a variety of storage media (e.g., CDs, DVDs, flash drives, school servers, and online storage spaces), and provide a rationale for using a certain medium for a specific purpose.",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial84.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Demonstrate automaticity in keyboarding skills by increasing accuracy and speed (For students with disabilities, demonstrate alternate input techniques as appropriate.)",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial85.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Identify and assess the capabilities and limitations of emerging technologies. ",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial86.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.label("Word Processing").classes("justify-center items-center")
+                ui.input().props('aria-label="Word Processing"').classes("sr-only")
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Demonstrate use of intermediate features in word processing application (e.g., tabs, indents, headers and footers, end notes, bullet and numbering, tables). ",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial91.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Apply advanced formatting and page layout features when appropriate (e.g., columns, templates, and styles) to improve the appearance of documents and materials.",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial92.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Highlight text, copy and paste text ",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial93.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Use the Comment function in Review for peer editing of documents ",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial94.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Use the Track Changes feature in Review for peer editing of documents ",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial95.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.label("Spreadsheets").classes("justify-center items-center")
+                ui.input().props('aria-label="Spreadsheets"').classes("sr-only")
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Use spreadsheets to calculate, graph, organize, and present data in a variety of real-world settings and choose the most appropriate type to represent given data",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial101.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Enter formulas and functions; use the auto-fill feature in a spreadsheet application.",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial102.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Use functions of a spreadsheet application (e.g., sort, filter, find).",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial103.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Use various number formats (e.g. scientific notations, percentages, exponents) as appropriate ",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial104.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Use various number formats (e.g. scientific notations, percentages, exponents) as appropriate ",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial105.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Differentiate between formulas with absolute and relative cell references. ",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial106.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Use multiple sheets within a workbook, and create links among worksheets to solve problems. ",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial107.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.label("Mathematical Applications").classes("justify-center items-center")
+                ui.input().props('aria-label="Mathematical Applications"').classes(
+                    "sr-only"
+                )
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Draw two and three dimensional geometric shapes using a variety of technology tools ",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial111.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Use and interpret scientific notations using a variety of technology applications ",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial112.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Explain and demonstrate how specialized technology tools can be used for problem solving, decision making, and creativity in all subject areas (e.g., simulation software, environmental probes, computer aided design, "
+                    "geographic information systems, dynamic geometric software, graphing calculators).",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial113.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.label("Presentation Tools").classes("justify-center items-center")
+                ui.input().props('aria-label="Presentation Tools"').classes("sr-only")
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Create presentations for a variety of audiences and purposes with use of appropriate transitions and animations to add interest. ",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial121.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label=" Use a variety of technology tools (e.g., dictionary, thesaurus, grammar checker, calculator/graphing calculator) to maximize the accuracy of work. Make strategic use of digital media to enhance understanding ",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial122.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Use painting and drawing tools/ applications to create and edit work ",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial123.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Use note-taking skills while viewing online videos and using the play, pause, rewind and stop buttons. ",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial124.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Independently use appropriate technology tools (e.g., graphic organizer, audio, visual) to define problems and propose hypotheses. ",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial125.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.label("Copyright and Plagiarism").classes("justify-center items-center")
+                ui.input().props('aria-label="Copyright and Plagiarism"').classes("sr-only")
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Comply with the district’s Acceptable Use Policy related to ethical use, cyberbullying, privacy, plagiarism, spam, viruses, hacking, and file sharing. ",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial131.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Explain Fair Use guidelines for using copyrighted materials and possible consequences (e.g., images, music, video, text) in school projects. ",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial132.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Analyze and explain how media and technology can be used to distort, exaggerate, and misrepresent information. ",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial133.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Give examples of hardware and applications that enable people with disabilities to use technology. ",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial134.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Explain the potential risks associated with the use of networked digital environments (e.g., internet, mobile phones, wireless, LANs) and sharing personal information. ",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial135.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.label("Research and Gathering Information").classes(
+                    "justify-center items-center"
+                )
+                ui.input().props('aria-label="Research and Gathering Information"').classes(
+                    "sr-only"
+                )
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label=" Identify probable types and locations of Web sites by examining their domain names (e.g., edu, com, org, gov, au)",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial141.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Use effective search strategies for locating and retrieving electronic information (e.g., using syntax and Boolean logic operators) ",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial142.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Use search engines and online directories. Explain the differences among various search engines and how they rank results. ",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial143.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Use appropriate academic language in online learning environments (e.g., post, thread, intranet, discussion forum, drop box, account, and password). ",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial144.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Explain how technology can support communication and collaboration, personal and professional productivity, and lifelong learning. ",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial145.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Write correct in-text citations and reference lists for text and images gathered from electronic sources. ",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial146.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Use Web browsing to access information (e.g., enter a URL, access links, create bookmarks/favorites, print Web pages) ",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial147.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Use and modify databases and spreadsheets to analyze data and propose solutions. ",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial148.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Develop and use guidelines to evaluate the content, organization, design, use of citations, and presentation of technologically enhanced projects. ",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial149.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.label("Communication and Collaboration").classes(
+                    "justify-center items-center"
+                )
+                ui.input().props('aria-label="Communication and Collaboration"').classes(
+                    "sr-only"
+                )
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Use a variety of media to present information for specific purposes (e.g., reports, research papers, presentations, newsletters, Web sites, podcasts, blogs), citing sources. ",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial151.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Demonstrate how the use of various techniques and effect (e.g., editing, music, color, rhetorical devices) can be used to convey meaning in media. ",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial152.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Use a variety of district approved Web 2.0 tools (e.g., email discussion groups, blogs, etc.) to collaborate and communicate with peers, experts, and other audiences using appropriate academic language. ",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial153.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label="Use teacher developed guidelines to evaluate multimedia presentations for organization, content, design, presentation and appropriateness of citations ",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial154.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.number(
+                    label=" Plan and implement a collaborative project with students in other classrooms and schools using telecommunications tools (e.g., e-mail, discussion forums, groupware, interactive Web sites, videoconferencing) ",
+                    min=0,
+                    max=3,
+                    format="%.0f",
+                    on_change=lambda e: u_digitalliteracy_trial155.set_value(e.value),
+                ).classes("w-[600px]").props('aria-label="  "')
+
+            with ui.row().classes("w-screen no-wrap py-4"):
+                ui.button("SAVE", color="#172554", on_click=save).classes("text-white")
+                ui.button("GRAPH", color="#172554", on_click=graph).classes("text-white")
+                ui.button("EXIT", color="#172554", on_click=app.shutdown).classes(
+                    "text-white"
+                )
+        create_ui()

@@ -29,6 +29,30 @@ from appTheming import theme
 
 @ui.page("/instructionalmaterials")
 def create() -> None:
+    """
+    Instructional Materials Page
+
+    This module defines a Flask UI route for the "/instructionalmaterials" endpoint,
+    displaying a page containing links to various instructional materials.
+
+    Usage:
+        @ui.page("/instructionalmaterials")
+        def create() -> None:
+            # Code for rendering instructional materials page goes here...
+
+    Note:
+        This page provides links to instructional materials related to abacus, braille, screen readers,
+        datasheets, and assessment forms.
+
+        For each category, specific links are provided along with their corresponding descriptions.
+
+    Functions:
+        - create() -> None:
+            Renders the instructional materials page.
+
+            Returns:
+                None
+    """
     with theme.frame("- INSTRUCTIONAL MATERIALS -"):
         ui.label("Instructional Materials").classes("text-h4 font-bold text-grey-8")
         with ui.row().classes("w-full no-wrap"):

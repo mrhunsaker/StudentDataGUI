@@ -188,12 +188,11 @@ def create() -> None:
                 ui.label("STUDENT INFORMATION").classes(
                     "w-full justify-center items-center font-bold"
                 )
-            with ui.row().classes("w-screen no-wrap"):
+            with ui.row().classes("w-screen no-wrap py-4"):
                 ui.select(
                     options=students,
                     with_input=True,
-                    on_change=lambda e: ui.notify(e.value),
-                ).bind_value(u_studentname, "value").classes("w-[300px]").props(
+                    on_change=lambda e: u_studentname.set_value(e.value),).classes("w-[300px]").props(
                     'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
                 ).tooltip("Type Student Name, it will autocomplete AS you type")
                 ui.date(

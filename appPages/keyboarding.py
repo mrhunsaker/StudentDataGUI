@@ -24,10 +24,10 @@ teachers of students with Visual Impairments
 
 import json
 from pathlib import Path
-
+import sqlite3
 from nicegui import app, ui
 
-from appHelpers.helpers import datenow, USER_DIR
+from appHelpers.helpers import dataBasePath, date_fmt, datenow, USER_DIR
 from appHelpers.roster import students
 from appTheming import theme
 
@@ -108,7 +108,7 @@ def create() -> None:
                 """
 
                 studentname = u_studentname.value
-                today_date = u_today_date
+                today_date = u_today_date.value
                 keyboarding_program = u_keyboarding_program.value
                 topic_covered = u_topic_covered.value
                 typing_speed = u_typing_speed.value
@@ -250,12 +250,11 @@ def create() -> None:
                 ui.label("STUDENT INFORMATION").classes(
                     "w-full justify-center items-center font-bold"
                 )
-            with ui.row().classes("w-screen no-wrap"):
+            with ui.row().classes("w-screen no-wrap py-4"):
                 ui.select(
                     options=students,
                     with_input=True,
-                    on_change=lambda e: ui.notify(e.value),
-                ).bind_value(u_studentname, "value").classes("w-[300px]").props(
+                    on_change=lambda e: u_studentname.set_value(e.value),).classes("w-[300px]").props(
                     'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
                 ).tooltip("Type Student Name, it will autocomplete AS you type")
                 ui.date(

@@ -71,7 +71,7 @@ def menu() -> None:
                 replace="text-black"
             )
             ui.menu_item(
-                "BRAILLE SKILLS", lambda: ui.open("/keyboardingskills")
+                "BRAILLE SKILLS", lambda: ui.open("/brailleskills")
             ).classes(replace="text-black")
             ui.separator()
             with ui.row().classes("justify-center items-center"):

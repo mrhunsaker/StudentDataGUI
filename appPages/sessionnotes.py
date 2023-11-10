@@ -186,14 +186,13 @@ def create() -> None:
             Some related functions or classes that might be useful.
 
             """
-            with ui.row().classes("w-screen no-wrap"):
+            with ui.row().classes("w-screen no-wrap py-4"):
                 ui.select(
                     options=students,
                     with_input=True,
-                    on_change=lambda e: ui.notify(e.value),
-                ).bind_value(u_studentname, "value").classes("w-[300px]").props(
+                    on_change=lambda e: u_studentname.set_value(e.value),).classes("w-[300px]").props(
                     'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
-                ).tooltip("Type Student Name, it will autocomplete as you type")
+                ).tooltip("Type Student Name, it will autocomplete AS you type")
                 ui.date(
                     value="f{datenow}",
                     on_change=lambda e: u_today_date.set_value(e.value),
@@ -202,10 +201,9 @@ def create() -> None:
                 ui.select(
                     options=tasks,
                     with_input=True,
-                    on_change=lambda e: ui.notify(e.value),
-                ).bind_value(u_tasks, "value").classes("w-[300px]").props(
+                    on_change=lambda e: u_tasks.set_value(e.value),).classes("w-[300px]").props(
                     'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
-                ).tooltip("Type Taske, it will autocomplete as you type")
+                ).tooltip("Type Task, it will autocomplete as you type")
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.label(
                     "RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent"

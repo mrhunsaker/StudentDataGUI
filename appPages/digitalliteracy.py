@@ -2802,8 +2802,7 @@ def create() -> None:
                 ui.select(
                     options=students,
                     with_input=True,
-                    on_change=lambda e: ui.notify(e.value),
-                ).bind_value(u_studentname, "value").classes("w-[300px]").props(
+                    on_change=lambda e: u_studentname.set_value(e.value),).classes("w-[300px]").props(
                     'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
                 ).tooltip("Type Student Name, it will autocomplete AS you type")
                 ui.date(

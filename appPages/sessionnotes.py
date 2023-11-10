@@ -61,41 +61,41 @@ def create() -> None:
 
             def save(event):
                 """
-                    Save data for a student.
+                Save data for a student.
 
-                    Parameters
-                    ----------
-                    event : SomeEventType
-                        The event triggering the save function.
+                Parameters
+                ----------
+                event : SomeEventType
+                    The event triggering the save function.
 
-                    Returns
-                    -------
-                    None
+                Returns
+                -------
+                None
 
-                    Notes
-                    -----
-                    This function assumes the existence of various UI elements (e.g., `u_studentname`,
-                    `u_today_date`, ...), `datenow`, `json`,
-                    `Path`, and other variables related to the application.
+                Notes
+                -----
+                This function assumes the existence of various UI elements (e.g., `u_studentname`,
+                `u_today_date`, ...), `datenow`, `json`,
+                `Path`, and other variables related to the application.
 
-                    The function extracts abacus trial data and student information from UI elements,
-                    creates a dictionary with this data, and saves it as a JSON file in the student's
-                    directory within the "StudentDataFiles" folder. The filename is constructed based
-                    on the student's name and the current date.
+                The function extracts abacus trial data and student information from UI elements,
+                creates a dictionary with this data, and saves it as a JSON file in the student's
+                directory within the "StudentDataFiles" folder. The filename is constructed based
+                on the student's name and the current date.
 
-                    The function also appends the filename to a "Filenames.txt" file for reference.
+                The function also appends the filename to a "Filenames.txt" file for reference.
 
-                    Examples
-                    --------
-                    >>> save(some_event)
-                    >>> # Trial data and student information saved successfully.
-                    >>> # The data is stored in a JSON file named based on the student's name and date.
+                Examples
+                --------
+                >>> save(some_event)
+                >>> # Trial data and student information saved successfully.
+                >>> # The data is stored in a JSON file named based on the student's name and date.
 
-                    See Also
-                    --------
-                    Some related functions or classes that might be useful.
+                See Also
+                --------
+                Some related functions or classes that might be useful.
 
-                    """
+                """
 
                 studentname = u_studentname.value
                 today_date = u_today_date.value
@@ -157,6 +157,7 @@ def create() -> None:
                         type="positive",
                         close_button="OK",
                     )
+
         def create_ui() -> None:
             """
             Create a GUI layout for entering student information and trial data.
@@ -194,11 +195,14 @@ def create() -> None:
                     'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
                 ).tooltip("Type Student Name, it will autocomplete as you type")
                 ui.date(
-                    value="f{datenow}", on_change=lambda e: u_today_date.set_value(e.value)
+                    value="f{datenow}",
+                    on_change=lambda e: u_today_date.set_value(e.value),
                 ).classes("w-1/2")
             with ui.row().classes("w-screen no-wrap"):
                 ui.select(
-                    options=tasks, with_input=True, on_change=lambda e: ui.notify(e.value)
+                    options=tasks,
+                    with_input=True,
+                    on_change=lambda e: ui.notify(e.value),
                 ).bind_value(u_tasks, "value").classes("w-[300px]").props(
                     'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
                 ).tooltip("Type Taske, it will autocomplete as you type")
@@ -301,4 +305,5 @@ def create() -> None:
                 ui.button("EXIT", color="#172554", on_click=app.shutdown).classes(
                     "text-white"
                 )
+
         create_ui()

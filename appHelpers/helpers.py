@@ -121,6 +121,8 @@ def working_dir() -> None:
         workingdirectory_path = Path(ROOT_DIR).joinpath("workingdirectory.py")
         tmp_path = Path(START_DIR).joinpath("workingdirectory.txt")
         shutil.copy2(tmp_path, workingdirectory_path)
+
+
 working_dir()
 
 
@@ -152,6 +154,8 @@ def create_roster() -> None:
         roster_path = Path(ROOT_DIR).joinpath("roster.py")
         tmp_path = Path(START_DIR).joinpath("roster.txt")
         shutil.copy2(tmp_path, roster_path)
+
+
 create_roster()
 
 from appHelpers.roster import students
@@ -162,7 +166,6 @@ create_user_dir()
 USER_DIR = create_user_dir()
 
 dataBasePath = Path(USER_DIR).joinpath("StudentDatabase", "students.db")
-
 
 
 def createFolderHierarchy() -> None:

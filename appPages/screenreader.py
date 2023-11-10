@@ -1169,7 +1169,9 @@ def create() -> None:
 
             """
             with ui.row().classes("w-screen no-wrap py-4"):
-                ui.button("GRAPH", color="#172554", on_click=graph).classes("text-white")
+                ui.button("GRAPH", color="#172554", on_click=graph).classes(
+                    "text-white"
+                )
             with ui.row().classes("w-screen no-wrap"):
                 ui.select(
                     options=students,
@@ -1179,7 +1181,8 @@ def create() -> None:
                     'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
                 ).tooltip("Type Student Name, it will autocomplete AS you type")
                 ui.date(
-                    value="f{datenow}", on_change=lambda e: u_today_date.set_value(e.value)
+                    value="f{datenow}",
+                    on_change=lambda e: u_today_date.set_value(e.value),
                 ).classes("w-1/2")
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.label(
@@ -1288,7 +1291,9 @@ def create() -> None:
                 ui.label("PHASE 3: USING THE INTERNET").classes(
                     "justify-center items-center"
                 )
-            ui.input().props('aria-label="PHASE 3: USING THE INTERNET"').classes("sr-only")
+            ui.input().props('aria-label="PHASE 3: USING THE INTERNET"').classes(
+                "sr-only"
+            )
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.number(
                     label="3.1 Define common element types on the internet such as Headings or Buttons",
@@ -1305,7 +1310,9 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_screenreader_trial32.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="3.2 identify each element by type."')
+            ).classes("w-[600px]").props(
+                'aria-label="3.2 identify each element by type."'
+            )
             ui.number(
                 label="3.3 navigate to the address bar",
                 min=0,
@@ -1454,5 +1461,8 @@ def create() -> None:
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.button("SAVE", color="#172554", on_click=save).classes("text-white")
             ui.button("GRAPH", color="#172554", on_click=graph).classes("text-white")
-            ui.button("EXIT", color="#172554", on_click=app.shutdown).classes("text-white")
+            ui.button("EXIT", color="#172554", on_click=app.shutdown).classes(
+                "text-white"
+            )
+
         create_ui()

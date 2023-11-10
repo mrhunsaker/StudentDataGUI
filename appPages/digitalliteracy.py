@@ -137,41 +137,41 @@ def create() -> None:
 
             def save(event):
                 """
-                    Save data for a student.
+                Save data for a student.
 
-                    Parameters
-                    ----------
-                    event : SomeEventType
-                        The event triggering the save function.
+                Parameters
+                ----------
+                event : SomeEventType
+                    The event triggering the save function.
 
-                    Returns
-                    -------
-                    None
+                Returns
+                -------
+                None
 
-                    Notes
-                    -----
-                    This function assumes the existence of various UI elements (e.g., `u_studentname`,
-                    `u_today_date`, ...), `datenow`, `json`,
-                    `Path`, and other variables related to the application.
+                Notes
+                -----
+                This function assumes the existence of various UI elements (e.g., `u_studentname`,
+                `u_today_date`, ...), `datenow`, `json`,
+                `Path`, and other variables related to the application.
 
-                    The function extracts abacus trial data and student information from UI elements,
-                    creates a dictionary with this data, and saves it as a JSON file in the student's
-                    directory within the "StudentDataFiles" folder. The filename is constructed based
-                    on the student's name and the current date.
+                The function extracts abacus trial data and student information from UI elements,
+                creates a dictionary with this data, and saves it as a JSON file in the student's
+                directory within the "StudentDataFiles" folder. The filename is constructed based
+                on the student's name and the current date.
 
-                    The function also appends the filename to a "Filenames.txt" file for reference.
+                The function also appends the filename to a "Filenames.txt" file for reference.
 
-                    Examples
-                    --------
-                    >>> save(some_event)
-                    >>> # Trial data and student information saved successfully.
-                    >>> # The data is stored in a JSON file named based on the student's name and date.
+                Examples
+                --------
+                >>> save(some_event)
+                >>> # Trial data and student information saved successfully.
+                >>> # The data is stored in a JSON file named based on the student's name and date.
 
-                    See Also
-                    --------
-                    Some related functions or classes that might be useful.
+                See Also
+                --------
+                Some related functions or classes that might be useful.
 
-                    """
+                """
 
                 studentname = u_studentname.value
                 today_date = u_today_date.value
@@ -2795,7 +2795,9 @@ def create() -> None:
 
             """
             with ui.row().classes("w-screen no-wrap py-4"):
-                ui.button("GRAPH", color="#172554", on_click=graph).classes("text-white")
+                ui.button("GRAPH", color="#172554", on_click=graph).classes(
+                    "text-white"
+                )
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.select(
                     options=students,
@@ -2805,7 +2807,8 @@ def create() -> None:
                     'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
                 ).tooltip("Type Student Name, it will autocomplete AS you type")
                 ui.date(
-                    value="f{datenow}", on_change=lambda e: u_today_date.set_value(e.value)
+                    value="f{datenow}",
+                    on_change=lambda e: u_today_date.set_value(e.value),
                 ).classes("w-1/2")
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.label(
@@ -3013,8 +3016,12 @@ def create() -> None:
                     on_change=lambda e: u_digitalliteracy_trial45.set_value(e.value),
                 ).classes("w-[600px]").props('aria-label="  "')
             with ui.row().classes("w-screen no-wrap py-4"):
-                ui.label("Copyright and Plagiarism").classes("justify-center items-center")
-                ui.input().props('aria-label="Copyright and Plagiarism"').classes("sr-only")
+                ui.label("Copyright and Plagiarism").classes(
+                    "justify-center items-center"
+                )
+                ui.input().props('aria-label="Copyright and Plagiarism"').classes(
+                    "sr-only"
+                )
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.number(
                     label="Explain and demonstrate compliance with classroom, school rules (Acceptable Use Policy) regarding responsible use of computers and networks ",
@@ -3075,9 +3082,9 @@ def create() -> None:
                 ui.label("Research and Gathering Information").classes(
                     "justify-center items-center"
                 )
-                ui.input().props('aria-label="Research and Gathering Information"').classes(
-                    "sr-only"
-                )
+                ui.input().props(
+                    'aria-label="Research and Gathering Information"'
+                ).classes("sr-only")
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.number(
                     label="Use age appropriate technologies to locate, collect, organize content from media collection for specific purposes, citing sources ",
@@ -3122,9 +3129,9 @@ def create() -> None:
                 ui.label("Communication and Collaboration").classes(
                     "justify-center items-center"
                 )
-                ui.input().props('aria-label="Communication and Collaboration"').classes(
-                    "sr-only"
-                )
+                ui.input().props(
+                    'aria-label="Communication and Collaboration"'
+                ).classes("sr-only")
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.number(
                     label="Work collaboratively online with other students under teacher supervision  ",
@@ -3326,7 +3333,9 @@ def create() -> None:
                     on_change=lambda e: u_digitalliteracy_trial107.set_value(e.value),
                 ).classes("w-[600px]").props('aria-label="  "')
             with ui.row().classes("w-screen no-wrap py-4"):
-                ui.label("Mathematical Applications").classes("justify-center items-center")
+                ui.label("Mathematical Applications").classes(
+                    "justify-center items-center"
+                )
                 ui.input().props('aria-label="Mathematical Applications"').classes(
                     "sr-only"
                 )
@@ -3399,8 +3408,12 @@ def create() -> None:
                     on_change=lambda e: u_digitalliteracy_trial125.set_value(e.value),
                 ).classes("w-[600px]").props('aria-label="  "')
             with ui.row().classes("w-screen no-wrap py-4"):
-                ui.label("Copyright and Plagiarism").classes("justify-center items-center")
-                ui.input().props('aria-label="Copyright and Plagiarism"').classes("sr-only")
+                ui.label("Copyright and Plagiarism").classes(
+                    "justify-center items-center"
+                )
+                ui.input().props('aria-label="Copyright and Plagiarism"').classes(
+                    "sr-only"
+                )
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.number(
                     label="Comply with the district’s Acceptable Use Policy related to ethical use, cyberbullying, privacy, plagiarism, spam, viruses, hacking, and file sharing. ",
@@ -3445,9 +3458,9 @@ def create() -> None:
                 ui.label("Research and Gathering Information").classes(
                     "justify-center items-center"
                 )
-                ui.input().props('aria-label="Research and Gathering Information"').classes(
-                    "sr-only"
-                )
+                ui.input().props(
+                    'aria-label="Research and Gathering Information"'
+                ).classes("sr-only")
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.number(
                     label=" Identify probable types and locations of Web sites by examining their domain names (e.g., edu, com, org, gov, au)",
@@ -3524,9 +3537,9 @@ def create() -> None:
                 ui.label("Communication and Collaboration").classes(
                     "justify-center items-center"
                 )
-                ui.input().props('aria-label="Communication and Collaboration"').classes(
-                    "sr-only"
-                )
+                ui.input().props(
+                    'aria-label="Communication and Collaboration"'
+                ).classes("sr-only")
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.number(
                     label="Use a variety of media to present information for specific purposes (e.g., reports, research papers, presentations, newsletters, Web sites, podcasts, blogs), citing sources. ",
@@ -3570,8 +3583,11 @@ def create() -> None:
 
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.button("SAVE", color="#172554", on_click=save).classes("text-white")
-                ui.button("GRAPH", color="#172554", on_click=graph).classes("text-white")
+                ui.button("GRAPH", color="#172554", on_click=graph).classes(
+                    "text-white"
+                )
                 ui.button("EXIT", color="#172554", on_click=app.shutdown).classes(
                     "text-white"
                 )
+
         create_ui()

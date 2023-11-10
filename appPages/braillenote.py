@@ -115,41 +115,41 @@ def create() -> None:
 
             def save(event):
                 """
-                    Save data for a student.
+                Save data for a student.
 
-                    Parameters
-                    ----------
-                    event : SomeEventType
-                        The event triggering the save function.
+                Parameters
+                ----------
+                event : SomeEventType
+                    The event triggering the save function.
 
-                    Returns
-                    -------
-                    None
+                Returns
+                -------
+                None
 
-                    Notes
-                    -----
-                    This function assumes the existence of various UI elements (e.g., `u_studentname`,
-                    `u_today_date`, ...), `datenow`, `json`,
-                    `Path`, and other variables related to the application.
+                Notes
+                -----
+                This function assumes the existence of various UI elements (e.g., `u_studentname`,
+                `u_today_date`, ...), `datenow`, `json`,
+                `Path`, and other variables related to the application.
 
-                    The function extracts abacus trial data and student information from UI elements,
-                    creates a dictionary with this data, and saves it as a JSON file in the student's
-                    directory within the "StudentDataFiles" folder. The filename is constructed based
-                    on the student's name and the current date.
+                The function extracts abacus trial data and student information from UI elements,
+                creates a dictionary with this data, and saves it as a JSON file in the student's
+                directory within the "StudentDataFiles" folder. The filename is constructed based
+                on the student's name and the current date.
 
-                    The function also appends the filename to a "Filenames.txt" file for reference.
+                The function also appends the filename to a "Filenames.txt" file for reference.
 
-                    Examples
-                    --------
-                    >>> save(some_event)
-                    >>> # Trial data and student information saved successfully.
-                    >>> # The data is stored in a JSON file named based on the student's name and date.
+                Examples
+                --------
+                >>> save(some_event)
+                >>> # Trial data and student information saved successfully.
+                >>> # The data is stored in a JSON file named based on the student's name and date.
 
-                    See Also
-                    --------
-                    Some related functions or classes that might be useful.
+                See Also
+                --------
+                Some related functions or classes that might be useful.
 
-                    """
+                """
 
                 studentname = u_studentname.value
                 today_date = u_today_date.value
@@ -1878,7 +1878,9 @@ def create() -> None:
 
             """
             with ui.row().classes("w-screen no-wrap py-4"):
-                ui.button("GRAPH", color="#172554", on_click=graph).classes("text-white")
+                ui.button("GRAPH", color="#172554", on_click=graph).classes(
+                    "text-white"
+                )
             with ui.row().classes("w-screen no-wrap"):
                 ui.select(
                     options=students,
@@ -1888,7 +1890,8 @@ def create() -> None:
                     'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
                 ).tooltip("Type Student Name, it will autocomplete as you type")
                 ui.date(
-                    value="f{datenow}", on_change=lambda e: u_today_date.set_value(e.value)
+                    value="f{datenow}",
+                    on_change=lambda e: u_today_date.set_value(e.value),
                 ).classes("w-1/2")
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.label(
@@ -1901,7 +1904,9 @@ def create() -> None:
                 ).classes("sr-only")
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.label("Phase 1: Basic SKills").classes("justify-center items-center")
-                ui.input().props('aria-label="Phase 1: Basic Skills"').classes("sr-only")
+                ui.input().props('aria-label="Phase 1: Basic Skills"').classes(
+                    "sr-only"
+                )
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.number(
                     label="1.1 Physical Layout",
@@ -1939,9 +1944,9 @@ def create() -> None:
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial14.set_value(e.value),
-                ).classes("w-[400px]").props('aria-label="File System navigation"').tooltip(
-                    "File System navigation"
-                )
+                ).classes("w-[400px]").props(
+                    'aria-label="File System navigation"'
+                ).tooltip("File System navigation")
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.number(
                     label="1.5 Main Menu Options",
@@ -2170,9 +2175,9 @@ def create() -> None:
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial42.set_value(e.value),
-                ).classes("w-[400px]").props('aria-label="Insert into KeyWord"').tooltip(
-                    "Paste into KeyWord"
-                )
+                ).classes("w-[400px]").props(
+                    'aria-label="Insert into KeyWord"'
+                ).tooltip("Paste into KeyWord")
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.number(
                     label="4.3 Generate and Read Graphics",
@@ -2237,9 +2242,9 @@ def create() -> None:
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial55.set_value(e.value),
-                ).classes("w-[400px]").props('aria-label="Viewing attached files"').tooltip(
-                    "Viewing attached files"
-                )
+                ).classes("w-[400px]").props(
+                    'aria-label="Viewing attached files"'
+                ).tooltip("Viewing attached files")
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.number(
                     label="5.6 Marking, highlighting, deleting, and other email  options",
@@ -2274,9 +2279,9 @@ def create() -> None:
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial61.set_value(e.value),
-                ).classes("w-[400px]").props('aria-label="Launching KeySlides"').tooltip(
-                    "Launching KeySlides"
-                )
+                ).classes("w-[400px]").props(
+                    'aria-label="Launching KeySlides"'
+                ).tooltip("Launching KeySlides")
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.number(
                     label="6.2 Opening a PowerPoint document",
@@ -2311,9 +2316,9 @@ def create() -> None:
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial71.set_value(e.value),
-                ).classes("w-[400px]").props('aria-label="Creating appointments"').tooltip(
-                    "Creating appointments"
-                )
+                ).classes("w-[400px]").props(
+                    'aria-label="Creating appointments"'
+                ).tooltip("Creating appointments")
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.number(
                     label="7.2 Viewing, editing and deleting appointments",
@@ -2331,9 +2336,9 @@ def create() -> None:
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial73.set_value(e.value),
-                ).classes("w-[400px]").props('aria-label="Navigating the agenda"').tooltip(
-                    "Navigating the agenda"
-                )
+                ).classes("w-[400px]").props(
+                    'aria-label="Navigating the agenda"'
+                ).tooltip("Navigating the agenda")
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.number(
                     label="7.4 Navigating Day View",
@@ -2341,9 +2346,9 @@ def create() -> None:
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial74.set_value(e.value),
-                ).classes("w-[400px]").props('aria-label="Navigating Day View"').tooltip(
-                    "Navigating Day View"
-                )
+                ).classes("w-[400px]").props(
+                    'aria-label="Navigating Day View"'
+                ).tooltip("Navigating Day View")
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.label("Phase 8: KeySoft Programs - KeyMail").classes(
                     "justify-center items-center"
@@ -2368,9 +2373,9 @@ def create() -> None:
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial82.set_value(e.value),
-                ).classes("w-[400px]").props('aria-label="Internet Navigation"').tooltip(
-                    "Internet Navigation"
-                )
+                ).classes("w-[400px]").props(
+                    'aria-label="Internet Navigation"'
+                ).tooltip("Internet Navigation")
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.number(
                     label="8.3 Bookmarks",
@@ -2378,7 +2383,9 @@ def create() -> None:
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial83.set_value(e.value),
-                ).classes("w-[400px]").props('aria-label="Bookmarks"').tooltip("Bookmarks")
+                ).classes("w-[400px]").props('aria-label="Bookmarks"').tooltip(
+                    "Bookmarks"
+                )
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.number(
                     label="8.4 History",
@@ -2411,9 +2418,9 @@ def create() -> None:
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial91.set_value(e.value),
-                ).classes("w-[400px]").props('aria-label="Inputting calculations"').tooltip(
-                    "Inputting calculations"
-                )
+                ).classes("w-[400px]").props(
+                    'aria-label="Inputting calculations"'
+                ).tooltip("Inputting calculations")
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.number(
                     label="9.2 Inserting a Math symbol in KeyCalc",
@@ -2476,9 +2483,9 @@ def create() -> None:
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial103.set_value(e.value),
-                ).classes("w-[400px]").props('aria-label="Finding Braille Text"').tooltip(
-                    "Finding Braille Text"
-                )
+                ).classes("w-[400px]").props(
+                    'aria-label="Finding Braille Text"'
+                ).tooltip("Finding Braille Text")
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.label("Phase 11: KeySoft Programs - KeyCode").classes(
                     "justify-center items-center"
@@ -2493,9 +2500,9 @@ def create() -> None:
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial111.set_value(e.value),
-                ).classes("w-[400px]").props('aria-label="Creating a Python File"').tooltip(
-                    "Creating a Python File"
-                )
+                ).classes("w-[400px]").props(
+                    'aria-label="Creating a Python File"'
+                ).tooltip("Creating a Python File")
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.number(
                     label="11.2 Opening, Navigating and Editing a Python File",
@@ -2523,9 +2530,9 @@ def create() -> None:
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial114.set_value(e.value),
-                ).classes("w-[400px]").props('aria-label="Saving a Python File"').tooltip(
-                    "Saving a Python File"
-                )
+                ).classes("w-[400px]").props(
+                    'aria-label="Saving a Python File"'
+                ).tooltip("Saving a Python File")
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.number(
                     label="11.5 Coding with KeyCode",
@@ -2533,9 +2540,9 @@ def create() -> None:
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial115.set_value(e.value),
-                ).classes("w-[400px]").props('aria-label="Coding with KeyCode"').tooltip(
-                    "Coding with KeyCode"
-                )
+                ).classes("w-[400px]").props(
+                    'aria-label="Coding with KeyCode"'
+                ).tooltip("Coding with KeyCode")
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.label("Phase 12: Third Party Apps").classes(
                     "justify-center items-center"
@@ -2570,7 +2577,9 @@ def create() -> None:
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial123.set_value(e.value),
-                ).classes("w-[400px]").props('aria-label="Deleting"').tooltip("Deleting")
+                ).classes("w-[400px]").props('aria-label="Deleting"').tooltip(
+                    "Deleting"
+                )
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.number(
                     label="12.4 Usage",
@@ -2581,8 +2590,11 @@ def create() -> None:
                 ).classes("w-[400px]").props('aria-label="Usage"').tooltip("Usage")
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.button("SAVE", color="#172554", on_click=save).classes("text-white")
-                ui.button("GRAPH", color="#172554", on_click=graph).classes("text-white")
+                ui.button("GRAPH", color="#172554", on_click=graph).classes(
+                    "text-white"
+                )
                 ui.button("EXIT", color="#172554", on_click=app.shutdown).classes(
                     "text-white"
                 )
+
         create_ui()

@@ -1081,6 +1081,7 @@ def create() -> None:
                 type="positive",
                 close_button="OK",
             )
+
         def create_ui() -> None:
             """
             Create a GUI layout for entering student information and trial data.
@@ -1110,7 +1111,9 @@ def create() -> None:
 
             """
             with ui.row().classes("w-screen no-wrap py-4"):
-                ui.button("GRAPH", color="#172554", on_click=graph).classes("text-white")
+                ui.button("GRAPH", color="#172554", on_click=graph).classes(
+                    "text-white"
+                )
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.select(
                     options=students,
@@ -1120,7 +1123,8 @@ def create() -> None:
                     'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
                 ).tooltip("Type Student Name, it will autocomplete AS you type")
                 ui.date(
-                    value="f{datenow}", on_change=lambda e: u_today_date.set_value(e.value)
+                    value="f{datenow}",
+                    on_change=lambda e: u_today_date.set_value(e.value),
                 ).classes("w-1/2")
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.label(
@@ -1135,25 +1139,25 @@ def create() -> None:
                 ui.label("PHASE 1: Setting and Clearing Numbers").classes(
                     "justify-center items-center"
                 )
-            ui.input().props('aria-label="PHASE 1: Setting and Clearing Numbers"').classes(
-                "sr-only"
-            )
+            ui.input().props(
+                'aria-label="PHASE 1: Setting and Clearing Numbers"'
+            ).classes("sr-only")
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.number(
                     label="1.1 Setting Numbers",
                     value="",
                     on_change=lambda e: u_abacus_trial11.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="1.1 Setting Numbers"').tooltip(
-                    "1.1 Setting Numbers"
-                )
+                ).classes("w-[600px]").props(
+                    'aria-label="1.1 Setting Numbers"'
+                ).tooltip("1.1 Setting Numbers")
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.number(
                     label="1.2 Clearing Numbers",
                     value="",
                     on_change=lambda e: u_abacus_trial12.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="1.2 Clearing Numbers"').tooltip(
-                    "1.2 Clearing Numbers"
-                )
+                ).classes("w-[600px]").props(
+                    'aria-label="1.2 Clearing Numbers"'
+                ).tooltip("1.2 Clearing Numbers")
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.number(
                     label="1.3 Place Value",
@@ -1223,8 +1227,12 @@ def create() -> None:
                     'aria-label="3.3 Subtraction of Multiple Digit Numbers – Indirect"'
                 )
             with ui.row().classes("w-screen no-wrap py-4"):
-                ui.label("PHASE 4: Multiplication").classes("justify-center items-center")
-                ui.input().props('aria-label="PHASE 4: Multiplication"').classes("sr-only")
+                ui.label("PHASE 4: Multiplication").classes(
+                    "justify-center items-center"
+                )
+                ui.input().props('aria-label="PHASE 4: Multiplication"').classes(
+                    "sr-only"
+                )
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.number(
                     label="4.1 Multiplication – 2+ Digit Multiplicand 1-Digit Multiplier",
@@ -1280,7 +1288,9 @@ def create() -> None:
                     label="6.3 Multiplication of Decimals",
                     value="",
                     on_change=lambda e: u_abacus_trial63.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="6.3 Multiplication of Decimals"')
+                ).classes("w-[600px]").props(
+                    'aria-label="6.3 Multiplication of Decimals"'
+                )
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.number(
                     label="6.4 Division of Decimals",
@@ -1301,13 +1311,17 @@ def create() -> None:
                     label="7.2 Subtraction of Fractions",
                     value="",
                     on_change=lambda e: u_abacus_trial72.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="7.2 Subtraction of Fractions"')
+                ).classes("w-[600px]").props(
+                    'aria-label="7.2 Subtraction of Fractions"'
+                )
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.number(
                     label="7.3 Multiplication of Fractions",
                     value="",
                     on_change=lambda e: u_abacus_trial73.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="7.3 Multiplication of Fractions"')
+                ).classes("w-[600px]").props(
+                    'aria-label="7.3 Multiplication of Fractions"'
+                )
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.number(
                     label="7.4 Division of Fractions",
@@ -1335,8 +1349,11 @@ def create() -> None:
                 ).classes("w-[600px]").props('aria-label="8.2 Square Root"')
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.button("SAVE", color="#172554", on_click=save).classes("text-white")
-                ui.button("GRAPH", color="#172554", on_click=graph).classes("text-white")
+                ui.button("GRAPH", color="#172554", on_click=graph).classes(
+                    "text-white"
+                )
                 ui.button("EXIT", color="#172554", on_click=app.shutdown).classes(
                     "text-white"
                 )
-        create_ui()        
+
+        create_ui()

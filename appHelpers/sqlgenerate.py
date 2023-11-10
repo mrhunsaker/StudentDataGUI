@@ -80,7 +80,7 @@ def create_connection(db_file):
     return conn
 
 
-# create_connection(dataBasePath)
+create_connection(dataBasePath)
 
 
 def create_table(conn, sql_create_sql_table):

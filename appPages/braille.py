@@ -117,41 +117,41 @@ def create() -> None:
 
             def save(event):
                 """
-                    Save data for a student.
+                Save data for a student.
 
-                    Parameters
-                    ----------
-                    event : SomeEventType
-                        The event triggering the save function.
+                Parameters
+                ----------
+                event : SomeEventType
+                    The event triggering the save function.
 
-                    Returns
-                    -------
-                    None
+                Returns
+                -------
+                None
 
-                    Notes
-                    -----
-                    This function assumes the existence of various UI elements (e.g., `u_studentname`,
-                    `u_today_date`, ...), `datenow`, `json`,
-                    `Path`, and other variables related to the application.
+                Notes
+                -----
+                This function assumes the existence of various UI elements (e.g., `u_studentname`,
+                `u_today_date`, ...), `datenow`, `json`,
+                `Path`, and other variables related to the application.
 
-                    The function extracts abacus trial data and student information from UI elements,
-                    creates a dictionary with this data, and saves it as a JSON file in the student's
-                    directory within the "StudentDataFiles" folder. The filename is constructed based
-                    on the student's name and the current date.
+                The function extracts abacus trial data and student information from UI elements,
+                creates a dictionary with this data, and saves it as a JSON file in the student's
+                directory within the "StudentDataFiles" folder. The filename is constructed based
+                on the student's name and the current date.
 
-                    The function also appends the filename to a "Filenames.txt" file for reference.
+                The function also appends the filename to a "Filenames.txt" file for reference.
 
-                    Examples
-                    --------
-                    >>> save(some_event)
-                    >>> # Trial data and student information saved successfully.
-                    >>> # The data is stored in a JSON file named based on the student's name and date.
+                Examples
+                --------
+                >>> save(some_event)
+                >>> # Trial data and student information saved successfully.
+                >>> # The data is stored in a JSON file named based on the student's name and date.
 
-                    See Also
-                    --------
-                    Some related functions or classes that might be useful.
+                See Also
+                --------
+                Some related functions or classes that might be useful.
 
-                    """
+                """
 
                 studentname = u_studentname.value
                 today_date = u_today_date.value
@@ -2418,7 +2418,9 @@ def create() -> None:
 
             """
             with ui.row().classes("w-screen no-wrap py-4"):
-                ui.button("GRAPH", color="#172554", on_click=graph).classes("text-white")
+                ui.button("GRAPH", color="#172554", on_click=graph).classes(
+                    "text-white"
+                )
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.select(
                     options=students,
@@ -2428,7 +2430,8 @@ def create() -> None:
                     'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
                 ).tooltip("Type Student Name, it will autocomplete AS you type")
                 ui.date(
-                    value="f{datenow}", on_change=lambda e: u_today_date.set_value(e.value)
+                    value="f{datenow}",
+                    on_change=lambda e: u_today_date.set_value(e.value),
                 ).classes("w-1/2")
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.label(
@@ -2443,9 +2446,9 @@ def create() -> None:
                 ui.label("PHASE 1: Braille Tracking Skills").classes(
                     "justify-center items-center"
                 )
-                ui.input().props('aria-label="PHASE 1: Braille Tracking Skills"').classes(
-                    "sr-only"
-                )
+                ui.input().props(
+                    'aria-label="PHASE 1: Braille Tracking Skills"'
+                ).classes("sr-only")
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.number(
                     label="1.1 Track Left to Right",
@@ -2496,7 +2499,9 @@ def create() -> None:
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial21.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="2.1 Mangold Progression: G C L"')
+                ).classes("w-[600px]").props(
+                    'aria-label="2.1 Mangold Progression: G C L"'
+                )
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.number(
                     label="2.2 Mangold Progression: D Y",
@@ -2504,7 +2509,9 @@ def create() -> None:
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial22.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="2.2 Mangold Progression: D Y"')
+                ).classes("w-[600px]").props(
+                    'aria-label="2.2 Mangold Progression: D Y"'
+                )
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.number(
                     label="2.3 Mangold Progression: A B",
@@ -2512,7 +2519,9 @@ def create() -> None:
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial23.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="2.3 Mangold Progression: A B"')
+                ).classes("w-[600px]").props(
+                    'aria-label="2.3 Mangold Progression: A B"'
+                )
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.number(
                     label="2.4 Mangold Progression: S",
@@ -2536,7 +2545,9 @@ def create() -> None:
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial26.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="2.6 Mangold Progression: P O"')
+                ).classes("w-[600px]").props(
+                    'aria-label="2.6 Mangold Progression: P O"'
+                )
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.number(
                     label="2.7 Mangold Progression: K",
@@ -2560,7 +2571,9 @@ def create() -> None:
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial29.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="2.9 Mangold Progression: M E"')
+                ).classes("w-[600px]").props(
+                    'aria-label="2.9 Mangold Progression: M E"'
+                )
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.number(
                     label="2.10 Mangold Progression: H",
@@ -2576,7 +2589,9 @@ def create() -> None:
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial211.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="2.11 Mangold Progression: N X"')
+                ).classes("w-[600px]").props(
+                    'aria-label="2.11 Mangold Progression: N X"'
+                )
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.number(
                     label="2.12 Mangold Progression: Z F",
@@ -2584,7 +2599,9 @@ def create() -> None:
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial212.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="2.12 Mangold Progression: Z F"')
+                ).classes("w-[600px]").props(
+                    'aria-label="2.12 Mangold Progression: Z F"'
+                )
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.number(
                     label="2.13 Mangold Progression: U T",
@@ -2592,7 +2609,9 @@ def create() -> None:
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial213.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="2.13 Mangold Progression: U T"')
+                ).classes("w-[600px]").props(
+                    'aria-label="2.13 Mangold Progression: U T"'
+                )
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.number(
                     label="2.14 Mangold Progression: Q I",
@@ -2600,7 +2619,9 @@ def create() -> None:
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial214.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="2.14 Mangold Progression: Q I"')
+                ).classes("w-[600px]").props(
+                    'aria-label="2.14 Mangold Progression: Q I"'
+                )
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.number(
                     label="2.15 Mangold Progression: V J",
@@ -2608,7 +2629,9 @@ def create() -> None:
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial215.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="2.15 Mangold Progression: V J"')
+                ).classes("w-[600px]").props(
+                    'aria-label="2.15 Mangold Progression: V J"'
+                )
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.label(
                     "PHASE 3: Contractions, Groupsigns, Wordsigns, and Shortform Words"
@@ -2757,12 +2780,16 @@ def create() -> None:
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial315.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="3.15 Shortform Words"').tooltip(
-                    "3.15 Shortform Words"
-                )
+                ).classes("w-[600px]").props(
+                    'aria-label="3.15 Shortform Words"'
+                ).tooltip("3.15 Shortform Words")
             with ui.row().classes("w-screen no-wrap py-4"):
-                ui.label("PHASE 4: Indicator Usage").classes("justify-center items-center")
-                ui.input().props('aria-label="PHASE 4: Indicator Usage"').classes("sr-only")
+                ui.label("PHASE 4: Indicator Usage").classes(
+                    "justify-center items-center"
+                )
+                ui.input().props('aria-label="PHASE 4: Indicator Usage"').classes(
+                    "sr-only"
+                )
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.number(
                     label="4.1 Grade 1 Indicators",
@@ -2770,9 +2797,9 @@ def create() -> None:
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial41.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="4.1 Grade 1 Indicators"').tooltip(
-                    "4.1 Grade 1 Indicators"
-                )
+                ).classes("w-[600px]").props(
+                    'aria-label="4.1 Grade 1 Indicators"'
+                ).tooltip("4.1 Grade 1 Indicators")
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.number(
                     label="4.2 Capitals Indicators",
@@ -2850,7 +2877,9 @@ def create() -> None:
                     "5.4 Poetry / Drama"
                 )
             with ui.row().classes("w-screen no-wrap py-4"):
-                ui.label("PHASE 6: Elementary Math").classes("justify-center items-center")
+                ui.label("PHASE 6: Elementary Math").classes(
+                    "justify-center items-center"
+                )
                 ui.input().props('aria-label="PHASE 6: Elementary Math "').classes(
                     "sr-only"
                 )
@@ -2901,9 +2930,9 @@ def create() -> None:
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial65.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="6.5 Shape Indicators"').tooltip(
-                    "6.5 Shape Indicators"
-                )
+                ).classes("w-[600px]").props(
+                    'aria-label="6.5 Shape Indicators"'
+                ).tooltip("6.5 Shape Indicators")
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.number(
                     label="6.6 Roman Numerals",
@@ -2978,9 +3007,9 @@ def create() -> None:
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial75.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="7.5 Roots and Radicals"').tooltip(
-                    "7.5 Roots and Radicals"
-                )
+                ).classes("w-[600px]").props(
+                    'aria-label="7.5 Roots and Radicals"'
+                ).tooltip("7.5 Roots and Radicals")
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.number(
                     label="7.6 Miscellaneous Shape Indicators",
@@ -3088,8 +3117,11 @@ def create() -> None:
                 )
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.button("SAVE", color="#172554", on_click=save).classes("text-white")
-                ui.button("GRAPH", color="#172554", on_click=graph).classes("text-white")
+                ui.button("GRAPH", color="#172554", on_click=graph).classes(
+                    "text-white"
+                )
                 ui.button("EXIT", color="#172554", on_click=app.shutdown).classes(
                     "text-white"
                 )
+
         create_ui()

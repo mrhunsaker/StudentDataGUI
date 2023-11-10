@@ -87,6 +87,7 @@ def create() -> None:
                     type="positive",
                     close_button="OK",
                 )
+
         def create_ui() -> None:
             """
             Create a GUI layout for entering student information and trial data.
@@ -124,7 +125,8 @@ def create() -> None:
                     'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
                 ).tooltip("Type Student Name, it will autocomplete as you type")
                 ui.date(
-                    value="f{datenow}", on_change=lambda e: u_today_date.set_value(e.value)
+                    value="f{datenow}",
+                    on_change=lambda e: u_today_date.set_value(e.value),
                 ).classes("w-1/2")
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.textarea(
@@ -138,4 +140,5 @@ def create() -> None:
                 ui.button("EXIT", color="#172554", on_click=app.shutdown).classes(
                     "text-white"
                 )
+
         create_ui()

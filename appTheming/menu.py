@@ -70,13 +70,14 @@ def menu() -> None:
             ui.menu_item("ABACUS SKILLS", lambda: ui.open("/abacusskills")).classes(
                 replace="text-black"
             )
-            ui.menu_item("BRAILLE SKILLS", lambda: ui.open("/keyboardingskills")).classes(
-                replace="text-black"
-            )
+            ui.menu_item(
+                "BRAILLE SKILLS", lambda: ui.open("/keyboardingskills")
+            ).classes(replace="text-black")
             ui.separator()
             with ui.row().classes("justify-center items-center"):
                 ui.label("TECHNOLOGY SKILLS").classes("font-bold")
-            ui.menu_item("KEYBOARDING SKILLS", lambda: ui.open("/keyboardingskills")
+            ui.menu_item(
+                "KEYBOARDING SKILLS", lambda: ui.open("/keyboardingskills")
             ).classes(replace="text-black")
             ui.menu_item(
                 "SCREENREADER SKILLS", lambda: ui.open("/screenreaderskills")

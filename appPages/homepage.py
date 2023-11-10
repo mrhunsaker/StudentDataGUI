@@ -130,4 +130,6 @@ def content() -> None:
                                             """,
                     extras=["fenced-code-blocks"],
                     )
+
+
 # fmt: on

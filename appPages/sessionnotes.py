@@ -28,7 +28,7 @@ from pathlib import Path
 
 from nicegui import app, ui
 
-from appHelpers.helpers import datenow, tasks, USER_DIR
+from appHelpers.helpers import datenow,  USER_DIR, task_domains
 from appHelpers.roster import students
 from appTheming import theme
 
@@ -45,7 +45,7 @@ def create() -> None:
                 options=students, value="DonaldChamberlain"
             ).classes("hidden")
             u_today_date = ui.date().classes("hidden")
-            u_tasks = ui.select(options=tasks, value="Choose a Task").classes("hidden")
+            u_tasks = ui.select(options=[""], value="Choose a Task").classes("hidden")
             u_anecdotalnotes = ui.textarea().classes("hidden")
             u_trial01 = ui.number().classes("hidden")
             u_trial02 = ui.number().classes("hidden")
@@ -111,7 +111,7 @@ def create() -> None:
                 trial08 = (str(int(u_trial08.value)),)
                 trial09 = (str(int(u_trial09.value)),)
                 trial10 = (str(int(u_trial10.value)),)
-                trial11 = str(int(u_trial11.value))
+                trial11 = (str(int(u_trial11.value)),)
 
                 studentdatabasename = f"anecdotalnotes{studentname.title()}{datenow}"
                 tmppath = Path(USER_DIR).joinpath(
@@ -138,7 +138,6 @@ def create() -> None:
                 }
                 with open(tmppath, "w", encoding="utf-8") as filename:
                     json.dump(anecdotal_dictionary, filename)
-
                     tmppath = Path(USER_DIR).joinpath(
                         "StudentDatabase", "StudentDataFiles", "Filenames.txt"
                     )
@@ -187,6 +186,7 @@ def create() -> None:
 
             """
             with ui.row().classes("w-screen no-wrap py-4"):
+                ui.label("Student")
                 ui.select(
                     options=students,
                     with_input=True,
@@ -198,11 +198,21 @@ def create() -> None:
                     on_change=lambda e: u_today_date.set_value(e.value),
                 ).classes("w-1/2")
             with ui.row().classes("w-screen no-wrap"):
-                ui.select(
-                    options=tasks,
+                ui.label("Task Domain") 
+                task_domain = ui.select(
+                    options=list(task_domains.keys()),
                     with_input=True,
-                    on_change=lambda e: u_tasks.set_value(e.value),).classes("w-[300px]").props(
-                    'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
+                    on_change=lambda e: specific_task.set_options(task_domains.get(e.value, [""])),
+                ).classes("w-[300px]").props(
+                    'aria-label="Select Task Domain from the Dropdown. It will autocomplete as you type"'
+                ).tooltip("Type Task Domain, it will autocomplete as you type")
+                ui.label("Specific Task")
+                specific_task = ui.select(
+                    options=[""],
+                    with_input=True,
+                    on_change=lambda e: u_tasks.set_value(e.value),
+                ).classes("w-[300px]").props(
+                    'aria-label="Select Task from the Dropdown. It will autocomplete as you type"'
                 ).tooltip("Type Task, it will autocomplete as you type")
             with ui.row().classes("w-screen no-wrap py-4"):
                 ui.label(
@@ -249,6 +259,7 @@ def create() -> None:
                     format="%.0f",
                     on_change=lambda e: u_trial05.set_value(e.value),
                 ).classes("w-[600px]").props('aria-label="Trial 5" ')
+            with ui.row().classes("w-screen no-wrap py-4"):
                 ui.number(
                     label="Trial 6",
                     min=0,

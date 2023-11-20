@@ -184,8 +184,6 @@ def getresolution() -> str:
 
 
 MONITOR = getresolution()
-print(f"SQLite Version is: {sqlite3.sqlite_version}")
-print(f"SQLite DB-API Version is: {sqlite3.version}")
 print(f"Monitor: \nwidth = {MONITOR.width} \nheight = {MONITOR.height}")
 ui.run(
     native=False,

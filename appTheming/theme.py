@@ -54,7 +54,6 @@ def github() -> ui.html:
     """
     return ui.html(Path(ROOT_DIR).joinpath("github.svg").read_text())
 
-
 def branding() -> ui.html:
     """
     Retrieve and display the branding icon as HTML.
@@ -146,17 +145,19 @@ def frame(navtitle: str) -> None:
     with ui.column().classes(""):
         yield
 
-    with ui.footer(value=True) as footer:
+    with ui.footer(value=True).classes('h-[100px]') as footer:
         with ui.row().classes(
-            "w-screen no-wrap justify-center items-center text-l font-bold text-white"
+            "w-screen no-wrap justify-between items-center text-l font-bold text-white h-full pt-2.5"
         ):
+           
+            with ui.link(target="https://davis.k12.ut.us").classes(
+                "max-[305px]:hidden absolute-left flex-none mt-5"
+                ).tooltip("Davis School District"):
+                branding().classes("fill-white scale-150 m-1")
             ui.label("Copyright © 2023 Michael Ryan Hunsaker, M.Ed., Ph.D.").classes(
-                "justify-center items-center "
+            "absolute-center flex-1 self-center"
             )
-        with ui.row().classes(
-            "w-screen no-wrap justify-center items-right text-l font-bold text-white"
-        ):
             with ui.link(target="https://github.com/mrhunsaker/StudentDataGUI").classes(
-                "max-[305px]:hidden"
-            ).tooltip("GitHub"):
-                github().classes("fill-white scale-125 m-1")
+                            "max-[305px]:hidden absolute-right flex-none mt-2.5"
+                            ).tooltip("GitHub Repo"):
+                github().classes("fill-white scale-150 m-1")

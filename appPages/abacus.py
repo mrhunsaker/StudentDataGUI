@@ -41,6 +41,35 @@ def create() -> None:
     """Abacus Skills Progression"""
 
     @ui.page("/abacusskills")
+        """
+        A decorator that creates a niceGUI page with the given title and layout.
+
+        A niceGUI page is a web page that displays the user interface elements created by the decorated function. The page can have different layouts, such as "auto", "grid", or "flex". The page can also have different themes, such as "light", "dark", or "custom".
+
+        Parameters
+        ----------
+        title : str
+            The title of the page.
+        layout : str, optional
+            The layout of the page. The default is "auto", which automatically adjusts the layout based on the screen size. Other options are "grid", which uses a grid system to arrange the elements, and "flex", which uses a flexible box model to align the elements.
+        fullscreen : bool, optional
+            Whether to display the page in fullscreen mode. The default is False, which shows the page in a normal window. If True, the page will cover the entire screen and hide the browser toolbar and address bar.
+        theme : str or dict, optional
+            The theme of the page. The default is None, which uses the default theme of the browser. Other options are "light", which uses a light color scheme, "dark", which uses a dark color scheme, or a custom dictionary that specifies the colors and fonts of the page.
+
+        Returns
+        -------
+        Page
+            A niceGUI page object that displays the user interface elements.
+
+        Examples
+        --------
+        >>> @ui.page("Hello, niceGUI")
+        >>> def main():
+        >>>     ui.label("This is a niceGUI page")
+        >>> 
+        >>> main()
+        """
     def abacusskills() -> None:
         with theme.frame("- TACTILE SKILLS -"):
             ui.label("ABACUS SKILLS").classes("text-h4 text-grey-8")

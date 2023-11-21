@@ -44,40 +44,160 @@ def create() -> None:
     @ui.page("/screenreaderskills")
     def screenreaderskills() -> None:
         with theme.frame("- TECHNOLOGY SKILLS -"):
-            ui.label("SCREENREADER SKILLS").classes("text-h4 text-grey-8").style('font-family: "Atkinson Hyperlegible"')
-            u_studentname = ui.select(
-                options=students, value="DonaldChamberlain"
-            ).classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            ui.label("SCREENREADER SKILLS").classes("text-h4 text-grey-8").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            )
+            u_studentname = (
+                ui.select(options=students, value="DonaldChamberlain")
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
             # ASSIGN VARIABLES
-            u_today_date = ui.date().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_screenreader_trial11 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_screenreader_trial12 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_screenreader_trial13 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_screenreader_trial14 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_screenreader_trial15 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_screenreader_trial16 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_screenreader_trial21 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_screenreader_trial22 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_screenreader_trial23 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_screenreader_trial24 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_screenreader_trial31 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_screenreader_trial32 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_screenreader_trial33 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_screenreader_trial34 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_screenreader_trial35 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_screenreader_trial36 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_screenreader_trial37 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_screenreader_trial38 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_screenreader_trial39 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_screenreader_trial310 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_screenreader_trial311 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_screenreader_trial41 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_screenreader_trial42 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_screenreader_trial43 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_screenreader_trial44 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_screenreader_trial45 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_screenreader_trial46 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_screenreader_trial47 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_today_date = (
+                ui.date()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_screenreader_trial11 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_screenreader_trial12 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_screenreader_trial13 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_screenreader_trial14 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_screenreader_trial15 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_screenreader_trial16 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_screenreader_trial21 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_screenreader_trial22 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_screenreader_trial23 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_screenreader_trial24 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_screenreader_trial31 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_screenreader_trial32 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_screenreader_trial33 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_screenreader_trial34 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_screenreader_trial35 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_screenreader_trial36 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_screenreader_trial37 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_screenreader_trial38 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_screenreader_trial39 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_screenreader_trial310 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_screenreader_trial311 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_screenreader_trial41 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_screenreader_trial42 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_screenreader_trial43 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_screenreader_trial44 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_screenreader_trial45 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_screenreader_trial46 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_screenreader_trial47 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
 
             # SAVE FUNCTION (USED BELOW)
             def save(event):
@@ -1168,22 +1288,33 @@ def create() -> None:
             Some related functions or classes that might be useful.
 
             """
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.button("GRAPH", color="#172554", on_click=graph).classes(
                     "text-white"
                 )
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.select(
                     options=students,
                     with_input=True,
-                    on_change=lambda e: u_studentname.set_value(e.value),).classes("w-[300px]").style('font-family: "Atkinson Hyperlegible"').props(
+                    on_change=lambda e: u_studentname.set_value(e.value),
+                ).classes("w-[300px]").style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                ).props(
                     'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
                 ).tooltip("Type Student Name, it will autocomplete AS you type")
                 ui.date(
                     value="f{datenow}",
                     on_change=lambda e: u_today_date.set_value(e.value),
-                ).classes("w-1/2").style('font-family: "Atkinson Hyperlegible"')
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("w-1/2").style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                )
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.label(
                     "RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent"
                 ).props(
@@ -1191,45 +1322,57 @@ def create() -> None:
                 )
                 ui.input().props(
                     'aria-label="RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent" content-center'
-                ).classes("sr-only").style('font-family: "Atkinson Hyperlegible"')
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
-                ui.label("PHASE 1: READING").classes("justify-center items-center text-lg").style('font-family: "Atkinson Hyperlegible"')
-                ui.input().props('aria-label="PHASE 1: READING"').classes("sr-only").style('font-family: "Atkinson Hyperlegible"')
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("sr-only").style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                )
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
+                ui.label("PHASE 1: READING").classes(
+                    "justify-center items-center text-lg"
+                ).style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+                ui.input().props('aria-label="PHASE 1: READING"').classes(
+                    "sr-only"
+                ).style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="1.1 Turn on and off the screen reader",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_screenreader_trial11.set_value(e.value),
-                ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
-                    'aria-label="1.1 Turn on and off the screen reader"'
-                )
+                ).classes("w-[600px]").style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                ).props('aria-label="1.1 Turn on and off the screen reader"')
             ui.number(
                 label="1.2 Utilize modifier keys such as ctrl alt and shift",
                 min=0,
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_screenreader_trial12.set_value(e.value),
-            ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
-                'aria-label="1.2 Utilize modifier keys such as ctrl alt and shift"'
-            )
+            ).classes("w-[600px]").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ).props('aria-label="1.2 Utilize modifier keys such as ctrl alt and shift"')
             ui.number(
                 label="1.3 Read text using a variety of reading commands",
                 min=0,
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_screenreader_trial13.set_value(e.value),
-            ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
-                'aria-label="1.3 Read text using a variety of reading commands"'
-            )
+            ).classes("w-[600px]").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ).props('aria-label="1.3 Read text using a variety of reading commands"')
             ui.number(
                 label="1.4 Identify the titles and section titles of documents with Headings",
                 min=0,
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_screenreader_trial14.set_value(e.value),
-            ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
+            ).classes("w-[600px]").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ).props(
                 'aria-label="1.4 Identify the titles and section titles of documents with Headings"'
             )
             ui.number(
@@ -1238,7 +1381,9 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_screenreader_trial15.set_value(e.value),
-            ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
+            ).classes("w-[600px]").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ).props(
                 'aria-label="1.5 Access documents open and close programs  navigate to the  desktop"'
             )
             ui.number(
@@ -1247,18 +1392,30 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_screenreader_trial16.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="1.6 Switch Program Focus"').style('font-family: "Atkinson Hyperlegible"')
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
-                ui.label("PHASE 2: WRITING").classes("justify-center items-center text-lg").style('font-family: "Atkinson Hyperlegible"')
-                ui.input().props('aria-label="PHASE 2: WRITING"').classes("sr-only").style('font-family: "Atkinson Hyperlegible"')
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+            ).classes("w-[600px]").props('aria-label="1.6 Switch Program Focus"').style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            )
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
+                ui.label("PHASE 2: WRITING").classes(
+                    "justify-center items-center text-lg"
+                ).style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+                ui.input().props('aria-label="PHASE 2: WRITING"').classes(
+                    "sr-only"
+                ).style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="2.1 Type with all alphanumeric keys on the keyboard",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_screenreader_trial21.set_value(e.value),
-                ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
+                ).classes("w-[600px]").style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                ).props(
                     'aria-label="2.1 Type with all alphanumeric keys on the keyboard."'
                 )
             ui.number(
@@ -1267,16 +1424,18 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_screenreader_trial22.set_value(e.value),
-            ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
-                'aria-label="2.2 Navigate to and change screen reader settings"'
-            )
+            ).classes("w-[600px]").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ).props('aria-label="2.2 Navigate to and change screen reader settings"')
             ui.number(
                 label="2.3 Write and edit documents using a basic understanding of cursor placement",
                 min=0,
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_screenreader_trial23.set_value(e.value),
-            ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
+            ).classes("w-[600px]").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ).props(
                 'aria-label="2.3 Write and edit documents using a basic understanding of cursor placement"'
             )
             ui.number(
@@ -1285,22 +1444,30 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_screenreader_trial24.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="2.4. Select copy and paste text"').style('font-family: "Atkinson Hyperlegible"')
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+            ).classes("w-[600px]").props(
+                'aria-label="2.4. Select copy and paste text"'
+            ).style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.label("PHASE 3: USING THE INTERNET").classes(
                     "justify-center items-center text-lg"
                 )
             ui.input().props('aria-label="PHASE 3: USING THE INTERNET"').classes(
                 "sr-only"
             )
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="3.1 Define common element types on the internet such as Headings or Buttons",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_screenreader_trial31.set_value(e.value),
-                ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
+                ).classes("w-[600px]").style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                ).props(
                     'aria-label="3.1 Define common element types on the internet such as Headings or Buttons"'
                 )
             ui.number(
@@ -1309,23 +1476,27 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_screenreader_trial32.set_value(e.value),
-            ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
-                'aria-label="3.2 identify each element by type."'
-            )
+            ).classes("w-[600px]").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ).props('aria-label="3.2 identify each element by type."')
             ui.number(
                 label="3.3 navigate to the address bar",
                 min=0,
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_screenreader_trial33.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="3.3 navigate to the address bar"').style('font-family: "Atkinson Hyperlegible"')
+            ).classes("w-[600px]").props(
+                'aria-label="3.3 navigate to the address bar"'
+            ).style('font-style:normal, font-family: "Atkinson Hyperlegible"')
             ui.number(
                 label="3.4 Use the “Tab” key to navigate to the next clickable object",
                 min=0,
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_screenreader_trial34.set_value(e.value),
-            ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
+            ).classes("w-[600px]").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ).props(
                 'aria-label="3.4 Use the “Tab” key to navigate to the next clickable object"'
             )
             ui.number(
@@ -1334,7 +1505,9 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_screenreader_trial35.set_value(e.value),
-            ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
+            ).classes("w-[600px]").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ).props(
                 'aira-label="3.5 Navigate by “Quick Keys” (h for heading b for button and u for link)"'
             )
             ui.number(
@@ -1343,7 +1516,9 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_screenreader_trial36.set_value(e.value),
-            ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
+            ).classes("w-[600px]").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ).props(
                 'aria-label="3.6 Use Elements Lists on a website to navigate by element type"'
             )
             ui.number(
@@ -1352,57 +1527,75 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_screenreader_trial37.set_value(e.value),
-            ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
+            ).classes("w-[600px]").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ).props(
                 'aria-label="3.7 Justify why he/she/they selected a particular method for the situation"'
             )
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="3.8 Switch tab focus",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_screenreader_trial38.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="3.8 Switch tab focus"').style('font-family: "Atkinson Hyperlegible"')
+                ).classes("w-[600px]").props('aria-label="3.8 Switch tab focus"').style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                )
             ui.number(
                 label="3.9 Switch between screen reader modes",
                 min=0,
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_screenreader_trial39.set_value(e.value),
-            ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
-                'aria-label="3.9 Switch between screen reader modes"'
-            )
+            ).classes("w-[600px]").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ).props('aria-label="3.9 Switch between screen reader modes"')
             ui.number(
                 label="3.10 Navigate a table",
                 min=0,
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_screenreader_trial310.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="3.10 Navigate a table"').style('font-family: "Atkinson Hyperlegible"')
+            ).classes("w-[600px]").props('aria-label="3.10 Navigate a table"').style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            )
             ui.number(
                 label="3.11 Develop a navigation sequence to access an unfamiliar website",
                 min=0,
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_screenreader_trial311.set_value(e.value),
-            ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
+            ).classes("w-[600px]").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ).props(
                 'aria-label="3.11 Develop a navigation sequence to access an unfamiliar website"'
             )
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.label("PHASE 4: NAVIGATING AND FILE MANAGEMENT").classes(
                     "justify-center items-center text-lg"
                 )
             ui.input().props(
                 'aria-label="PHASE 4: NAVIGATING AND FILE MANAGEMENT"'
-            ).classes("sr-only").style('font-family: "Atkinson Hyperlegible"')
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+            ).classes("sr-only").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            )
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="4.1 Be able to save and open files using File Explorer",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_screenreader_trial41.set_value(e.value),
-                ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
+                ).classes("w-[600px]").style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                ).props(
                     'aria-label="4.1 Be able to save and open files using File Explorer."'
                 )
             ui.number(
@@ -1411,16 +1604,18 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_screenreader_trial42.set_value(e.value),
-            ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
-                'aria-label="4.2 Create folders and move files in File Explorer"'
-            )
+            ).classes("w-[600px]").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ).props('aria-label="4.2 Create folders and move files in File Explorer"')
             ui.number(
                 label="4.3 Navigate a cloud-based file management system (eg: Google Drive)",
                 min=0,
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_screenreader_trial43.set_value(e.value),
-            ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
+            ).classes("w-[600px]").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ).props(
                 'aria-label="4.3 Navigate a cloud-based file management system (eg: Google Drive)"'
             )
             ui.number(
@@ -1429,37 +1624,47 @@ def create() -> None:
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_screenreader_trial44.set_value(e.value),
-            ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
-                'aria-label="4.4 Download and save material from the internet"'
-            )
+            ).classes("w-[600px]").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ).props('aria-label="4.4 Download and save material from the internet"')
             ui.number(
                 label="4.5 Extract zipped folders",
                 min=0,
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_screenreader_trial45.set_value(e.value),
-            ).classes("w-[600px]").props('aria-label="4.5 Extract zipped folders"').style('font-family: "Atkinson Hyperlegible"')
+            ).classes("w-[600px]").props(
+                'aria-label="4.5 Extract zipped folders"'
+            ).style('font-style:normal, font-family: "Atkinson Hyperlegible"')
             ui.number(
                 label="4.6 Utilize the virtual cursor and mouse keys",
                 min=0,
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_screenreader_trial46.set_value(e.value),
-            ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
-                'aria-label="4.6 Utilize the virtual cursor and mouse keys"'
-            )
+            ).classes("w-[600px]").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ).props('aria-label="4.6 Utilize the virtual cursor and mouse keys"')
             ui.number(
                 label="4.7 To use OCR features to read inaccessible material",
                 min=0,
                 max=3,
                 format="%.0f",
                 on_change=lambda e: u_screenreader_trial47.set_value(e.value),
-            ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
+            ).classes("w-[600px]").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ).props(
                 'aria-label="4.7 To use OCR features to read inaccessible material"'
             )
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
-                ui.button("SAVE", color="#172554", on_click=save).classes("text-white").style('font-family: "Atkinson Hyperlegible"')
-            ui.button("GRAPH", color="#172554", on_click=graph).classes("text-white").style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
+                ui.button("SAVE", color="#172554", on_click=save).classes(
+                    "text-white"
+                ).style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            ui.button("GRAPH", color="#172554", on_click=graph).classes(
+                "text-white"
+            ).style('font-style:normal, font-family: "Atkinson Hyperlegible"')
             ui.button("EXIT", color="#172554", on_click=app.shutdown).classes(
                 "text-white"
             )

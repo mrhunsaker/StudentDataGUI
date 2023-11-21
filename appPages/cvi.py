@@ -45,22 +45,70 @@ def create() -> None:
     @ui.page("/cviprogress")
     def cviprogress():
         with theme.frame("- CORTICAL/NEUROLOGICAL VISION IMPAIRMENT-"):
-            ui.label("CVI PROGRESSION").classes("text-h4 text-grey-8").style('font-family: "Atkinson Hyperlegible"')
-            u_studentname = ui.select(
-                options=students, value="DonaldChamberlain"
-            ).classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            ui.label("CVI PROGRESSION").classes("text-h4 text-grey-8").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            )
+            u_studentname = (
+                ui.select(options=students, value="DonaldChamberlain")
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
             # ASSIGN VARIABLES
-            u_today_date = ui.date().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_cvi_trial11 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_cvi_trial12 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_cvi_trial13 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_cvi_trial14 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_cvi_trial21 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_cvi_trial22 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_cvi_trial23 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_cvi_trial31 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_cvi_trial32 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_cvi_trial33 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_today_date = (
+                ui.date()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_cvi_trial11 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_cvi_trial12 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_cvi_trial13 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_cvi_trial14 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_cvi_trial21 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_cvi_trial22 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_cvi_trial23 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_cvi_trial31 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_cvi_trial32 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_cvi_trial33 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
 
             def save(event):
                 """
@@ -945,22 +993,33 @@ def create() -> None:
             Some related functions or classes that might be useful.
 
             """
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.button("GRAPH", color="#172554", on_click=graph).classes(
                     "text-white"
                 )
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.select(
                     options=students,
                     with_input=True,
-                    on_change=lambda e: u_studentname.set_value(e.value),).classes("w-[300px]").style('font-family: "Atkinson Hyperlegible"').props(
+                    on_change=lambda e: u_studentname.set_value(e.value),
+                ).classes("w-[300px]").style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                ).props(
                     'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
                 ).tooltip("Type Student Name, it will autocomplete AS you type")
                 ui.date(
                     value="f{datenow}",
                     on_change=lambda e: u_today_date.set_value(e.value),
-                ).classes("w-1/2").style('font-family: "Atkinson Hyperlegible"')
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("w-1/2").style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                )
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.label(
                     "RUBRIC: 0=CVI Range 1-2 | 1=CVI Range 3-4 | 2=CVI Range 5-6 |  3=CVI Range 7-8"
                 ).props(
@@ -968,107 +1027,135 @@ def create() -> None:
                 )
                 ui.input().props(
                     'aria-label="RUBRIC: 0=CVI Range 1-2 | 1=CVI Range 3-4 | 2=CVI Range 5-6 |  3=CVI Range 7-8" content-center'
-                ).classes("sr-only").style('font-family: "Atkinson Hyperlegible"')
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("sr-only").style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                )
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="Color Preference",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_cvi_trial11.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="Color Preference"').style('font-family: "Atkinson Hyperlegible"').tooltip(
-                    "Color Preference"
-                )
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("w-[600px]").props('aria-label="Color Preference"').style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                ).tooltip("Color Preference")
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="Need for Movement",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_cvi_trial12.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="Need for Movement"').style('font-family: "Atkinson Hyperlegible"').tooltip(
-                    "Need for Movement"
-                )
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("w-[600px]").props('aria-label="Need for Movement"').style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                ).tooltip("Need for Movement")
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="Latency",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_cvi_trial13.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="Latency"').tooltip("Latency").style('font-family: "Atkinson Hyperlegible"')
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("w-[600px]").props('aria-label="Latency"').tooltip(
+                    "Latency"
+                ).style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="Field Preference",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_cvi_trial14.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="Field Preference"').style('font-family: "Atkinson Hyperlegible"').tooltip(
-                    "Field Preference"
-                )
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("w-[600px]").props('aria-label="Field Preference"').style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                ).tooltip("Field Preference")
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="Visual Complexity",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_cvi_trial21.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="Visual Complexity"').style('font-family: "Atkinson Hyperlegible"').tooltip(
-                    "Visual Complexity"
-                )
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("w-[600px]").props('aria-label="Visual Complexity"').style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                ).tooltip("Visual Complexity")
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="Nonpurposeful Gaze",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_cvi_trial22.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="Nonpurposeful Gaze"').style('font-family: "Atkinson Hyperlegible"').tooltip(
-                    "Nonpurposeful Gaze"
-                )
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("w-[600px]").props('aria-label="Nonpurposeful Gaze"').style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                ).tooltip("Nonpurposeful Gaze")
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="Distance Viewing",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_cvi_trial23.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="Distance Viewing"').style('font-family: "Atkinson Hyperlegible"').tooltip(
-                    "Distance Viewing"
-                )
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("w-[600px]").props('aria-label="Distance Viewing"').style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                ).tooltip("Distance Viewing")
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="Atypical Reflexes",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_cvi_trial31.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="Atypical Reflexes"').style('font-family: "Atkinson Hyperlegible"').tooltip(
-                    "Atypical Reflexes"
-                )
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("w-[600px]").props('aria-label="Atypical Reflexes"').style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                ).tooltip("Atypical Reflexes")
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="Visual Novelty",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_cvi_trial32.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="Visual Novelty"').style('font-family: "Atkinson Hyperlegible"').tooltip(
-                    "Visual Novelty"
-                )
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("w-[600px]").props('aria-label="Visual Novelty"').style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                ).tooltip("Visual Novelty")
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="Visual Reach",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_cvi_trial33.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="Visual Reach"').style('font-family: "Atkinson Hyperlegible"').tooltip(
-                    "Visual Reach"
-                )
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
-                ui.button("SAVE", color="#172554", on_click=save).classes("text-white").style('font-family: "Atkinson Hyperlegible"')
+                ).classes("w-[600px]").props('aria-label="Visual Reach"').style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                ).tooltip("Visual Reach")
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
+                ui.button("SAVE", color="#172554", on_click=save).classes(
+                    "text-white"
+                ).style('font-style:normal, font-family: "Atkinson Hyperlegible"')
                 ui.button("GRAPH", color="#172554", on_click=graph).classes(
                     "text-white"
                 )

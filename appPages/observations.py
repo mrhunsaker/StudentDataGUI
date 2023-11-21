@@ -39,13 +39,25 @@ def create() -> None:
     @ui.page("/observations")
     def observations() -> None:
         with theme.frame("- DATA COLLECTION -"):
-            ui.label("OBSERVATION NOTES").classes("text-h4 text-grey-8").style('font-family: "Atkinson Hyperlegible"')
+            ui.label("OBSERVATION NOTES").classes("text-h4 text-grey-8").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            )
             # ASSIGN VARIABLES
-            u_studentname = ui.select(
-                options=students, value="DonaldChamberlain"
-            ).classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_today_date = ui.date().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_observationnotes = ui.textarea().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_studentname = (
+                ui.select(options=students, value="DonaldChamberlain")
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_today_date = (
+                ui.date()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_observationnotes = (
+                ui.textarea()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
 
             def save(event):
                 """
@@ -116,26 +128,41 @@ def create() -> None:
             Some related functions or classes that might be useful.
 
             """
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.select(
                     options=students,
                     with_input=True,
-                    on_change=lambda e: u_studentname.set_value(e.value),).classes("w-[300px]").style('font-family: "Atkinson Hyperlegible"').props(
+                    on_change=lambda e: u_studentname.set_value(e.value),
+                ).classes("w-[300px]").style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                ).props(
                     'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
                 ).tooltip("Type Student Name, it will autocomplete AS you type")
                 ui.date(
                     value="f{datenow}",
                     on_change=lambda e: u_today_date.set_value(e.value),
-                ).classes("w-1/2").style('font-family: "Atkinson Hyperlegible"')
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("w-1/2").style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                )
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.textarea(
                     label="Input Observation Notes In this Box and Press Save",
                     on_change=lambda e: u_observationnotes.set_value(e.value),
-                ).classes("v-min-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
+                ).classes("v-min-[600px]").style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                ).props(
                     'cols=200 autogrow outlined aria-label="Please type observation notes" square'
                 )
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
-                ui.button("SAVE", color="#172554", on_click=save).classes("text-white").style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
+                ui.button("SAVE", color="#172554", on_click=save).classes(
+                    "text-white"
+                ).style('font-style:normal, font-family: "Atkinson Hyperlegible"')
                 ui.button("EXIT", color="#172554", on_click=app.shutdown).classes(
                     "text-white"
                 )

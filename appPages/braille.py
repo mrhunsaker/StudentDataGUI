@@ -44,76 +44,340 @@ def create() -> None:
     @ui.page("/brailleskills")
     def brailleskills() -> None:
         with theme.frame("- TACTILE SKILLS -"):
-            ui.label("BRAILLE SKILLS").classes("text-h4 text-grey-8").style('font-family: "Atkinson Hyperlegible"')
+            ui.label("BRAILLE SKILLS").classes("text-h4 text-grey-8").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            )
 
-            u_studentname = ui.select(
-                options=students, value="DonaldChamberlain"
-            ).classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_today_date = ui.date().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_braille_trial11 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_braille_trial12 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_braille_trial13 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_braille_trial14 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_braille_trial21 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_braille_trial22 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_braille_trial23 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_braille_trial24 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_braille_trial25 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_braille_trial26 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_braille_trial27 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_braille_trial28 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_braille_trial29 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_braille_trial210 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_braille_trial211 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_braille_trial212 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_braille_trial213 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_braille_trial214 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_braille_trial215 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_braille_trial31 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_braille_trial32 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_braille_trial33 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_braille_trial34 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_braille_trial35 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_braille_trial36 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_braille_trial37 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_braille_trial38 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_braille_trial39 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_braille_trial310 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_braille_trial311 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_braille_trial312 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_braille_trial313 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_braille_trial314 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_braille_trial315 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_braille_trial41 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_braille_trial42 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_braille_trial43 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_braille_trial44 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_braille_trial51 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_braille_trial52 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_braille_trial53 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_braille_trial54 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_braille_trial61 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_braille_trial62 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_braille_trial63 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_braille_trial64 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_braille_trial65 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_braille_trial66 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_braille_trial67 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_braille_trial71 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_braille_trial72 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_braille_trial73 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_braille_trial74 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_braille_trial75 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_braille_trial76 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_braille_trial77 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_braille_trial78 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_braille_trial81 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_braille_trial82 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_braille_trial83 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_braille_trial84 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_braille_trial85 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_braille_trial86 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
-            u_braille_trial87 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_studentname = (
+                ui.select(options=students, value="DonaldChamberlain")
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_today_date = (
+                ui.date()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_braille_trial11 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_braille_trial12 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_braille_trial13 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_braille_trial14 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_braille_trial21 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_braille_trial22 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_braille_trial23 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_braille_trial24 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_braille_trial25 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_braille_trial26 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_braille_trial27 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_braille_trial28 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_braille_trial29 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_braille_trial210 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_braille_trial211 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_braille_trial212 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_braille_trial213 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_braille_trial214 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_braille_trial215 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_braille_trial31 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_braille_trial32 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_braille_trial33 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_braille_trial34 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_braille_trial35 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_braille_trial36 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_braille_trial37 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_braille_trial38 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_braille_trial39 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_braille_trial310 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_braille_trial311 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_braille_trial312 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_braille_trial313 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_braille_trial314 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_braille_trial315 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_braille_trial41 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_braille_trial42 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_braille_trial43 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_braille_trial44 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_braille_trial51 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_braille_trial52 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_braille_trial53 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_braille_trial54 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_braille_trial61 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_braille_trial62 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_braille_trial63 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_braille_trial64 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_braille_trial65 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_braille_trial66 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_braille_trial67 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_braille_trial71 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_braille_trial72 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_braille_trial73 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_braille_trial74 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_braille_trial75 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_braille_trial76 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_braille_trial77 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_braille_trial78 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_braille_trial81 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_braille_trial82 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_braille_trial83 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_braille_trial84 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_braille_trial85 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_braille_trial86 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
+            u_braille_trial87 = (
+                ui.number()
+                .classes("hidden")
+                .style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            )
 
             def save(event):
                 """
@@ -2417,705 +2681,950 @@ def create() -> None:
             Some related functions or classes that might be useful.
 
             """
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.button("GRAPH", color="#172554", on_click=graph).classes(
                     "text-white"
                 )
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.select(
                     options=students,
                     with_input=True,
-                    on_change=lambda e: u_studentname.set_value(e.value),).classes("w-[300px]").style('font-family: "Atkinson Hyperlegible"').props(
+                    on_change=lambda e: u_studentname.set_value(e.value),
+                ).classes("w-[300px]").style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                ).props(
                     'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
                 ).tooltip("Type Student Name, it will autocomplete AS you type")
                 ui.date(
                     value="f{datenow}",
                     on_change=lambda e: u_today_date.set_value(e.value),
-                ).classes("w-1/2").style('font-family: "Atkinson Hyperlegible"')
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("w-1/2").style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                )
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.label(
                     "RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent"
                 ).props(
                     'aria-label="RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent" content-center'
-                ).style('font-family: "Atkinson Hyperlegible"')
+                ).style('font-style:normal, font-family: "Atkinson Hyperlegible"')
                 ui.input().props(
                     'aria-label="RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent" content-center'
-                ).classes("sr-only").style('font-family: "Atkinson Hyperlegible"')
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("sr-only").style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                )
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.label("PHASE 1: Braille Tracking Skills").classes(
                     "justify-center items-center text-lg"
-                ).style('font-family: "Atkinson Hyperlegible"')
+                ).style('font-style:normal, font-family: "Atkinson Hyperlegible"')
                 ui.input().props(
                     'aria-label="PHASE 1: Braille Tracking Skills"'
-                ).classes("sr-only").style('font-family: "Atkinson Hyperlegible"')
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("sr-only").style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                )
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="1.1 Track Left to Right",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial11.set_value(e.value),
-                ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
-                    'aria-label="1.1 Track Left to Right"'
-                ).tooltip("1.1 Track Left to Right")
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("w-[600px]").style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                ).props('aria-label="1.1 Track Left to Right"').tooltip(
+                    "1.1 Track Left to Right"
+                )
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="1.2 Track Top to Bottom",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial12.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="1.2 Track Top to Bottom"').style('font-family: "Atkinson Hyperlegible"')
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("w-[600px]").props(
+                    'aria-label="1.2 Track Top to Bottom"'
+                ).style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="1.3 Discriminate Shapes",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial13.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="1.3 Discriminate Shapes"').style('font-family: "Atkinson Hyperlegible"')
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("w-[600px]").props(
+                    'aria-label="1.3 Discriminate Shapes"'
+                ).style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="1.4 Discriminate Braille Characters",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial14.set_value(e.value),
-                ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
-                    'aria-label="1.4 Discriminate Braille Characters"'
-                )
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("w-[600px]").style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                ).props('aria-label="1.4 Discriminate Braille Characters"')
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.label("PHASE 2: Tactile Letter Recognition (after Mangold)").classes(
                     "justify-center items-center text-lg"
-                ).style('font-family: "Atkinson Hyperlegible"')
+                ).style('font-style:normal, font-family: "Atkinson Hyperlegible"')
                 ui.input().props(
                     'aria-label="PHASE 2: Tactile Letter Recognition (after Mangold)"'
-                ).classes("sr-only").style('font-family: "Atkinson Hyperlegible"')
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("sr-only").style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                )
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="2.1 Mangold Progression: G C L",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial21.set_value(e.value),
-                ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
-                    'aria-label="2.1 Mangold Progression: G C L"'
-                )
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("w-[600px]").style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                ).props('aria-label="2.1 Mangold Progression: G C L"')
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="2.2 Mangold Progression: D Y",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial22.set_value(e.value),
-                ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
-                    'aria-label="2.2 Mangold Progression: D Y"'
-                )
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("w-[600px]").style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                ).props('aria-label="2.2 Mangold Progression: D Y"')
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="2.3 Mangold Progression: A B",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial23.set_value(e.value),
-                ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
-                    'aria-label="2.3 Mangold Progression: A B"'
-                )
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("w-[600px]").style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                ).props('aria-label="2.3 Mangold Progression: A B"')
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="2.4 Mangold Progression: S",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial24.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="2.4 Mangold Progression: S"').style('font-family: "Atkinson Hyperlegible"')
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("w-[600px]").props(
+                    'aria-label="2.4 Mangold Progression: S"'
+                ).style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="2.5 Mangold Progression: W",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial25.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="2.5 Mangold Progression: W"').style('font-family: "Atkinson Hyperlegible"')
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("w-[600px]").props(
+                    'aria-label="2.5 Mangold Progression: W"'
+                ).style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="2.6 Mangold Progression: P O",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial26.set_value(e.value),
-                ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
-                    'aria-label="2.6 Mangold Progression: P O"'
-                )
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("w-[600px]").style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                ).props('aria-label="2.6 Mangold Progression: P O"')
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="2.7 Mangold Progression: K",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial27.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="2.7 Mangold Progression: K"').style('font-family: "Atkinson Hyperlegible"')
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("w-[600px]").props(
+                    'aria-label="2.7 Mangold Progression: K"'
+                ).style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="2.8 Mangold Progression: R",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial28.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="2.8 Mangold Progression: R"').style('font-family: "Atkinson Hyperlegible"')
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("w-[600px]").props(
+                    'aria-label="2.8 Mangold Progression: R"'
+                ).style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="2.9 Mangold Progression: M E",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial29.set_value(e.value),
-                ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
-                    'aria-label="2.9 Mangold Progression: M E"'
-                )
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("w-[600px]").style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                ).props('aria-label="2.9 Mangold Progression: M E"')
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="2.10 Mangold Progression: H",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial210.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="2.10 Mangold Progression: H"').style('font-family: "Atkinson Hyperlegible"')
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("w-[600px]").props(
+                    'aria-label="2.10 Mangold Progression: H"'
+                ).style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="2.11 Mangold Progression: N X",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial211.set_value(e.value),
-                ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
-                    'aria-label="2.11 Mangold Progression: N X"'
-                )
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("w-[600px]").style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                ).props('aria-label="2.11 Mangold Progression: N X"')
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="2.12 Mangold Progression: Z F",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial212.set_value(e.value),
-                ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
-                    'aria-label="2.12 Mangold Progression: Z F"'
-                )
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("w-[600px]").style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                ).props('aria-label="2.12 Mangold Progression: Z F"')
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="2.13 Mangold Progression: U T",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial213.set_value(e.value),
-                ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
-                    'aria-label="2.13 Mangold Progression: U T"'
-                )
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("w-[600px]").style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                ).props('aria-label="2.13 Mangold Progression: U T"')
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="2.14 Mangold Progression: Q I",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial214.set_value(e.value),
-                ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
-                    'aria-label="2.14 Mangold Progression: Q I"'
-                )
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("w-[600px]").style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                ).props('aria-label="2.14 Mangold Progression: Q I"')
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="2.15 Mangold Progression: V J",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial215.set_value(e.value),
-                ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
-                    'aria-label="2.15 Mangold Progression: V J"'
-                )
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("w-[600px]").style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                ).props('aria-label="2.15 Mangold Progression: V J"')
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.label(
                     "PHASE 3: Contractions, Groupsigns, Wordsigns, and Shortform Words"
-                ).classes("justify-center items-center text-lg").style('font-family: "Atkinson Hyperlegible"')
+                ).classes("justify-center items-center text-lg").style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                )
                 ui.input().props(
                     'aria-label="PHASE 3: Contractions, Groupsigns, Wordsigns, and Shortform Words"'
-                ).classes("sr-only").style('font-family: "Atkinson Hyperlegible"')
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("sr-only").style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                )
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="3.1 Alphabetic Wordsigns",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial31.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="3.1 Alphabetic Wordsigns"').style('font-family: "Atkinson Hyperlegible"')
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("w-[600px]").props(
+                    'aria-label="3.1 Alphabetic Wordsigns"'
+                ).style('font-style:normal, font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="3.2 Braille Numbers",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial32.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="3.2 Braille Numbers"').style('font-family: "Atkinson Hyperlegible"')
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("w-[600px]").props('aria-label="3.2 Braille Numbers"').style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                )
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="3.3 Punctuation",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial33.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="3.3 Punctuation"').style('font-family: "Atkinson Hyperlegible"')
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("w-[600px]").props('aria-label="3.3 Punctuation"').style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                )
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="3.4 Strong Contractions - AND OF FOR WITH THE",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial34.set_value(e.value),
-                ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
-                    'aria-label="3.4 Strong Contractions - AND OF FOR WITH THE"'
-                )
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("w-[600px]").style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                ).props('aria-label="3.4 Strong Contractions - AND OF FOR WITH THE"')
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="3.5 Strong Groupsigns - CH GH SH TH WH ED  ER OU OW ST AR ING",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial35.set_value(e.value),
-                ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
+                ).classes("w-[600px]").style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                ).props(
                     'aria-label="3.5 Strong Groupsigns - CH GH SH TH WH ED  ER OU OW ST AR ING"'
                 )
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="3.6 Strong Wordsigns - CH SH TH WH OU ST",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial36.set_value(e.value),
-                ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
-                    'aria-label="3.6 Strong Wordsigns - CH SH TH WH OU ST"'
-                )
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("w-[600px]").style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                ).props('aria-label="3.6 Strong Wordsigns - CH SH TH WH OU ST"')
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="3.7 Lower Groupsigns - BE CON DIS",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial37.set_value(e.value),
-                ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
-                    'aria-label="3.7 Lower Groupsigns - BE CON DIS"'
-                )
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("w-[600px]").style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                ).props('aria-label="3.7 Lower Groupsigns - BE CON DIS"')
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="3.8 Lower Groupsigns - EA BB CC FF GG",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial38.set_value(e.value),
-                ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
-                    'aria-label="3.8 Lower Groupsigns - EA BB CC FF GG"'
-                )
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("w-[600px]").style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                ).props('aria-label="3.8 Lower Groupsigns - EA BB CC FF GG"')
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="3.9 Lower Group/Wordsigns - EN IN",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial39.set_value(e.value),
-                ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
-                    'aria-label="3.9 Lower Group/Wordsigns - EN IN"'
-                )
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("w-[600px]").style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                ).props('aria-label="3.9 Lower Group/Wordsigns - EN IN"')
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="3.10 Lower Wordsigns - BE HIS WAS WERE",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial310.set_value(e.value),
-                ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
-                    'aria-label="3.10 Lower Wordsigns - BE HIS WAS WERE"'
-                ).tooltip("3.10 Lower Wordsigns - BE HIS WAS WERE")
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("w-[600px]").style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                ).props('aria-label="3.10 Lower Wordsigns - BE HIS WAS WERE"').tooltip(
+                    "3.10 Lower Wordsigns - BE HIS WAS WERE"
+                )
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="3.11 Dot 5 Contractions",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial311.set_value(e.value),
-                ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
-                    'aria-label="3.11 Dot 5 Contractions"'
-                ).tooltip("3.11 Dot 5 Contractions")
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("w-[600px]").style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                ).props('aria-label="3.11 Dot 5 Contractions"').tooltip(
+                    "3.11 Dot 5 Contractions"
+                )
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="3.12 Dot 45 Contractions",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial312.set_value(e.value),
-                ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
-                    'aria-label="3.12 Dot 45 Contractions"'
-                ).tooltip("3.12 Dot 45 Contractions")
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("w-[600px]").style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                ).props('aria-label="3.12 Dot 45 Contractions"').tooltip(
+                    "3.12 Dot 45 Contractions"
+                )
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="3.13 Dot 456 Contractions",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial313.set_value(e.value),
-                ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
-                    'aria-label="3.13 Dot 456 Contractions"'
-                ).tooltip("3.13 Dot 456 Contractions")
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("w-[600px]").style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                ).props('aria-label="3.13 Dot 456 Contractions"').tooltip(
+                    "3.13 Dot 456 Contractions"
+                )
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="3.14 Final Letter Groupsigns",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial314.set_value(e.value),
-                ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
-                    'aria-label="3.14 Final Letter Groupsigns"'
-                ).tooltip("3.14 Final Letter Groupsigns")
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("w-[600px]").style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                ).props('aria-label="3.14 Final Letter Groupsigns"').tooltip(
+                    "3.14 Final Letter Groupsigns"
+                )
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="3.15 Shortform Words",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial315.set_value(e.value),
-                ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
-                    'aria-label="3.15 Shortform Words"'
-                ).tooltip("3.15 Shortform Words")
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("w-[600px]").style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                ).props('aria-label="3.15 Shortform Words"').tooltip(
+                    "3.15 Shortform Words"
+                )
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.label("PHASE 4: Indicator Usage").classes(
                     "justify-center items-center text-lg"
-                ).style('font-family: "Atkinson Hyperlegible"')
+                ).style('font-style:normal, font-family: "Atkinson Hyperlegible"')
                 ui.input().props('aria-label="PHASE 4: Indicator Usage"').classes(
                     "sr-only"
                 )
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="4.1 Grade 1 Indicators",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial41.set_value(e.value),
-                ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
-                    'aria-label="4.1 Grade 1 Indicators"'
-                ).tooltip("4.1 Grade 1 Indicators")
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("w-[600px]").style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                ).props('aria-label="4.1 Grade 1 Indicators"').tooltip(
+                    "4.1 Grade 1 Indicators"
+                )
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="4.2 Capitals Indicators",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial42.set_value(e.value),
-                ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
-                    'aria-label="4.2 Capitals Indicators"'
-                ).tooltip("4.2 Capitals Indicators")
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("w-[600px]").style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                ).props('aria-label="4.2 Capitals Indicators"').tooltip(
+                    "4.2 Capitals Indicators"
+                )
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="4.3 Numeric Mode and Spatial Math",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial43.set_value(e.value),
-                ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
-                    'aria-label="4.3 Numeric Mode and Spatial Math"'
-                ).tooltip("4.3 Numeric Mode and Spatial Math")
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("w-[600px]").style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                ).props('aria-label="4.3 Numeric Mode and Spatial Math"').tooltip(
+                    "4.3 Numeric Mode and Spatial Math"
+                )
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="4.4 Typeform Indicators - ITALIC BOLD UNDERLINE SCRIPT",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial44.set_value(e.value),
-                ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
+                ).classes("w-[600px]").style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                ).props(
                     'aria-label="4.4 Typeform Indicators - ITALIC BOLD UNDERLINE SCRIPT"'
                 ).tooltip("4.4 Typeform Indicators - ITALIC BOLD UNDERLINE SCRIPT")
-                ui.label().classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"')
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ui.label().classes("w-[600px]").style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                )
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.label("PHASE 5: Advanced Document Formatting").classes(
                     "justify-center items-center text-lg"
-                ).style('font-family: "Atkinson Hyperlegible"')
+                ).style('font-style:normal, font-family: "Atkinson Hyperlegible"')
                 ui.input().props(
                     'aria-label="PHASE 5: Advanced Document Formatting"'
-                ).classes("sr-only").style('font-family: "Atkinson Hyperlegible"')
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("sr-only").style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                )
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="5.1 Page Numbering",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial51.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="5.1 Page Numbering"').style('font-family: "Atkinson Hyperlegible"').tooltip(
-                    "5.1 Page Numbering"
-                )
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("w-[600px]").props('aria-label="5.1 Page Numbering"').style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                ).tooltip("5.1 Page Numbering")
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="5.2 Headings",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial52.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="5.2 Headings"').style('font-family: "Atkinson Hyperlegible"').tooltip(
-                    "5.2 Headings"
-                )
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("w-[600px]").props('aria-label="5.2 Headings"').style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                ).tooltip("5.2 Headings")
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="5.3 Lists",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial53.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="5.3 Lists"').style('font-family: "Atkinson Hyperlegible"')
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("w-[600px]").props('aria-label="5.3 Lists"').style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                )
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="5.4 Poetry / Drama",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial54.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="5.4 Poetry / Drama"').style('font-family: "Atkinson Hyperlegible"').tooltip(
-                    "5.4 Poetry / Drama"
-                )
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("w-[600px]").props('aria-label="5.4 Poetry / Drama"').style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                ).tooltip("5.4 Poetry / Drama")
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.label("PHASE 6: Elementary Math").classes(
                     "justify-center items-center text-lg"
-                ).style('font-family: "Atkinson Hyperlegible"')
+                ).style('font-style:normal, font-family: "Atkinson Hyperlegible"')
                 ui.input().props('aria-label="PHASE 6: Elementary Math "').classes(
                     "sr-only"
                 )
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="6.1 Operation and Comparison Signs",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial61.set_value(e.value),
-                ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
-                    'aria-label="6.1 Operation and Comparison Signs"'
-                ).tooltip("6.1 Operation and Comparison Signs")
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("w-[600px]").style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                ).props('aria-label="6.1 Operation and Comparison Signs"').tooltip(
+                    "6.1 Operation and Comparison Signs"
+                )
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="6.2 Grade 1 Mode",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial62.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="6.2 Grade 1 Mode"').style('font-family: "Atkinson Hyperlegible"').tooltip(
-                    "6.2 Grade 1 Mode"
-                )
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("w-[600px]").props('aria-label="6.2 Grade 1 Mode"').style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                ).tooltip("6.2 Grade 1 Mode")
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="6.3 Special Print Symbols",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial63.set_value(e.value),
-                ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
-                    'aria-label="6.3 Special Print Symbols"'
-                ).tooltip("6.3 Special Print Symbols")
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("w-[600px]").style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                ).props('aria-label="6.3 Special Print Symbols"').tooltip(
+                    "6.3 Special Print Symbols"
+                )
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="6.4 Omission Marks",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial64.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="6.4 Omission Marks"').style('font-family: "Atkinson Hyperlegible"').tooltip(
-                    "6.4 Omission Marks"
-                )
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("w-[600px]").props('aria-label="6.4 Omission Marks"').style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                ).tooltip("6.4 Omission Marks")
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="6.5 Shape Indicators",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial65.set_value(e.value),
-                ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
-                    'aria-label="6.5 Shape Indicators"'
-                ).tooltip("6.5 Shape Indicators")
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("w-[600px]").style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                ).props('aria-label="6.5 Shape Indicators"').tooltip(
+                    "6.5 Shape Indicators"
+                )
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="6.6 Roman Numerals",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial66.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="6.6 Roman Numerals"').style('font-family: "Atkinson Hyperlegible"').tooltip(
-                    "6.6 Roman Numerals"
-                )
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("w-[600px]").props('aria-label="6.6 Roman Numerals"').style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                ).tooltip("6.6 Roman Numerals")
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="6.7 Fractions",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial67.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="6.7 Fractions"').style('font-family: "Atkinson Hyperlegible"').tooltip(
-                    "6.7 Fractions"
-                )
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("w-[600px]").props('aria-label="6.7 Fractions"').style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                ).tooltip("6.7 Fractions")
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.label("PHASE 7: Advanced Mathematics").classes(
                     "justify-center items-center text-lg"
-                ).style('font-family: "Atkinson Hyperlegible"')
+                ).style('font-style:normal, font-family: "Atkinson Hyperlegible"')
                 ui.input().props('aria-label="PHASE 7: Advanced Mathematics"').classes(
                     "sr-only"
                 )
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="7.1 Grade 1 Mode and algebra",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial71.set_value(e.value),
-                ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
-                    'aria-label="7.1 Grade 1 Mode and algebra"'
-                ).tooltip("7.1 Grade 1 Mode and algebra")
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("w-[600px]").style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                ).props('aria-label="7.1 Grade 1 Mode and algebra"').tooltip(
+                    "7.1 Grade 1 Mode and algebra"
+                )
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="7.2 Grade 1 Mode and Fractions",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial72.set_value(e.value),
-                ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
-                    'aria-label="7.2 Grade 1 Mode and Fractions"'
-                ).tooltip("7.2 Grade 1 Mode and Fractions")
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("w-[600px]").style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                ).props('aria-label="7.2 Grade 1 Mode and Fractions"').tooltip(
+                    "7.2 Grade 1 Mode and Fractions"
+                )
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="7.3 Advanced Operation and Comparison Signs",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial73.set_value(e.value),
-                ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
+                ).classes("w-[600px]").style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                ).props(
                     'aria-label="7.3 Advanced Operation and Comparison Signs"'
                 ).tooltip("7.3 Advanced Operation and Comparison Signs")
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="7.4 Indices",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial74.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="7.4 Indices"').style('font-family: "Atkinson Hyperlegible"').tooltip(
-                    "7.4 Indices"
-                )
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("w-[600px]").props('aria-label="7.4 Indices"').style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                ).tooltip("7.4 Indices")
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="7.5 Roots and Radicals",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial75.set_value(e.value),
-                ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
-                    'aria-label="7.5 Roots and Radicals"'
-                ).tooltip("7.5 Roots and Radicals")
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("w-[600px]").style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                ).props('aria-label="7.5 Roots and Radicals"').tooltip(
+                    "7.5 Roots and Radicals"
+                )
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="7.6 Miscellaneous Shape Indicators",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial76.set_value(e.value),
-                ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
-                    'aria-label="7.6 Miscellaneous Shape Indicators"'
-                ).tooltip("7.6 Miscellaneous Shape Indicators")
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("w-[600px]").style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                ).props('aria-label="7.6 Miscellaneous Shape Indicators"').tooltip(
+                    "7.6 Miscellaneous Shape Indicators"
+                )
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="7.7 Functions",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial77.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="7.7 Functions"').style('font-family: "Atkinson Hyperlegible"').tooltip(
-                    "7.7 Functions"
-                )
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("w-[600px]").props('aria-label="7.7 Functions"').style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                ).tooltip("7.7 Functions")
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="7.8 Greek Letters",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial78.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="7.8 Greek Letters"').style('font-family: "Atkinson Hyperlegible"').tooltip(
-                    "7.8 Greek Letters"
-                )
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("w-[600px]").props('aria-label="7.8 Greek Letters"').style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                ).tooltip("7.8 Greek Letters")
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.label("PHASE 8: College Mathematics").classes(
                     "justify-center items-center text-lg"
-                ).style('font-family: "Atkinson Hyperlegible"')
+                ).style('font-style:normal, font-family: "Atkinson Hyperlegible"')
                 ui.input().props('aria-label="PHASE 8: College Mathematics"').classes(
                     "sr-only"
                 )
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="8.1 Functions",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial81.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="8.1 Functions"').style('font-family: "Atkinson Hyperlegible"')
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("w-[600px]").props('aria-label="8.1 Functions"').style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                )
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="8.2 Modifiers: Bars and Dots",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial82.set_value(e.value),
-                ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
-                    'aria-label="8.2 Modifiers: Bars and Dots"'
-                ).tooltip("8.2 Modifiers: Bars and Dots")
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("w-[600px]").style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                ).props('aria-label="8.2 Modifiers: Bars and Dots"').tooltip(
+                    "8.2 Modifiers: Bars and Dots"
+                )
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="8.3 Modifiers: Arrows and Limits",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial83.set_value(e.value),
-                ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
-                    'aria-label="8.3 Modifiers: Arrows and Limits"'
-                ).tooltip("8.3 Modifiers: Arrows and Limits")
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("w-[600px]").style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                ).props('aria-label="8.3 Modifiers: Arrows and Limits"').tooltip(
+                    "8.3 Modifiers: Arrows and Limits"
+                )
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="8.4 Probability",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial84.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="8.4 Probability"').style('font-family: "Atkinson Hyperlegible"').tooltip(
-                    "8.4 Probability"
-                )
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("w-[600px]").props('aria-label="8.4 Probability"').style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                ).tooltip("8.4 Probability")
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="8.5 Calculus: Differentiation",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial85.set_value(e.value),
-                ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
-                    'aria-label="8.5 Calculus: Differentiation"'
-                ).tooltip("8.5 Calculus: Differentiation")
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("w-[600px]").style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                ).props('aria-label="8.5 Calculus: Differentiation"').tooltip(
+                    "8.5 Calculus: Differentiation"
+                )
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="8.6 Calculus: Integration",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial86.set_value(e.value),
-                ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
-                    'aria-label="8.6 Calculus: Integration"'
-                ).tooltip("8.6 Calculus: Integration")
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ).classes("w-[600px]").style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                ).props('aria-label="8.6 Calculus: Integration"').tooltip(
+                    "8.6 Calculus: Integration"
+                )
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
                 ui.number(
                     label="8.7 Vertical Bars",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_braille_trial87.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="8.7 Vertical Bars"').style('font-family: "Atkinson Hyperlegible"').tooltip(
-                    "8.7 Vertical Bars"
-                )
-            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
-                ui.button("SAVE", color="#172554", on_click=save).classes("text-white").style('font-family: "Atkinson Hyperlegible"')
+                ).classes("w-[600px]").props('aria-label="8.7 Vertical Bars"').style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                ).tooltip("8.7 Vertical Bars")
+            with ui.row().classes("w-screen no-wrap py-4").style(
+                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+            ):
+                ui.button("SAVE", color="#172554", on_click=save).classes(
+                    "text-white"
+                ).style('font-style:normal, font-family: "Atkinson Hyperlegible"')
                 ui.button("GRAPH", color="#172554", on_click=graph).classes(
                     "text-white"
                 )

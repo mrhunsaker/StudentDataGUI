@@ -154,7 +154,9 @@ with ui.footer(value=True) as footer:
     ):
         ui.label(
             "Copyright © 2023 Michael Ryan Hunsaker, M.Ed., Ph.D.\nReport Bugs or Request Features by emailing hunsakerconsulting@gmail.com"
-        ).classes("justify-center items-center text-lg").style('font-family: "Atkinson Hyperlegible"')
+        ).classes("justify-center items-center text-lg").style(
+            'font-family: "Atkinson Hyperlegible"'
+        )
 
 MONITOR = ""
 
@@ -192,5 +194,5 @@ ui.run(
     dark=False,
     title="Student Skills Progressions",
     fullscreen=False,
-    #window_size=(MONITOR.width, MONITOR.height - 72) # only relevant if native=True
+    # window_size=(MONITOR.width, MONITOR.height - 72) # only relevant if native=True
 )

@@ -54,6 +54,7 @@ def github() -> ui.html:
     """
     return ui.html(Path(ROOT_DIR).joinpath("github.svg").read_text())
 
+
 def branding() -> ui.html:
     """
     Retrieve and display the branding icon as HTML.
@@ -74,7 +75,8 @@ def branding() -> ui.html:
     """
     return ui.html(Path(ROOT_DIR).joinpath("dsd-mark-white.svg").read_text())
 
-def niceGUI() ->ui.html:
+
+def niceGUI() -> ui.html:
     """
     Retrieve and display the branding icon as HTML.
 
@@ -150,19 +152,30 @@ def frame(navtitle: str) -> None:
     }
     </style>
     """
-    app.add_static_file(local_file=Path(ROOT_DIR).joinpath('fonts', 'AtkinsonHyperlegible-BoldItalic.ttf'), url_path='/fonts/AtkinsonHyperlegible-BoldItalic.ttf')
-    app.add_static_file(local_file=Path(ROOT_DIR).joinpath('fonts', 'AtkinsonHyperlegible-Bold.ttf'), url_path='/fonts/AtkinsonHyperlegible-Bold.ttf')
-    app.add_static_file(local_file=Path(ROOT_DIR).joinpath('fonts', 'AtkinsonHyperlegible-Italic.ttf'), url_path='/fonts/AtkinsonHyperlegible-Italic.ttf')
-    app.add_static_file(local_file=Path(ROOT_DIR).joinpath('fonts', 'AtkinsonHyperlegible-Regular.ttf'), url_path='/fonts/AtkinsonHyperlegible-Regular.ttf')
+    app.add_static_file(
+        local_file=Path(ROOT_DIR).joinpath(
+            "fonts", "AtkinsonHyperlegible-BoldItalic.ttf"
+        ),
+        url_path="/fonts/AtkinsonHyperlegible-BoldItalic.ttf",
+    )
+    app.add_static_file(
+        local_file=Path(ROOT_DIR).joinpath("fonts", "AtkinsonHyperlegible-Bold.ttf"),
+        url_path="/fonts/AtkinsonHyperlegible-Bold.ttf",
+    )
+    app.add_static_file(
+        local_file=Path(ROOT_DIR).joinpath("fonts", "AtkinsonHyperlegible-Italic.ttf"),
+        url_path="/fonts/AtkinsonHyperlegible-Italic.ttf",
+    )
+    app.add_static_file(
+        local_file=Path(ROOT_DIR).joinpath("fonts", "AtkinsonHyperlegible-Regular.ttf"),
+        url_path="/fonts/AtkinsonHyperlegible-Regular.ttf",
+    )
 
     ui.add_head_html(style)
-
-
 
     ui.colors(
         primary="#183969", secondary="#bed2e3", positive="#ffca58", accent="#cfcac1"
     )
-
 
     with ui.header().classes("justify-between text-black h-[100px]"):
         """
@@ -199,24 +212,23 @@ def frame(navtitle: str) -> None:
         with ui.row().classes("no-wrap text-l font-bold text-black"):
             with ui.link(target="https://davis.k12.ut.us").classes(
                 "max-[305px]:hidden absolute-left flex-none mt-5"
-                ).tooltip("Davis School District"):
+            ).tooltip("Davis School District"):
                 branding().classes("fill-white scale-150 m-1")
-            ui.label(navtitle).classes("absolute-center no-wrap text-2xl text-white font-bold self-center").classes(
-            ).style('font-family: "Atkinson Hyperlegible"')
+            ui.label(navtitle).classes(
+                "absolute-center no-wrap text-2xl text-white font-bold self-center"
+            ).classes().style('font-family: "Atkinson Hyperlegible"')
             menu()
     with ui.column().classes(""):
         yield
 
-    with ui.footer(value=True).classes('h-[75px]') as footer:
+    with ui.footer(value=True).classes("h-[75px]") as footer:
         with ui.row().classes(
             "w-screen no-wrap justify-between items-center text-l font-bold text-white h-full pt-2.5"
         ):
             ui.label("Copyright © 2023 Michael Ryan Hunsaker, M.Ed., Ph.D.").classes(
-            "absolute-center flex-1 self-bottom"
+                "absolute-center flex-1 self-bottom"
             ).style('font-family: "Atkinson Hyperlegible"')
             with ui.link(target="https://github.com/mrhunsaker/StudentDataGUI").classes(
-                            "max-[305px]:hidden absolute-right flex-none mt-2.5"
-                            ).tooltip("GitHub Repo"):
+                "max-[305px]:hidden absolute-right flex-none mt-2.5"
+            ).tooltip("GitHub Repo"):
                 github().classes("fill-white scale-75 m-1 mt-2.5")
-
-

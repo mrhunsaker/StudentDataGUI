@@ -79,57 +79,56 @@ def content() -> None:
                 {'name': "Narrative Meaning", 'label':"Narrative Meaning", "field":"Narrative Meaning", "align":"left"},
                 {'name': "Interpretation", 'label':"Interpretation", "field":"Interpretation", "align":"left"}
                 ]
-            ui.table(columns=columns, rows=rows, row_key='name').props('align-left').style('font-style:normal, font-family: "Atkinson Hyperlegible"').classes("text-lg font-normal")
-        with ui.row().classes("w-[800px]  no-wrap py-0 pl-10"):
+            ui.table(columns=columns, rows=rows, row_key='name').style('font-style: normal, font-family: JeBrainsMono').classes('text-lg font-normal')
+        with ui.row().classes("w-[800px]  no-wrap py-0 pl-10 text-lg"):
             ui.label("The motivation for this system is from the Screen Reader Skills Progression course available at eyeTvision.org").style('font-style:normal, font-family: "Atkinson Hyperlegible"').classes("text-lg font-normal")
         with ui.row().classes("w-[800px]  center  no-wrap py-0 pl-10"):
             ui.label("Folder Structure").classes("text-xl font-bold").style('font-family: "Atkinson Hyperlegible"').classes("text-lg font-normal")
         with ui.row().classes("w-[800px]  center  no-wrap py-0 pl-10"):
-            ui.label("On initial setup, the program tries to set up the following folder hierarchy on your computer").style('font-style:normal, font-family: "Atkinson Hyperlegible"').classes("text-lg font-normal")
+            ui.label("On initial setup, the program tries to set up the following folder hierarchy on your computer").style('font-style:normal, font-family: "JetBrainsMono"').classes("text-lg font-normal")
         with ui.row().classes("w-[800px]  center  no-wrap py-0 pl-10"):
             ui.code("""
-                HOME/Documents
-                +---StudentDatabase
-                |   +-- errorLogs
-                |   +-- StudentDataFiles
-                |   |   +--Filenames.txt
-                |   |   +--Student 1
-                |   |   |   +-- AbacusSkillsProgression.csv
-                |   |   |   +-- AbacusSkillsProgression.html
-                |   |   |   +-- BrailleSkillsProgression.csv
-                |   |   |   +-- cviProgression.csv
-                |   |   |   +-- cviProgression.html
-                |   |   |   +-- omnibusDatabase.csv
-                |   |   |   +-- ScreenReaderSkillsProgression.csv
-                |   |   |   +-- ScreenReaderSkillsProgression.html
-                |   |   |   +-- StudentDataSheets
-                |   |   |   +--  BlankVisionTemplate.pdf
-                |   |   |   +-- GenericDataSheets.pdf
-                |   |   |   +-- ProgressMonitoring.pdf
-                |   |   |   +-- StudentInstructionMaterials
-                |   |   |   +-- StudentVisionAssessments
-                |   |   |   +-- EducationVisionAssessments.pdf
-                |   |   |   +-- UEBLiterarySkillsProgression.html
-                |   |   |   +-- UEBTechnicalSkillsProgression.html
-                |   |    ...  ...
-                |   |   +--Student n
-                |   |   |   +-- AbacusSkillsProgression.csv
-                |   |   |   +-- AbacusSkillsProgression.html
-                |   |   |   +-- BrailleSkillsProgression.csv
-                |   |   |   +-- cviProgression.csv
-                |   |   |   +-- cviProgression.html
-                |   |   |   +-- omnibusDatabase.csv
-                |   |   |   +-- ScreenReaderSkillsProgression.csv
-                |   |   |   +-- ScreenReaderSkillsProgression.html
-                |   |   |   +-- StudentDataSheets
-                |   |   |   +--  BlankVisionTemplate.pdf
-                |   |   |   +-- GenericDataSheets.pdf
-                |   |   |   +-- ProgressMonitoring.pdf
-                |   |   |   +-- StudentInstructionMaterials
-                |   |   |   +-- StudentVisionAssessments
-                |   |   |   +-- EducationVisionAssessments.pdf
-                |   |   |   +-- UEBLiterarySkillsProgression.html
-                |   |   |   +-- UEBTechnicalSkillsProgression.html
-                |   +-- Students.db
+                HOME
+                +--- Documents
+                |   +---StudentDatabase
+                |   |   +-- errorLogs
+                |   |   +-- StudentDataFiles
+                |   |   |   +--Filenames.txt
+                |   |   |   +--Student 1
+                |   |   |   |   +-- StudentDataSheets
+                |   |   |   |   |   +-- BlankVisionTemplate.pdf
+                |   |   |   |   |   +-- GenericDataSheets.pdf
+                |   |   |   |   |   +-- ProgressMonitoring.pdf
+                |   |   |   |   +-- StudentVisionAssessments
+                |   |   |   |   |   +-- EducationVisionAssessments.pdf
+                |   |   |   |   +-- AbacusSkillsProgression.csv
+                |   |   |   |   +-- AbacusSkillsProgression.html
+                |   |   |   |   +-- BrailleSkillsProgression.csv
+                |   |   |   |   +-- cviProgression.csv
+                |   |   |   |   +-- cviProgression.html
+                |   |   |   |   +-- omnibusDatabase.csv
+                |   |   |   |   +-- ScreenReaderSkillsProgression.csv
+                |   |   |   |   +-- ScreenReaderSkillsProgression.html
+                |   |   |   |   +-- UEBLiterarySkillsProgression.html
+                |   |   |   |   +-- UEBTechnicalSkillsProgression.html
+                |   |   |    ...  ...
+                |   |   |   +--Student n
+                |   |   |   |   +-- StudentDataSheets
+                |   |   |   |   |   +-- BlankVisionTemplate.pdf
+                |   |   |   |   |   +-- GenericDataSheets.pdf
+                |   |   |   |   |   +-- ProgressMonitoring.pdf
+                |   |   |   |   +-- StudentVisionAssessments
+                |   |   |   |   |   +-- EducationVisionAssessments.pdf
+                |   |   |   |   +-- AbacusSkillsProgression.csv
+                |   |   |   |   +-- AbacusSkillsProgression.html
+                |   |   |   |   +-- BrailleSkillsProgression.csv
+                |   |   |   |   +-- cviProgression.csv
+                |   |   |   |   +-- cviProgression.html
+                |   |   |   |   +-- omnibusDatabase.csv
+                |   |   |   |   +-- ScreenReaderSkillsProgression.csv
+                |   |   |   |   +-- ScreenReaderSkillsProgression.html
+                |   |   |   |   +-- UEBLiterarySkillsProgression.html
+                |   |   |   |   +-- UEBTechnicalSkillsProgression.html
+                |   |   +-- Students.db
                 """
-            )
+            ).style('font-family: "JetBrainsMono",font-size:24px').classes('text-base w-[800px]')

@@ -150,6 +150,35 @@ def frame(navtitle: str) -> None:
     font-weight: bold;
     font-style: italic;
     }
+
+    @font-face {
+    font-family: 'JetBrainsMono';
+    src: url('/fonts/JetBrainsMono-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    }
+
+    @font-face {
+    font-family: 'JetBrainsMono';
+    src: url('/fonts/JetBrainsMono-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    }
+
+    @font-face {
+    font-family: 'JetBrainsMono';
+    src: url('/fonts/JetBrainsMono-Italic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+    }
+
+    @font-face {
+    font-family: 'JetBrainsMono';
+    src: url('/fonts/JetBrainsMono-BoldItalic.ttf') format('truetype');
+    font-weight: bold;
+    font-style: italic;
+    }
+
     </style>
     """
     app.add_static_file(
@@ -169,6 +198,22 @@ def frame(navtitle: str) -> None:
     app.add_static_file(
         local_file=Path(ROOT_DIR).joinpath("fonts", "AtkinsonHyperlegible-Regular.ttf"),
         url_path="/fonts/AtkinsonHyperlegible-Regular.ttf",
+    )
+    app.add_static_file(
+        local_file=Path(ROOT_DIR).joinpath("fonts", "JetBrainsMono-BoldItalic.ttf"),
+        url_path="/fonts/JetBrainsMono-BoldItalic.ttf",
+    )
+    app.add_static_file(
+        local_file=Path(ROOT_DIR).joinpath("fonts", "JetBrainsMono-Bold.ttf"),
+        url_path="/fonts/JetBrainsMono-Bold.ttf",
+    )
+    app.add_static_file(
+        local_file=Path(ROOT_DIR).joinpath("fonts", "JetBrainsMono-Italic.ttf"),
+        url_path="/fonts/JetBrainsMono-Italic.ttf",
+    )
+    app.add_static_file(
+        local_file=Path(ROOT_DIR).joinpath("fonts", "JetBrainsMono-Regular.ttf"),
+        url_path="/fonts/JetBrainsMono-Regular.ttf",
     )
 
     ui.add_head_html(style)

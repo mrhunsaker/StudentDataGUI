@@ -41,66 +41,37 @@ def create() -> None:
     """Abacus Skills Progression"""
 
     @ui.page("/abacusskills")
-        """
-        A decorator that creates a niceGUI page with the given title and layout.
-
-        A niceGUI page is a web page that displays the user interface elements created by the decorated function. The page can have different layouts, such as "auto", "grid", or "flex". The page can also have different themes, such as "light", "dark", or "custom".
-
-        Parameters
-        ----------
-        title : str
-            The title of the page.
-        layout : str, optional
-            The layout of the page. The default is "auto", which automatically adjusts the layout based on the screen size. Other options are "grid", which uses a grid system to arrange the elements, and "flex", which uses a flexible box model to align the elements.
-        fullscreen : bool, optional
-            Whether to display the page in fullscreen mode. The default is False, which shows the page in a normal window. If True, the page will cover the entire screen and hide the browser toolbar and address bar.
-        theme : str or dict, optional
-            The theme of the page. The default is None, which uses the default theme of the browser. Other options are "light", which uses a light color scheme, "dark", which uses a dark color scheme, or a custom dictionary that specifies the colors and fonts of the page.
-
-        Returns
-        -------
-        Page
-            A niceGUI page object that displays the user interface elements.
-
-        Examples
-        --------
-        >>> @ui.page("Hello, niceGUI")
-        >>> def main():
-        >>>     ui.label("This is a niceGUI page")
-        >>> 
-        >>> main()
-        """
     def abacusskills() -> None:
         with theme.frame("- TACTILE SKILLS -"):
-            ui.label("ABACUS SKILLS").classes("text-h4 text-grey-8")
+            ui.label("ABACUS SKILLS").classes("text-h4 text-grey-8").style('font-family: "Atkinson Hyperlegible"')
             u_studentname = ui.select(
                 options=students, value="DonaldChamberlain"
-            ).classes("hidden")
-            u_today_date = ui.date().classes("hidden")
-            u_abacus_trial11 = ui.number().classes("hidden")
-            u_abacus_trial12 = ui.number().classes("hidden")
-            u_abacus_trial13 = ui.number().classes("hidden")
-            u_abacus_trial14 = ui.number().classes("hidden")
-            u_abacus_trial21 = ui.number().classes("hidden")
-            u_abacus_trial22 = ui.number().classes("hidden")
-            u_abacus_trial23 = ui.number().classes("hidden")
-            u_abacus_trial31 = ui.number().classes("hidden")
-            u_abacus_trial32 = ui.number().classes("hidden")
-            u_abacus_trial33 = ui.number().classes("hidden")
-            u_abacus_trial41 = ui.number().classes("hidden")
-            u_abacus_trial42 = ui.number().classes("hidden")
-            u_abacus_trial51 = ui.number().classes("hidden")
-            u_abacus_trial52 = ui.number().classes("hidden")
-            u_abacus_trial61 = ui.number().classes("hidden")
-            u_abacus_trial62 = ui.number().classes("hidden")
-            u_abacus_trial63 = ui.number().classes("hidden")
-            u_abacus_trial64 = ui.number().classes("hidden")
-            u_abacus_trial71 = ui.number().classes("hidden")
-            u_abacus_trial72 = ui.number().classes("hidden")
-            u_abacus_trial73 = ui.number().classes("hidden")
-            u_abacus_trial74 = ui.number().classes("hidden")
-            u_abacus_trial81 = ui.number().classes("hidden")
-            u_abacus_trial82 = ui.number().classes("hidden")
+            ).classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_today_date = ui.date().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_abacus_trial11 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_abacus_trial12 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_abacus_trial13 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_abacus_trial14 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_abacus_trial21 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_abacus_trial22 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_abacus_trial23 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_abacus_trial31 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_abacus_trial32 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_abacus_trial33 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_abacus_trial41 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_abacus_trial42 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_abacus_trial51 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_abacus_trial52 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_abacus_trial61 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_abacus_trial62 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_abacus_trial63 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_abacus_trial64 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_abacus_trial71 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_abacus_trial72 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_abacus_trial73 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_abacus_trial74 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_abacus_trial81 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_abacus_trial82 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
 
             def save(event):
                 """
@@ -1139,244 +1110,244 @@ def create() -> None:
             Some related functions or classes that might be useful.
 
             """
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.button("GRAPH", color="#172554", on_click=graph).classes(
                     "text-white"
                 )
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.select(
                     options=students,
                     with_input=True,
-                    on_change=lambda e: u_studentname.set_value(e.value),).classes("w-[300px]").props(
+                    on_change=lambda e: u_studentname.set_value(e.value),).classes("w-[300px]").style('font-family: "Atkinson Hyperlegible"').props(
                     'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
                 ).tooltip("Type Student Name, it will autocomplete AS you type")
                 ui.date(
                     value="f{datenow}",
                     on_change=lambda e: u_today_date.set_value(e.value),
-                ).classes("w-1/2")
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-1/2").style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.label(
                     "RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent"
                 ).props(
                     'aria-label="RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent"'
-                )
+                ).style('font-family: "Atkinson Hyperlegible"')
             ui.input().props(
                 'aria-label="RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent"'
-            ).classes("sr-only")
-            with ui.row().classes("w-screen no-wrap py-4"):
+            ).classes("sr-only").style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.label("PHASE 1: Setting and Clearing Numbers").classes(
-                    "justify-center items-center"
-                )
+                    "justify-center items-center text-lg"
+                ).style('font-family: "Atkinson Hyperlegible"')
             ui.input().props(
                 'aria-label="PHASE 1: Setting and Clearing Numbers"'
-            ).classes("sr-only")
-            with ui.row().classes("w-screen no-wrap py-4"):
+            ).classes("sr-only").style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="1.1 Setting Numbers",
                     value="",
                     on_change=lambda e: u_abacus_trial11.set_value(e.value),
-                ).classes("w-[600px]").props(
+                ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
                     'aria-label="1.1 Setting Numbers"'
                 ).tooltip("1.1 Setting Numbers")
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="1.2 Clearing Numbers",
                     value="",
                     on_change=lambda e: u_abacus_trial12.set_value(e.value),
-                ).classes("w-[600px]").props(
+                ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
                     'aria-label="1.2 Clearing Numbers"'
                 ).tooltip("1.2 Clearing Numbers")
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="1.3 Place Value",
                     value="",
                     on_change=lambda e: u_abacus_trial13.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="1.3 Place Value"').tooltip(
+                ).classes("w-[600px]").props('aria-label="1.3 Place Value"').style('font-family: "Atkinson Hyperlegible"').tooltip(
                     "1.3 Place Value"
                 )
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="1.4 Vocabulary",
                     value="",
                     on_change=lambda e: u_abacus_trial14.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="1.4 Vocabulary"').tooltip(
+                ).classes("w-[600px]").props('aria-label="1.4 Vocabulary"').style('font-family: "Atkinson Hyperlegible"').tooltip(
                     "1.4 Vocabulary"
                 )
-            with ui.row().classes("w-screen no-wrap py-4"):
-                ui.label("PHASE 2: Addition").classes("justify-center items-center")
-            ui.input().props('aria-label="PHASE 2: Addition"').classes("sr-only")
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ui.label("PHASE 2: Addition").classes("justify-center items-center text-lg").style('font-family: "Atkinson Hyperlegible"')
+            ui.input().props('aria-label="PHASE 2: Addition"').classes("sr-only").style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="2.1 Addition of Single Digit Numbers",
                     value="",
                     on_change=lambda e: u_abacus_trial21.set_value(e.value),
-                ).classes("w-[600px]").props(
+                ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
                     'aria-label="2.1 Addition of Single Digit Numbers"'
                 )
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="2.2 Addition of Multiple Digit Numbers – Direct",
                     value="",
                     on_change=lambda e: u_abacus_trial22.set_value(e.value),
-                ).classes("w-[600px]").props(
+                ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
                     'aria-label="2.2 Addition of Multiple Digit Numbers – Direct"'
                 )
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="2.3 Addition of Multiple Digit Numbers – Indirect",
                     value="",
                     on_change=lambda e: u_abacus_trial23.set_value(e.value),
-                ).classes("w-[600px]").props(
+                ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
                     'aria-label="2.3 Addition of Multiple Digit Numbers – Indirect"'
                 )
-            with ui.row().classes("w-screen no-wrap py-4"):
-                ui.label("PHASE 3: Subtraction").classes("justify-center items-center")
-                ui.input().props('aria-label="PHASE 3: Subtraction"').classes("sr-only")
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ui.label("PHASE 3: Subtraction").classes("justify-center items-center text-lg").style('font-family: "Atkinson Hyperlegible"')
+                ui.input().props('aria-label="PHASE 3: Subtraction"').classes("sr-only").style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="3.1 Subtraction",
                     value="",
                     on_change=lambda e: u_abacus_trial31.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="3.1 Subtraction"')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="3.1 Subtraction"').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="3.2 Subtraction of Multiple Digit Numbers – Direct",
                     value="",
                     on_change=lambda e: u_abacus_trial32.set_value(e.value),
-                ).classes("w-[600px]").props(
+                ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
                     'aria-label="3.2 Subtraction of Multiple Digit Numbers – Direct"'
                 )
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="3.3 Subtraction of Multiple Digit Numbers – Indirect",
                     value="",
                     on_change=lambda e: u_abacus_trial33.set_value(e.value),
-                ).classes("w-[600px]").props(
+                ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
                     'aria-label="3.3 Subtraction of Multiple Digit Numbers – Indirect"'
                 )
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.label("PHASE 4: Multiplication").classes(
-                    "justify-center items-center"
-                )
+                    "justify-center items-center text-lg"
+                ).style('font-family: "Atkinson Hyperlegible"')
                 ui.input().props('aria-label="PHASE 4: Multiplication"').classes(
                     "sr-only"
                 )
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="4.1 Multiplication – 2+ Digit Multiplicand 1-Digit Multiplier",
                     value="",
                     on_change=lambda e: u_abacus_trial41.set_value(e.value),
-                ).classes("w-[600px]").props(
+                ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
                     'aria-label="4.1 Multiplication – 2+ Digit Multiplicand 1-Digit Multiplier"'
                 )
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="4.2 Multiplication – 2+ Digit Multiplicand AND Multiplier",
                     value="",
                     on_change=lambda e: u_abacus_trial42.set_value(e.value),
-                ).classes("w-[600px]").props(
+                ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
                     'aria-label="4.2 Multiplication – 2+ Digit Multiplicand AND Multiplier"'
                 )
-            with ui.row().classes("w-screen no-wrap py-4"):
-                ui.label("PHASE 5: Division").classes("justify-center items-center")
-                ui.input().props('aria-label="PHASE 5: Division"').classes("sr-only")
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ui.label("PHASE 5: Division").classes("justify-center items-center text-lg").style('font-family: "Atkinson Hyperlegible"')
+                ui.input().props('aria-label="PHASE 5: Division"').classes("sr-only").style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="5.1 Division – 2+ Digit Dividend 1-Digit Divisor",
                     value="",
                     on_change=lambda e: u_abacus_trial51.set_value(e.value),
-                ).classes("w-[600px]").props(
+                ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
                     'aria-label="5.1 Division – 2+ Digit Dividend 1-Digit Divisor"'
                 )
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="5.2 Division – 2+ Digit Dividend AND 1 Digit Divisor",
                     value="",
                     on_change=lambda e: u_abacus_trial52.set_value(e.value),
-                ).classes("w-[600px]").props(
+                ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
                     'aria-label="5.2 Division – 2+ Digit Dividend AND 1 Digit Divisor"'
                 )
-            with ui.row().classes("w-screen no-wrap py-4"):
-                ui.label("PHASE 6: Decimals").classes("justify-center items-center")
-                ui.input().props('aria-label="PHASE 6: Decimals"').classes("sr-only")
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ui.label("PHASE 6: Decimals").classes("justify-center items-center text-lg").style('font-family: "Atkinson Hyperlegible"')
+                ui.input().props('aria-label="PHASE 6: Decimals"').classes("sr-only").style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="6.1 Addition of Decimals",
                     value="",
                     on_change=lambda e: u_abacus_trial61.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="6.1 Addition of Decimals"')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="6.1 Addition of Decimals"').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="6.2 Subtraction of Decimals",
                     value="",
                     on_change=lambda e: u_abacus_trial62.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="6.2 Subtraction of Decimals"')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="6.2 Subtraction of Decimals"').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="6.3 Multiplication of Decimals",
                     value="",
                     on_change=lambda e: u_abacus_trial63.set_value(e.value),
-                ).classes("w-[600px]").props(
+                ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
                     'aria-label="6.3 Multiplication of Decimals"'
                 )
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="6.4 Division of Decimals",
                     value="",
                     on_change=lambda e: u_abacus_trial64.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="6.4 Division of Decimals"')
-            with ui.row().classes("w-screen no-wrap py-4"):
-                ui.label("PHASE 7: Fractions").classes("justify-center items-center")
-                ui.input().props('aria-label="PHASE 7: Fractions"').classes("sr-only")
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="6.4 Division of Decimals"').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ui.label("PHASE 7: Fractions").classes("justify-center items-center text-lg").style('font-family: "Atkinson Hyperlegible"')
+                ui.input().props('aria-label="PHASE 7: Fractions"').classes("sr-only").style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="7.1 Addition of Fractions",
                     value="",
                     on_change=lambda e: u_abacus_trial71.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="7.1 Addition of Fractions"')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="7.1 Addition of Fractions"').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="7.2 Subtraction of Fractions",
                     value="",
                     on_change=lambda e: u_abacus_trial72.set_value(e.value),
-                ).classes("w-[600px]").props(
+                ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
                     'aria-label="7.2 Subtraction of Fractions"'
                 )
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="7.3 Multiplication of Fractions",
                     value="",
                     on_change=lambda e: u_abacus_trial73.set_value(e.value),
-                ).classes("w-[600px]").props(
+                ).classes("w-[600px]").style('font-family: "Atkinson Hyperlegible"').props(
                     'aria-label="7.3 Multiplication of Fractions"'
                 )
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="7.4 Division of Fractions",
                     value="",
                     on_change=lambda e: u_abacus_trial74.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="7.4 Division of Fractions"')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="7.4 Division of Fractions"').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.label("PHASE 8: Roots and Percents").classes(
-                    "justify-center items-center"
-                )
+                    "justify-center items-center text-lg"
+                ).style('font-family: "Atkinson Hyperlegible"')
                 ui.input().props('aria-label="PHASE 8: Roots and Percents"').classes(
                     "sr-only"
                 )
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="8.1 Percent",
                     value="",
                     on_change=lambda e: u_abacus_trial81.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="8.1 Percent"')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="8.1 Percent"').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="8.2 Square Root",
                     value="",
                     on_change=lambda e: u_abacus_trial82.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="8.2 Square Root"')
-            with ui.row().classes("w-screen no-wrap py-4"):
-                ui.button("SAVE", color="#172554", on_click=save).classes("text-white")
+                ).classes("w-[600px]").props('aria-label="8.2 Square Root"').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ui.button("SAVE", color="#172554", on_click=save).classes("text-white").style('font-family: "Atkinson Hyperlegible"')
                 ui.button("GRAPH", color="#172554", on_click=graph).classes(
                     "text-white"
                 )

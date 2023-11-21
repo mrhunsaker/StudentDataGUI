@@ -25,7 +25,7 @@ teachers of students with Visual Impairments
 
 from contextlib import contextmanager
 from pathlib import Path
-from nicegui import ui
+from nicegui import ui, app
 import os
 
 from appTheming.menu import menu
@@ -74,6 +74,26 @@ def branding() -> ui.html:
     """
     return ui.html(Path(ROOT_DIR).joinpath("dsd-mark-white.svg").read_text())
 
+def niceGUI() ->ui.html:
+    """
+    Retrieve and display the branding icon as HTML.
+
+    This function reads the content of the 'niceGUI.svg' file located in the root directory
+    and returns it as an HTML object. The SVG content is typically an icon representing the
+    niceGUI logo.
+
+    Returns
+    -------
+    ui.html
+        An HTML object containing the NiceGUI icon.
+
+    Examples
+    --------
+    >>> branding()
+    <ui.html object representing the branding icon>
+    """
+    return ui.html(Path(ROOT_DIR).joinpath("niceGUI.svg").read_text())
+
 
 @contextmanager
 def frame(navtitle: str) -> None:
@@ -99,14 +119,52 @@ def frame(navtitle: str) -> None:
     ...     # Code for the content of the page goes here
     """
 
+    style = """
+    <style>
+    @font-face {
+    font-family: 'Atkinson Hyperlegible';
+    src: url('/fonts/AtkinsonHyperlegible-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    }
+
+    @font-face {
+    font-family: 'Atkinson Hyperlegible';
+    src: url('/fonts/AtkinsonHyperlegible-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    }
+
+    @font-face {
+    font-family: 'Atkinson Hyperlegible';
+    src: url('/fonts/AtkinsonHyperlegible-Italic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+    }
+
+    @font-face {
+    font-family: 'Atkinson Hyperlegible';
+    src: url('/fonts/AtkinsonHyperlegible-BoldItalic.ttf') format('truetype');
+    font-weight: bold;
+    font-style: italic;
+    }
+    </style>
+    """
+    app.add_static_file(local_file=Path(ROOT_DIR).joinpath('fonts', 'AtkinsonHyperlegible-BoldItalic.ttf'), url_path='/fonts/AtkinsonHyperlegible-BoldItalic.ttf')
+    app.add_static_file(local_file=Path(ROOT_DIR).joinpath('fonts', 'AtkinsonHyperlegible-Bold.ttf'), url_path='/fonts/AtkinsonHyperlegible-Bold.ttf')
+    app.add_static_file(local_file=Path(ROOT_DIR).joinpath('fonts', 'AtkinsonHyperlegible-Italic.ttf'), url_path='/fonts/AtkinsonHyperlegible-Italic.ttf')
+    app.add_static_file(local_file=Path(ROOT_DIR).joinpath('fonts', 'AtkinsonHyperlegible-Regular.ttf'), url_path='/fonts/AtkinsonHyperlegible-Regular.ttf')
+
+    ui.add_head_html(style)
+
+
+
     ui.colors(
         primary="#183969", secondary="#bed2e3", positive="#ffca58", accent="#cfcac1"
     )
-    """ui.colors(
-            primary="#ffc8dd", secondary="#cdb4db", accent="#bde0fe", positive="#a2d2ff"
-            )"""
 
-    with ui.header().classes("justify-between text-black"):
+
+    with ui.header().classes("justify-between text-black h-[100px]"):
         """
         Create a custom layout using the NiceGUI UI framework.
 
@@ -139,25 +197,26 @@ def frame(navtitle: str) -> None:
         - NiceGUI UI framework documentation for more details on the UI components and styling classes.
         """
         with ui.row().classes("no-wrap text-l font-bold text-black"):
-            ui.label(navtitle).classes("no-wrap text-2xl text-white font-bold ")
-        with ui.row().classes("no-wrap text-l font-bold text-black"):
-            menu()
-    with ui.column().classes(""):
-        yield
-
-    with ui.footer(value=True).classes('h-[100px]') as footer:
-        with ui.row().classes(
-            "w-screen no-wrap justify-between items-center text-l font-bold text-white h-full pt-2.5"
-        ):
-           
             with ui.link(target="https://davis.k12.ut.us").classes(
                 "max-[305px]:hidden absolute-left flex-none mt-5"
                 ).tooltip("Davis School District"):
                 branding().classes("fill-white scale-150 m-1")
+            ui.label(navtitle).classes("absolute-center no-wrap text-2xl text-white font-bold self-center").classes(
+            ).style('font-family: "Atkinson Hyperlegible"')
+            menu()
+    with ui.column().classes(""):
+        yield
+
+    with ui.footer(value=True).classes('h-[75px]') as footer:
+        with ui.row().classes(
+            "w-screen no-wrap justify-between items-center text-l font-bold text-white h-full pt-2.5"
+        ):
             ui.label("Copyright © 2023 Michael Ryan Hunsaker, M.Ed., Ph.D.").classes(
-            "absolute-center flex-1 self-center"
-            )
+            "absolute-center flex-1 self-bottom"
+            ).style('font-family: "Atkinson Hyperlegible"')
             with ui.link(target="https://github.com/mrhunsaker/StudentDataGUI").classes(
                             "max-[305px]:hidden absolute-right flex-none mt-2.5"
                             ).tooltip("GitHub Repo"):
-                github().classes("fill-white scale-150 m-1")
+                github().classes("fill-white scale-75 m-1 mt-2.5")
+
+

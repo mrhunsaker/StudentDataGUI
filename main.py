@@ -154,7 +154,7 @@ with ui.footer(value=True) as footer:
     ):
         ui.label(
             "Copyright © 2023 Michael Ryan Hunsaker, M.Ed., Ph.D.\nReport Bugs or Request Features by emailing hunsakerconsulting@gmail.com"
-        ).classes("justify-center items-center")
+        ).classes("justify-center items-center text-lg").style('font-family: "Atkinson Hyperlegible"')
 
 MONITOR = ""
 
@@ -177,7 +177,7 @@ def getresolution() -> str:
     >>> getresolution()
     '1920x1080'
     """
-    SCREEN = " "
+
     for SCREEN in get_monitors():
         SCREENRESOLUTION = "{str(SCREEN.width)}x{str(SCREEN.height)}"
     return SCREEN
@@ -185,11 +185,12 @@ def getresolution() -> str:
 
 MONITOR = getresolution()
 print(f"Monitor: \nwidth = {MONITOR.width} \nheight = {MONITOR.height}")
+
 ui.run(
     native=False,
     reload=False,
     dark=False,
     title="Student Skills Progressions",
     fullscreen=False,
-    window_size=(MONITOR.width, MONITOR.height - 72),
+    #window_size=(MONITOR.width, MONITOR.height - 72) # only relevant if native=True
 )

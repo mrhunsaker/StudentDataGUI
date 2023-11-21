@@ -44,96 +44,96 @@ def create() -> None:
     @ui.page("/digitalliteracy")
     def brailleskills() -> None:
         with theme.frame("- TECHNOLOGY SKILLS -"):
-            ui.label("DIGITAL LITERACY").classes("text-h4 text-grey-8")
+            ui.label("DIGITAL LITERACY").classes("text-h4 text-grey-8").style('font-family: "Atkinson Hyperlegible"')
 
             u_studentname = ui.select(
                 options=students, value="DonaldChamberlain"
-            ).classes("hidden")
-            u_today_date = ui.date().classes("hidden")
-            u_digitalliteracy_trial11 = ui.number().classes("hidden")
-            u_digitalliteracy_trial12 = ui.number().classes("hidden")
-            u_digitalliteracy_trial13 = ui.number().classes("hidden")
-            u_digitalliteracy_trial14 = ui.number().classes("hidden")
-            u_digitalliteracy_trial15 = ui.number().classes("hidden")
-            u_digitalliteracy_trial16 = ui.number().classes("hidden")
-            u_digitalliteracy_trial21 = ui.number().classes("hidden")
-            u_digitalliteracy_trial22 = ui.number().classes("hidden")
-            u_digitalliteracy_trial23 = ui.number().classes("hidden")
-            u_digitalliteracy_trial24 = ui.number().classes("hidden")
-            u_digitalliteracy_trial25 = ui.number().classes("hidden")
-            u_digitalliteracy_trial26 = ui.number().classes("hidden")
-            u_digitalliteracy_trial31 = ui.number().classes("hidden")
-            u_digitalliteracy_trial32 = ui.number().classes("hidden")
-            u_digitalliteracy_trial33 = ui.number().classes("hidden")
-            u_digitalliteracy_trial34 = ui.number().classes("hidden")
-            u_digitalliteracy_trial35 = ui.number().classes("hidden")
-            u_digitalliteracy_trial41 = ui.number().classes("hidden")
-            u_digitalliteracy_trial42 = ui.number().classes("hidden")
-            u_digitalliteracy_trial43 = ui.number().classes("hidden")
-            u_digitalliteracy_trial44 = ui.number().classes("hidden")
-            u_digitalliteracy_trial45 = ui.number().classes("hidden")
-            u_digitalliteracy_trial51 = ui.number().classes("hidden")
-            u_digitalliteracy_trial52 = ui.number().classes("hidden")
-            u_digitalliteracy_trial53 = ui.number().classes("hidden")
-            u_digitalliteracy_trial54 = ui.number().classes("hidden")
-            u_digitalliteracy_trial55 = ui.number().classes("hidden")
-            u_digitalliteracy_trial56 = ui.number().classes("hidden")
-            u_digitalliteracy_trial57 = ui.number().classes("hidden")
-            u_digitalliteracy_trial61 = ui.number().classes("hidden")
-            u_digitalliteracy_trial62 = ui.number().classes("hidden")
-            u_digitalliteracy_trial63 = ui.number().classes("hidden")
-            u_digitalliteracy_trial64 = ui.number().classes("hidden")
-            u_digitalliteracy_trial65 = ui.number().classes("hidden")
-            u_digitalliteracy_trial71 = ui.number().classes("hidden")
-            u_digitalliteracy_trial72 = ui.number().classes("hidden")
-            u_digitalliteracy_trial73 = ui.number().classes("hidden")
-            u_digitalliteracy_trial74 = ui.number().classes("hidden")
-            u_digitalliteracy_trial75 = ui.number().classes("hidden")
-            u_digitalliteracy_trial81 = ui.number().classes("hidden")
-            u_digitalliteracy_trial82 = ui.number().classes("hidden")
-            u_digitalliteracy_trial83 = ui.number().classes("hidden")
-            u_digitalliteracy_trial84 = ui.number().classes("hidden")
-            u_digitalliteracy_trial85 = ui.number().classes("hidden")
-            u_digitalliteracy_trial86 = ui.number().classes("hidden")
-            u_digitalliteracy_trial91 = ui.number().classes("hidden")
-            u_digitalliteracy_trial92 = ui.number().classes("hidden")
-            u_digitalliteracy_trial93 = ui.number().classes("hidden")
-            u_digitalliteracy_trial94 = ui.number().classes("hidden")
-            u_digitalliteracy_trial95 = ui.number().classes("hidden")
-            u_digitalliteracy_trial101 = ui.number().classes("hidden")
-            u_digitalliteracy_trial102 = ui.number().classes("hidden")
-            u_digitalliteracy_trial103 = ui.number().classes("hidden")
-            u_digitalliteracy_trial104 = ui.number().classes("hidden")
-            u_digitalliteracy_trial105 = ui.number().classes("hidden")
-            u_digitalliteracy_trial106 = ui.number().classes("hidden")
-            u_digitalliteracy_trial107 = ui.number().classes("hidden")
-            u_digitalliteracy_trial111 = ui.number().classes("hidden")
-            u_digitalliteracy_trial112 = ui.number().classes("hidden")
-            u_digitalliteracy_trial113 = ui.number().classes("hidden")
-            u_digitalliteracy_trial121 = ui.number().classes("hidden")
-            u_digitalliteracy_trial122 = ui.number().classes("hidden")
-            u_digitalliteracy_trial123 = ui.number().classes("hidden")
-            u_digitalliteracy_trial124 = ui.number().classes("hidden")
-            u_digitalliteracy_trial125 = ui.number().classes("hidden")
-            u_digitalliteracy_trial131 = ui.number().classes("hidden")
-            u_digitalliteracy_trial132 = ui.number().classes("hidden")
-            u_digitalliteracy_trial133 = ui.number().classes("hidden")
-            u_digitalliteracy_trial134 = ui.number().classes("hidden")
-            u_digitalliteracy_trial135 = ui.number().classes("hidden")
-            u_digitalliteracy_trial141 = ui.number().classes("hidden")
-            u_digitalliteracy_trial142 = ui.number().classes("hidden")
-            u_digitalliteracy_trial143 = ui.number().classes("hidden")
-            u_digitalliteracy_trial144 = ui.number().classes("hidden")
-            u_digitalliteracy_trial145 = ui.number().classes("hidden")
-            u_digitalliteracy_trial146 = ui.number().classes("hidden")
-            u_digitalliteracy_trial147 = ui.number().classes("hidden")
-            u_digitalliteracy_trial148 = ui.number().classes("hidden")
-            u_digitalliteracy_trial149 = ui.number().classes("hidden")
-            u_digitalliteracy_trial151 = ui.number().classes("hidden")
-            u_digitalliteracy_trial152 = ui.number().classes("hidden")
-            u_digitalliteracy_trial153 = ui.number().classes("hidden")
-            u_digitalliteracy_trial154 = ui.number().classes("hidden")
-            u_digitalliteracy_trial155 = ui.number().classes("hidden")
+            ).classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_today_date = ui.date().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial11 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial12 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial13 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial14 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial15 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial16 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial21 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial22 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial23 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial24 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial25 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial26 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial31 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial32 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial33 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial34 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial35 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial41 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial42 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial43 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial44 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial45 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial51 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial52 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial53 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial54 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial55 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial56 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial57 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial61 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial62 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial63 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial64 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial65 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial71 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial72 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial73 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial74 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial75 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial81 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial82 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial83 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial84 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial85 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial86 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial91 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial92 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial93 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial94 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial95 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial101 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial102 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial103 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial104 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial105 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial106 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial107 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial111 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial112 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial113 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial121 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial122 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial123 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial124 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial125 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial131 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial132 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial133 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial134 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial135 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial141 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial142 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial143 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial144 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial145 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial146 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial147 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial148 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial149 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial151 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial152 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial153 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial154 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_digitalliteracy_trial155 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
 
             def save(event):
                 """
@@ -2794,22 +2794,22 @@ def create() -> None:
             Some related functions or classes that might be useful.
 
             """
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.button("GRAPH", color="#172554", on_click=graph).classes(
                     "text-white"
                 )
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.select(
                     options=students,
                     with_input=True,
-                    on_change=lambda e: u_studentname.set_value(e.value),).classes("w-[300px]").props(
+                    on_change=lambda e: u_studentname.set_value(e.value),).classes("w-[300px]").style('font-family: "Atkinson Hyperlegible"').props(
                     'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
                 ).tooltip("Type Student Name, it will autocomplete AS you type")
                 ui.date(
                     value="f{datenow}",
                     on_change=lambda e: u_today_date.set_value(e.value),
-                ).classes("w-1/2")
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-1/2").style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.label(
                     "RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent"
                 ).props(
@@ -2817,58 +2817,58 @@ def create() -> None:
                 )
                 ui.input().props(
                     'aria-label="RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent" content-center'
-                ).classes("sr-only")
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("sr-only").style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.label("PHASE 1: Elementary Digital Literacy Skills").classes(
-                    "justify-center items-center"
+                    "justify-center items-center text-lg"
                 )
                 ui.input().props(
                     'aria-label="PHASE 1: Elementary Digital Literacy Skills"'
-                ).classes("sr-only")
-            with ui.row().classes("w-screen no-wrap py-4"):
-                ui.label("Basic Operations").classes("justify-center items-center")
-                ui.input().props('aria-label=Basic Operations"').classes("sr-only")
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("sr-only").style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ui.label("Basic Operations").classes("justify-center items-center text-lg").style('font-family: "Atkinson Hyperlegible"')
+                ui.input().props('aria-label=Basic Operations"').classes("sr-only").style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Turn computer on and off",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial11.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Use pointing device such as a mouse to manipulate shapes, icons; click on urls, radio buttons, check boxes; use scroll bar ",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial12.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Use desktop icons, windows and menus to open applications and documents ",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial13.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Save documents ",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial14.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Explain and use age-appropriate online tools and resources (e.g. tutorial, assessment, web browser) ",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial15.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Keyboarding (Use proper posture and ergonomics, Locate and use letter and numbers keys with left and right hand placement, Locate and use correct finger, hand for space bar,return/enter and shift key, "
                     "Gain proficiency and speed in touch typing)",
@@ -2876,485 +2876,485 @@ def create() -> None:
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial16.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
-                ui.label("Word Processing").classes("justify-center items-center")
-                ui.input().props('aria-label="Word Processing"').classes("sr-only")
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ui.label("Word Processing").classes("justify-center items-center text-lg").style('font-family: "Atkinson Hyperlegible"')
+                ui.input().props('aria-label="Word Processing"').classes("sr-only").style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Use a word processing application to write, edit, print and save simple assignments ",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial21.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Use menu/tool bar functions (e.g. font/size/style/, line spacing, margins) to format, edit and print a document ",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial22.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Highlight text, copy and paste text ",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial23.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Copy and paste images within the document and from outside sources ",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial24.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Insert and size a graphic in a document ",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial25.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Proofread and edit writing using appropriate resources (e.g. dictionary, spell checker, grammar, and thesaurus) ",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial26.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
-                ui.label("Spreadsheets").classes("justify-center items-center")
-                ui.input().props('aria-label="Spreadsheets"').classes("sr-only")
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ui.label("Spreadsheets").classes("justify-center items-center text-lg").style('font-family: "Atkinson Hyperlegible"')
+                ui.input().props('aria-label="Spreadsheets"').classes("sr-only").style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Demonstrate an understanding of the spreadsheet as a tool to record, organize and graph information. ",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial31.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Identify and explain terms and concepts related to spreadsheets (i.e. cell, column, row, values, labels, chart graph) ",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial32.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Enter/edit data in spreadsheets and perform calculations using formulas ",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial33.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Use mathematical symbols e.g. + add, - minus, *multiply, /divide, ^ exponents ",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial34.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Use spreadsheets and other applications to make predictions, solve problems and draw conclusions ",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial35.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
-                ui.label("Presentation Tools").classes("justify-center items-center")
-                ui.input().props('aria-label="Presentation Tools"').classes("sr-only")
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ui.label("Presentation Tools").classes("justify-center items-center text-lg").style('font-family: "Atkinson Hyperlegible"')
+                ui.input().props('aria-label="Presentation Tools"').classes("sr-only").style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Create, edit and format text on a slide ",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial41.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Create a series of slides and organize them to present research or convey an idea ",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial42.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Copy and paste or import graphics; change their size and position on a slide ",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial43.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Use painting and drawing tools/ applications to create and edit work ",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial44.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Watch online videos and use play, pause, rewind and forward buttons while taking notes ",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial45.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.label("Copyright and Plagiarism").classes(
-                    "justify-center items-center"
+                    "justify-center items-center text-lg"
                 )
                 ui.input().props('aria-label="Copyright and Plagiarism"').classes(
                     "sr-only"
                 )
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Explain and demonstrate compliance with classroom, school rules (Acceptable Use Policy) regarding responsible use of computers and networks ",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial51.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Explain responsible uses of technology and digital information; describe possible consequences of inappropriate use ",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial52.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Explain Fair Use Guidelines for the use of copyrighted materials,(e.g. text, images, music, video in student projects) and giving credit to media creators ",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial53.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Identify and explain the strategies for the safe and efficient use of computers (e.g. passwords, virus protection software, spam filters, popup blockers)",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial54.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Demonstrate safe email practices, recognition of the potentially public exposure of email and appropriate email etiquette ",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial55.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Identify cyberbullying and describe strategies to deal with such a situation  ",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial56.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Recognize and describe the potential risks and dangers associated with various forms of online communications ",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial57.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.label("Research and Gathering Information").classes(
-                    "justify-center items-center"
+                    "justify-center items-center text-lg"
                 )
                 ui.input().props(
                     'aria-label="Research and Gathering Information"'
-                ).classes("sr-only")
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("sr-only").style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Use age appropriate technologies to locate, collect, organize content from media collection for specific purposes, citing sources ",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial61.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Perform basic searches on databases, (e.g. library, card catalog, encyclopedia) to locate information. Evaluate teacher-selected or self-selected Internet resources in terms of their usefulness for research ",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial62.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Use content specific technology tools (e.g. environmental probes, sensors, and measuring devices, simulations) to gather and analyze data. ",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial63.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Use Web 2.0 tools (e.g. online discussions, blogs and wikis) to gather and share information  ",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial64.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Identify and analyze the purpose of a media message (to inform, persuade and entertain) ",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial65.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.label("Communication and Collaboration").classes(
-                    "justify-center items-center"
+                    "justify-center items-center text-lg"
                 )
                 ui.input().props(
                     'aria-label="Communication and Collaboration"'
-                ).classes("sr-only")
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("sr-only").style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Work collaboratively online with other students under teacher supervision  ",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial71.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Use a variety of age-appropriate technologies (e.g. drawing program, presentation software) to communicate and exchange ideas ",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial72.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Create projects that use text and various forms of graphics, audio, and video, (with proper citations) to communicate ideas. ",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial73.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Use teacher developed guidelines to evaluate multimedia presentations for organization, content, design, presentation and appropriateness of citations. ",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial74.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Use district approved Web 2.0 tools for communication and collaboration ",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial75.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.label("PHASE 2: Secondary Digital Literacy").classes(
-                    "justify-center items-center"
+                    "justify-center items-center text-lg"
                 )
                 ui.input().props(
                     'aria-label="PHASE 2: Secondary Digital Literacy"'
-                ).classes("sr-only")
-            with ui.row().classes("w-screen no-wrap py-4"):
-                ui.label("Basic Operations").classes("justify-center items-center")
-                ui.input().props('aria-label="Basic Operations"').classes("sr-only")
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("sr-only").style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ui.label("Basic Operations").classes("justify-center items-center text-lg").style('font-family: "Atkinson Hyperlegible"')
+                ui.input().props('aria-label="Basic Operations"').classes("sr-only").style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label=" Identify successful troubleshooting strategies for minor hardware and software issues/problems (e.g., “frozen screen”)",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial81.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Independently operate peripheral equipment (e.g., scanner, digital camera, camcorder), if available.  ",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial82.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Compress and expand large files  ",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial83.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Identify and use a variety of storage media (e.g., CDs, DVDs, flash drives, school servers, and online storage spaces), and provide a rationale for using a certain medium for a specific purpose.",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial84.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Demonstrate automaticity in keyboarding skills by increasing accuracy and speed (For students with disabilities, demonstrate alternate input techniques as appropriate.)",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial85.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Identify and assess the capabilities and limitations of emerging technologies. ",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial86.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
-                ui.label("Word Processing").classes("justify-center items-center")
-                ui.input().props('aria-label="Word Processing"').classes("sr-only")
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ui.label("Word Processing").classes("justify-center items-center text-lg").style('font-family: "Atkinson Hyperlegible"')
+                ui.input().props('aria-label="Word Processing"').classes("sr-only").style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Demonstrate use of intermediate features in word processing application (e.g., tabs, indents, headers and footers, end notes, bullet and numbering, tables). ",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial91.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Apply advanced formatting and page layout features when appropriate (e.g., columns, templates, and styles) to improve the appearance of documents and materials.",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial92.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Highlight text, copy and paste text ",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial93.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Use the Comment function in Review for peer editing of documents ",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial94.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Use the Track Changes feature in Review for peer editing of documents ",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial95.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
-                ui.label("Spreadsheets").classes("justify-center items-center")
-                ui.input().props('aria-label="Spreadsheets"').classes("sr-only")
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ui.label("Spreadsheets").classes("justify-center items-center text-lg").style('font-family: "Atkinson Hyperlegible"')
+                ui.input().props('aria-label="Spreadsheets"').classes("sr-only").style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Use spreadsheets to calculate, graph, organize, and present data in a variety of real-world settings and choose the most appropriate type to represent given data",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial101.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Enter formulas and functions; use the auto-fill feature in a spreadsheet application.",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial102.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Use functions of a spreadsheet application (e.g., sort, filter, find).",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial103.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Use various number formats (e.g. scientific notations, percentages, exponents) as appropriate ",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial104.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Use various number formats (e.g. scientific notations, percentages, exponents) as appropriate ",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial105.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Differentiate between formulas with absolute and relative cell references. ",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial106.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Use multiple sheets within a workbook, and create links among worksheets to solve problems. ",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial107.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.label("Mathematical Applications").classes(
-                    "justify-center items-center"
+                    "justify-center items-center text-lg"
                 )
                 ui.input().props('aria-label="Mathematical Applications"').classes(
                     "sr-only"
                 )
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Draw two and three dimensional geometric shapes using a variety of technology tools ",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial111.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Use and interpret scientific notations using a variety of technology applications ",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial112.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Explain and demonstrate how specialized technology tools can be used for problem solving, decision making, and creativity in all subject areas (e.g., simulation software, environmental probes, computer aided design, "
                     "geographic information systems, dynamic geometric software, graphing calculators).",
@@ -3362,226 +3362,226 @@ def create() -> None:
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial113.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
-                ui.label("Presentation Tools").classes("justify-center items-center")
-                ui.input().props('aria-label="Presentation Tools"').classes("sr-only")
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ui.label("Presentation Tools").classes("justify-center items-center text-lg").style('font-family: "Atkinson Hyperlegible"')
+                ui.input().props('aria-label="Presentation Tools"').classes("sr-only").style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Create presentations for a variety of audiences and purposes with use of appropriate transitions and animations to add interest. ",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial121.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label=" Use a variety of technology tools (e.g., dictionary, thesaurus, grammar checker, calculator/graphing calculator) to maximize the accuracy of work. Make strategic use of digital media to enhance understanding ",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial122.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Use painting and drawing tools/ applications to create and edit work ",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial123.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Use note-taking skills while viewing online videos and using the play, pause, rewind and stop buttons. ",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial124.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Independently use appropriate technology tools (e.g., graphic organizer, audio, visual) to define problems and propose hypotheses. ",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial125.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.label("Copyright and Plagiarism").classes(
-                    "justify-center items-center"
+                    "justify-center items-center text-lg"
                 )
                 ui.input().props('aria-label="Copyright and Plagiarism"').classes(
                     "sr-only"
                 )
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Comply with the district’s Acceptable Use Policy related to ethical use, cyberbullying, privacy, plagiarism, spam, viruses, hacking, and file sharing. ",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial131.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Explain Fair Use guidelines for using copyrighted materials and possible consequences (e.g., images, music, video, text) in school projects. ",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial132.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Analyze and explain how media and technology can be used to distort, exaggerate, and misrepresent information. ",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial133.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Give examples of hardware and applications that enable people with disabilities to use technology. ",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial134.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Explain the potential risks associated with the use of networked digital environments (e.g., internet, mobile phones, wireless, LANs) and sharing personal information. ",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial135.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.label("Research and Gathering Information").classes(
-                    "justify-center items-center"
+                    "justify-center items-center text-lg"
                 )
                 ui.input().props(
                     'aria-label="Research and Gathering Information"'
-                ).classes("sr-only")
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("sr-only").style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label=" Identify probable types and locations of Web sites by examining their domain names (e.g., edu, com, org, gov, au)",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial141.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Use effective search strategies for locating and retrieving electronic information (e.g., using syntax and Boolean logic operators) ",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial142.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Use search engines and online directories. Explain the differences among various search engines and how they rank results. ",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial143.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Use appropriate academic language in online learning environments (e.g., post, thread, intranet, discussion forum, drop box, account, and password). ",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial144.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Explain how technology can support communication and collaboration, personal and professional productivity, and lifelong learning. ",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial145.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Write correct in-text citations and reference lists for text and images gathered from electronic sources. ",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial146.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Use Web browsing to access information (e.g., enter a URL, access links, create bookmarks/favorites, print Web pages) ",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial147.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Use and modify databases and spreadsheets to analyze data and propose solutions. ",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial148.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Develop and use guidelines to evaluate the content, organization, design, use of citations, and presentation of technologically enhanced projects. ",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial149.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.label("Communication and Collaboration").classes(
-                    "justify-center items-center"
+                    "justify-center items-center text-lg"
                 )
                 ui.input().props(
                     'aria-label="Communication and Collaboration"'
-                ).classes("sr-only")
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("sr-only").style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Use a variety of media to present information for specific purposes (e.g., reports, research papers, presentations, newsletters, Web sites, podcasts, blogs), citing sources. ",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial151.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Demonstrate how the use of various techniques and effect (e.g., editing, music, color, rhetorical devices) can be used to convey meaning in media. ",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial152.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Use a variety of district approved Web 2.0 tools (e.g., email discussion groups, blogs, etc.) to collaborate and communicate with peers, experts, and other audiences using appropriate academic language. ",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial153.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Use teacher developed guidelines to evaluate multimedia presentations for organization, content, design, presentation and appropriateness of citations ",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial154.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label=" Plan and implement a collaborative project with students in other classrooms and schools using telecommunications tools (e.g., e-mail, discussion forums, groupware, interactive Web sites, videoconferencing) ",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_digitalliteracy_trial155.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="  "')
+                ).classes("w-[600px]").props('aria-label="  "').style('font-family: "Atkinson Hyperlegible"')
 
-            with ui.row().classes("w-screen no-wrap py-4"):
-                ui.button("SAVE", color="#172554", on_click=save).classes("text-white")
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ui.button("SAVE", color="#172554", on_click=save).classes("text-white").style('font-family: "Atkinson Hyperlegible"')
                 ui.button("GRAPH", color="#172554", on_click=graph).classes(
                     "text-white"
                 )

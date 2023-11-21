@@ -39,12 +39,12 @@ def create() -> None:
     @ui.page("/keyboardingskills")
     def keyboardingskills() -> None:
         with theme.frame("- TECHNOLOGY SKILLS -"):
-            ui.label("Keyboarding Skills").classes("text-h4 text-grey-8")
+            ui.label("Keyboarding Skills").classes("text-h4 text-grey-8").style('font-family: "Atkinson Hyperlegible"')
             u_studentname = ui.select(
                 options=students, value="DonaldChamberlain"
-            ).classes("hidden")
+            ).classes("hidden").style('font-family: "Atkinson Hyperlegible"')
 
-            u_today_date = ui.date().classes("hidden")
+            u_today_date = ui.date().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
             u_keyboarding_program = ui.radio(
                 [
                     "Typio",
@@ -54,7 +54,7 @@ def create() -> None:
                     "MonkeyType",
                     "Custom Assignment",
                 ]
-            ).classes("hidden")
+            ).classes("hidden").style('font-family: "Atkinson Hyperlegible"')
             u_topic_covered = ui.radio(
                 [
                     "Home Row",
@@ -65,9 +65,9 @@ def create() -> None:
                     "F-Keys",
                     "Shortcut Keystrokes",
                 ]
-            ).classes("hidden")
-            u_typing_speed = ui.number().classes("hidden")
-            u_typing_accuracy = ui.number().classes("hidden")
+            ).classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_typing_speed = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_typing_accuracy = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
 
             def save(event):
                 """
@@ -245,24 +245,24 @@ def create() -> None:
             Some related functions or classes that might be useful.
 
             """
-            with ui.row().classes("w-screen no-wrap py-4"):
-                ui.label().classes("w-[50px]")
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ui.label().classes("w-[50px]").style('font-family: "Atkinson Hyperlegible"')
                 ui.label("STUDENT INFORMATION").classes(
                     "w-full justify-center items-center font-bold"
                 )
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.select(
                     options=students,
                     with_input=True,
-                    on_change=lambda e: u_studentname.set_value(e.value),).classes("w-[300px]").props(
+                    on_change=lambda e: u_studentname.set_value(e.value),).classes("w-[300px]").style('font-family: "Atkinson Hyperlegible"').props(
                     'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
                 ).tooltip("Type Student Name, it will autocomplete AS you type")
                 ui.date(
                     value="f{datenow}",
                     on_change=lambda e: u_today_date.set_value(e.value),
-                ).classes("w-1/2")
-            with ui.row().classes("w-screen no-wrap"):
-                ui.label("Keyboarding Program").classes("w-[50px]")
+                ).classes("w-1/2").style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap").style('font-family: "Atkinson Hyperlegible"'):
+                ui.label("Keyboarding Program").classes("w-[50px]").style('font-family: "Atkinson Hyperlegible"')
                 ui.select(
                     options=[
                         "Typio",
@@ -274,11 +274,11 @@ def create() -> None:
                     ],
                     value="",
                     on_change=lambda e: u_keyboarding_program.set_value(e.value),
-                ).classes("w-[240px]").props(
+                ).classes("w-[240px]").style('font-family: "Atkinson Hyperlegible"').props(
                     'aria-label="Keyboarding Program"'
                 ).tooltip("Keyboarding Program")
-            with ui.row().classes("w-screen no-wrap py-4"):
-                ui.label("Topic Covered").classes("w-[50px]")
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ui.label("Topic Covered").classes("w-[50px]").style('font-family: "Atkinson Hyperlegible"')
                 ui.select(
                     options=[
                         "Home Row",
@@ -291,11 +291,11 @@ def create() -> None:
                     ],
                     value="",
                     on_change=lambda e: u_topic_covered.set_value(e.value),
-                ).classes("w-[240px]").props('aria-label="Topic Covered"').tooltip(
+                ).classes("w-[240px]").props('aria-label="Topic Covered"').style('font-family: "Atkinson Hyperlegible"').tooltip(
                     "Topic Covered"
                 )
-            with ui.row().classes("w-screen no-wrap"):
-                ui.label("Typing Speed").classes("w-[50px]")
+            with ui.row().classes("w-screen no-wrap").style('font-family: "Atkinson Hyperlegible"'):
+                ui.label("Typing Speed").classes("w-[50px]").style('font-family: "Atkinson Hyperlegible"')
                 ui.number(
                     min=0,
                     max=150,
@@ -303,11 +303,11 @@ def create() -> None:
                     label="Typing Speed",
                     value="",
                     on_change=lambda e: u_typing_speed.set_value(e.value),
-                ).classes("w-[240px]").props('aria-label="Typing Speed"').tooltip(
+                ).classes("w-[240px]").props('aria-label="Typing Speed"').style('font-family: "Atkinson Hyperlegible"').tooltip(
                     "Typing Speed"
                 )
-            with ui.row().classes("w-screen no-wrap"):
-                ui.label("Typing Speed").classes("w-[50px]")
+            with ui.row().classes("w-screen no-wrap").style('font-family: "Atkinson Hyperlegible"'):
+                ui.label("Typing Speed").classes("w-[50px]").style('font-family: "Atkinson Hyperlegible"')
                 ui.number(
                     min=0,
                     max=100,
@@ -315,11 +315,11 @@ def create() -> None:
                     label="Typing Accuracy",
                     value="",
                     on_change=lambda e: u_typing_accuracy.set_value(e.value),
-                ).classes("w-[240px]").props('aria-label="Typing Accuracy"').tooltip(
+                ).classes("w-[240px]").props('aria-label="Typing Accuracy"').style('font-family: "Atkinson Hyperlegible"').tooltip(
                     "Typing Accuracy"
                 )
-            with ui.row().classes("w-screen no-wrap py-4"):
-                ui.button("SAVE", color="#172554", on_click=save).classes("text-white")
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ui.button("SAVE", color="#172554", on_click=save).classes("text-white").style('font-family: "Atkinson Hyperlegible"')
                 ui.button("EXIT", color="#172554", on_click=app.shutdown).classes(
                     "text-white"
                 )

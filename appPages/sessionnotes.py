@@ -39,25 +39,25 @@ def create() -> None:
     @ui.page("/sessionnotes")
     def sessionnotes() -> None:
         with theme.frame("- DATA COLLECTION -"):
-            ui.label("SESSION NOTES").classes("text-h4 text-grey-8")
+            ui.label("SESSION NOTES").classes("text-h4 text-grey-8").style('font-family: "Atkinson Hyperlegible"')
             # ASSIGN VARIABLES
             u_studentname = ui.select(
                 options=students, value="DonaldChamberlain"
-            ).classes("hidden")
-            u_today_date = ui.date().classes("hidden")
-            u_tasks = ui.select(options=[""], value="Choose a Task").classes("hidden")
-            u_anecdotalnotes = ui.textarea().classes("hidden")
-            u_trial01 = ui.number().classes("hidden")
-            u_trial02 = ui.number().classes("hidden")
-            u_trial03 = ui.number().classes("hidden")
-            u_trial04 = ui.number().classes("hidden")
-            u_trial05 = ui.number().classes("hidden")
-            u_trial06 = ui.number().classes("hidden")
-            u_trial07 = ui.number().classes("hidden")
-            u_trial08 = ui.number().classes("hidden")
-            u_trial09 = ui.number().classes("hidden")
-            u_trial10 = ui.number().classes("hidden")
-            u_trial11 = ui.number().classes("hidden")
+            ).classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_today_date = ui.date().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_tasks = ui.select(options=[""], value="Choose a Task").classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_anecdotalnotes = ui.textarea().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_trial01 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_trial02 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_trial03 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_trial04 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_trial05 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_trial06 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_trial07 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_trial08 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_trial09 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_trial10 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_trial11 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
 
             def save(event):
                 """
@@ -185,25 +185,25 @@ def create() -> None:
             Some related functions or classes that might be useful.
 
             """
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.label("Student")
                 ui.select(
                     options=students,
                     with_input=True,
-                    on_change=lambda e: u_studentname.set_value(e.value),).classes("w-[300px]").props(
+                    on_change=lambda e: u_studentname.set_value(e.value),).classes("w-[300px]").style('font-family: "Atkinson Hyperlegible"').props(
                     'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
                 ).tooltip("Type Student Name, it will autocomplete AS you type")
                 ui.date(
                     value="f{datenow}",
                     on_change=lambda e: u_today_date.set_value(e.value),
-                ).classes("w-1/2")
-            with ui.row().classes("w-screen no-wrap"):
+                ).classes("w-1/2").style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap").style('font-family: "Atkinson Hyperlegible"'):
                 ui.label("Task Domain") 
                 task_domain = ui.select(
                     options=list(task_domains.keys()),
                     with_input=True,
                     on_change=lambda e: specific_task.set_options(task_domains.get(e.value, [""])),
-                ).classes("w-[300px]").props(
+                ).classes("w-[300px]").style('font-family: "Atkinson Hyperlegible"').props(
                     'aria-label="Select Task Domain from the Dropdown. It will autocomplete as you type"'
                 ).tooltip("Type Task Domain, it will autocomplete as you type")
                 ui.label("Specific Task")
@@ -211,10 +211,10 @@ def create() -> None:
                     options=[""],
                     with_input=True,
                     on_change=lambda e: u_tasks.set_value(e.value),
-                ).classes("w-[300px]").props(
+                ).classes("w-[300px]").style('font-family: "Atkinson Hyperlegible"').props(
                     'aria-label="Select Task from the Dropdown. It will autocomplete as you type"'
                 ).tooltip("Type Task, it will autocomplete as you type")
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.label(
                     "RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent"
                 ).props(
@@ -222,95 +222,95 @@ def create() -> None:
                 )
                 ui.input().props(
                     'aria-label="RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent" content-center'
-                ).classes("sr-only")
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("sr-only").style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Trial 1",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_trial01.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="Trial 1"')
+                ).classes("w-[600px]").props('aria-label="Trial 1"').style('font-family: "Atkinson Hyperlegible"')
                 ui.number(
                     label="Trial 2",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_trial02.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="Trial 2"')
+                ).classes("w-[600px]").props('aria-label="Trial 2"').style('font-family: "Atkinson Hyperlegible"')
                 ui.number(
                     label="Trial 3",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_trial03.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="Trial 3"')
+                ).classes("w-[600px]").props('aria-label="Trial 3"').style('font-family: "Atkinson Hyperlegible"')
                 ui.number(
                     label="Trial 4",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_trial04.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="Trial 4" ')
+                ).classes("w-[600px]").props('aria-label="Trial 4" ').style('font-family: "Atkinson Hyperlegible"')
                 ui.number(
                     label="Trial 5",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_trial05.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="Trial 5" ')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="Trial 5" ').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="Trial 6",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_trial06.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="Trial 6" ')
+                ).classes("w-[600px]").props('aria-label="Trial 6" ').style('font-family: "Atkinson Hyperlegible"')
                 ui.number(
                     label="Trial 7",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_trial07.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="Trial 7" ')
+                ).classes("w-[600px]").props('aria-label="Trial 7" ').style('font-family: "Atkinson Hyperlegible"')
                 ui.number(
                     label="Trial 8",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_trial08.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="Trial 8" ')
+                ).classes("w-[600px]").props('aria-label="Trial 8" ').style('font-family: "Atkinson Hyperlegible"')
                 ui.number(
                     label="Trial 9",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_trial09.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="Trial 9" ')
+                ).classes("w-[600px]").props('aria-label="Trial 9" ').style('font-family: "Atkinson Hyperlegible"')
                 ui.number(
                     label="Trial 10",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_trial10.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="Trial 10" ')
+                ).classes("w-[600px]").props('aria-label="Trial 10" ').style('font-family: "Atkinson Hyperlegible"')
                 ui.number(
                     label="Trial 11",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_trial11.set_value(e.value),
-                ).classes("w-[600px]").props('aria-label="Trial 11" ')
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[600px]").props('aria-label="Trial 11" ').style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.textarea(
                     label="Input Anecdotal Notes In this Box and Press Save",
                     on_change=lambda e: u_anecdotalnotes.set_value(e.value),
-                ).classes("h-full h-min-[400px]").props(
+                ).classes("h-full h-min-[400px]").style('font-family: "Atkinson Hyperlegible"').props(
                     'cols=80 autogrow outlined aria-label="Please type anecdotal notes" square'
                 )
-            with ui.row().classes("w-screen no-wrap py-4"):
-                ui.button("SAVE", color="#172554", on_click=save).classes("text-white")
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ui.button("SAVE", color="#172554", on_click=save).classes("text-white").style('font-family: "Atkinson Hyperlegible"')
                 ui.button("EXIT", color="#172554", on_click=app.shutdown).classes(
                     "text-white"
                 )

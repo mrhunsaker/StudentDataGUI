@@ -44,74 +44,74 @@ def create() -> None:
     @ui.page("/braillenotetouchskills")
     def braillenotetouchskills() -> None:
         with theme.frame("- TECHNOLOGY SKILLS -"):
-            ui.label("BRAILLENOTE TOUCH PLUS SKILLS").classes("text-h4 text-grey-8")
+            ui.label("BRAILLENOTE TOUCH PLUS SKILLS").classes("text-h4 text-grey-8").style('font-family: "Atkinson Hyperlegible"')
 
             # ASSIGN VARIABLES
             u_studentname = ui.select(
                 options=students, value="DonaldChamberlain"
-            ).classes("hidden")
-            u_today_date = ui.date().classes("hidden")
-            u_bnt_trial11 = ui.number().classes("hidden")
-            u_bnt_trial12 = ui.number().classes("hidden")
-            u_bnt_trial13 = ui.number().classes("hidden")
-            u_bnt_trial14 = ui.number().classes("hidden")
-            u_bnt_trial15 = ui.number().classes("hidden")
-            u_bnt_trial16 = ui.number().classes("hidden")
-            u_bnt_trial17 = ui.number().classes("hidden")
-            u_bnt_trial18 = ui.number().classes("hidden")
-            u_bnt_trial19 = ui.number().classes("hidden")
-            u_bnt_trial21 = ui.number().classes("hidden")
-            u_bnt_trial22 = ui.number().classes("hidden")
-            u_bnt_trial23 = ui.number().classes("hidden")
-            u_bnt_trial24 = ui.number().classes("hidden")
-            u_bnt_trial25 = ui.number().classes("hidden")
-            u_bnt_trial26 = ui.number().classes("hidden")
-            u_bnt_trial27 = ui.number().classes("hidden")
-            u_bnt_trial31 = ui.number().classes("hidden")
-            u_bnt_trial32 = ui.number().classes("hidden")
-            u_bnt_trial33 = ui.number().classes("hidden")
-            u_bnt_trial34 = ui.number().classes("hidden")
-            u_bnt_trial35 = ui.number().classes("hidden")
-            u_bnt_trial36 = ui.number().classes("hidden")
-            u_bnt_trial37 = ui.number().classes("hidden")
-            u_bnt_trial41 = ui.number().classes("hidden")
-            u_bnt_trial42 = ui.number().classes("hidden")
-            u_bnt_trial43 = ui.number().classes("hidden")
-            u_bnt_trial51 = ui.number().classes("hidden")
-            u_bnt_trial52 = ui.number().classes("hidden")
-            u_bnt_trial53 = ui.number().classes("hidden")
-            u_bnt_trial54 = ui.number().classes("hidden")
-            u_bnt_trial55 = ui.number().classes("hidden")
-            u_bnt_trial56 = ui.number().classes("hidden")
-            u_bnt_trial57 = ui.number().classes("hidden")
-            u_bnt_trial61 = ui.number().classes("hidden")
-            u_bnt_trial62 = ui.number().classes("hidden")
-            u_bnt_trial63 = ui.number().classes("hidden")
-            u_bnt_trial71 = ui.number().classes("hidden")
-            u_bnt_trial72 = ui.number().classes("hidden")
-            u_bnt_trial73 = ui.number().classes("hidden")
-            u_bnt_trial74 = ui.number().classes("hidden")
-            u_bnt_trial81 = ui.number().classes("hidden")
-            u_bnt_trial82 = ui.number().classes("hidden")
-            u_bnt_trial83 = ui.number().classes("hidden")
-            u_bnt_trial84 = ui.number().classes("hidden")
-            u_bnt_trial85 = ui.number().classes("hidden")
-            u_bnt_trial91 = ui.number().classes("hidden")
-            u_bnt_trial92 = ui.number().classes("hidden")
-            u_bnt_trial93 = ui.number().classes("hidden")
-            u_bnt_trial94 = ui.number().classes("hidden")
-            u_bnt_trial101 = ui.number().classes("hidden")
-            u_bnt_trial102 = ui.number().classes("hidden")
-            u_bnt_trial103 = ui.number().classes("hidden")
-            u_bnt_trial111 = ui.number().classes("hidden")
-            u_bnt_trial112 = ui.number().classes("hidden")
-            u_bnt_trial113 = ui.number().classes("hidden")
-            u_bnt_trial114 = ui.number().classes("hidden")
-            u_bnt_trial115 = ui.number().classes("hidden")
-            u_bnt_trial121 = ui.number().classes("hidden")
-            u_bnt_trial122 = ui.number().classes("hidden")
-            u_bnt_trial123 = ui.number().classes("hidden")
-            u_bnt_trial124 = ui.number().classes("hidden")
+            ).classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_today_date = ui.date().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_bnt_trial11 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_bnt_trial12 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_bnt_trial13 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_bnt_trial14 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_bnt_trial15 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_bnt_trial16 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_bnt_trial17 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_bnt_trial18 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_bnt_trial19 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_bnt_trial21 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_bnt_trial22 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_bnt_trial23 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_bnt_trial24 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_bnt_trial25 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_bnt_trial26 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_bnt_trial27 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_bnt_trial31 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_bnt_trial32 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_bnt_trial33 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_bnt_trial34 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_bnt_trial35 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_bnt_trial36 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_bnt_trial37 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_bnt_trial41 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_bnt_trial42 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_bnt_trial43 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_bnt_trial51 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_bnt_trial52 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_bnt_trial53 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_bnt_trial54 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_bnt_trial55 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_bnt_trial56 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_bnt_trial57 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_bnt_trial61 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_bnt_trial62 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_bnt_trial63 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_bnt_trial71 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_bnt_trial72 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_bnt_trial73 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_bnt_trial74 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_bnt_trial81 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_bnt_trial82 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_bnt_trial83 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_bnt_trial84 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_bnt_trial85 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_bnt_trial91 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_bnt_trial92 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_bnt_trial93 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_bnt_trial94 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_bnt_trial101 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_bnt_trial102 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_bnt_trial103 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_bnt_trial111 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_bnt_trial112 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_bnt_trial113 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_bnt_trial114 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_bnt_trial115 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_bnt_trial121 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_bnt_trial122 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_bnt_trial123 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
+            u_bnt_trial124 = ui.number().classes("hidden").style('font-family: "Atkinson Hyperlegible"')
 
             def save(event):
                 """
@@ -1877,22 +1877,22 @@ def create() -> None:
             Some related functions or classes that might be useful.
 
             """
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.button("GRAPH", color="#172554", on_click=graph).classes(
                     "text-white"
                 )
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.select(
                     options=students,
                     with_input=True,
-                    on_change=lambda e: u_studentname.set_value(e.value),).classes("w-[300px]").props(
+                    on_change=lambda e: u_studentname.set_value(e.value),).classes("w-[300px]").style('font-family: "Atkinson Hyperlegible"').props(
                     'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
                 ).tooltip("Type Student Name, it will autocomplete AS you type")
                 ui.date(
                     value="f{datenow}",
                     on_change=lambda e: u_today_date.set_value(e.value),
-                ).classes("w-1/2")
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-1/2").style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.label(
                     "RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated  3=Independent"
                 ).props(
@@ -1900,695 +1900,695 @@ def create() -> None:
                 )
                 ui.input().props(
                     'aria-label="RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent" content-center'
-                ).classes("sr-only")
-            with ui.row().classes("w-screen no-wrap py-4"):
-                ui.label("Phase 1: Basic SKills").classes("justify-center items-center")
+                ).classes("sr-only").style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ui.label("Phase 1: Basic SKills").classes("justify-center items-center text-lg").style('font-family: "Atkinson Hyperlegible"')
                 ui.input().props('aria-label="Phase 1: Basic Skills"').classes(
                     "sr-only"
                 )
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="1.1 Physical Layout",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial11.set_value(e.value),
-                ).classes("w-[400px]").props('aria-label="Physical Layout"').tooltip(
+                ).classes("w-[400px]").props('aria-label="Physical Layout"').style('font-family: "Atkinson Hyperlegible"').tooltip(
                     "Physical Layout"
                 )
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="1.2 Setup/Universal Commands",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial12.set_value(e.value),
-                ).classes("w-[400px]").props(
+                ).classes("w-[400px]").style('font-family: "Atkinson Hyperlegible"').props(
                     'aria-label="Setup/Universal Commands"'
                 ).tooltip("Setup/Universal Commands")
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="1.3 BNT+ Navigation",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial13.set_value(e.value),
-                ).classes("w-[400px]").props('aria-label="BNT+ Navigation"').tooltip(
+                ).classes("w-[400px]").props('aria-label="BNT+ Navigation"').style('font-family: "Atkinson Hyperlegible"').tooltip(
                     "BNT+ Navigation"
                 )
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="1.4 File System navigation",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial14.set_value(e.value),
-                ).classes("w-[400px]").props(
+                ).classes("w-[400px]").style('font-family: "Atkinson Hyperlegible"').props(
                     'aria-label="File System navigation"'
                 ).tooltip("File System navigation")
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="1.5 Main Menu Options",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial15.set_value(e.value),
-                ).classes("w-[400px]").props('aria-label="Main Menu Options"').tooltip(
+                ).classes("w-[400px]").props('aria-label="Main Menu Options"').style('font-family: "Atkinson Hyperlegible"').tooltip(
                     "Main Menu Options"
                 )
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="1.6 Settings Menus",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial16.set_value(e.value),
-                ).classes("w-[400px]").props('aria-label="Settings Menus"').tooltip(
+                ).classes("w-[400px]").props('aria-label="Settings Menus"').style('font-family: "Atkinson Hyperlegible"').tooltip(
                     "Settings Menus"
                 )
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="1.7 Read Book with EasyReader Plus",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial17.set_value(e.value),
-                ).classes("w-[400px]").props(
+                ).classes("w-[400px]").style('font-family: "Atkinson Hyperlegible"').props(
                     'aria-label="Read Book with EasyReader Plus"'
                 ).tooltip("Read Book with EasyReader Plus")
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="1.8 Braille Terminal",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial18.set_value(e.value),
-                ).classes("w-[400px]").props('aria-label="Braille Terminal"').tooltip(
+                ).classes("w-[400px]").props('aria-label="Braille Terminal"').style('font-family: "Atkinson Hyperlegible"').tooltip(
                     "Braille Terminal"
                 )
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="1.9 System Updates",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial19.set_value(e.value),
-                ).classes("w-[400px]").props('aria-label="System Updates"').tooltip(
+                ).classes("w-[400px]").props('aria-label="System Updates"').style('font-family: "Atkinson Hyperlegible"').tooltip(
                     "System Updates"
                 )
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.label("Phase 2: KeySoft Programs - KeyFiles").classes(
-                    "justify-center items-center"
+                    "justify-center items-center text-lg"
                 )
                 ui.input().props(
                     'aria-label="Phase 2: KeySoft Programs - KeyFiles"'
-                ).classes("sr-only")
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("sr-only").style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="2.1 Creating folders",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial21.set_value(e.value),
-                ).classes("w-[400px]").props('aria-label="Creating folders"').tooltip(
+                ).classes("w-[400px]").props('aria-label="Creating folders"').style('font-family: "Atkinson Hyperlegible"').tooltip(
                     "Creating folders"
                 )
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="2.2 Differences among drives, folders, and files",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial22.set_value(e.value),
-                ).classes("w-[400px]").props(
+                ).classes("w-[400px]").style('font-family: "Atkinson Hyperlegible"').props(
                     'aria-label="Differences among drives, folders, and files"'
                 ).tooltip("Differences among drives, folders, and files")
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="2.3 Navigating in the file browser",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial23.set_value(e.value),
-                ).classes("w-[400px]").props(
+                ).classes("w-[400px]").style('font-family: "Atkinson Hyperlegible"').props(
                     'aria-label="Navigating in the file browser"'
                 ).tooltip("Navigating in the file browser")
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="2.4 Moving, copying and pasting file and folders",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial24.set_value(e.value),
-                ).classes("w-[400px]").props(
+                ).classes("w-[400px]").style('font-family: "Atkinson Hyperlegible"').props(
                     'aria-label="Moving, copying and pasting file and folders"'
                 ).tooltip("Moving, copying and pasting file and folders")
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="2.5 Renaming a file or a folder",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial25.set_value(e.value),
-                ).classes("w-[400px]").props(
+                ).classes("w-[400px]").style('font-family: "Atkinson Hyperlegible"').props(
                     'aria-label="Renaming a file or a folder"'
                 ).tooltip("Renaming a file or a folder")
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="2.6 Sharing files",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial26.set_value(e.value),
-                ).classes("w-[400px]").props('aria-label="Sharing files"').tooltip(
+                ).classes("w-[400px]").props('aria-label="Sharing files"').style('font-family: "Atkinson Hyperlegible"').tooltip(
                     "Sharing files"
                 )
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="2.7 File and folder commands",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial27.set_value(e.value),
-                ).classes("w-[400px]").props(
+                ).classes("w-[400px]").style('font-family: "Atkinson Hyperlegible"').props(
                     'aria-label="File and folder commands"'
                 ).tooltip("File and folder commands")
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.label("Phase 3: KeySoft Programs - KeyWord").classes(
-                    "justify-center items-center"
+                    "justify-center items-center text-lg"
                 )
                 ui.input().props(
                     'aria-label="Phase 3: KeySoft Programs - KeyWord"'
-                ).classes("sr-only")
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("sr-only").style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="3.1 Editing Document in Keyword",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial31.set_value(e.value),
-                ).classes("w-[400px]").props(
+                ).classes("w-[400px]").style('font-family: "Atkinson Hyperlegible"').props(
                     'aria-label="Editing Document in Keyword"'
                 ).tooltip("Editing Document in Keyword")
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="3.2 Create a Document in Keyword",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial32.set_value(e.value),
-                ).classes("w-[400px]").props(
+                ).classes("w-[400px]").style('font-family: "Atkinson Hyperlegible"').props(
                     'aria-label="Create a Document in Keyword"'
                 ).tooltip("Create a Document in Keyword")
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="3.3 Open a Document in Keyword",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial33.set_value(e.value),
-                ).classes("w-[400px]").props(
+                ).classes("w-[400px]").style('font-family: "Atkinson Hyperlegible"').props(
                     'aria-label="Open a Document in Keyword"'
                 ).tooltip("Open a Document in Keyword")
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="3.4 Save a Document in Keyword",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial34.set_value(e.value),
-                ).classes("w-[400px]").props(
+                ).classes("w-[400px]").style('font-family: "Atkinson Hyperlegible"').props(
                     'aria-label="Save a Document in Keyword"'
                 ).tooltip("Save a Document in Keyword")
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="3.5 Read a Document in Keyword",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial35.set_value(e.value),
-                ).classes("w-[400px]").props(
+                ).classes("w-[400px]").style('font-family: "Atkinson Hyperlegible"').props(
                     'aria-label="Read a Document in Keyword"'
                 ).tooltip("Read a Document in Keyword")
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="3.6 Visual Preview",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial36.set_value(e.value),
-                ).classes("w-[400px]").props('aria-label="Visual Preview"').tooltip(
+                ).classes("w-[400px]").props('aria-label="Visual Preview"').style('font-family: "Atkinson Hyperlegible"').tooltip(
                     "Visual Preview"
                 )
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="3.7 Save as Word File",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial37.set_value(e.value),
-                ).classes("w-[400px]").props('aria-label="Save as Word File"').tooltip(
+                ).classes("w-[400px]").props('aria-label="Save as Word File"').style('font-family: "Atkinson Hyperlegible"').tooltip(
                     "Save as Word File"
                 )
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.label("Phase 4: KeySoft Programs - Keymath").classes(
-                    "justify-center items-center"
+                    "justify-center items-center text-lg"
                 )
                 ui.input().props(
                     'aria-label="Phase 4: KeySoft Programs - Keymath"'
-                ).classes("sr-only")
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("sr-only").style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="4.1 Create and edit math object",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial41.set_value(e.value),
-                ).classes("w-[400px]").props(
+                ).classes("w-[400px]").style('font-family: "Atkinson Hyperlegible"').props(
                     'aria-label="Create and edit math object"'
                 ).tooltip("Create and edit math object")
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="4.2 Paste into KeyWord",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial42.set_value(e.value),
-                ).classes("w-[400px]").props(
+                ).classes("w-[400px]").style('font-family: "Atkinson Hyperlegible"').props(
                     'aria-label="Insert into KeyWord"'
                 ).tooltip("Paste into KeyWord")
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="4.3 Generate and Read Graphics",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial43.set_value(e.value),
-                ).classes("w-[400px]").props(
+                ).classes("w-[400px]").style('font-family: "Atkinson Hyperlegible"').props(
                     'aria-label="Generate and Read Graphics"'
                 ).tooltip("Generate and Read Graphics")
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.label("Phase 5: KeySoft Programs - KeyMail").classes(
-                    "justify-center items-center"
+                    "justify-center items-center text-lg"
                 )
                 ui.input().props(
                     'aria-label="Phase 5: KeySoft Programs - KeyMail"'
-                ).classes("sr-only")
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("sr-only").style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="5.1 Setting up an email account",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial51.set_value(e.value),
-                ).classes("w-[400px]").props(
+                ).classes("w-[400px]").style('font-family: "Atkinson Hyperlegible"').props(
                     'aria-label="Setting up an email account"'
                 ).tooltip("Setting up an email account")
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="5.2 Writing and sending emails",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial52.set_value(e.value),
-                ).classes("w-[400px]").props(
+                ).classes("w-[400px]").style('font-family: "Atkinson Hyperlegible"').props(
                     'aria-label="Writing and sending emails"'
                 ).tooltip("Writing and sending emails")
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="5.3 Attaching a file",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial53.set_value(e.value),
-                ).classes("w-[400px]").props('aria-label="Attaching a file"').tooltip(
+                ).classes("w-[400px]").props('aria-label="Attaching a file"').style('font-family: "Atkinson Hyperlegible"').tooltip(
                     "Attaching a file"
                 )
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="5.4 Reading and searching for emails",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial54.set_value(e.value),
-                ).classes("w-[400px]").props(
+                ).classes("w-[400px]").style('font-family: "Atkinson Hyperlegible"').props(
                     'aria-label="Reading and searching for emails"'
                 ).tooltip("Reading and searching for emails")
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="5.5 Viewing attached files",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial55.set_value(e.value),
-                ).classes("w-[400px]").props(
+                ).classes("w-[400px]").style('font-family: "Atkinson Hyperlegible"').props(
                     'aria-label="Viewing attached files"'
                 ).tooltip("Viewing attached files")
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="5.6 Marking, highlighting, deleting, and other email  options",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial56.set_value(e.value),
-                ).classes("w-[400px]").props(
+                ).classes("w-[400px]").style('font-family: "Atkinson Hyperlegible"').props(
                     'aria-label="Marking, highlighting, deleting, and other email  options"'
                 ).tooltip("Marking, highlighting, deleting, and other email  options")
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="5.7 Deleting an email account",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial57.set_value(e.value),
-                ).classes("w-[400px]").props(
+                ).classes("w-[400px]").style('font-family: "Atkinson Hyperlegible"').props(
                     'aria-label="Deleting an email account"'
                 ).tooltip("Deleting an email account")
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.label("Phase 6: KeySoft Programs - KeySlides").classes(
-                    "justify-center items-center"
+                    "justify-center items-center text-lg"
                 )
                 ui.input().props(
                     'aria-label="Phase 6: KeySoft Programs - KeySlides"'
-                ).classes("sr-only")
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("sr-only").style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="6.1 Launching KeySlides",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial61.set_value(e.value),
-                ).classes("w-[400px]").props(
+                ).classes("w-[400px]").style('font-family: "Atkinson Hyperlegible"').props(
                     'aria-label="Launching KeySlides"'
                 ).tooltip("Launching KeySlides")
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="6.2 Opening a PowerPoint document",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial62.set_value(e.value),
-                ).classes("w-[400px]").props(
+                ).classes("w-[400px]").style('font-family: "Atkinson Hyperlegible"').props(
                     'aria-label="Opening a PowerPoint document"'
                 ).tooltip("Opening a PowerPoint document")
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="6.3 Navigating in your presentation document",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial63.set_value(e.value),
-                ).classes("w-[400px]").props(
+                ).classes("w-[400px]").style('font-family: "Atkinson Hyperlegible"').props(
                     'aria-label="Navigating in your presentation document"'
                 ).tooltip("Navigating in your presentation document")
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.label("Phase 7: KeySoft Programs - Calendar").classes(
-                    "justify-center items-center"
+                    "justify-center items-center text-lg"
                 )
                 ui.input().props(
                     'aria-label="Phase 7: KeySoft Programs - Calendar"'
-                ).classes("sr-only")
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("sr-only").style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="7.1 Creating appointments",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial71.set_value(e.value),
-                ).classes("w-[400px]").props(
+                ).classes("w-[400px]").style('font-family: "Atkinson Hyperlegible"').props(
                     'aria-label="Creating appointments"'
                 ).tooltip("Creating appointments")
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="7.2 Viewing, editing and deleting appointments",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial72.set_value(e.value),
-                ).classes("w-[400px]").props(
+                ).classes("w-[400px]").style('font-family: "Atkinson Hyperlegible"').props(
                     'aria-label="Viewing, editing and deleting appointments"'
                 ).tooltip("Viewing, editing and deleting appointments")
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="7.3 Navigating the agenda",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial73.set_value(e.value),
-                ).classes("w-[400px]").props(
+                ).classes("w-[400px]").style('font-family: "Atkinson Hyperlegible"').props(
                     'aria-label="Navigating the agenda"'
                 ).tooltip("Navigating the agenda")
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="7.4 Navigating Day View",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial74.set_value(e.value),
-                ).classes("w-[400px]").props(
+                ).classes("w-[400px]").style('font-family: "Atkinson Hyperlegible"').props(
                     'aria-label="Navigating Day View"'
                 ).tooltip("Navigating Day View")
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.label("Phase 8: KeySoft Programs - KeyMail").classes(
-                    "justify-center items-center"
+                    "justify-center items-center text-lg"
                 )
                 ui.input().props(
                     'aria-label="Phase 8: KeySoft Programs - KeyMail"'
-                ).classes("sr-only")
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("sr-only").style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="8.1 Internet Browsing with Chrome",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial81.set_value(e.value),
-                ).classes("w-[400px]").props(
+                ).classes("w-[400px]").style('font-family: "Atkinson Hyperlegible"').props(
                     'aria-label="Internet Browsing with Chrome"'
                 ).tooltip("Internet Browsing with Chrome")
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="8.2 Internet Navigation",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial82.set_value(e.value),
-                ).classes("w-[400px]").props(
+                ).classes("w-[400px]").style('font-family: "Atkinson Hyperlegible"').props(
                     'aria-label="Internet Navigation"'
                 ).tooltip("Internet Navigation")
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="8.3 Bookmarks",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial83.set_value(e.value),
-                ).classes("w-[400px]").props('aria-label="Bookmarks"').tooltip(
+                ).classes("w-[400px]").props('aria-label="Bookmarks"').style('font-family: "Atkinson Hyperlegible"').tooltip(
                     "Bookmarks"
                 )
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="8.4 History",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial84.set_value(e.value),
-                ).classes("w-[400px]").props('aria-label="History"').tooltip("History")
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[400px]").props('aria-label="History"').tooltip("History").style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="8.5 Downloading Files",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial85.set_value(e.value),
-                ).classes("w-[400px]").props('aria-label="Downloading Files"').tooltip(
+                ).classes("w-[400px]").props('aria-label="Downloading Files"').style('font-family: "Atkinson Hyperlegible"').tooltip(
                     "Downloading Files"
                 )
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.label("Phase 9: KeySoft Programs - KeyCalc").classes(
-                    "justify-center items-center"
+                    "justify-center items-center text-lg"
                 )
                 ui.input().props(
                     'aria-label="Phase 9: KeySoft Programs - KeyCalc"'
-                ).classes("sr-only")
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("sr-only").style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="9.1 Inputting calculations",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial91.set_value(e.value),
-                ).classes("w-[400px]").props(
+                ).classes("w-[400px]").style('font-family: "Atkinson Hyperlegible"').props(
                     'aria-label="Inputting calculations"'
                 ).tooltip("Inputting calculations")
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="9.2 Inserting a Math symbol in KeyCalc",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial92.set_value(e.value),
-                ).classes("w-[400px]").props(
+                ).classes("w-[400px]").style('font-family: "Atkinson Hyperlegible"').props(
                     'aria-label="Inserting a Math symbol in KeyCalc"'
                 ).tooltip("Inserting a Math symbol in KeyCalc")
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="9.3 Show results as fractions or decimals",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial93.set_value(e.value),
-                ).classes("w-[400px]").props(
+                ).classes("w-[400px]").style('font-family: "Atkinson Hyperlegible"').props(
                     'aria-label="Show results as fractions or decimals"'
                 ).tooltip("Show results as fractions or decimals")
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="9.4 History",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial94.set_value(e.value),
-                ).classes("w-[400px]").props('aria-label="History"').tooltip("History")
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("w-[400px]").props('aria-label="History"').tooltip("History").style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.label("Phase 10: KeySoft Programs - KeyBRF").classes(
-                    "justify-center items-center"
+                    "justify-center items-center text-lg"
                 )
                 ui.input().props(
                     'aria-label="Phase 10: KeySoft Programs - KeyBRF"'
-                ).classes("sr-only")
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("sr-only").style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="10.1 Opening .brf and .brl files",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial101.set_value(e.value),
-                ).classes("w-[400px]").props(
+                ).classes("w-[400px]").style('font-family: "Atkinson Hyperlegible"').props(
                     'aria-label="Opening .brf and .brl files"'
                 ).tooltip("Opening .brf and .brl files")
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="10.2 Creating a .brf or .brl file",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial102.set_value(e.value),
-                ).classes("w-[400px]").props(
+                ).classes("w-[400px]").style('font-family: "Atkinson Hyperlegible"').props(
                     'aria-label="Creating a .brf or .brl file"'
                 ).tooltip("Creating a .brf or .brl file")
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="10.3 Finding Braille Text",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial103.set_value(e.value),
-                ).classes("w-[400px]").props(
+                ).classes("w-[400px]").style('font-family: "Atkinson Hyperlegible"').props(
                     'aria-label="Finding Braille Text"'
                 ).tooltip("Finding Braille Text")
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.label("Phase 11: KeySoft Programs - KeyCode").classes(
-                    "justify-center items-center"
+                    "justify-center items-center text-lg"
                 )
                 ui.input().props(
                     'aria-label="Phase 11: KeySoft Programs - KeyCode"'
-                ).classes("sr-only")
-            with ui.row().classes("w-screen no-wrap py-4"):
+                ).classes("sr-only").style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="11.1 Creating a Python File",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial111.set_value(e.value),
-                ).classes("w-[400px]").props(
+                ).classes("w-[400px]").style('font-family: "Atkinson Hyperlegible"').props(
                     'aria-label="Creating a Python File"'
                 ).tooltip("Creating a Python File")
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="11.2 Opening, Navigating and Editing a Python File",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial112.set_value(e.value),
-                ).classes("w-[400px]").props(
+                ).classes("w-[400px]").style('font-family: "Atkinson Hyperlegible"').props(
                     'aria-label="Opening, Navigating and Editing a Python File"'
                 ).tooltip("Opening, Navigating and Editing a Python File")
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="11.3 Indentations",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial113.set_value(e.value),
-                ).classes("w-[400px]").props('aria-label="Indentations"').tooltip(
+                ).classes("w-[400px]").props('aria-label="Indentations"').style('font-family: "Atkinson Hyperlegible"').tooltip(
                     "Indentations"
                 )
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="11.4 Saving a Python File",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial114.set_value(e.value),
-                ).classes("w-[400px]").props(
+                ).classes("w-[400px]").style('font-family: "Atkinson Hyperlegible"').props(
                     'aria-label="Saving a Python File"'
                 ).tooltip("Saving a Python File")
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="11.5 Coding with KeyCode",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial115.set_value(e.value),
-                ).classes("w-[400px]").props(
+                ).classes("w-[400px]").style('font-family: "Atkinson Hyperlegible"').props(
                     'aria-label="Coding with KeyCode"'
                 ).tooltip("Coding with KeyCode")
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.label("Phase 12: Third Party Apps").classes(
-                    "justify-center items-center"
+                    "justify-center items-center text-lg"
                 )
                 ui.input().props('aria-label="Phase 12: Third Party Apps"').classes(
                     "sr-only"
                 )
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="12.1 Third Party Apps",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial121.set_value(e.value),
-                ).classes("w-[400px]").props('aria-label="Third Party Apps"').tooltip(
+                ).classes("w-[400px]").props('aria-label="Third Party Apps"').style('font-family: "Atkinson Hyperlegible"').tooltip(
                     "Third Party Apps"
                 )
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="12. Downloading",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial122.set_value(e.value),
-                ).classes("w-[400px]").props('aria-label="Downloading"').tooltip(
+                ).classes("w-[400px]").props('aria-label="Downloading"').style('font-family: "Atkinson Hyperlegible"').tooltip(
                     "Downloading"
                 )
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="12.3 Deleting",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial123.set_value(e.value),
-                ).classes("w-[400px]").props('aria-label="Deleting"').tooltip(
+                ).classes("w-[400px]").props('aria-label="Deleting"').style('font-family: "Atkinson Hyperlegible"').tooltip(
                     "Deleting"
                 )
-            with ui.row().classes("w-screen no-wrap py-4"):
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
                 ui.number(
                     label="12.4 Usage",
                     min=0,
                     max=3,
                     format="%.0f",
                     on_change=lambda e: u_bnt_trial124.set_value(e.value),
-                ).classes("w-[400px]").props('aria-label="Usage"').tooltip("Usage")
-            with ui.row().classes("w-screen no-wrap py-4"):
-                ui.button("SAVE", color="#172554", on_click=save).classes("text-white")
+                ).classes("w-[400px]").props('aria-label="Usage"').tooltip("Usage").style('font-family: "Atkinson Hyperlegible"')
+            with ui.row().classes("w-screen no-wrap py-4").style('font-family: "Atkinson Hyperlegible"'):
+                ui.button("SAVE", color="#172554", on_click=save).classes("text-white").style('font-family: "Atkinson Hyperlegible"')
                 ui.button("GRAPH", color="#172554", on_click=graph).classes(
                     "text-white"
                 )

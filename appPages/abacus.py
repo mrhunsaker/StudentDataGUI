@@ -25,6 +25,7 @@ teachers of students with Visual Impairments
 import json
 import sqlite3
 from pathlib import Path
+import datetime
 
 import numpy as np
 import pandas as pd
@@ -215,7 +216,8 @@ def create() -> None:
 
                 """
                 studentname = u_studentname.value
-                today_date = u_today_date.value
+                datestring = u_today_date.value
+                today_date = datetime.datetime.strptime(datestring, "%Y-%m-%d").strftime("%Y_%m_%d-%H%M%S_%p")
                 abacus_trial11 = int(u_abacus_trial11.value)
                 abacus_trial12 = int(u_abacus_trial12.value)
                 abacus_trial13 = int(u_abacus_trial13.value)
@@ -1101,70 +1103,19 @@ def create() -> None:
                 row=4,
                 col=2,
             )
-            fig.update_yaxes(
-                range=[-0.5, 3.5],
-                fixedrange=True,
-                ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
-                tickvals=[0.1, 1, 2, 3],
-                row=1,
-                col=1,
-            )
-            fig.update_yaxes(
-                range=[-0.5, 3.5],
-                fixedrange=True,
-                ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
-                tickvals=[0.1, 1, 2, 3],
-                row=1,
-                col=2,
-            )
-            fig.update_yaxes(
-                range=[-0.5, 3.5],
-                fixedrange=True,
-                ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
-                tickvals=[0.1, 1, 2, 3],
-                row=2,
-                col=1,
-            )
-            fig.update_yaxes(
-                range=[-0.5, 3.5],
-                fixedrange=True,
-                ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
-                tickvals=[0.1, 1, 2, 3],
-                row=2,
-                col=2,
-            )
-            fig.update_yaxes(
-                range=[-0.5, 3.5],
-                fixedrange=True,
-                ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
-                tickvals=[0.1, 1, 2, 3],
-                row=3,
-                col=1,
-            )
-            fig.update_yaxes(
-                range=[-0.5, 3.5],
-                fixedrange=True,
-                ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
-                tickvals=[0.1, 1, 2, 3],
-                row=3,
-                col=2,
-            )
-            fig.update_yaxes(
-                range=[-0.5, 3.5],
-                fixedrange=True,
-                ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
-                tickvals=[0.1, 1, 2, 3],
-                row=4,
-                col=1,
-            )
-            fig.update_yaxes(
-                range=[-0.5, 3.5],
-                fixedrange=True,
-                ticktext=["Unable", "Prompted", "Hesitated", "Independent"],
-                tickvals=[0.1, 1, 2, 3],
-                row=4,
-                col=2,
-            )
+            # Define the common properties for y-axes
+            y_axes_properties = {
+                "range": [-0.5, 3.5],
+                "fixedrange": True,
+                "ticktext": ["Unable", "Prompted", "Hesitated", "Independent"],
+                "tickvals": [0.1, 1, 2, 3],
+            }
+
+            # Update y-axes for each row and column
+            for row in range(1, 4):
+                for col in range(1, 3):
+                    fig.update_yaxes(**y_axes_properties, row=row, col=col)
+            
             fig.update_layout(
                 template="simple_white",
                 title_text=f"{studentname}: Abacus Skills Progression",

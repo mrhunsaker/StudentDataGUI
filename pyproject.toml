@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "student-skills-progression"
-version = "0.5.5b1"
+version = "0.6.0b1"
 authors = ["Michael Ryan Hunsaker <hunsakerconsulting@gmail.com>"]
 description = "Data collection application for Teachers of Students with Visual Impairments"
 maintainers = ["Michael Ryan Hunsaker, M.Ed., Ph.D. <hunsakerconsulting@gmail.com>"]

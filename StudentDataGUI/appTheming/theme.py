@@ -76,27 +76,6 @@ def branding() -> ui.html:
     return ui.html(Path(ROOT_DIR).joinpath("dsd-mark-white.svg").read_text())
 
 
-def niceGUI() -> ui.html:
-    """
-    Retrieve and display the branding icon as HTML.
-
-    This function reads the content of the 'niceGUI.svg' file located in the root directory
-    and returns it as an HTML object. The SVG content is typically an icon representing the
-    niceGUI logo.
-
-    Returns
-    -------
-    ui.html
-        An HTML object containing the NiceGUI icon.
-
-    Examples
-    --------
-    >>> branding()
-    <ui.html object representing the branding icon>
-    """
-    return ui.html(Path(ROOT_DIR).joinpath("niceGUI.svg").read_text())
-
-
 @contextmanager
 def frame(navtitle: str) -> None:
     """

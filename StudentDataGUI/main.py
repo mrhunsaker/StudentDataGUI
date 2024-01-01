@@ -24,7 +24,6 @@ teachers of students with Visual Impairments
 
 
 import os
-import sqlite3
 import sys
 import traceback
 from pathlib import Path

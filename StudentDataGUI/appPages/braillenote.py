@@ -3306,59 +3306,52 @@ def create() -> None:
                         ).props(
                             'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
                         ).tooltip("Type Student Name, it will autocomplete AS you type")
+                    with ui.dialog() as dialog, ui.card():
+                        studentname = u_studentname.value
+                        dataBasePath = Path(USER_DIR).joinpath(
+                            "StudentDatabase", "students.db"
+                        )
+                        conn = sqlite3.connect(dataBasePath)
+                        df_sql = pd.read_sql_query("SELECT * FROM ABACUSPROGRESS", conn)
+                        df_student = df_sql[df_sql.STUDENTNAME == studentname]
+                        print(df_student)
+                        conn.close()
+                        df = df_student.drop(columns=["ID", "STUDENTNAME"])
+                        print(df)
+                        df = df.rename(columns={"DATE": "date"})
+                        df["date"] = df["date"].astype("string")
+                        df["date"] = pd.to_datetime(df["date"], format=date_fmt)
+                        df = df.set_index("date")
+                        print("Abacus Skills Progression")
+                        print(df)
+                        df = df.sort_values(by="date")
+                        mu, sigma = 0, 0.1
+                        noise = np.random.normal(
+                            mu, sigma, [len(df.index), len(df.columns)]
+                        )
+                        df_noisy = df + noise
+                        abacustable = ui.table(
+                            columns=[
+                                {"name": col,
+                                 "label": col,
+                                 "field": col,
+                                 "headerClasses": "border-b border-secondary",
+                                 "align": 'left'}
+                                for col in df.columns
+                            ],
+                            rows=df.to_dict("records"), pagination={'rowsPerPage': 10}
+                        ).style("font-family: JetBrainsMono; background-color: #f5f5f5").classes('my-table')
+                        abacustable.add_slot('body-cell', '''
+                                <q-td key="Days_Since_Last" :props="props">
+                                <q-badge :color="props.value  <= 0 ? 'red' : props.value <= 1 ? 'orange' : props.value <= 2 ? 'yellow' :  'green'" text-color="black" outline>
+                                    {{ props.value }}
+                                </q-badge>
+                                </q-td>
+                                ''')
+                        abacustable.visible = True
+                        ui.button('Close', on_click=dialog.close)
 
-                    with ui.row().classes("w-screen no-wrap py-4").style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                    ):
-                        def show_table():
-                            studentname = u_studentname.value
-                            dataBasePath = Path(USER_DIR).joinpath(
-                                "StudentDatabase", "students.db"
-                            )
-                            conn = sqlite3.connect(dataBasePath)
-                            df_sql = pd.read_sql_query("SELECT * FROM ABACUSPROGRESS", conn)
-                            df_student = df_sql[df_sql.STUDENTNAME == studentname]
-                            print(df_student)
-                            conn.close()
-                            df = df_student.drop(columns=["ID", "STUDENTNAME"])
-                            print(df)
-                            df = df.rename(columns={"DATE": "date"})
-                            df["date"] = df["date"].astype("string")
-                            df["date"] = pd.to_datetime(df["date"], format=date_fmt)
-                            df = df.set_index("date")
-                            print("Abacus Skills Progression")
-                            print(df)
-                            df = df.sort_values(by="date")
-                            mu, sigma = 0, 0.1
-                            noise = np.random.normal(
-                                mu, sigma, [len(df.index), len(df.columns)]
-                            )
-                            df_noisy = df + noise
-                            braillenotetable = ui.table(
-                                columns=[
-                                    {"name": col,
-                                     "label": col,
-                                     "field": col,
-                                     "headerClasses": "border-b border-secondary",
-                                     "align": 'left'}
-                                    for col in df.columns
-                                ],
-                                rows=df.to_dict("records"), pagination={'rowsPerPage': 10}
-                            ).style("font-family: JetBrainsMono; background-color: #f5f5f5").classes('my-table')
-                            braillenotetable.add_slot('body-cell', '''
-                                    <q-td key="Days_Since_Last" :props="props">
-                                    <q-badge :color="props.value  <= 0 ? 'red' : props.value <= 1 ? 'orange' : props.value <= 2 ? 'yellow' :  'green'" text-color="black" outline>
-                                        {{ props.value }}
-                                    </q-badge>
-                                    </q-td>
-                                    ''')
-                            braillenotetable.visible = True
-                        ui.button('Show Data', on_click=show_table)
                     with ui.row().classes("w-screen no-wrap py-4").style(
                                 'font-style:normal, font-family: "Atkinson Hyperlegible"'
                         ):
-                        braillenotetable = ui.table(columns=[], rows=[])
-                        braillenotetable.visible = False
-
-
-        create_ui()
+                        ui.button('Show Data', on_click=dialog.open)

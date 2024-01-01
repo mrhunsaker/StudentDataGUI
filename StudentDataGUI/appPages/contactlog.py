@@ -448,7 +448,3 @@ def create() -> None:
                         ).props(
                             'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
                         ).tooltip("Type Student Name, it will autocomplete AS you type")
-
-
-
-        create_ui()

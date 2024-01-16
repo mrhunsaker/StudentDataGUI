@@ -23,28 +23,24 @@ teachers of students with Visual Impairments
 """
 
 from nicegui import ui
-from pathlib import Path
-import pathlib
-from appHelpers.helpers import dataBasePath, date_fmt, datenow, USER_DIR
-from appHelpers.roster import students
 from appTheming import theme
 
 
 def content() -> None:
     with theme.frame("- HOW TO USE THIS APP -"):
-        ui.label("VISION SKILLS PROGRESSIONS").classes(
-            "text-3xl font-bold pl-10"
-        ).style('font-family: "Atkinson Hyperlegible"')
-        with ui.row().classes("w-screen no-wrap py-4").style(
-            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-        ):
-            ui.label("Please Select a Task from the Menu").props(
-                    'aria-label="Please Select a Task from the Menu" content-center'
-                ).style('font-style:normal, font-family: "Atkinson Hyperlegible"').classes(
-            "text-2xl font-bold pl-10"
-        )
-
-            
-
-
-
+        with ui.tabs() as tabs:
+            ui.tab("DATA INPUT")
+            ui.tab("DATA SUMMARY")
+        with ui.tab_panels(tabs, value="DATA INPUT"):
+            with ui.tab_panel("DATA INPUT"):
+                ui.label("VISION SKILLS PROGRESSIONS").classes(
+                    "text-3xl font-bold pl-10"
+                ).style('font-family: "Atkinson Hyperlegible"')
+                with ui.row().classes("w-screen no-wrap py-4").style(
+                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                ):
+                    ui.label("Please Select a Task from the Menu").props(
+                        'aria-label="Please Select a Task from the Menu" content-center'
+                    ).style(
+                        'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                    ).classes("text-2xl font-bold pl-10")

@@ -25,9 +25,8 @@ teachers of students with Visual Impairments
 import sqlite3
 from sqlite3 import Error
 
-from nicegui import ui
-
 from appHelpers.helpers import dataBasePath
+from nicegui import ui
 
 
 ##############################################################################

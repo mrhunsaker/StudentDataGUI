@@ -1,7 +1,13 @@
 import unittest
 import os
 from pathlib import Path
-from appHelpers.helpers import set_start_dir, working_dir, create_roster, createFolderHierarchy
+from appHelpers.helpers import (
+    set_start_dir,
+    working_dir,
+    create_roster,
+    createFolderHierarchy,
+)
+
 
 class TestHelpers(unittest.TestCase):
     def setUp(self):
@@ -26,13 +32,16 @@ class TestHelpers(unittest.TestCase):
     def test_createFolderHierarchy(self):
         createFolderHierarchy()
         # Test for a specific student, replace 'StudentName' with a real student name from your students list
-        student_dir = Path(os.getcwd()).joinpath("StudentDatabase", "StudentDataFiles", 'StudentName')
+        student_dir = Path(os.getcwd()).joinpath(
+            "StudentDatabase", "StudentDataFiles", "StudentName"
+        )
         self.assertTrue(student_dir.exists())
         self.assertTrue(student_dir.joinpath("StudentDataSheets").exists())
         self.assertTrue(student_dir.joinpath("StudentInstructionMaterials").exists())
         self.assertTrue(student_dir.joinpath("StudentVisionAssessments").exists())
         self.assertTrue(student_dir.joinpath("omnibusDatabase.csv").exists())
         self.assertTrue(student_dir.joinpath("BrailleSkillsProgression.csv").exists())
+
 
 if __name__ == "__main__":
     unittest.main()

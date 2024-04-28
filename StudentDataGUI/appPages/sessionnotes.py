@@ -364,7 +364,10 @@ def create() -> None:
                         ).classes("w-[600px]").props('aria-label="Trial 1"').style(
                             'font-style:normal, font-family: "Atkinson Hyperlegible"'
                         )
-                        ui.number(
+                    with ui.row().classes("w-screen no-wrap py-4").style(
+                                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                        ):
+                            ui.number(
                             label="Trial 2",
                             min=0,
                             max=3,
@@ -373,7 +376,10 @@ def create() -> None:
                         ).classes("w-[600px]").props('aria-label="Trial 2"').style(
                             'font-style:normal, font-family: "Atkinson Hyperlegible"'
                         )
-                        ui.number(
+                    with ui.row().classes("w-screen no-wrap py-4").style(
+                                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                        ):
+                            ui.number(
                             label="Trial 3",
                             min=0,
                             max=3,
@@ -382,6 +388,9 @@ def create() -> None:
                         ).classes("w-[600px]").props('aria-label="Trial 3"').style(
                             'font-style:normal, font-family: "Atkinson Hyperlegible"'
                         )
+                    with ui.row().classes("w-screen no-wrap py-4").style(
+                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                    ):
                         ui.number(
                             label="Trial 4",
                             min=0,
@@ -391,6 +400,9 @@ def create() -> None:
                         ).classes("w-[600px]").props('aria-label="Trial 4" ').style(
                             'font-style:normal, font-family: "Atkinson Hyperlegible"'
                         )
+                    with ui.row().classes("w-screen no-wrap py-4").style(
+                                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                        ):
                         ui.number(
                             label="Trial 5",
                             min=0,
@@ -412,6 +424,9 @@ def create() -> None:
                         ).classes("w-[600px]").props('aria-label="Trial 6" ').style(
                             'font-style:normal, font-family: "Atkinson Hyperlegible"'
                         )
+                    with ui.row().classes("w-screen no-wrap py-4").style(
+                                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                        ):
                         ui.number(
                             label="Trial 7",
                             min=0,
@@ -421,6 +436,9 @@ def create() -> None:
                         ).classes("w-[600px]").props('aria-label="Trial 7" ').style(
                             'font-style:normal, font-family: "Atkinson Hyperlegible"'
                         )
+                    with ui.row().classes("w-screen no-wrap py-4").style(
+                                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                        ):
                         ui.number(
                             label="Trial 8",
                             min=0,
@@ -430,6 +448,9 @@ def create() -> None:
                         ).classes("w-[600px]").props('aria-label="Trial 8" ').style(
                             'font-style:normal, font-family: "Atkinson Hyperlegible"'
                         )
+                    with ui.row().classes("w-screen no-wrap py-4").style(
+                                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                        ):
                         ui.number(
                             label="Trial 9",
                             min=0,
@@ -439,6 +460,9 @@ def create() -> None:
                         ).classes("w-[600px]").props('aria-label="Trial 9" ').style(
                             'font-style:normal, font-family: "Atkinson Hyperlegible"'
                         )
+                    with ui.row().classes("w-screen no-wrap py-4").style(
+                                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                        ):
                         ui.number(
                             label="Trial 10",
                             min=0,
@@ -448,6 +472,9 @@ def create() -> None:
                         ).classes("w-[600px]").props('aria-label="Trial 10" ').style(
                             'font-style:normal, font-family: "Atkinson Hyperlegible"'
                         )
+                    with ui.row().classes("w-screen no-wrap py-4").style(
+                                'font-style:normal, font-family: "Atkinson Hyperlegible"'
+                        ):
                         ui.number(
                             label="Trial 11",
                             min=0,

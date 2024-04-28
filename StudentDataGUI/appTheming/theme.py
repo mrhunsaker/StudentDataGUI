@@ -268,8 +268,7 @@ def frame(navtitle: str) -> None:
                 "absolute-center no-wrap text-2xl text-white font-bold self-center"
             ).classes().style('font-family: "Atkinson Hyperlegible"')
             menu()
-    with ui.column().classes(""):
-        yield
+    yield
 
     with ui.footer(value=True).classes("h-[75px]") as footer:
         with ui.row().classes(

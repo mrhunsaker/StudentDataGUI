@@ -23,13 +23,13 @@ teachers of students with Visual Impairments
 """
 
 
+import os
 from contextlib import contextmanager
 from pathlib import Path
-from nicegui import ui, app
-import os
 
-from appTheming.menu import menu
 from appHelpers.helpers import ROOT_DIR
+from appTheming.menu import menu
+from nicegui import ui, app
 
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -101,65 +101,65 @@ def frame(navtitle: str) -> None:
     """
 
     style = """
-    <style>
-    @font-face {
-    font-family: 'Atkinson Hyperlegible';
-    src: url('/fonts/AtkinsonHyperlegible-Regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-    }
+        <style>
+        @font-face {
+        font-family: 'Atkinson Hyperlegible';
+        src: url('/fonts/AtkinsonHyperlegible-Regular.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+        }
 
-    @font-face {
-    font-family: 'Atkinson Hyperlegible';
-    src: url('/fonts/AtkinsonHyperlegible-Bold.ttf') format('truetype');
-    font-weight: bold;
-    font-style: normal;
-    }
+        @font-face {
+        font-family: 'Atkinson Hyperlegible';
+        src: url('/fonts/AtkinsonHyperlegible-Bold.ttf') format('truetype');
+        font-weight: bold;
+        font-style: normal;
+        }
 
-    @font-face {
-    font-family: 'Atkinson Hyperlegible';
-    src: url('/fonts/AtkinsonHyperlegible-Italic.ttf') format('truetype');
-    font-weight: normal;
-    font-style: italic;
-    }
+        @font-face {
+        font-family: 'Atkinson Hyperlegible';
+        src: url('/fonts/AtkinsonHyperlegible-Italic.ttf') format('truetype');
+        font-weight: normal;
+        font-style: italic;
+        }
 
-    @font-face {
-    font-family: 'Atkinson Hyperlegible';
-    src: url('/fonts/AtkinsonHyperlegible-BoldItalic.ttf') format('truetype');
-    font-weight: bold;
-    font-style: italic;
-    }
+        @font-face {
+        font-family: 'Atkinson Hyperlegible';
+        src: url('/fonts/AtkinsonHyperlegible-BoldItalic.ttf') format('truetype');
+        font-weight: bold;
+        font-style: italic;
+        }
 
-    @font-face {
-    font-family: 'JetBrainsMono';
-    src: url('/fonts/JetBrainsMono-Regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-    }
+        @font-face {
+        font-family: 'JetBrainsMono';
+        src: url('/fonts/JetBrainsMono-Regular.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+        }
 
-    @font-face {
-    font-family: 'JetBrainsMono';
-    src: url('/fonts/JetBrainsMono-Bold.ttf') format('truetype');
-    font-weight: bold;
-    font-style: normal;
-    }
+        @font-face {
+        font-family: 'JetBrainsMono';
+        src: url('/fonts/JetBrainsMono-Bold.ttf') format('truetype');
+        font-weight: bold;
+        font-style: normal;
+        }
 
-    @font-face {
-    font-family: 'JetBrainsMono';
-    src: url('/fonts/JetBrainsMono-Italic.ttf') format('truetype');
-    font-weight: normal;
-    font-style: italic;
-    }
+        @font-face {
+        font-family: 'JetBrainsMono';
+        src: url('/fonts/JetBrainsMono-Italic.ttf') format('truetype');
+        font-weight: normal;
+        font-style: italic;
+        }
 
-    @font-face {
-    font-family: 'JetBrainsMono';
-    src: url('/fonts/JetBrainsMono-BoldItalic.ttf') format('truetype');
-    font-weight: bold;
-    font-style: italic;
-    }
+        @font-face {
+        font-family: 'JetBrainsMono';
+        src: url('/fonts/JetBrainsMono-BoldItalic.ttf') format('truetype');
+        font-weight: bold;
+        font-style: italic;
+        }
 
-    </style>
-    """
+        </style>
+        """
     app.add_static_file(
         local_file=Path(ROOT_DIR).joinpath(
             "fonts", "AtkinsonHyperlegible-BoldItalic.ttf"
@@ -196,6 +196,32 @@ def frame(navtitle: str) -> None:
     )
 
     ui.add_head_html(style)
+    ui.add_head_html(
+        """
+            <style>
+            .q-table__bottom {
+                justify-content: flex-start !important;
+            }
+            .q-table__bottom .q-table__separator {
+                display: none;
+            }   
+            .q-badge--outline {
+                border-width: 4px;
+                font-weight: bold;
+                font-size: 1.25rem;
+            }
+            .my-table tbody td { 
+                font-size: 1.25em;
+                align: left;
+            }
+            .my-table thead th {
+                font-size: 1.25em;
+                font-weight: bold;
+                align: left;
+            }
+            </style>
+        """
+    )
 
     ui.colors(
         primary="#183969", secondary="#bed2e3", positive="#ffca58", accent="#cfcac1"
@@ -242,8 +268,7 @@ def frame(navtitle: str) -> None:
                 "absolute-center no-wrap text-2xl text-white font-bold self-center"
             ).classes().style('font-family: "Atkinson Hyperlegible"')
             menu()
-    with ui.column().classes(""):
-        yield
+    yield
 
     with ui.footer(value=True).classes("h-[75px]") as footer:
         with ui.row().classes(

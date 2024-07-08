@@ -29,9 +29,9 @@ from csv import writer
 from pathlib import Path
 
 
-date_fmt = "%Y_%m_%d-%H%M%S_%p"
+date_fmt = "%Y-%m-%d %H:%M:%S"
 
-datenow = datetime.datetime.now().strftime("%Y_%m_%d-%H%M%S_%p")
+datenow = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))

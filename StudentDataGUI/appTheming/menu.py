@@ -21,8 +21,40 @@
 Program designed to be a data collection and instructional tool for
 teachers of students with Visual Impairments
 """
-from nicegui import ui
 
+import os
+from contextlib import contextmanager
+from pathlib import Path
+from nicegui import ui, app
+
+
+def create_sidebar():
+    with ui.left_drawer(value=True).style('background-color: #f0f0f0') as left_drawer:
+        ui.button('CONTACT LOG', on_click=lambda: ui.open('/contactlog')).classes('w-full')
+        ui.separator()
+        ui.label('DATA COLLECTION').classes('font-bold text-center')
+        ui.button('SESSION NOTES', on_click=lambda: ui.open('/sessionnotes')).classes('w-full')
+        ui.button('OBSERVATIONS', on_click=lambda: ui.open('/observations')).classes('w-full')
+        ui.separator()
+        ui.label('CVI / NVI').classes('font-bold text-center')
+        ui.button('CVI PROGRESS', on_click=lambda: ui.open('/cviprogress')).classes('w-full')
+        ui.separator()
+        ui.label('TACTILE SKILLS').classes('font-bold text-center')
+        ui.button('ABACUS SKILLS', on_click=lambda: ui.open('/abacusskills')).classes('w-full')
+        ui.button('BRAILLE SKILLS', on_click=lambda: ui.open('/brailleskills')).classes('w-full')
+        ui.separator()
+        ui.label('TECHNOLOGY SKILLS').classes('font-bold text-center')
+        ui.button('KEYBOARDING SKILLS', on_click=lambda: ui.open('/keyboardingskills')).classes('w-full')
+        ui.button('SCREENREADER SKILLS', on_click=lambda: ui.open('/screenreaderskills')).classes('w-full')
+        ui.button('BRAILLENOTE TOUCH SKILLS', on_click=lambda: ui.open('/braillenotetouchskills')).classes('w-full')
+        ui.button('iOS/iPadOS VOICEOVER SKILLS', on_click=lambda: ui.open('/iosskills')).classes('w-full')
+        ui.separator()
+        ui.label('DIGITAL LITERACY').classes('font-bold text-center')
+        ui.button('DIGITAL LITERACY', on_click=lambda: ui.open('/digitalliteracy')).classes('w-full')
+        ui.separator()
+        ui.label('MATERIALS').classes('font-bold text-center')
+        ui.button('INSTRUCTIONAL MATERIALS', on_click=lambda: ui.open('/instructionalmaterials')).classes('w-full')
+    return left_drawer
 
 def menu() -> None:
     """
@@ -42,89 +74,6 @@ def menu() -> None:
     --------
     >>> menu()
     """
-    with ui.button("Navigation Menu", icon="apps").classes(
-        "absolute-right self-center scale=150"
-    ).style('font-style:normal, font-family: "Atkinson Hyperlegible"'):
-        with ui.menu().classes("w-[250px]") as menu:
-            ui.menu_item("HOME", lambda: ui.open("/")).classes(
-                replace="text-black"
-            ).style('font-style:normal, font-family: "Atkinson Hyperlegible"')
-            ui.separator()
-            ui.menu_item("CONTACT LOG", lambda: ui.open("/contactlog")).classes(
-                replace="text-black"
-            ).style('font-style:normal, font-family: "Atkinson Hyperlegible"')
-            ui.separator()
-            with ui.row().classes("justify-center items-center"):
-                ui.label("DATA COLLECTION").classes("font-bold").style(
-                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                )
-            ui.menu_item("SESSION NOTES", lambda: ui.open("/sessionnotes")).classes(
-                replace="text-black"
-            ).style('font-style:normal, font-family: "Atkinson Hyperlegible"')
-            ui.menu_item("OBSERVATIONS", lambda: ui.open("/observations")).classes(
-                replace="text-black"
-            ).style('font-style:normal, font-family: "Atkinson Hyperlegible"')
-            ui.separator()
-            with ui.row().classes("justify-center items-center"):
-                ui.label("CVI / NVI").classes("font-bold").style(
-                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                )
-            ui.menu_item("CVI PROGRESS", lambda: ui.open("/cviprogress")).classes(
-                replace="text-black"
-            ).style('font-style:normal, font-family: "Atkinson Hyperlegible"')
-            ui.separator()
-            with ui.row().classes("justify-center items-center"):
-                ui.label("TACTILE SKILLS").classes("font-bold").style(
-                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                )
-            ui.menu_item("ABACUS SKILLS", lambda: ui.open("/abacusskills")).classes(
-                replace="text-black"
-            ).style('font-style:normal, font-family: "Atkinson Hyperlegible"')
-            ui.menu_item("BRAILLE SKILLS", lambda: ui.open("/brailleskills")).classes(
-                replace="text-black"
-            ).style('font-style:normal, font-family: "Atkinson Hyperlegible"')
-            ui.separator()
-            with ui.row().classes("justify-center items-center"):
-                ui.label("TECHNOLOGY SKILLS").classes("font-bold").style(
-                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                )
-            ui.menu_item(
-                "KEYBOARDING SKILLS", lambda: ui.open("/keyboardingskills")
-            ).classes(replace="text-black").style(
-                'font-style:normal, font-family: "Atkinson Hyperlegible"'
-            )
-            ui.menu_item(
-                "SCREENREADER SKILLS", lambda: ui.open("/screenreaderskills")
-            ).classes(replace="text-black").style(
-                'font-style:normal, font-family: "Atkinson Hyperlegible"'
-            )
-            ui.menu_item(
-                "BRAILLENOTE TOUCH SKILLS", lambda: ui.open("/braillenotetouchskills")
-            ).classes(replace="text-black").style(
-                'font-style:normal, font-family: "Atkinson Hyperlegible"'
-            )
-            ui.menu_item(
-                "iOS/iPadOS VOICEOVER SKILLS", lambda: ui.open("/iosskills")
-            ).classes(replace="text-black").style(
-                'font-style:normal, font-family: "Atkinson Hyperlegible"'
-            )
-            ui.separator()
-            with ui.row().classes("justify-center items-center"):
-                ui.label("DIGITAL LITERACY").classes("font-bold").style(
-                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                )
-            ui.menu_item(
-                "DIGITAL LITERACY", lambda: ui.open("/digitalliteracy")
-            ).classes(replace="text-black").style(
-                'font-style:normal, font-family: "Atkinson Hyperlegible"'
-            )
-            ui.separator()
-            with ui.row().classes("justify-center items-center py-2"):
-                ui.label("MATERIALS").classes("font-bold").style(
-                    'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                )
-            ui.menu_item(
-                "INSTRUCTIONAL MATERIALS", lambda: ui.open("/instructionalmaterials")
-            ).classes(replace="text-black").style(
-                'font-style:normal, font-family: "Atkinson Hyperlegible"'
-            )
+    def menu():
+        create_sidebar()
+        ui.button('Navigation Menu', on_click=lambda: left_drawer.toggle()).classes('absolute-right self-center').style('font-family: "Atkinson Hyperlegible"')

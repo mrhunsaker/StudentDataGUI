@@ -34,7 +34,7 @@ from nicegui import app, ui
 
 def create() -> None:
     ##########################################################################
-    # CONTACT LOG
+    # KEYBOARDING SKILLS
     ##########################################################################
     @ui.page("/keyboardingskills")
     def keyboardingskills() -> None:

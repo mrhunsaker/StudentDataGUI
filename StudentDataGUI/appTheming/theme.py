@@ -204,13 +204,13 @@ def frame(navtitle: str) -> None:
             }
             .q-table__bottom .q-table__separator {
                 display: none;
-            }   
+            }
             .q-badge--outline {
                 border-width: 4px;
                 font-weight: bold;
                 font-size: 1.25rem;
             }
-            .my-table tbody td { 
+            .my-table tbody td {
                 font-size: 1.25em;
                 align: left;
             }
@@ -267,17 +267,46 @@ def frame(navtitle: str) -> None:
             ui.label(navtitle).classes(
                 "absolute-center no-wrap text-2xl text-white font-bold self-center"
             ).classes().style('font-family: "Atkinson Hyperlegible"')
-            menu()
+            #menu()
     yield
 
     with ui.footer(value=True).classes("h-[75px]") as footer:
         with ui.row().classes(
             "w-screen no-wrap justify-between items-center text-l font-bold text-white h-full pt-2.5"
         ):
-            ui.label("Copyright © 2023 Michael Ryan Hunsaker, M.Ed., Ph.D.").classes(
+            ui.label("Copyright © 2024 Michael Ryan Hunsaker, M.Ed., Ph.D.").classes(
                 "absolute-center flex-1 self-bottom"
             ).style('font-family: "Atkinson Hyperlegible"')
             with ui.link(target="https://github.com/mrhunsaker/StudentDataGUI").classes(
                 "max-[305px]:hidden absolute-right flex-none mt-2.5"
             ).tooltip("GitHub Repo"):
                 github().classes("fill-white scale-75 m-1 mt-2.5")
+
+    with ui.left_drawer(value=True).style('background-color: #f0f0f0') as left_drawer:
+        ui.button('HOME', on_click=lambda: ui.open('/')).classes('w-full')
+        ui.separator()
+        ui.label('PARENT CONTACT LOG').classes('font-bold text-center')
+        ui.button('CONTACT LOG', on_click=lambda: ui.open('/contactlog')).classes('w-full')
+        ui.separator()
+        ui.label('NOTES/OBSERVATIONS').classes('font-bold text-center')
+        ui.button('SESSION NOTES', on_click=lambda: ui.open('/sessionnotes')).classes('w-full')
+        ui.button('OBSERVATIONS', on_click=lambda: ui.open('/observations')).classes('w-full')
+        ui.separator()
+        ui.label('CVI / NVI').classes('font-bold text-center')
+        ui.button('CVI PROGRESS', on_click=lambda: ui.open('/cviprogress')).classes('w-full')
+        ui.separator()
+        ui.label('TACTILE SKILLS').classes('font-bold text-center')
+        ui.button('ABACUS SKILLS', on_click=lambda: ui.open('/abacusskills')).classes('w-full')
+        ui.button('BRAILLE SKILLS', on_click=lambda: ui.open('/brailleskills')).classes('w-full')
+        ui.separator()
+        ui.label('TECHNOLOGY SKILLS').classes('font-bold text-center')
+        ui.button('BRAILLENOTE TOUCH SKILLS', on_click=lambda: ui.open('/braillenotetouchskills')).classes('w-full')
+        ui.button('iOS/iPadOS VOICEOVER SKILLS', on_click=lambda: ui.open('/iosskills')).classes('w-full')
+        ui.button('KEYBOARDING SKILLS', on_click=lambda: ui.open('/keyboardingskills')).classes('w-full')
+        ui.button('SCREENREADER SKILLS', on_click=lambda: ui.open('/screenreaderskills')).classes('w-full')
+        ui.separator()
+        ui.label('DIGITAL LITERACY').classes('font-bold text-center')
+        ui.button('DIGITAL LITERACY', on_click=lambda: ui.open('/digitalliteracy')).classes('w-full')
+        ui.separator()
+        ui.label('MATERIALS').classes('font-bold text-center')
+        ui.button('INSTRUCTIONAL MATERIALS', on_click=lambda: ui.open('/instructionalmaterials')).classes('w-full')

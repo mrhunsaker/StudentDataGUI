@@ -551,9 +551,94 @@ def create() -> None:
                         Some related functions or classes that might be useful.
 
                         """
-
+                        brailletrials= {
+                            u_braille_trial11,
+                            u_braille_trial12,
+                            u_braille_trial13,
+                            u_braille_trial14,
+                            u_braille_trial21,
+                            u_braille_trial22,
+                            u_braille_trial23,
+                            u_braille_trial24,
+                            u_braille_trial25,
+                            u_braille_trial26,
+                            u_braille_trial27,
+                            u_braille_trial28,
+                            u_braille_trial29,
+                            u_braille_trial210,
+                            u_braille_trial211,
+                            u_braille_trial212,
+                            u_braille_trial213,
+                            u_braille_trial214,
+                            u_braille_trial215,
+                            u_braille_trial31,
+                            u_braille_trial32,
+                            u_braille_trial33,
+                            u_braille_trial34,
+                            u_braille_trial35,
+                            u_braille_trial36,
+                            u_braille_trial37,
+                            u_braille_trial38,
+                            u_braille_trial39,
+                            u_braille_trial310,
+                            u_braille_trial311,
+                            u_braille_trial312,
+                            u_braille_trial313,
+                            u_braille_trial314,
+                            u_braille_trial315,
+                            u_braille_trial41,
+                            u_braille_trial42,
+                            u_braille_trial43,
+                            u_braille_trial44,
+                            u_braille_trial51,
+                            u_braille_trial52,
+                            u_braille_trial53,
+                            u_braille_trial54,
+                            u_braille_trial61,
+                            u_braille_trial62,
+                            u_braille_trial63,
+                            u_braille_trial64,
+                            u_braille_trial65,
+                            u_braille_trial66,
+                            u_braille_trial67,
+                            u_braille_trial71,
+                            u_braille_trial72,
+                            u_braille_trial73,
+                            u_braille_trial74,
+                            u_braille_trial75,
+                            u_braille_trial76,
+                            u_braille_trial77,
+                            u_braille_trial78,
+                            u_braille_trial81,
+                            u_braille_trial82,
+                            u_braille_trial83,
+                            u_braille_trial84,
+                            u_braille_trial85,
+                            u_braille_trial86,
+                            u_braille_trial87,
+                        }
+                        for brailletrial in brailletrials:
+                            if brailletrial.value is None:
+                                brailletrial.value = 0
+                            else:
+                                continue
+                            if not isinstance(brailletrial.value, int):
+                                brailletrial.value = int(math.ciel(num))
+                            else:
+                                continue
+                            
+                        today_date_str = str(u_today_date.value)
+                        try:
+                            today_date = datetime.strptime(today_date_str, "%Y-%m-%d")
+                        except ValueError as e:
+                            ui.notify(
+                                str(e),  # Converting exception object to string for the error message
+                                position="center",
+                                type="warning",
+                                close_button="OK",
+                            )                            
                         studentname = u_studentname.value
-                        today_date = u_today_date.value
+                        today_date = today_date.strftime("%Y-%m-%d %H:%M:%S")
                         braille_trial11 = int(u_braille_trial11.value)
                         braille_trial12 = int(u_braille_trial12.value)
                         braille_trial13 = int(u_braille_trial13.value)
@@ -1007,8 +1092,8 @@ def create() -> None:
                     df = df_student.drop(columns=["ID", "STUDENTNAME"])
                     # print(df)
                     df = df.rename(columns={"DATE": "date"})
-                    df["date"] = df["date"].astype("string")
-                    df["date"] = pd.to_datetime(df["date"], format=date_fmt)
+                    #df["date"] = df["date"].astype("string")
+                    #df["date"] = pd.to_datetime(df["date"], format=date_fmt)
                     df = df.set_index("date")
                     print("Braille SKills Progression")
                     print(df)

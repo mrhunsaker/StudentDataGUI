@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "student-skills-progression"
-version = "0.6.0b2"
+version = "2024.07.08"
 authors = ["Michael Ryan Hunsaker <hunsakerconsulting@gmail.com>"]
 description = "Data collection application for Teachers of Students with Visual Impairments"
 maintainers = ["Michael Ryan Hunsaker, M.Ed., Ph.D. <hunsakerconsulting@gmail.com>"]
@@ -33,14 +33,19 @@ plotly = "^5.18.0"
 numpy = "^1.26.1"
 matplotlib = "^3.8.1"
 pathlib = "^1.0.1"
-nicegui = "^1.4.1"
+nicegui = ">=1.4.21"
 screeninfo = "^0.8.1"
 pythonnet = "^3.0.3"
-pywebview = "^4.4.1"
+pywebview = ">=5.1"
 jedi = "^0.19.1"
-#cefpython3 = { url = "https://files.pythonhosted.org/packages/3b/d4/f313221a999e4d295cc8fcb15fc4ac9c98f6759e50735d6f6ce84fd3e98a/cefpython3-66.1-py2.py3-none-win_amd64.whl" }
-clr-loader = { url = "https://files.pythonhosted.org/packages/b3/1a/2801c4e3888aac8fcd4d88d32a1155a778d1c01ca040ae8137d433a39cc6/clr_loader-0.2.6-py3-none-any.whl" }
-aiohttp = "3.9.0b0"
+# cefpython3 = { url = "https://files.pythonhosted.org/packages/3b/d4/f313221a999e4d295cc8fcb15fc4ac9c98f6759e50735d6f6ce84fd3e98a/cefpython3-66.1-py2.py3-none-win_amd64.whl" }
+# clr-loader = { url = "https://files.pythonhosted.org/packages/b3/1a/2801c4e3888aac8fcd4d88d32a1155a778d1c01ca040ae8137d433a39cc6/clr_loader-0.2.6-py3-none-any.whl" }
+aiohttp = ">=3.9.4"
+qtpy = "^2.4.1"
+pycairo = "^1.26.0"
+pygobject = "^3.48.1"
+python-multipart = ">=0.0.7"
+pillow = ">=10.3.0"
 mypy = "^1.6.1"
 
 [tool.poetry.group.dev.dependencies]

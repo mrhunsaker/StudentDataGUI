@@ -53,13 +53,13 @@ def create_user_dir() -> None:
     Notes
     -----
     The user directory path may vary depending on the operating system:
-    - On Windows, it is typically under "%USERPROFILE%\OneDrive - Davis School District\Documents".
-    - On POSIX systems, it is typically under "$HOME/OneDrive - Davis School District/Documents".
+    - On Windows, it is typically under "%USERPROFILE%\OneDriveDSD\Documents".
+    - On POSIX systems, it is typically under "$HOME/OneDriveDSD/Documents".
     """
     if os.name == "nt":
         try:
             tmp_path = Path(os.environ["USERPROFILE"]).joinpath(
-                "OneDrive - Davis School District", "Documents"
+                "OneDriveDSD", "Documents"
             )
             Path.mkdir(tmp_path, parents=True, exist_ok=True)
             USER_DIR = Path(tmp_path)
@@ -68,7 +68,7 @@ def create_user_dir() -> None:
     elif os.name == "posix":
         try:
             tmp_path = Path(os.environ["HOME"]).joinpath(
-                "OneDrive - Davis School District", "Documents"
+                "OneDriveDSD", "Documents"
             )
             Path.mkdir(tmp_path, parents=True, exist_ok=True)
             USER_DIR = Path(tmp_path)

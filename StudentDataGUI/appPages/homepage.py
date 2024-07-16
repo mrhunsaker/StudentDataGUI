@@ -33,7 +33,7 @@ def content() -> None:
             ui.tab("DATA SUMMARY")
         with ui.tab_panels(tabs, value="DATA INPUT"):
             with ui.tab_panel("DATA INPUT"):
-                ui.label("VISION SKILLS PROGRESSIONS").classes(
+                ui.label("SKILLS PROGRESSIONS").classes(
                     "text-3xl font-bold pl-10"
                 ).style('font-family: "Atkinson Hyperlegible"')
                 with ui.row().classes("w-screen no-wrap py-4").style(

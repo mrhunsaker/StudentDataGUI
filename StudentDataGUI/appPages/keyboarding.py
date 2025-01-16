@@ -367,7 +367,6 @@ def create() -> None:
                             max=150,
                             format="%.0f",
                             label="Typing Speed",
-                            value="",
                             on_change=lambda e: u_typing_speed.set_value(e.value),
                         ).classes("w-[240px]").props('aria-label="Typing Speed"').style(
                             'font-style:normal, font-family: "Atkinson Hyperlegible"'
@@ -383,7 +382,6 @@ def create() -> None:
                             max=100,
                             format="%.0f",
                             label="Typing Accuracy",
-                            value="",
                             on_change=lambda e: u_typing_accuracy.set_value(e.value),
                         ).classes("w-[240px]").props(
                             'aria-label="Typing Accuracy"'

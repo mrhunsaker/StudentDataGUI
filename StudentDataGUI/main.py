@@ -179,13 +179,17 @@ def getresolution() -> str:
     '1920x1080'
     """
 
-    for SCREEN in get_monitors():
-        SCREENRESOLUTION = "{str(SCREEN.width)}x{str(SCREEN.height)}"
-    return SCREEN
-
+    try:
+        from screeninfo import get_monitors
+        def getresolution():
+            for screen in get_monitors():
+                return {"width": screen.width, "height": screen.height}
+    except ImportError:
+        # Fallback for headless environments
+        def getresolution():
+            return {"width": 1920, "height": 1080}
 
 MONITOR = getresolution()
-print(f"Monitor: \nwidth = {MONITOR.width} \nheight = {MONITOR.height}")
 
 ui.run(
     native=False,

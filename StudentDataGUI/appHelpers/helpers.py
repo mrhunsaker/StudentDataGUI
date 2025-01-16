@@ -35,6 +35,7 @@ datenow = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
+print(ROOT_DIR)
 USER_DIR = ""
 IMAGE_DIR = Path(ROOT_DIR).joinpath("images")
 START_DIR = ""
@@ -150,10 +151,12 @@ def create_roster() -> None:
     This function assumes the existence of 'ROOT_DIR' and 'START_DIR' variables
     representing the application's root and starting directories, respectively.
     """
-    if not Path(ROOT_DIR).joinpath("appHelpers", "roster").exists():
-        roster_path = Path(ROOT_DIR).joinpath("roster.py")
-        tmp_path = Path(START_DIR).joinpath("roster.txt")
-        shutil.copy2(tmp_path, roster_path)
+    def create_roster() -> None:
+        roster_path = Path(ROOT_DIR).joinpath("appHelpers", "roster.py")
+        if not roster_path.exists():  # Only copy if roster.py does not exist
+            tmp_path = Path(START_DIR).joinpath("roster.txt")
+            shutil.copy2(tmp_path, roster_path)
+
 
 
 create_roster()
@@ -165,8 +168,10 @@ create_user_dir()
 
 USER_DIR = create_user_dir()
 
-dataBasePath = Path(USER_DIR).joinpath("StudentDatabase", "students.db")
-
+home_dir=os.path.expanduser("~")
+database_dir = os.path.join(home_dir, "Documents", "StudentDatabase")
+os.makedirs(database_dir, exist_ok=True)
+dataBasePath = os.path.join(database_dir, "students.db")
 
 def createFolderHierarchy() -> None:
     """

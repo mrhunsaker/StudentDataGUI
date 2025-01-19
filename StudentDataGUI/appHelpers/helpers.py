@@ -90,9 +90,7 @@ def set_start_dir() -> Path:
     os.chdir(START_DIR)
     return START_DIR
 
-
 START_DIR = set_start_dir()
-
 
 def working_dir() -> None:
     """
@@ -123,9 +121,7 @@ def working_dir() -> None:
         tmp_path = Path(START_DIR).joinpath("workingdirectory.txt")
         shutil.copy2(tmp_path, workingdirectory_path)
 
-
 working_dir()
-
 
 def create_roster() -> None:
     """
@@ -157,15 +153,12 @@ def create_roster() -> None:
             tmp_path = Path(START_DIR).joinpath("roster.txt")
             shutil.copy2(tmp_path, roster_path)
 
-
-
 create_roster()
 
 from appHelpers.roster import students
 from appHelpers.workingdirectory import create_user_dir
 
 create_user_dir()
-
 USER_DIR = create_user_dir()
 
 home_dir=os.path.expanduser("~")
@@ -268,6 +261,7 @@ def createFolderHierarchy() -> None:
                 name,
                 "StudentInstructionMaterials",
             )
+            Path.mkdir(tmppath, parents=True, exist_ok=True) 
         if (
             not Path(USER_DIR)
             .joinpath(

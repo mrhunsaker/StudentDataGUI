@@ -245,3 +245,59 @@ If you encounter any issues or have suggestions, please [open an issue on GitHub
 
 ### Code of Conduct
 Everyone participating in the Black project, and in particular in the issue tracker, pull requests, and social media activity, is expected to treat other people with respect and more generally to follow the guidelines articulated in the [Python Community Code of Conduct](https://www.python.org/psf/codeofconduct/).
+
+---
+
+# Build the Docker/Podman container
+
+# Create local directories
+mkdir -p ~/Documents/StudentDatabase/StudentDataFiles
+mkdir -p ~/Documents/StudentDatabase/errorLogs
+mkdir -p ~/Documents/StudentDatabase/backups
+chmod -R 755 ~/Documents/StudentDatabase
+
+# Build the image
+podman build -t student-data-app .
+# or
+docker build -t student-data-app .
+
+# Run the container
+podman run -d \
+  --name student-data \
+  -p 8080:8080 \
+  -v ~/Documents/StudentDatabase:/home/appuser/Documents/StudentData:Z \
+  student-data-app
+# or
+docker run -d \
+  --name student-data \
+  -p 8080:8080 \
+  -v ~/Documents/StudentDatabase:/home/appuser/Documents/StudentData \
+  student-data-app
+
+--- 
+
+# Use the docker-compose.yml file to run the project
+
+## Create the main directory and subdirectories
+```bash
+mkdir -p ~/Documents/StudentDatabas/StudentDataFiles
+mkdir -p ~/Documents/StudentDatabase/errorLogs
+mkdir -p ~/Documents/StudentDatabase/backups
+
+# Set proper permissions
+chmod -R 755 ~/Documents/StudentDatabase
+```
+## The directory structure will be:
+
+~/Documents/StudentData/
+  ├── StudentDataFiles/
+  ├── errorLogs/
+  ├── backups/
+  └── students.db
+
+## Start the Service
+
+```bash
+docker-compose up -d
+```
+

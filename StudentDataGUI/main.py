@@ -152,7 +152,7 @@ with ui.footer(value=True) as footer:
         "w-screen no-wrap justify-center items-center text-l font-bold"
     ):
         ui.label(
-            "Copyright © 2023 Michael Ryan Hunsaker, M.Ed., Ph.D.\nReport Bugs or Request Features by emailing hunsakerconsulting@gmail.com"
+            "Copyright © 2025 Michael Ryan Hunsaker, M.Ed., Ph.D.\nReport Bugs or Request Features by emailing hunsakerconsulting@gmail.com"
         ).classes("justify-center items-center text-lg").style(
             'font-family: "Atkinson Hyperlegible"'
         )

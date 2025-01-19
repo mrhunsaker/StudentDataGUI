@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  student-db-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: student-data-app
+    environment:
+      - STUDENT_DB_PATH=/home/appuser/Documents/StudentDatabase/students.db
+      - STUDENT_DB_DIR=/home/appuser/Documents/StudentDatabase
+      - NICEGUI_HOST=0.0.0.0
+      - PYTHONPATH=/app/StudentDataGUI:$PYTHONPATH
+    ports:
+      - "8080:8080"
+    volumes:
+      - ${HOME}/Documents/StudentData:/home/appuser/Documents/StudentDatabase
+    healthcheck:
+      test: ["CMD", "sqlite3", "/home/appuser/Documents/StudentDatabase/students.db", "SELECT 1;"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 5s
+    restart: unless-stopped
+    user: appuser
+    security_opt:
+      - no-new-privileges:true
+    networks:
+      - student-net
+
+networks:
+  student-net:
+    driver: bridge

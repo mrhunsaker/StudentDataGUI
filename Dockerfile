@@ -1,5 +1,5 @@
 # Stage 1: Build stage
-FROM python:3.10-slim as builder
+FROM python:3.11-slim as builder
 
 # Set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
@@ -17,15 +17,9 @@ RUN apt-get update && apt-get install -y \
     git \
     gobject-introspection \
     libgirepository1.0-dev \
-    gir1.2-gtk-3.0 \
-    libcairo2-dev \
-    python3-cairo-dev \
     sqlite3 \
     libsqlite3-dev \
     && rm -rf /var/lib/apt/lists/*
-
-# Create directory for SQLite database
-RUN mkdir -p /app/StudentDatabase
 
 # Set working directory
 WORKDIR /build
@@ -42,80 +36,54 @@ COPY requirements.txt .
 
 # Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install nicegui
 
-# Add a non-root user for security
-RUN useradd -ms /bin/bash appuser && chown -R appuser:appuser /app
-
-# Set non-root user
-USER appuser
-
-# Copy the local StudentDataGUI folder into the image
+# Copy application source code
 COPY StudentDataGUI /build/StudentDataGUI
 
 # Stage 2: Runtime stage
-FROM python:3.10-slim
+FROM python:3.11-slim
 
-# Copy virtual environment from builder
-COPY --from=builder /opt/venv /opt/venv
+# Set environment variables
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
 
-# Set working directory
-WORKDIR /app
-
-# Install only required runtime dependencies
+# Install runtime dependencies
 RUN apt-get update && apt-get install -y \
     libcairo2 \
     python3-gi \
     python3-gi-cairo \
     gir1.2-gtk-3.0 \
     gobject-introspection \
-    libgirepository1.0-dev \
-    gir1.2-gtk-3.0 \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy application from builder
+# Set working directory
+WORKDIR /app
+
+# Copy the virtual environment from the builder stage
+COPY --from=builder /opt/venv /opt/venv
+
+# Copy application source code from the builder stage
 COPY --from=builder /build /app
 
-# Create necessary directories and config files
-RUN mkdir -p /home/appuser/Documents/StudentDatabase/StudentDataFiles \
-    /home/appuser/Documents/StudentDatabase/errorLogs
+# Update UID/GID range in login.defs
+RUN sed -i 's/^UID_MIN.*/UID_MIN 524288/' /etc/login.defs && \
+    sed -i 's/^UID_MAX.*/UID_MAX 589823/' /etc/login.defs && \
+    sed -i 's/^GID_MIN.*/GID_MIN 524288/' /etc/login.defs && \
+    sed -i 's/^GID_MAX.*/GID_MAX 589823/' /etc/login.defs
 
-# Create the target directory
-RUN mkdir -p /home/appuser/Documents/StudentDatabase/
+# Add a user with the specified UID and GID, ignoring warnings
+#RUN groupadd --gid 524288 appuser && \
+#    useradd --no-log-init --uid 524288 --gid 524288 --home-dir /home/appuser --create-home appuser
 
-# Copy the students.db file
-COPY students.db /home/appuser/Documents/StudentDatabase/students.db
-
-# Create initial roster.txt file
-RUN echo "students=['DonaldChamberlain','StudentOne','StudentTwo','StudentN',]" > /home/appuser/Documents/roster.txt
-
-# Create workingdirectory config file
-RUN echo 'if os.name == "nt":\n\
-    try:\n\
-        tmp_path = Path(os.environ["USERPROFILE"]).joinpath("/home/appuser", "Documents")\n\
-        Path.mkdir(tmp_path, parents=True, exist_ok=True)\n\
-        USER_DIR = Path(tmp_path)\n\
-    except NameError as e:\n\
-        print(f"{e}\\n Cannot find %USERPROFILE")\n\
-elif os.name == "posix":\n\
-    try:\n\
-        tmp_path = Path("/home/appuser/Documents")\n\
-        Path.mkdir(tmp_path, parents=True, exist_ok=True)\n\
-        USER_DIR = Path(tmp_path)\n\
-    except NameError as e:\n\
-        print(f"{e}\\n Cannot find $HOME")\n\
-return USER_DIR' > /home/appuser/Documents/workingdirectory.txt
-
-# Set environment variables
-ENV PATH="/opt/venv/bin:$PATH"
-ENV NICEGUI_HOST=0.0.0.0
-ENV HOME=/root
-ENV PYTHONPATH=/app/StudentDataGUI:$PYTHONPATH
-
+# Switch to the new user
+# USER appuser
 # Expose the default NiceGUI port
 EXPOSE 8080
 
-# Create volume mount points for persistent data
+# Define the volume for persistent storage
 VOLUME ["/home/appuser/Documents/StudentDatabase"]
 
-# Set the entrypoint
-ENTRYPOINT ["python", "-m", "StudentDataGUI.main"]
+# Set the entrypoint for the application
+ENTRYPOINT ["sh", "-c", "pip show nicegui && python -m StudentDataGUI.main"]
+

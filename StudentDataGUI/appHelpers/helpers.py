@@ -907,21 +907,29 @@ def createFolderHierarchy() -> None:
         )
         files = os.listdir(sourceDir)
         for fileName in files:
-            shutil.copy2(os.path.join(sourceDir, fileName), destinationDir)
+            tmppath=os.path.join(sourceDir, fileName)
+            copy_if_not_exists(tmppath, destinationDir)
         sourceDir = Path(ROOT_DIR).joinpath("instructionMaterials")
         destinationDir = Path(USER_DIR).joinpath(
             "StudentDatabase", "StudentDataFiles", name, "StudentInstructionMaterials"
         )
         files = os.listdir(sourceDir)
         for fileName in files:
-            shutil.copy2(os.path.join(sourceDir, fileName), destinationDir)
+            tmppath=os.path.join(sourceDir, fileName)
+            copy_if_not_exists(tmppath, destinationDir)
         sourceDir = Path(ROOT_DIR).joinpath("visionAssessments")
         destinationDir = Path(USER_DIR).joinpath(
             "StudentDatabase", "StudentDataFiles", name, "StudentVisionAssessments"
         )
         files = os.listdir(sourceDir)
         for fileName in files:
-            shutil.copy2(os.path.join(sourceDir, fileName), destinationDir)
+            tmppath=os.path.join(sourceDir, fileName)
+            copy_if_not_exists(tmppath, destinationDir)
+
+
+def copy_if_not_exists(source, destination):
+    if not os.path.exists(destination):
+        shutil.copy2(source, destination)
 
 
 """

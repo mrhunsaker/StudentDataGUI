@@ -1,0 +1,37 @@
+services:
+  student-db-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: student-data-app
+    environment:
+      - NICEGUI_HOST=0.0.0.0
+      - PYTHONPATH=/app/StudentDataGUI:$PYTHONPATH
+      - MPLCONFIGDIR=/tmp/matplotlib
+      - HOME=/tmp/home
+    ports:
+      - "8080:8080"
+    volumes:
+      - type: bind
+        source: ${HOME}/Documents/StudentDatabase
+        target: /home/appuser/Documents/StudentDatabase
+    healthcheck:
+      test: ["CMD", "sqlite3", "/home/appuser/Documents/StudentDatabase/students.db", "SELECT 1;"]      
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 5s
+    restart: unless-stopped
+    user: "524288:524288" 
+    networks:
+      - student-net
+    command: >
+      sh -c "mkdir -p /tmp/matplotlib /tmp/home/.cache/fontconfig &&
+             chmod 777 /tmp/matplotlib /tmp/home/.cache/fontconfig &&
+             mkdir -p /home/appuser/Documents/StudentDatabase/{StudentDataFiles,backups,errorLogs} &&
+             chown -R $(id -u):$(id -g) /home/appuser/Documents/StudentDatabase &&
+             chmod -R 777 /home/appuser/Documents/StudentDatabase &&
+             python -m StudentDataGUI.main"
+networks:
+  student-net:
+    driver: bridge

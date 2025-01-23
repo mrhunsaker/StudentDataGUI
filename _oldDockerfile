@@ -27,9 +27,6 @@ RUN apt-get update && apt-get install -y \
 # Create directory for SQLite database
 RUN mkdir -p /app/StudentDatabase
 
-# Copy the students.db file to the desired directory
-# RUN cp /app/students.db ~/Documents/StudentDatabase/students.db
-
 # Set working directory
 WORKDIR /build
 
@@ -89,7 +86,7 @@ RUN mkdir -p /home/appuser/Documents/StudentDatabase/
 COPY students.db /home/appuser/Documents/StudentDatabase/students.db
 
 # Create initial roster.txt file
-RUN echo "'DonaldChamberlain','StudentOne','StudentTwo','StudentN'" > /home/appuser/Documents/roster.txt
+RUN echo "students=['DonaldChamberlain','StudentOne','StudentTwo','StudentN',]" > /home/appuser/Documents/roster.txt
 
 # Create workingdirectory config file
 RUN echo 'if os.name == "nt":\n\
@@ -106,7 +103,7 @@ elif os.name == "posix":\n\
         USER_DIR = Path(tmp_path)\n\
     except NameError as e:\n\
         print(f"{e}\\n Cannot find $HOME")\n\
-return USER_DIR' > /home/appuser/Documents/workingdirectory
+return USER_DIR' > /home/appuser/Documents/workingdirectory.txt
 
 # Set environment variables
 ENV PATH="/opt/venv/bin:$PATH"
@@ -118,7 +115,7 @@ ENV PYTHONPATH=/app/StudentDataGUI:$PYTHONPATH
 EXPOSE 8080
 
 # Create volume mount points for persistent data
-#VOLUME ["/home/appuser/Documents/StudentDatabase"]
+VOLUME ["/home/appuser/Documents/StudentDatabase"]
 
 # Set the entrypoint
 ENTRYPOINT ["python", "-m", "StudentDataGUI.main"]

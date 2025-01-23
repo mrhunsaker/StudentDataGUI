@@ -1284,7 +1284,7 @@ def create() -> None:
                     ):
                         ui.number(
                             label="1.1 Setting Numbers",
-                            value=0,
+                            
                             on_change=lambda e: u_abacus_trial11.set_value(e.value),
                         ).classes("w-[600px]").style(
                             'font-style:normal, font-family: "Atkinson Hyperlegible"'
@@ -1296,7 +1296,7 @@ def create() -> None:
                     ):
                         ui.number(
                             label="1.2 Clearing Numbers",
-                            value=0,
+                            
                             on_change=lambda e: u_abacus_trial12.set_value(e.value),
                         ).classes("w-[600px]").style(
                             'font-style:normal, font-family: "Atkinson Hyperlegible"'
@@ -1308,7 +1308,7 @@ def create() -> None:
                     ):
                         ui.number(
                             label="1.3 Place Value",
-                            value=0,
+                            
                             on_change=lambda e: u_abacus_trial13.set_value(e.value),
                         ).classes("w-[600px]").props(
                             'aria-label="1.3 Place Value"'
@@ -1320,7 +1320,7 @@ def create() -> None:
                     ):
                         ui.number(
                             label="1.4 Vocabulary",
-                            value=0,
+                            
                             on_change=lambda e: u_abacus_trial14.set_value(e.value),
                         ).classes("w-[600px]").props(
                             'aria-label="1.4 Vocabulary"'
@@ -1343,7 +1343,7 @@ def create() -> None:
                     ):
                         ui.number(
                             label="2.1 Addition of Single Digit Numbers",
-                            value=0,
+                            
                             on_change=lambda e: u_abacus_trial21.set_value(e.value),
                         ).classes("w-[600px]").style(
                             'font-style:normal, font-family: "Atkinson Hyperlegible"'
@@ -1353,7 +1353,7 @@ def create() -> None:
                     ):
                         ui.number(
                             label="2.2 Addition of Multiple Digit Numbers – Direct",
-                            value=0,
+                            
                             on_change=lambda e: u_abacus_trial22.set_value(e.value),
                         ).classes("w-[600px]").style(
                             'font-style:normal, font-family: "Atkinson Hyperlegible"'
@@ -1365,7 +1365,7 @@ def create() -> None:
                     ):
                         ui.number(
                             label="2.3 Addition of Multiple Digit Numbers – Indirect",
-                            value=0,
+                            
                             on_change=lambda e: u_abacus_trial23.set_value(e.value),
                         ).classes("w-[600px]").style(
                             'font-style:normal, font-family: "Atkinson Hyperlegible"'
@@ -1390,7 +1390,7 @@ def create() -> None:
                     ):
                         ui.number(
                             label="3.1 Subtraction",
-                            value=0,
+                            
                             on_change=lambda e: u_abacus_trial31.set_value(e.value),
                         ).classes("w-[600px]").props(
                             'aria-label="3.1 Subtraction"'
@@ -1402,7 +1402,7 @@ def create() -> None:
                     ):
                         ui.number(
                             label="3.2 Subtraction of Multiple Digit Numbers – Direct",
-                            value=0,
+                            
                             on_change=lambda e: u_abacus_trial32.set_value(e.value),
                         ).classes("w-[600px]").style(
                             'font-style:normal, font-family: "Atkinson Hyperlegible"'
@@ -1414,7 +1414,7 @@ def create() -> None:
                     ):
                         ui.number(
                             label="3.3 Subtraction of Multiple Digit Numbers – Indirect",
-                            value=0,
+                            
                             on_change=lambda e: u_abacus_trial33.set_value(e.value),
                         ).classes("w-[600px]").style(
                             'font-style:normal, font-family: "Atkinson Hyperlegible"'
@@ -1437,7 +1437,7 @@ def create() -> None:
                     ):
                         ui.number(
                             label="4.1 Multiplication – 2+ Digit Multiplicand 1-Digit Multiplier",
-                            value=0,
+                            
                             on_change=lambda e: u_abacus_trial41.set_value(e.value),
                         ).classes("w-[600px]").style(
                             'font-style:normal, font-family: "Atkinson Hyperlegible"'
@@ -1449,7 +1449,7 @@ def create() -> None:
                     ):
                         ui.number(
                             label="4.2 Multiplication – 2+ Digit Multiplicand AND Multiplier",
-                            value=0,
+                            
                             on_change=lambda e: u_abacus_trial42.set_value(e.value),
                         ).classes("w-[600px]").style(
                             'font-style:normal, font-family: "Atkinson Hyperlegible"'
@@ -1474,7 +1474,7 @@ def create() -> None:
                     ):
                         ui.number(
                             label="5.1 Division – 2+ Digit Dividend 1-Digit Divisor",
-                            value=0,
+                            
                             on_change=lambda e: u_abacus_trial51.set_value(e.value),
                         ).classes("w-[600px]").style(
                             'font-style:normal, font-family: "Atkinson Hyperlegible"'
@@ -1486,7 +1486,7 @@ def create() -> None:
                     ):
                         ui.number(
                             label="5.2 Division – 2+ Digit Dividend AND 1 Digit Divisor",
-                            value=0,
+                            
                             on_change=lambda e: u_abacus_trial52.set_value(e.value),
                         ).classes("w-[600px]").style(
                             'font-style:normal, font-family: "Atkinson Hyperlegible"'
@@ -1511,7 +1511,7 @@ def create() -> None:
                     ):
                         ui.number(
                             label="6.1 Addition of Decimals",
-                            value=0,
+                            
                             on_change=lambda e: u_abacus_trial61.set_value(e.value),
                         ).classes("w-[600px]").props(
                             'aria-label="6.1 Addition of Decimals"'
@@ -1523,7 +1523,7 @@ def create() -> None:
                     ):
                         ui.number(
                             label="6.2 Subtraction of Decimals",
-                            value=0,
+                            
                             on_change=lambda e: u_abacus_trial62.set_value(e.value),
                         ).classes("w-[600px]").props(
                             'aria-label="6.2 Subtraction of Decimals"'
@@ -1535,7 +1535,7 @@ def create() -> None:
                     ):
                         ui.number(
                             label="6.3 Multiplication of Decimals",
-                            value=0,
+                            
                             on_change=lambda e: u_abacus_trial63.set_value(e.value),
                         ).classes("w-[600px]").style(
                             'font-style:normal, font-family: "Atkinson Hyperlegible"'
@@ -1545,7 +1545,7 @@ def create() -> None:
                     ):
                         ui.number(
                             label="6.4 Division of Decimals",
-                            value=0,
+                            
                             on_change=lambda e: u_abacus_trial64.set_value(e.value),
                         ).classes("w-[600px]").props(
                             'aria-label="6.4 Division of Decimals"'
@@ -1570,7 +1570,7 @@ def create() -> None:
                     ):
                         ui.number(
                             label="7.1 Addition of Fractions",
-                            value=0,
+                            
                             on_change=lambda e: u_abacus_trial71.set_value(e.value),
                         ).classes("w-[600px]").props(
                             'aria-label="7.1 Addition of Fractions"'
@@ -1582,7 +1582,7 @@ def create() -> None:
                     ):
                         ui.number(
                             label="7.2 Subtraction of Fractions",
-                            value=0,
+                            
                             on_change=lambda e: u_abacus_trial72.set_value(e.value),
                         ).classes("w-[600px]").style(
                             'font-style:normal, font-family: "Atkinson Hyperlegible"'
@@ -1592,7 +1592,7 @@ def create() -> None:
                     ):
                         ui.number(
                             label="7.3 Multiplication of Fractions",
-                            value=0,
+                            
                             on_change=lambda e: u_abacus_trial73.set_value(e.value),
                         ).classes("w-[600px]").style(
                             'font-style:normal, font-family: "Atkinson Hyperlegible"'
@@ -1602,7 +1602,7 @@ def create() -> None:
                     ):
                         ui.number(
                             label="7.4 Division of Fractions",
-                            value=0,
+                            
                             on_change=lambda e: u_abacus_trial74.set_value(e.value),
                         ).classes("w-[600px]").props(
                             'aria-label="7.4 Division of Fractions"'
@@ -1625,7 +1625,7 @@ def create() -> None:
                     ):
                         ui.number(
                             label="8.1 Percent",
-                            value=0,
+                            
                             on_change=lambda e: u_abacus_trial81.set_value(e.value),
                         ).classes("w-[600px]").props('aria-label="8.1 Percent"').style(
                             'font-style:normal, font-family: "Atkinson Hyperlegible"'
@@ -1635,7 +1635,7 @@ def create() -> None:
                     ):
                         ui.number(
                             label="8.2 Square Root",
-                            value=0,
+                            
                             on_change=lambda e: u_abacus_trial82.set_value(e.value),
                         ).classes("w-[600px]").props(
                             'aria-label="8.2 Square Root"'

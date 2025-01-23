@@ -25,7 +25,7 @@ teachers of students with Visual Impairments
 import sqlite3
 from sqlite3 import Error
 from pathlib import Path
-
+import os
 from appHelpers.helpers import dataBasePath
 from nicegui import ui
 
@@ -63,9 +63,15 @@ def create_connection(db_file):
     on the returned connection object.
     """
     conn = None
+    print(f"Attempting to connect to: {db_file}")
+    if os.path.exists(db_file):
+        print("Database file exists.")
+    else:
+        print("Database file does not exist. Attempting to create it.")
     try:
         conn = sqlite3.connect(db_file)
         print(sqlite3.version)
+        print(f"Connection successful. Database file: {db_file}")
     except Error as e:
         ui.notify(
             e,
@@ -73,14 +79,15 @@ def create_connection(db_file):
             type="negative",
             close_button="OK",
         )
+        print(e)
     finally:
         if conn:
             conn.close()
     return conn
 
-
+dataBasePath = "/home/ryhunsaker/Documents/StudentDatabase/students.db"
 create_connection(dataBasePath)
-
+print(dataBasePath)
 
 def create_table(conn, sql_create_sql_table):
     """

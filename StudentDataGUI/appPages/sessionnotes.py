@@ -1,4 +1,3 @@
-StudentDataGUI/StudentDataGUI/appPages/sessionnotes_updated.py
 #!/usr/bin/env python3
 
 """
@@ -14,7 +13,7 @@ import pandas as pd
 from nicegui import ui
 
 # --- CONFIGURATION ---
-DATABASE_PATH = "/home/ryhunsaker/Documents/StudentDatabase/students_bestpractice.db"
+DATABASE_PATH = "/home/ryhunsaker/Documents/StudentDatabase/students20252026.db"
 SESSION_NOTES_TYPE = "SessionNotes"  # Must match ProgressType.name in DB
 
 # --- UTILITY FUNCTIONS ---
@@ -133,15 +132,15 @@ def session_notes_ui():
     with ui.card():
         ui.label("Session Notes (Normalized DB)").classes("text-h4 text-grey-8")
         student_name = ui.input("Student Name", placeholder="Enter student name")
-        date_input = ui.date(label="Date", value=datetime.date.today())
+        ui.label("Date")
+        date_input = ui.date(value=datetime.date.today())
         task_input = ui.input("Task", placeholder="Task or activity (optional)")
         lesson_input = ui.input("Lesson", placeholder="Lesson (optional)")
         session_label_input = ui.input("Session Label", placeholder="Session label (optional)")
         notes_input = ui.textarea("Anecdotal Notes", placeholder="Enter session notes here")
         trial_inputs = []
-        with ui.row():
-            for i in range(1, 12):
-                trial_inputs.append(ui.number(label=f"Trial {i}", value=0, min=0, max=3, step=1))
+        for i in range(1, 12):
+            trial_inputs.append(ui.number(label=f"Trial {i}", value=0, min=0, max=3, step=1))
         median_input = ui.number("Median (optional)", value=None)
         summary_notes_input = ui.textarea("Summary Notes (optional)", placeholder="Enter summary notes here")
 
@@ -197,6 +196,10 @@ def session_notes_ui():
                 if df.empty:
                     ui.notify("No session notes for this student.", type="warning")
                     return
+
+                # Print dataframe to terminal for debugging
+                print(f"Data plotted for student: {name}")
+                print(df.to_string())
                 # Plotting: show trial scores over time
                 import plotly.graph_objs as go
                 from plotly.subplots import make_subplots
@@ -229,6 +232,7 @@ def session_notes_ui():
         ui.button("Plot Session Notes", on_click=plot_session_notes, color="secondary")
 
 # --- PAGE ENTRY POINT ---
+@ui.page("/sessionnotes_ui")
 def create():
     session_notes_ui()
 

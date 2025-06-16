@@ -1,4 +1,3 @@
-StudentDataGUI/StudentDataGUI/appPages/braillenote_updated.py
 #!/usr/bin/env python3
 
 """
@@ -17,7 +16,7 @@ from plotly.subplots import make_subplots
 from nicegui import ui
 
 # --- CONFIGURATION ---
-DATABASE_PATH = "/home/ryhunsaker/Documents/StudentDatabase/students_bestpractice.db"
+DATABASE_PATH = "/home/ryhunsaker/Documents/StudentDatabase/students20252026.db"
 BRAILLENOTE_PROGRESS_TYPE = "BrailleNote"  # Must match ProgressType.name in DB
 
 # --- UTILITY FUNCTIONS ---
@@ -161,7 +160,8 @@ def braillenote_skills_ui():
     with ui.card():
         ui.label("BrailleNote Touch Plus Skills (Normalized DB)").classes("text-h4 text-grey-8")
         student_name = ui.input("Student Name", placeholder="Enter student name")
-        date_input = ui.date(label="Date", value=datetime.date.today())
+        ui.label("Date")
+        date_input = ui.date(value=datetime.date.today())
         # BrailleNote part codes and labels (abbreviated for demo, expand as needed)
         braillenote_parts = [
             ("P1_1", "Physical Layout"), ("P1_2", "Setup/Universal Commands"), ("P1_3", "BNT+ Navigation"),
@@ -184,10 +184,9 @@ def braillenote_skills_ui():
             ("P12_1", "Community Resources"), ("P12_2", "Online Help"), ("P12_3", "User Forums"), ("P12_4", "Feedback"),
         ]
         part_inputs = {}
-        with ui.row():
-            for code, label in braillenote_parts:
-                part_inputs[code] = ui.number(label=label, value=0, min=0, max=3, step=1)
-        notes_input = ui.input("Notes (optional)", multiline=True)
+        for code, label in braillenote_parts:
+            part_inputs[code] = ui.number(label=label, value=0, min=0, max=3, step=1)
+        notes_input = ui.textarea("Notes (optional)")
 
         def save_braillenote_data():
             name = student_name.value.strip()
@@ -234,8 +233,12 @@ def braillenote_skills_ui():
                 part_codes = list(part_ids.keys())
                 df = fetch_braillenote_data_for_student(conn, student_id, progress_type_id, part_codes)
                 if df.empty:
-                    ui.notify("No BrailleNote data for this student.", type="warning")
+                    ui.notify("No braillenote data for this student.", type="warning")
                     return
+
+                # Print dataframe to terminal for debugging
+                print(f"Data plotted for student: {name}")
+                print(df.to_string())
                 # Plotting
                 # For demo, plot first 12 skills in a 3x4 grid
                 fig = make_subplots(
@@ -271,6 +274,7 @@ def braillenote_skills_ui():
         ui.button("Plot BrailleNote Data", on_click=plot_braillenote_data, color="secondary")
 
 # --- PAGE ENTRY POINT ---
+@ui.page("/braillenote_skills_ui")
 def create():
     braillenote_skills_ui()
 

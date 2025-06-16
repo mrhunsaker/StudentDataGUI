@@ -1,89 +1,63 @@
-# Stage 1: Build stage
-FROM python:3.11-slim as builder
-
-# Set environment variables
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
-
-# Install build dependencies
-RUN apt-get update && apt-get install -y \
-    build-essential \
-    python3-dev \
-    libcairo2-dev \
-    pkg-config \
-    python3-gi \
-    python3-gi-cairo \
-    gir1.2-gtk-3.0 \
-    git \
-    gobject-introspection \
-    libgirepository1.0-dev \
-    sqlite3 \
-    libsqlite3-dev \
-    && rm -rf /var/lib/apt/lists/*
-
-# Set working directory
-WORKDIR /build
-
-# Create and activate virtual environment
-RUN python -m venv /opt/venv
-ENV PATH="/opt/venv/bin:$PATH"
-
-# Upgrade pip
-RUN pip install --upgrade pip
-
-# Copy requirements file first
-COPY requirements.txt .
-
-# Install dependencies
-RUN pip install --no-cache-dir -r requirements.txt
-RUN pip install nicegui
-
-# Copy application source code
-COPY StudentDataGUI /build/StudentDataGUI
-
-# Stage 2: Runtime stage
+# Use Python 3.11 slim base image
 FROM python:3.11-slim
 
 # Set environment variables
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+ENV PYTHONPATH=/app
+ENV NICEGUI_HOST=0.0.0.0
+ENV NICEGUI_PORT=8080
+ENV MPLCONFIGDIR=/tmp/matplotlib
+ENV HOME=/tmp/home
 
-# Install runtime dependencies
+# Install system dependencies
 RUN apt-get update && apt-get install -y \
-    libcairo2 \
+    build-essential \
+    libcairo2-dev \
+    libgirepository1.0-dev \
+    pkg-config \
+    python3-dev \
     python3-gi \
     python3-gi-cairo \
     gir1.2-gtk-3.0 \
     gobject-introspection \
+    sqlite3 \
+    libsqlite3-dev \
+    git \
     && rm -rf /var/lib/apt/lists/*
 
 # Set working directory
 WORKDIR /app
 
-# Copy the virtual environment from the builder stage
-COPY --from=builder /opt/venv /opt/venv
+# Copy requirements and install Python dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
 
-# Copy application source code from the builder stage
-COPY --from=builder /build /app
+# Copy application source code
+COPY StudentDataGUI/ ./StudentDataGUI/
+COPY __init__.py .
 
-# Update UID/GID range in login.defs
-RUN sed -i 's/^UID_MIN.*/UID_MIN 524288/' /etc/login.defs && \
-    sed -i 's/^UID_MAX.*/UID_MAX 589823/' /etc/login.defs && \
-    sed -i 's/^GID_MIN.*/GID_MIN 524288/' /etc/login.defs && \
-    sed -i 's/^GID_MAX.*/GID_MAX 589823/' /etc/login.defs
+# Create necessary directories and set permissions
+RUN mkdir -p /tmp/matplotlib /tmp/home/.cache/fontconfig /app/data && \
+    chmod -R 777 /tmp/matplotlib /tmp/home/.cache/fontconfig /app/data
 
-# Add a user with the specified UID and GID, ignoring warnings
-#RUN groupadd --gid 524288 appuser && \
-#    useradd --no-log-init --uid 524288 --gid 524288 --home-dir /home/appuser --create-home appuser
+# Create non-root user (optional, can be disabled for Podman rootless)
+RUN groupadd -g 1000 appuser && \
+    useradd -u 1000 -g 1000 -m -s /bin/bash appuser
 
-# Switch to the new user
-# USER appuser
-# Expose the default NiceGUI port
+# Set ownership of app directory
+RUN chown -R appuser:appuser /app
+
+# Switch to non-root user (comment out for rootless Podman if needed)
+USER appuser
+
+# Expose port
 EXPOSE 8080
 
-# Define the volume for persistent storage
-VOLUME ["/home/appuser/Documents/StudentDatabase"]
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+    CMD python -c "import requests; requests.get('http://localhost:8080')" || exit 1
 
-# Set the entrypoint for the application
-ENTRYPOINT ["sh", "-c", "pip show nicegui && python -m StudentDataGUI.main"]
-
+# Set the entrypoint
+CMD ["python", "-m", "StudentDataGUI"]

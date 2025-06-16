@@ -1,4 +1,3 @@
-StudentDataGUI/StudentDataGUI/appPages/keyboarding_updated.py
 #!/usr/bin/env python3
 
 """
@@ -16,7 +15,7 @@ from plotly.subplots import make_subplots
 from nicegui import ui
 
 # --- CONFIGURATION ---
-DATABASE_PATH = "/home/ryhunsaker/Documents/StudentDatabase/students_bestpractice.db"
+DATABASE_PATH = "/home/ryhunsaker/Documents/StudentDatabase/students20252026.db"
 KEYBOARDING_PROGRESS_TYPE = "Keyboarding"  # Must match ProgressType.name in DB
 
 # --- UTILITY FUNCTIONS ---
@@ -109,7 +108,8 @@ def keyboarding_skills_ui():
     with ui.card():
         ui.label("Keyboarding Skills (Normalized DB)").classes("text-h4 text-grey-8")
         student_name = ui.input("Student Name", placeholder="Enter student name")
-        date_input = ui.date(label="Date", value=datetime.date.today())
+        ui.label("Date")
+        date_input = ui.date(value=datetime.date.today())
         program_input = ui.select(
             options=[
                 "Typio", "TypeAbility", "APH Typer", "Typing Club", "MonkeyType", "Custom Assignment"
@@ -124,7 +124,7 @@ def keyboarding_skills_ui():
         )
         speed_input = ui.number(label="Typing Speed (WPM)", value=0, min=0, max=200, step=1)
         accuracy_input = ui.number(label="Typing Accuracy (%)", value=0, min=0, max=100, step=1)
-        notes_input = ui.input("Notes (optional)", multiline=True)
+        notes_input = ui.textarea("Notes (optional)")
 
         def save_keyboarding_data():
             name = student_name.value.strip()
@@ -171,6 +171,10 @@ def keyboarding_skills_ui():
                 if df.empty:
                     ui.notify("No keyboarding data for this student.", type="warning")
                     return
+
+                # Print dataframe to terminal for debugging
+                print(f"Data plotted for student: {name}")
+                print(df.to_string())
                 # Plotting
                 fig = make_subplots(
                     rows=2, cols=1,
@@ -214,6 +218,7 @@ def keyboarding_skills_ui():
         ui.button("Plot Keyboarding Data", on_click=plot_keyboarding_data, color="secondary")
 
 # --- PAGE ENTRY POINT ---
+@ui.page("/keyboarding_skills_ui")
 def create():
     keyboarding_skills_ui()
 

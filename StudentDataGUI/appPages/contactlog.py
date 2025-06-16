@@ -1,4 +1,3 @@
-StudentDataGUI/StudentDataGUI/appPages/contactlog_updated.py
 #!/usr/bin/env python3
 
 """
@@ -15,7 +14,7 @@ import plotly.graph_objs as go
 from nicegui import ui
 
 # --- CONFIGURATION ---
-DATABASE_PATH = "/home/ryhunsaker/Documents/StudentDatabase/students_bestpractice.db"
+DATABASE_PATH = "/home/ryhunsaker/Documents/StudentDatabase/students20252026.db"
 CONTACTLOG_PROGRESS_TYPE = "ContactLog"  # Must match ProgressType.name in DB
 
 # --- UTILITY FUNCTIONS ---
@@ -138,7 +137,8 @@ def contactlog_ui():
     with ui.card():
         ui.label("Contact Log (Normalized DB)").classes("text-h4 text-grey-8")
         student_name = ui.input("Student Name", placeholder="Enter student name")
-        date_input = ui.date(label="Date", value=datetime.date.today())
+        ui.label("Date")
+        date_input = ui.date(value=datetime.date.today())
         guardian_name = ui.input("Guardian Name")
         contact_method = ui.select(["Phone", "Text", "In-Person", "Email"], label="Contact Method")
         phone_number = ui.input("Phone Number")
@@ -200,6 +200,10 @@ def contactlog_ui():
                 if df.empty:
                     ui.notify("No contact log data for this student.", type="warning")
                     return
+
+                # Print dataframe to terminal for debugging
+                print(f"Data plotted for student: {name}")
+                print(df.to_string())
                 # Plotting: show count of contact methods over time
                 df['date_str'] = df['date'].dt.strftime('%Y-%m-%d')
                 method_counts = df.groupby(['date_str', 'CONTACT_METHOD']).size().unstack(fill_value=0)
@@ -228,6 +232,7 @@ def contactlog_ui():
         ui.button("Plot Contact Log Data", on_click=plot_contactlog_data, color="secondary")
 
 # --- PAGE ENTRY POINT ---
+@ui.page("/contactlog_ui")
 def create():
     contactlog_ui()
 

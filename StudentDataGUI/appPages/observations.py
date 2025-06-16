@@ -1,4 +1,3 @@
-StudentDataGUI/StudentDataGUI/appPages/observations_updated.py
 #!/usr/bin/env python3
 
 """
@@ -14,7 +13,7 @@ import pandas as pd
 from nicegui import ui
 
 # --- CONFIGURATION ---
-DATABASE_PATH = "/home/ryhunsaker/Documents/StudentDatabase/students_bestpractice.db"
+DATABASE_PATH = "/home/ryhunsaker/Documents/StudentDatabase/students20252026.db"
 OBSERVATION_TYPE = "Observation"  # Must match ProgressType.name in DB
 
 # --- UTILITY FUNCTIONS ---
@@ -71,9 +70,10 @@ def observations_ui():
     with ui.card():
         ui.label("Observation Notes (Normalized DB)").classes("text-h4 text-grey-8")
         student_name = ui.input("Student Name", placeholder="Enter student name")
-        date_input = ui.date(label="Date", value=datetime.date.today())
-        notes_input = ui.textarea("Observation Notes", placeholder="Type observation notes here...", auto_grow=True)
-        
+        ui.label("Date")
+        date_input = ui.date(value=datetime.date.today())
+        notes_input = ui.textarea("Observation Notes", placeholder="Type observation notes here...")
+
         def save_observation():
             name = student_name.value.strip()
             date_val = date_input.value
@@ -128,6 +128,7 @@ def observations_ui():
         ui.button("Show All Observations", on_click=plot_observations, color="secondary")
 
 # --- PAGE ENTRY POINT ---
+@ui.page("/observations_ui")
 def create():
     observations_ui()
 

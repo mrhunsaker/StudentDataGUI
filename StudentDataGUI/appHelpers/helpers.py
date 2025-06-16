@@ -68,7 +68,7 @@ def set_start_dir() -> Path:
     Notes
     -----
     The user directory path may vary depending on the operating system:
-    - On Windows, it is typically under "%USERPROFILE%\OneDrive - Davis School District\Documents".
+    - On Windows, it is typically under "%USERPROFILE%\\OneDrive - Davis School District\\Documents".
     - On POSIX systems, it is typically under "$HOME/OneDrive - Davis School District/Documents".
     """
     if os.name == "nt":
@@ -261,7 +261,7 @@ def createFolderHierarchy() -> None:
                 name,
                 "StudentInstructionMaterials",
             )
-            Path.mkdir(tmppath, parents=True, exist_ok=True) 
+            Path.mkdir(tmppath, parents=True, exist_ok=True)
         if (
             not Path(USER_DIR)
             .joinpath(

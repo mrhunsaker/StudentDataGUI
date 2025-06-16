@@ -1,20 +1,31 @@
-attrdict==2.0.1
-datetime==5.2
-statistics==1.0.3.5
-pandas==2.1.2
-plotly==5.18.0
-numpy==1.26.1
-matplotlib==3.8.1
-pathlib==1.0.1
+# Core web framework
 nicegui>=1.4.21
-screeninfo==0.8.1
-pythonnet==3.0.3
-pywebview>=5.1
-jedi==0.19.1
-aiohttp>=3.9.4
-qtpy==2.4.1
-pycairo==1.26.0
-pygobject==3.48.1
+fastapi>=0.104.0
+uvicorn>=0.24.0
+
+# Data processing and analysis
+pandas>=2.1.0
+numpy>=1.24.0
+matplotlib>=3.7.0
+plotly>=5.15.0
+
+# Database (sqlite3 is built into Python)
+
+# HTTP client
+aiohttp>=3.9.0
+requests>=2.31.0
+
+# File handling
 python-multipart>=0.0.7
-pillow>=10.3.0
-mypy==1.6.1
+pillow>=10.0.0
+
+# GUI dependencies for containerized environment
+pycairo>=1.24.0
+pygobject>=3.44.0
+
+# Development and type checking
+mypy>=1.5.0
+
+# Compatibility
+attrdict>=2.0.1
+pathlib2>=2.3.7

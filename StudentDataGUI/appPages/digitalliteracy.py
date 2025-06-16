@@ -1,4 +1,3 @@
-StudentDataGUI/StudentDataGUI/appPages/digitalliteracy_updated.py
 #!/usr/bin/env python3
 
 """
@@ -17,7 +16,7 @@ from plotly.subplots import make_subplots
 from nicegui import ui
 
 # --- CONFIGURATION ---
-DATABASE_PATH = "/home/ryhunsaker/Documents/StudentDatabase/students_bestpractice.db"
+DATABASE_PATH = "/home/ryhunsaker/Documents/StudentDatabase/students20252026.db"
 DIGITALLITERACY_PROGRESS_TYPE = "Digital Literacy"  # Must match ProgressType.name in DB
 
 # --- UTILITY FUNCTIONS ---
@@ -148,7 +147,8 @@ def digitalliteracy_skills_ui():
     with ui.card():
         ui.label("Digital Literacy Skills (Normalized DB)").classes("text-h4 text-grey-8")
         student_name = ui.input("Student Name", placeholder="Enter student name")
-        date_input = ui.date(label="Date", value=datetime.date.today())
+        ui.label("Date")
+        date_input = ui.date(value=datetime.date.today())
         # Digital Literacy part codes and labels
         digitalliteracy_parts = [
             ("P1_1", "Turn Device On/Off"), ("P1_2", "Turn VoiceOver On/Off"), ("P1_3", "Gestures to Click Icons"),
@@ -161,10 +161,9 @@ def digitalliteracy_skills_ui():
             ("P5_1", "Acceptable Use"), ("P5_2", "Digital Citizenship"), ("P5_3", "Internet Safety"), ("P5_4", "Copyright"), ("P5_5", "Plagiarism"),
         ]
         part_inputs = {}
-        with ui.row():
-            for code, label in digitalliteracy_parts:
-                part_inputs[code] = ui.number(label=label, value=0, min=0, max=3, step=1)
-        notes_input = ui.input("Notes (optional)", multiline=True)
+        for code, label in digitalliteracy_parts:
+            part_inputs[code] = ui.number(label=label, value=0, min=0, max=3, step=1)
+        notes_input = ui.textarea("Notes (optional)")
 
         def save_digitalliteracy_data():
             name = student_name.value.strip()
@@ -214,6 +213,10 @@ def digitalliteracy_skills_ui():
                 if df.empty:
                     ui.notify("No digital literacy data for this student.", type="warning")
                     return
+
+                # Print dataframe to terminal for debugging
+                print(f"Data plotted for student: {name}")
+                print(df.to_string())
                 # Plotting
                 fig = make_subplots(
                     rows=3, cols=2,
@@ -259,6 +262,7 @@ def digitalliteracy_skills_ui():
         ui.button("Plot Digital Literacy Data", on_click=plot_digitalliteracy_data, color="secondary")
 
 # --- PAGE ENTRY POINT ---
+@ui.page("/digitalliteracy_skills_ui")
 def create():
     digitalliteracy_skills_ui()
 

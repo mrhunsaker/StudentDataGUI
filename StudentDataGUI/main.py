@@ -45,15 +45,14 @@ from appHelpers.helpers import (
     datenow,
 )
 from appHelpers.workingdirectory import create_user_dir
-from appHelpers.sqlgenerate import create_connection, createTables
+from appHelpers.sqlgenerate import create_connection, create_tables, initialize_database
 
 set_start_dir()
 working_dir()
 create_user_dir()
 create_roster()
 createFolderHierarchy()
-create_connection(dataBasePath)
-createTables()
+initialize_database()
 
 from appPages import abacus
 from appPages import sessionnotes
@@ -117,10 +116,8 @@ def index_page() -> None:
     """
     Opens the homepage for the app.
 
-    This function initializes the homepage of the app by creating various elements
-    such as contact logs, abacus, session notes, observations, braille, braille note,
-    CVI (Cortical Visual Impairment), iOS, screen reader, instructional materials,
-    digital literacy, and keyboarding.
+    This function initializes the homepage of the app by displaying the main
+    homepage content with instructions and navigation.
 
     Returns
     -------
@@ -134,68 +131,80 @@ def index_page() -> None:
         homepage.content()
 
 
-contactlog.create()
-abacus.create()
-sessionnotes.create()
-observations.create()
-braille.create()
-braillenote.create()
-cvi.create()
-ios.create()
-screenreader.create()
-InstructionalMaterials.create()
-digitalliteracy.create()
-keyboarding.create()
+def initialize_ui():
+    """Initialize global UI components after NiceGUI is ready."""
+    # Import the page modules to register their routes
+    import StudentDataGUI.appPages.contactlog
+    import StudentDataGUI.appPages.abacus
+    import StudentDataGUI.appPages.sessionnotes
+    import StudentDataGUI.appPages.observations
+    import StudentDataGUI.appPages.braille
+    import StudentDataGUI.appPages.braillenote
+    import StudentDataGUI.appPages.cvi
+    import StudentDataGUI.appPages.ios
+    import StudentDataGUI.appPages.screenreader
+    import StudentDataGUI.appPages.InstructionalMaterials
+    import StudentDataGUI.appPages.digitalliteracy
+    import StudentDataGUI.appPages.keyboarding
 
-with ui.footer(value=True) as footer:
-    with ui.row().classes(
-        "w-screen no-wrap justify-center items-center text-l font-bold"
-    ):
-        ui.label(
-            "Copyright © 2025 Michael Ryan Hunsaker, M.Ed., Ph.D.\nReport Bugs or Request Features by emailing hunsakerconsulting@gmail.com"
-        ).classes("justify-center items-center text-lg").style(
-            'font-family: "Atkinson Hyperlegible"'
-        )
+    # Create global footer that appears on all pages
+    with ui.footer(value=True) as footer:
+        with ui.row().classes(
+            "w-screen no-wrap justify-center items-center text-l font-bold"
+        ):
+            ui.label(
+                "Copyright © 2025 Michael Ryan Hunsaker, M.Ed., Ph.D.\nReport Bugs or Request Features by emailing hunsakerconsulting@gmail.com"
+            ).classes("justify-center items-center text-lg").style(
+                'font-family: "Atkinson Hyperlegible"'
+            )
 
 MONITOR = ""
 
 
-def getresolution() -> str:
+def getresolution() -> dict:
     """
     Retrieve the screen resolution of the primary monitor.
 
     This function iterates through the available monitors using the `get_monitors` function
-    from the `screeninfo` module and returns the resolution of the primary monitor in the
-    format "width x height".
+    from the `screeninfo` module and returns the resolution of the primary monitor as a
+    dictionary with width and height keys.
 
     Returns
     -------
-    str
-        A string representing the screen resolution in the format "width x height".
+    dict
+        A dictionary with 'width' and 'height' keys representing the screen resolution.
 
     Examples
     --------
     >>> getresolution()
-    '1920x1080'
+    {'width': 1920, 'height': 1080}
     """
-
     try:
         from screeninfo import get_monitors
-        def getresolution():
-            for screen in get_monitors():
-                return {"width": screen.width, "height": screen.height}
+        for screen in get_monitors():
+            return {"width": screen.width, "height": screen.height}
     except ImportError:
         # Fallback for headless environments
-        def getresolution():
-            return {"width": 1920, "height": 1080}
+        return {"width": 1920, "height": 1080}
 
 MONITOR = getresolution()
 
-ui.run(
-    native=False,
-    reload=False,
-    dark=False,
-    title="Student Skills Progressions",
-    fullscreen=False,
-    # window_size=(MONITOR.width, MONITOR.height - 72) # only relevant if native=True
-)
+def main():
+    """Main application entry point."""
+    # Initialize UI components
+    initialize_ui()
+
+    # Start the server
+    ui.run(
+        native=False,
+        reload=False,
+        dark=False,
+        title="Student Skills Progressions",
+        fullscreen=False,
+        host=os.getenv("NICEGUI_HOST", "127.0.0.1"),
+        port=int(os.getenv("NICEGUI_PORT", "8080")),
+        # window_size=(MONITOR.width, MONITOR.height - 72) # only relevant if native=True
+    )
+
+if __name__ == "__main__":
+    main()

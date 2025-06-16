@@ -1,4 +1,3 @@
-StudentDataGUI/StudentDataGUI/appPages/abacus_updated.py
 #!/usr/bin/env python3
 
 """
@@ -17,7 +16,7 @@ from plotly.subplots import make_subplots
 from nicegui import ui
 
 # --- CONFIGURATION ---
-DATABASE_PATH = "/home/ryhunsaker/Documents/StudentDatabase/students_bestpractice.db"
+DATABASE_PATH = "/home/ryhunsaker/Documents/StudentDatabase/students20252026.db"
 ABACUS_PROGRESS_TYPE = "Abacus"  # Must match ProgressType.name in DB
 
 # --- UTILITY FUNCTIONS ---
@@ -150,7 +149,8 @@ def abacus_skills_ui():
     with ui.card():
         ui.label("Abacus Skills (Normalized DB)").classes("text-h4 text-grey-8")
         student_name = ui.input("Student Name", placeholder="Enter student name")
-        date_input = ui.date(label="Date", value=datetime.date.today())
+        ui.label("Date")
+        date_input = ui.date(value=datetime.date.today())
         # Abacus part codes and labels
         abacus_parts = [
             ("P1_1", "Phase 1: Setting Numbers"), ("P1_2", "Phase 1: Clearing Beads"),
@@ -168,10 +168,9 @@ def abacus_skills_ui():
             ("P8_1", "Phase 8: Setting Numbers"), ("P8_2", "Phase 8: Clearing Beads"),
         ]
         part_inputs = {}
-        with ui.row():
-            for code, label in abacus_parts:
-                part_inputs[code] = ui.number(label=label, value=0, min=0, max=3, step=1)
-        notes_input = ui.input("Notes (optional)", multiline=True)
+        for code, label in abacus_parts:
+            part_inputs[code] = ui.number(label=label, value=0, min=0, max=3, step=1)
+        notes_input = ui.textarea("Notes (optional)")
 
         def save_abacus_data():
             name = student_name.value.strip()
@@ -221,6 +220,10 @@ def abacus_skills_ui():
                 if df.empty:
                     ui.notify("No abacus data for this student.", type="warning")
                     return
+
+                # Print dataframe to terminal for debugging
+                print(f"Data plotted for student: {name}")
+                print(df.to_string())
                 # Plotting
                 fig = make_subplots(
                     rows=4, cols=2,
@@ -264,6 +267,7 @@ def abacus_skills_ui():
         ui.button("Plot Abacus Data", on_click=plot_abacus_data, color="secondary")
 
 # --- PAGE ENTRY POINT ---
+@ui.page("/abacus_skills_ui")
 def create():
     abacus_skills_ui()
 

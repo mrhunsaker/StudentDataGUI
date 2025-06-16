@@ -52,7 +52,7 @@ def create_user_dir() -> None:
     Notes
     -----
     The user directory path may vary depending on the operating system:
-    - On Windows, it is typically under "%USERPROFILE%\Documents".
+    - On Windows, it is typically under "%USERPROFILE%\\Documents".
     - On POSIX systems, it is typically under "$HOME/Documents".
     """
     if os.name == "nt":

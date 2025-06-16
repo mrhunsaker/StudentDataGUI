@@ -1,4 +1,3 @@
-StudentDataGUI/StudentDataGUI/appPages/screenreader_updated.py
 #!/usr/bin/env python3
 
 """
@@ -17,7 +16,7 @@ from plotly.subplots import make_subplots
 from nicegui import ui
 
 # --- CONFIGURATION ---
-DATABASE_PATH = "/home/ryhunsaker/Documents/StudentDatabase/students_bestpractice.db"
+DATABASE_PATH = "/home/ryhunsaker/Documents/StudentDatabase/students20252026.db"
 SCREENREADER_PROGRESS_TYPE = "ScreenReader"  # Must match ProgressType.name in DB
 
 # --- UTILITY FUNCTIONS ---
@@ -149,7 +148,8 @@ def screenreader_skills_ui():
     with ui.card():
         ui.label("Screen Reader Skills (Normalized DB)").classes("text-h4 text-grey-8")
         student_name = ui.input("Student Name", placeholder="Enter student name")
-        date_input = ui.date(label="Date", value=datetime.date.today())
+        ui.label("Date")
+        date_input = ui.date(value=datetime.date.today())
         # ScreenReader part codes and labels
         screenreader_parts = [
             ("P1_1", "Turn ON/OFF"), ("P1_2", "Use Modifier Keys"), ("P1_3", "Use Reading Commands"), ("P1_4", "ID Titles"),
@@ -165,10 +165,9 @@ def screenreader_skills_ui():
             ("P4_7", "Use Built-In OCR"),
         ]
         part_inputs = {}
-        with ui.row():
-            for code, label in screenreader_parts:
-                part_inputs[code] = ui.number(label=label, value=0, min=0, max=3, step=1)
-        notes_input = ui.input("Notes (optional)", multiline=True)
+        for code, label in screenreader_parts:
+            part_inputs[code] = ui.number(label=label, value=0, min=0, max=3, step=1)
+        notes_input = ui.textarea("Notes (optional)")
 
         def save_screenreader_data():
             name = student_name.value.strip()
@@ -218,6 +217,10 @@ def screenreader_skills_ui():
                 if df.empty:
                     ui.notify("No screen reader data for this student.", type="warning")
                     return
+
+                # Print dataframe to terminal for debugging
+                print(f"Data plotted for student: {name}")
+                print(df.to_string())
                 # Plotting
                 fig = make_subplots(
                     rows=5, cols=2,
@@ -273,6 +276,7 @@ def screenreader_skills_ui():
         ui.button("Plot Screen Reader Data", on_click=plot_screenreader_data, color="secondary")
 
 # --- PAGE ENTRY POINT ---
+@ui.page("/screenreader_skills_ui")
 def create():
     screenreader_skills_ui()
 

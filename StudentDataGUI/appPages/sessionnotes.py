@@ -1,510 +1,239 @@
+StudentDataGUI/StudentDataGUI/appPages/sessionnotes_updated.py
 #!/usr/bin/env python3
 
 """
- Copyright 2023  Michael Ryan Hunsaker, M.Ed., Ph.D.
-
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
-
-      https://www.apache.org/licenses/LICENSE-2.0
-
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
+Session Notes Page (Updated for Normalized SQL Schema)
+- Uses new schema from updated_sql_bestpractice.py
+- Uploads and downloads session notes using normalized tables and foreign keys
 """
 
-# coding=utf-8
-"""
-Program designed to be a data collection and instructional tool for
-teachers
-of students with Visual Impairments
-"""
-
-import json
+import sqlite3
 from pathlib import Path
+import datetime
+import pandas as pd
+from nicegui import ui
 
-from appHelpers.helpers import datenow, USER_DIR, task_domains
-from appHelpers.roster import students
-from appTheming import theme
-from nicegui import app, ui
+# --- CONFIGURATION ---
+DATABASE_PATH = "/home/ryhunsaker/Documents/StudentDatabase/students_bestpractice.db"
+SESSION_NOTES_TYPE = "SessionNotes"  # Must match ProgressType.name in DB
 
+# --- UTILITY FUNCTIONS ---
 
-def create() -> None:
-    """Creates Session Notes Page"""
+def get_connection():
+    return sqlite3.connect(DATABASE_PATH)
 
-    @ui.page("/sessionnotes")
-    def sessionnotes() -> None:
-        with theme.frame("- DATA COLLECTION -"):
-            with ui.tabs() as tabs:
-                ui.tab("DATA INPUT")
-                ui.tab("DATA VISUALIZATION")
-            with ui.tab_panels(tabs, value="DATA INPUT"):
-                with ui.tab_panel("DATA INPUT"):
-                    ui.label("SESSION NOTES").classes("text-h4 text-grey-8").style(
-                        'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                    )
-                    # ASSIGN VARIABLES
-                    u_studentname = (
-                        ui.select(options=students, value="DonaldChamberlain")
-                        .classes("hidden")
-                        .style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    )
-                    u_today_date = (
-                        ui.date()
-                        .classes("hidden")
-                        .style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    )
-                    u_tasks = (
-                        ui.select(options=[""], value="Choose a Task")
-                        .classes("hidden")
-                        .style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    )
-                    u_anecdotalnotes = (
-                        ui.textarea()
-                        .classes("hidden")
-                        .style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    )
-                    u_trial01 = (
-                        ui.number()
-                        .classes("hidden")
-                        .style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    )
-                    u_trial02 = (
-                        ui.number()
-                        .classes("hidden")
-                        .style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    )
-                    u_trial03 = (
-                        ui.number()
-                        .classes("hidden")
-                        .style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    )
-                    u_trial04 = (
-                        ui.number()
-                        .classes("hidden")
-                        .style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    )
-                    u_trial05 = (
-                        ui.number()
-                        .classes("hidden")
-                        .style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    )
-                    u_trial06 = (
-                        ui.number()
-                        .classes("hidden")
-                        .style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    )
-                    u_trial07 = (
-                        ui.number()
-                        .classes("hidden")
-                        .style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    )
-                    u_trial08 = (
-                        ui.number()
-                        .classes("hidden")
-                        .style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    )
-                    u_trial09 = (
-                        ui.number()
-                        .classes("hidden")
-                        .style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    )
-                    u_trial10 = (
-                        ui.number()
-                        .classes("hidden")
-                        .style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    )
-                    u_trial11 = (
-                        ui.number()
-                        .classes("hidden")
-                        .style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    )
+def get_or_create_student(conn, name):
+    cur = conn.cursor()
+    cur.execute("SELECT id FROM Student WHERE name = ?", (name,))
+    row = cur.fetchone()
+    if row:
+        return row[0]
+    cur.execute("INSERT INTO Student (name) VALUES (?)", (name,))
+    conn.commit()
+    return cur.lastrowid
 
-                    def save(event):
-                        """
-                        Save data for a student.
+def get_progress_type_id(conn, name):
+    cur = conn.cursor()
+    cur.execute("SELECT id FROM ProgressType WHERE name = ?", (name,))
+    row = cur.fetchone()
+    if row:
+        return row[0]
+    cur.execute("INSERT INTO ProgressType (name, description) VALUES (?, ?)", (name, "Session notes and anecdotal observations"))
+    conn.commit()
+    return cur.lastrowid
 
-                        Parameters
-                        ----------
-                        event : SomeEventType
-                            The event triggering the save function.
+def create_session(conn, student_id, progress_type_id, date, notes=None):
+    cur = conn.cursor()
+    cur.execute(
+        "INSERT INTO ProgressSession (student_id, progress_type_id, date, notes) VALUES (?, ?, ?, ?)",
+        (student_id, progress_type_id, date, notes)
+    )
+    conn.commit()
+    return cur.lastrowid
 
-                        Returns
-                        -------
-                        None
+def insert_trial_results(conn, session_id, task, lesson, session_label, trials):
+    """
+    trials: list of (trial_number, score)
+    """
+    cur = conn.cursor()
+    for trial_number, score in trials:
+        cur.execute(
+            "INSERT INTO TrialResult (session_id, task, lesson, session_label, trial_number, score) VALUES (?, ?, ?, ?, ?, ?)",
+            (session_id, task, lesson, session_label, trial_number, score)
+        )
+    conn.commit()
 
-                        Notes
-                        -----
-                        This function assumes the existence of various UI elements (e.g., `u_studentname`,
-                        `u_today_date`, ...), `datenow`, `json`,
-                        `Path`, and other variables related to the application.
+def insert_session_summary(conn, session_id, median, notes):
+    cur = conn.cursor()
+    cur.execute(
+        "INSERT INTO TrialSessionSummary (session_id, median, notes) VALUES (?, ?, ?)",
+        (session_id, median, notes)
+    )
+    conn.commit()
 
-                        The function extracts abacus trial data and student information from UI elements,
-                        creates a dictionary with this data, and saves it as a JSON file in the student's
-                        directory within the "StudentDataFiles" folder. The filename is constructed based
-                        on the student's name and the current date.
+def fetch_session_notes_for_student(conn, student_id, progress_type_id):
+    """
+    Returns a DataFrame with columns: date, notes, median, trial_1, ..., trial_11
+    """
+    cur = conn.cursor()
+    cur.execute(
+        "SELECT id, date, notes FROM ProgressSession WHERE student_id = ? AND progress_type_id = ? ORDER BY date ASC",
+        (student_id, progress_type_id)
+    )
+    sessions = cur.fetchall()
+    if not sessions:
+        return pd.DataFrame()
+    session_ids = [sid for sid, _, _ in sessions]
+    session_dates = {sid: date for sid, date, _ in sessions}
+    session_notes = {sid: notes for sid, _, notes in sessions}
+    # Get all trial results for these sessions
+    cur.execute(
+        f"""
+        SELECT session_id, trial_number, score
+        FROM TrialResult
+        WHERE session_id IN ({','.join('?' for _ in session_ids)})
+        """,
+        session_ids
+    )
+    rows = cur.fetchall()
+    # Get session summaries
+    cur.execute(
+        f"""
+        SELECT session_id, median, notes
+        FROM TrialSessionSummary
+        WHERE session_id IN ({','.join('?' for _ in session_ids)})
+        """,
+        session_ids
+    )
+    summaries = {sid: (median, notes) for sid, median, notes in cur.fetchall()}
+    # Build DataFrame
+    data = {}
+    for sid in session_ids:
+        data[sid] = {'date': session_dates[sid], 'notes': session_notes[sid]}
+        # Add summary if present
+        if sid in summaries:
+            data[sid]['median'] = summaries[sid][0]
+            data[sid]['summary_notes'] = summaries[sid][1]
+        else:
+            data[sid]['median'] = None
+            data[sid]['summary_notes'] = None
+        # Add trials
+        for t in range(1, 12):
+            data[sid][f"trial_{t}"] = None
+    for sid, trial_number, score in rows:
+        data[sid][f"trial_{trial_number}"] = score
+    df = pd.DataFrame.from_dict(data, orient='index')
+    df = df.sort_values('date')
+    df['date'] = pd.to_datetime(df['date'])
+    return df
 
-                        The function also appends the filename to a "Filenames.txt" file for reference.
+# --- UI LOGIC ---
 
-                        Examples
-                        --------
-                        >>> save(some_event)
-                        >>> # Trial data and student information saved successfully.
-                        >>> # The data is stored in a JSON file named based on the student's name and date.
+def session_notes_ui():
+    with ui.card():
+        ui.label("Session Notes (Normalized DB)").classes("text-h4 text-grey-8")
+        student_name = ui.input("Student Name", placeholder="Enter student name")
+        date_input = ui.date(label="Date", value=datetime.date.today())
+        task_input = ui.input("Task", placeholder="Task or activity (optional)")
+        lesson_input = ui.input("Lesson", placeholder="Lesson (optional)")
+        session_label_input = ui.input("Session Label", placeholder="Session label (optional)")
+        notes_input = ui.textarea("Anecdotal Notes", placeholder="Enter session notes here")
+        trial_inputs = []
+        with ui.row():
+            for i in range(1, 12):
+                trial_inputs.append(ui.number(label=f"Trial {i}", value=0, min=0, max=3, step=1))
+        median_input = ui.number("Median (optional)", value=None)
+        summary_notes_input = ui.textarea("Summary Notes (optional)", placeholder="Enter summary notes here")
 
-                        See Also
-                        --------
-                        Some related functions or classes that might be useful.
+        def save_session_notes():
+            name = student_name.value.strip()
+            date_val = date_input.value
+            notes = notes_input.value.strip()
+            task = task_input.value.strip()
+            lesson = lesson_input.value.strip()
+            session_label = session_label_input.value.strip()
+            median = median_input.value
+            summary_notes = summary_notes_input.value.strip()
+            if not name or not date_val:
+                ui.notify("Student name and date are required.", type="negative")
+                return
+            # Connect and insert
+            conn = get_connection()
+            try:
+                student_id = get_or_create_student(conn, name)
+                progress_type_id = get_progress_type_id(conn, SESSION_NOTES_TYPE)
+                session_id = create_session(conn, student_id, progress_type_id, date_val, notes)
+                trials = []
+                for idx, inp in enumerate(trial_inputs, 1):
+                    score = inp.value
+                    trials.append((idx, score))
+                insert_trial_results(conn, session_id, task, lesson, session_label, trials)
+                if median is not None or summary_notes:
+                    insert_session_summary(conn, session_id, median, summary_notes)
+                ui.notify("Session notes saved successfully!", type="positive")
+            except Exception as e:
+                ui.notify(f"Error saving data: {e}", type="negative")
+            finally:
+                conn.close()
 
-                        """
+        ui.button("Save Session Notes", on_click=save_session_notes, color="primary")
 
-                        studentname = u_studentname.value
-                        today_date = u_today_date.value
-                        anecdotalnotes = u_anecdotalnotes.value
-                        task = u_tasks.value
-                        trial01 = (str(int(u_trial01.value)),)
-                        trial02 = (str(int(u_trial02.value)),)
-                        trial03 = (str(int(u_trial03.value)),)
-                        trial04 = (str(int(u_trial04.value)),)
-                        trial05 = (str(int(u_trial05.value)),)
-                        trial06 = (str(int(u_trial06.value)),)
-                        trial07 = (str(int(u_trial07.value)),)
-                        trial08 = (str(int(u_trial08.value)),)
-                        trial09 = (str(int(u_trial09.value)),)
-                        trial10 = (str(int(u_trial10.value)),)
-                        trial11 = (str(int(u_trial11.value)),)
-
-                        studentdatabasename = (
-                            f"anecdotalnotes{studentname.title()}{datenow}"
-                        )
-                        tmppath = Path(USER_DIR).joinpath(
-                            "StudentDatabase",
-                            "StudentDataFiles",
-                            studentname,
-                            studentdatabasename + ".json",
-                        )
-                        anecdotal_dictionary = {
-                            "studentname": studentname,
-                            "date": today_date,
-                            "anecdotalnotes": anecdotalnotes,
-                            "trial 01": trial01,
-                            "trial 02": trial02,
-                            "trial 03": trial03,
-                            "trial 04": trial04,
-                            "trial 05": trial05,
-                            "trial 06": trial06,
-                            "trial 07": trial07,
-                            "trial 08": trial08,
-                            "trial 09": trial09,
-                            "trial 10": trial10,
-                            "trial 11": trial11,
-                        }
-                        with open(tmppath, "w", encoding="utf-8") as filename:
-                            json.dump(anecdotal_dictionary, filename)
-                            tmppath = Path(USER_DIR).joinpath(
-                                "StudentDatabase", "StudentDataFiles", "Filenames.txt"
-                            )
-                        with open(tmppath, "a", encoding="utf-8") as filename:
-                            tmppath = Path(USER_DIR).joinpath(
-                                "StudentDatabase",
-                                "StudentDataFiles",
-                                studentname,
-                                studentdatabasename + ".json",
-                            )
-                            filename.write(f"'{tmppath}'" + "\n")
-                            filename.close()
-                            ui.notify(
-                                "Saved successfully!",
-                                position="center",
-                                type="positive",
-                                close_button="OK",
-                            )
-
-                def create_ui() -> None:
-                    """
-                    Create a GUI layout for entering student information and trial data.
-
-                    Returns
-                    -------
-                    None
-
-                    Notes
-                    -----
-                    This function assumes the existence of various UI elements (e.g., `u_studentname`,
-                    `u_today_date`, ...`), and other variables related to the application.
-
-                    The UI consists of several rows with different input elements for selecting a
-                    student, entering the date, selecting a task, providing a rubric, entering trial
-                    data, inputting anecdotal notes, and buttons for saving and exiting.
-
-                    Examples
-                    --------
-                    >>> create_ui()
-                    >>> # GUI layout created with various input elements and buttons.
-                    >>> # Users can interact with the UI to enter student information and trial data.
-
-                    See Also
-                    --------
-                    Some related functions or classes that might be useful.
-
-                    """
-                    with ui.row().classes("w-screen no-wrap py-4").style(
-                        'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                    ):
-                        ui.label("Student")
-                        ui.select(
-                            options=students,
-                            with_input=True,
-                            on_change=lambda e: u_studentname.set_value(e.value),
-                        ).classes("w-[300px]").style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        ).props(
-                            'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
-                        ).tooltip("Type Student Name, it will autocomplete AS you type")
-                        ui.date(
-                            value="f{datenow}",
-                            on_change=lambda e: u_today_date.set_value(e.value),
-                        ).classes("w-1/2").style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    with ui.row().classes("w-screen no-wrap").style(
-                        'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                    ):
-                        ui.label("Task Domain")
-                        task_domain = (
-                            ui.select(
-                                options=list(task_domains.keys()),
-                                with_input=True,
-                                on_change=lambda e: specific_task.set_options(
-                                    task_domains.get(e.value, [""])
-                                ),
-                            )
-                            .classes("w-[300px]")
-                            .style(
-                                'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                            )
-                            .props(
-                                'aria-label="Select Task Domain from the Dropdown. It will autocomplete as you type"'
-                            )
-                            .tooltip(
-                                "Type Task Domain, it will autocomplete as you type"
+        def plot_session_notes():
+            name = student_name.value.strip()
+            if not name:
+                ui.notify("Enter student name to plot.", type="negative")
+                return
+            conn = get_connection()
+            try:
+                cur = conn.cursor()
+                cur.execute("SELECT id FROM Student WHERE name = ?", (name,))
+                row = cur.fetchone()
+                if not row:
+                    ui.notify("Student not found.", type="negative")
+                    return
+                student_id = row[0]
+                progress_type_id = get_progress_type_id(conn, SESSION_NOTES_TYPE)
+                df = fetch_session_notes_for_student(conn, student_id, progress_type_id)
+                if df.empty:
+                    ui.notify("No session notes for this student.", type="warning")
+                    return
+                # Plotting: show trial scores over time
+                import plotly.graph_objs as go
+                from plotly.subplots import make_subplots
+                fig = make_subplots(rows=1, cols=1)
+                for t in range(1, 12):
+                    col = f"trial_{t}"
+                    if col in df.columns:
+                        fig.add_trace(
+                            go.Scatter(
+                                x=df['date'],
+                                y=df[col],
+                                mode="lines+markers",
+                                name=col,
+                                hovertemplate=f"{col}: "+"%{y}"
                             )
                         )
-                        ui.label("Specific Task")
-                        specific_task = (
-                            ui.select(
-                                options=[""],
-                                with_input=True,
-                                on_change=lambda e: u_tasks.set_value(e.value),
-                            )
-                            .classes("w-[300px]")
-                            .style(
-                                'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                            )
-                            .props(
-                                'aria-label="Select Task from the Dropdown. It will autocomplete as you type"'
-                            )
-                            .tooltip("Type Task, it will autocomplete as you type")
-                        )
-                    with ui.row().classes("w-screen no-wrap py-4").style(
-                        'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                    ):
-                        ui.label(
-                            "RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent"
-                        ).props(
-                            'aria-label="RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent" content-center'
-                        )
-                        ui.input().props(
-                            'aria-label="RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent" content-center'
-                        ).classes("sr-only").style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    with ui.row().classes("w-screen no-wrap py-4").style(
-                        'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                    ):
-                        ui.number(
-                            label="Trial 1",
-                            min=0,
-                            max=3,
-                            format="%.0f",
-                            on_change=lambda e: u_trial01.set_value(e.value),
-                        ).classes("w-[600px]").props('aria-label="Trial 1"').style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    with ui.row().classes("w-screen no-wrap py-4").style(
-                                'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        ):
-                            ui.number(
-                            label="Trial 2",
-                            min=0,
-                            max=3,
-                            format="%.0f",
-                            on_change=lambda e: u_trial02.set_value(e.value),
-                        ).classes("w-[600px]").props('aria-label="Trial 2"').style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    with ui.row().classes("w-screen no-wrap py-4").style(
-                                'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        ):
-                            ui.number(
-                            label="Trial 3",
-                            min=0,
-                            max=3,
-                            format="%.0f",
-                            on_change=lambda e: u_trial03.set_value(e.value),
-                        ).classes("w-[600px]").props('aria-label="Trial 3"').style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    with ui.row().classes("w-screen no-wrap py-4").style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                    ):
-                        ui.number(
-                            label="Trial 4",
-                            min=0,
-                            max=3,
-                            format="%.0f",
-                            on_change=lambda e: u_trial04.set_value(e.value),
-                        ).classes("w-[600px]").props('aria-label="Trial 4" ').style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    with ui.row().classes("w-screen no-wrap py-4").style(
-                                'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        ):
-                        ui.number(
-                            label="Trial 5",
-                            min=0,
-                            max=3,
-                            format="%.0f",
-                            on_change=lambda e: u_trial05.set_value(e.value),
-                        ).classes("w-[600px]").props('aria-label="Trial 5" ').style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    with ui.row().classes("w-screen no-wrap py-4").style(
-                        'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                    ):
-                        ui.number(
-                            label="Trial 6",
-                            min=0,
-                            max=3,
-                            format="%.0f",
-                            on_change=lambda e: u_trial06.set_value(e.value),
-                        ).classes("w-[600px]").props('aria-label="Trial 6" ').style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    with ui.row().classes("w-screen no-wrap py-4").style(
-                                'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        ):
-                        ui.number(
-                            label="Trial 7",
-                            min=0,
-                            max=3,
-                            format="%.0f",
-                            on_change=lambda e: u_trial07.set_value(e.value),
-                        ).classes("w-[600px]").props('aria-label="Trial 7" ').style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    with ui.row().classes("w-screen no-wrap py-4").style(
-                                'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        ):
-                        ui.number(
-                            label="Trial 8",
-                            min=0,
-                            max=3,
-                            format="%.0f",
-                            on_change=lambda e: u_trial08.set_value(e.value),
-                        ).classes("w-[600px]").props('aria-label="Trial 8" ').style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    with ui.row().classes("w-screen no-wrap py-4").style(
-                                'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        ):
-                        ui.number(
-                            label="Trial 9",
-                            min=0,
-                            max=3,
-                            format="%.0f",
-                            on_change=lambda e: u_trial09.set_value(e.value),
-                        ).classes("w-[600px]").props('aria-label="Trial 9" ').style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    with ui.row().classes("w-screen no-wrap py-4").style(
-                                'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        ):
-                        ui.number(
-                            label="Trial 10",
-                            min=0,
-                            max=3,
-                            format="%.0f",
-                            on_change=lambda e: u_trial10.set_value(e.value),
-                        ).classes("w-[600px]").props('aria-label="Trial 10" ').style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    with ui.row().classes("w-screen no-wrap py-4").style(
-                                'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        ):
-                        ui.number(
-                            label="Trial 11",
-                            min=0,
-                            max=3,
-                            format="%.0f",
-                            on_change=lambda e: u_trial11.set_value(e.value),
-                        ).classes("w-[600px]").props('aria-label="Trial 11" ').style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    with ui.row().classes("w-screen no-wrap py-4").style(
-                        'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                    ):
-                        ui.textarea(
-                            label="Input Anecdotal Notes In this Box and Press Save",
-                            on_change=lambda e: u_anecdotalnotes.set_value(e.value),
-                        ).classes("h-full h-min-[400px]").style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        ).props(
-                            'cols=80 autogrow outlined aria-label="Please type anecdotal notes" square'
-                        )
-                    with ui.row().classes("w-screen no-wrap py-4").style(
-                        'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                    ):
-                        ui.button("SAVE", color="#172554", on_click=save).classes(
-                            "text-white"
-                        ).style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                        ui.button(
-                            "EXIT", color="#172554", on_click=app.shutdown
-                        ).classes("text-white")
+                fig.update_layout(
+                    template="simple_white",
+                    title_text=f"{name}: Session Notes Trials Over Time",
+                    hovermode="x unified"
+                )
+                tmp_html = Path.home() / "SessionNotesProgression.html"
+                fig.write_html(str(tmp_html), auto_open=True)
+                ui.notify("Graph generated and opened in browser.", type="positive")
+            except Exception as e:
+                ui.notify(f"Error plotting data: {e}", type="negative")
+            finally:
+                conn.close()
 
-        create_ui()
+        ui.button("Plot Session Notes", on_click=plot_session_notes, color="secondary")
+
+# --- PAGE ENTRY POINT ---
+def create():
+    session_notes_ui()
+
+# If running standalone for testing
+if __name__ == "__main__":
+    from nicegui import app
+    create()
+    app.run()

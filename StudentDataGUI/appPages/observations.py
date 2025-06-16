@@ -1,184 +1,138 @@
+StudentDataGUI/StudentDataGUI/appPages/observations_updated.py
 #!/usr/bin/env python3
 
 """
- Copyright 2023  Michael Ryan Hunsaker, M.Ed., Ph.D.
-
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
-
-      https://www.apache.org/licenses/LICENSE-2.0
-
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
+Observation Notes Page (Updated for Normalized SQL Schema)
+- Uses new schema from updated_sql_bestpractice.py
+- Uploads and downloads observation notes using normalized tables and foreign keys
 """
 
-# coding=utf-8
-"""
-Program designed to be a data collection and instructional tool for
-teachers
-of students with Visual Impairments
-"""
-
-import json
+import sqlite3
 from pathlib import Path
+import datetime
+import pandas as pd
+from nicegui import ui
 
-from appHelpers.helpers import datenow, USER_DIR
-from appHelpers.roster import students
-from appTheming import theme
-from nicegui import app, ui
+# --- CONFIGURATION ---
+DATABASE_PATH = "/home/ryhunsaker/Documents/StudentDatabase/students_bestpractice.db"
+OBSERVATION_TYPE = "Observation"  # Must match ProgressType.name in DB
 
+# --- UTILITY FUNCTIONS ---
 
-def create() -> None:
-    """Creates Session Notes Page"""
+def get_connection():
+    return sqlite3.connect(DATABASE_PATH)
 
-    @ui.page("/observations")
-    def observations() -> None:
-        with theme.frame("- DATA COLLECTION -"):
-            with ui.tabs() as tabs:
-                ui.tab("DATA INPUT")
-                ui.tab("DATA VISUALIZATION")
-            with ui.tab_panels(tabs, value="DATA INPUT"):
-                with ui.tab_panel("DATA INPUT"):
-                    ui.label("OBSERVATION NOTES").classes("text-h4 text-grey-8").style(
-                        'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                    )
-                    # ASSIGN VARIABLES
-                    u_studentname = (
-                        ui.select(options=students, value="DonaldChamberlain")
-                        .classes("hidden")
-                        .style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    )
-                    u_today_date = (
-                        ui.date()
-                        .classes("hidden")
-                        .style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    )
-                    u_observationnotes = (
-                        ui.textarea()
-                        .classes("hidden")
-                        .style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    )
+def get_or_create_student(conn, name):
+    cur = conn.cursor()
+    cur.execute("SELECT id FROM Student WHERE name = ?", (name,))
+    row = cur.fetchone()
+    if row:
+        return row[0]
+    cur.execute("INSERT INTO Student (name) VALUES (?)", (name,))
+    conn.commit()
+    return cur.lastrowid
 
-                    def save(event):
-                        """
-                        :param event
-                        :type event
-                        """
-                        studentname = u_studentname.value
-                        today_date = u_today_date.value
-                        observationnotes = u_observationnotes.value
-                        studentdatabasename = (
-                            f"observationnotes{studentname.title()}{datenow}"
-                        )
-                        tmppath = Path(USER_DIR).joinpath(
-                            "StudentDatabase",
-                            "StudentDataFiles",
-                            studentname,
-                            studentdatabasename + ".json",
-                        )
-                        observation_dictionary = {
-                            "studentname": studentname,
-                            "date": today_date,
-                            "observationnotes": observationnotes,
-                        }
-                        with open(tmppath, "w", encoding="utf-8") as filename:
-                            json.dump(observation_dictionary, filename)
-                            tmppath = Path(USER_DIR).joinpath(
-                                "StudentDatabase", "StudentDataFiles", "Filenames.txt"
-                            )
-                        with open(tmppath, "a", encoding="utf-8") as filename:
-                            tmppath = Path(USER_DIR).joinpath(
-                                "StudentDatabase",
-                                "StudentDataFiles",
-                                studentname,
-                                studentdatabasename + ".json",
-                            )
-                            filename.write(f"'{tmppath}'" + "\n")
-                            filename.close()
-                        ui.notify(
-                            "Saved successfully!",
-                            position="center",
-                            type="positive",
-                            close_button="OK",
-                        )
+def get_progress_type_id(conn, name):
+    cur = conn.cursor()
+    cur.execute("SELECT id FROM ProgressType WHERE name = ?", (name,))
+    row = cur.fetchone()
+    if row:
+        return row[0]
+    # If not present, create it
+    cur.execute("INSERT INTO ProgressType (name, description) VALUES (?, ?)", (name, "Observation notes"))
+    conn.commit()
+    return cur.lastrowid
 
-                def create_ui() -> None:
-                    """
-                    Create a GUI layout for entering student information and trial data.
+def create_observation_session(conn, student_id, progress_type_id, date, notes=None):
+    cur = conn.cursor()
+    cur.execute(
+        "INSERT INTO ProgressSession (student_id, progress_type_id, date, notes) VALUES (?, ?, ?, ?)",
+        (student_id, progress_type_id, date, notes)
+    )
+    conn.commit()
+    return cur.lastrowid
 
-                    Returns
-                    -------
-                    None
+def fetch_observations_for_student(conn, student_id, progress_type_id):
+    cur = conn.cursor()
+    cur.execute(
+        "SELECT date, notes FROM ProgressSession WHERE student_id = ? AND progress_type_id = ? ORDER BY date ASC",
+        (student_id, progress_type_id)
+    )
+    rows = cur.fetchall()
+    if not rows:
+        return pd.DataFrame()
+    df = pd.DataFrame(rows, columns=["date", "notes"])
+    df["date"] = pd.to_datetime(df["date"])
+    return df
 
-                    Notes
-                    -----
-                    This function assumes the existence of various UI elements (e.g., `u_studentname`,
-                    `u_today_date`, ...`), and other variables related to the application.
+# --- UI LOGIC ---
 
-                    The UI consists of several rows with different input elements for selecting a
-                    student, entering the date, selecting a task, providing a rubric, entering trial
-                    data, inputting anecdotal notes, and buttons for saving and exiting.
+def observations_ui():
+    with ui.card():
+        ui.label("Observation Notes (Normalized DB)").classes("text-h4 text-grey-8")
+        student_name = ui.input("Student Name", placeholder="Enter student name")
+        date_input = ui.date(label="Date", value=datetime.date.today())
+        notes_input = ui.textarea("Observation Notes", placeholder="Type observation notes here...", auto_grow=True)
+        
+        def save_observation():
+            name = student_name.value.strip()
+            date_val = date_input.value
+            notes = notes_input.value.strip()
+            if not name or not date_val or not notes:
+                ui.notify("Student name, date, and notes are required.", type="negative")
+                return
+            conn = get_connection()
+            try:
+                student_id = get_or_create_student(conn, name)
+                progress_type_id = get_progress_type_id(conn, OBSERVATION_TYPE)
+                create_observation_session(conn, student_id, progress_type_id, date_val, notes)
+                ui.notify("Observation note saved successfully!", type="positive")
+            except Exception as e:
+                ui.notify(f"Error saving observation: {e}", type="negative")
+            finally:
+                conn.close()
 
-                    Examples
-                    --------
-                    >>> create_ui()
-                    >>> # GUI layout created with various input elements and buttons.
-                    >>> # Users can interact with the UI to enter student information and trial data.
+        ui.button("Save Observation", on_click=save_observation, color="primary")
 
-                    See Also
-                    --------
-                    Some related functions or classes that might be useful.
+        def plot_observations():
+            name = student_name.value.strip()
+            if not name:
+                ui.notify("Enter student name to plot.", type="negative")
+                return
+            conn = get_connection()
+            try:
+                cur = conn.cursor()
+                cur.execute("SELECT id FROM Student WHERE name = ?", (name,))
+                row = cur.fetchone()
+                if not row:
+                    ui.notify("Student not found.", type="negative")
+                    return
+                student_id = row[0]
+                progress_type_id = get_progress_type_id(conn, OBSERVATION_TYPE)
+                df = fetch_observations_for_student(conn, student_id, progress_type_id)
+                if df.empty:
+                    ui.notify("No observation notes for this student.", type="warning")
+                    return
+                # Display as a simple table (could be enhanced to timeline, etc.)
+                with ui.dialog() as dialog, ui.card():
+                    ui.label(f"Observation Notes for {name}").classes("text-h5")
+                    for _, row in df.iterrows():
+                        ui.markdown(f"**{row['date'].strftime('%Y-%m-%d')}**: {row['notes']}")
+                    ui.button("Close", on_click=dialog.close)
+                dialog.open()
+            except Exception as e:
+                ui.notify(f"Error fetching observations: {e}", type="negative")
+            finally:
+                conn.close()
 
-                    """
-                    with ui.row().classes("w-screen no-wrap py-4").style(
-                        'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                    ):
-                        ui.select(
-                            options=students,
-                            with_input=True,
-                            on_change=lambda e: u_studentname.set_value(e.value),
-                        ).classes("w-[300px]").style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        ).props(
-                            'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
-                        ).tooltip("Type Student Name, it will autocomplete AS you type")
-                        ui.date(
-                            value="f{datenow}",
-                            on_change=lambda e: u_today_date.set_value(e.value),
-                        ).classes("w-1/2").style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    with ui.row().classes("w-screen no-wrap py-4").style(
-                        'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                    ):
-                        ui.textarea(
-                            label="Input Observation Notes In this Box and Press Save",
-                            on_change=lambda e: u_observationnotes.set_value(e.value),
-                        ).classes("v-min-[600px]").style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        ).props(
-                            'cols=200 autogrow outlined aria-label="Please type observation notes" square'
-                        )
-                    with ui.row().classes("w-screen no-wrap py-4").style(
-                        'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                    ):
-                        ui.button("SAVE", color="#172554", on_click=save).classes(
-                            "text-white"
-                        ).style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                        ui.button(
-                            "EXIT", color="#172554", on_click=app.shutdown
-                        ).classes("text-white")
+        ui.button("Show All Observations", on_click=plot_observations, color="secondary")
 
-        create_ui()
+# --- PAGE ENTRY POINT ---
+def create():
+    observations_ui()
+
+# If running standalone for testing
+if __name__ == "__main__":
+    from nicegui import app
+    create()
+    app.run()

@@ -1,1659 +1,274 @@
+StudentDataGUI/StudentDataGUI/appPages/abacus_updated.py
 #!/usr/bin/env python3
 
 """
- Copyright 2023  Michael Ryan Hunsaker, M.Ed., Ph.D.
-
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
-
-      https://www.apache.org/licenses/LICENSE-2.0
-
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
+Abacus Skills Page (Updated for Normalized SQL Schema)
+- Uses new schema from updated_sql_bestpractice.py
+- Uploads and downloads abacus data using normalized tables and foreign keys
 """
 
-# coding=utf-8
-"""
-Program designed to be a data collection and instructional tool for
-teachers of students with Visual Impairments
-"""
-
-import datetime
-import json
 import sqlite3
 from pathlib import Path
-
-import numpy as np
+import datetime
 import pandas as pd
-import plotly.graph_objects as go
-from appHelpers.helpers import dataBasePath, date_fmt, datenow, USER_DIR
-from appHelpers.roster import students
-from appTheming import theme
-from nicegui import app, ui
+import numpy as np
+import plotly.graph_objs as go
 from plotly.subplots import make_subplots
+from nicegui import ui
 
+# --- CONFIGURATION ---
+DATABASE_PATH = "/home/ryhunsaker/Documents/StudentDatabase/students_bestpractice.db"
+ABACUS_PROGRESS_TYPE = "Abacus"  # Must match ProgressType.name in DB
 
-def create() -> None:
-    """Abacus Skills Progression"""
+# --- UTILITY FUNCTIONS ---
 
-    @ui.page("/abacusskills")
-    def abacusskills() -> None:
-        with theme.frame("- TACTILE SKILLS -"):
-            with ui.tabs() as tabs:
-                ui.tab("DATA INPUT")
-                ui.tab("DATA VISUALIZATION")
-            with ui.tab_panels(tabs, value="DATA INPUT"):
-                with ui.tab_panel("DATA INPUT"):
-                    ui.label("ABACUS SKILLS").classes("text-h4 text-grey-8").style(
-                        'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                    )
-                    u_studentname = (
-                        ui.select(options=students, value="DonaldChamberlain")
-                        .classes("hidden")
-                        .style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    )
-                    u_today_date = (
-                        ui.date()
-                        .classes("hidden")
-                        .style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    )
-                    u_abacus_trial11 = (
-                        ui.number()
-                        .classes("hidden")
-                        .style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    )
-                    u_abacus_trial12 = (
-                        ui.number()
-                        .classes("hidden")
-                        .style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    )
-                    u_abacus_trial13 = (
-                        ui.number()
-                        .classes("hidden")
-                        .style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    )
-                    u_abacus_trial14 = (
-                        ui.number()
-                        .classes("hidden")
-                        .style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    )
-                    u_abacus_trial21 = (
-                        ui.number()
-                        .classes("hidden")
-                        .style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    )
-                    u_abacus_trial22 = (
-                        ui.number()
-                        .classes("hidden")
-                        .style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    )
-                    u_abacus_trial23 = (
-                        ui.number()
-                        .classes("hidden")
-                        .style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    )
-                    u_abacus_trial31 = (
-                        ui.number()
-                        .classes("hidden")
-                        .style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    )
-                    u_abacus_trial32 = (
-                        ui.number()
-                        .classes("hidden")
-                        .style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    )
-                    u_abacus_trial33 = (
-                        ui.number()
-                        .classes("hidden")
-                        .style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    )
-                    u_abacus_trial41 = (
-                        ui.number()
-                        .classes("hidden")
-                        .style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    )
-                    u_abacus_trial42 = (
-                        ui.number()
-                        .classes("hidden")
-                        .style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    )
-                    u_abacus_trial51 = (
-                        ui.number()
-                        .classes("hidden")
-                        .style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    )
-                    u_abacus_trial52 = (
-                        ui.number()
-                        .classes("hidden")
-                        .style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    )
-                    u_abacus_trial61 = (
-                        ui.number()
-                        .classes("hidden")
-                        .style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    )
-                    u_abacus_trial62 = (
-                        ui.number()
-                        .classes("hidden")
-                        .style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    )
-                    u_abacus_trial63 = (
-                        ui.number()
-                        .classes("hidden")
-                        .style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    )
-                    u_abacus_trial64 = (
-                        ui.number()
-                        .classes("hidden")
-                        .style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    )
-                    u_abacus_trial71 = (
-                        ui.number()
-                        .classes("hidden")
-                        .style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    )
-                    u_abacus_trial72 = (
-                        ui.number()
-                        .classes("hidden")
-                        .style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    )
-                    u_abacus_trial73 = (
-                        ui.number()
-                        .classes("hidden")
-                        .style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    )
-                    u_abacus_trial74 = (
-                        ui.number()
-                        .classes("hidden")
-                        .style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    )
-                    u_abacus_trial81 = (
-                        ui.number()
-                        .classes("hidden")
-                        .style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    )
-                    u_abacus_trial82 = (
-                        ui.number()
-                        .classes("hidden")
-                        .style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    )
+def get_connection():
+    return sqlite3.connect(DATABASE_PATH)
 
-                    def save(event):
-                        """
-                        Save abacus trial data for a student.
+def get_or_create_student(conn, name):
+    cur = conn.cursor()
+    cur.execute("SELECT id FROM Student WHERE name = ?", (name,))
+    row = cur.fetchone()
+    if row:
+        return row[0]
+    cur.execute("INSERT INTO Student (name) VALUES (?)", (name,))
+    conn.commit()
+    return cur.lastrowid
 
-                        Parameters
-                        ----------
-                        event : SomeEventType
-                            The event triggering the save function.
+def get_progress_type_id(conn, name):
+    cur = conn.cursor()
+    cur.execute("SELECT id FROM ProgressType WHERE name = ?", (name,))
+    row = cur.fetchone()
+    if row:
+        return row[0]
+    # If not present, create it
+    cur.execute("INSERT INTO ProgressType (name, description) VALUES (?, ?)", (name, "Abacus skills progression"))
+    conn.commit()
+    return cur.lastrowid
 
-                        Returns
-                        -------
-                        None
+def get_abacus_parts(conn, progress_type_id):
+    """
+    Returns a dict mapping code (e.g. 'P1_1') to part_id for Abacus assessment.
+    If not present, creates the standard set.
+    """
+    cur = conn.cursor()
+    cur.execute("SELECT code, id FROM AssessmentPart WHERE progress_type_id = ?", (progress_type_id,))
+    rows = cur.fetchall()
+    if rows and len(rows) >= 26:
+        return {code: pid for code, pid in rows}
+    # If not present, create standard abacus parts
+    abacus_parts = [
+        # Phase 1
+        ("P1_1", "Setting Numbers"), ("P1_2", "Clearing Beads"), ("P1_3", "Place Value"), ("P1_4", "Vocabulary"),
+        # Phase 2
+        ("P2_1", "Setting Numbers"), ("P2_2", "Clearing Beads"), ("P2_3", "Place Value"),
+        # Phase 3
+        ("P3_1", "Setting Numbers"), ("P3_2", "Clearing Beads"), ("P3_3", "Place Value"),
+        # Phase 4
+        ("P4_1", "Setting Numbers"), ("P4_2", "Clearing Beads"),
+        # Phase 5
+        ("P5_1", "Place Value"), ("P5_2", "Vocabulary"),
+        # Phase 6
+        ("P6_1", "Setting Numbers"), ("P6_2", "Clearing Beads"), ("P6_3", "Place Value"), ("P6_4", "Vocabulary"),
+        # Phase 7
+        ("P7_1", "Setting Numbers"), ("P7_2", "Clearing Beads"), ("P7_3", "Place Value"), ("P7_4", "Vocabulary"),
+        # Phase 8
+        ("P8_1", "Setting Numbers"), ("P8_2", "Clearing Beads"),
+    ]
+    for code, desc in abacus_parts:
+        cur.execute(
+            "INSERT OR IGNORE INTO AssessmentPart (progress_type_id, code, description) VALUES (?, ?, ?)",
+            (progress_type_id, code, desc)
+        )
+    conn.commit()
+    cur.execute("SELECT code, id FROM AssessmentPart WHERE progress_type_id = ?", (progress_type_id,))
+    return {code: pid for code, pid in cur.fetchall()}
 
-                        Notes
-                        -----
-                        This function assumes the existence of various UI elements (e.g., `u_studentname`,
-                        `u_today_date`, `u_abacus_trial11`, ..., `u_abacus_trial82`), `datenow`, `json`,
-                        `Path`, and other variables related to the application.
+def create_abacus_session(conn, student_id, progress_type_id, date, notes=None):
+    cur = conn.cursor()
+    cur.execute(
+        "INSERT INTO ProgressSession (student_id, progress_type_id, date, notes) VALUES (?, ?, ?, ?)",
+        (student_id, progress_type_id, date, notes)
+    )
+    conn.commit()
+    return cur.lastrowid
 
-                        The function extracts abacus trial data and student information from UI elements,
-                        creates a dictionary with this data, and saves it as a JSON file in the student's
-                        directory within the "StudentDataFiles" folder. The filename is constructed based
-                        on the student's name and the current date.
+def insert_abacus_results(conn, session_id, part_scores):
+    """
+    part_scores: dict of {code: score}
+    """
+    cur = conn.cursor()
+    for code, (part_id, score) in part_scores.items():
+        cur.execute(
+            "INSERT INTO AssessmentResult (session_id, part_id, score) VALUES (?, ?, ?)",
+            (session_id, part_id, score)
+        )
+    conn.commit()
 
-                        The function also appends the filename to a "Filenames.txt" file for reference.
+def fetch_abacus_data_for_student(conn, student_id, progress_type_id, part_codes):
+    """
+    Returns a DataFrame with columns: date, code1, code2, ..., codeN
+    """
+    # Get all sessions for this student and abacus
+    cur = conn.cursor()
+    cur.execute(
+        "SELECT id, date FROM ProgressSession WHERE student_id = ? AND progress_type_id = ? ORDER BY date ASC",
+        (student_id, progress_type_id)
+    )
+    sessions = cur.fetchall()
+    if not sessions:
+        return pd.DataFrame()
+    session_ids = [sid for sid, _ in sessions]
+    session_dates = {sid: date for sid, date in sessions}
+    # Get all results for these sessions
+    format_codes = ','.join('?' for _ in part_codes)
+    cur.execute(
+        f"""
+        SELECT ar.session_id, ap.code, ar.score
+        FROM AssessmentResult ar
+        JOIN AssessmentPart ap ON ar.part_id = ap.id
+        WHERE ar.session_id IN ({','.join('?' for _ in session_ids)}) AND ap.code IN ({format_codes})
+        """,
+        session_ids + list(part_codes)
+    )
+    rows = cur.fetchall()
+    # Build DataFrame
+    data = {}
+    for sid in session_ids:
+        data[sid] = {code: None for code in part_codes}
+        data[sid]['date'] = session_dates[sid]
+    for sid, code, score in rows:
+        data[sid][code] = score
+    df = pd.DataFrame.from_dict(data, orient='index')
+    df = df.sort_values('date')
+    df['date'] = pd.to_datetime(df['date'])
+    return df
 
-                        Examples
-                        --------
-                        >>> save(some_event)
-                        >>> # Abacus trial data and student information saved successfully.
-                        >>> # The data is stored in a JSON file named based on the student's name and date.
+# --- UI LOGIC ---
 
-                        See Also
-                        --------
-                        Some related functions or classes that might be useful.
+def abacus_skills_ui():
+    with ui.card():
+        ui.label("Abacus Skills (Normalized DB)").classes("text-h4 text-grey-8")
+        student_name = ui.input("Student Name", placeholder="Enter student name")
+        date_input = ui.date(label="Date", value=datetime.date.today())
+        # Abacus part codes and labels
+        abacus_parts = [
+            ("P1_1", "Phase 1: Setting Numbers"), ("P1_2", "Phase 1: Clearing Beads"),
+            ("P1_3", "Phase 1: Place Value"), ("P1_4", "Phase 1: Vocabulary"),
+            ("P2_1", "Phase 2: Setting Numbers"), ("P2_2", "Phase 2: Clearing Beads"),
+            ("P2_3", "Phase 2: Place Value"),
+            ("P3_1", "Phase 3: Setting Numbers"), ("P3_2", "Phase 3: Clearing Beads"),
+            ("P3_3", "Phase 3: Place Value"),
+            ("P4_1", "Phase 4: Setting Numbers"), ("P4_2", "Phase 4: Clearing Beads"),
+            ("P5_1", "Phase 5: Place Value"), ("P5_2", "Phase 5: Vocabulary"),
+            ("P6_1", "Phase 6: Setting Numbers"), ("P6_2", "Phase 6: Clearing Beads"),
+            ("P6_3", "Phase 6: Place Value"), ("P6_4", "Phase 6: Vocabulary"),
+            ("P7_1", "Phase 7: Setting Numbers"), ("P7_2", "Phase 7: Clearing Beads"),
+            ("P7_3", "Phase 7: Place Value"), ("P7_4", "Phase 7: Vocabulary"),
+            ("P8_1", "Phase 8: Setting Numbers"), ("P8_2", "Phase 8: Clearing Beads"),
+        ]
+        part_inputs = {}
+        with ui.row():
+            for code, label in abacus_parts:
+                part_inputs[code] = ui.number(label=label, value=0, min=0, max=3, step=1)
+        notes_input = ui.input("Notes (optional)", multiline=True)
 
-                        """
-                        studentname = u_studentname.value
-                        datestring = u_today_date.value
-                        today_date = datetime.datetime.strptime(
-                            datestring, "%Y-%m-%d"
-                        ).strftime("%Y_%m_%d-%H%M%S_%p")
-                        abacus_trial11 = int(u_abacus_trial11.value)
-                        abacus_trial12 = int(u_abacus_trial12.value)
-                        abacus_trial13 = int(u_abacus_trial13.value)
-                        abacus_trial14 = int(u_abacus_trial14.value)
-                        abacus_trial21 = int(u_abacus_trial21.value)
-                        abacus_trial22 = int(u_abacus_trial22.value)
-                        abacus_trial23 = int(u_abacus_trial23.value)
-                        abacus_trial31 = int(u_abacus_trial31.value)
-                        abacus_trial32 = int(u_abacus_trial32.value)
-                        abacus_trial33 = int(u_abacus_trial33.value)
-                        abacus_trial41 = int(u_abacus_trial41.value)
-                        abacus_trial42 = int(u_abacus_trial42.value)
-                        abacus_trial51 = int(u_abacus_trial51.value)
-                        abacus_trial52 = int(u_abacus_trial52.value)
-                        abacus_trial61 = int(u_abacus_trial61.value)
-                        abacus_trial62 = int(u_abacus_trial62.value)
-                        abacus_trial63 = int(u_abacus_trial63.value)
-                        abacus_trial64 = int(u_abacus_trial64.value)
-                        abacus_trial71 = int(u_abacus_trial71.value)
-                        abacus_trial72 = int(u_abacus_trial72.value)
-                        abacus_trial73 = int(u_abacus_trial73.value)
-                        abacus_trial74 = int(u_abacus_trial74.value)
-                        abacus_trial81 = int(u_abacus_trial81.value)
-                        abacus_trial82 = int(u_abacus_trial82.value)
-                        studentdatabasename = f"abacus{studentname.title()}{datenow}"
-                        tmppath = Path(USER_DIR).joinpath(
-                            "StudentDatabase",
-                            "StudentDataFiles",
-                            studentname,
-                            studentdatabasename + ".json",
-                        )
-                        abacus_dictionary = {
-                            "studentname": u_studentname.value,
-                            "date": today_date,
-                            "abacus_trial11": abacus_trial11,
-                            "abacus_trial12": abacus_trial12,
-                            "abacus_trial13": abacus_trial13,
-                            "abacus_trial14": abacus_trial14,
-                            "abacus_trial21": abacus_trial21,
-                            "abacus_trial22": abacus_trial22,
-                            "abacus_trial23": abacus_trial23,
-                            "abacus_trial31": abacus_trial31,
-                            "abacus_trial32": abacus_trial32,
-                            "abacus_trial33": abacus_trial33,
-                            "abacus_trial41": abacus_trial41,
-                            "abacus_trial42": abacus_trial42,
-                            "abacus_trial51": abacus_trial51,
-                            "abacus_trial52": abacus_trial52,
-                            "abacus_trial61": abacus_trial61,
-                            "abacus_trial62": abacus_trial62,
-                            "abacus_trial63": abacus_trial63,
-                            "abacus_trial64": abacus_trial64,
-                            "abacus_trial71": abacus_trial71,
-                            "abacus_trial72": abacus_trial72,
-                            "abacus_trial73": abacus_trial73,
-                            "abacus_trial74": abacus_trial74,
-                            "abacus_trial81": abacus_trial81,
-                            "abacus_trial82": abacus_trial82,
-                        }
-                        with open(tmppath, "w", encoding="utf-8") as filename:
-                            json.dump(abacus_dictionary, filename)
-                            tmppath = Path(USER_DIR).joinpath(
-                                "StudentDatabase", "StudentDataFiles", "Filenames.txt"
-                            )
-                        with open(tmppath, "a", encoding="utf-8") as filename:
-                            tmppath = Path(USER_DIR).joinpath(
-                                "StudentDatabase",
-                                "StudentDataFiles",
-                                studentname,
-                                studentdatabasename + ".json",
-                            )
-                            filename.write(f"{tmppath}" + "\n")
+        def save_abacus_data():
+            name = student_name.value.strip()
+            date_val = date_input.value
+            notes = notes_input.value.strip()
+            if not name or not date_val:
+                ui.notify("Student name and date are required.", type="negative")
+                return
+            # Connect and insert
+            conn = get_connection()
+            try:
+                student_id = get_or_create_student(conn, name)
+                progress_type_id = get_progress_type_id(conn, ABACUS_PROGRESS_TYPE)
+                part_ids = get_abacus_parts(conn, progress_type_id)
+                session_id = create_abacus_session(conn, student_id, progress_type_id, date_val, notes)
+                part_scores = {}
+                for code in part_inputs:
+                    score = part_inputs[code].value
+                    part_scores[code] = (part_ids[code], score)
+                insert_abacus_results(conn, session_id, part_scores)
+                ui.notify("Abacus data saved successfully!", type="positive")
+            except Exception as e:
+                ui.notify(f"Error saving data: {e}", type="negative")
+            finally:
+                conn.close()
 
-                        # noinspection SqlResolve
-                        def data_entry():
-                            """
-                            Write abacus progress data to the database.
+        ui.button("Save Abacus Data", on_click=save_abacus_data, color="primary")
 
-                            Connects to the SQLite database specified by `dataBasePath` and inserts a new row
-                            into the 'ABACUSPROGRESS' table with the provided abacus progress data.
-
-                            Parameters
-                            ----------
-                            None
-
-                            Returns
-                            -------
-                            None
-
-                            Notes
-                            -----
-                            This function assumes the existence of variables such as `dataBasePath`,
-                            `studentname`, `today_date`, `abacus_trial11`, ..., `abacus_trial82`, `sqlite3`,
-                            and `ui`.
-
-                            The function establishes a connection to the database, creates a cursor, executes an
-                            SQL INSERT command with the abacus progress data, commits the changes, and notifies
-                            the user of successful data entry.
-
-                            Examples
-                            --------
-                            >>> data_entry()
-                            >>> # Abacus progress data successfully written to the database.
-                            >>> # The user is notified of successful data entry.
-
-                            See Also
-                            --------
-                            Some related functions or classes that might be useful.
-
-                            """
-                            conn = sqlite3.connect(dataBasePath)
-                            c = conn.cursor()
-                            c.execute(
-                                """INSERT INTO ABACUSPROGRESS (
-                                                                        STUDENTNAME,
-                                                                        DATE,
-                                                                        P1_1,
-                                                                        P1_2,
-                                                                        P1_3,
-                                                                        P1_4,
-                                                                        P2_1,
-                                                                        P2_2,
-                                                                        P2_3,
-                                                                        P3_1,
-                                                                        P3_2,
-                                                                        P3_3,
-                                                                        P4_1,
-                                                                        P4_2,
-                                                                        P5_1,
-                                                                        P5_2,
-                                                                        P6_1,
-                                                                        P6_2,
-                                                                        P6_3,
-                                                                        P6_4,
-                                                                        P7_1,
-                                                                        P7_2,
-                                                                        P7_3,
-                                                                        P7_4,
-                                                                        P8_1,
-                                                                        P8_2
-                                                                        )
-                                                                        VALUES (
-                                                                        ?,
-                                                                        ?,
-                                                                        ?,
-                                                                        ?,
-                                                                        ?,
-                                                                        ?,
-                                                                        ?,
-                                                                        ?,
-                                                                        ?,
-                                                                        ?,
-                                                                        ?,
-                                                                        ?,
-                                                                        ?,
-                                                                        ?,
-                                                                        ?,
-                                                                        ?,
-                                                                        ?,
-                                                                        ?,
-                                                                        ?,
-                                                                        ?,
-                                                                        ?,
-                                                                        ?,
-                                                                        ?,
-                                                                        ?,
-                                                                        ?,
-                                                                        ?)""",
-                                (
-                                    studentname,
-                                    today_date,
-                                    abacus_trial11,
-                                    abacus_trial12,
-                                    abacus_trial13,
-                                    abacus_trial14,
-                                    abacus_trial21,
-                                    abacus_trial22,
-                                    abacus_trial23,
-                                    abacus_trial31,
-                                    abacus_trial32,
-                                    abacus_trial33,
-                                    abacus_trial41,
-                                    abacus_trial42,
-                                    abacus_trial51,
-                                    abacus_trial52,
-                                    abacus_trial61,
-                                    abacus_trial62,
-                                    abacus_trial63,
-                                    abacus_trial64,
-                                    abacus_trial71,
-                                    abacus_trial72,
-                                    abacus_trial73,
-                                    abacus_trial74,
-                                    abacus_trial81,
-                                    abacus_trial82,
-                                ),
-                            )
-                            conn.commit()
-                            ui.notify(
-                                "Saved successfully!",
-                                position="center",
-                                type="positive",
-                                close_button="OK",
-                            )
-
-                        data_entry()
-
-                def graph(event):
-                    """
-                    Generate and display Abacus Skills Progression graphs for a specific student.
-
-                    Parameters
-                    ----------
-                    event : SomeEventType
-                        The event triggering the graph generation (not used in the function).
-
-                    Returns
-                    -------
-                    None
-
-                    Notes
-                    -----
-                    This function assumes the existence of variables such as `u_studentname.value`,
-                    `dataBasePath`, `USER_DIR`, `sqlite3`, `pd`, `np`, `go`, `make_subplots`,
-                    `date_fmt`, `ui`, and other global variables.
-
-                    The function connects to the SQLite database, retrieves the abacus progress data
-                    for the specified student, preprocesses the data, adds noise, performs descriptive
-                    statistics, calculates growth factors, creates subplots for each abacus phase,
-                    and generates an HTML file with the interactive graph. The generated HTML file is
-                    opened in a browser window, and the user is notified of successful graph
-                    generation.
-
-                    Examples
-                    --------
-                    >>> graph(some_event)
-                    >>> # Abacus Skills Progression graphs for the specified student are generated.
-                    >>> # The graphs are displayed in a browser window, and the user is notified.
-
-                    See Also
-                    --------
-                    Some related functions or classes that might be useful.
-
-                    """
-                    studentname = u_studentname.value
-                    dataBasePath = Path(USER_DIR).joinpath(
-                        "StudentDatabase", "students.db"
-                    )
-                    conn = sqlite3.connect(dataBasePath)
-                    df_sql = pd.read_sql_query("SELECT * FROM ABACUSPROGRESS", conn)
-                    df_student = df_sql[df_sql.STUDENTNAME == studentname]
-                    print(df_student)
-                    conn.close()
-                    df = df_student.drop(columns=["ID", "STUDENTNAME"])
-                    print(df)
-                    df = df.rename(columns={"DATE": "date"})
-                    df["date"] = df["date"].astype("string")
-                    df["date"] = pd.to_datetime(df["date"], format=date_fmt)
-                    df = df.set_index("date")
-                    print("Abacus Skills Progression")
-                    print(df)
-                    df = df.sort_values(by="date")
-                    mu, sigma = 0, 0.1
-                    noise = np.random.normal(
-                        mu, sigma, [len(df.index), len(df.columns)]
-                    )
-                    df_noisy = df + noise
-                    descriptiveStats = df.describe()
-                    print("Descriptive Statistics")
-                    print(descriptiveStats)
-                    growthCalculation = df.diff(periods=3)
-                    growth = growthCalculation[-1:]
-                    print("Growth Factor (Now vs 3 Measurements ago)")
-                    print(growth)
-                    fig = make_subplots(
-                        rows=4,
-                        cols=2,
-                        subplot_titles=(
-                            "Phase 1: Foundation",
-                            "Phase 2: Addition",
-                            "Phase 3: Subtraction",
-                            "Phase 4: Multiplication",
-                            "Phase 5: Division",
-                            "Phase 6: Decimals",
-                            "Phase 7: Fractions",
-                            "Phase 8: Special Functions",
-                        ),
-                        print_grid=True,
-                    )
+        def plot_abacus_data():
+            name = student_name.value.strip()
+            if not name:
+                ui.notify("Enter student name to plot.", type="negative")
+                return
+            conn = get_connection()
+            try:
+                cur = conn.cursor()
+                cur.execute("SELECT id FROM Student WHERE name = ?", (name,))
+                row = cur.fetchone()
+                if not row:
+                    ui.notify("Student not found.", type="negative")
+                    return
+                student_id = row[0]
+                progress_type_id = get_progress_type_id(conn, ABACUS_PROGRESS_TYPE)
+                part_ids = get_abacus_parts(conn, progress_type_id)
+                part_codes = list(part_ids.keys())
+                df = fetch_abacus_data_for_student(conn, student_id, progress_type_id, part_codes)
+                if df.empty:
+                    ui.notify("No abacus data for this student.", type="warning")
+                    return
+                # Plotting
+                fig = make_subplots(
+                    rows=4, cols=2,
+                    subplot_titles=[
+                        "Phase 1", "Phase 2", "Phase 3", "Phase 4",
+                        "Phase 5", "Phase 6", "Phase 7", "Phase 8"
+                    ]
+                )
+                # Map codes to subplot positions
+                phase_map = {
+                    "P1": (1, 1), "P2": (1, 2), "P3": (2, 1), "P4": (2, 2),
+                    "P5": (3, 1), "P6": (3, 2), "P7": (4, 1), "P8": (4, 2)
+                }
+                for code in part_codes:
+                    phase = code.split("_")[0]
+                    row, col = phase_map[phase]
                     fig.add_trace(
                         go.Scatter(
-                            x=df_noisy.index,
-                            y=df_noisy["P1_1"],
+                            x=df['date'],
+                            y=df[code],
                             mode="lines+markers",
-                            name="Setting Numbers",
-                            legendgroup="Phase 1",
-                            legendgrouptitle_text="Phase 1",
-                            hovertemplate="  %{y:.1f} ",
+                            name=code,
+                            hovertemplate=f"{code}: "+"%{y}"
                         ),
-                        row=1,
-                        col=1,
+                        row=row, col=col
                     )
-                    fig.add_trace(
-                        go.Scatter(
-                            x=df_noisy.index,
-                            y=df_noisy["P1_2"],
-                            mode="lines+markers",
-                            name="Clearing Beads",
-                            legendgroup="Phase " "1",
-                            legendgrouptitle_text="Phase 1",
-                            hovertemplate="  %{y:.1f} ",
-                        ),
-                        row=1,
-                        col=1,
-                    )
-                    fig.add_trace(
-                        go.Scatter(
-                            x=df_noisy.index,
-                            y=df_noisy["P1_3"],
-                            mode="lines+markers",
-                            name="Place Value",
-                            legendgroup="Phase " "1",
-                            legendgrouptitle_text="Phase 1",
-                            hovertemplate="  %{y:.1f} ",
-                        ),
-                        row=1,
-                        col=1,
-                    )
-                    fig.add_trace(
-                        go.Scatter(
-                            x=df_noisy.index,
-                            y=df_noisy["P1_4"],
-                            mode="lines+markers",
-                            name="Vocabulary",
-                            legendgroup="Phase " "1",
-                            legendgrouptitle_text="Phase 1",
-                            hovertemplate="  %{y:.1f} ",
-                        ),
-                        row=1,
-                        col=1,
-                    )
-                    fig.add_trace(
-                        go.Scatter(
-                            x=df_noisy.index,
-                            y=df_noisy["P2_1"],
-                            mode="lines+markers",
-                            name="Setting Numbers",
-                            legendgroup="Phase 2",
-                            legendgrouptitle_text="Phase 2",
-                            hovertemplate="  %{y:.1f} ",
-                        ),
-                        row=1,
-                        col=2,
-                    )
-                    fig.add_trace(
-                        go.Scatter(
-                            x=df_noisy.index,
-                            y=df_noisy["P2_2"],
-                            mode="lines+markers",
-                            name="Clearing Beads",
-                            legendgroup="Phase " "2",
-                            legendgrouptitle_text="Phase 2",
-                            hovertemplate="  %{y:.1f} ",
-                        ),
-                        row=1,
-                        col=2,
-                    )
-                    fig.add_trace(
-                        go.Scatter(
-                            x=df_noisy.index,
-                            y=df_noisy["P2_3"],
-                            mode="lines+markers",
-                            name="Place Value",
-                            legendgroup="Phase " "2",
-                            legendgrouptitle_text="Phase 2",
-                            hovertemplate="  %{y:.1f} ",
-                        ),
-                        row=1,
-                        col=2,
-                    )
-                    fig.add_trace(
-                        go.Scatter(
-                            x=df_noisy.index,
-                            y=df_noisy["P3_1"],
-                            mode="lines+markers",
-                            name="Setting Numbers",
-                            legendgroup="Phase 3",
-                            legendgrouptitle_text="Phase 3",
-                            hovertemplate="  %{y:.1f} ",
-                        ),
-                        row=2,
-                        col=1,
-                    )
-                    fig.add_trace(
-                        go.Scatter(
-                            x=df_noisy.index,
-                            y=df_noisy["P3_2"],
-                            mode="lines+markers",
-                            name="Clearing Beads",
-                            legendgroup="Phase " "3",
-                            legendgrouptitle_text="Phase 3",
-                            hovertemplate="  %{y:.1f} ",
-                        ),
-                        row=2,
-                        col=1,
-                    )
-                    fig.add_trace(
-                        go.Scatter(
-                            x=df_noisy.index,
-                            y=df_noisy["P3_3"],
-                            mode="lines+markers",
-                            name="Place Value",
-                            legendgroup="Phase " "3",
-                            legendgrouptitle_text="Phase 3",
-                            hovertemplate="  %{y:.1f} ",
-                        ),
-                        row=2,
-                        col=1,
-                    )
-                    fig.add_trace(
-                        go.Scatter(
-                            x=df_noisy.index,
-                            y=df_noisy["P4_1"],
-                            mode="lines+markers",
-                            name="Setting Numbers",
-                            legendgroup="Phase 4",
-                            legendgrouptitle_text="Phase 4",
-                            hovertemplate="  %{y:.1f} ",
-                        ),
-                        row=2,
-                        col=2,
-                    )
-                    fig.add_trace(
-                        go.Scatter(
-                            x=df_noisy.index,
-                            y=df_noisy["P4_2"],
-                            mode="lines+markers",
-                            name="Clearing Beads",
-                            legendgroup="Phase " "4",
-                            legendgrouptitle_text="Phase 4",
-                            hovertemplate="  %{y:.1f} ",
-                        ),
-                        row=2,
-                        col=2,
-                    )
-                    fig.add_trace(
-                        go.Scatter(
-                            x=df_noisy.index,
-                            y=df_noisy["P5_1"],
-                            mode="lines+markers",
-                            name="Place Value",
-                            legendgroup="Phase " "5",
-                            legendgrouptitle_text="Phase 5",
-                            hovertemplate="  %{y:.1f} ",
-                        ),
-                        row=3,
-                        col=1,
-                    )
-                    fig.add_trace(
-                        go.Scatter(
-                            x=df_noisy.index,
-                            y=df_noisy["P5_2"],
-                            mode="lines+markers",
-                            name="Vocabulary",
-                            legendgroup="Phase " "5",
-                            legendgrouptitle_text="Phase 5",
-                            hovertemplate="  %{y:.1f} ",
-                        ),
-                        row=3,
-                        col=1,
-                    )
-                    fig.add_trace(
-                        go.Scatter(
-                            x=df_noisy.index,
-                            y=df_noisy["P6_1"],
-                            mode="lines+markers",
-                            name="Setting Numbers",
-                            legendgroup="Phase 6",
-                            legendgrouptitle_text="Phase 6",
-                            hovertemplate="  %{y:.1f} ",
-                        ),
-                        row=3,
-                        col=2,
-                    )
-                    fig.add_trace(
-                        go.Scatter(
-                            x=df_noisy.index,
-                            y=df_noisy["P6_2"],
-                            mode="lines+markers",
-                            name="Clearing Beads",
-                            legendgroup="Phase " "6",
-                            legendgrouptitle_text="Phase 6",
-                            hovertemplate="  %{y:.1f} ",
-                        ),
-                        row=3,
-                        col=2,
-                    )
-                    fig.add_trace(
-                        go.Scatter(
-                            x=df_noisy.index,
-                            y=df_noisy["P6_3"],
-                            mode="lines+markers",
-                            name="Place Value",
-                            legendgroup="Phase " "6",
-                            legendgrouptitle_text="Phase 6",
-                            hovertemplate="  %{y:.1f} ",
-                        ),
-                        row=3,
-                        col=2,
-                    )
-                    fig.add_trace(
-                        go.Scatter(
-                            x=df_noisy.index,
-                            y=df_noisy["P6_4"],
-                            mode="lines+markers",
-                            name="Vocabulary",
-                            legendgroup="Phase " "6",
-                            legendgrouptitle_text="Phase 6",
-                            hovertemplate="  %{y:.1f} ",
-                        ),
-                        row=3,
-                        col=2,
-                    )
-                    fig.add_trace(
-                        go.Scatter(
-                            x=df_noisy.index,
-                            y=df_noisy["P7_1"],
-                            mode="lines+markers",
-                            name="Setting Numbers",
-                            legendgroup="Phase 7",
-                            legendgrouptitle_text="Phase 7",
-                            hovertemplate="  %{y:.1f} ",
-                        ),
-                        row=4,
-                        col=1,
-                    )
-                    fig.add_trace(
-                        go.Scatter(
-                            x=df_noisy.index,
-                            y=df_noisy["P7_2"],
-                            mode="lines+markers",
-                            name="Clearing Beads",
-                            legendgroup="Phase " "7",
-                            legendgrouptitle_text="Phase 7",
-                            hovertemplate="  %{y:.1f} ",
-                        ),
-                        row=4,
-                        col=1,
-                    )
-                    fig.add_trace(
-                        go.Scatter(
-                            x=df_noisy.index,
-                            y=df_noisy["P7_3"],
-                            mode="lines+markers",
-                            name="Place Value",
-                            legendgroup="Phase " "7",
-                            legendgrouptitle_text="Phase 7",
-                            hovertemplate="  %{y:.1f} ",
-                        ),
-                        row=4,
-                        col=1,
-                    )
-                    fig.add_trace(
-                        go.Scatter(
-                            x=df_noisy.index,
-                            y=df_noisy["P7_4"],
-                            mode="lines+markers",
-                            name="Vocabulary",
-                            legendgroup="Phase " "7",
-                            legendgrouptitle_text="Phase 7",
-                            hovertemplate="  %{y:.1f} ",
-                        ),
-                        row=4,
-                        col=1,
-                    )
-                    fig.add_trace(
-                        go.Scatter(
-                            x=df_noisy.index,
-                            y=df_noisy["P8_1"],
-                            mode="lines+markers",
-                            name="Setting Numbers",
-                            legendgroup="Phase 8",
-                            legendgrouptitle_text="Phase 8",
-                            hovertemplate="  %{y:.1f} ",
-                        ),
-                        row=4,
-                        col=2,
-                    )
-                    fig.add_trace(
-                        go.Scatter(
-                            x=df_noisy.index,
-                            y=df_noisy["P8_2"],
-                            mode="lines+markers",
-                            name="Clearing Beads",
-                            legendgroup="Phase " "8",
-                            legendgrouptitle_text="Phase 8",
-                            hovertemplate="  %{y:.1f} ",
-                        ),
-                        row=4,
-                        col=2,
-                    )
-                    fig.add_hrect(
-                        y0=-0.5,
-                        y1=0.5,
-                        line_width=0,
-                        fillcolor="#b3c7f7",
-                        opacity=0.2,
-                        row=1,
-                        col=1,
-                    )
-                    fig.add_hrect(
-                        y0=0.5,
-                        y1=1.5,
-                        line_width=0,
-                        fillcolor="orange",
-                        opacity=0.2,
-                        row=1,
-                        col=1,
-                    )
-                    fig.add_hrect(
-                        y0=1.5,
-                        y1=2.5,
-                        line_width=0,
-                        fillcolor="yellow",
-                        opacity=0.2,
-                        row=1,
-                        col=1,
-                    )
-                    fig.add_hrect(
-                        y0=2.5,
-                        y1=3.5,
-                        line_width=0,
-                        fillcolor="green",
-                        opacity=0.2,
-                        row=1,
-                        col=1,
-                    )
-                    fig.add_hrect(
-                        y0=-0.5,
-                        y1=0.5,
-                        line_width=0,
-                        fillcolor="#b3c7f7",
-                        opacity=0.2,
-                        row=1,
-                        col=2,
-                    )
-                    fig.add_hrect(
-                        y0=0.5,
-                        y1=1.5,
-                        line_width=0,
-                        fillcolor="orange",
-                        opacity=0.2,
-                        row=1,
-                        col=2,
-                    )
-                    fig.add_hrect(
-                        y0=1.5,
-                        y1=2.5,
-                        line_width=0,
-                        fillcolor="yellow",
-                        opacity=0.2,
-                        row=1,
-                        col=2,
-                    )
-                    fig.add_hrect(
-                        y0=2.5,
-                        y1=3.5,
-                        line_width=0,
-                        fillcolor="green",
-                        opacity=0.2,
-                        row=1,
-                        col=2,
-                    )
-                    fig.add_hrect(
-                        y0=-0.5,
-                        y1=0.5,
-                        line_width=0,
-                        fillcolor="#b3c7f7",
-                        opacity=0.2,
-                        row=2,
-                        col=1,
-                    )
-                    fig.add_hrect(
-                        y0=0.5,
-                        y1=1.5,
-                        line_width=0,
-                        fillcolor="orange",
-                        opacity=0.2,
-                        row=2,
-                        col=1,
-                    )
-                    fig.add_hrect(
-                        y0=1.5,
-                        y1=2.5,
-                        line_width=0,
-                        fillcolor="yellow",
-                        opacity=0.2,
-                        row=2,
-                        col=1,
-                    )
-                    fig.add_hrect(
-                        y0=2.5,
-                        y1=3.5,
-                        line_width=0,
-                        fillcolor="green",
-                        opacity=0.2,
-                        row=2,
-                        col=1,
-                    )
-                    fig.add_hrect(
-                        y0=-0.5,
-                        y1=0.5,
-                        line_width=0,
-                        fillcolor="#b3c7f7",
-                        opacity=0.2,
-                        row=2,
-                        col=2,
-                    )
-                    fig.add_hrect(
-                        y0=0.5,
-                        y1=1.5,
-                        line_width=0,
-                        fillcolor="orange",
-                        opacity=0.2,
-                        row=2,
-                        col=2,
-                    )
-                    fig.add_hrect(
-                        y0=1.5,
-                        y1=2.5,
-                        line_width=0,
-                        fillcolor="yellow",
-                        opacity=0.2,
-                        row=2,
-                        col=2,
-                    )
-                    fig.add_hrect(
-                        y0=2.5,
-                        y1=3.5,
-                        line_width=0,
-                        fillcolor="green",
-                        opacity=0.2,
-                        row=2,
-                        col=2,
-                    )
-                    fig.add_hrect(
-                        y0=-0.5,
-                        y1=0.5,
-                        line_width=0,
-                        fillcolor="#b3c7f7",
-                        opacity=0.2,
-                        row=3,
-                        col=1,
-                    )
-                    fig.add_hrect(
-                        y0=0.5,
-                        y1=1.5,
-                        line_width=0,
-                        fillcolor="orange",
-                        opacity=0.2,
-                        row=3,
-                        col=1,
-                    )
-                    fig.add_hrect(
-                        y0=1.5,
-                        y1=2.5,
-                        line_width=0,
-                        fillcolor="yellow",
-                        opacity=0.2,
-                        row=3,
-                        col=1,
-                    )
-                    fig.add_hrect(
-                        y0=2.5,
-                        y1=3.5,
-                        line_width=0,
-                        fillcolor="green",
-                        opacity=0.2,
-                        row=3,
-                        col=1,
-                    )
-                    fig.add_hrect(
-                        y0=-0.5,
-                        y1=0.5,
-                        line_width=0,
-                        fillcolor="#b3c7f7",
-                        opacity=0.2,
-                        row=3,
-                        col=2,
-                    )
-                    fig.add_hrect(
-                        y0=0.5,
-                        y1=1.5,
-                        line_width=0,
-                        fillcolor="orange",
-                        opacity=0.2,
-                        row=3,
-                        col=2,
-                    )
-                    fig.add_hrect(
-                        y0=1.5,
-                        y1=2.5,
-                        line_width=0,
-                        fillcolor="yellow",
-                        opacity=0.2,
-                        row=3,
-                        col=2,
-                    )
-                    fig.add_hrect(
-                        y0=2.5,
-                        y1=3.5,
-                        line_width=0,
-                        fillcolor="green",
-                        opacity=0.2,
-                        row=3,
-                        col=2,
-                    )
-                    fig.add_hrect(
-                        y0=-0.5,
-                        y1=0.5,
-                        line_width=0,
-                        fillcolor="#b3c7f7",
-                        opacity=0.2,
-                        row=4,
-                        col=1,
-                    )
-                    fig.add_hrect(
-                        y0=0.5,
-                        y1=1.5,
-                        line_width=0,
-                        fillcolor="orange",
-                        opacity=0.2,
-                        row=4,
-                        col=1,
-                    )
-                    fig.add_hrect(
-                        y0=1.5,
-                        y1=2.5,
-                        line_width=0,
-                        fillcolor="yellow",
-                        opacity=0.2,
-                        row=4,
-                        col=1,
-                    )
-                    fig.add_hrect(
-                        y0=2.5,
-                        y1=3.5,
-                        line_width=0,
-                        fillcolor="green",
-                        opacity=0.2,
-                        row=4,
-                        col=1,
-                    )
-                    fig.add_hrect(
-                        y0=-0.5,
-                        y1=0.5,
-                        line_width=0,
-                        fillcolor="#b3c7f7",
-                        opacity=0.2,
-                        row=4,
-                        col=2,
-                    )
-                    fig.add_hrect(
-                        y0=0.5,
-                        y1=1.5,
-                        line_width=0,
-                        fillcolor="orange",
-                        opacity=0.2,
-                        row=4,
-                        col=2,
-                    )
-                    fig.add_hrect(
-                        y0=1.5,
-                        y1=2.5,
-                        line_width=0,
-                        fillcolor="yellow",
-                        opacity=0.2,
-                        row=4,
-                        col=2,
-                    )
-                    fig.add_hrect(
-                        y0=2.5,
-                        y1=3.5,
-                        line_width=0,
-                        fillcolor="green",
-                        opacity=0.2,
-                        row=4,
-                        col=2,
-                    )
-                    # Define the common properties for y-axes
-                    y_axes_properties = {
-                        "range": [-0.5, 3.5],
-                        "fixedrange": True,
-                        "ticktext": ["Unable", "Prompted", "Hesitated", "Independent"],
-                        "tickvals": [0.1, 1, 2, 3],
-                    }
+                fig.update_layout(
+                    template="simple_white",
+                    title_text=f"{name}: Abacus Skills Progression",
+                    hovermode="x unified"
+                )
+                # Show in browser or as HTML
+                tmp_html = Path.home() / "AbacusSkillsProgression.html"
+                fig.write_html(str(tmp_html), auto_open=True)
+                ui.notify("Graph generated and opened in browser.", type="positive")
+            except Exception as e:
+                ui.notify(f"Error plotting data: {e}", type="negative")
+            finally:
+                conn.close()
 
-                    # Update y-axes for each row and column
-                    for row in range(1, 4):
-                        for col in range(1, 3):
-                            fig.update_yaxes(**y_axes_properties, row=row, col=col)
+        ui.button("Plot Abacus Data", on_click=plot_abacus_data, color="secondary")
 
-                    fig.update_layout(
-                        template="simple_white",
-                        title_text=f"{studentname}: Abacus Skills Progression",
-                        hovermode="x unified",
-                        hoverlabel=dict(namelength=-1),
-                    )
-                    tmppath = Path(USER_DIR).joinpath(
-                        "StudentDatabase",
-                        "StudentDataFiles",
-                        studentname,
-                        "AbacusSkillsProgression.html",
-                    )
-                    fig.write_html(tmppath, auto_open=True)
-                    # fig.show( )
-                    ui.notify(
-                        "Graph Successful. The Graphs will open in a Browser Window",
-                        position="center",
-                        type="positive",
-                        close_button="OK",
-                    )
+# --- PAGE ENTRY POINT ---
+def create():
+    abacus_skills_ui()
 
-                def create_ui() -> None:
-                    """
-                    Create a GUI layout for entering student information and trial data.
-
-                    Returns
-                    -------
-                    None
-
-                    Notes
-                    -----
-                    This function assumes the existence of various UI elements (e.g., `u_studentname`,
-                    `u_today_date`, ...`), and other variables related to the application.
-
-                    The UI consists of several rows with different input elements for selecting a
-                    student, entering the date, selecting a task, providing a rubric, entering trial
-                    data, inputting anecdotal notes, and buttons for saving and exiting.
-
-                    Examples
-                    --------
-                    >>> create_ui()
-                    >>> # GUI layout created with various input elements and buttons.
-                    >>> # Users can interact with the UI to enter student information and trial data.
-
-                    See Also
-                    --------
-                    Some related functions or classes that might be useful.
-
-                    """
-                    with ui.row().classes("w-screen no-wrap py-4").style(
-                        'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                    ):
-                        ui.button("GRAPH", color="#172554", on_click=graph).classes(
-                            "text-white"
-                        )
-                    with ui.row().classes("w-screen no-wrap py-4").style(
-                        'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                    ):
-                        ui.select(
-                            options=students,
-                            with_input=True,
-                            on_change=lambda e: u_studentname.set_value(e.value),
-                        ).classes("w-[300px]").style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        ).props(
-                            'aria-label="Select Student from the Dropdown. It will autocomplete as you type"'
-                        ).tooltip("Type Student Name, it will autocomplete AS you type")
-                        ui.date(
-                            value="f{datenow}",
-                            on_change=lambda e: u_today_date.set_value(e.value),
-                        ).classes("w-1/2").style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    with ui.row().classes("w-screen no-wrap py-4").style(
-                        'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                    ):
-                        ui.label(
-                            "RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent"
-                        ).props(
-                            'aria-label="RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent"'
-                        ).style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    ui.input().props(
-                        'aria-label="RUBRIC: 0=No attempt 1=Required Assistance 2=Hesitated 3=Independent"'
-                    ).classes("sr-only").style(
-                        'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                    )
-                    with ui.row().classes("w-screen no-wrap py-4").style(
-                        'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                    ):
-                        ui.label("PHASE 1: Setting and Clearing Numbers").classes(
-                            "justify-center items-center text-lg"
-                        ).style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    ui.input().props(
-                        'aria-label="PHASE 1: Setting and Clearing Numbers"'
-                    ).classes("sr-only").style(
-                        'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                    )
-                    with ui.row().classes("w-screen no-wrap py-4").style(
-                        'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                    ):
-                        ui.number(
-                            label="1.1 Setting Numbers",
-                            
-                            on_change=lambda e: u_abacus_trial11.set_value(e.value),
-                        ).classes("w-[600px]").style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        ).props('aria-label="1.1 Setting Numbers"').tooltip(
-                            "1.1 Setting Numbers"
-                        )
-                    with ui.row().classes("w-screen no-wrap py-4").style(
-                        'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                    ):
-                        ui.number(
-                            label="1.2 Clearing Numbers",
-                            
-                            on_change=lambda e: u_abacus_trial12.set_value(e.value),
-                        ).classes("w-[600px]").style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        ).props('aria-label="1.2 Clearing Numbers"').tooltip(
-                            "1.2 Clearing Numbers"
-                        )
-                    with ui.row().classes("w-screen no-wrap py-4").style(
-                        'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                    ):
-                        ui.number(
-                            label="1.3 Place Value",
-                            
-                            on_change=lambda e: u_abacus_trial13.set_value(e.value),
-                        ).classes("w-[600px]").props(
-                            'aria-label="1.3 Place Value"'
-                        ).style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        ).tooltip("1.3 Place Value")
-                    with ui.row().classes("w-screen no-wrap py-4").style(
-                        'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                    ):
-                        ui.number(
-                            label="1.4 Vocabulary",
-                            
-                            on_change=lambda e: u_abacus_trial14.set_value(e.value),
-                        ).classes("w-[600px]").props(
-                            'aria-label="1.4 Vocabulary"'
-                        ).style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        ).tooltip("1.4 Vocabulary")
-                    with ui.row().classes("w-screen no-wrap py-4").style(
-                        'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                    ):
-                        ui.label("PHASE 2: Addition").classes(
-                            "justify-center items-center text-lg"
-                        ).style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    ui.input().props('aria-label="PHASE 2: Addition"').classes(
-                        "sr-only"
-                    ).style('font-style:normal, font-family: "Atkinson Hyperlegible"')
-                    with ui.row().classes("w-screen no-wrap py-4").style(
-                        'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                    ):
-                        ui.number(
-                            label="2.1 Addition of Single Digit Numbers",
-                            
-                            on_change=lambda e: u_abacus_trial21.set_value(e.value),
-                        ).classes("w-[600px]").style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        ).props('aria-label="2.1 Addition of Single Digit Numbers"')
-                    with ui.row().classes("w-screen no-wrap py-4").style(
-                        'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                    ):
-                        ui.number(
-                            label="2.2 Addition of Multiple Digit Numbers – Direct",
-                            
-                            on_change=lambda e: u_abacus_trial22.set_value(e.value),
-                        ).classes("w-[600px]").style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        ).props(
-                            'aria-label="2.2 Addition of Multiple Digit Numbers – Direct"'
-                        )
-                    with ui.row().classes("w-screen no-wrap py-4").style(
-                        'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                    ):
-                        ui.number(
-                            label="2.3 Addition of Multiple Digit Numbers – Indirect",
-                            
-                            on_change=lambda e: u_abacus_trial23.set_value(e.value),
-                        ).classes("w-[600px]").style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        ).props(
-                            'aria-label="2.3 Addition of Multiple Digit Numbers – Indirect"'
-                        )
-                    with ui.row().classes("w-screen no-wrap py-4").style(
-                        'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                    ):
-                        ui.label("PHASE 3: Subtraction").classes(
-                            "justify-center items-center text-lg"
-                        ).style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                        ui.input().props('aria-label="PHASE 3: Subtraction"').classes(
-                            "sr-only"
-                        ).style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    with ui.row().classes("w-screen no-wrap py-4").style(
-                        'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                    ):
-                        ui.number(
-                            label="3.1 Subtraction",
-                            
-                            on_change=lambda e: u_abacus_trial31.set_value(e.value),
-                        ).classes("w-[600px]").props(
-                            'aria-label="3.1 Subtraction"'
-                        ).style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    with ui.row().classes("w-screen no-wrap py-4").style(
-                        'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                    ):
-                        ui.number(
-                            label="3.2 Subtraction of Multiple Digit Numbers – Direct",
-                            
-                            on_change=lambda e: u_abacus_trial32.set_value(e.value),
-                        ).classes("w-[600px]").style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        ).props(
-                            'aria-label="3.2 Subtraction of Multiple Digit Numbers – Direct"'
-                        )
-                    with ui.row().classes("w-screen no-wrap py-4").style(
-                        'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                    ):
-                        ui.number(
-                            label="3.3 Subtraction of Multiple Digit Numbers – Indirect",
-                            
-                            on_change=lambda e: u_abacus_trial33.set_value(e.value),
-                        ).classes("w-[600px]").style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        ).props(
-                            'aria-label="3.3 Subtraction of Multiple Digit Numbers – Indirect"'
-                        )
-                    with ui.row().classes("w-screen no-wrap py-4").style(
-                        'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                    ):
-                        ui.label("PHASE 4: Multiplication").classes(
-                            "justify-center items-center text-lg"
-                        ).style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                        ui.input().props(
-                            'aria-label="PHASE 4: Multiplication"'
-                        ).classes("sr-only")
-                    with ui.row().classes("w-screen no-wrap py-4").style(
-                        'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                    ):
-                        ui.number(
-                            label="4.1 Multiplication – 2+ Digit Multiplicand 1-Digit Multiplier",
-                            
-                            on_change=lambda e: u_abacus_trial41.set_value(e.value),
-                        ).classes("w-[600px]").style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        ).props(
-                            'aria-label="4.1 Multiplication – 2+ Digit Multiplicand 1-Digit Multiplier"'
-                        )
-                    with ui.row().classes("w-screen no-wrap py-4").style(
-                        'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                    ):
-                        ui.number(
-                            label="4.2 Multiplication – 2+ Digit Multiplicand AND Multiplier",
-                            
-                            on_change=lambda e: u_abacus_trial42.set_value(e.value),
-                        ).classes("w-[600px]").style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        ).props(
-                            'aria-label="4.2 Multiplication – 2+ Digit Multiplicand AND Multiplier"'
-                        )
-                    with ui.row().classes("w-screen no-wrap py-4").style(
-                        'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                    ):
-                        ui.label("PHASE 5: Division").classes(
-                            "justify-center items-center text-lg"
-                        ).style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                        ui.input().props('aria-label="PHASE 5: Division"').classes(
-                            "sr-only"
-                        ).style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    with ui.row().classes("w-screen no-wrap py-4").style(
-                        'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                    ):
-                        ui.number(
-                            label="5.1 Division – 2+ Digit Dividend 1-Digit Divisor",
-                            
-                            on_change=lambda e: u_abacus_trial51.set_value(e.value),
-                        ).classes("w-[600px]").style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        ).props(
-                            'aria-label="5.1 Division – 2+ Digit Dividend 1-Digit Divisor"'
-                        )
-                    with ui.row().classes("w-screen no-wrap py-4").style(
-                        'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                    ):
-                        ui.number(
-                            label="5.2 Division – 2+ Digit Dividend AND 1 Digit Divisor",
-                            
-                            on_change=lambda e: u_abacus_trial52.set_value(e.value),
-                        ).classes("w-[600px]").style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        ).props(
-                            'aria-label="5.2 Division – 2+ Digit Dividend AND 1 Digit Divisor"'
-                        )
-                    with ui.row().classes("w-screen no-wrap py-4").style(
-                        'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                    ):
-                        ui.label("PHASE 6: Decimals").classes(
-                            "justify-center items-center text-lg"
-                        ).style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                        ui.input().props('aria-label="PHASE 6: Decimals"').classes(
-                            "sr-only"
-                        ).style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    with ui.row().classes("w-screen no-wrap py-4").style(
-                        'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                    ):
-                        ui.number(
-                            label="6.1 Addition of Decimals",
-                            
-                            on_change=lambda e: u_abacus_trial61.set_value(e.value),
-                        ).classes("w-[600px]").props(
-                            'aria-label="6.1 Addition of Decimals"'
-                        ).style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    with ui.row().classes("w-screen no-wrap py-4").style(
-                        'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                    ):
-                        ui.number(
-                            label="6.2 Subtraction of Decimals",
-                            
-                            on_change=lambda e: u_abacus_trial62.set_value(e.value),
-                        ).classes("w-[600px]").props(
-                            'aria-label="6.2 Subtraction of Decimals"'
-                        ).style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    with ui.row().classes("w-screen no-wrap py-4").style(
-                        'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                    ):
-                        ui.number(
-                            label="6.3 Multiplication of Decimals",
-                            
-                            on_change=lambda e: u_abacus_trial63.set_value(e.value),
-                        ).classes("w-[600px]").style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        ).props('aria-label="6.3 Multiplication of Decimals"')
-                    with ui.row().classes("w-screen no-wrap py-4").style(
-                        'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                    ):
-                        ui.number(
-                            label="6.4 Division of Decimals",
-                            
-                            on_change=lambda e: u_abacus_trial64.set_value(e.value),
-                        ).classes("w-[600px]").props(
-                            'aria-label="6.4 Division of Decimals"'
-                        ).style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    with ui.row().classes("w-screen no-wrap py-4").style(
-                        'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                    ):
-                        ui.label("PHASE 7: Fractions").classes(
-                            "justify-center items-center text-lg"
-                        ).style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                        ui.input().props('aria-label="PHASE 7: Fractions"').classes(
-                            "sr-only"
-                        ).style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    with ui.row().classes("w-screen no-wrap py-4").style(
-                        'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                    ):
-                        ui.number(
-                            label="7.1 Addition of Fractions",
-                            
-                            on_change=lambda e: u_abacus_trial71.set_value(e.value),
-                        ).classes("w-[600px]").props(
-                            'aria-label="7.1 Addition of Fractions"'
-                        ).style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    with ui.row().classes("w-screen no-wrap py-4").style(
-                        'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                    ):
-                        ui.number(
-                            label="7.2 Subtraction of Fractions",
-                            
-                            on_change=lambda e: u_abacus_trial72.set_value(e.value),
-                        ).classes("w-[600px]").style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        ).props('aria-label="7.2 Subtraction of Fractions"')
-                    with ui.row().classes("w-screen no-wrap py-4").style(
-                        'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                    ):
-                        ui.number(
-                            label="7.3 Multiplication of Fractions",
-                            
-                            on_change=lambda e: u_abacus_trial73.set_value(e.value),
-                        ).classes("w-[600px]").style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        ).props('aria-label="7.3 Multiplication of Fractions"')
-                    with ui.row().classes("w-screen no-wrap py-4").style(
-                        'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                    ):
-                        ui.number(
-                            label="7.4 Division of Fractions",
-                            
-                            on_change=lambda e: u_abacus_trial74.set_value(e.value),
-                        ).classes("w-[600px]").props(
-                            'aria-label="7.4 Division of Fractions"'
-                        ).style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    with ui.row().classes("w-screen no-wrap py-4").style(
-                        'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                    ):
-                        ui.label("PHASE 8: Roots and Percents").classes(
-                            "justify-center items-center text-lg"
-                        ).style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                        ui.input().props(
-                            'aria-label="PHASE 8: Roots and Percents"'
-                        ).classes("sr-only")
-                    with ui.row().classes("w-screen no-wrap py-4").style(
-                        'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                    ):
-                        ui.number(
-                            label="8.1 Percent",
-                            
-                            on_change=lambda e: u_abacus_trial81.set_value(e.value),
-                        ).classes("w-[600px]").props('aria-label="8.1 Percent"').style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    with ui.row().classes("w-screen no-wrap py-4").style(
-                        'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                    ):
-                        ui.number(
-                            label="8.2 Square Root",
-                            
-                            on_change=lambda e: u_abacus_trial82.set_value(e.value),
-                        ).classes("w-[600px]").props(
-                            'aria-label="8.2 Square Root"'
-                        ).style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                    with ui.row().classes("w-screen no-wrap py-4").style(
-                        'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                    ):
-                        ui.button("SAVE", color="#172554", on_click=save).classes(
-                            "text-white"
-                        ).style(
-                            'font-style:normal, font-family: "Atkinson Hyperlegible"'
-                        )
-                        ui.button("GRAPH", color="#172554", on_click=graph).classes(
-                            "text-white"
-                        )
-                        ui.button(
-                            "EXIT", color="#172554", on_click=app.shutdown
-                        ).classes("text-white")
-        create_ui()
+# If running standalone for testing
+if __name__ == "__main__":
+    from nicegui import app
+    create()
+    app.run()

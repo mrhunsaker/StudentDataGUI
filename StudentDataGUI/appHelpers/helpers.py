@@ -155,18 +155,27 @@ def create_roster() -> None:
 
 create_roster()
 
-from appHelpers.roster import students
-from appHelpers.workingdirectory import create_user_dir
+from .roster import students
+from .workingdirectory import create_user_dir
 
 create_user_dir()
 USER_DIR = create_user_dir()
 
-home_dir=os.path.expanduser("~")
-database_dir = os.path.join(home_dir, "Documents", "StudentDatabase")
-os.makedirs(database_dir, exist_ok=True)
-dataBasePath = os.path.join(database_dir, "students.db")
+# Use environment variable DB_DIR if set, otherwise default to /app/data (for containers), else fallback to ~/Documents/StudentDatabase
+database_dir = os.environ.get("DB_DIR")
+if not database_dir:
+    # Use /app/data if it exists (container), else fallback to ~/Documents/StudentDatabase
+    if os.path.exists("/app/data"):
+        database_dir = "/app/data"
+    else:
+        # Set the root data directory for all persistent files
+        DATA_ROOT = os.environ.get("DB_DIR", "/app/data")
+        os.makedirs(DATA_ROOT, exist_ok=True)
+        dataBasePath = os.path.join(DATA_ROOT, "students.db")
 
 def createFolderHierarchy() -> None:
+    """
+    Create the folder hierarchy for student data, logs, and backups under DATA_ROOT.
     """
     Create a folder hierarchy on the user's computer for student data.
 
@@ -218,61 +227,26 @@ def createFolderHierarchy() -> None:
                 - bntProgression.html
     """
     for name in students:
-        if not Path(USER_DIR).joinpath("StudentDatabase").exists():
-            tmppath = Path(USER_DIR).joinpath("StudentDatabase")
-            Path.mkdir(tmppath, parents=True, exist_ok=True)
-        if not Path(USER_DIR).joinpath("StudentDatabase", "errorLogs").exists():
-            tmppath = Path(USER_DIR).joinpath("StudentDatabase", "errorLogs")
-            Path.mkdir(tmppath, parents=True, exist_ok=True)
-        if not Path(USER_DIR).joinpath("StudentDatabase", "StudentDataFiles").exists():
-            tmppath = Path(USER_DIR).joinpath("StudentDatabase", "StudentDataFiles")
-            Path.mkdir(tmppath, parents=True, exist_ok=True)
-        if (
-            not Path(USER_DIR)
-            .joinpath("StudentDatabase", "StudentDataFiles", name)
-            .exists()
-        ):
-            tmppath = Path(USER_DIR).joinpath(
-                "StudentDatabase", "StudentDataFiles", name
-            )
-            Path.mkdir(tmppath, parents=True, exist_ok=True)
-        if (
-            not Path(USER_DIR)
-            .joinpath("StudentDatabase", "StudentDataFiles", name, "StudentDataSheets")
-            .exists()
-        ):
-            tmppath = Path(USER_DIR).joinpath(
-                "StudentDatabase", "StudentDataFiles", name, "StudentDataSheets"
-            )
-            Path.mkdir(tmppath, parents=True, exist_ok=True)
-        if (
-            not Path(USER_DIR)
-            .joinpath(
-                "StudentDatabase",
-                "StudentDataFiles",
-                name,
-                "StudentInstructionMaterials",
-            )
-            .exists()
-        ):
-            tmppath = Path(USER_DIR).joinpath(
-                "StudentDatabase",
-                "StudentDataFiles",
-                name,
-                "StudentInstructionMaterials",
-            )
-            Path.mkdir(tmppath, parents=True, exist_ok=True)
-        if (
-            not Path(USER_DIR)
-            .joinpath(
-                "StudentDatabase", "StudentDataFiles", name, "StudentVisionAssessments"
-            )
-            .exists()
-        ):
-            tmppath = Path(USER_DIR).joinpath(
-                "StudentDatabase", "StudentDataFiles", name, "StudentVisionAssessments"
-            )
-            Path.mkdir(tmppath, parents=True, exist_ok=True)
+        # StudentDataFiles root
+        student_datafiles_root = Path(DATA_ROOT).joinpath("StudentDataFiles")
+        student_errorlogs_root = Path(DATA_ROOT).joinpath("errorLogs")
+        student_backups_root = Path(DATA_ROOT).joinpath("backups")
+        student_folder = student_datafiles_root.joinpath(name)
+        student_datasheets = student_folder.joinpath("StudentDataSheets")
+        student_instruction = student_folder.joinpath("StudentInstructionMaterials")
+        student_vision = student_folder.joinpath("StudentVisionAssessments")
+
+        for folder in [
+            student_datafiles_root,
+            student_errorlogs_root,
+            student_backups_root,
+            student_folder,
+            student_datasheets,
+            student_instruction,
+            student_vision,
+        ]:
+            if not folder.exists():
+                folder.mkdir(parents=True, exist_ok=True)
         if (
             not Path(USER_DIR)
             .joinpath(

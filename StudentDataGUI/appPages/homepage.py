@@ -23,7 +23,7 @@ teachers of students with Visual Impairments
 """
 
 from nicegui import ui
-from appTheming import theme
+from ..appTheming import theme
 
 
 def content() -> None:

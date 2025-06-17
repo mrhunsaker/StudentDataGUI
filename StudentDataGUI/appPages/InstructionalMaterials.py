@@ -22,7 +22,7 @@ Program designed to be a data collection and instructional tool for
 teachers of students with Visual Impairments
 """
 
-from appTheming import theme
+from ..appTheming import theme
 from nicegui import ui
 
 

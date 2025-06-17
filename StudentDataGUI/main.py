@@ -29,13 +29,13 @@ import traceback
 from pathlib import Path
 
 from nicegui import ui
-from screeninfo import get_monitors
+from screeninfo import get_monitors, ScreenInfoError
 
 module_path = os.path.abspath(os.getcwd())
 if module_path not in sys.path:
     sys.path.append(module_path)
-from appTheming import theme
-from appHelpers.helpers import (
+from .appTheming import theme
+from .appHelpers.helpers import (
     createFolderHierarchy,
     dataBasePath,
     set_start_dir,
@@ -44,8 +44,8 @@ from appHelpers.helpers import (
     USER_DIR,
     datenow,
 )
-from appHelpers.workingdirectory import create_user_dir
-from appHelpers.sqlgenerate import create_connection, create_tables, initialize_database
+from .appHelpers.workingdirectory import create_user_dir
+from .appHelpers.sqlgenerate import create_connection, create_tables, initialize_database
 
 set_start_dir()
 working_dir()
@@ -54,19 +54,19 @@ create_roster()
 createFolderHierarchy()
 initialize_database()
 
-from appPages import abacus
-from appPages import sessionnotes
-from appPages import braille
-from appPages import braillenote
-from appPages import contactlog
-from appPages import cvi
-from appPages import homepage
-from appPages import InstructionalMaterials
-from appPages import ios
-from appPages import observations
-from appPages import screenreader
-from appPages import digitalliteracy
-from appPages import keyboarding
+from .appPages import abacus
+from .appPages import sessionnotes
+from .appPages import braille
+from .appPages import braillenote
+from .appPages import contactlog
+from .appPages import cvi
+from .appPages import homepage
+from .appPages import InstructionalMaterials
+from .appPages import ios
+from .appPages import observations
+from .appPages import screenreader
+from .appPages import digitalliteracy
+from .appPages import keyboarding
 
 
 def warningmessage(exception_type, exception_value, exception_traceback) -> None:
@@ -160,35 +160,6 @@ def initialize_ui():
 
 MONITOR = ""
 
-
-def getresolution() -> dict:
-    """
-    Retrieve the screen resolution of the primary monitor.
-
-    This function iterates through the available monitors using the `get_monitors` function
-    from the `screeninfo` module and returns the resolution of the primary monitor as a
-    dictionary with width and height keys.
-
-    Returns
-    -------
-    dict
-        A dictionary with 'width' and 'height' keys representing the screen resolution.
-
-    Examples
-    --------
-    >>> getresolution()
-    {'width': 1920, 'height': 1080}
-    """
-    try:
-        from screeninfo import get_monitors
-        for screen in get_monitors():
-            return {"width": screen.width, "height": screen.height}
-    except ImportError:
-        # Fallback for headless environments
-        return {"width": 1920, "height": 1080}
-
-MONITOR = getresolution()
-
 def main():
     """Main application entry point."""
     # Initialize UI components
@@ -203,7 +174,6 @@ def main():
         fullscreen=False,
         host=os.getenv("NICEGUI_HOST", "127.0.0.1"),
         port=int(os.getenv("NICEGUI_PORT", "8080")),
-        # window_size=(MONITOR.width, MONITOR.height - 72) # only relevant if native=True
     )
 
 if __name__ == "__main__":

@@ -13,9 +13,10 @@ from sqlite3 import Error
 import os
 
 ##############################################################################
-# Database Path (change as needed)
+# Database Path (now uses helpers logic for container compatibility)
 ##############################################################################
-DATABASE_PATH = "/home/ryhunsaker/Documents/StudentDatabase/students20252026.db"
+from .helpers import dataBasePath
+DATABASE_PATH = dataBasePath
 
 ##############################################################################
 # Schema Definition

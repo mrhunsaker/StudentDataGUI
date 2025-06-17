@@ -14,7 +14,8 @@ import plotly.graph_objs as go
 from nicegui import ui
 
 # --- CONFIGURATION ---
-DATABASE_PATH = "/home/ryhunsaker/Documents/StudentDatabase/students20252026.db"
+from StudentDataGUI.appHelpers.helpers import dataBasePath
+DATABASE_PATH = dataBasePath
 CONTACTLOG_PROGRESS_TYPE = "ContactLog"  # Must match ProgressType.name in DB
 
 # --- UTILITY FUNCTIONS ---
@@ -81,17 +82,33 @@ def create_contactlog_session(conn, student_id, progress_type_id, date, notes=No
     conn.commit()
     return cur.lastrowid
 
-def insert_contactlog_results(conn, session_id, part_values):
+def insert_contactlog_results(conn, session_id, part_scores, student_name, date_val, notes=None):
     """
-    part_values: dict of {code: value}
+    part_scores: dict of {code: score}
     """
     cur = conn.cursor()
-    for code, (part_id, value) in part_values.items():
+    for code, (part_id, score) in part_scores.items():
         cur.execute(
             "INSERT INTO AssessmentResult (session_id, part_id, score) VALUES (?, ?, ?)",
-            (session_id, part_id, value)
+            (session_id, part_id, score)
         )
     conn.commit()
+    # Save JSON snapshot of the inserted data
+    import json
+    from datetime import datetime
+    from StudentDataGUI.appHelpers.helpers import DATA_ROOT
+    now = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    student_dir = Path(DATA_ROOT) / "StudentDataFiles" / student_name
+    student_dir.mkdir(parents=True, exist_ok=True)
+    json_path = student_dir / f"contactlog_{now}.json"
+    json_data = {
+        "student_name": student_name,
+        "date": date_val,
+        "notes": notes,
+        "part_scores": {code: score for code, (part_id, score) in part_scores.items()}
+    }
+    with open(json_path, "w") as f:
+        json.dump(json_data, f, indent=2)
 
 def fetch_contactlog_data_for_student(conn, student_id, progress_type_id, part_codes):
     """

@@ -13,7 +13,8 @@ import pandas as pd
 from nicegui import ui
 
 # --- CONFIGURATION ---
-DATABASE_PATH = "/home/ryhunsaker/Documents/StudentDatabase/students20252026.db"
+from StudentDataGUI.appHelpers.helpers import dataBasePath
+DATABASE_PATH = dataBasePath
 OBSERVATION_TYPE = "Observation"  # Must match ProgressType.name in DB
 
 # --- UTILITY FUNCTIONS ---
@@ -42,14 +43,33 @@ def get_progress_type_id(conn, name):
     conn.commit()
     return cur.lastrowid
 
-def create_observation_session(conn, student_id, progress_type_id, date, notes=None):
+def create_observation_session(conn, student_id, progress_type_id, date, notes=None, student_name=None):
     cur = conn.cursor()
     cur.execute(
         "INSERT INTO ProgressSession (student_id, progress_type_id, date, notes) VALUES (?, ?, ?, ?)",
         (student_id, progress_type_id, date, notes)
     )
     conn.commit()
-    return cur.lastrowid
+    session_id = cur.lastrowid
+
+    # Save JSON snapshot of the inserted data
+    import json
+    from datetime import datetime
+    from StudentDataGUI.appHelpers.helpers import DATA_ROOT
+    now = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    if student_name:
+        student_dir = Path(DATA_ROOT) / "StudentDataFiles" / student_name
+        student_dir.mkdir(parents=True, exist_ok=True)
+        json_path = student_dir / f"observations_{now}.json"
+        json_data = {
+            "student_name": student_name,
+            "date": date,
+            "notes": notes,
+        }
+        with open(json_path, "w") as f:
+            json.dump(json_data, f, indent=2)
+
+    return session_id
 
 def fetch_observations_for_student(conn, student_id, progress_type_id):
     cur = conn.cursor()

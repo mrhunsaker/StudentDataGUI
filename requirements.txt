@@ -22,6 +22,7 @@ pillow>=10.0.0
 # GUI dependencies for containerized environment
 pycairo>=1.24.0
 pygobject>=3.44.0
+screeninfo>=0.8.1
 
 # Development and type checking
 mypy>=1.5.0

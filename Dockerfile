@@ -1,63 +1,68 @@
-# Use Python 3.11 slim base image
-FROM python:3.11-slim
+# Universal Dockerfile for Docker and Podman (Ubuntu 24.04 + Python 3.12 + venv)
+FROM ubuntu:24.04
 
-# Set environment variables
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 ENV PYTHONPATH=/app
+ENV PATH="/app/venv/bin:$PATH"
 ENV NICEGUI_HOST=0.0.0.0
 ENV NICEGUI_PORT=8080
 ENV MPLCONFIGDIR=/tmp/matplotlib
-ENV HOME=/tmp/home
+ENV HOME=/app/home
+ENV XDG_RUNTIME_DIR=/tmp/runtime
+ENV DEBIAN_FRONTEND=noninteractive
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
     build-essential \
+    curl \
+    python3.12 \
+    python3.12-dev \
+    python3.12-venv \
+    python3-pip \
     libcairo2-dev \
-    libgirepository1.0-dev \
+    libgirepository-2.0-0 \
+    libgirepository-2.0-dev \
+    gir1.2-girepository-2.0 \
     pkg-config \
-    python3-dev \
     python3-gi \
     python3-gi-cairo \
     gir1.2-gtk-3.0 \
     gobject-introspection \
     sqlite3 \
     libsqlite3-dev \
-    git \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* \
+    && apt-get clean
 
-# Set working directory
+# Create symbolic links for python3.12
+RUN ln -sf /usr/bin/python3.12 /usr/bin/python3 && \
+    ln -sf /usr/bin/python3.12 /usr/bin/python
+
 WORKDIR /app
 
-# Copy requirements and install Python dependencies
+# Create virtual environment and install Python dependencies
 COPY requirements.txt .
-RUN pip install --no-cache-dir --upgrade pip && \
-    pip install --no-cache-dir -r requirements.txt
+RUN python3 -m venv /app/venv && \
+    /app/venv/bin/pip install --no-cache-dir --upgrade pip setuptools wheel && \
+    /app/venv/bin/pip install --no-cache-dir -r requirements.txt
 
 # Copy application source code
 COPY StudentDataGUI/ ./StudentDataGUI/
 COPY __init__.py .
 
-# Create necessary directories and set permissions
-RUN mkdir -p /tmp/matplotlib /tmp/home/.cache/fontconfig /app/data && \
-    chmod -R 777 /tmp/matplotlib /tmp/home/.cache/fontconfig /app/data
+# Create necessary directories with proper permissions
+RUN mkdir -p /app/home/.cache/fontconfig \
+             /app/data \
+             /app/database \
+             /app/logs \
+             /tmp/matplotlib \
+             /tmp/runtime && \
+    chmod -R 755 /app && \
+    chmod -R 777 /tmp/matplotlib /tmp/runtime
 
-# Create non-root user (optional, can be disabled for Podman rootless)
-RUN groupadd -g 1000 appuser && \
-    useradd -u 1000 -g 1000 -m -s /bin/bash appuser
-
-# Set ownership of app directory
-RUN chown -R appuser:appuser /app
-
-# Switch to non-root user (comment out for rootless Podman if needed)
-USER appuser
-
-# Expose port
 EXPOSE 8080
 
-# Health check
-HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-    CMD python -c "import requests; requests.get('http://localhost:8080')" || exit 1
+HEALTHCHECK --interval=30s --timeout=10s --start-period=15s --retries=3 \
+    CMD /app/venv/bin/python -c "import urllib.request; urllib.request.urlopen('http://localhost:8080')" || exit 1
 
-# Set the entrypoint
-CMD ["python", "-m", "StudentDataGUI"]
+CMD ["/app/venv/bin/python", "-m", "StudentDataGUI"]

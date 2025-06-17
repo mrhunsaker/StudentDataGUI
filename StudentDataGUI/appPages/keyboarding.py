@@ -15,7 +15,8 @@ from plotly.subplots import make_subplots
 from nicegui import ui
 
 # --- CONFIGURATION ---
-DATABASE_PATH = "/home/ryhunsaker/Documents/StudentDatabase/students20252026.db"
+from StudentDataGUI.appHelpers.helpers import dataBasePath
+DATABASE_PATH = dataBasePath
 KEYBOARDING_PROGRESS_TYPE = "Keyboarding"  # Must match ProgressType.name in DB
 
 # --- UTILITY FUNCTIONS ---
@@ -53,13 +54,32 @@ def create_keyboarding_session(conn, student_id, progress_type_id, date, notes=N
     conn.commit()
     return cur.lastrowid
 
-def insert_keyboarding_result(conn, session_id, program, topic, speed, accuracy):
+def insert_keyboarding_result(conn, session_id, program, topic, speed, accuracy, student_name, date_val, notes=None):
     cur = conn.cursor()
     cur.execute(
         "INSERT INTO KeyboardingResult (session_id, program, topic, speed, accuracy) VALUES (?, ?, ?, ?, ?)",
         (session_id, program, topic, speed, accuracy)
     )
     conn.commit()
+    # Save JSON snapshot of the inserted data
+    import json
+    from datetime import datetime
+    from StudentDataGUI.appHelpers.helpers import DATA_ROOT
+    now = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    student_dir = Path(DATA_ROOT) / "StudentDataFiles" / student_name
+    student_dir.mkdir(parents=True, exist_ok=True)
+    json_path = student_dir / f"keyboarding_{now}.json"
+    json_data = {
+        "student_name": student_name,
+        "date": date_val,
+        "notes": notes,
+        "program": program,
+        "topic": topic,
+        "speed": speed,
+        "accuracy": accuracy
+    }
+    with open(json_path, "w") as f:
+        json.dump(json_data, f, indent=2)
 
 def fetch_keyboarding_data_for_student(conn, student_id, progress_type_id):
     """

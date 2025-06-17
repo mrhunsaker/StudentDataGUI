@@ -16,7 +16,8 @@ from plotly.subplots import make_subplots
 from nicegui import ui
 
 # --- CONFIGURATION ---
-DATABASE_PATH = "/home/ryhunsaker/Documents/StudentDatabase/students20252026.db"
+from StudentDataGUI.appHelpers.helpers import dataBasePath
+DATABASE_PATH = dataBasePath
 DIGITALLITERACY_PROGRESS_TYPE = "Digital Literacy"  # Must match ProgressType.name in DB
 
 # --- UTILITY FUNCTIONS ---
@@ -90,7 +91,7 @@ def create_digitalliteracy_session(conn, student_id, progress_type_id, date, not
     conn.commit()
     return cur.lastrowid
 
-def insert_digitalliteracy_results(conn, session_id, part_scores):
+def insert_digitalliteracy_results(conn, session_id, part_scores, student_name, date_val, notes=None):
     """
     part_scores: dict of {code: score}
     """
@@ -101,6 +102,22 @@ def insert_digitalliteracy_results(conn, session_id, part_scores):
             (session_id, part_id, score)
         )
     conn.commit()
+    # Save JSON snapshot of the inserted data
+    import json
+    from datetime import datetime
+    from StudentDataGUI.appHelpers.helpers import DATA_ROOT
+    now = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    student_dir = Path(DATA_ROOT) / "StudentDataFiles" / student_name
+    student_dir.mkdir(parents=True, exist_ok=True)
+    json_path = student_dir / f"digitalliteracy_{now}.json"
+    json_data = {
+        "student_name": student_name,
+        "date": date_val,
+        "notes": notes,
+        "part_scores": {code: score for code, (part_id, score) in part_scores.items()}
+    }
+    with open(json_path, "w") as f:
+        json.dump(json_data, f, indent=2)
 
 def fetch_digitalliteracy_data_for_student(conn, student_id, progress_type_id, part_codes):
     """
@@ -250,10 +267,15 @@ def digitalliteracy_skills_ui():
                     title_text=f"{name}: Digital Literacy Skills Progression",
                     hovermode="x unified"
                 )
-                # Show in browser or as HTML
-                tmp_html = Path.home() / "DigitalLiteracySkillsProgression.html"
-                fig.write_html(str(tmp_html), auto_open=True)
-                ui.notify("Graph generated and opened in browser.", type="positive")
+                # Save HTML to student folder with timestamp
+                from datetime import datetime
+                from StudentDataGUI.appHelpers.helpers import DATA_ROOT
+                now = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+                student_dir = Path(DATA_ROOT) / "StudentDataFiles" / name
+                student_dir.mkdir(parents=True, exist_ok=True)
+                html_path = student_dir / f"digitalliteracy_{now}.html"
+                fig.write_html(str(html_path), auto_open=False)
+                ui.notify(f"Graph saved to {html_path}", type="positive")
             except Exception as e:
                 ui.notify(f"Error plotting data: {e}", type="negative")
             finally:

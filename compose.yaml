@@ -13,25 +13,25 @@ services:
       - NICEGUI_PORT=8080
       - PYTHONPATH=/app
       - MPLCONFIGDIR=/tmp/matplotlib
-      - HOME=/tmp/home
+      - HOME=/app/home
+      - XDG_RUNTIME_DIR=/tmp/runtime
     volumes:
-      # Mount host directory for persistent data storage
       - ./data:/app/data
-      # Optional: mount specific database location
       - ./database:/app/database
+      - ./logs:/app/logs
     restart: unless-stopped
     healthcheck:
       test:
         [
           "CMD",
-          "python",
+          "/app/venv/bin/python",
           "-c",
-          "import requests; requests.get('http://localhost:8080')",
+          "import urllib.request; urllib.request.urlopen('http://localhost:8080')",
         ]
       interval: 30s
       timeout: 10s
       retries: 3
-      start_period: 10s
+      start_period: 15s
     networks:
       - student-net
 
@@ -39,9 +39,10 @@ networks:
   student-net:
     driver: bridge
 
-# Optional volumes for explicit volume management
 volumes:
   student-data:
     driver: local
   student-database:
+    driver: local
+  student-logs:
     driver: local

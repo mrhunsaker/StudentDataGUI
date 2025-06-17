@@ -16,8 +16,8 @@ from plotly.subplots import make_subplots
 from nicegui import ui
 
 # --- CONFIGURATION ---
-from StudentDataGUI.appHelpers.helpers import dataBasePath
-DATABASE_PATH = dataBasePath
+from StudentDataGUI.appHelpers.helpers import database_dir
+DATABASE_PATH = database_dir
 CVI_PROGRESS_TYPE = "CVI"  # Must match ProgressType.name in DB
 
 

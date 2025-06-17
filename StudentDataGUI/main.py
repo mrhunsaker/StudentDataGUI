@@ -37,14 +37,14 @@ if module_path not in sys.path:
 from .appTheming import theme
 from .appHelpers.helpers import (
     createFolderHierarchy,
-    dataBasePath,
+    database_dir,
     set_start_dir,
     working_dir,
     create_roster,
     USER_DIR,
     datenow,
 )
-from .appHelpers.workingdirectory import create_user_dir
+
 from .appHelpers.sqlgenerate import create_connection, create_tables, initialize_database
 
 set_start_dir()

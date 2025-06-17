@@ -16,8 +16,8 @@ from plotly.subplots import make_subplots
 from nicegui import ui
 
 # --- CONFIGURATION ---
-from StudentDataGUI.appHelpers.helpers import dataBasePath
-DATABASE_PATH = dataBasePath
+from StudentDataGUI.appHelpers.helpers import database_dir
+DATABASE_PATH = database_dir
 DIGITALLITERACY_PROGRESS_TYPE = "Digital Literacy"  # Must match ProgressType.name in DB
 
 # --- UTILITY FUNCTIONS ---

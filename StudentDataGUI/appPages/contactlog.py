@@ -14,8 +14,8 @@ import plotly.graph_objs as go
 from nicegui import ui
 
 # --- CONFIGURATION ---
-from StudentDataGUI.appHelpers.helpers import dataBasePath
-DATABASE_PATH = dataBasePath
+from StudentDataGUI.appHelpers.helpers import database_dir
+DATABASE_PATH = database_dir
 CONTACTLOG_PROGRESS_TYPE = "ContactLog"  # Must match ProgressType.name in DB
 
 # --- UTILITY FUNCTIONS ---

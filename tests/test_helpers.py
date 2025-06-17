@@ -22,8 +22,7 @@ class TestHelpers(unittest.TestCase):
         self.assertTrue(start_dir.exists())
 
     def test_working_dir(self):
-        working_dir()
-        self.assertTrue(Path(os.getcwd()).joinpath("workingdirectory.py").exists())
+
 
     def test_create_roster(self):
         create_roster()

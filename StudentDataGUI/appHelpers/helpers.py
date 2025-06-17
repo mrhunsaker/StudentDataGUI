@@ -27,7 +27,7 @@ import os
 import shutil
 from csv import writer
 from pathlib import Path
-
+import logging
 
 date_fmt = "%Y-%m-%d %H:%M:%S"
 
@@ -39,54 +39,41 @@ print(ROOT_DIR)
 USER_DIR = ""
 IMAGE_DIR = Path(ROOT_DIR).joinpath("images")
 START_DIR = ""
+DATA_ROOT = os.environ.get("DB_DIR", "/app/data")
 
 
 def set_start_dir() -> Path:
     """
     Create or retrieve the user directory path.
 
-    This function determines the appropriate user directory path based on the operating system
-    (Windows or POSIX) and creates the directory structure if it doesn't exist. The user directory
-    path is typically used for storing application-related data.
+    This function ensures the directory path is compatible with Docker/Podman environments
+    by defaulting to /app/data if no valid environment variables are found.
 
     Returns
     -------
     Path
         The path to the user directory.
 
-    Raises
-    ------
-    NameError
-        If the environment variable representing the user directory is not found.
-
     Examples
     --------
-    >>> user_directory = create_user_dir()
+    >>> user_directory = set_start_dir()
     >>> # Use user_directory for storing application-related data
     >>> # ...
-
-    Notes
-    -----
-    The user directory path may vary depending on the operating system:
-    - On Windows, it is typically under "%USERPROFILE%\\OneDrive - Davis School District\\Documents".
-    - On POSIX systems, it is typically under "$HOME/OneDrive - Davis School District/Documents".
     """
-    if os.name == "nt":
-        try:
-            tmp_path = Path(os.environ["USERPROFILE"]).joinpath("Documents")
-            Path.mkdir(tmp_path, parents=True, exist_ok=True)
-            START_DIR = Path(tmp_path)
-        except NameError as e:
-            print(f"{e}\n Cannot find %USERPROFILE")
-    elif os.name == "posix":
-        try:
-            tmp_path = Path(os.environ["HOME"]).joinpath("Documents")
-            Path.mkdir(tmp_path, parents=True, exist_ok=True)
-            START_DIR = Path(tmp_path)
-        except NameError as e:
-            print(f"{e}\n Cannot find $HOME")
-    else:
-        print("Cannot determine OS Type")
+    global START_DIR
+    try:
+        if os.name == "nt":
+            tmp_path = Path(os.environ.get("USERPROFILE", "/app/data")).joinpath("Documents")
+        elif os.name == "posix":
+            tmp_path = Path(os.environ.get("HOME", "/app/data")).joinpath("Documents")
+        else:
+            tmp_path = Path("/app/data/Documents")
+        Path.mkdir(tmp_path, parents=True, exist_ok=True)
+        START_DIR = Path(tmp_path)
+        logging.debug(f"Resolved START_DIR: {START_DIR}")
+    except Exception as e:
+        logging.error(f"Failed to set START_DIR: {e}")
+        START_DIR = Path("/app/data")
     os.chdir(START_DIR)
     return START_DIR
 
@@ -96,10 +83,7 @@ def working_dir() -> None:
     """
     Copy the working directory information to the application's root.
 
-    This function checks if the 'workingdirectory.py' file exists in the application's
-    root directory. If not, it copies the 'workingdirectory.txt' file from the
-    'START_DIR' (presumably a predefined starting directory) to the application's root
-    directory, naming the copy 'workingdirectory.py'.
+    This function is deprecated and no longer checks or copies any working directory files.
 
     Returns
     -------
@@ -108,18 +92,17 @@ def working_dir() -> None:
     Examples
     --------
     >>> working_dir()
-    >>> # 'workingdirectory.py' is copied to the application's root directory
-    >>> # ...
+    >>> # This function is deprecated and does nothing.
 
     Notes
     -----
     This function assumes the existence of 'ROOT_DIR' and 'START_DIR' variables
     representing the application's root and starting directories, respectively.
     """
-    if not Path(ROOT_DIR).joinpath("workingdirectory.py").exists():
-        workingdirectory_path = Path(ROOT_DIR).joinpath("workingdirectory.py")
-        tmp_path = Path(START_DIR).joinpath("workingdirectory.txt")
-        shutil.copy2(tmp_path, workingdirectory_path)
+    try:
+        logging.debug("working_dir function is deprecated and does nothing.")
+    except Exception as e:
+        logging.error(f"Failed in working_dir: {e}")
 
 working_dir()
 
@@ -156,28 +139,27 @@ def create_roster() -> None:
 create_roster()
 
 from .roster import students
-from .workingdirectory import create_user_dir
-
-create_user_dir()
-USER_DIR = create_user_dir()
 
 # Use environment variable DB_DIR if set, otherwise default to /app/data (for containers), else fallback to ~/Documents/StudentDatabase
-database_dir = os.environ.get("DB_DIR")
+database_dir = os.environ.get("DB_DIR", "/app/data")
+DATA_ROOT = database_dir
+logging.debug(f"Resolved database_dir: {database_dir}")
+logging.debug(f"Resolved DATA_ROOT: {DATA_ROOT}")
+
 if not database_dir:
-    # Use /app/data if it exists (container), else fallback to ~/Documents/StudentDatabase
-    if os.path.exists("/app/data"):
-        database_dir = "/app/data"
-    else:
-        # Set the root data directory for all persistent files
-        DATA_ROOT = os.environ.get("DB_DIR", "/app/data")
-        os.makedirs(DATA_ROOT, exist_ok=True)
-        dataBasePath = os.path.join(DATA_ROOT, "students.db")
+    # Ensure database_dir defaults to /app/data
+    database_dir = os.environ.get("DB_DIR", "/app/data")
+    logging.debug(f"Resolved database_dir: {database_dir}")
+    if not os.path.exists(database_dir):
+        os.makedirs(database_dir, exist_ok=True)
+        logging.info(f"Created database directory: {database_dir}")
+    dataBasePath = os.path.join(database_dir, "students20252026.db")
+
+
 
 def createFolderHierarchy() -> None:
     """
     Create the folder hierarchy for student data, logs, and backups under DATA_ROOT.
-    """
-    Create a folder hierarchy on the user's computer for student data.
 
     This function iterates over a list of student names and checks if the
     corresponding folder structure exists in the specified user directory
@@ -197,7 +179,7 @@ def createFolderHierarchy() -> None:
     Notes
     -----
     This function assumes the existence of the `students`, `USER_DIR`, `ROOT_DIR`,
-    `workingdirectory.py`, and other variables representing the application's
+    and other variables representing the application's
     student data and file paths.
 
     The function creates the following directory structure:
@@ -226,6 +208,9 @@ def createFolderHierarchy() -> None:
                 - bntProgression.csv
                 - bntProgression.html
     """
+    logging.basicConfig(level=logging.INFO)
+    logger = logging.getLogger("createFolderHierarchy")
+
     for name in students:
         # StudentDataFiles root
         student_datafiles_root = Path(DATA_ROOT).joinpath("StudentDataFiles")
@@ -246,7 +231,13 @@ def createFolderHierarchy() -> None:
             student_vision,
         ]:
             if not folder.exists():
-                folder.mkdir(parents=True, exist_ok=True)
+                try:
+                    folder.mkdir(parents=True, exist_ok=True)
+                    logger.info(f"Created folder: {folder}")
+                except Exception as e:
+                    logger.error(f"Failed to create folder {folder}: {e}")
+            else:
+                logger.info(f"Folder already exists: {folder}")
         if (
             not Path(USER_DIR)
             .joinpath(
@@ -254,10 +245,16 @@ def createFolderHierarchy() -> None:
             )
             .exists()
         ):
-            tmppath = Path(USER_DIR).joinpath(
+            tmppath = Path(DATA_ROOT).joinpath(
                 "StudentDatabase", "StudentDataFiles", name, "omnibusDatabase.csv"
             )
-            Path.touch(tmppath)
+            logging.debug(f"Resolved tmppath for omnibusDatabase.csv: {tmppath}")
+            try:
+                tmppath.parent.mkdir(parents=True, exist_ok=True)
+                tmppath.touch(exist_ok=True)
+                logger.info(f"Created file: {tmppath}")
+            except Exception as e:
+                logger.error(f"Failed to create file {tmppath}: {e}")
             list_names = [
                 "student",
                 "date",
@@ -278,10 +275,14 @@ def createFolderHierarchy() -> None:
                 "median",
                 "notes",
             ]
-            with open(tmppath, "a", newline="", encoding="UTF-8") as f_object:
-                writer_setup = writer(f_object)
-                writer_setup.writerow(list_names)
-                f_object.close()
+            try:
+                with open(tmppath, "a", newline="", encoding="UTF-8") as f_object:
+                    writer_setup = writer(f_object)
+                    writer_setup.writerow(list_names)
+                    f_object.close()
+                logger.info(f"Wrote header to file: {tmppath}")
+            except Exception as e:
+                logger.error(f"Failed to write header to file {tmppath}: {e}")
         if (
             not Path(USER_DIR)
             .joinpath(
@@ -298,7 +299,12 @@ def createFolderHierarchy() -> None:
                 name,
                 "BrailleSkillsProgression.csv",
             )
-            Path.touch(tmppath)
+            try:
+                tmppath.parent.mkdir(parents=True, exist_ok=True)
+                tmppath.touch(exist_ok=True)
+                logger.info(f"Created file: {tmppath}")
+            except Exception as e:
+                logger.error(f"Failed to create file {tmppath}: {e}")
             list_names = [
                 "date",
                 "P1_1",
@@ -366,10 +372,14 @@ def createFolderHierarchy() -> None:
                 "P8_6",
                 "P8_7",
             ]
-            with open(tmppath, "a", newline="", encoding="UTF-8") as f_object:
-                writer_setup = writer(f_object)
-                writer_setup.writerow(list_names)
-                f_object.close()
+            try:
+                with open(tmppath, "a", newline="", encoding="UTF-8") as f_object:
+                    writer_setup = writer(f_object)
+                    writer_setup.writerow(list_names)
+                    f_object.close()
+                logger.info(f"Wrote header to file: {tmppath}")
+            except Exception as e:
+                logger.error(f"Failed to write header to file {tmppath}: {e}")
         if (
             not Path(USER_DIR)
             .joinpath(
@@ -386,7 +396,12 @@ def createFolderHierarchy() -> None:
                 name,
                 "UEBLiterarySkillsProgression.html",
             )
-            Path.touch(tmppath)
+            try:
+                tmppath.parent.mkdir(parents=True, exist_ok=True)
+                tmppath.touch(exist_ok=True)
+                logger.info(f"Created file: {tmppath}")
+            except Exception as e:
+                logger.error(f"Failed to create file {tmppath}: {e}")
         if (
             not Path(USER_DIR)
             .joinpath(
@@ -403,7 +418,12 @@ def createFolderHierarchy() -> None:
                 name,
                 "UEBTechnicalSkillsProgression.html",
             )
-            Path.touch(tmppath)
+            try:
+                tmppath.parent.mkdir(parents=True, exist_ok=True)
+                tmppath.touch(exist_ok=True)
+                logger.info(f"Created file: {tmppath}")
+            except Exception as e:
+                logger.error(f"Failed to create file {tmppath}: {e}")
         if (
             not Path(USER_DIR)
             .joinpath(
@@ -420,7 +440,12 @@ def createFolderHierarchy() -> None:
                 name,
                 "BasicTactileRecognition.html",
             )
-            Path.touch(tmppath)
+            try:
+                tmppath.parent.mkdir(parents=True, exist_ok=True)
+                tmppath.touch(exist_ok=True)
+                logger.info(f"Created file: {tmppath}")
+            except Exception as e:
+                logger.error(f"Failed to create file {tmppath}: {e}")
         if (
             not Path(USER_DIR)
             .joinpath(
@@ -437,7 +462,12 @@ def createFolderHierarchy() -> None:
                 name,
                 "ScreenReaderSkillsProgression.csv",
             )
-            Path.touch(tmppath)
+            try:
+                tmppath.parent.mkdir(parents=True, exist_ok=True)
+                tmppath.touch(exist_ok=True)
+                logger.info(f"Created file: {tmppath}")
+            except Exception as e:
+                logger.error(f"Failed to create file {tmppath}: {e}")
             list_names = [
                 "date",
                 "P1_1",
@@ -469,10 +499,14 @@ def createFolderHierarchy() -> None:
                 "P4_6",
                 "P4_7",
             ]
-            with open(tmppath, "a", newline="", encoding="UTF-8") as f_object:
-                writer_setup = writer(f_object)
-                writer_setup.writerow(list_names)
-                f_object.close()
+            try:
+                with open(tmppath, "a", newline="", encoding="UTF-8") as f_object:
+                    writer_setup = writer(f_object)
+                    writer_setup.writerow(list_names)
+                    f_object.close()
+                logger.info(f"Wrote header to file: {tmppath}")
+            except Exception as e:
+                logger.error(f"Failed to write header to file {tmppath}: {e}")
         if (
             not Path(USER_DIR)
             .joinpath(
@@ -489,7 +523,12 @@ def createFolderHierarchy() -> None:
                 name,
                 "ScreenReaderSkillsProgression.html",
             )
-            Path.touch(tmppath)
+            try:
+                tmppath.parent.mkdir(parents=True, exist_ok=True)
+                tmppath.touch(exist_ok=True)
+                logger.info(f"Created file: {tmppath}")
+            except Exception as e:
+                logger.error(f"Failed to create file {tmppath}: {e}")
         if (
             not Path(USER_DIR)
             .joinpath(
@@ -506,7 +545,12 @@ def createFolderHierarchy() -> None:
                 name,
                 "AbacusSkillsProgression.csv",
             )
-            Path.touch(tmppath)
+            try:
+                tmppath.parent.mkdir(parents=True, exist_ok=True)
+                tmppath.touch(exist_ok=True)
+                logger.info(f"Created file: {tmppath}")
+            except Exception as e:
+                logger.error(f"Failed to create file {tmppath}: {e}")
             list_names = [
                 "date",
                 "P1_1",
@@ -534,10 +578,14 @@ def createFolderHierarchy() -> None:
                 "P8_1",
                 "P8_2",
             ]
-            with open(tmppath, "a", newline="", encoding="UTF-8") as f_object:
-                writer_setup = writer(f_object)
-                writer_setup.writerow(list_names)
-                f_object.close()
+            try:
+                with open(tmppath, "a", newline="", encoding="UTF-8") as f_object:
+                    writer_setup = writer(f_object)
+                    writer_setup.writerow(list_names)
+                    f_object.close()
+                logger.info(f"Wrote header to file: {tmppath}")
+            except Exception as e:
+                logger.error(f"Failed to write header to file {tmppath}: {e}")
         if (
             not Path(USER_DIR)
             .joinpath(
@@ -554,7 +602,12 @@ def createFolderHierarchy() -> None:
                 name,
                 "AbacusSkillsProgression.html",
             )
-            Path.touch(tmppath)
+            try:
+                tmppath.parent.mkdir(parents=True, exist_ok=True)
+                tmppath.touch(exist_ok=True)
+                logger.info(f"Created file: {tmppath}")
+            except Exception as e:
+                logger.error(f"Failed to create file {tmppath}: {e}")
         if (
             not Path(USER_DIR)
             .joinpath("StudentDatabase", "StudentDataFiles", name, "cviProgression.csv")
@@ -563,7 +616,12 @@ def createFolderHierarchy() -> None:
             tmppath = Path(USER_DIR).joinpath(
                 "StudentDatabase", "StudentDataFiles", name, "cviProgression.csv"
             )
-            Path.touch(tmppath)
+            try:
+                tmppath.parent.mkdir(parents=True, exist_ok=True)
+                tmppath.touch(exist_ok=True)
+                logger.info(f"Created file: {tmppath}")
+            except Exception as e:
+                logger.error(f"Failed to create file {tmppath}: {e}")
             list_names = [
                 "date",
                 "P1_1",
@@ -577,10 +635,14 @@ def createFolderHierarchy() -> None:
                 "P2_3",
                 "P2_4",
             ]
-            with open(tmppath, "a", newline="", encoding="UTF-8") as f_object:
-                writer_setup = writer(f_object)
-                writer_setup.writerow(list_names)
-                f_object.close()
+            try:
+                with open(tmppath, "a", newline="", encoding="UTF-8") as f_object:
+                    writer_setup = writer(f_object)
+                    writer_setup.writerow(list_names)
+                    f_object.close()
+                logger.info(f"Wrote header to file: {tmppath}")
+            except Exception as e:
+                logger.error(f"Failed to write header to file {tmppath}: {e}")
         if (
             not Path(USER_DIR)
             .joinpath(
@@ -591,7 +653,12 @@ def createFolderHierarchy() -> None:
             tmppath = Path(USER_DIR).joinpath(
                 "StudentDatabase", "StudentDataFiles", name, "cviProgression.html"
             )
-            Path.touch(tmppath)
+            try:
+                tmppath.parent.mkdir(parents=True, exist_ok=True)
+                tmppath.touch(exist_ok=True)
+                logger.info(f"Created file: {tmppath}")
+            except Exception as e:
+                logger.error(f"Failed to create file {tmppath}: {e}")
         if (
             not Path(USER_DIR)
             .joinpath(
@@ -608,7 +675,12 @@ def createFolderHierarchy() -> None:
                 name,
                 "digitalliteracyProgression.csv",
             )
-            Path.touch(tmppath)
+            try:
+                tmppath.parent.mkdir(parents=True, exist_ok=True)
+                tmppath.touch(exist_ok=True)
+                logger.info(f"Created file: {tmppath}")
+            except Exception as e:
+                logger.error(f"Failed to create file {tmppath}: {e}")
             list_names = [
                 "date",
                 "P1_1",
@@ -689,17 +761,20 @@ def createFolderHierarchy() -> None:
                 "P14_6",
                 "P14_7",
                 "P14_8",
-                "P14_9",
                 "P15_1",
                 "P15_2",
                 "P15_3",
                 "P15_4",
                 "P15_5",
             ]
-            with open(tmppath, "a", newline="", encoding="UTF-8") as f_object:
-                writer_setup = writer(f_object)
-                writer_setup.writerow(list_names)
-                f_object.close()
+            try:
+                with open(tmppath, "a", newline="", encoding="UTF-8") as f_object:
+                    writer_setup = writer(f_object)
+                    writer_setup.writerow(list_names)
+                    f_object.close()
+                logger.info(f"Wrote header to file: {tmppath}")
+            except Exception as e:
+                logger.error(f"Failed to write header to file {tmppath}: {e}")
         if (
             not Path(USER_DIR)
             .joinpath(
@@ -716,7 +791,12 @@ def createFolderHierarchy() -> None:
                 name,
                 "digitalliteracyProgression.html",
             )
-            Path.touch(tmppath)
+            try:
+                tmppath.parent.mkdir(parents=True, exist_ok=True)
+                tmppath.touch(exist_ok=True)
+                logger.info(f"Created file: {tmppath}")
+            except Exception as e:
+                logger.error(f"Failed to create file {tmppath}: {e}")
         if (
             not Path(USER_DIR)
             .joinpath("StudentDatabase", "StudentDataFiles", name, "iosProgression.csv")
@@ -725,7 +805,12 @@ def createFolderHierarchy() -> None:
             tmppath = Path(USER_DIR).joinpath(
                 "StudentDatabase", "StudentDataFiles", name, "iosProgression.csv"
             )
-            Path.touch(tmppath)
+            try:
+                tmppath.parent.mkdir(parents=True, exist_ok=True)
+                tmppath.touch(exist_ok=True)
+                logger.info(f"Created file: {tmppath}")
+            except Exception as e:
+                logger.error(f"Failed to create file {tmppath}: {e}")
             list_names = [
                 "date",
                 "P1_1",
@@ -772,10 +857,14 @@ def createFolderHierarchy() -> None:
                 "P6_10",
                 "P6_11",
             ]
-            with open(tmppath, "a", newline="", encoding="UTF-8") as f_object:
-                writer_setup = writer(f_object)
-                writer_setup.writerow(list_names)
-                f_object.close()
+            try:
+                with open(tmppath, "a", newline="", encoding="UTF-8") as f_object:
+                    writer_setup = writer(f_object)
+                    writer_setup.writerow(list_names)
+                    f_object.close()
+                logger.info(f"Wrote header to file: {tmppath}")
+            except Exception as e:
+                logger.error(f"Failed to write header to file {tmppath}: {e}")
         if (
             not Path(USER_DIR)
             .joinpath(
@@ -786,7 +875,12 @@ def createFolderHierarchy() -> None:
             tmppath = Path(USER_DIR).joinpath(
                 "StudentDatabase", "StudentDataFiles", name, "iosProgression.html"
             )
-            Path.touch(tmppath)
+            try:
+                tmppath.parent.mkdir(parents=True, exist_ok=True)
+                tmppath.touch(exist_ok=True)
+                logger.info(f"Created file: {tmppath}")
+            except Exception as e:
+                logger.error(f"Failed to create file {tmppath}: {e}")
         if (
             not Path(USER_DIR)
             .joinpath("StudentDatabase", "StudentDataFiles", name, "bntProgression.csv")
@@ -795,7 +889,12 @@ def createFolderHierarchy() -> None:
             tmppath = Path(USER_DIR).joinpath(
                 "StudentDatabase", "StudentDataFiles", name, "bntProgression.csv"
             )
-            Path.touch(tmppath)
+            try:
+                tmppath.parent.mkdir(parents=True, exist_ok=True)
+                tmppath.touch(exist_ok=True)
+                logger.info(f"Created file: {tmppath}")
+            except Exception as e:
+                logger.error(f"Failed to create file {tmppath}: {e}")
             list_names = [
                 "date",
                 "P1_1",
@@ -860,10 +959,14 @@ def createFolderHierarchy() -> None:
                 "P12_3",
                 "P12_4",
             ]
-            with open(tmppath, "a", newline="", encoding="UTF-8") as f_object:
-                writer_setup = writer(f_object)
-                writer_setup.writerow(list_names)
-                f_object.close()
+            try:
+                with open(tmppath, "a", newline="", encoding="UTF-8") as f_object:
+                    writer_setup = writer(f_object)
+                    writer_setup.writerow(list_names)
+                    f_object.close()
+                logger.info(f"Wrote header to file: {tmppath}")
+            except Exception as e:
+                logger.error(f"Failed to write header to file {tmppath}: {e}")
         if (
             not Path(USER_DIR)
             .joinpath(
@@ -874,31 +977,54 @@ def createFolderHierarchy() -> None:
             tmppath = Path(USER_DIR).joinpath(
                 "StudentDatabase", "StudentDataFiles", name, "bntProgression.html"
             )
-            Path.touch(tmppath)
+            try:
+                tmppath.parent.mkdir(parents=True, exist_ok=True)
+                tmppath.touch(exist_ok=True)
+                logger.info(f"Created file: {tmppath}")
+            except Exception as e:
+                logger.error(f"Failed to create file {tmppath}: {e}")
         sourceDir = Path(ROOT_DIR).joinpath("datasheets")
-        destinationDir = Path(USER_DIR).joinpath(
+        destinationDir = Path(DATA_ROOT).joinpath(
             "StudentDatabase", "StudentDataFiles", name, "StudentDataSheets"
         )
+        logging.debug(f"Resolved sourceDir: {sourceDir}")
+        logging.debug(f"Resolved destinationDir for StudentDataSheets: {destinationDir}")
         files = os.listdir(sourceDir)
         for fileName in files:
             tmppath=os.path.join(sourceDir, fileName)
-            copy_if_not_exists(tmppath, destinationDir)
+            try:
+                copy_if_not_exists(tmppath, destinationDir)
+                logger.info(f"Copied {tmppath} to {destinationDir}")
+            except Exception as e:
+                logger.error(f"Failed to copy {tmppath} to {destinationDir}: {e}")
         sourceDir = Path(ROOT_DIR).joinpath("instructionMaterials")
-        destinationDir = Path(USER_DIR).joinpath(
+        destinationDir = Path(DATA_ROOT).joinpath(
             "StudentDatabase", "StudentDataFiles", name, "StudentInstructionMaterials"
         )
+        logging.debug(f"Resolved sourceDir: {sourceDir}")
+        logging.debug(f"Resolved destinationDir for StudentInstructionMaterials: {destinationDir}")
         files = os.listdir(sourceDir)
         for fileName in files:
             tmppath=os.path.join(sourceDir, fileName)
-            copy_if_not_exists(tmppath, destinationDir)
+            try:
+                copy_if_not_exists(tmppath, destinationDir)
+                logger.info(f"Copied {tmppath} to {destinationDir}")
+            except Exception as e:
+                logger.error(f"Failed to copy {tmppath} to {destinationDir}: {e}")
         sourceDir = Path(ROOT_DIR).joinpath("visionAssessments")
-        destinationDir = Path(USER_DIR).joinpath(
+        destinationDir = Path(DATA_ROOT).joinpath(
             "StudentDatabase", "StudentDataFiles", name, "StudentVisionAssessments"
         )
+        logging.debug(f"Resolved sourceDir: {sourceDir}")
+        logging.debug(f"Resolved destinationDir for StudentVisionAssessments: {destinationDir}")
         files = os.listdir(sourceDir)
         for fileName in files:
             tmppath=os.path.join(sourceDir, fileName)
-            copy_if_not_exists(tmppath, destinationDir)
+            try:
+                copy_if_not_exists(tmppath, destinationDir)
+                logger.info(f"Copied {tmppath} to {destinationDir}")
+            except Exception as e:
+                logger.error(f"Failed to copy {tmppath} to {destinationDir}: {e}")
 
 
 def copy_if_not_exists(source, destination):

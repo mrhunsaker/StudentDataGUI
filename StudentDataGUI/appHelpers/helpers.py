@@ -62,14 +62,16 @@ def set_start_dir() -> Path:
     """
     global START_DIR
     try:
-        if os.name == "nt":
-            tmp_path = Path(os.environ.get("USERPROFILE", "/app/data")).joinpath("Documents")
-        elif os.name == "posix":
-            tmp_path = Path(os.environ.get("HOME", "/app/data")).joinpath("Documents")
-        else:
-            tmp_path = Path("/app/data/Documents")
-        Path.mkdir(tmp_path, parents=True, exist_ok=True)
-        START_DIR = Path(tmp_path)
+        tmp_path = Path("/app/data")
+        subdirectories = [
+            "students20252026",
+            "StudentDataFiles",
+            "errorLogs",
+            "backups"
+        ]
+        for subdir in subdirectories:
+            Path(tmp_path, subdir).mkdir(parents=True, exist_ok=True)
+        START_DIR = tmp_path
         logging.debug(f"Resolved START_DIR: {START_DIR}")
     except Exception as e:
         logging.error(f"Failed to set START_DIR: {e}")
@@ -100,7 +102,13 @@ def working_dir() -> None:
     representing the application's root and starting directories, respectively.
     """
     try:
-        logging.debug("working_dir function is deprecated and does nothing.")
+        try:
+            student_data_dir = Path("/app/data/StudentDataFiles")
+            if not student_data_dir.exists():
+                student_data_dir.mkdir(parents=True, exist_ok=True)
+            logging.debug(f"Ensured StudentDataFiles directory exists at: {student_data_dir}")
+        except Exception as e:
+            logging.error(f"Failed to ensure StudentDataFiles directory: {e}")
     except Exception as e:
         logging.error(f"Failed in working_dir: {e}")
 
@@ -145,6 +153,7 @@ database_dir = os.environ.get("DB_DIR", "/app/data")
 DATA_ROOT = database_dir
 logging.debug(f"Resolved database_dir: {database_dir}")
 logging.debug(f"Resolved DATA_ROOT: {DATA_ROOT}")
+dataBasePath = os.path.join(database_dir, "students20252026.db")
 
 if not database_dir:
     # Ensure database_dir defaults to /app/data
@@ -179,7 +188,7 @@ def createFolderHierarchy() -> None:
     Notes
     -----
     This function assumes the existence of the `students`, `USER_DIR`, `ROOT_DIR`,
-    and other variables representing the application's
+    and other variables representing the applications
     student data and file paths.
 
     The function creates the following directory structure:
@@ -212,6 +221,7 @@ def createFolderHierarchy() -> None:
     logger = logging.getLogger("createFolderHierarchy")
 
     for name in students:
+        logging.debug(f"Processing student: {name}")
         # StudentDataFiles root
         student_datafiles_root = Path(DATA_ROOT).joinpath("StudentDataFiles")
         student_errorlogs_root = Path(DATA_ROOT).joinpath("errorLogs")
@@ -237,7 +247,7 @@ def createFolderHierarchy() -> None:
                 except Exception as e:
                     logger.error(f"Failed to create folder {folder}: {e}")
             else:
-                logger.info(f"Folder already exists: {folder}")
+                logger.debug(f"Folder already exists: {folder}")
         if (
             not Path(USER_DIR)
             .joinpath(
@@ -246,7 +256,7 @@ def createFolderHierarchy() -> None:
             .exists()
         ):
             tmppath = Path(DATA_ROOT).joinpath(
-                "StudentDatabase", "StudentDataFiles", name, "omnibusDatabase.csv"
+                "StudentDataFiles", name, "omnibusDatabase.csv"
             )
             logging.debug(f"Resolved tmppath for omnibusDatabase.csv: {tmppath}")
             try:
@@ -286,7 +296,6 @@ def createFolderHierarchy() -> None:
         if (
             not Path(USER_DIR)
             .joinpath(
-                "StudentDatabase",
                 "StudentDataFiles",
                 name,
                 "BrailleSkillsProgression.csv",
@@ -294,7 +303,6 @@ def createFolderHierarchy() -> None:
             .exists()
         ):
             tmppath = Path(USER_DIR).joinpath(
-                "StudentDatabase",
                 "StudentDataFiles",
                 name,
                 "BrailleSkillsProgression.csv",
@@ -383,7 +391,6 @@ def createFolderHierarchy() -> None:
         if (
             not Path(USER_DIR)
             .joinpath(
-                "StudentDatabase",
                 "StudentDataFiles",
                 name,
                 "UEBLiterarySkillsProgression.html",
@@ -391,7 +398,6 @@ def createFolderHierarchy() -> None:
             .exists()
         ):
             tmppath = Path(USER_DIR).joinpath(
-                "StudentDatabase",
                 "StudentDataFiles",
                 name,
                 "UEBLiterarySkillsProgression.html",
@@ -405,7 +411,6 @@ def createFolderHierarchy() -> None:
         if (
             not Path(USER_DIR)
             .joinpath(
-                "StudentDatabase",
                 "StudentDataFiles",
                 name,
                 "UEBTechnicalSkillsProgression.html",
@@ -413,7 +418,6 @@ def createFolderHierarchy() -> None:
             .exists()
         ):
             tmppath = Path(USER_DIR).joinpath(
-                "StudentDatabase",
                 "StudentDataFiles",
                 name,
                 "UEBTechnicalSkillsProgression.html",
@@ -427,7 +431,6 @@ def createFolderHierarchy() -> None:
         if (
             not Path(USER_DIR)
             .joinpath(
-                "StudentDatabase",
                 "StudentDataFiles",
                 name,
                 "BasicTactileRecognition.html",
@@ -435,7 +438,6 @@ def createFolderHierarchy() -> None:
             .exists()
         ):
             tmppath = Path(USER_DIR).joinpath(
-                "StudentDatabase",
                 "StudentDataFiles",
                 name,
                 "BasicTactileRecognition.html",
@@ -449,7 +451,6 @@ def createFolderHierarchy() -> None:
         if (
             not Path(USER_DIR)
             .joinpath(
-                "StudentDatabase",
                 "StudentDataFiles",
                 name,
                 "ScreenReaderSkillsProgression.csv",
@@ -457,7 +458,6 @@ def createFolderHierarchy() -> None:
             .exists()
         ):
             tmppath = Path(USER_DIR).joinpath(
-                "StudentDatabase",
                 "StudentDataFiles",
                 name,
                 "ScreenReaderSkillsProgression.csv",
@@ -510,7 +510,6 @@ def createFolderHierarchy() -> None:
         if (
             not Path(USER_DIR)
             .joinpath(
-                "StudentDatabase",
                 "StudentDataFiles",
                 name,
                 "ScreenReaderSkillsProgression.html",
@@ -518,7 +517,6 @@ def createFolderHierarchy() -> None:
             .exists()
         ):
             tmppath = Path(USER_DIR).joinpath(
-                "StudentDatabase",
                 "StudentDataFiles",
                 name,
                 "ScreenReaderSkillsProgression.html",
@@ -532,7 +530,6 @@ def createFolderHierarchy() -> None:
         if (
             not Path(USER_DIR)
             .joinpath(
-                "StudentDatabase",
                 "StudentDataFiles",
                 name,
                 "AbacusSkillsProgression.csv",
@@ -540,7 +537,6 @@ def createFolderHierarchy() -> None:
             .exists()
         ):
             tmppath = Path(USER_DIR).joinpath(
-                "StudentDatabase",
                 "StudentDataFiles",
                 name,
                 "AbacusSkillsProgression.csv",
@@ -589,7 +585,6 @@ def createFolderHierarchy() -> None:
         if (
             not Path(USER_DIR)
             .joinpath(
-                "StudentDatabase",
                 "StudentDataFiles",
                 name,
                 "AbacusSkillsProgression.html",
@@ -597,7 +592,6 @@ def createFolderHierarchy() -> None:
             .exists()
         ):
             tmppath = Path(USER_DIR).joinpath(
-                "StudentDatabase",
                 "StudentDataFiles",
                 name,
                 "AbacusSkillsProgression.html",
@@ -610,11 +604,11 @@ def createFolderHierarchy() -> None:
                 logger.error(f"Failed to create file {tmppath}: {e}")
         if (
             not Path(USER_DIR)
-            .joinpath("StudentDatabase", "StudentDataFiles", name, "cviProgression.csv")
+            .joinpath("StudentDataFiles", name, "cviProgression.csv")
             .exists()
         ):
             tmppath = Path(USER_DIR).joinpath(
-                "StudentDatabase", "StudentDataFiles", name, "cviProgression.csv"
+                "StudentDataFiles", name, "cviProgression.csv"
             )
             try:
                 tmppath.parent.mkdir(parents=True, exist_ok=True)
@@ -646,12 +640,12 @@ def createFolderHierarchy() -> None:
         if (
             not Path(USER_DIR)
             .joinpath(
-                "StudentDatabase", "StudentDataFiles", name, "cviProgression.html"
+                "StudentDataFiles", name, "cviProgression.html"
             )
             .exists()
         ):
             tmppath = Path(USER_DIR).joinpath(
-                "StudentDatabase", "StudentDataFiles", name, "cviProgression.html"
+                "StudentDataFiles", name, "cviProgression.html"
             )
             try:
                 tmppath.parent.mkdir(parents=True, exist_ok=True)
@@ -662,7 +656,6 @@ def createFolderHierarchy() -> None:
         if (
             not Path(USER_DIR)
             .joinpath(
-                "StudentDatabase",
                 "StudentDataFiles",
                 name,
                 "digitalliteracyProgression.csv",
@@ -670,7 +663,6 @@ def createFolderHierarchy() -> None:
             .exists()
         ):
             tmppath = Path(USER_DIR).joinpath(
-                "StudentDatabase",
                 "StudentDataFiles",
                 name,
                 "digitalliteracyProgression.csv",
@@ -778,7 +770,6 @@ def createFolderHierarchy() -> None:
         if (
             not Path(USER_DIR)
             .joinpath(
-                "StudentDatabase",
                 "StudentDataFiles",
                 name,
                 "digitalliteracyProgression.html",
@@ -786,7 +777,6 @@ def createFolderHierarchy() -> None:
             .exists()
         ):
             tmppath = Path(USER_DIR).joinpath(
-                "StudentDatabase",
                 "StudentDataFiles",
                 name,
                 "digitalliteracyProgression.html",
@@ -799,11 +789,11 @@ def createFolderHierarchy() -> None:
                 logger.error(f"Failed to create file {tmppath}: {e}")
         if (
             not Path(USER_DIR)
-            .joinpath("StudentDatabase", "StudentDataFiles", name, "iosProgression.csv")
+            .joinpath("StudentDataFiles", name, "iosProgression.csv")
             .exists()
         ):
             tmppath = Path(USER_DIR).joinpath(
-                "StudentDatabase", "StudentDataFiles", name, "iosProgression.csv"
+                "StudentDataFiles", name, "iosProgression.csv"
             )
             try:
                 tmppath.parent.mkdir(parents=True, exist_ok=True)
@@ -868,12 +858,12 @@ def createFolderHierarchy() -> None:
         if (
             not Path(USER_DIR)
             .joinpath(
-                "StudentDatabase", "StudentDataFiles", name, "iosProgression.html"
+                "StudentDataFiles", name, "iosProgression.html"
             )
             .exists()
         ):
             tmppath = Path(USER_DIR).joinpath(
-                "StudentDatabase", "StudentDataFiles", name, "iosProgression.html"
+                "StudentDataFiles", name, "iosProgression.html"
             )
             try:
                 tmppath.parent.mkdir(parents=True, exist_ok=True)
@@ -883,11 +873,11 @@ def createFolderHierarchy() -> None:
                 logger.error(f"Failed to create file {tmppath}: {e}")
         if (
             not Path(USER_DIR)
-            .joinpath("StudentDatabase", "StudentDataFiles", name, "bntProgression.csv")
+            .joinpath("StudentDataFiles", name, "bntProgression.csv")
             .exists()
         ):
             tmppath = Path(USER_DIR).joinpath(
-                "StudentDatabase", "StudentDataFiles", name, "bntProgression.csv"
+                "StudentDataFiles", name, "bntProgression.csv"
             )
             try:
                 tmppath.parent.mkdir(parents=True, exist_ok=True)
@@ -970,12 +960,12 @@ def createFolderHierarchy() -> None:
         if (
             not Path(USER_DIR)
             .joinpath(
-                "StudentDatabase", "StudentDataFiles", name, "bntProgression.html"
+                "StudentDataFiles", name, "bntProgression.html"
             )
             .exists()
         ):
             tmppath = Path(USER_DIR).joinpath(
-                "StudentDatabase", "StudentDataFiles", name, "bntProgression.html"
+                "StudentDataFiles", name, "bntProgression.html"
             )
             try:
                 tmppath.parent.mkdir(parents=True, exist_ok=True)
@@ -985,7 +975,7 @@ def createFolderHierarchy() -> None:
                 logger.error(f"Failed to create file {tmppath}: {e}")
         sourceDir = Path(ROOT_DIR).joinpath("datasheets")
         destinationDir = Path(DATA_ROOT).joinpath(
-            "StudentDatabase", "StudentDataFiles", name, "StudentDataSheets"
+            "StudentDataFiles", name, "StudentDataSheets"
         )
         logging.debug(f"Resolved sourceDir: {sourceDir}")
         logging.debug(f"Resolved destinationDir for StudentDataSheets: {destinationDir}")
@@ -999,7 +989,7 @@ def createFolderHierarchy() -> None:
                 logger.error(f"Failed to copy {tmppath} to {destinationDir}: {e}")
         sourceDir = Path(ROOT_DIR).joinpath("instructionMaterials")
         destinationDir = Path(DATA_ROOT).joinpath(
-            "StudentDatabase", "StudentDataFiles", name, "StudentInstructionMaterials"
+            "StudentDataFiles", name, "StudentInstructionMaterials"
         )
         logging.debug(f"Resolved sourceDir: {sourceDir}")
         logging.debug(f"Resolved destinationDir for StudentInstructionMaterials: {destinationDir}")
@@ -1013,7 +1003,7 @@ def createFolderHierarchy() -> None:
                 logger.error(f"Failed to copy {tmppath} to {destinationDir}: {e}")
         sourceDir = Path(ROOT_DIR).joinpath("visionAssessments")
         destinationDir = Path(DATA_ROOT).joinpath(
-            "StudentDatabase", "StudentDataFiles", name, "StudentVisionAssessments"
+            "StudentDataFiles", name, "StudentVisionAssessments"
         )
         logging.debug(f"Resolved sourceDir: {sourceDir}")
         logging.debug(f"Resolved destinationDir for StudentVisionAssessments: {destinationDir}")
@@ -1035,6 +1025,7 @@ def copy_if_not_exists(source, destination):
 """
 Dictionary of specific Tasks organized by task Domain to be used on the Session Notes page to specifically choose the specific task by Domain
 """
+
 task_domains = {
     "Choose a Task Domain": ["Choose a Task"],
     "abacusSkills": [

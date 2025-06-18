@@ -15,8 +15,8 @@ from plotly.subplots import make_subplots
 from nicegui import ui
 
 # --- CONFIGURATION ---
-from StudentDataGUI.appHelpers.helpers import database_dir
-DATABASE_PATH = database_dir
+from StudentDataGUI.appHelpers.helpers import dataBasePath
+DATABASE_PATH = dataBasePath
 KEYBOARDING_PROGRESS_TYPE = "Keyboarding"  # Must match ProgressType.name in DB
 
 # --- UTILITY FUNCTIONS ---
@@ -68,18 +68,30 @@ def insert_keyboarding_result(conn, session_id, program, topic, speed, accuracy,
     now = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
     student_dir = Path(DATA_ROOT) / "StudentDataFiles" / student_name
     student_dir.mkdir(parents=True, exist_ok=True)
-    json_path = student_dir / f"keyboarding_{now}.json"
+    json_path = student_dir / f"keyboarding_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.json"
     json_data = {
         "student_name": student_name,
-        "date": date_val,
-        "notes": notes,
+        "date": str(date_val),
         "program": program,
         "topic": topic,
         "speed": speed,
-        "accuracy": accuracy
+        "accuracy": accuracy,
+        "notes": notes,
     }
     with open(json_path, "w") as f:
         json.dump(json_data, f, indent=2)
+
+    # Append data to KeyboardingSkillsProgression.csv
+    import csv
+    keyboarding_csv_path = student_dir / "KeyboardingSkillsProgression.csv"
+    header = ["date", "program", "topic", "speed", "accuracy", "notes"]
+    row = [date_val, program, topic, speed, accuracy, notes]
+    write_header = not keyboarding_csv_path.exists()  # Write header only if file doesn't exist
+    with open(keyboarding_csv_path, mode="a", newline="") as csvfile:
+        writer = csv.writer(csvfile)
+        if write_header:
+            writer.writerow(header)
+        writer.writerow(row)
 
 def fetch_keyboarding_data_for_student(conn, student_id, progress_type_id):
     """
@@ -163,8 +175,8 @@ def keyboarding_skills_ui():
                 student_id = get_or_create_student(conn, name)
                 progress_type_id = get_progress_type_id(conn, KEYBOARDING_PROGRESS_TYPE)
                 session_id = create_keyboarding_session(conn, student_id, progress_type_id, date_val, notes)
-                insert_keyboarding_result(conn, session_id, program, topic, speed, accuracy)
-                ui.notify("Keyboarding data saved successfully!", type="positive")
+                insert_keyboarding_result(conn, session_id, program, topic, speed, accuracy, name, date_val, notes)
+                ui.notify("Keyboarding data saved successfully and appended to CSV!", type="positive")
             except Exception as e:
                 ui.notify(f"Error saving data: {e}", type="negative")
             finally:

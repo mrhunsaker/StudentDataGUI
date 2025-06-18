@@ -15,8 +15,8 @@ import os
 ##############################################################################
 # Database Path (now uses helpers logic for container compatibility)
 ##############################################################################
-from .helpers import database_dir
-DATABASE_PATH = database_dir
+from .helpers import database_dir, dataBasePath
+DATABASE_PATH = dataBasePath
 import logging
 
 logging.debug(f"Resolved DATABASE_PATH: {DATABASE_PATH}")
@@ -146,6 +146,7 @@ def create_tables(conn):
 
 def initialize_database():
     """Initialize the database with the new schema."""
+    logging.debug(f"Initializing database at {DATABASE_PATH}")
     try:
         if os.path.exists(DATABASE_PATH):
             logging.info(f"Database already exists at {DATABASE_PATH}.")
@@ -156,6 +157,9 @@ def initialize_database():
                 create_tables(conn)
                 conn.close()
                 logging.info(f"Database initialized successfully at {DATABASE_PATH}.")
+    except Exception as e:
+        logging.error(f"Failed to initialize database at {DATABASE_PATH}: {e}")
+        logging.info(f"Database initialized successfully at {DATABASE_PATH}.")
     except Exception as e:
         logging.error(f"Failed to initialize database at {DATABASE_PATH}: {e}")
 

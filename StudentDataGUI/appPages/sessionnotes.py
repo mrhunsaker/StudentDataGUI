@@ -13,8 +13,8 @@ import pandas as pd
 from nicegui import ui
 
 # --- CONFIGURATION ---
-from StudentDataGUI.appHelpers.helpers import database_dir
-DATABASE_PATH = database_dir
+from StudentDataGUI.appHelpers.helpers import dataBasePath
+DATABASE_PATH = dataBasePath
 SESSION_NOTES_TYPE = "SessionNotes"  # Must match ProgressType.name in DB
 
 # --- UTILITY FUNCTIONS ---

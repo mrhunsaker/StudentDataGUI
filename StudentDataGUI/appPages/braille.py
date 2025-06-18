@@ -16,8 +16,8 @@ from plotly.subplots import make_subplots
 from nicegui import ui
 
 # --- CONFIGURATION ---
-from StudentDataGUI.appHelpers.helpers import database_dir
-DATABASE_PATH = database_dir
+from StudentDataGUI.appHelpers.helpers import dataBasePath
+DATABASE_PATH = dataBasePath
 BRAILLE_PROGRESS_TYPE = "Braille"  # Must match ProgressType.name in DB
 
 # --- UTILITY FUNCTIONS ---
@@ -96,6 +96,16 @@ def insert_braille_results(conn, session_id, part_scores, student_name, date_val
             (session_id, part_id, score)
         )
     conn.commit()
+
+    # Append data to BrailleSkillsProgression.csv
+    from StudentDataGUI.appHelpers.helpers import DATA_ROOT
+    import csv
+    braille_csv_path = Path(DATA_ROOT) / "StudentDataFiles" / student_name / "BrailleSkillsProgression.csv"
+    braille_csv_path.parent.mkdir(parents=True, exist_ok=True)
+    with open(braille_csv_path, mode="a", newline="") as csvfile:
+        writer = csv.writer(csvfile)
+        for code, (part_id, score) in part_scores.items():
+            writer.writerow([student_name, date_val, code, score, notes])
     # Save JSON snapshot of the inserted data
     import json
     from datetime import datetime
@@ -103,7 +113,7 @@ def insert_braille_results(conn, session_id, part_scores, student_name, date_val
     now = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
     student_dir = Path(DATA_ROOT) / "StudentDataFiles" / student_name
     student_dir.mkdir(parents=True, exist_ok=True)
-    json_path = student_dir / f"braille_{now}.json"
+    json_path = student_dir / f"braille_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.json"
     json_data = {
         "student_name": student_name,
         "date": date_val,
@@ -112,6 +122,14 @@ def insert_braille_results(conn, session_id, part_scores, student_name, date_val
     }
     with open(json_path, "w") as f:
         json.dump(json_data, f, indent=2)
+
+    # Append data to BrailleSkillsProgression.csv
+    import csv
+    braille_csv_path = student_dir / "BrailleSkillsProgression.csv"
+    with open(braille_csv_path, mode="a", newline="") as csvfile:
+        writer = csv.writer(csvfile)
+        for code, (part_id, score) in part_scores.items():
+            writer.writerow([student_name, date_val, code, score, notes])
 
 def fetch_braille_data_for_student(conn, student_id, progress_type_id, part_codes):
     """
@@ -149,7 +167,8 @@ def fetch_braille_data_for_student(conn, student_id, progress_type_id, part_code
         data[sid][code] = score
     df = pd.DataFrame.from_dict(data, orient='index')
     df = df.sort_values('date')
-    df['date'] = pd.to_datetime(df['date'])
+    df['date'] = pd.to_datetime(df['date']).astype(str)
+    df['date'] = df['date'].astype(str)  # Ensure date column is JSON serializable
     return df
 
 # --- UI LOGIC ---
@@ -193,7 +212,7 @@ def braille_skills_ui():
                     score = part_inputs[code].value
                     part_scores[code] = (part_ids[code], score)
                 insert_braille_results(conn, session_id, part_scores, name, date_val, notes)
-                ui.notify("Braille data saved successfully!", type="positive")
+                ui.notify("Braille data saved successfully and appended to CSV!", type="positive")
             except Exception as e:
                 ui.notify(f"Error saving data: {e}", type="negative")
             finally:
@@ -244,7 +263,7 @@ def braille_skills_ui():
                     row, col = phase_map[phase]
                     fig.add_trace(
                         go.Scatter(
-                            x=df['date'],
+                            x=df['date'],  # Ensure date column is JSON serializable
                             y=df[code],
                             mode="lines+markers",
                             name=code,

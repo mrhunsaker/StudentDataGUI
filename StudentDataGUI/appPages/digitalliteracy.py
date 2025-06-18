@@ -16,8 +16,8 @@ from plotly.subplots import make_subplots
 from nicegui import ui
 
 # --- CONFIGURATION ---
-from StudentDataGUI.appHelpers.helpers import database_dir
-DATABASE_PATH = database_dir
+from StudentDataGUI.appHelpers.helpers import dataBasePath
+DATABASE_PATH = dataBasePath
 DIGITALLITERACY_PROGRESS_TYPE = "Digital Literacy"  # Must match ProgressType.name in DB
 
 # --- UTILITY FUNCTIONS ---
@@ -119,6 +119,21 @@ def insert_digitalliteracy_results(conn, session_id, part_scores, student_name, 
     with open(json_path, "w") as f:
         json.dump(json_data, f, indent=2)
 
+    # Append data to DigitalLiteracyProgression.csv
+    import csv
+    digitalliteracy_csv_path = student_dir / "DigitalLiteracyProgression.csv"
+    # Prepare data for horizontal writing
+    header = ["date"] + list(part_scores.keys())
+    row = [date_val] + [score for _, score in part_scores.values()]
+
+    # Write data horizontally
+    write_header = not digitalliteracy_csv_path.exists()  # Write header only if file doesn't exist
+    with open(digitalliteracy_csv_path, mode="a", newline="") as csvfile:
+        writer = csv.writer(csvfile)
+        if write_header:
+            writer.writerow(header)
+        writer.writerow(row)
+
 def fetch_digitalliteracy_data_for_student(conn, student_id, progress_type_id, part_codes):
     """
     Returns a DataFrame with columns: date, code1, code2, ..., codeN
@@ -201,7 +216,7 @@ def digitalliteracy_skills_ui():
                     score = part_inputs[code].value
                     part_scores[code] = (part_ids[code], score)
                 insert_digitalliteracy_results(conn, session_id, part_scores)
-                ui.notify("Digital Literacy data saved successfully!", type="positive")
+                ui.notify("Digital Literacy data saved successfully and formatted horizontally in the CSV!", type="positive")
             except Exception as e:
                 ui.notify(f"Error saving data: {e}", type="negative")
             finally:

@@ -38,6 +38,7 @@ from .appTheming import theme
 from .appHelpers.helpers import (
     createFolderHierarchy,
     database_dir,
+    dataBasePath,
     set_start_dir,
     working_dir,
     create_roster,
@@ -46,11 +47,10 @@ from .appHelpers.helpers import (
 )
 
 from .appHelpers.sqlgenerate import create_connection, create_tables, initialize_database
+import logging
 
 set_start_dir()
-working_dir()
-create_user_dir()
-create_roster()
+logging.debug(f"Resolved database_dir: {database_dir}")
 createFolderHierarchy()
 initialize_database()
 

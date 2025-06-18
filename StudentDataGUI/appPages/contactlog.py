@@ -14,8 +14,8 @@ import plotly.graph_objs as go
 from nicegui import ui
 
 # --- CONFIGURATION ---
-from StudentDataGUI.appHelpers.helpers import database_dir
-DATABASE_PATH = database_dir
+from StudentDataGUI.appHelpers.helpers import dataBasePath
+DATABASE_PATH = dataBasePath
 CONTACTLOG_PROGRESS_TYPE = "ContactLog"  # Must match ProgressType.name in DB
 
 # --- UTILITY FUNCTIONS ---
@@ -93,6 +93,23 @@ def insert_contactlog_results(conn, session_id, part_scores, student_name, date_
             (session_id, part_id, score)
         )
     conn.commit()
+
+    # Append data to ContactLog.csv
+    from StudentDataGUI.appHelpers.helpers import DATA_ROOT
+    import csv
+    contactlog_csv_path = Path(DATA_ROOT) / "StudentDataFiles" / student_name / "ContactLog.csv"
+    contactlog_csv_path.parent.mkdir(parents=True, exist_ok=True)
+    # Prepare data for horizontal writing
+    header = ["date"] + list(part_scores.keys())
+    row = [date_val] + [score for _, score in part_scores.values()]
+
+    # Write data horizontally
+    write_header = not contactlog_csv_path.exists()  # Write header only if file doesn't exist
+    with open(contactlog_csv_path, mode="a", newline="") as csvfile:
+        writer = csv.writer(csvfile)
+        if write_header:
+            writer.writerow(header)
+        writer.writerow(row)
     # Save JSON snapshot of the inserted data
     import json
     from datetime import datetime
@@ -101,9 +118,10 @@ def insert_contactlog_results(conn, session_id, part_scores, student_name, date_
     student_dir = Path(DATA_ROOT) / "StudentDataFiles" / student_name
     student_dir.mkdir(parents=True, exist_ok=True)
     json_path = student_dir / f"contactlog_{now}.json"
+    json_path = Path(DATA_ROOT) / "StudentDataFiles" / student_name / f"contactlog_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.json"
     json_data = {
         "student_name": student_name,
-        "date": date_val,
+        "date": str(date_val),
         "notes": notes,
         "part_scores": {code: score for code, (part_id, score) in part_scores.items()}
     }
@@ -145,7 +163,7 @@ def fetch_contactlog_data_for_student(conn, student_id, progress_type_id, part_c
         data[sid][code] = value
     df = pd.DataFrame.from_dict(data, orient='index')
     df = df.sort_values('date')
-    df['date'] = pd.to_datetime(df['date'])
+    df['date'] = pd.to_datetime(df['date']).astype(str)  # Ensure date column is JSON serializable
     return df
 
 # --- UI LOGIC ---
@@ -188,7 +206,38 @@ def contactlog_ui():
                     "EMAIL_ADDRESS": (part_ids["EMAIL_ADDRESS"], email_address.value),
                 }
                 insert_contactlog_results(conn, session_id, part_values)
-                ui.notify("Contact log entry saved successfully!", type="positive")
+
+                # Append data to ContactLog.csv
+                from StudentDataGUI.appHelpers.helpers import DATA_ROOT
+                import csv
+                contactlog_csv_path = Path(DATA_ROOT) / "StudentDataFiles" / name / "ContactLog.csv"
+                contactlog_csv_path.parent.mkdir(parents=True, exist_ok=True)
+                # Prepare data for horizontal writing
+                header = ["date"] + list(part_values.keys())
+                row = [date_val] + [value for _, value in part_values.values()]
+
+                # Write data horizontally
+                write_header = not contactlog_csv_path.exists()  # Write header only if file doesn't exist
+                with open(contactlog_csv_path, mode="a", newline="") as csvfile:
+                    writer = csv.writer(csvfile)
+                    if write_header:
+                        writer.writerow(header)
+                    writer.writerow(row)
+
+                # Save JSON snapshot of the inserted data
+                import json
+                from datetime import datetime
+                json_path = Path(DATA_ROOT) / "StudentDataFiles" / name / f"contactlog_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.json"
+                json_data = {
+                    "student_name": name,
+                    "date": date_val,
+                    "notes": notes,
+                    "contact_details": {key: value for key, (part_id, value) in part_values.items()}
+                }
+                with open(json_path, "w") as f:
+                    json.dump(json_data, f, indent=2)
+
+                ui.notify("Contact log entry saved successfully and appended to CSV!", type="positive")
             except Exception as e:
                 ui.notify(f"Error saving data: {e}", type="negative")
             finally:
@@ -222,7 +271,7 @@ def contactlog_ui():
                 print(f"Data plotted for student: {name}")
                 print(df.to_string())
                 # Plotting: show count of contact methods over time
-                df['date_str'] = df['date'].dt.strftime('%Y-%m-%d')
+                df['date_str'] = df['date']  # Use already serialized date column
                 method_counts = df.groupby(['date_str', 'CONTACT_METHOD']).size().unstack(fill_value=0)
                 fig = go.Figure()
                 for method in method_counts.columns:

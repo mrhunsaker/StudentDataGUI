@@ -16,8 +16,8 @@ from plotly.subplots import make_subplots
 from nicegui import ui
 
 # --- CONFIGURATION ---
-from StudentDataGUI.appHelpers.helpers import database_dir
-DATABASE_PATH = database_dir
+from StudentDataGUI.appHelpers.helpers import dataBasePath
+DATABASE_PATH = dataBasePath
 SCREENREADER_PROGRESS_TYPE = "ScreenReader"  # Must match ProgressType.name in DB
 
 
@@ -104,6 +104,29 @@ def insert_screenreader_results(conn, session_id, part_scores, student_name, dat
             (session_id, part_id, score)
         )
     conn.commit()
+
+    # Append data to ScreenReaderSkillsProgression.csv
+    from StudentDataGUI.appHelpers.helpers import DATA_ROOT
+    import csv
+    screenreader_csv_path = Path(DATA_ROOT) / "StudentDataFiles" / student_name / "ScreenReaderSkillsProgression.csv"
+    screenreader_csv_path.parent.mkdir(parents=True, exist_ok=True)
+    with open(screenreader_csv_path, mode="a", newline="") as csvfile:
+        writer = csv.writer(csvfile)
+        for code, (part_id, score) in part_scores.items():
+            writer.writerow([student_name, date_val, code, score, notes])
+
+    # Save JSON snapshot of the inserted data
+    import json
+    from datetime import datetime
+    json_path = Path(DATA_ROOT) / "StudentDataFiles" / student_name / f"screenreader_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.json"
+    json_data = {
+        "student_name": student_name,
+        "date": date_val,
+        "notes": notes,
+        "part_scores": {code: score for code, (part_id, score) in part_scores.items()}
+    }
+    with open(json_path, "w") as f:
+        json.dump(json_data, f, indent=2)
     # Save JSON snapshot of the inserted data
     import json
     from datetime import datetime
@@ -205,8 +228,8 @@ def screenreader_skills_ui():
                 for code in part_inputs:
                     score = part_inputs[code].value
                     part_scores[code] = (part_ids[code], score)
-                insert_screenreader_results(conn, session_id, part_scores)
-                ui.notify("Screen Reader data saved successfully!", type="positive")
+                insert_screenreader_results(conn, session_id, part_scores, name, date_val, notes)
+                ui.notify("Screen Reader data saved successfully and appended to CSV!", type="positive")
             except Exception as e:
                 ui.notify(f"Error saving data: {e}", type="negative")
             finally:

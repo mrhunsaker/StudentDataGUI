@@ -16,8 +16,8 @@ from plotly.subplots import make_subplots
 from nicegui import ui
 
 # --- CONFIGURATION ---
-from StudentDataGUI.appHelpers.helpers import database_dir
-DATABASE_PATH = database_dir
+from StudentDataGUI.appHelpers.helpers import dataBasePath
+DATABASE_PATH = dataBasePath
 IOS_PROGRESS_TYPE = "iOS"  # Must match ProgressType.name in DB
 
 # --- UTILITY FUNCTIONS ---
@@ -205,7 +205,38 @@ def ios_skills_ui():
                     score = part_inputs[code].value
                     part_scores[code] = (part_ids[code], score)
                 insert_ios_results(conn, session_id, part_scores)
-                ui.notify("iOS data saved successfully!", type="positive")
+
+                # Append data to iOSProgression.csv
+                from StudentDataGUI.appHelpers.helpers import DATA_ROOT
+                import csv
+                ios_csv_path = Path(DATA_ROOT) / "StudentDataFiles" / name / "iOSProgression.csv"
+                ios_csv_path.parent.mkdir(parents=True, exist_ok=True)
+                # Prepare data for horizontal writing
+                header = ["date"] + list(part_scores.keys())
+                row = [date_val] + [score for _, score in part_scores.values()]
+
+                # Write data horizontally
+                write_header = not ios_csv_path.exists()  # Write header only if file doesn't exist
+                with open(ios_csv_path, mode="a", newline="") as csvfile:
+                    writer = csv.writer(csvfile)
+                    if write_header:
+                        writer.writerow(header)
+                    writer.writerow(row)
+
+                # Save JSON snapshot of the inserted data
+                import json
+                from datetime import datetime
+                json_path = Path(DATA_ROOT) / "StudentDataFiles" / name / f"ios_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.json"
+                json_data = {
+                    "student_name": name,
+                    "date": str(date_val),
+                    "notes": notes,
+                    "part_scores": {code: score for code, (part_id, score) in part_scores.items()}
+                }
+                with open(json_path, "w") as f:
+                    json.dump(json_data, f, indent=2)
+
+                ui.notify("iOS data saved successfully and appended to CSV!", type="positive")
             except Exception as e:
                 ui.notify(f"Error saving data: {e}", type="negative")
             finally:

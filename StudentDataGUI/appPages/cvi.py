@@ -16,8 +16,8 @@ from plotly.subplots import make_subplots
 from nicegui import ui
 
 # --- CONFIGURATION ---
-from StudentDataGUI.appHelpers.helpers import database_dir
-DATABASE_PATH = database_dir
+from StudentDataGUI.appHelpers.helpers import dataBasePath
+DATABASE_PATH = dataBasePath
 CVI_PROGRESS_TYPE = "CVI"  # Must match ProgressType.name in DB
 
 
@@ -99,6 +99,23 @@ def insert_cvi_results(conn, session_id, part_scores, student_name, date_val, no
             (session_id, part_id, score)
         )
     conn.commit()
+
+    # Append data to CVIProgression.csv
+    from StudentDataGUI.appHelpers.helpers import DATA_ROOT
+    import csv
+    cvi_csv_path = Path(DATA_ROOT) / "StudentDataFiles" / student_name / "CVIProgression.csv"
+    cvi_csv_path.parent.mkdir(parents=True, exist_ok=True)
+    # Prepare data for horizontal writing
+    header = ["date"] + list(part_scores.keys())
+    row = [date_val] + [score for _, score in part_scores.values()]
+
+    # Write data horizontally
+    write_header = not cvi_csv_path.exists()  # Write header only if file doesn't exist
+    with open(cvi_csv_path, mode="a", newline="") as csvfile:
+        writer = csv.writer(csvfile)
+        if write_header:
+            writer.writerow(header)
+        writer.writerow(row)
     # Save JSON snapshot of the inserted data
     import json
     from datetime import datetime
@@ -152,7 +169,7 @@ def fetch_cvi_data_for_student(conn, student_id, progress_type_id, part_codes):
         data[sid][code] = score
     df = pd.DataFrame.from_dict(data, orient='index')
     df = df.sort_values('date')
-    df['date'] = pd.to_datetime(df['date'])
+    df['date'] = pd.to_datetime(df['date']).dt.strftime('%Y-%m-%d')  # Convert datetime to string for JSON serialization
     return df
 
 # --- UI LOGIC ---
@@ -200,7 +217,38 @@ def cvi_skills_ui():
                     score = part_inputs[code].value
                     part_scores[code] = (part_ids[code], score)
                 insert_cvi_results(conn, session_id, part_scores)
-                ui.notify("CVI data saved successfully!", type="positive")
+
+                # Append data to CVIProgression.csv
+                from StudentDataGUI.appHelpers.helpers import DATA_ROOT
+                import csv
+                cvi_csv_path = Path(DATA_ROOT) / "StudentDataFiles" / name / "CVIProgression.csv"
+                cvi_csv_path.parent.mkdir(parents=True, exist_ok=True)
+                # Prepare data for horizontal writing
+                header = ["date"] + list(part_scores.keys())
+                row = [date_val] + [score for _, score in part_scores.values()]
+
+                # Write data horizontally
+                write_header = not cvi_csv_path.exists()  # Write header only if file doesn't exist
+                with open(cvi_csv_path, mode="a", newline="") as csvfile:
+                    writer = csv.writer(csvfile)
+                    if write_header:
+                        writer.writerow(header)
+                    writer.writerow(row)
+
+                # Save JSON snapshot of the inserted data
+                import json
+                from datetime import datetime
+                json_path = Path(DATA_ROOT) / "StudentDataFiles" / name / f"cvi_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.json"
+                json_data = {
+                    "student_name": name,
+                    "date": date_val.strftime('%Y-%m-%d'),  # Convert datetime to string
+                    "notes": notes,
+                    "part_scores": {code: score for code, (part_id, score) in part_scores.items()}
+                }
+                with open(json_path, "w") as f:
+                    json.dump(json_data, f, indent=2)
+
+                ui.notify("CVI data saved successfully and appended to CSV!", type="positive")
             except Exception as e:
                 ui.notify(f"Error saving data: {e}", type="negative")
             finally:
@@ -255,7 +303,7 @@ def cvi_skills_ui():
                 for code, (row, col) in code_to_subplot.items():
                     fig.add_trace(
                         go.Scatter(
-                            x=df['date'],
+                            x=df['date'],  # Ensure date column is JSON serializable
                             y=df[code],
                             mode="lines+markers",
                             name=code,

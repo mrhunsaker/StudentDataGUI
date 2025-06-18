@@ -29,13 +29,13 @@ import traceback
 from pathlib import Path
 
 from nicegui import ui
-from screeninfo import get_monitors
+from screeninfo import get_monitors, ScreenInfoError
 
 module_path = os.path.abspath(os.getcwd())
 if module_path not in sys.path:
     sys.path.append(module_path)
-from appTheming import theme
-from appHelpers.helpers import (
+from .appTheming import theme
+from .appHelpers.helpers import (
     createFolderHierarchy,
     dataBasePath,
     set_start_dir,
@@ -44,30 +44,29 @@ from appHelpers.helpers import (
     USER_DIR,
     datenow,
 )
-from appHelpers.workingdirectory import create_user_dir
-from appHelpers.sqlgenerate import create_connection, createTables
+from .appHelpers.workingdirectory import create_user_dir
+from .appHelpers.sqlgenerate import create_connection, create_tables, initialize_database
 
 set_start_dir()
 working_dir()
 create_user_dir()
 create_roster()
 createFolderHierarchy()
-create_connection(dataBasePath)
-createTables()
+initialize_database()
 
-from appPages import abacus
-from appPages import sessionnotes
-from appPages import braille
-from appPages import braillenote
-from appPages import contactlog
-from appPages import cvi
-from appPages import homepage
-from appPages import InstructionalMaterials
-from appPages import ios
-from appPages import observations
-from appPages import screenreader
-from appPages import digitalliteracy
-from appPages import keyboarding
+from .appPages import abacus
+from .appPages import sessionnotes
+from .appPages import braille
+from .appPages import braillenote
+from .appPages import contactlog
+from .appPages import cvi
+from .appPages import homepage
+from .appPages import InstructionalMaterials
+from .appPages import ios
+from .appPages import observations
+from .appPages import screenreader
+from .appPages import digitalliteracy
+from .appPages import keyboarding
 
 
 def warningmessage(exception_type, exception_value, exception_traceback) -> None:
@@ -117,10 +116,8 @@ def index_page() -> None:
     """
     Opens the homepage for the app.
 
-    This function initializes the homepage of the app by creating various elements
-    such as contact logs, abacus, session notes, observations, braille, braille note,
-    CVI (Cortical Visual Impairment), iOS, screen reader, instructional materials,
-    digital literacy, and keyboarding.
+    This function initializes the homepage of the app by displaying the main
+    homepage content with instructions and navigation.
 
     Returns
     -------
@@ -134,68 +131,50 @@ def index_page() -> None:
         homepage.content()
 
 
-contactlog.create()
-abacus.create()
-sessionnotes.create()
-observations.create()
-braille.create()
-braillenote.create()
-cvi.create()
-ios.create()
-screenreader.create()
-InstructionalMaterials.create()
-digitalliteracy.create()
-keyboarding.create()
+def initialize_ui():
+    """Initialize global UI components after NiceGUI is ready."""
+    # Import the page modules to register their routes
+    import StudentDataGUI.appPages.contactlog
+    import StudentDataGUI.appPages.abacus
+    import StudentDataGUI.appPages.sessionnotes
+    import StudentDataGUI.appPages.observations
+    import StudentDataGUI.appPages.braille
+    import StudentDataGUI.appPages.braillenote
+    import StudentDataGUI.appPages.cvi
+    import StudentDataGUI.appPages.ios
+    import StudentDataGUI.appPages.screenreader
+    import StudentDataGUI.appPages.InstructionalMaterials
+    import StudentDataGUI.appPages.digitalliteracy
+    import StudentDataGUI.appPages.keyboarding
 
-with ui.footer(value=True) as footer:
-    with ui.row().classes(
-        "w-screen no-wrap justify-center items-center text-l font-bold"
-    ):
-        ui.label(
-            "Copyright © 2025 Michael Ryan Hunsaker, M.Ed., Ph.D.\nReport Bugs or Request Features by emailing hunsakerconsulting@gmail.com"
-        ).classes("justify-center items-center text-lg").style(
-            'font-family: "Atkinson Hyperlegible"'
-        )
+    # Create global footer that appears on all pages
+    with ui.footer(value=True) as footer:
+        with ui.row().classes(
+            "w-screen no-wrap justify-center items-center text-l font-bold"
+        ):
+            ui.label(
+                "Copyright © 2025 Michael Ryan Hunsaker, M.Ed., Ph.D.\nReport Bugs or Request Features by emailing hunsakerconsulting@gmail.com"
+            ).classes("justify-center items-center text-lg").style(
+                'font-family: "Atkinson Hyperlegible"'
+            )
 
 MONITOR = ""
 
+def main():
+    """Main application entry point."""
+    # Initialize UI components
+    initialize_ui()
 
-def getresolution() -> str:
-    """
-    Retrieve the screen resolution of the primary monitor.
+    # Start the server
+    ui.run(
+        native=False,
+        reload=False,
+        dark=False,
+        title="Student Skills Progressions",
+        fullscreen=False,
+        host=os.getenv("NICEGUI_HOST", "127.0.0.1"),
+        port=int(os.getenv("NICEGUI_PORT", "8080")),
+    )
 
-    This function iterates through the available monitors using the `get_monitors` function
-    from the `screeninfo` module and returns the resolution of the primary monitor in the
-    format "width x height".
-
-    Returns
-    -------
-    str
-        A string representing the screen resolution in the format "width x height".
-
-    Examples
-    --------
-    >>> getresolution()
-    '1920x1080'
-    """
-
-    try:
-        from screeninfo import get_monitors
-        def getresolution():
-            for screen in get_monitors():
-                return {"width": screen.width, "height": screen.height}
-    except ImportError:
-        # Fallback for headless environments
-        def getresolution():
-            return {"width": 1920, "height": 1080}
-
-MONITOR = getresolution()
-
-ui.run(
-    native=False,
-    reload=False,
-    dark=False,
-    title="Student Skills Progressions",
-    fullscreen=False,
-    # window_size=(MONITOR.width, MONITOR.height - 72) # only relevant if native=True
-)
+if __name__ == "__main__":
+    main()

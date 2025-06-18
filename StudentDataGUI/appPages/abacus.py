@@ -1,4 +1,3 @@
-StudentDataGUI/StudentDataGUI/appPages/abacus_updated.py
 #!/usr/bin/env python3
 
 """
@@ -17,7 +16,8 @@ from plotly.subplots import make_subplots
 from nicegui import ui
 
 # --- CONFIGURATION ---
-DATABASE_PATH = "/home/ryhunsaker/Documents/StudentDatabase/students_bestpractice.db"
+from StudentDataGUI.appHelpers.helpers import dataBasePath
+DATABASE_PATH = dataBasePath
 ABACUS_PROGRESS_TYPE = "Abacus"  # Must match ProgressType.name in DB
 
 # --- UTILITY FUNCTIONS ---
@@ -93,7 +93,7 @@ def create_abacus_session(conn, student_id, progress_type_id, date, notes=None):
     conn.commit()
     return cur.lastrowid
 
-def insert_abacus_results(conn, session_id, part_scores):
+def insert_abacus_results(conn, session_id, part_scores, student_name, date_val, notes=None):
     """
     part_scores: dict of {code: score}
     """
@@ -104,6 +104,22 @@ def insert_abacus_results(conn, session_id, part_scores):
             (session_id, part_id, score)
         )
     conn.commit()
+    # Save JSON snapshot of the inserted data
+    import json
+    from datetime import datetime
+    from StudentDataGUI.appHelpers.helpers import DATA_ROOT
+    now = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    student_dir = Path(DATA_ROOT) / "StudentDataFiles" / student_name
+    student_dir.mkdir(parents=True, exist_ok=True)
+    json_path = student_dir / f"abacus_{now}.json"
+    json_data = {
+        "student_name": student_name,
+        "date": date_val,
+        "notes": notes,
+        "part_scores": {code: score for code, (part_id, score) in part_scores.items()}
+    }
+    with open(json_path, "w") as f:
+        json.dump(json_data, f, indent=2)
 
 def fetch_abacus_data_for_student(conn, student_id, progress_type_id, part_codes):
     """
@@ -150,7 +166,8 @@ def abacus_skills_ui():
     with ui.card():
         ui.label("Abacus Skills (Normalized DB)").classes("text-h4 text-grey-8")
         student_name = ui.input("Student Name", placeholder="Enter student name")
-        date_input = ui.date(label="Date", value=datetime.date.today())
+        ui.label("Date")
+        date_input = ui.date(value=datetime.date.today())
         # Abacus part codes and labels
         abacus_parts = [
             ("P1_1", "Phase 1: Setting Numbers"), ("P1_2", "Phase 1: Clearing Beads"),
@@ -168,10 +185,9 @@ def abacus_skills_ui():
             ("P8_1", "Phase 8: Setting Numbers"), ("P8_2", "Phase 8: Clearing Beads"),
         ]
         part_inputs = {}
-        with ui.row():
-            for code, label in abacus_parts:
-                part_inputs[code] = ui.number(label=label, value=0, min=0, max=3, step=1)
-        notes_input = ui.input("Notes (optional)", multiline=True)
+        for code, label in abacus_parts:
+            part_inputs[code] = ui.number(label=label, value=0, min=0, max=3, step=1)
+        notes_input = ui.textarea("Notes (optional)")
 
         def save_abacus_data():
             name = student_name.value.strip()
@@ -191,7 +207,7 @@ def abacus_skills_ui():
                 for code in part_inputs:
                     score = part_inputs[code].value
                     part_scores[code] = (part_ids[code], score)
-                insert_abacus_results(conn, session_id, part_scores)
+                insert_abacus_results(conn, session_id, part_scores, name, date_val, notes)
                 ui.notify("Abacus data saved successfully!", type="positive")
             except Exception as e:
                 ui.notify(f"Error saving data: {e}", type="negative")
@@ -221,6 +237,10 @@ def abacus_skills_ui():
                 if df.empty:
                     ui.notify("No abacus data for this student.", type="warning")
                     return
+
+                # Print dataframe to terminal for debugging
+                print(f"Data plotted for student: {name}")
+                print(df.to_string())
                 # Plotting
                 fig = make_subplots(
                     rows=4, cols=2,
@@ -252,10 +272,15 @@ def abacus_skills_ui():
                     title_text=f"{name}: Abacus Skills Progression",
                     hovermode="x unified"
                 )
-                # Show in browser or as HTML
-                tmp_html = Path.home() / "AbacusSkillsProgression.html"
-                fig.write_html(str(tmp_html), auto_open=True)
-                ui.notify("Graph generated and opened in browser.", type="positive")
+                # Save HTML to student folder with timestamp
+                from datetime import datetime
+                from StudentDataGUI.appHelpers.helpers import DATA_ROOT
+                now = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+                student_dir = Path(DATA_ROOT) / "StudentDataFiles" / name
+                student_dir.mkdir(parents=True, exist_ok=True)
+                html_path = student_dir / f"abacus_{now}.html"
+                fig.write_html(str(html_path), auto_open=False)
+                ui.notify(f"Graph saved to {html_path}", type="positive")
             except Exception as e:
                 ui.notify(f"Error plotting data: {e}", type="negative")
             finally:
@@ -264,6 +289,7 @@ def abacus_skills_ui():
         ui.button("Plot Abacus Data", on_click=plot_abacus_data, color="secondary")
 
 # --- PAGE ENTRY POINT ---
+@ui.page("/abacus_skills_ui")
 def create():
     abacus_skills_ui()
 

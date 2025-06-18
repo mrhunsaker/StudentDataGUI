@@ -27,11 +27,11 @@ import os
 from contextlib import contextmanager
 from pathlib import Path
 
-from appHelpers.helpers import ROOT_DIR
-from appTheming.menu import menu
+from ..appHelpers.helpers import ROOT_DIR
+from .menu import menu
 from nicegui import ui, app
 
-ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
+""" ROOT_DIR = os.path.dirname(os.path.abspath(__file__))"""
 
 
 def github() -> ui.html:
@@ -204,13 +204,13 @@ def frame(navtitle: str) -> None:
             }
             .q-table__bottom .q-table__separator {
                 display: none;
-            }   
+            }
             .q-badge--outline {
                 border-width: 4px;
                 font-weight: bold;
                 font-size: 1.25rem;
             }
-            .my-table tbody td { 
+            .my-table tbody td {
                 font-size: 1.25em;
                 align: left;
             }

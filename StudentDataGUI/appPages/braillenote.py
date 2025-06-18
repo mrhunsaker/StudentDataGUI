@@ -1,4 +1,3 @@
-StudentDataGUI/StudentDataGUI/appPages/braillenote_updated.py
 #!/usr/bin/env python3
 
 """
@@ -17,8 +16,10 @@ from plotly.subplots import make_subplots
 from nicegui import ui
 
 # --- CONFIGURATION ---
-DATABASE_PATH = "/home/ryhunsaker/Documents/StudentDatabase/students_bestpractice.db"
+from StudentDataGUI.appHelpers.helpers import dataBasePath
+DATABASE_PATH = dataBasePath
 BRAILLENOTE_PROGRESS_TYPE = "BrailleNote"  # Must match ProgressType.name in DB
+
 
 # --- UTILITY FUNCTIONS ---
 
@@ -107,17 +108,50 @@ def create_braillenote_session(conn, student_id, progress_type_id, date, notes=N
     conn.commit()
     return cur.lastrowid
 
-def insert_braillenote_results(conn, session_id, part_scores):
-    """
-    part_scores: dict of {code: score}
-    """
-    cur = conn.cursor()
-    for code, (part_id, score) in part_scores.items():
-        cur.execute(
-            "INSERT INTO AssessmentResult (session_id, part_id, score) VALUES (?, ?, ?)",
-            (session_id, part_id, score)
-        )
-    conn.commit()
+def insert_braillenote_results(conn, session_id, part_scores, student_name, date_val, notes=None):
+    def insert_braillenote_results(conn, session_id, part_scores, student_name, date_val, notes=None):
+        """
+        part_scores: dict of {code: score}
+        """
+        cur = conn.cursor()
+        for code, (part_id, score) in part_scores.items():
+            cur.execute(
+                "INSERT INTO AssessmentResult (session_id, part_id, score) VALUES (?, ?, ?)",
+                (session_id, part_id, score)
+            )
+        conn.commit()
+        # Save JSON snapshot of the inserted data
+        import json
+        from datetime import datetime
+        from StudentDataGUI.appHelpers.helpers import DATA_ROOT
+        now = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+        student_dir = Path(DATA_ROOT) / "StudentDataFiles" / student_name
+        student_dir.mkdir(parents=True, exist_ok=True)
+        json_path = student_dir / f"braillenote_{now}.json"
+        json_data = {
+            "student_name": student_name,
+            "date": date_val,
+            "notes": notes,
+            "part_scores": {code: score for code, (part_id, score) in part_scores.items()}
+        }
+        with open(json_path, "w") as f:
+            json.dump(json_data, f, indent=2)
+    # Save JSON snapshot of the inserted data
+    import json
+    from datetime import datetime
+    from StudentDataGUI.appHelpers.helpers import DATA_ROOT
+    now = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    student_dir = Path(DATA_ROOT) / "StudentDataFiles" / student_name
+    student_dir.mkdir(parents=True, exist_ok=True)
+    json_path = student_dir / f"braillenote_{now}.json"
+    json_data = {
+        "student_name": student_name,
+        "date": date_val,
+        "notes": notes,
+        "part_scores": {code: score for code, (part_id, score) in part_scores.items()}
+    }
+    with open(json_path, "w") as f:
+        json.dump(json_data, f, indent=2)
 
 def fetch_braillenote_data_for_student(conn, student_id, progress_type_id, part_codes):
     """
@@ -161,7 +195,8 @@ def braillenote_skills_ui():
     with ui.card():
         ui.label("BrailleNote Touch Plus Skills (Normalized DB)").classes("text-h4 text-grey-8")
         student_name = ui.input("Student Name", placeholder="Enter student name")
-        date_input = ui.date(label="Date", value=datetime.date.today())
+        ui.label("Date")
+        date_input = ui.date(value=datetime.date.today())
         # BrailleNote part codes and labels (abbreviated for demo, expand as needed)
         braillenote_parts = [
             ("P1_1", "Physical Layout"), ("P1_2", "Setup/Universal Commands"), ("P1_3", "BNT+ Navigation"),
@@ -184,10 +219,9 @@ def braillenote_skills_ui():
             ("P12_1", "Community Resources"), ("P12_2", "Online Help"), ("P12_3", "User Forums"), ("P12_4", "Feedback"),
         ]
         part_inputs = {}
-        with ui.row():
-            for code, label in braillenote_parts:
-                part_inputs[code] = ui.number(label=label, value=0, min=0, max=3, step=1)
-        notes_input = ui.input("Notes (optional)", multiline=True)
+        for code, label in braillenote_parts:
+            part_inputs[code] = ui.number(label=label, value=0, min=0, max=3, step=1)
+        notes_input = ui.textarea("Notes (optional)")
 
         def save_braillenote_data():
             name = student_name.value.strip()
@@ -206,7 +240,7 @@ def braillenote_skills_ui():
                 for code in part_inputs:
                     score = part_inputs[code].value
                     part_scores[code] = (part_ids[code], score)
-                insert_braillenote_results(conn, session_id, part_scores)
+                insert_braillenote_results(conn, session_id, part_scores, name, date_val, notes)
                 ui.notify("BrailleNote data saved successfully!", type="positive")
             except Exception as e:
                 ui.notify(f"Error saving data: {e}", type="negative")
@@ -234,8 +268,12 @@ def braillenote_skills_ui():
                 part_codes = list(part_ids.keys())
                 df = fetch_braillenote_data_for_student(conn, student_id, progress_type_id, part_codes)
                 if df.empty:
-                    ui.notify("No BrailleNote data for this student.", type="warning")
+                    ui.notify("No braillenote data for this student.", type="warning")
                     return
+
+                # Print dataframe to terminal for debugging
+                print(f"Data plotted for student: {name}")
+                print(df.to_string())
                 # Plotting
                 # For demo, plot first 12 skills in a 3x4 grid
                 fig = make_subplots(
@@ -271,6 +309,7 @@ def braillenote_skills_ui():
         ui.button("Plot BrailleNote Data", on_click=plot_braillenote_data, color="secondary")
 
 # --- PAGE ENTRY POINT ---
+@ui.page("/braillenote_skills_ui")
 def create():
     braillenote_skills_ui()
 

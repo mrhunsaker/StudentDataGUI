@@ -1,4 +1,3 @@
-StudentDataGUI/StudentDataGUI/appPages/cvi_updated.py
 #!/usr/bin/env python3
 
 """
@@ -17,8 +16,10 @@ from plotly.subplots import make_subplots
 from nicegui import ui
 
 # --- CONFIGURATION ---
-DATABASE_PATH = "/home/ryhunsaker/Documents/StudentDatabase/students_bestpractice.db"
+from StudentDataGUI.appHelpers.helpers import dataBasePath
+DATABASE_PATH = dataBasePath
 CVI_PROGRESS_TYPE = "CVI"  # Must match ProgressType.name in DB
+
 
 # --- UTILITY FUNCTIONS ---
 
@@ -87,7 +88,7 @@ def create_cvi_session(conn, student_id, progress_type_id, date, notes=None):
     conn.commit()
     return cur.lastrowid
 
-def insert_cvi_results(conn, session_id, part_scores):
+def insert_cvi_results(conn, session_id, part_scores, student_name, date_val, notes=None):
     """
     part_scores: dict of {code: score}
     """
@@ -98,6 +99,22 @@ def insert_cvi_results(conn, session_id, part_scores):
             (session_id, part_id, score)
         )
     conn.commit()
+    # Save JSON snapshot of the inserted data
+    import json
+    from datetime import datetime
+    from StudentDataGUI.appHelpers.helpers import DATA_ROOT
+    now = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    student_dir = Path(DATA_ROOT) / "StudentDataFiles" / student_name
+    student_dir.mkdir(parents=True, exist_ok=True)
+    json_path = student_dir / f"cvi_{now}.json"
+    json_data = {
+        "student_name": student_name,
+        "date": date_val,
+        "notes": notes,
+        "part_scores": {code: score for code, (part_id, score) in part_scores.items()}
+    }
+    with open(json_path, "w") as f:
+        json.dump(json_data, f, indent=2)
 
 def fetch_cvi_data_for_student(conn, student_id, progress_type_id, part_codes):
     """
@@ -144,7 +161,8 @@ def cvi_skills_ui():
     with ui.card():
         ui.label("CVI Progression (Normalized DB)").classes("text-h4 text-grey-8")
         student_name = ui.input("Student Name", placeholder="Enter student name")
-        date_input = ui.date(label="Date", value=datetime.date.today())
+        ui.label("Date")
+        date_input = ui.date(value=datetime.date.today())
         # CVI part codes and labels
         cvi_parts = [
             ("P1_1", "Color Preference"),
@@ -159,10 +177,9 @@ def cvi_skills_ui():
             ("P2_4", "Visual Reach"),
         ]
         part_inputs = {}
-        with ui.row():
-            for code, label in cvi_parts:
-                part_inputs[code] = ui.number(label=label, value=0, min=0, max=3, step=1)
-        notes_input = ui.input("Notes (optional)", multiline=True)
+        for code, label in cvi_parts:
+            part_inputs[code] = ui.number(label=label, value=0, min=0, max=3, step=1)
+        notes_input = ui.textarea("Notes (optional)")
 
         def save_cvi_data():
             name = student_name.value.strip()
@@ -212,6 +229,10 @@ def cvi_skills_ui():
                 if df.empty:
                     ui.notify("No CVI data for this student.", type="warning")
                     return
+
+                # Print dataframe to terminal for debugging
+                print(f"Data plotted for student: {name}")
+                print(df.to_string())
                 # Plotting
                 fig = make_subplots(
                     rows=5, cols=2,
@@ -247,10 +268,15 @@ def cvi_skills_ui():
                     title_text=f"{name}: CVI Progression",
                     hovermode="x unified"
                 )
-                # Show in browser or as HTML
-                tmp_html = Path.home() / "CVIProgression.html"
-                fig.write_html(str(tmp_html), auto_open=True)
-                ui.notify("Graph generated and opened in browser.", type="positive")
+                # Save HTML to student folder with timestamp
+                from datetime import datetime
+                from StudentDataGUI.appHelpers.helpers import DATA_ROOT
+                now = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+                student_dir = Path(DATA_ROOT) / "StudentDataFiles" / name
+                student_dir.mkdir(parents=True, exist_ok=True)
+                html_path = student_dir / f"cvi_{now}.html"
+                fig.write_html(str(html_path), auto_open=False)
+                ui.notify(f"Graph saved to {html_path}", type="positive")
             except Exception as e:
                 ui.notify(f"Error plotting data: {e}", type="negative")
             finally:
@@ -259,6 +285,7 @@ def cvi_skills_ui():
         ui.button("Plot CVI Data", on_click=plot_cvi_data, color="secondary")
 
 # --- PAGE ENTRY POINT ---
+@ui.page("/cvi_skills_ui")
 def create():
     cvi_skills_ui()
 

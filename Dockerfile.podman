@@ -1,6 +1,7 @@
-# Universal Dockerfile for Docker and Podman (Ubuntu 24.04 + Python 3.12 + venv)
+# Dockerfile optimized for Podman rootless environments using Ubuntu 24.04
 FROM ubuntu:24.04
 
+# Set environment variables
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 ENV PYTHONPATH=/app
@@ -38,6 +39,7 @@ RUN apt-get update && apt-get install -y \
 RUN ln -sf /usr/bin/python3.12 /usr/bin/python3 && \
     ln -sf /usr/bin/python3.12 /usr/bin/python
 
+# Set working directory
 WORKDIR /app
 
 # Create virtual environment and install Python dependencies
@@ -50,7 +52,7 @@ RUN python3 -m venv /app/venv && \
 COPY StudentDataGUI/ ./StudentDataGUI/
 COPY __init__.py .
 
-# Create necessary directories with proper permissions
+# Create necessary directories with proper permissions for rootless Podman
 RUN mkdir -p /app/home/.cache/fontconfig \
              /app/data \
              /app/database \
@@ -60,9 +62,12 @@ RUN mkdir -p /app/home/.cache/fontconfig \
     chmod -R 755 /app && \
     chmod -R 777 /tmp/matplotlib /tmp/runtime
 
+# Expose port
 EXPOSE 8080
 
+# Health check using Python's built-in urllib instead of external tools
 HEALTHCHECK --interval=30s --timeout=10s --start-period=15s --retries=3 \
     CMD /app/venv/bin/python -c "import urllib.request; urllib.request.urlopen('http://localhost:8080')" || exit 1
 
+# Set the entrypoint using the virtual environment
 CMD ["/app/venv/bin/python", "-m", "StudentDataGUI"]

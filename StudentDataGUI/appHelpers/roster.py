@@ -3,4 +3,5 @@ students = [
     "StudentOne",
     "StudentTwo",
     "StudentN",
+    "Test Student"
 ]

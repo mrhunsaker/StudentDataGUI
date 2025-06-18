@@ -1,4 +1,3 @@
-StudentDataGUI/StudentDataGUI/appHelpers/updated_sql_bestpractice.py
 #!/usr/bin/env python3
 
 """
@@ -14,9 +13,10 @@ from sqlite3 import Error
 import os
 
 ##############################################################################
-# Database Path (change as needed)
+# Database Path (now uses helpers logic for container compatibility)
 ##############################################################################
-DATABASE_PATH = "/home/ryhunsaker/Documents/StudentDatabase/students_bestpractice.db"
+from .helpers import dataBasePath
+DATABASE_PATH = dataBasePath
 
 ##############################################################################
 # Schema Definition
@@ -37,7 +37,7 @@ SCHEMA = [
     """
     CREATE TABLE IF NOT EXISTS ProgressType (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        name TEXT NOT NULL UNIQUE, -- e.g. 'Keyboarding', 'Braille', etc.
+        name TEXT NOT NULL UNIQUE,
         description TEXT
     );
     """,
@@ -98,7 +98,7 @@ SCHEMA = [
     CREATE TABLE IF NOT EXISTS AssessmentPart (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         progress_type_id INTEGER NOT NULL,
-        code TEXT NOT NULL, -- e.g. 'P1_1', 'P2_3'
+        code TEXT NOT NULL,
         description TEXT,
         UNIQUE(progress_type_id, code),
         FOREIGN KEY(progress_type_id) REFERENCES ProgressType(id) ON DELETE CASCADE

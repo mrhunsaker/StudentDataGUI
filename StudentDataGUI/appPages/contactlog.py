@@ -1,4 +1,3 @@
-StudentDataGUI/StudentDataGUI/appPages/contactlog_updated.py
 #!/usr/bin/env python3
 
 """
@@ -15,7 +14,8 @@ import plotly.graph_objs as go
 from nicegui import ui
 
 # --- CONFIGURATION ---
-DATABASE_PATH = "/home/ryhunsaker/Documents/StudentDatabase/students_bestpractice.db"
+from StudentDataGUI.appHelpers.helpers import dataBasePath
+DATABASE_PATH = dataBasePath
 CONTACTLOG_PROGRESS_TYPE = "ContactLog"  # Must match ProgressType.name in DB
 
 # --- UTILITY FUNCTIONS ---
@@ -82,17 +82,33 @@ def create_contactlog_session(conn, student_id, progress_type_id, date, notes=No
     conn.commit()
     return cur.lastrowid
 
-def insert_contactlog_results(conn, session_id, part_values):
+def insert_contactlog_results(conn, session_id, part_scores, student_name, date_val, notes=None):
     """
-    part_values: dict of {code: value}
+    part_scores: dict of {code: score}
     """
     cur = conn.cursor()
-    for code, (part_id, value) in part_values.items():
+    for code, (part_id, score) in part_scores.items():
         cur.execute(
             "INSERT INTO AssessmentResult (session_id, part_id, score) VALUES (?, ?, ?)",
-            (session_id, part_id, value)
+            (session_id, part_id, score)
         )
     conn.commit()
+    # Save JSON snapshot of the inserted data
+    import json
+    from datetime import datetime
+    from StudentDataGUI.appHelpers.helpers import DATA_ROOT
+    now = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    student_dir = Path(DATA_ROOT) / "StudentDataFiles" / student_name
+    student_dir.mkdir(parents=True, exist_ok=True)
+    json_path = student_dir / f"contactlog_{now}.json"
+    json_data = {
+        "student_name": student_name,
+        "date": date_val,
+        "notes": notes,
+        "part_scores": {code: score for code, (part_id, score) in part_scores.items()}
+    }
+    with open(json_path, "w") as f:
+        json.dump(json_data, f, indent=2)
 
 def fetch_contactlog_data_for_student(conn, student_id, progress_type_id, part_codes):
     """
@@ -138,7 +154,8 @@ def contactlog_ui():
     with ui.card():
         ui.label("Contact Log (Normalized DB)").classes("text-h4 text-grey-8")
         student_name = ui.input("Student Name", placeholder="Enter student name")
-        date_input = ui.date(label="Date", value=datetime.date.today())
+        ui.label("Date")
+        date_input = ui.date(value=datetime.date.today())
         guardian_name = ui.input("Guardian Name")
         contact_method = ui.select(["Phone", "Text", "In-Person", "Email"], label="Contact Method")
         phone_number = ui.input("Phone Number")
@@ -200,6 +217,10 @@ def contactlog_ui():
                 if df.empty:
                     ui.notify("No contact log data for this student.", type="warning")
                     return
+
+                # Print dataframe to terminal for debugging
+                print(f"Data plotted for student: {name}")
+                print(df.to_string())
                 # Plotting: show count of contact methods over time
                 df['date_str'] = df['date'].dt.strftime('%Y-%m-%d')
                 method_counts = df.groupby(['date_str', 'CONTACT_METHOD']).size().unstack(fill_value=0)
@@ -228,6 +249,7 @@ def contactlog_ui():
         ui.button("Plot Contact Log Data", on_click=plot_contactlog_data, color="secondary")
 
 # --- PAGE ENTRY POINT ---
+@ui.page("/contactlog_ui")
 def create():
     contactlog_ui()
 

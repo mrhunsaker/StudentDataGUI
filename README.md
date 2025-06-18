@@ -248,56 +248,86 @@ Everyone participating in the Black project, and in particular in the issue trac
 
 ---
 
-# Build the Docker/Podman container
+# Container Support
 
-# Create local directories
+This project provides both Docker and Podman support with dedicated Dockerfiles optimized for each container runtime.
+
+## Docker vs Podman
+
+- **Docker**: Uses `Dockerfile` with traditional root-based container setup
+- **Podman**: Uses `Dockerfile.podman` optimized for rootless containers with virtual environment isolation
+
+## Quick Start
+
+### Create local directories first
+```bash
 mkdir -p ~/Documents/StudentDatabase/StudentDataFiles
 mkdir -p ~/Documents/StudentDatabase/errorLogs
 mkdir -p ~/Documents/StudentDatabase/backups
 chmod -R 755 ~/Documents/StudentDatabase
+```
 
+### For Docker users:
+```bash
 # Build the image
-podman build -t student-data-app .
-# or
-docker build -t student-data-app .
+docker build -f Dockerfile -t student-data-app .
+
+# Run the container
+docker run -d \
+  --name student-data \
+  -p 8080:8080 \
+  -v ~/Documents/StudentDatabase:/app/data \
+  student-data-app
+```
+
+### For Podman users:
+```bash
+# Build the image
+podman build -f Dockerfile.podman -t student-data-app .
 
 # Run the container
 podman run -d \
   --name student-data \
   -p 8080:8080 \
-  -v ~/Documents/StudentDatabase:/home/appuser/Documents/StudentData:Z \
+  -v ~/Documents/StudentDatabase:/app/data:Z \
   student-data-app
-# or
-docker run -d \
-  --name student-data \
-  -p 8080:8080 \
-  -v ~/Documents/StudentDatabase:/home/appuser/Documents/StudentData \
-  student-data-app
-
---- 
-
-# Use the docker-compose.yml file to run the project
-
-## Create the main directory and subdirectories
-```bash
-mkdir -p ~/Documents/StudentDatabas/StudentDataFiles
-mkdir -p ~/Documents/StudentDatabase/errorLogs
-mkdir -p ~/Documents/StudentDatabase/backups
-
-# Set proper permissions
-chmod -R 755 ~/Documents/StudentDatabase
 ```
-## The directory structure will be:
 
-~/Documents/StudentData/
+## Using Docker Compose
+
+### For Docker:
+```bash
+docker-compose up -d
+```
+
+### For Podman:
+```bash
+podman-compose up -d
+```
+
+## Container Features
+
+- **Ubuntu 24.04** base image with Python 3.12
+- **Updated GObject Introspection** support (girepository-2.0)
+- **Rootless-friendly** Podman configuration
+- **Health checks** for container monitoring
+- **Persistent data** storage via volume mounts
+
+## Data Directory Structure
+
+The mounted volume will contain:
+```
+~/Documents/StudentDatabase/
   ├── StudentDataFiles/
   ├── errorLogs/
   ├── backups/
   └── students.db
+```
 
-## Start the Service
+## Access the Application
 
-```bash
-docker-compose up -d
+Once running, open your browser and navigate to:
+```
+http://localhost:8080
 ```
 

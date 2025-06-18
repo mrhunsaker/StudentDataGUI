@@ -1,4 +1,3 @@
-StudentDataGUI/StudentDataGUI/appPages/observations_updated.py
 #!/usr/bin/env python3
 
 """
@@ -14,7 +13,8 @@ import pandas as pd
 from nicegui import ui
 
 # --- CONFIGURATION ---
-DATABASE_PATH = "/home/ryhunsaker/Documents/StudentDatabase/students_bestpractice.db"
+from StudentDataGUI.appHelpers.helpers import dataBasePath
+DATABASE_PATH = dataBasePath
 OBSERVATION_TYPE = "Observation"  # Must match ProgressType.name in DB
 
 # --- UTILITY FUNCTIONS ---
@@ -43,14 +43,33 @@ def get_progress_type_id(conn, name):
     conn.commit()
     return cur.lastrowid
 
-def create_observation_session(conn, student_id, progress_type_id, date, notes=None):
+def create_observation_session(conn, student_id, progress_type_id, date, notes=None, student_name=None):
     cur = conn.cursor()
     cur.execute(
         "INSERT INTO ProgressSession (student_id, progress_type_id, date, notes) VALUES (?, ?, ?, ?)",
         (student_id, progress_type_id, date, notes)
     )
     conn.commit()
-    return cur.lastrowid
+    session_id = cur.lastrowid
+
+    # Save JSON snapshot of the inserted data
+    import json
+    from datetime import datetime
+    from StudentDataGUI.appHelpers.helpers import DATA_ROOT
+    now = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    if student_name:
+        student_dir = Path(DATA_ROOT) / "StudentDataFiles" / student_name
+        student_dir.mkdir(parents=True, exist_ok=True)
+        json_path = student_dir / f"observations_{now}.json"
+        json_data = {
+            "student_name": student_name,
+            "date": date,
+            "notes": notes,
+        }
+        with open(json_path, "w") as f:
+            json.dump(json_data, f, indent=2)
+
+    return session_id
 
 def fetch_observations_for_student(conn, student_id, progress_type_id):
     cur = conn.cursor()
@@ -71,9 +90,10 @@ def observations_ui():
     with ui.card():
         ui.label("Observation Notes (Normalized DB)").classes("text-h4 text-grey-8")
         student_name = ui.input("Student Name", placeholder="Enter student name")
-        date_input = ui.date(label="Date", value=datetime.date.today())
-        notes_input = ui.textarea("Observation Notes", placeholder="Type observation notes here...", auto_grow=True)
-        
+        ui.label("Date")
+        date_input = ui.date(value=datetime.date.today())
+        notes_input = ui.textarea("Observation Notes", placeholder="Type observation notes here...")
+
         def save_observation():
             name = student_name.value.strip()
             date_val = date_input.value
@@ -128,6 +148,7 @@ def observations_ui():
         ui.button("Show All Observations", on_click=plot_observations, color="secondary")
 
 # --- PAGE ENTRY POINT ---
+@ui.page("/observations_ui")
 def create():
     observations_ui()
 

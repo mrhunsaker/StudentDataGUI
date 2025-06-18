@@ -50,7 +50,7 @@ def menu() -> None:
                 replace="text-black"
             ).style('font-style:normal, font-family: "Atkinson Hyperlegible"')
             ui.separator()
-            ui.menu_item("CONTACT LOG", lambda: ui.navigate.to("/contactlog")).classes(
+            ui.menu_item("CONTACT LOG", lambda: ui.navigate.to("/contactlog_ui")).classes(
                 replace="text-black"
             ).style('font-style:normal, font-family: "Atkinson Hyperlegible"')
             ui.separator()
@@ -58,10 +58,10 @@ def menu() -> None:
                 ui.label("DATA COLLECTION").classes("font-bold").style(
                     'font-style:normal, font-family: "Atkinson Hyperlegible"'
                 )
-            ui.menu_item("SESSION NOTES", lambda: ui.navigate.to("/sessionnotes")).classes(
+            ui.menu_item("SESSION NOTES", lambda: ui.navigate.to("/sessionnotes_ui")).classes(
                 replace="text-black"
             ).style('font-style:normal, font-family: "Atkinson Hyperlegible"')
-            ui.menu_item("OBSERVATIONS", lambda: ui.navigate.to("/observations")).classes(
+            ui.menu_item("OBSERVATIONS", lambda: ui.navigate.to("/observations_ui")).classes(
                 replace="text-black"
             ).style('font-style:normal, font-family: "Atkinson Hyperlegible"')
             ui.separator()
@@ -69,7 +69,7 @@ def menu() -> None:
                 ui.label("CVI / NVI").classes("font-bold").style(
                     'font-style:normal, font-family: "Atkinson Hyperlegible"'
                 )
-            ui.menu_item("CVI PROGRESS", lambda: ui.navigate.to("/cviprogress")).classes(
+            ui.menu_item("CVI PROGRESS", lambda: ui.navigate.to("/cvi_skills_ui")).classes(
                 replace="text-black"
             ).style('font-style:normal, font-family: "Atkinson Hyperlegible"')
             ui.separator()
@@ -77,10 +77,10 @@ def menu() -> None:
                 ui.label("TACTILE SKILLS").classes("font-bold").style(
                     'font-style:normal, font-family: "Atkinson Hyperlegible"'
                 )
-            ui.menu_item("ABACUS SKILLS", lambda: ui.navigate.to("/abacusskills")).classes(
+            ui.menu_item("ABACUS SKILLS", lambda: ui.navigate.to("/abacus_skills_ui")).classes(
                 replace="text-black"
             ).style('font-style:normal, font-family: "Atkinson Hyperlegible"')
-            ui.menu_item("BRAILLE SKILLS", lambda: ui.navigate.to("/brailleskills")).classes(
+            ui.menu_item("BRAILLE SKILLS", lambda: ui.navigate.to("/braille_skills_ui")).classes(
                 replace="text-black"
             ).style('font-style:normal, font-family: "Atkinson Hyperlegible"')
             ui.separator()
@@ -89,22 +89,22 @@ def menu() -> None:
                     'font-style:normal, font-family: "Atkinson Hyperlegible"'
                 )
             ui.menu_item(
-                "KEYBOARDING SKILLS", lambda: ui.navigate.to("/keyboardingskills")
+                "KEYBOARDING SKILLS", lambda: ui.navigate.to("/keyboarding_skills_ui")
             ).classes(replace="text-black").style(
                 'font-style:normal, font-family: "Atkinson Hyperlegible"'
             )
             ui.menu_item(
-                "SCREENREADER SKILLS", lambda: ui.navigate.to("/screenreaderskills")
+                "SCREENREADER SKILLS", lambda: ui.navigate.to("/screenreader_skills_ui")
             ).classes(replace="text-black").style(
                 'font-style:normal, font-family: "Atkinson Hyperlegible"'
             )
             ui.menu_item(
-                "BRAILLENOTE TOUCH SKILLS", lambda: ui.navigate.to("/braillenotetouchskills")
+                "BRAILLENOTE TOUCH SKILLS", lambda: ui.navigate.to("/braillenote_skills_ui")
             ).classes(replace="text-black").style(
                 'font-style:normal, font-family: "Atkinson Hyperlegible"'
             )
             ui.menu_item(
-                "iOS/iPadOS VOICEOVER SKILLS", lambda: ui.navigate.to("/iosskills")
+                "iOS/iPadOS VOICEOVER SKILLS", lambda: ui.navigate.to("/ios_skills_ui")
             ).classes(replace="text-black").style(
                 'font-style:normal, font-family: "Atkinson Hyperlegible"'
             )
@@ -114,7 +114,7 @@ def menu() -> None:
                     'font-style:normal, font-family: "Atkinson Hyperlegible"'
                 )
             ui.menu_item(
-                "DIGITAL LITERACY", lambda: ui.navigate.to("/digitalliteracy")
+                "DIGITAL LITERACY", lambda: ui.navigate.to("/digitalliteracy_skills_ui")
             ).classes(replace="text-black").style(
                 'font-style:normal, font-family: "Atkinson Hyperlegible"'
             )

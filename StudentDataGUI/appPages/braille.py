@@ -14,6 +14,8 @@ import numpy as np
 import plotly.graph_objs as go
 from plotly.subplots import make_subplots
 from nicegui import ui
+from StudentDataGUI.appHelpers.roster import students
+from ..appTheming import theme
 
 # --- CONFIGURATION ---
 from StudentDataGUI.appHelpers.helpers import dataBasePath
@@ -174,24 +176,55 @@ def fetch_braille_data_for_student(conn, student_id, progress_type_id, part_code
 # --- UI LOGIC ---
 
 def braille_skills_ui():
-    with ui.card():
-        ui.label("Braille Skills (Normalized DB)").classes("text-h4 text-grey-8")
-        student_name = ui.input("Student Name", placeholder="Enter student name")
+    with theme.frame("- BRAILLE SKILLS -"):
+        with ui.card():
+            ui.label("Braille Skills (Normalized DB)").classes("text-h4 text-grey-8")
+        student_name = ui.select(options=students, label="Student Name").style("width: 500px")
         ui.label("Date")
         date_input = ui.date(value=datetime.date.today())
-        # Braille part codes and labels (expand as needed)
-        braille_parts = []
-        for phase, count in [
-            ("P1", 4), ("P2", 15), ("P3", 15), ("P4", 4), ("P5", 4), ("P6", 7), ("P7", 8), ("P8", 7)
-        ]:
-            for i in range(1, count+1):
-                code = f"{phase}_{i}"
-                label = f"{phase} Skill {i}"
-                braille_parts.append((code, label))
+        # Braille part codes and labels
+        braille_parts = [
+            ("P1_1", "1.1. Track left to right"), ("P1_2", "1.2. Track top to bottom"),
+            ("P1_3", "1.3. Discriminate shapes"), ("P1_4", "1.4. Discriminate braille characters"),
+            ("P2_1", "2.1. Mangold Progression: G C L"), ("P2_2", "2.2. Mangold Progression: D Y"),
+            ("P2_3", "2.3. Mangold Progression: A B"), ("P2_4", "2.4. Mangold Progression: S"),
+            ("P2_5", "2.5. Mangold Progression: W"), ("P2_6", "2.6. Mangold Progression: P O"),
+            ("P2_7", "2.7. Mangold Progression: K"), ("P2_8", "2.8. Mangold Progression: R"),
+            ("P2_9", "2.9. Mangold Progression: M E"), ("P2_10", "2.10. Mangold Progression: H"),
+            ("P2_11", "2.11. Mangold Progression: N X"), ("P2_12", "2.12. Mangold Progression: Z F"),
+            ("P2_13", "2.13. Mangold Progression: U T"), ("P2_14", "2.14. Mangold Progression: Q I"),
+            ("P2_15", "2.15. Mangold Progression: V J"),
+            ("P3_1", "3.1. Alphabetic Wordsigns"), ("P3_2", "3.2. Braille Numbers"),
+            ("P3_3", "3.3. Punctuation"), ("P3_4", "3.4. Strong Contractions (AND OF FOR WITH THE)"),
+            ("P3_5", "3.5. Strong Groupsigns (CH GH SH TH WH ED ER OU OW ST AR ING)"),
+            ("P3_6", "3.6. Strong Wordsigns (CH SH TH WH OU ST)"),
+            ("P3_7", "3.7. Lower Groupsigns (BE CON DIS)"), ("P3_8", "3.8. Lower Groupsigns (EA BB CC FF GG)"),
+            ("P3_9", "3.9. Lower Groupsigns/Wordsigns (EN IN)"), ("P3_10", "3.10. Lower Wordsigns (BE HIS WAS WERE)"),
+            ("P3_11", "3.11. Dot 5 Contractions"), ("P3_12", "3.12. Dot 45 Contractions"),
+            ("P3_13", "3.13. Dot 456 Contractions"), ("P3_14", "3.14. Final Letter Groupsigns"),
+            ("P3_15", "3.15. Shortform Words"),
+            ("P4_1", "4.1. Grade 1 Indicators"), ("P4_2", "4.2. Capitals Indicators"),
+            ("P4_3", "4.3. Numeric Mode and Spatial math"),
+            ("P4_4", "4.4. Typeform Indicators (ITALIC  SCRIPT  UNDERLINE  BOLDFACE)"),
+            ("P5_1", "5.1. Page Numbering"), ("P5_2", "5.2. Headings"),
+            ("P5_3", "5.3. Lists"), ("P5_4", "5.4. Poety / Drama"),
+            ("P6_1", "6.1. Operation and Comparison Signs"), ("P6_2", "6.2. Grade 1 Mode"),
+            ("P6_3", "6.3. Special Print Symbols"), ("P6_4", "6.4. Omission Marks"),
+            ("P6_5", "6.5. Shape Indicators"), ("P6_6", "6.6. Roman Numerals"),
+            ("P6_7", "6.7. Fractions"),
+            ("P7_1", "7.1. Grade 1 Mode and Algebra"), ("P7_2", "7.2. Grade 1 Mode and Fractions"),
+            ("P7_3", "7.3. Advanced Operation and Comparison Signs"), ("P7_4", "7.4. Indices"),
+            ("P7_5", "7.5. Roots and Radicals"), ("P7_6", "7.6. Miscellaneous Shape Indicators"),
+            ("P7_7", "7.7. Functions"), ("P7_8", "7.8. Greek letters"),
+            ("P8_1", "8.1. Functions"), ("P8_2", "8.2. Modifiers  Bars  and Dots"),
+            ("P8_3", "8.3. Modifiers  Arrows  and Limits"), ("P8_4", "8.4. Probability"),
+            ("P8_5", "8.5. Calculus: Differentiation"), ("P8_6", "8.6. Calculus: Integration"),
+            ("P8_7", "8.7. Vertical Bars")
+        ]
         part_inputs = {}
         for code, label in braille_parts:
-            part_inputs[code] = ui.number(label=label, value=0, min=0, max=3, step=1)
-        notes_input = ui.textarea("Notes (optional)")
+            part_inputs[code] = ui.number(label=label, value=0, min=0, max=3, step=1).style("width: 500px")
+        notes_input = ui.textarea("Notes (optional)").style("width: 500px")
 
         def save_braille_data():
             name = student_name.value.strip()

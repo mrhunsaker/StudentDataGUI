@@ -12,6 +12,8 @@ import datetime
 import pandas as pd
 import plotly.graph_objs as go
 from nicegui import ui
+from ..appTheming import theme
+from StudentDataGUI.appHelpers.roster import students
 
 # --- CONFIGURATION ---
 from StudentDataGUI.appHelpers.helpers import dataBasePath
@@ -169,19 +171,20 @@ def fetch_contactlog_data_for_student(conn, student_id, progress_type_id, part_c
 # --- UI LOGIC ---
 
 def contactlog_ui():
-    with ui.card():
+    with theme.frame("- CONTACT LOG -"):
         ui.label("Contact Log (Normalized DB)").classes("text-h4 text-grey-8")
-        student_name = ui.input("Student Name", placeholder="Enter student name")
+        from StudentDataGUI.appHelpers.roster import students
+        student_name = ui.select(options=students, label="Student Name").style("width: 500px;")
         ui.label("Date")
         date_input = ui.date(value=datetime.date.today())
-        guardian_name = ui.input("Guardian Name")
-        contact_method = ui.select(["Phone", "Text", "In-Person", "Email"], label="Contact Method")
-        phone_number = ui.input("Phone Number")
-        email_address = ui.input("Email Address")
-        contact_response = ui.select(["Answered", "Left Message", "Unable to Leave Message", "Disconnected"], label="Contact Response")
-        contact_general = ui.select(["IEP Related", "Discipline Related", "Student Requested"], label="General Topic")
-        contact_specific = ui.select(["Schedule IEP Meeting", "IEP Team Follow-Up", "Collaborate on Student IEP Goals", "Progress Monitoring Update"], label="Specific Topic")
-        notes_input = ui.textarea("Contact Notes (if email, please copy/paste email here)")
+        guardian_name = ui.input("Guardian Name").style("width: 500px;")
+        contact_method = ui.select(["Phone", "Text", "In-Person", "Email"], label="Contact Method").style("width: 500px;")
+        phone_number = ui.input("Phone Number").style("width: 500px;")
+        email_address = ui.input("Email Address").style("width: 500px;")
+        contact_response = ui.select(["Answered", "Left Message", "Unable to Leave Message", "Disconnected"], label="Contact Response").style("width: 500px;")
+        contact_general = ui.select(["IEP Related", "Discipline Related", "Student Requested"], label="General Topic").style("width: 500px;")
+        contact_specific = ui.select(["Schedule IEP Meeting", "IEP Team Follow-Up", "Collaborate on Student IEP Goals", "Progress Monitoring Update"], label="Specific Topic").style("width: 500px;")
+        notes_input = ui.textarea("Contact Notes (if email, please copy/paste email here)").style("width: 500px;")
 
         def save_contactlog_data():
             name = student_name.value.strip()

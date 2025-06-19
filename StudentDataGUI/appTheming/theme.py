@@ -31,8 +31,6 @@ from ..appHelpers.helpers import ROOT_DIR
 from .menu import menu
 from nicegui import ui, app
 
-""" ROOT_DIR = os.path.dirname(os.path.abspath(__file__))"""
-
 
 def github() -> ui.html:
     """

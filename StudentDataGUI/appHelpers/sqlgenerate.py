@@ -160,8 +160,7 @@ def initialize_database():
     except Exception as e:
         logging.error(f"Failed to initialize database at {DATABASE_PATH}: {e}")
         logging.info(f"Database initialized successfully at {DATABASE_PATH}.")
-    except Exception as e:
-        logging.error(f"Failed to initialize database at {DATABASE_PATH}: {e}")
+
 
 ##############################################################################
 # Example Usage

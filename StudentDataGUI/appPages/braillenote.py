@@ -212,9 +212,9 @@ def fetch_braillenote_data_for_student(conn, student_id, progress_type_id, part_
 def braillenote_skills_ui():
     with ui.card():
         ui.label("BrailleNote Touch Plus Skills (Normalized DB)").classes("text-h4 text-grey-8")
-        student_name = ui.input("Student Name", placeholder="Enter student name")
+        student_name = ui.select(options=students, label="Student Name").style("width: 500px")
         ui.label("Date")
-        date_input = ui.date(value=datetime.date.today())
+        date_input = ui.date(value=datetime.date.today()).style("width: 500px")
         # BrailleNote part codes and labels (abbreviated for demo, expand as needed)
         braillenote_parts = [
             ("P1_1", "Physical Layout"), ("P1_2", "Setup/Universal Commands"), ("P1_3", "BNT+ Navigation"),
@@ -238,8 +238,8 @@ def braillenote_skills_ui():
         ]
         part_inputs = {}
         for code, label in braillenote_parts:
-            part_inputs[code] = ui.number(label=label, value=0, min=0, max=3, step=1)
-        notes_input = ui.textarea("Notes (optional)")
+            part_inputs[code] = ui.number(label=label, value=0, min=0, max=3, step=1).style("width: 500px")
+        notes_input = ui.textarea("Notes (optional)").style("width: 500px")
 
         def save_braillenote_data():
             name = student_name.value.strip()
@@ -360,7 +360,8 @@ def braillenote_skills_ui():
 # --- PAGE ENTRY POINT ---
 @ui.page("/braillenote_skills_ui")
 def create():
-    braillenote_skills_ui()
+    with theme.frame("- BRAILLENOTE SKILLS -"):
+        braillenote_skills_ui()
 
 # If running standalone for testing
 if __name__ == "__main__":

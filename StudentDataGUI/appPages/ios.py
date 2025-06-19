@@ -14,6 +14,8 @@ import numpy as np
 import plotly.graph_objs as go
 from plotly.subplots import make_subplots
 from nicegui import ui
+from ..appTheming import theme
+from StudentDataGUI.appHelpers.roster import students
 
 # --- CONFIGURATION ---
 from StudentDataGUI.appHelpers.helpers import dataBasePath
@@ -165,9 +167,9 @@ def fetch_ios_data_for_student(conn, student_id, progress_type_id, part_codes):
 def ios_skills_ui():
     with ui.card():
         ui.label("iOS / iPad OS Skills (Normalized DB)").classes("text-h4 text-grey-8")
-        student_name = ui.input("Student Name", placeholder="Enter student name")
+        student_name = ui.select(options=lambda: students, label="Student Name").style("width: 500px;")
         ui.label("Date")
-        date_input = ui.date(value=datetime.date.today())
+        date_input = ui.date(value=datetime.date.today()).style("width: 500px;")
         # iOS part codes and labels
         ios_parts = [
             ("P1_1", "Turn Device On/Off"), ("P1_2", "Turn VoiceOver On/Off"), ("P1_3", "Gestures to Click Icons"),
@@ -184,7 +186,7 @@ def ios_skills_ui():
         part_inputs = {}
         for code, label in ios_parts:
             part_inputs[code] = ui.number(label=label, value=0, min=0, max=3, step=1)
-        notes_input = ui.textarea("Notes (optional)")
+        notes_input = ui.textarea("Notes (optional)").style("width: 500px;")
 
         def save_ios_data():
             name = student_name.value.strip()
@@ -314,7 +316,8 @@ def ios_skills_ui():
 # --- PAGE ENTRY POINT ---
 @ui.page("/ios_skills_ui")
 def create():
-    ios_skills_ui()
+    with theme.frame("- iOS SKILLS -"):
+        ios_skills_ui()
 
 # If running standalone for testing
 if __name__ == "__main__":

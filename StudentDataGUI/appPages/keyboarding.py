@@ -13,6 +13,8 @@ import pandas as pd
 import plotly.graph_objs as go
 from plotly.subplots import make_subplots
 from nicegui import ui
+from ..appTheming import theme
+from StudentDataGUI.appHelpers.roster import students
 
 # --- CONFIGURATION ---
 from StudentDataGUI.appHelpers.helpers import dataBasePath
@@ -137,9 +139,10 @@ def fetch_keyboarding_data_for_student(conn, student_id, progress_type_id):
 # --- UI LOGIC ---
 
 def keyboarding_skills_ui():
-    with ui.card():
-        ui.label("Keyboarding Skills (Normalized DB)").classes("text-h4 text-grey-8")
-        student_name = ui.input("Student Name", placeholder="Enter student name")
+    with theme.frame("- KEYBOARDING SKILLS -"):
+        with ui.card():
+            ui.label("Keyboarding Skills (Normalized DB)").classes("text-h4 text-grey-8")
+        student_name = ui.select(options=lambda: students, label="Student Name").style("width: 500px;")
         ui.label("Date")
         date_input = ui.date(value=datetime.date.today())
         program_input = ui.select(
@@ -147,16 +150,16 @@ def keyboarding_skills_ui():
                 "Typio", "TypeAbility", "APH Typer", "Typing Club", "MonkeyType", "Custom Assignment"
             ],
             label="Keyboarding Program"
-        )
+        ).style("width: 500px;")
         topic_input = ui.select(
             options=[
                 "Home Row", "Top Row", "Bottom Row", "Numbers", "Modifier Keys", "F-Keys", "Shortcut Keystrokes"
             ],
             label="Topic Covered"
-        )
-        speed_input = ui.number(label="Typing Speed (WPM)", value=0, min=0, max=200, step=1)
-        accuracy_input = ui.number(label="Typing Accuracy (%)", value=0, min=0, max=100, step=1)
-        notes_input = ui.textarea("Notes (optional)")
+        ).style("width: 500px;")
+        speed_input = ui.number(label="Typing Speed (WPM)", value=0, min=0, max=200, step=1).style("width: 500px;")
+        accuracy_input = ui.number(label="Typing Accuracy (%)", value=0, min=0, max=100, step=1).style("width: 500px;")
+        notes_input = ui.textarea("Notes (optional)").style("width: 500px;")
 
         def save_keyboarding_data():
             name = student_name.value.strip()

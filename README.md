@@ -174,7 +174,6 @@ docker run -d -p 8080:8080 student-data-gui
 ```
 
 ---
-
 ## Support
 
 For container-specific issues:
@@ -183,4 +182,24 @@ For container-specific issues:
 3. Clean rebuild: `./start.sh clean && ./start.sh start -b`
 
 For application-specific issues, [open an issue on GitHub](https://github.com/mrhunsaker/StudentDataGUI/issues).
+
+---
+
+## Customization Instructions
+
+### Changing the Logo
+1. Locate the logo file in the project directory. The default logo is `dsd-mark-white`.
+2. Replace the file with your desired logo, ensuring it has the same file name and format.
+3. Restart the application to see the updated logo.
+
+### Updating the GitHub Logo Target
+1. Open the relevant HTML or configuration file where the GitHub logo link is defined.
+2. Update the `href` attribute of the GitHub logo anchor tag to point to your desired target URL.
+3. Save the changes and restart the application.
+
+### Modifying the Footer Copyright
+1. Open the footer component file in the project directory.
+2. Locate the copyright text, which typically starts with "©".
+3. Update the text to reflect the desired copyright information.
+4. Save the changes and restart the application.
 ```

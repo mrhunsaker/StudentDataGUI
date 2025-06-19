@@ -14,6 +14,8 @@ import numpy as np
 import plotly.graph_objs as go
 from plotly.subplots import make_subplots
 from nicegui import ui
+from ..appTheming import theme
+from StudentDataGUI.appHelpers.roster import students
 
 # --- CONFIGURATION ---
 from StudentDataGUI.appHelpers.helpers import dataBasePath, database_dir
@@ -182,9 +184,10 @@ def fetch_abacus_data_for_student(conn, student_id, progress_type_id, part_codes
 def abacus_skills_ui():
     with ui.card():
         ui.label("Abacus Skills (Normalized DB)").classes("text-h4 text-grey-8")
-        student_name = ui.input("Student Name", placeholder="Enter student name")
+        from StudentDataGUI.appHelpers.roster import students
+        student_name = ui.select(options=students, label="Student Name").style("width: 500px;")
         ui.label("Date")
-        date_input = ui.date(value=datetime.date.today())
+        date_input = ui.date(value=datetime.date.today()).style("width: 500px;")
         # Abacus part codes and labels
         abacus_parts = [
             ("P1_1", "Phase 1: Setting Numbers"), ("P1_2", "Phase 1: Clearing Beads"),
@@ -203,8 +206,8 @@ def abacus_skills_ui():
         ]
         part_inputs = {}
         for code, label in abacus_parts:
-            part_inputs[code] = ui.number(label=label, value=0, min=0, max=3, step=1)
-        notes_input = ui.textarea("Notes (optional)")
+            part_inputs[code] = ui.number(label=label, value=0, min=0, max=3, step=1).style("width: 500px;")
+        notes_input = ui.textarea("Notes (optional)").style("width: 500px;")
 
         def save_abacus_data():
             name = student_name.value.strip()
@@ -340,7 +343,8 @@ def abacus_skills_ui():
 # --- PAGE ENTRY POINT ---
 @ui.page("/abacus_skills_ui")
 def create():
-    abacus_skills_ui()
+    with theme.frame("- ABACUS SKILLS -"):
+        abacus_skills_ui()
 
 # If running standalone for testing
 if __name__ == "__main__":

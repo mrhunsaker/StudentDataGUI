@@ -27,6 +27,7 @@ import os
 import sys
 import traceback
 from pathlib import Path
+import logging
 
 from nicegui import ui
 from screeninfo import get_monitors, ScreenInfoError
@@ -50,6 +51,19 @@ from .appHelpers.sqlgenerate import create_connection, create_tables, initialize
 import logging
 
 set_start_dir()
+
+# Configure logging
+log_path = Path(database_dir).joinpath("StudentDatabase", "errorLogs", f"logfile_{datenow}.log")
+log_path.parent.mkdir(parents=True, exist_ok=True)
+logging.basicConfig(
+    level=logging.WARNING,
+    format="%(asctime)s - %(levelname)s - %(message)s",
+    handlers=[
+        logging.FileHandler(log_path, encoding="utf-8"),
+        logging.StreamHandler(sys.stdout)
+    ]
+)
+
 logging.debug(f"Resolved database_dir: {database_dir}")
 createFolderHierarchy()
 initialize_database()
@@ -99,10 +113,10 @@ def warningmessage(exception_type, exception_value, exception_traceback) -> None
     tb = traceback.format_exception(
         exception_type, exception_value, exception_traceback
     )
-    log_path = Path(USER_DIR).joinpath(
+    log_path = Path(database_dir).joinpath(
         "StudentDatabase", "errorLogs", f"logfile_{datenow}.log"
     )
-    Path.touch(log_path)
+    log_path.parent.mkdir(parents=True, exist_ok=True)
     for i in tb:
         message += i
     with open(log_path, "a", encoding="utf-8") as log_file:

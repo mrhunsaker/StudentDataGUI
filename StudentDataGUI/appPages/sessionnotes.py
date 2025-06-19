@@ -11,6 +11,8 @@ from pathlib import Path
 import datetime
 import pandas as pd
 from nicegui import ui
+from ..appTheming import theme
+from StudentDataGUI.appHelpers.roster import students
 
 # --- CONFIGURATION ---
 from StudentDataGUI.appHelpers.helpers import dataBasePath
@@ -130,20 +132,20 @@ def fetch_session_notes_for_student(conn, student_id, progress_type_id):
 # --- UI LOGIC ---
 
 def session_notes_ui():
-    with ui.card():
+    with theme.frame("- SESSION NOTES -"):
         ui.label("Session Notes (Normalized DB)").classes("text-h4 text-grey-8")
-        student_name = ui.input("Student Name", placeholder="Enter student name")
+        student_name = ui.select(options=lambda: students, label="Student Name").style("width: 500px")
         ui.label("Date")
         date_input = ui.date(value=datetime.date.today())
-        task_input = ui.input("Task", placeholder="Task or activity (optional)")
-        lesson_input = ui.input("Lesson", placeholder="Lesson (optional)")
-        session_label_input = ui.input("Session Label", placeholder="Session label (optional)")
-        notes_input = ui.textarea("Anecdotal Notes", placeholder="Enter session notes here")
+        task_input = ui.input("Task", placeholder="Task or activity (optional)").style("width: 500px")
+        lesson_input = ui.input("Lesson", placeholder="Lesson (optional)").style("width: 500px")
+        session_label_input = ui.input("Session Label", placeholder="Session label (optional)").style("width: 500px")
+        notes_input = ui.textarea("Anecdotal Notes", placeholder="Enter session notes here").style("width: 500px")
         trial_inputs = []
         for i in range(1, 12):
-            trial_inputs.append(ui.number(label=f"Trial {i}", value=0, min=0, max=3, step=1))
-        median_input = ui.number("Median (optional)", value=None)
-        summary_notes_input = ui.textarea("Summary Notes (optional)", placeholder="Enter summary notes here")
+            trial_inputs.append(ui.number(label=f"Trial {i}", value=0, min=0, max=3, step=1).style("width: 500px"))
+        median_input = ui.number("Median (optional)", value=None).style("width: 500px")
+        summary_notes_input = ui.textarea("Summary Notes (optional)", placeholder="Enter summary notes here").style("width: 500px")
 
         def save_session_notes():
             name = student_name.value.strip()

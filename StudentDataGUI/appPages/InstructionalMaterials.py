@@ -24,6 +24,7 @@ teachers of students with Visual Impairments
 
 from ..appTheming import theme
 from nicegui import ui
+from ..appTheming import theme
 
 
 @ui.page("/instructionalmaterials")
@@ -52,7 +53,7 @@ def create() -> None:
             Returns:
                 None
     """
-    with theme.frame("- INSTRUCTIONAL MATERIALS -"):
+    with theme.frame("- INSTRUCTIONAL MATERIALS -", menu_position="left"):
         ui.label("Instructional Materials").classes(
             "text-h4 font-bold text-grey-8"
         ).style('font-style:normal, font-family: "Atkinson Hyperlegible"')

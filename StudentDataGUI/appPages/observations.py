@@ -11,6 +11,8 @@ from pathlib import Path
 import datetime
 import pandas as pd
 from nicegui import ui
+from ..appTheming import theme
+from StudentDataGUI.appHelpers.roster import students
 
 # --- CONFIGURATION ---
 from StudentDataGUI.appHelpers.helpers import dataBasePath
@@ -87,12 +89,12 @@ def fetch_observations_for_student(conn, student_id, progress_type_id):
 # --- UI LOGIC ---
 
 def observations_ui():
-    with ui.card():
+    with theme.frame("- OBSERVATION NOTES -"):
         ui.label("Observation Notes (Normalized DB)").classes("text-h4 text-grey-8")
-        student_name = ui.input("Student Name", placeholder="Enter student name")
+        student_name = ui.select(options=lambda: students, label="Student Name").style("width: 500px")
         ui.label("Date")
         date_input = ui.date(value=datetime.date.today())
-        notes_input = ui.textarea("Observation Notes", placeholder="Type observation notes here...")
+        notes_input = ui.textarea("Observation Notes", placeholder="Type observation notes here...").style("width: 500px")
 
         def save_observation():
             name = student_name.value.strip()

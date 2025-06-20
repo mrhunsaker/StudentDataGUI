@@ -73,13 +73,13 @@ def test_imports():
     # Test GUI libraries (these might not work in headless containers)
     try:
         import cairo
-        print(f"✓ PyCairo available")
+        print("✓ PyCairo available")
     except ImportError as e:
         print(f"⚠ PyCairo import failed (might not be needed in headless mode): {e}")
 
     try:
         import gi
-        print(f"✓ PyGObject available")
+        print("✓ PyGObject available")
     except ImportError as e:
         print(f"⚠ PyGObject import failed (might not be needed in headless mode): {e}")
 
@@ -151,7 +151,7 @@ def test_application_structure():
     try:
         sys.path.insert(0, "/app")
         import StudentDataGUI
-        print(f"✓ StudentDataGUI module can be imported")
+        print("✓ StudentDataGUI module can be imported")
     except ImportError as e:
         print(f"✗ StudentDataGUI import failed: {e}")
         return False
@@ -223,7 +223,7 @@ def test_route_configuration():
         else:
             print(f"⚠ Only found @ui.page decorators in {routes_with_decorators}/{len(page_modules)} modules")
 
-        print(f"✓ Route configuration appears valid")
+        print("✓ Route configuration appears valid")
         return True
 
     except Exception as e:

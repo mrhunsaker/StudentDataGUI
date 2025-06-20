@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 """
- Copyright 2023  Michael Ryan Hunsaker, M.Ed., Ph.D.
+ Copyright 2025  Michael Ryan Hunsaker, M.Ed., Ph.D.
 
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -24,34 +24,28 @@ teachers of students with Visual Impairments
 
 from ..appTheming import theme
 from nicegui import ui
-from ..appTheming import theme
+
 
 
 @ui.page("/instructionalmaterials")
 def create() -> None:
     """
-    Instructional Materials Page
+    Render the Instructional Materials Page.
 
-    This module defines a Flask UI route for the "/instructionalmaterials" endpoint,
-    displaying a page containing links to various instructional materials.
+    This function defines a NiceGUI UI route for the "/instructionalmaterials" endpoint.
+    It displays a page containing categorized links to various instructional materials.
 
-    Usage:
-        @ui.page("/instructionalmaterials")
-        def create() -> None:
-            # Code for rendering instructional materials page goes here...
+    Categories:
+        - Abacus: Links to resources like Hadley Abacus Curriculum and Japanese Abacus Use.
+        - Braille: Links to UEB Literary Braille and Technical Guidelines.
+        - Screen Reader: Links to NVDA Trainings and Windows Screen Reader Primer.
+        - Datasheets: Links to templates and progress monitoring sheets.
+        - Assessment Forms: Links to educational vision evaluation forms.
 
-    Note:
-        This page provides links to instructional materials related to abacus, braille, screen readers,
-        datasheets, and assessment forms.
-
-        For each category, specific links are provided along with their corresponding descriptions.
-
-    Functions:
-        - create() -> None:
-            Renders the instructional materials page.
-
-            Returns:
-                None
+    Returns
+    -------
+    None
+        This function does not return any value. It renders the UI components for the page.
     """
     with theme.frame("- INSTRUCTIONAL MATERIALS -", menu_position="left"):
         ui.label("Instructional Materials").classes(

@@ -1,18 +1,42 @@
 #!/usr/bin/env python3
 
 """
-Session Notes Page (Updated for Normalized SQL Schema)
-- Uses new schema from updated_sql_bestpractice.py
-- Uploads and downloads session notes using normalized tables and foreign keys
+ Copyright 2025  Michael Ryan Hunsaker, M.Ed., Ph.D.
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+      https://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
 """
 
 import sqlite3
 from pathlib import Path
 import datetime
-import pandas as pd
+import pandas as pd"""
+ Copyright 2025  Michael Ryan Hunsaker, M.Ed., Ph.D.
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+      https://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+"""
 from nicegui import ui
-from ..appTheming import theme
 from StudentDataGUI.appHelpers.roster import students
+from ..appTheming import theme
 
 # --- CONFIGURATION ---
 from StudentDataGUI.appHelpers.helpers import dataBasePath
@@ -21,10 +45,33 @@ SESSION_NOTES_TYPE = "SessionNotes"  # Must match ProgressType.name in DB
 
 # --- UTILITY FUNCTIONS ---
 
-def get_connection():
+def get_connection() -> sqlite3.Connection:
+    """
+    Establish a connection to the SQLite database.
+
+    Returns
+    -------
+    sqlite3.Connection
+        A connection object to interact with the SQLite database.
+    """
     return sqlite3.connect(DATABASE_PATH)
 
-def get_or_create_student(conn, name):
+def get_or_create_student(conn: sqlite3.Connection, name: str) -> int:
+    """
+    Retrieve or create a student record in the database.
+
+    Parameters
+    ----------
+    conn : sqlite3.Connection
+        The database connection object.
+    name : str
+        The name of the student.
+
+    Returns
+    -------
+    int
+        The ID of the student in the database.
+    """
     cur = conn.cursor()
     cur.execute("SELECT id FROM Student WHERE name = ?", (name,))
     row = cur.fetchone()
@@ -34,7 +81,7 @@ def get_or_create_student(conn, name):
     conn.commit()
     return cur.lastrowid
 
-def get_progress_type_id(conn, name):
+def get_progress_type_id(conn: sqlite3.Connection, name: str) -> int:
     cur = conn.cursor()
     cur.execute("SELECT id FROM ProgressType WHERE name = ?", (name,))
     row = cur.fetchone()
@@ -44,7 +91,28 @@ def get_progress_type_id(conn, name):
     conn.commit()
     return cur.lastrowid
 
-def create_session(conn, student_id, progress_type_id, date, notes=None):
+def create_session(conn: sqlite3.Connection, student_id: int, progress_type_id: int, date: str, notes: str | None = None) -> int:
+    """
+    Create a new session record in the database.
+
+    Parameters
+    ----------
+    conn : sqlite3.Connection
+        The database connection object.
+    student_id : int
+        The ID of the student.
+    progress_type_id : int
+        The ID of the progress type.
+    date : str
+        The date of the session.
+    notes : str, optional
+        Additional notes for the session (default is None).
+
+    Returns
+    -------
+    int
+        The ID of the newly created session.
+    """
     cur = conn.cursor()
     cur.execute(
         "INSERT INTO ProgressSession (student_id, progress_type_id, date, notes) VALUES (?, ?, ?, ?)",
@@ -53,7 +121,7 @@ def create_session(conn, student_id, progress_type_id, date, notes=None):
     conn.commit()
     return cur.lastrowid
 
-def insert_trial_results(conn, session_id, task, lesson, session_label, trials):
+def insert_trial_results(conn: sqlite3.Connection, session_id: int, task: str, lesson: str, session_label: str, trials: list[tuple[int, int]]) -> None:
     """
     trials: list of (trial_number, score)
     """
@@ -65,7 +133,7 @@ def insert_trial_results(conn, session_id, task, lesson, session_label, trials):
         )
     conn.commit()
 
-def insert_session_summary(conn, session_id, median, notes):
+def insert_session_summary(conn: sqlite3.Connection, session_id: int, median: float, notes: str) -> None:
     cur = conn.cursor()
     cur.execute(
         "INSERT INTO TrialSessionSummary (session_id, median, notes) VALUES (?, ?, ?)",
@@ -73,9 +141,23 @@ def insert_session_summary(conn, session_id, median, notes):
     )
     conn.commit()
 
-def fetch_session_notes_for_student(conn, student_id, progress_type_id):
+def fetch_session_notes_for_student(conn: sqlite3.Connection, student_id: int, progress_type_id: int) -> pd.DataFrame:
     """
-    Returns a DataFrame with columns: date, notes, median, trial_1, ..., trial_11
+    Fetch session notes and trial results for a student.
+
+    Parameters
+    ----------
+    conn : sqlite3.Connection
+        The database connection object.
+    student_id : int
+        The ID of the student.
+    progress_type_id : int
+        The ID of the progress type.
+
+    Returns
+    -------
+    pd.DataFrame
+        A DataFrame with columns: date, notes, median, trial_1, ..., trial_11.
     """
     cur = conn.cursor()
     cur.execute(
@@ -131,10 +213,10 @@ def fetch_session_notes_for_student(conn, student_id, progress_type_id):
 
 # --- UI LOGIC ---
 
-def session_notes_ui():
+def session_notes_ui() -> None:
     with theme.frame("- SESSION NOTES -"):
         ui.label("Session Notes (Normalized DB)").classes("text-h4 text-grey-8")
-        student_name = ui.select(options=lambda: students, label="Student Name").style("width: 500px")
+        student_name = ui.select(options=students, label="Student Name").style("width: 500px")
         ui.label("Date")
         date_input = ui.date(value=datetime.date.today())
         task_input = ui.input("Task", placeholder="Task or activity (optional)").style("width: 500px")

@@ -1,11 +1,19 @@
 #!/usr/bin/env python3
 
 """
-Redesigned SQL schema for Student Data Application
-- Normalized, avoids data duplication
-- Uses foreign keys for relationships
-- Suitable for tracking multiple types of student progress
-- Start a new database with this schema
+ Copyright 2025  Michael Ryan Hunsaker, M.Ed., Ph.D.
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+      https://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
 """
 
 import sqlite3
@@ -15,7 +23,7 @@ import os
 ##############################################################################
 # Database Path (now uses helpers logic for container compatibility)
 ##############################################################################
-from .helpers import database_dir, dataBasePath
+from .helpers import dataBasePath
 DATABASE_PATH = dataBasePath
 import logging
 
@@ -123,8 +131,26 @@ SCHEMA = [
 # Schema Setup Functions
 ##############################################################################
 
-def create_connection(db_file):
-    """Create a SQLite database connection."""
+def create_connection(db_file: str) -> sqlite3.Connection | None:
+    """
+    Create a SQLite database connection.
+
+    Parameters
+    ----------
+    db_file : str
+        The path to the SQLite database file.
+
+    Returns
+    -------
+    sqlite3.Connection or None
+        A connection object to the SQLite database, or None if an error occurs.
+
+    Examples
+    --------
+    >>> conn = create_connection("example.db")
+    >>> if conn:
+    ...     print("Connection successful")
+    """
     conn = None
     try:
         conn = sqlite3.connect(db_file)
@@ -133,8 +159,25 @@ def create_connection(db_file):
         print(f"Error connecting to database: {e}")
     return conn
 
-def create_tables(conn):
-    """Create all tables defined in SCHEMA."""
+def create_tables(conn: sqlite3.Connection) -> None:
+    """
+    Create all tables defined in the SCHEMA.
+
+    Parameters
+    ----------
+    conn : sqlite3.Connection
+        A connection object to the SQLite database.
+
+    Returns
+    -------
+    None
+
+    Examples
+    --------
+    >>> conn = create_connection("example.db")
+    >>> if conn:
+    ...     create_tables(conn)
+    """
     try:
         cursor = conn.cursor()
         for sql in SCHEMA:
@@ -144,8 +187,21 @@ def create_tables(conn):
     except Error as e:
         print(f"Error creating tables: {e}")
 
-def initialize_database():
-    """Initialize the database with the new schema."""
+def initialize_database() -> None:
+    """
+    Initialize the database with the new schema.
+
+    This function checks if the database file exists. If not, it creates a new
+    database and initializes it with the predefined schema.
+
+    Returns
+    -------
+    None
+
+    Examples
+    --------
+    >>> initialize_database()
+    """
     logging.debug(f"Initializing database at {DATABASE_PATH}")
     try:
         if os.path.exists(DATABASE_PATH):

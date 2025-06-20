@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 """
- Copyright 2023  Michael Ryan Hunsaker, M.Ed., Ph.D.
+ Copyright 2025  Michael Ryan Hunsaker, M.Ed., Ph.D.
 
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -1017,7 +1017,7 @@ def createFolderHierarchy() -> None:
                 logger.error(f"Failed to copy {tmppath} to {destinationDir}: {e}")
 
 
-def copy_if_not_exists(source, destination):
+def copy_if_not_exists(source: str, destination: str) -> None:
     if not os.path.exists(destination):
         shutil.copy2(source, destination)
 

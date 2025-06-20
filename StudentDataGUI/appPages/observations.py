@@ -1,9 +1,19 @@
 #!/usr/bin/env python3
 
 """
-Observation Notes Page (Updated for Normalized SQL Schema)
-- Uses new schema from updated_sql_bestpractice.py
-- Uploads and downloads observation notes using normalized tables and foreign keys
+ Copyright 2025  Michael Ryan Hunsaker, M.Ed., Ph.D.
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+      https://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
 """
 
 import sqlite3
@@ -11,8 +21,8 @@ from pathlib import Path
 import datetime
 import pandas as pd
 from nicegui import ui
-from ..appTheming import theme
 from StudentDataGUI.appHelpers.roster import students
+from ..appTheming import theme
 
 # --- CONFIGURATION ---
 from StudentDataGUI.appHelpers.helpers import dataBasePath
@@ -21,10 +31,33 @@ OBSERVATION_TYPE = "Observation"  # Must match ProgressType.name in DB
 
 # --- UTILITY FUNCTIONS ---
 
-def get_connection():
+def get_connection() -> sqlite3.Connection:
+    """
+    Establish a connection to the SQLite database.
+
+    Returns
+    -------
+    sqlite3.Connection
+        A connection object to interact with the SQLite database.
+    """
     return sqlite3.connect(DATABASE_PATH)
 
-def get_or_create_student(conn, name):
+def get_or_create_student(conn: sqlite3.Connection, name: str) -> int:
+    """
+    Retrieve or create a student record in the database.
+
+    Parameters
+    ----------
+    conn : sqlite3.Connection
+        The database connection object.
+    name : str
+        The name of the student.
+
+    Returns
+    -------
+    int
+        The ID of the student in the database.
+    """
     cur = conn.cursor()
     cur.execute("SELECT id FROM Student WHERE name = ?", (name,))
     row = cur.fetchone()
@@ -34,7 +67,7 @@ def get_or_create_student(conn, name):
     conn.commit()
     return cur.lastrowid
 
-def get_progress_type_id(conn, name):
+def get_progress_type_id(conn: sqlite3.Connection, name: str) -> int:
     cur = conn.cursor()
     cur.execute("SELECT id FROM ProgressType WHERE name = ?", (name,))
     row = cur.fetchone()
@@ -45,7 +78,30 @@ def get_progress_type_id(conn, name):
     conn.commit()
     return cur.lastrowid
 
-def create_observation_session(conn, student_id, progress_type_id, date, notes=None, student_name=None):
+def create_observation_session(conn: sqlite3.Connection, student_id: int, progress_type_id: int, date: str, notes: str | None = None, student_name: str | None = None) -> int:
+    """
+    Create a new observation session record in the database.
+
+    Parameters
+    ----------
+    conn : sqlite3.Connection
+        The database connection object.
+    student_id : int
+        The ID of the student.
+    progress_type_id : int
+        The ID of the progress type.
+    date : str
+        The date of the observation session.
+    notes : str, optional
+        Additional notes for the session (default is None).
+    student_name : str, optional
+        The name of the student (default is None).
+
+    Returns
+    -------
+    int
+        The ID of the newly created observation session.
+    """
     cur = conn.cursor()
     cur.execute(
         "INSERT INTO ProgressSession (student_id, progress_type_id, date, notes) VALUES (?, ?, ?, ?)",
@@ -73,7 +129,24 @@ def create_observation_session(conn, student_id, progress_type_id, date, notes=N
 
     return session_id
 
-def fetch_observations_for_student(conn, student_id, progress_type_id):
+def fetch_observations_for_student(conn: sqlite3.Connection, student_id: int, progress_type_id: int) -> pd.DataFrame:
+    """
+    Fetch observation notes for a specific student.
+
+    Parameters
+    ----------
+    conn : sqlite3.Connection
+        The database connection object.
+    student_id : int
+        The ID of the student.
+    progress_type_id : int
+        The ID of the progress type.
+
+    Returns
+    -------
+    pd.DataFrame
+        A DataFrame containing observation notes with columns: date, notes.
+    """
     cur = conn.cursor()
     cur.execute(
         "SELECT date, notes FROM ProgressSession WHERE student_id = ? AND progress_type_id = ? ORDER BY date ASC",
@@ -91,7 +164,7 @@ def fetch_observations_for_student(conn, student_id, progress_type_id):
 def observations_ui():
     with theme.frame("- OBSERVATION NOTES -"):
         ui.label("Observation Notes (Normalized DB)").classes("text-h4 text-grey-8")
-        student_name = ui.select(options=lambda: students, label="Student Name").style("width: 500px")
+        student_name = ui.select(options=students, label="Student Name").style("width: 500px")
         ui.label("Date")
         date_input = ui.date(value=datetime.date.today())
         notes_input = ui.textarea("Observation Notes", placeholder="Type observation notes here...").style("width: 500px")

@@ -1,19 +1,30 @@
 #!/usr/bin/env python3
 
 """
-BrailleNote Touch Plus Skills Page (Updated for Normalized SQL Schema)
-- Uses new schema from updated_sql_bestpractice.py
-- Uploads and downloads BrailleNote data using normalized tables and foreign keys
+ Copyright 2025  Michael Ryan Hunsaker, M.Ed., Ph.D.
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+      https://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
 """
 
 import sqlite3
 from pathlib import Path
 import datetime
 import pandas as pd
-import numpy as np
 import plotly.graph_objs as go
 from plotly.subplots import make_subplots
 from nicegui import ui
+from StudentDataGUI.appHelpers.roster import students
+from ..appTheming import theme
 
 # --- CONFIGURATION ---
 from StudentDataGUI.appHelpers.helpers import dataBasePath
@@ -23,10 +34,33 @@ BRAILLENOTE_PROGRESS_TYPE = "BrailleNote"  # Must match ProgressType.name in DB
 
 # --- UTILITY FUNCTIONS ---
 
-def get_connection():
+def get_connection() -> sqlite3.Connection:
+    """
+    Establish a connection to the SQLite database.
+
+    Returns
+    -------
+    sqlite3.Connection
+        A connection object to interact with the SQLite database.
+    """
     return sqlite3.connect(DATABASE_PATH)
 
-def get_or_create_student(conn, name):
+def get_or_create_student(conn: sqlite3.Connection, name: str) -> int:
+    """
+    Retrieve or create a student record in the database.
+
+    Parameters
+    ----------
+    conn : sqlite3.Connection
+        The database connection object.
+    name : str
+        The name of the student.
+
+    Returns
+    -------
+    int
+        The ID of the student in the database.
+    """
     cur = conn.cursor()
     cur.execute("SELECT id FROM Student WHERE name = ?", (name,))
     row = cur.fetchone()
@@ -36,18 +70,32 @@ def get_or_create_student(conn, name):
     conn.commit()
     return cur.lastrowid
 
-def get_progress_type_id(conn, name):
+def get_progress_type_id(conn: sqlite3.Connection, name: str) -> int:
+    """
+    Retrieve or create a progress type record in the database.
+
+    Parameters
+    ----------
+    conn : sqlite3.Connection
+        The database connection object.
+    name : str
+        The name of the progress type.
+
+    Returns
+    -------
+    int
+        The ID of the progress type in the database.
+    """
     cur = conn.cursor()
     cur.execute("SELECT id FROM ProgressType WHERE name = ?", (name,))
     row = cur.fetchone()
     if row:
         return row[0]
-    # If not present, create it
-    cur.execute("INSERT INTO ProgressType (name, description) VALUES (?, ?)", (name, "BrailleNote Touch Plus skills progression"))
+    cur.execute("INSERT INTO ProgressType (name, description) VALUES (?, ?)", (name, "BrailleNote skills progression"))
     conn.commit()
     return cur.lastrowid
 
-def get_braillenote_parts(conn, progress_type_id):
+def get_braillenote_parts(conn: sqlite3.Connection, progress_type_id: int) -> dict[str, int]:
     """
     Returns a dict mapping code (e.g. 'P1_1') to part_id for BrailleNote assessment.
     If not present, creates the standard set.
@@ -99,7 +147,7 @@ def get_braillenote_parts(conn, progress_type_id):
     cur.execute("SELECT code, id FROM AssessmentPart WHERE progress_type_id = ?", (progress_type_id,))
     return {code: pid for code, pid in cur.fetchall()}
 
-def create_braillenote_session(conn, student_id, progress_type_id, date, notes=None):
+def create_braillenote_session(conn: sqlite3.Connection, student_id: int, progress_type_id: int, date: str, notes: str | None = None) -> int:
     cur = conn.cursor()
     cur.execute(
         "INSERT INTO ProgressSession (student_id, progress_type_id, date, notes) VALUES (?, ?, ?, ?)",
@@ -170,7 +218,7 @@ def insert_braillenote_results(conn, session_id, part_scores, student_name, date
     with open(json_path, "w") as f:
         json.dump(json_data, f, indent=2)
 
-def fetch_braillenote_data_for_student(conn, student_id, progress_type_id, part_codes):
+def fetch_braillenote_data_for_student(conn: sqlite3.Connection, student_id: int, progress_type_id: int, part_codes: list[str]) -> pd.DataFrame:
     """
     Returns a DataFrame with columns: date, code1, code2, ..., codeN
     """

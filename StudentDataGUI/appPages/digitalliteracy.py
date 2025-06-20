@@ -1,21 +1,30 @@
 #!/usr/bin/env python3
 
 """
-Digital Literacy Skills Page (Updated for Normalized SQL Schema)
-- Uses new schema from updated_sql_bestpractice.py
-- Uploads and downloads digital literacy data using normalized tables and foreign keys
+ Copyright 2025  Michael Ryan Hunsaker, M.Ed., Ph.D.
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+      https://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
 """
 
 import sqlite3
 from pathlib import Path
 import datetime
 import pandas as pd
-import numpy as np
 import plotly.graph_objs as go
 from plotly.subplots import make_subplots
 from nicegui import ui
-from ..appTheming import theme
 from StudentDataGUI.appHelpers.roster import students
+from ..appTheming import theme
 
 # --- CONFIGURATION ---
 from StudentDataGUI.appHelpers.helpers import dataBasePath
@@ -24,10 +33,33 @@ DIGITALLITERACY_PROGRESS_TYPE = "Digital Literacy"  # Must match ProgressType.na
 
 # --- UTILITY FUNCTIONS ---
 
-def get_connection():
+def get_connection() -> sqlite3.Connection:
+    """
+    Establish a connection to the SQLite database.
+
+    Returns
+    -------
+    sqlite3.Connection
+        A connection object to interact with the SQLite database.
+    """
     return sqlite3.connect(DATABASE_PATH)
 
-def get_or_create_student(conn, name):
+def get_or_create_student(conn: sqlite3.Connection, name: str) -> int:
+    """
+    Retrieve or create a student record in the database.
+
+    Parameters
+    ----------
+    conn : sqlite3.Connection
+        The database connection object.
+    name : str
+        The name of the student.
+
+    Returns
+    -------
+    int
+        The ID of the student in the database.
+    """
     cur = conn.cursor()
     cur.execute("SELECT id FROM Student WHERE name = ?", (name,))
     row = cur.fetchone()
@@ -37,7 +69,22 @@ def get_or_create_student(conn, name):
     conn.commit()
     return cur.lastrowid
 
-def get_progress_type_id(conn, name):
+def get_progress_type_id(conn: sqlite3.Connection, name: str) -> int:
+    """
+    Retrieve or create a progress type record in the database.
+
+    Parameters
+    ----------
+    conn : sqlite3.Connection
+        The database connection object.
+    name : str
+        The name of the progress type.
+
+    Returns
+    -------
+    int
+        The ID of the progress type in the database.
+    """
     cur = conn.cursor()
     cur.execute("SELECT id FROM ProgressType WHERE name = ?", (name,))
     row = cur.fetchone()
@@ -48,43 +95,59 @@ def get_progress_type_id(conn, name):
     conn.commit()
     return cur.lastrowid
 
-def get_digitalliteracy_parts(conn, progress_type_id):
+def get_digitalliteracy_parts(conn: sqlite3.Connection, progress_type_id: int) -> dict[str, int]:
     """
     Returns a dict mapping code (e.g. 'P1_1') to part_id for Digital Literacy assessment.
     If not present, creates the standard set.
     """
-    cur = conn.cursor()
-    cur.execute("SELECT code, id FROM AssessmentPart WHERE progress_type_id = ?", (progress_type_id,))
-    rows = cur.fetchall()
-    if rows and len(rows) >= 30:
-        return {code: pid for code, pid in rows}
-    # If not present, create standard digital literacy parts (example set, adjust as needed)
-    digitalliteracy_parts = [
-        # Phase 1
-        ("P1_1", "Turn Device On/Off"), ("P1_2", "Turn VoiceOver On/Off"), ("P1_3", "Gestures to Click Icons"),
-        ("P1_4", "Home Screen Icons to Open Documents"), ("P1_5", "Save Documents"), ("P1_6", "Online Tools/Resources"),
-        ("P1_7", "Keyboarding"), ("P1_8", "Use Different Elements"), ("P1_9", "Control Center, App Switcher..."),
-        # Phase 2
-        ("P2_1", "Write, edit save"), ("P2_2", "Read, Navigate Document"), ("P2_3", "Use Menubar"),
-        ("P2_4", "Highlight text, copy and paste text"), ("P2_5", "Copy and paste images"), ("P2_6", "Proofread and edit"),
-        # Phase 3
-        ("P3_1", "Describe Spreadsheet"), ("P3_2", "Explain terms and concepts"), ("P3_3", "Enter/Edit data"),
-        # Phase 4
-        ("P4_1", "Presentation Tools"), ("P4_2", "Create Slides"), ("P4_3", "Edit Slides"), ("P4_4", "Present Slides"), ("P4_5", "Share Slides"),
-        # Phase 5
-        ("P5_1", "Acceptable Use"), ("P5_2", "Digital Citizenship"), ("P5_3", "Internet Safety"), ("P5_4", "Copyright"), ("P5_5", "Plagiarism"),
-        # Add more as needed...
-    ]
-    for code, desc in digitalliteracy_parts:
-        cur.execute(
-            "INSERT OR IGNORE INTO AssessmentPart (progress_type_id, code, description) VALUES (?, ?, ?)",
-            (progress_type_id, code, desc)
-        )
-    conn.commit()
-    cur.execute("SELECT code, id FROM AssessmentPart WHERE progress_type_id = ?", (progress_type_id,))
-    return {code: pid for code, pid in cur.fetchall()}
+    def get_digitalliteracy_parts(conn: sqlite3.Connection, progress_type_id: int) -> dict[str, int]:
+        """
+        Retrieve or create the standard set of digital literacy assessment parts.
 
-def create_digitalliteracy_session(conn, student_id, progress_type_id, date, notes=None):
+        Parameters
+        ----------
+        conn : sqlite3.Connection
+            The database connection object.
+        progress_type_id : int
+            The ID of the progress type for digital literacy.
+
+        Returns
+        -------
+        dict[str, int]
+            A dictionary mapping part codes (e.g., 'P1_1') to their corresponding IDs.
+        """
+        cur = conn.cursor()
+        cur.execute("SELECT code, id FROM AssessmentPart WHERE progress_type_id = ?", (progress_type_id,))
+        rows = cur.fetchall()
+        if rows and len(rows) >= 30:
+            return {code: pid for code, pid in rows}
+        # If not present, create standard digital literacy parts (example set, adjust as needed)
+        digitalliteracy_parts = [
+            # Phase 1
+            ("P1_1", "Turn Device On/Off"), ("P1_2", "Turn VoiceOver On/Off"), ("P1_3", "Gestures to Click Icons"),
+            ("P1_4", "Home Screen Icons to Open Documents"), ("P1_5", "Save Documents"), ("P1_6", "Online Tools/Resources"),
+            ("P1_7", "Keyboarding"), ("P1_8", "Use Different Elements"), ("P1_9", "Control Center, App Switcher..."),
+            # Phase 2
+            ("P2_1", "Write, edit save"), ("P2_2", "Read, Navigate Document"), ("P2_3", "Use Menubar"),
+            ("P2_4", "Highlight text, copy and paste text"), ("P2_5", "Copy and paste images"), ("P2_6", "Proofread and edit"),
+            # Phase 3
+            ("P3_1", "Describe Spreadsheet"), ("P3_2", "Explain terms and concepts"), ("P3_3", "Enter/Edit data"),
+            # Phase 4
+            ("P4_1", "Presentation Tools"), ("P4_2", "Create Slides"), ("P4_3", "Edit Slides"), ("P4_4", "Present Slides"), ("P4_5", "Share Slides"),
+            # Phase 5
+            ("P5_1", "Acceptable Use"), ("P5_2", "Digital Citizenship"), ("P5_3", "Internet Safety"), ("P5_4", "Copyright"), ("P5_5", "Plagiarism"),
+            # Add more as needed...
+        ]
+        for code, desc in digitalliteracy_parts:
+            cur.execute(
+                "INSERT OR IGNORE INTO AssessmentPart (progress_type_id, code, description) VALUES (?, ?, ?)",
+                (progress_type_id, code, desc)
+            )
+        conn.commit()
+        cur.execute("SELECT code, id FROM AssessmentPart WHERE progress_type_id = ?", (progress_type_id,))
+        return {code: pid for code, pid in cur.fetchall()}
+
+def create_digitalliteracy_session(conn: sqlite3.Connection, student_id: int, progress_type_id: int, date: str, notes: str | None = None) -> int:
     cur = conn.cursor()
     cur.execute(
         "INSERT INTO ProgressSession (student_id, progress_type_id, date, notes) VALUES (?, ?, ?, ?)",
@@ -93,7 +156,7 @@ def create_digitalliteracy_session(conn, student_id, progress_type_id, date, not
     conn.commit()
     return cur.lastrowid
 
-def insert_digitalliteracy_results(conn, session_id, part_scores, student_name, date_val, notes=None):
+def insert_digitalliteracy_results(conn: sqlite3.Connection, session_id: int, part_scores: dict[str, tuple[int, int]], student_name: str, date_val: str, notes: str | None = None) -> None:
     """
     part_scores: dict of {code: score}
     """
@@ -136,7 +199,7 @@ def insert_digitalliteracy_results(conn, session_id, part_scores, student_name, 
             writer.writerow(header)
         writer.writerow(row)
 
-def fetch_digitalliteracy_data_for_student(conn, student_id, progress_type_id, part_codes):
+def fetch_digitalliteracy_data_for_student(conn: sqlite3.Connection, student_id: int, progress_type_id: int, part_codes: list[str]) -> pd.DataFrame:
     """
     Returns a DataFrame with columns: date, code1, code2, ..., codeN
     """
@@ -180,7 +243,7 @@ def fetch_digitalliteracy_data_for_student(conn, student_id, progress_type_id, p
 def digitalliteracy_skills_ui():
     with theme.frame("- DIGITAL LITERACY SKILLS -"):
         ui.label("Digital Literacy Skills (Normalized DB)").classes("text-h4 text-grey-8")
-        student_name = ui.select(options=lambda: students, label="Student Name").style("width: 500px")
+        student_name = ui.select(options=students, label="Student Name").style("width: 500px")
         ui.label("Date")
         date_input = ui.date(value=datetime.date.today()).style("width: 500px")
         # Digital Literacy part codes and labels

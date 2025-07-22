@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+from datetime import datetime
 
 """
  Copyright 2025  Michael Ryan Hunsaker, M.Ed., Ph.D.
@@ -216,6 +217,13 @@ def frame(navtitle: str) -> None:
                 font-weight: bold;
                 align: left;
             }
+            /* Strong visible focus for all interactive elements */
+            a:focus, button:focus, input:focus, select:focus, textarea:focus, [tabindex]:focus {
+                outline: 3px solid #ffca58 !important; /* Gold, matches your accent */
+                outline-offset: 2px;
+                background: #fffbe6;
+                color: #183969;
+            }
             </style>
         """
     )
@@ -224,54 +232,51 @@ def frame(navtitle: str) -> None:
         primary="#183969", secondary="#bed2e3", positive="#ffca58", accent="#cfcac1"
     )
 
-    with ui.header().classes("justify-between text-black h-[100px]"):
-        """
-        Create a custom layout using the NiceGUI UI framework.
+    # Add a visually hidden but focusable "Skip to main content" link for accessibility
+    ui.add_body_html("""
+    <a href="#main-content" id="skip-link"
+       style="
+         position:absolute;
+         left:0;
+         top:0;
+         background:#ffca58;
+         color:#183969;
+         padding:8px 16px;
+         z-index:1000;
+         transform:translateY(-200%);
+         transition:transform 0.2s;
+         font-weight:bold;
+         font-family:'Atkinson Hyperlegible', Arial, sans-serif;
+         text-decoration:none;
+         border-radius:0 0 8px 0;
+         outline:none;
+       "
+       onfocus="this.style.transform='translateY(0)';"
+       onblur="this.style.transform='translateY(-200%)';"
+       onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();document.getElementById('main-content').focus();}"
+       tabindex="0"
+    >Skip to main content</a>
+    """)
 
-        Parameters:
-        - navtitle (str): The title to be displayed in the navigation bar.
-
-        Usage:
-        ```python
-        with nicegui_custom_layout("Page Title"):
-            # Content to be displayed in the custom layout
-            # ...
-        ```
-
-        This function defines a layout structure using the NiceGUI UI framework, consisting of a header with a navigation title,
-        a menu section, and a main content column. The `navtitle` parameter specifies the title to be displayed in the navigation bar.
-
-        Example:
-        ```python
-        with nicegui_custom_layout("Home"):
-            # Main content goes here
-            # ...
-        ```
-
-        Note:
-        - This function is designed to be used within a context manager (i.e., with statement).
-        - The layout structure is implemented using NiceGUI UI components and styling classes.
-        - The `yield` statement is used to allow the caller to insert their custom content within the main content column.
-
-        See Also:
-        - NiceGUI UI framework documentation for more details on the UI components and styling classes.
-        """
+    with ui.header().props('role=banner').classes("justify-between text-black h-[100px]"):
         with ui.row().classes("no-wrap text-l font-bold text-black"):
-            with ui.link(target="https://davis.k12.ut.us").classes(
-                "max-[305px]:hidden absolute-left flex-none mt-5"
-            ).tooltip("Davis School District"):
-                branding().classes("fill-white scale-150 m-1")
+            with ui.html('<nav role="navigation">'):
+                with ui.link(target="https://davis.k12.ut.us").classes(
+                    "max-[305px]:hidden absolute-left flex-none mt-5"
+                ).tooltip("Davis School District"):
+                    branding().classes("fill-white scale-150 m-1")
+                menu()
             ui.label(navtitle).classes(
                 "absolute-center no-wrap text-2xl text-white font-bold self-center"
             ).classes().style('font-family: "Atkinson Hyperlegible"')
-            menu()
-    yield
+    with ui.html('<main role="main" id="main-content" tabindex="-1">'):
+        yield
 
-    with ui.footer(value=True).classes("h-[75px]") as footer:
+    with ui.footer(value=True).props('role=contentinfo').classes("h-[75px]") as footer:
         with ui.row().classes(
             "w-screen no-wrap justify-between items-center text-l font-bold text-white h-full pt-2.5"
         ):
-            ui.label("Copyright © 2023 Michael Ryan Hunsaker, M.Ed., Ph.D.").classes(
+            ui.label(f"Copyright © {datetime.now().year} Michael Ryan Hunsaker, M.Ed., Ph.D.").classes(
                 "absolute-center flex-1 self-bottom"
             ).style('font-family: "Atkinson Hyperlegible"')
             with ui.link(target="https://github.com/mrhunsaker/StudentDataGUI").classes(

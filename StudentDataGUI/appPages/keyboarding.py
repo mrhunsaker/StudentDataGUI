@@ -238,21 +238,25 @@ def keyboarding_skills_ui() -> None:
     with theme.frame("- KEYBOARDING SKILLS -"):
         with ui.card():
             ui.label("Keyboarding Skills (Normalized DB)").classes("text-h4 text-grey-8")
-        student_name = ui.select(options=students, label="Student Name").style("width: 500px")
+        student_name = ui.select(options=students, label="Student Name").props('aria-describedby=student_name_error').style("width: 500px")
+        student_name_error = ui.label("Student name is required.").props('id=student_name_error').classes('text-red-700').style('display:none')
         ui.label("Date")
-        date_input = ui.date(value=datetime.date.today())
+        date_input = ui.date(value=datetime.date.today()).props('aria-describedby=date_error').style("width: 500px")
+        date_error = ui.label("Date is required.").props('id=date_error').classes('text-red-700').style('display:none')
         program_input = ui.select(
             options=[
                 "Typio", "TypeAbility", "APH Typer", "Typing Club", "MonkeyType", "Custom Assignment"
             ],
             label="Keyboarding Program"
-        ).style("width: 500px;")
+        ).props('aria-describedby=program_error').style("width: 500px;")
+        program_error = ui.label("Keyboarding program is required.").props('id=program_error').classes('text-red-700').style('display:none')
         topic_input = ui.select(
             options=[
                 "Home Row", "Top Row", "Bottom Row", "Numbers", "Modifier Keys", "F-Keys", "Shortcut Keystrokes"
             ],
             label="Topic Covered"
-        ).style("width: 500px;")
+        ).props('aria-describedby=topic_error').style("width: 500px;")
+        topic_error = ui.label("Topic is required.").props('id=topic_error').classes('text-red-700').style('display:none')
         speed_input = ui.number(label="Typing Speed (WPM)", value=0, min=0, max=200, step=1).style("width: 500px;")
         accuracy_input = ui.number(label="Typing Accuracy (%)", value=0, min=0, max=100, step=1).style("width: 500px;")
         notes_input = ui.textarea("Notes (optional)").style("width: 500px;")
@@ -265,8 +269,43 @@ def keyboarding_skills_ui() -> None:
             speed = speed_input.value
             accuracy = accuracy_input.value
             notes = notes_input.value.strip()
-            if not name or not date_val or not program or not topic:
-                ui.notify("Student name, date, program, and topic are required.", type="negative")
+            error_found = False
+            if not name:
+                student_name_error.style('display:block')
+                student_name.props('aria-invalid=true')
+                student_name.run_javascript('this.focus()')
+                error_found = True
+            else:
+                student_name_error.style('display:none')
+                student_name.props('aria-invalid=false')
+            if not date_val:
+                date_error.style('display:block')
+                date_input.props('aria-invalid=true')
+                if not error_found:
+                    date_input.run_javascript('this.focus()')
+                error_found = True
+            else:
+                date_error.style('display:none')
+                date_input.props('aria-invalid=false')
+            if not program:
+                program_error.style('display:block')
+                program_input.props('aria-invalid=true')
+                if not error_found:
+                    program_input.run_javascript('this.focus()')
+                error_found = True
+            else:
+                program_error.style('display:none')
+                program_input.props('aria-invalid=false')
+            if not topic:
+                topic_error.style('display:block')
+                topic_input.props('aria-invalid=true')
+                if not error_found:
+                    topic_input.run_javascript('this.focus()')
+                error_found = True
+            else:
+                topic_error.style('display:none')
+                topic_input.props('aria-invalid=false')
+            if error_found:
                 return
             # Connect and insert
             conn = get_connection()

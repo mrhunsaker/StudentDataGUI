@@ -14,6 +14,7 @@ Student Data Input GUI using NiceGUI and SQLite3 designed to be platform-indepen
 4. [Development](#development)
 5. [Troubleshooting](#troubleshooting)
 6. [Support](#support)
+7. [Accessibility](#accessibility)
 
 ---
 
@@ -184,6 +185,37 @@ For container-specific issues:
 For application-specific issues, [open an issue on GitHub](https://github.com/mrhunsaker/StudentDataGUI/issues).
 
 ---
+
+## Accessibility
+
+### Accessibility Features
+
+- Semantic HTML structure with ARIA landmarks (`header`, `nav`, `main`, `footer`) for improved screen reader navigation.
+- "Skip to main content" link for keyboard and assistive technology users.
+- All interactive elements (links, buttons, form fields) have visible, high-contrast focus indicators.
+- Inline error messages for forms are programmatically associated with fields using ARIA attributes and are announced to screen readers.
+- Dialogs and modals have ARIA roles and focus management.
+- All images and icons have meaningful alternative text or are marked as decorative.
+- Supports keyboard-only navigation and high-contrast mode.
+
+### Known Limitations
+
+- Some advanced focus trapping in modals may require further enhancement for perfect screen reader experience.
+- Toast notifications may not always be announced by all screen readers.
+- Accessibility testing is ongoing; please report any issues you encounter.
+
+### Reporting Accessibility Issues
+
+If you encounter any accessibility barriers or have suggestions for improvement, please:
+
+- [Open an issue on GitHub](https://github.com/mrhunsaker/StudentDataGUI/issues) and use the "Accessibility" label.
+- Or contact the maintainer directly via the email address listed in the repository.
+
+### Further Documentation
+
+- For a detailed accessibility analysis and recommendations, see [AccessibilityReport20250722.md](./AccessibilityReport20250722.md).
+- For a step-by-step accessibility testing checklist, see [AccessibilityTesting.md](./AccessibilityTesting.md).
+
 
 ## Customization Instructions
 

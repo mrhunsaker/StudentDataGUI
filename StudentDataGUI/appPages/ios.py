@@ -242,6 +242,12 @@ def ios_skills_ui() -> None:
             ("P6_1", "Install Apps"), ("P6_2", "Update Apps"), ("P6_3", "Delete Apps"), ("P6_4", "Manage Storage"), ("P6_5", "Accessibility Settings"), ("P6_6", "Screen Time"), ("P6_7", "Parental Controls"), ("P6_8", "Bluetooth"), ("P6_9", "Wi-Fi"), ("P6_10", "AirDrop"), ("P6_11", "Hotspot"),
         ]
         part_inputs = {}
+        # Accessible required fields
+        student_name = ui.select(options=students, label="Student Name").props('aria-describedby=student_name_error').style("width: 500px")
+        student_name_error = ui.label("Student name is required.").props('id=student_name_error').classes('text-red-700').style('display:none')
+        ui.label("Date")
+        date_input = ui.date(value=datetime.date.today()).props('aria-describedby=date_error').style("width: 500px")
+        date_error = ui.label("Date is required.").props('id=date_error').classes('text-red-700').style('display:none')
         for code, label in ios_parts:
             part_inputs[code] = ui.number(label=label, value=0, min=0, max=3, step=1)
         notes_input = ui.textarea("Notes (optional)").style("width: 500px;")
@@ -250,8 +256,25 @@ def ios_skills_ui() -> None:
             name = student_name.value.strip()
             date_val = date_input.value
             notes = notes_input.value.strip()
-            if not name or not date_val:
-                ui.notify("Student name and date are required.", type="negative")
+            error_found = False
+            if not name:
+                student_name_error.style('display:block')
+                student_name.props('aria-invalid=true')
+                student_name.run_javascript('this.focus()')
+                error_found = True
+            else:
+                student_name_error.style('display:none')
+                student_name.props('aria-invalid=false')
+            if not date_val:
+                date_error.style('display:block')
+                date_input.props('aria-invalid=true')
+                if not error_found:
+                    date_input.run_javascript('this.focus()')
+                error_found = True
+            else:
+                date_error.style('display:none')
+                date_input.props('aria-invalid=false')
+            if error_found:
                 return
             # Connect and insert
             conn = get_connection()

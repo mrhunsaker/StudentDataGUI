@@ -164,17 +164,46 @@ def fetch_observations_for_student(conn: sqlite3.Connection, student_id: int, pr
 def observations_ui():
     with theme.frame("- OBSERVATION NOTES -"):
         ui.label("Observation Notes (Normalized DB)").classes("text-h4 text-grey-8")
-        student_name = ui.select(options=students, label="Student Name").style("width: 500px")
+        student_name = ui.select(options=students, label="Student Name").props('aria-describedby=student_name_error').style("width: 500px")
+        student_name_error = ui.label("Student name is required.").props('id=student_name_error').classes('text-red-700').style('display:none')
         ui.label("Date")
-        date_input = ui.date(value=datetime.date.today())
-        notes_input = ui.textarea("Observation Notes", placeholder="Type observation notes here...").style("width: 500px")
+        date_input = ui.date(value=datetime.date.today()).props('aria-describedby=date_error').style("width: 500px")
+        date_error = ui.label("Date is required.").props('id=date_error').classes('text-red-700').style('display:none')
+        notes_input = ui.textarea("Observation Notes", placeholder="Type observation notes here...").props('aria-describedby=notes_error').style("width: 500px")
+        notes_error = ui.label("Observation notes are required.").props('id=notes_error').classes('text-red-700').style('display:none')
 
         def save_observation():
             name = student_name.value.strip()
             date_val = date_input.value
             notes = notes_input.value.strip()
-            if not name or not date_val or not notes:
-                ui.notify("Student name, date, and notes are required.", type="negative")
+            error_found = False
+            if not name:
+                student_name_error.style('display:block')
+                student_name.props('aria-invalid=true')
+                student_name.run_javascript('this.focus()')
+                error_found = True
+            else:
+                student_name_error.style('display:none')
+                student_name.props('aria-invalid=false')
+            if not date_val:
+                date_error.style('display:block')
+                date_input.props('aria-invalid=true')
+                if not error_found:
+                    date_input.run_javascript('this.focus()')
+                error_found = True
+            else:
+                date_error.style('display:none')
+                date_input.props('aria-invalid=false')
+            if not notes:
+                notes_error.style('display:block')
+                notes_input.props('aria-invalid=true')
+                if not error_found:
+                    notes_input.run_javascript('this.focus()')
+                error_found = True
+            else:
+                notes_error.style('display:none')
+                notes_input.props('aria-invalid=false')
+            if error_found:
                 return
             conn = get_connection()
             try:
@@ -208,19 +237,27 @@ def observations_ui():
                 if df.empty:
                     ui.notify("No observation notes for this student.", type="warning")
                     return
+
+                # Save the triggering button for focus restoration
+                import uuid
+                trigger_id = f"trigger-btn-{uuid.uuid4().hex}"
+                trigger_btn = ui.query(f'#{trigger_id}')
                 # Display as a simple table (could be enhanced to timeline, etc.)
-                with ui.dialog() as dialog, ui.card():
-                    ui.label(f"Observation Notes for {name}").classes("text-h5")
+                with ui.dialog().props('role=dialog aria-modal=true').classes('focus:outline-none') as dialog, ui.card():
+                    heading = ui.label(f"Observation Notes for {name}").classes("text-h5").props('tabindex=0 id=dialog-heading')
                     for _, row in df.iterrows():
                         ui.markdown(f"**{row['date'].strftime('%Y-%m-%d')}**: {row['notes']}")
-                    ui.button("Close", on_click=dialog.close)
+                    close_btn = ui.button("Close", on_click=lambda: (dialog.close(), ui.run_javascript(f'document.getElementById("{trigger_id}").focus()')))
+                    # Move focus to heading when dialog opens
+                    dialog.on('open', lambda: heading.run_javascript('this.focus()'))
                 dialog.open()
             except Exception as e:
                 ui.notify(f"Error fetching observations: {e}", type="negative")
             finally:
                 conn.close()
 
-        ui.button("Show All Observations", on_click=plot_observations, color="secondary")
+        # Add an id to the trigger button for focus restoration
+        ui.button("Show All Observations", on_click=plot_observations, color="secondary").props('id=trigger-btn-observations')
 
 # --- PAGE ENTRY POINT ---
 @ui.page("/observations_ui")

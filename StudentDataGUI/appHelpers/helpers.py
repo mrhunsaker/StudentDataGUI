@@ -22,6 +22,8 @@ Program designed to be a data collection and instructional tool for
 teachers of students with Visual Impairments
 """
 
+import os
+
 import datetime
 import os
 import shutil

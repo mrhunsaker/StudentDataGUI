@@ -1,5 +1,3 @@
-StudentDataGUI/Dockerfile
-```
 # Dockerfile optimized for Podman rootless environments using Ubuntu 24.04
 FROM ubuntu:24.04
 
@@ -56,11 +54,11 @@ COPY __init__.py .
 
 # Create necessary directories with proper permissions for rootless Podman
 RUN mkdir -p /app/home/.cache/fontconfig \
-             /app/data \
-             /app/database \
-             /app/logs \
-             /tmp/matplotlib \
-             /tmp/runtime && \
+    /app/data \
+    /app/database \
+    /app/logs \
+    /tmp/matplotlib \
+    /tmp/runtime && \
     chmod -R 755 /app && \
     chmod -R 777 /tmp/matplotlib /tmp/runtime
 

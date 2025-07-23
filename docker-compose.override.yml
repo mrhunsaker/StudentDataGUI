@@ -2,8 +2,6 @@
 # This file provides Podman-specific configurations and can be used
 # alongside the main compose.yaml file
 
-version: "3.8"
-
 services:
   student-data-gui:
     # Remove user specification for rootless Podman
@@ -11,8 +9,8 @@ services:
 
     # Alternative volume mounts for Podman rootless
     volumes:
-      - ./data:/app/data:Z
-      - ./database:/app/database:Z
+      - /var/home/ryhunsaker/Documents/StudentDatabase:/app/data:Z
+      - /var/home/ryhunsaker/Documents/StudentDatabase:/app/database:Z
 
     # Podman-specific security options
     security_opt:

@@ -14,9 +14,9 @@ services:
       - HOME=/app/home
       - XDG_RUNTIME_DIR=/tmp/runtime
     volumes:
-      - ./data:/app/data
-      - ./database:/app/database
-      - ./logs:/app/logs
+      - /var/home/ryhunsaker/Documents/StudentDatabase:/app/data:Z
+      - /var/home/ryhunsaker/Documents/StudentDatabase:/app/database:Z
+      - /var/home/ryhunsaker/Documents/StudentDatabase:/app/logs
     restart: unless-stopped
     healthcheck:
       test:

@@ -31,6 +31,7 @@ teachers of students with Visual Impairments
 import os
 import sys
 import traceback
+import types
 from pathlib import Path
 import logging
 
@@ -70,7 +71,7 @@ initialize_database()
 from .appPages import homepage
 
 
-def warningmessage(exception_type: type, exception_value: Exception, exception_traceback: traceback.TracebackType) -> None:
+def warningmessage(exception_type: type, exception_value: Exception, exception_traceback: types.TracebackType) -> None:
     """
     Log an error message and display a warning notification.
 
@@ -98,7 +99,7 @@ def warningmessage(exception_type: type, exception_value: Exception, exception_t
     >>> try:
     ...     result = 1 / 0
     ... except Exception as e:
-    ...     warningmessage(type(e), e, traceback.extract_tb(e.__traceback__))
+    ...     warningmessage(type(e), e, e.__traceback__)
     """
     i = ""
     message = "Please make sure all fields are selected / filled out properly\n\n"
@@ -160,6 +161,21 @@ def initialize_ui() -> None:
     copyright information and a contact email for bug reports or feature requests.
     """
     # Import the page modules to register their routes
+    from .appPages import (
+        abacus,
+        braille,
+        braillenote,
+        contactlog,
+        cvi,
+        digitalliteracy,
+        homepage,
+        ios,
+        keyboarding,
+        observations,
+        screenreader,
+        sessionnotes,
+        InstructionalMaterials,
+    )
 
     # Create global footer that appears on all pages
     with ui.footer(value=True) as footer:

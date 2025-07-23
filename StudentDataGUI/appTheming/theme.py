@@ -260,17 +260,16 @@ def frame(navtitle: str) -> None:
 
     with ui.header().props('role=banner').classes("justify-between text-black h-[100px]"):
         with ui.row().classes("no-wrap text-l font-bold text-black"):
-            with ui.html('<nav role="navigation">'):
-                with ui.link(target="https://davis.k12.ut.us").classes(
-                    "max-[305px]:hidden absolute-left flex-none mt-5"
-                ).tooltip("Davis School District"):
-                    branding().classes("fill-white scale-150 m-1")
-                menu()
+            with ui.link(target="https://davis.k12.ut.us").classes(
+                "max-[305px]:hidden absolute-left flex-none mt-5"
+            ).tooltip("Davis School District"):
+                branding().classes("fill-white scale-150 m-1")
+            menu()
             ui.label(navtitle).classes(
                 "absolute-center no-wrap text-2xl text-white font-bold self-center"
-            ).classes().style('font-family: "Atkinson Hyperlegible"')
-    with ui.html('<main role="main" id="main-content" tabindex="-1">'):
-        yield
+            ).style('font-family: "Atkinson Hyperlegible"')
+
+    yield  # Yield to allow page content to be inserted here
 
     with ui.footer(value=True).props('role=contentinfo').classes("h-[75px]") as footer:
         with ui.row().classes(

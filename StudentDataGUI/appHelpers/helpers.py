@@ -27,6 +27,7 @@ import datetime
 import shutil
 from csv import writer
 from pathlib import Path
+import json
 import logging
 
 date_fmt = "%Y-%m-%d %H:%M:%S"
@@ -103,36 +104,76 @@ def create_roster() -> None:
 
 # Load students list from json_Files/students.json (runtime-controlled)
 import json
-STUDENTS_JSON = PROJECT_ROOT.joinpath("json_Files", "students.json")
-students = []
-try:
-    if STUDENTS_JSON.exists():
-        with open(STUDENTS_JSON, "r", encoding="utf-8") as jf:
-            data = json.load(jf)
-            if isinstance(data, dict) and "students" in data:
-                students = data.get("students", [])
-            elif isinstance(data, list):
-                students = data
-    else:
-        # Fallback: keep old roster if present
-        roster_path = Path(ROOT_DIR).joinpath("appHelpers", "roster.py")
-        if roster_path.exists():
-            try:
-                # importlib to load roster module dynamically
-                import importlib.util
+import logging
+import datetime
 
-                spec = importlib.util.spec_from_file_location("appHelpers.roster", roster_path)
-                mod = importlib.util.module_from_spec(spec)
-                spec.loader.exec_module(mod)
-                students = getattr(mod, "students", [])
-            except Exception:
-                students = []
-except Exception as e:
-    logging.error(f"Failed to load students.json: {e}")
+def _load_students_from_json() -> list[str]:
+    """Load student names from json_Files/students.json under the project root.
+    Returns a list of cleaned "First Last" strings (may be empty)."""
+    try:
+        students_path = PROJECT_ROOT.joinpath("json_Files", "students.json")
+        if not students_path.exists():
+            logging.warning("students.json not found at %s", students_path)
+            return []
+        text = students_path.read_text(encoding="utf-8")
+        data = json.loads(text)
+        raw = data.get("students") if isinstance(data, dict) else data
+        result = []
+        if isinstance(raw, list):
+            for item in raw:
+                if not isinstance(item, str):
+                    continue
+                name = " ".join(item.split()).strip()
+                if name:
+                    result.append(name)
+        seen = set()
+        cleaned = []
+        for n in result:
+            if n not in seen:
+                cleaned.append(n)
+                seen.add(n)
+        return cleaned
+    except Exception:
+        logging.exception("Failed to load students.json")
+        return []
 
+class StudentsProxy:
+    """List-like proxy that reloads students.json on each access."""
+    def __iter__(self):
+        return iter(_load_students_from_json())
+    def __len__(self):
+        return len(_load_students_from_json())
+    def __getitem__(self, idx):
+        return _load_students_from_json()[idx]
+    def __contains__(self, item):
+        return item in _load_students_from_json()
+    def keys(self):
+        """Compatibility: return list of student names (like dict.keys())."""
+        return _load_students_from_json()
+    def items(self):
+        """Compatibility: return list of (name, name) pairs."""
+        lst = _load_students_from_json()
+        return [(s, s) for s in lst]
+    def values(self):
+        """Compatibility: return list of student names (like dict.values())."""
+        return _load_students_from_json()
+    def get(self, key, default=None):
+        """Compatibility: return the key if present, else default."""
+        lst = _load_students_from_json()
+        return key if key in lst else default
+    def __repr__(self):
+        return repr(_load_students_from_json())
+
+# public API: students (dynamic) and accessor
+students = StudentsProxy()
+
+def get_students() -> list[str]:
+    """Return the runtime-loaded list of students (fresh copy)."""
+    return _load_students_from_json()
 
 # All database and student data will be stored in /app_home at the project root
 dataBasePath = str(APP_HOME / "students20252026.db")
+database_dir = dataBasePath
 logging.debug(f"Resolved dataBasePath: {dataBasePath}")
 
 # After loading students, ensure a roster.py exists for legacy/tests

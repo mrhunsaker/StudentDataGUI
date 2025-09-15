@@ -15,6 +15,7 @@ services:
       - XDG_RUNTIME_DIR=/tmp/runtime
     volumes:
       - ./app_home:/app_home:Z
+      - ./json_Files:/app/json_Files:Z
     restart: unless-stopped
     healthcheck:
       test:

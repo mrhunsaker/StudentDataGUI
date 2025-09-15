@@ -26,52 +26,40 @@ teachers of students with Visual Impairments
 
 from contextlib import contextmanager
 from pathlib import Path
+import logging
 
 from ..appHelpers.helpers import ROOT_DIR
 from .menu import menu
 from nicegui import ui, app
 
 
+def _read_svg_with_fallback(name: str) -> str:
+    """Try ROOT_DIR/<name>, then StudentDataGUI/appHelpers/<name>; return empty string if not found."""
+    try:
+        root = Path(ROOT_DIR)
+        candidates = [
+            root.joinpath(name),
+            root.joinpath("StudentDataGUI", "appHelpers", name),
+            root.joinpath("StudentDataGUI", "appHelpers", "images", name),
+        ]
+        for p in candidates:
+            if p.exists():
+                logging.debug(f"Loaded SVG from: {p}")
+                return p.read_text()
+        logging.warning(f"SVG not found (tried {', '.join(str(p) for p in candidates)}): {name}")
+    except Exception:
+        logging.exception("Error while reading SVG")
+    return ""
+
+
 def github() -> ui.html:
-    """
-    Retrieve and display the GitHub icon as HTML.
-
-    This function reads the content of the 'github.svg' file located in the root directory
-    and returns it as an HTML object. The SVG content is typically an icon representing the
-    GitHub logo.
-
-    Returns
-    -------
-    ui.html
-        An HTML object containing the GitHub icon.
-
-    Examples
-    --------
-    >>> github()
-    <ui.html object representing the GitHub icon>
-    """
-    return ui.html(Path(ROOT_DIR).joinpath("github.svg").read_text())
+    """Return GitHub SVG as ui.html, with fallback locations."""
+    return ui.html(_read_svg_with_fallback("github.svg"))
 
 
 def branding() -> ui.html:
-    """
-    Retrieve and display the branding icon as HTML.
-
-    This function reads the content of the 'dsd-mark-white.svg' file located in the root directory
-    and returns it as an HTML object. The SVG content is typically an icon representing the
-    GitHub logo.
-
-    Returns
-    -------
-    ui.html
-        An HTML object containing the GitHub icon.
-
-    Examples
-    --------
-    >>> branding()
-    <ui.html object representing the branding icon>
-    """
-    return ui.html(Path(ROOT_DIR).joinpath("dsd-mark-white.svg").read_text())
+    """Return branding SVG as ui.html, with fallback locations."""
+    return ui.html(_read_svg_with_fallback("dsd-mark-white.svg"))
 
 
 @contextmanager
@@ -158,41 +146,6 @@ def frame(navtitle: str) -> None:
 
         </style>
         """
-    app.add_static_file(
-        local_file=Path(ROOT_DIR).joinpath(
-            "fonts", "AtkinsonHyperlegible-BoldItalic.ttf"
-        ),
-        url_path="/fonts/AtkinsonHyperlegible-BoldItalic.ttf",
-    )
-    app.add_static_file(
-        local_file=Path(ROOT_DIR).joinpath("fonts", "AtkinsonHyperlegible-Bold.ttf"),
-        url_path="/fonts/AtkinsonHyperlegible-Bold.ttf",
-    )
-    app.add_static_file(
-        local_file=Path(ROOT_DIR).joinpath("fonts", "AtkinsonHyperlegible-Italic.ttf"),
-        url_path="/fonts/AtkinsonHyperlegible-Italic.ttf",
-    )
-    app.add_static_file(
-        local_file=Path(ROOT_DIR).joinpath("fonts", "AtkinsonHyperlegible-Regular.ttf"),
-        url_path="/fonts/AtkinsonHyperlegible-Regular.ttf",
-    )
-    app.add_static_file(
-        local_file=Path(ROOT_DIR).joinpath("fonts", "JetBrainsMono-BoldItalic.ttf"),
-        url_path="/fonts/JetBrainsMono-BoldItalic.ttf",
-    )
-    app.add_static_file(
-        local_file=Path(ROOT_DIR).joinpath("fonts", "JetBrainsMono-Bold.ttf"),
-        url_path="/fonts/JetBrainsMono-Bold.ttf",
-    )
-    app.add_static_file(
-        local_file=Path(ROOT_DIR).joinpath("fonts", "JetBrainsMono-Italic.ttf"),
-        url_path="/fonts/JetBrainsMono-Italic.ttf",
-    )
-    app.add_static_file(
-        local_file=Path(ROOT_DIR).joinpath("fonts", "JetBrainsMono-Regular.ttf"),
-        url_path="/fonts/JetBrainsMono-Regular.ttf",
-    )
-
     ui.add_head_html(style)
     ui.add_head_html(
         """
@@ -258,6 +211,12 @@ def frame(navtitle: str) -> None:
     >Skip to main content</a>
     """)
 
+    ui.add_body_html(
+        """
+        <div id="main-content" tabindex="-1"></div>
+        """
+    )
+
     with ui.header().props('role=banner').classes("justify-between text-black h-[100px]"):
         with ui.row().classes("no-wrap text-l font-bold text-black"):
             with ui.link(target="https://davis.k12.ut.us").classes(
@@ -282,3 +241,36 @@ def frame(navtitle: str) -> None:
                 "max-[305px]:hidden absolute-right flex-none mt-2.5"
             ).tooltip("GitHub Repo"):
                 github().classes("fill-white scale-75 m-1 mt-2.5")
+
+    try:
+        PROJECT_ROOT = Path(ROOT_DIR)
+        preferred_fonts_dir = PROJECT_ROOT.joinpath("StudentDataGUI", "appHelpers", "fonts")
+        legacy_fonts_dir = PROJECT_ROOT.joinpath("fonts")
+        font_files = [
+            "AtkinsonHyperlegible-BoldItalic.ttf",
+            "AtkinsonHyperlegible-Bold.ttf",
+            "AtkinsonHyperlegible-Italic.ttf",
+            "AtkinsonHyperlegible-Regular.ttf",
+            "JetBrainsMono-BoldItalic.ttf",
+            "JetBrainsMono-Bold.ttf",
+            "JetBrainsMono-Italic.ttf",
+            "JetBrainsMono-Regular.ttf",
+        ]
+
+        registered_any = False
+        for fname in font_files:
+            # prefer appHelpers/fonts
+            fpath = preferred_fonts_dir.joinpath(fname)
+            if not fpath.exists():
+                fpath = legacy_fonts_dir.joinpath(fname)
+            if fpath.exists():
+                app.add_static_file(local_file=fpath, url_path=f"/fonts/{fname}")
+                logging.debug(f"Registered font: {fpath}")
+                registered_any = True
+            else:
+                logging.debug(f"Font not found, skipping: {fname}")
+
+        if not registered_any:
+            logging.warning("No font files found in appHelpers/fonts or ROOT_DIR/fonts; continuing without registering fonts.")
+    except Exception:
+        logging.exception("Error while registering font static files")

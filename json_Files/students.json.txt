@@ -1,0 +1,17 @@
+students = [
+    "Simba Lion",
+    "Ariel Triton",
+    "Belle Villeneuve",
+    "Mulan Fa",
+    "Aladdin Ababwa",
+    "Elsa Arendelle",
+    "Moana Waialiki",
+    "Tiana Dubois",
+    "Rapunzel Fitzherbert",
+    "Hercules Olympus",
+    "Jasmine Sultana",
+    "Olaf Snowman",
+    "Merida DunBroch",
+    "Tarzan Clayton",
+    "Aurora Briar"
+]

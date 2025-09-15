@@ -141,3 +141,4 @@ appHelpers/roster.py
 .idea/*
 .vscode/*
 
+json_files/*.json

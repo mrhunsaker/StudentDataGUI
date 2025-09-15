@@ -14,11 +14,10 @@ def run():
     from .main import main
     main()
 
-from . import main
-from . import appHelpers
-from . import appPages
-from . import appTheming
-from . import visualScan
+# Defer importing submodules (main, appHelpers, appPages, appTheming, visualScan)
+# to avoid pulling heavy dependencies (like NiceGUI) at import time. Tests
+# should import specific submodules directly, e.g.:
+# from StudentDataGUI.appHelpers import helpers
 
 __all__ = [
     "main",

@@ -23,11 +23,11 @@ import pandas as pd
 import plotly.graph_objs as go
 from plotly.subplots import make_subplots
 from nicegui import ui
-from StudentDataGUI.appHelpers.roster import students
+from StudentDataGUI.appHelpers.helpers import students
 from ..appTheming import theme
 
-# --- CONFIGURATION ---
 from StudentDataGUI.appHelpers.helpers import dataBasePath
+# Database is now stored in /app_home at the project root
 DATABASE_PATH = dataBasePath
 CVI_PROGRESS_TYPE = "CVI"  # Must match ProgressType.name in DB
 

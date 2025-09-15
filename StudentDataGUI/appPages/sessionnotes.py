@@ -21,11 +21,11 @@ from pathlib import Path
 import datetime
 import pandas as pd
 from nicegui import ui
-from StudentDataGUI.appHelpers.roster import students
+from StudentDataGUI.appHelpers.helpers import students
 from ..appTheming import theme
 
-# --- CONFIGURATION ---
 from StudentDataGUI.appHelpers.helpers import dataBasePath
+# Database is now stored in /app_home at the project root
 DATABASE_PATH = dataBasePath
 SESSION_NOTES_TYPE = "SessionNotes"  # Must match ProgressType.name in DB
 

@@ -23,9 +23,7 @@ teachers of students with Visual Impairments
 """
 
 import os
-
 import datetime
-import os
 import shutil
 from csv import writer
 from pathlib import Path
@@ -35,136 +33,110 @@ date_fmt = "%Y-%m-%d %H:%M:%S"
 
 datenow = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-os.chdir(os.path.dirname(os.path.abspath(__file__)))
-ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
-print(ROOT_DIR)
-USER_DIR = ""
-IMAGE_DIR = Path(ROOT_DIR).joinpath("images")
-START_DIR = ""
-DATA_ROOT = os.environ.get("DB_DIR", "/app/data")
+
+# Set APP_HOME to /app_home at the project root
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+APP_HOME = PROJECT_ROOT / "app_home"
+APP_HOME.mkdir(exist_ok=True)
+ROOT_DIR = str(PROJECT_ROOT)
+USER_DIR = str(APP_HOME)
+IMAGE_DIR = Path(__file__).resolve().parent / "images"
+START_DIR = str(APP_HOME)
+DATA_ROOT = str(APP_HOME)
+
 
 
 def set_start_dir() -> Path:
     """
-    Create or retrieve the user directory path.
-
-    This function ensures the directory path is compatible with Docker/Podman environments
-    by defaulting to /app/data if no valid environment variables are found.
-
-    Returns
-    -------
-    Path
-        The path to the user directory.
-
-    Examples
-    --------
-    >>> user_directory = set_start_dir()
-    >>> # Use user_directory for storing application-related data
-    >>> # ...
+    Set the start directory to /app_home at the project root.
     """
-    global START_DIR
-    try:
-        tmp_path = Path("/app/data")
-        subdirectories = [
-            "students20252026",
-            "StudentDataFiles",
-            "errorLogs",
-            "backups"
-        ]
-        for subdir in subdirectories:
-            Path(tmp_path, subdir).mkdir(parents=True, exist_ok=True)
-        START_DIR = tmp_path
-        logging.debug(f"Resolved START_DIR: {START_DIR}")
-    except Exception as e:
-        logging.error(f"Failed to set START_DIR: {e}")
-        START_DIR = Path("/app/data")
-    os.chdir(START_DIR)
-    return START_DIR
+    return APP_HOME
 
-START_DIR = set_start_dir()
+START_DIR = str(APP_HOME)
+
 
 def working_dir() -> None:
     """
-    Copy the working directory information to the application's root.
-
-    This function is deprecated and no longer checks or copies any working directory files.
-
-    Returns
-    -------
-    None
-
-    Examples
-    --------
-    >>> working_dir()
-    >>> # This function is deprecated and does nothing.
-
-    Notes
-    -----
-    This function assumes the existence of 'ROOT_DIR' and 'START_DIR' variables
-    representing the application's root and starting directories, respectively.
+    Set working directory to /app_home at the project root.
     """
-    try:
-        try:
-            student_data_dir = Path("/app/data/StudentDataFiles")
-            if not student_data_dir.exists():
-                student_data_dir.mkdir(parents=True, exist_ok=True)
-            logging.debug(f"Ensured StudentDataFiles directory exists at: {student_data_dir}")
-        except Exception as e:
-            logging.error(f"Failed to ensure StudentDataFiles directory: {e}")
-    except Exception as e:
-        logging.error(f"Failed in working_dir: {e}")
+    os.chdir(APP_HOME)
+    student_data_dir = APP_HOME / "StudentDataFiles"
+    student_data_dir.mkdir(parents=True, exist_ok=True)
+    logging.debug(f"Ensured StudentDataFiles directory exists at: {student_data_dir}")
 
 working_dir()
 
+
 def create_roster() -> None:
     """
-    Create the roster file for the application.
-
-    This function checks if the 'roster' directory exists in the 'appHelpers'
-    subdirectory of the application's root directory. If not, it copies the
-    'roster.txt' file from the 'START_DIR' (presumably a predefined starting
-    directory) to the 'appHelpers' subdirectory, naming the copy 'roster.py'.
-
-    Returns
-    -------
-    None
-
-    Examples
-    --------
-    >>> create_roster()
-    >>> # 'roster.py' is created in the 'appHelpers' subdirectory
-    >>> # ...
-
-    Notes
-    -----
-    This function assumes the existence of 'ROOT_DIR' and 'START_DIR' variables
-    representing the application's root and starting directories, respectively.
+    Create the roster file for the application in /app_home.
     """
-    def create_roster() -> None:
+    # Write a simple roster.py fallback in both the package appHelpers folder
+    # and the current working directory's appHelpers so legacy imports and
+    # tests that look for a file in CWD succeed.
+    targets = [
+        Path(ROOT_DIR).joinpath("appHelpers", "roster.py"),
+        Path(os.getcwd()).joinpath("appHelpers", "roster.py"),
+    ]
+    try:
+        if students:
+            for roster_path in targets:
+                if not roster_path.exists():
+                    roster_path.parent.mkdir(parents=True, exist_ok=True)
+                    with open(roster_path, "w", encoding="utf-8") as rf:
+                        rf.write("# Auto-generated roster fallback\n")
+                        rf.write("students = [\n")
+                        for s in students:
+                            rf.write(f'    "{s}",\n')
+                        rf.write("]\n")
+        else:
+            # If students list is empty, fallback to copying roster.txt from APP_HOME
+            tmp_path = APP_HOME / "roster.txt"
+            if tmp_path.exists():
+                for roster_path in targets:
+                    if not roster_path.exists():
+                        roster_path.parent.mkdir(parents=True, exist_ok=True)
+                        shutil.copy2(tmp_path, roster_path)
+    except Exception:
+        # Do not raise exceptions during roster creation
+        logging.exception("Failed to create roster fallback")
+
+# Load students list from json_Files/students.json (runtime-controlled)
+import json
+STUDENTS_JSON = PROJECT_ROOT.joinpath("json_Files", "students.json")
+students = []
+try:
+    if STUDENTS_JSON.exists():
+        with open(STUDENTS_JSON, "r", encoding="utf-8") as jf:
+            data = json.load(jf)
+            if isinstance(data, dict) and "students" in data:
+                students = data.get("students", [])
+            elif isinstance(data, list):
+                students = data
+    else:
+        # Fallback: keep old roster if present
         roster_path = Path(ROOT_DIR).joinpath("appHelpers", "roster.py")
-        if not roster_path.exists():  # Only copy if roster.py does not exist
-            tmp_path = Path(START_DIR).joinpath("roster.txt")
-            shutil.copy2(tmp_path, roster_path)
+        if roster_path.exists():
+            try:
+                # importlib to load roster module dynamically
+                import importlib.util
 
+                spec = importlib.util.spec_from_file_location("appHelpers.roster", roster_path)
+                mod = importlib.util.module_from_spec(spec)
+                spec.loader.exec_module(mod)
+                students = getattr(mod, "students", [])
+            except Exception:
+                students = []
+except Exception as e:
+    logging.error(f"Failed to load students.json: {e}")
+
+
+# All database and student data will be stored in /app_home at the project root
+dataBasePath = str(APP_HOME / "students20252026.db")
+logging.debug(f"Resolved dataBasePath: {dataBasePath}")
+
+# After loading students, ensure a roster.py exists for legacy/tests
 create_roster()
-
-from .roster import students
-
-# Use environment variable DB_DIR if set, otherwise default to /app/data (for containers), else fallback to ~/Documents/StudentDatabase
-database_dir = os.environ.get("DB_DIR", "/app/data")
-DATA_ROOT = database_dir
-logging.debug(f"Resolved database_dir: {database_dir}")
-logging.debug(f"Resolved DATA_ROOT: {DATA_ROOT}")
-dataBasePath = os.path.join(database_dir, "students20252026.db")
-
-if not database_dir:
-    # Ensure database_dir defaults to /app/data
-    database_dir = os.environ.get("DB_DIR", "/app/data")
-    logging.debug(f"Resolved database_dir: {database_dir}")
-    if not os.path.exists(database_dir):
-        os.makedirs(database_dir, exist_ok=True)
-        logging.info(f"Created database directory: {database_dir}")
-    dataBasePath = os.path.join(database_dir, "students20252026.db")
 
 
 
@@ -224,10 +196,23 @@ def createFolderHierarchy() -> None:
 
     for name in students:
         logging.debug(f"Processing student: {name}")
-        # StudentDataFiles root
-        student_datafiles_root = Path(DATA_ROOT).joinpath("StudentDataFiles")
-        student_errorlogs_root = Path(DATA_ROOT).joinpath("errorLogs")
-        student_backups_root = Path(DATA_ROOT).joinpath("backups")
+        # Sanitize student name for filesystem safety and normalize whitespace/newlines
+        def _sanitize_filename(s: str) -> str:
+            s = str(s)
+            s = " ".join(s.split())
+            s = s.strip().strip('.')
+            for ch in ['<', '>', ':', '"', '/', '\\', '|', '?', '*']:
+                s = s.replace(ch, '_')
+            return s
+
+        name_clean = _sanitize_filename(name)
+        # Reassign name so the remainder of the code uses the sanitized value
+        name = name_clean
+        # StudentDatabase root and sub-folders
+        student_database_root = Path(DATA_ROOT).joinpath("StudentDatabase")
+        student_datafiles_root = student_database_root.joinpath("StudentDataFiles")
+        student_errorlogs_root = student_database_root.joinpath("errorLogs")
+        student_backups_root = student_database_root.joinpath("backups")
         student_folder = student_datafiles_root.joinpath(name)
         student_datasheets = student_folder.joinpath("StudentDataSheets")
         student_instruction = student_folder.joinpath("StudentInstructionMaterials")
@@ -250,16 +235,8 @@ def createFolderHierarchy() -> None:
                     logger.error(f"Failed to create folder {folder}: {e}")
             else:
                 logger.debug(f"Folder already exists: {folder}")
-        if (
-            not Path(USER_DIR)
-            .joinpath(
-                "StudentDatabase", "StudentDataFiles", name, "omnibusDatabase.csv"
-            )
-            .exists()
-        ):
-            tmppath = Path(DATA_ROOT).joinpath(
-                "StudentDataFiles", name, "omnibusDatabase.csv"
-            )
+        if not student_folder.joinpath("omnibusDatabase.csv").exists():
+            tmppath = student_folder.joinpath("omnibusDatabase.csv")
             logging.debug(f"Resolved tmppath for omnibusDatabase.csv: {tmppath}")
             try:
                 tmppath.parent.mkdir(parents=True, exist_ok=True)
@@ -295,20 +272,8 @@ def createFolderHierarchy() -> None:
                 logger.info(f"Wrote header to file: {tmppath}")
             except Exception as e:
                 logger.error(f"Failed to write header to file {tmppath}: {e}")
-        if (
-            not Path(USER_DIR)
-            .joinpath(
-                "StudentDataFiles",
-                name,
-                "BrailleSkillsProgression.csv",
-            )
-            .exists()
-        ):
-            tmppath = Path(USER_DIR).joinpath(
-                "StudentDataFiles",
-                name,
-                "BrailleSkillsProgression.csv",
-            )
+        if not student_folder.joinpath("BrailleSkillsProgression.csv").exists():
+            tmppath = student_folder.joinpath("BrailleSkillsProgression.csv")
             try:
                 tmppath.parent.mkdir(parents=True, exist_ok=True)
                 tmppath.touch(exist_ok=True)
@@ -390,80 +355,32 @@ def createFolderHierarchy() -> None:
                 logger.info(f"Wrote header to file: {tmppath}")
             except Exception as e:
                 logger.error(f"Failed to write header to file {tmppath}: {e}")
-        if (
-            not Path(USER_DIR)
-            .joinpath(
-                "StudentDataFiles",
-                name,
-                "UEBLiterarySkillsProgression.html",
-            )
-            .exists()
-        ):
-            tmppath = Path(USER_DIR).joinpath(
-                "StudentDataFiles",
-                name,
-                "UEBLiterarySkillsProgression.html",
-            )
+        if not student_folder.joinpath("UEBLiterarySkillsProgression.html").exists():
+            tmppath = student_folder.joinpath("UEBLiterarySkillsProgression.html")
             try:
                 tmppath.parent.mkdir(parents=True, exist_ok=True)
                 tmppath.touch(exist_ok=True)
                 logger.info(f"Created file: {tmppath}")
             except Exception as e:
                 logger.error(f"Failed to create file {tmppath}: {e}")
-        if (
-            not Path(USER_DIR)
-            .joinpath(
-                "StudentDataFiles",
-                name,
-                "UEBTechnicalSkillsProgression.html",
-            )
-            .exists()
-        ):
-            tmppath = Path(USER_DIR).joinpath(
-                "StudentDataFiles",
-                name,
-                "UEBTechnicalSkillsProgression.html",
-            )
+        if not student_folder.joinpath("UEBTechnicalSkillsProgression.html").exists():
+            tmppath = student_folder.joinpath("UEBTechnicalSkillsProgression.html")
             try:
                 tmppath.parent.mkdir(parents=True, exist_ok=True)
                 tmppath.touch(exist_ok=True)
                 logger.info(f"Created file: {tmppath}")
             except Exception as e:
                 logger.error(f"Failed to create file {tmppath}: {e}")
-        if (
-            not Path(USER_DIR)
-            .joinpath(
-                "StudentDataFiles",
-                name,
-                "BasicTactileRecognition.html",
-            )
-            .exists()
-        ):
-            tmppath = Path(USER_DIR).joinpath(
-                "StudentDataFiles",
-                name,
-                "BasicTactileRecognition.html",
-            )
+        if not student_folder.joinpath("BasicTactileRecognition.html").exists():
+            tmppath = student_folder.joinpath("BasicTactileRecognition.html")
             try:
                 tmppath.parent.mkdir(parents=True, exist_ok=True)
                 tmppath.touch(exist_ok=True)
                 logger.info(f"Created file: {tmppath}")
             except Exception as e:
                 logger.error(f"Failed to create file {tmppath}: {e}")
-        if (
-            not Path(USER_DIR)
-            .joinpath(
-                "StudentDataFiles",
-                name,
-                "ScreenReaderSkillsProgression.csv",
-            )
-            .exists()
-        ):
-            tmppath = Path(USER_DIR).joinpath(
-                "StudentDataFiles",
-                name,
-                "ScreenReaderSkillsProgression.csv",
-            )
+        if not student_folder.joinpath("ScreenReaderSkillsProgression.csv").exists():
+            tmppath = student_folder.joinpath("ScreenReaderSkillsProgression.csv")
             try:
                 tmppath.parent.mkdir(parents=True, exist_ok=True)
                 tmppath.touch(exist_ok=True)
@@ -509,40 +426,16 @@ def createFolderHierarchy() -> None:
                 logger.info(f"Wrote header to file: {tmppath}")
             except Exception as e:
                 logger.error(f"Failed to write header to file {tmppath}: {e}")
-        if (
-            not Path(USER_DIR)
-            .joinpath(
-                "StudentDataFiles",
-                name,
-                "ScreenReaderSkillsProgression.html",
-            )
-            .exists()
-        ):
-            tmppath = Path(USER_DIR).joinpath(
-                "StudentDataFiles",
-                name,
-                "ScreenReaderSkillsProgression.html",
-            )
+        if not student_folder.joinpath("ScreenReaderSkillsProgression.html").exists():
+            tmppath = student_folder.joinpath("ScreenReaderSkillsProgression.html")
             try:
                 tmppath.parent.mkdir(parents=True, exist_ok=True)
                 tmppath.touch(exist_ok=True)
                 logger.info(f"Created file: {tmppath}")
             except Exception as e:
                 logger.error(f"Failed to create file {tmppath}: {e}")
-        if (
-            not Path(USER_DIR)
-            .joinpath(
-                "StudentDataFiles",
-                name,
-                "AbacusSkillsProgression.csv",
-            )
-            .exists()
-        ):
-            tmppath = Path(USER_DIR).joinpath(
-                "StudentDataFiles",
-                name,
-                "AbacusSkillsProgression.csv",
-            )
+        if not student_folder.joinpath("AbacusSkillsProgression.csv").exists():
+            tmppath = student_folder.joinpath("AbacusSkillsProgression.csv")
             try:
                 tmppath.parent.mkdir(parents=True, exist_ok=True)
                 tmppath.touch(exist_ok=True)
@@ -584,34 +477,16 @@ def createFolderHierarchy() -> None:
                 logger.info(f"Wrote header to file: {tmppath}")
             except Exception as e:
                 logger.error(f"Failed to write header to file {tmppath}: {e}")
-        if (
-            not Path(USER_DIR)
-            .joinpath(
-                "StudentDataFiles",
-                name,
-                "AbacusSkillsProgression.html",
-            )
-            .exists()
-        ):
-            tmppath = Path(USER_DIR).joinpath(
-                "StudentDataFiles",
-                name,
-                "AbacusSkillsProgression.html",
-            )
+        if not student_folder.joinpath("AbacusSkillsProgression.html").exists():
+            tmppath = student_folder.joinpath("AbacusSkillsProgression.html")
             try:
                 tmppath.parent.mkdir(parents=True, exist_ok=True)
                 tmppath.touch(exist_ok=True)
                 logger.info(f"Created file: {tmppath}")
             except Exception as e:
                 logger.error(f"Failed to create file {tmppath}: {e}")
-        if (
-            not Path(USER_DIR)
-            .joinpath("StudentDataFiles", name, "cviProgression.csv")
-            .exists()
-        ):
-            tmppath = Path(USER_DIR).joinpath(
-                "StudentDataFiles", name, "cviProgression.csv"
-            )
+        if not student_folder.joinpath("cviProgression.csv").exists():
+            tmppath = student_folder.joinpath("cviProgression.csv")
             try:
                 tmppath.parent.mkdir(parents=True, exist_ok=True)
                 tmppath.touch(exist_ok=True)
@@ -639,36 +514,16 @@ def createFolderHierarchy() -> None:
                 logger.info(f"Wrote header to file: {tmppath}")
             except Exception as e:
                 logger.error(f"Failed to write header to file {tmppath}: {e}")
-        if (
-            not Path(USER_DIR)
-            .joinpath(
-                "StudentDataFiles", name, "cviProgression.html"
-            )
-            .exists()
-        ):
-            tmppath = Path(USER_DIR).joinpath(
-                "StudentDataFiles", name, "cviProgression.html"
-            )
+        if not student_folder.joinpath("cviProgression.html").exists():
+            tmppath = student_folder.joinpath("cviProgression.html")
             try:
                 tmppath.parent.mkdir(parents=True, exist_ok=True)
                 tmppath.touch(exist_ok=True)
                 logger.info(f"Created file: {tmppath}")
             except Exception as e:
                 logger.error(f"Failed to create file {tmppath}: {e}")
-        if (
-            not Path(USER_DIR)
-            .joinpath(
-                "StudentDataFiles",
-                name,
-                "digitalliteracyProgression.csv",
-            )
-            .exists()
-        ):
-            tmppath = Path(USER_DIR).joinpath(
-                "StudentDataFiles",
-                name,
-                "digitalliteracyProgression.csv",
-            )
+        if not student_folder.joinpath("digitalliteracyProgression.csv").exists():
+            tmppath = student_folder.joinpath("digitalliteracyProgression.csv")
             try:
                 tmppath.parent.mkdir(parents=True, exist_ok=True)
                 tmppath.touch(exist_ok=True)
@@ -769,34 +624,16 @@ def createFolderHierarchy() -> None:
                 logger.info(f"Wrote header to file: {tmppath}")
             except Exception as e:
                 logger.error(f"Failed to write header to file {tmppath}: {e}")
-        if (
-            not Path(USER_DIR)
-            .joinpath(
-                "StudentDataFiles",
-                name,
-                "digitalliteracyProgression.html",
-            )
-            .exists()
-        ):
-            tmppath = Path(USER_DIR).joinpath(
-                "StudentDataFiles",
-                name,
-                "digitalliteracyProgression.html",
-            )
+        if not student_folder.joinpath("digitalliteracyProgression.html").exists():
+            tmppath = student_folder.joinpath("digitalliteracyProgression.html")
             try:
                 tmppath.parent.mkdir(parents=True, exist_ok=True)
                 tmppath.touch(exist_ok=True)
                 logger.info(f"Created file: {tmppath}")
             except Exception as e:
                 logger.error(f"Failed to create file {tmppath}: {e}")
-        if (
-            not Path(USER_DIR)
-            .joinpath("StudentDataFiles", name, "iosProgression.csv")
-            .exists()
-        ):
-            tmppath = Path(USER_DIR).joinpath(
-                "StudentDataFiles", name, "iosProgression.csv"
-            )
+        if not student_folder.joinpath("iosProgression.csv").exists():
+            tmppath = student_folder.joinpath("iosProgression.csv")
             try:
                 tmppath.parent.mkdir(parents=True, exist_ok=True)
                 tmppath.touch(exist_ok=True)
@@ -857,30 +694,16 @@ def createFolderHierarchy() -> None:
                 logger.info(f"Wrote header to file: {tmppath}")
             except Exception as e:
                 logger.error(f"Failed to write header to file {tmppath}: {e}")
-        if (
-            not Path(USER_DIR)
-            .joinpath(
-                "StudentDataFiles", name, "iosProgression.html"
-            )
-            .exists()
-        ):
-            tmppath = Path(USER_DIR).joinpath(
-                "StudentDataFiles", name, "iosProgression.html"
-            )
+        if not student_folder.joinpath("iosProgression.html").exists():
+            tmppath = student_folder.joinpath("iosProgression.html")
             try:
                 tmppath.parent.mkdir(parents=True, exist_ok=True)
                 tmppath.touch(exist_ok=True)
                 logger.info(f"Created file: {tmppath}")
             except Exception as e:
                 logger.error(f"Failed to create file {tmppath}: {e}")
-        if (
-            not Path(USER_DIR)
-            .joinpath("StudentDataFiles", name, "bntProgression.csv")
-            .exists()
-        ):
-            tmppath = Path(USER_DIR).joinpath(
-                "StudentDataFiles", name, "bntProgression.csv"
-            )
+        if not student_folder.joinpath("bntProgression.csv").exists():
+            tmppath = student_folder.joinpath("bntProgression.csv")
             try:
                 tmppath.parent.mkdir(parents=True, exist_ok=True)
                 tmppath.touch(exist_ok=True)
@@ -959,16 +782,8 @@ def createFolderHierarchy() -> None:
                 logger.info(f"Wrote header to file: {tmppath}")
             except Exception as e:
                 logger.error(f"Failed to write header to file {tmppath}: {e}")
-        if (
-            not Path(USER_DIR)
-            .joinpath(
-                "StudentDataFiles", name, "bntProgression.html"
-            )
-            .exists()
-        ):
-            tmppath = Path(USER_DIR).joinpath(
-                "StudentDataFiles", name, "bntProgression.html"
-            )
+        if not student_folder.joinpath("bntProgression.html").exists():
+            tmppath = student_folder.joinpath("bntProgression.html")
             try:
                 tmppath.parent.mkdir(parents=True, exist_ok=True)
                 tmppath.touch(exist_ok=True)
@@ -981,42 +796,51 @@ def createFolderHierarchy() -> None:
         )
         logging.debug(f"Resolved sourceDir: {sourceDir}")
         logging.debug(f"Resolved destinationDir for StudentDataSheets: {destinationDir}")
-        files = os.listdir(sourceDir)
-        for fileName in files:
-            tmppath=os.path.join(sourceDir, fileName)
-            try:
-                copy_if_not_exists(tmppath, destinationDir)
-                logger.info(f"Copied {tmppath} to {destinationDir}")
-            except Exception as e:
-                logger.error(f"Failed to copy {tmppath} to {destinationDir}: {e}")
+        if sourceDir.exists():
+            files = os.listdir(sourceDir)
+            for fileName in files:
+                tmppath = os.path.join(sourceDir, fileName)
+                try:
+                    copy_if_not_exists(tmppath, str(destinationDir))
+                    logger.info(f"Copied {tmppath} to {destinationDir}")
+                except Exception as e:
+                    logger.error(f"Failed to copy {tmppath} to {destinationDir}: {e}")
+        else:
+            logger.debug(f"Source directory for StudentDataSheets not found: {sourceDir}. Skipping copy.")
         sourceDir = Path(ROOT_DIR).joinpath("instructionMaterials")
         destinationDir = Path(DATA_ROOT).joinpath(
             "StudentDataFiles", name, "StudentInstructionMaterials"
         )
         logging.debug(f"Resolved sourceDir: {sourceDir}")
         logging.debug(f"Resolved destinationDir for StudentInstructionMaterials: {destinationDir}")
-        files = os.listdir(sourceDir)
-        for fileName in files:
-            tmppath=os.path.join(sourceDir, fileName)
-            try:
-                copy_if_not_exists(tmppath, destinationDir)
-                logger.info(f"Copied {tmppath} to {destinationDir}")
-            except Exception as e:
-                logger.error(f"Failed to copy {tmppath} to {destinationDir}: {e}")
+        if sourceDir.exists():
+            files = os.listdir(sourceDir)
+            for fileName in files:
+                tmppath = os.path.join(sourceDir, fileName)
+                try:
+                    copy_if_not_exists(tmppath, str(destinationDir))
+                    logger.info(f"Copied {tmppath} to {destinationDir}")
+                except Exception as e:
+                    logger.error(f"Failed to copy {tmppath} to {destinationDir}: {e}")
+        else:
+            logger.debug(f"Source directory for StudentInstructionMaterials not found: {sourceDir}. Skipping copy.")
         sourceDir = Path(ROOT_DIR).joinpath("visionAssessments")
         destinationDir = Path(DATA_ROOT).joinpath(
             "StudentDataFiles", name, "StudentVisionAssessments"
         )
         logging.debug(f"Resolved sourceDir: {sourceDir}")
         logging.debug(f"Resolved destinationDir for StudentVisionAssessments: {destinationDir}")
-        files = os.listdir(sourceDir)
-        for fileName in files:
-            tmppath=os.path.join(sourceDir, fileName)
-            try:
-                copy_if_not_exists(tmppath, destinationDir)
-                logger.info(f"Copied {tmppath} to {destinationDir}")
-            except Exception as e:
-                logger.error(f"Failed to copy {tmppath} to {destinationDir}: {e}")
+        if sourceDir.exists():
+            files = os.listdir(sourceDir)
+            for fileName in files:
+                tmppath = os.path.join(sourceDir, fileName)
+                try:
+                    copy_if_not_exists(tmppath, str(destinationDir))
+                    logger.info(f"Copied {tmppath} to {destinationDir}")
+                except Exception as e:
+                    logger.error(f"Failed to copy {tmppath} to {destinationDir}: {e}")
+        else:
+            logger.debug(f"Source directory for StudentVisionAssessments not found: {sourceDir}. Skipping copy.")
 
 
 def copy_if_not_exists(source: str, destination: str) -> None:

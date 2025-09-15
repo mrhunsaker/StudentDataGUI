@@ -1,7 +1,7 @@
 import unittest
 import os
 from pathlib import Path
-from appHelpers.helpers import (
+from StudentDataGUI.appHelpers.helpers import (
     set_start_dir,
     working_dir,
     create_roster,
@@ -23,6 +23,11 @@ class TestHelpers(unittest.TestCase):
 
     def test_working_dir(self):
 
+        # Call working_dir which should set CWD to the project's app_home and create StudentDataFiles
+        working_dir()
+        cwd = Path(os.getcwd())
+        # StudentDataFiles should exist under the working directory
+        self.assertTrue(cwd.joinpath("StudentDataFiles").exists())
 
     def test_create_roster(self):
         create_roster()
@@ -30,10 +35,14 @@ class TestHelpers(unittest.TestCase):
 
     def test_createFolderHierarchy(self):
         createFolderHierarchy()
-        # Test for a specific student, replace 'StudentName' with a real student name from your students list
-        student_dir = Path(os.getcwd()).joinpath(
-            "StudentDatabase", "StudentDataFiles", "StudentName"
-        )
+        # Pick any created student folder under StudentDataFiles to validate structure
+        # The application stores data under the project's app_home; use set_start_dir()
+        base = set_start_dir().joinpath("StudentDatabase", "StudentDataFiles")
+        self.assertTrue(base.exists())
+        # find any student directory
+        student_dirs = [p for p in base.iterdir() if p.is_dir()]
+        self.assertTrue(len(student_dirs) > 0, "No student directories were created")
+        student_dir = student_dirs[0]
         self.assertTrue(student_dir.exists())
         self.assertTrue(student_dir.joinpath("StudentDataSheets").exists())
         self.assertTrue(student_dir.joinpath("StudentInstructionMaterials").exists())

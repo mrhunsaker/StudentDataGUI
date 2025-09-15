@@ -33,10 +33,12 @@ If you are new to containers, **Podman** is a modern, rootless alternative to Do
 ### 1. Install Podman and podman-compose
 
 - **Fedora/Red Hat:**
+  
   ```bash
   sudo dnf install podman podman-compose
   ```
 - **Ubuntu/Debian:**
+  
   ```bash
   sudo apt-get install podman podman-compose
   ```
@@ -50,10 +52,12 @@ If you are new to containers, **Podman** is a modern, rootless alternative to Do
 
 - Open a terminal in the project folder.
 - Make the start script executable (only needed once):
+  
   ```bash
   chmod +x start.sh
   ```
 - Start the application:
+  
   ```bash
   ./start.sh start
   ```
@@ -69,6 +73,7 @@ If you are new to containers, **Podman** is a modern, rootless alternative to Do
 
 - **Start the Application**
   Use the provided script for the easiest experience:
+  
   ```bash
   ./start.sh start
   ```
@@ -76,24 +81,27 @@ If you are new to containers, **Podman** is a modern, rootless alternative to Do
 - **Manual Podman Commands**
   If you prefer, you can use these commands:
   To start the application, Type the following command and then optn http://localhost:8080 in the browser of your choice:
-
+  
   ```bash
-  podman-compose up -d && podman-compose logs -f
+  podman compose up -d; podman compose logs -f
   ```
-
+  
   To end the application: Close the browser tab or window and then stop the container:
+  
   ```bash
   podman-compose down
   ```
 
 - **Configuration**
+  
   - The application uses port 8080 by default.
     If this port is busy, you can change it:
+    
     ```bash
     export NICEGUI_PORT=8081
     ./start.sh start
     ```
-  - Data is stored in the `./data`, `./database`, and `./logs` folders.
+  - Data is now stored in the `/app_home` folder at the project root. All database and student data files are located there.
 
 ### Docker Setup (Alternative)
 
@@ -102,10 +110,12 @@ If you prefer Docker, follow these steps:
 - **Install Docker and Docker Compose**
   - [Docker installation guide](https://docs.docker.com/get-docker/)
 - **Start the Application**
+  
   ```bash
   ./start.sh start
   ```
 - **Manual Docker Commands**
+  
   ```bash
   docker-compose up -d
   docker-compose logs -f
@@ -121,33 +131,43 @@ If you prefer Docker, follow these steps:
 If you run into problems, try these solutions:
 
 1. **Permission Denied Errors**
+   
    - Make sure you own the data folders:
+     
      ```bash
      sudo chown -R $USER:$USER ./data ./database ./logs
      ```
 
 2. **Port Already in Use**
+   
    - Change the port:
+     
      ```bash
      export NICEGUI_PORT=8081
      ./start.sh start
      ```
 
 3. **Build Failures or Application Won't Start**
+   
    - Clean and rebuild:
+     
      ```bash
      ./start.sh clean
      ./start.sh start -b
      ```
 
 4. **Viewing Logs**
+   
    - To see what's happening inside the application:
+     
      ```bash
      ./start.sh logs
      ```
 
 5. **Checking Status**
+   
    - To check if the application is running:
+     
      ```bash
      ./start.sh status
      ```
@@ -175,14 +195,17 @@ StudentDataGUI is designed to be accessible for all users, including those using
 - Supports keyboard-only navigation and high-contrast mode.
 
 **Known Limitations:**
+
 - Some advanced focus trapping in modals may need further improvement.
 - Toast notifications may not always be announced by all screen readers.
 
 **Reporting Accessibility Issues:**
+
 - [Open an issue on GitHub](https://github.com/mrhunsaker/StudentDataGUI/issues) with the "Accessibility" label.
 - Or contact the maintainer directly via the email address in the repository.
 
 **Further Documentation:**
+
 - See [AccessibilityReport20250722.md](./AccessibilityReport20250722.md) for a detailed analysis.
 - See [AccessibilityTesting.md](./AccessibilityTesting.md) for a step-by-step testing checklist.
 
@@ -204,37 +227,40 @@ StudentDataGUI is designed to be accessible for all users, including those using
 ## Contributing
 
 1. Fork the repository.
+
 2. Create a new branch:
+   
    ```bash
    git checkout -b feature-branch
    ```
-3. Submit a pull request.
 
+3. Submit a pull request.
 - Follow the [Black](https://black.readthedocs.io/en/stable/) code formatter for Python code.
 
 ---
 
 ## File Structure
 
-The application creates the following structure:
+
+The application now creates the following structure in the project root:
+
 ```
-<path-to-folder>/Documents
-├── StudentDatabase
-│   ├── errorLogs
-│   ├── StudentDataFiles
-│   │   ├── Student1
-│   │   │   ├── AbacusSkillsProgression.csv
-│   │   │   ├── BrailleSkillsProgression.csv
-│   │   │   └── ...
-│   ├── backups
-│   └── students.db
+<project-root>/app_home
+├── errorLogs
+├── StudentDataFiles
+│   ├── Student1
+│   │   ├── AbacusSkillsProgression.csv
+│   │   ├── BrailleSkillsProgression.csv
+│   │   └── ...
+├── backups
+├── students20252026.db
 ```
 
 ---
 
 ## Additional Notes
 
-- **Data Safety:** All student data is stored locally on your computer, inside the container’s mapped folders. Regularly back up the `StudentDatabase` folder to prevent data loss.
+- **Data Safety:** All student data is stored locally in `/app_home` at the project root. Regularly back up the `app_home` folder to prevent data loss.
 - **Updates:** To update the application, pull the latest version from GitHub and restart the container.
 - **Security:** Only run the application on trusted computers and networks, especially when handling sensitive student information.
 

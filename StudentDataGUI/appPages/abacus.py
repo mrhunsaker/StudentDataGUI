@@ -25,8 +25,8 @@ from plotly.subplots import make_subplots
 from nicegui import ui
 from ..appTheming import theme
 
-# --- CONFIGURATION ---
 from StudentDataGUI.appHelpers.helpers import dataBasePath
+# Database is now stored in /app_home at the project root
 DATABASE_PATH = dataBasePath
 ABACUS_PROGRESS_TYPE = "Abacus"  # Must match ProgressType.name in DB
 
@@ -241,7 +241,7 @@ def fetch_abacus_data_for_student(conn: sqlite3.Connection, student_id: int, pro
 def abacus_skills_ui() -> None:
     with ui.card():
         ui.label("Abacus Skills (Normalized DB)").classes("text-h4 text-grey-8")
-        from StudentDataGUI.appHelpers.roster import students
+        from StudentDataGUI.appHelpers.helpers import students
         student_name = ui.select(options=students, label="Student Name").props('aria-describedby=student_name_error').style("width: 500px;")
         student_name_error = ui.label("Student name is required.").props('id=student_name_error').classes('text-red-700').style('display:none')
         ui.label("Date")

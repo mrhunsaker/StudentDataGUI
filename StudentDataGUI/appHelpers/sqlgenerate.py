@@ -21,8 +21,8 @@ from sqlite3 import Error
 import os
 
 ##############################################################################
-# Database Path (now uses helpers logic for container compatibility)
 ##############################################################################
+# Database Path: now uses /app_home at the project root
 from .helpers import dataBasePath
 DATABASE_PATH = dataBasePath
 import logging

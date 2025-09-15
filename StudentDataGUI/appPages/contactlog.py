@@ -24,8 +24,8 @@ import plotly.graph_objs as go
 from nicegui import ui
 from ..appTheming import theme
 
-# --- CONFIGURATION ---
 from StudentDataGUI.appHelpers.helpers import dataBasePath
+# Database is now stored in /app_home at the project root
 DATABASE_PATH = dataBasePath
 CONTACTLOG_PROGRESS_TYPE = "ContactLog"  # Must match ProgressType.name in DB
 
@@ -231,7 +231,7 @@ def fetch_contactlog_data_for_student(conn: sqlite3.Connection, student_id: int,
 def contactlog_ui():
     with theme.frame("- CONTACT LOG -"):
         ui.label("Contact Log (Normalized DB)").classes("text-h4 text-grey-8")
-        from StudentDataGUI.appHelpers.roster import students
+        from StudentDataGUI.appHelpers.helpers import students
         student_name = ui.select(options=students, label="Student Name").props('aria-describedby=student_name_error').style("width: 500px;")
         student_name_error = ui.label("Student name is required.").props('id=student_name_error').classes('text-red-700').style('display:none')
         ui.label("Date")

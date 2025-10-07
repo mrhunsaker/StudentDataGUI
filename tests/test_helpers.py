@@ -37,7 +37,7 @@ class TestHelpers(unittest.TestCase):
         createFolderHierarchy()
         # Pick any created student folder under StudentDataFiles to validate structure
         # The application stores data under the project's app_home; use set_start_dir()
-        base = set_start_dir().joinpath("StudentDatabase", "StudentDataFiles")
+        base = set_start_dir().joinpath("StudentDataFiles")
         self.assertTrue(base.exists())
         # find any student directory
         student_dirs = [p for p in base.iterdir() if p.is_dir()]

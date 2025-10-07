@@ -27,7 +27,6 @@ from nicegui import ui
 
 
 
-@ui.page("/instructionalmaterials")
 def create() -> None:
     """
     Render the Instructional Materials Page.

@@ -136,7 +136,9 @@ poetry.lock
 
 # For privacy, I do not sync my Student roster
 appHelpers/roster.py
-
+app_home/StudentDatabase/StudentDataFiles/
+app_home/StudentDataFiles/
+*.db
 # IDE files
 .idea/*
 .vscode/*

@@ -10,12 +10,12 @@ services:
       - NICEGUI_HOST=0.0.0.0
       - NICEGUI_PORT=8080
       - PYTHONPATH=/app
-      - MPLCONFIGDIR=/tmp/matplotlib
       - HOME=/app/home
-      - XDG_RUNTIME_DIR=/tmp/runtime
+      - APP_HOME=/app/home
+      - MPLCONFIGDIR=/app/home/.matplotlib
+      - XDG_RUNTIME_DIR=/app/home/.runtime
     volumes:
-      - ./app_home:/app_home:Z
-      - ./json_Files:/app/json_Files:Z
+      - ./app_home:/app/home:Z
     restart: unless-stopped
     healthcheck:
       test:
@@ -35,11 +35,3 @@ services:
 networks:
   student-net:
     driver: bridge
-
-volumes:
-  student-data:
-    driver: local
-  student-database:
-    driver: local
-  student-logs:
-    driver: local

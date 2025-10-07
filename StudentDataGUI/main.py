@@ -52,26 +52,30 @@ from .appHelpers.sqlgenerate import initialize_database
 
 set_start_dir()
 
-# Configure logging
-log_path = Path(database_dir).joinpath("StudentDatabase", "errorLogs", f"logfile_{datenow}.log")
+# Configure logging (database_dir now points to the StudentDatabase root directory)
+log_path = Path(database_dir).joinpath("errorLogs", f"logfile_{datenow}.log")
 log_path.parent.mkdir(parents=True, exist_ok=True)
 logging.basicConfig(
     level=logging.WARNING,
     format="%(asctime)s - %(levelname)s - %(message)s",
     handlers=[
         logging.FileHandler(log_path, encoding="utf-8"),
-        logging.StreamHandler(sys.stdout)
-    ]
+        logging.StreamHandler(sys.stdout),
+    ],
 )
 
-logging.debug(f"Resolved database_dir: {database_dir}")
+logging.debug(f"Resolved database_dir (StudentDatabase root): {database_dir}")
 createFolderHierarchy()
 initialize_database()
 
 from .appPages import homepage
 
 
-def warningmessage(exception_type: type, exception_value: Exception, exception_traceback: types.TracebackType) -> None:
+def warningmessage(
+    exception_type: type,
+    exception_value: Exception,
+    exception_traceback: types.TracebackType,
+) -> None:
     """
     Log an error message and display a warning notification.
 
@@ -106,9 +110,7 @@ def warningmessage(exception_type: type, exception_value: Exception, exception_t
     tb = traceback.format_exception(
         exception_type, exception_value, exception_traceback
     )
-    log_path = Path(database_dir).joinpath(
-        "StudentDatabase", "errorLogs", f"logfile_{datenow}.log"
-    )
+    log_path = Path(database_dir).joinpath("errorLogs", f"logfile_{datenow}.log")
     log_path.parent.mkdir(parents=True, exist_ok=True)
     for i in tb:
         message += i
@@ -118,7 +120,6 @@ def warningmessage(exception_type: type, exception_value: Exception, exception_t
     ui.notify(f"{message}\n{errortype}", type="warning", close_button="OK")
 
 
-@ui.page("/")
 def index_page() -> None:
     """
     Display the homepage for the application.
@@ -160,7 +161,14 @@ def initialize_ui() -> None:
     The footer is a global component that appears on all pages and includes
     copyright information and a contact email for bug reports or feature requests.
     """
-    # Import the page modules to register their routes
+    # Register fonts and other static files that need the NiceGUI app object
+    try:
+        theme.register_fonts()
+    except Exception:
+        # Non-fatal: continue even if font registration fails
+        logging.exception("Failed to register fonts")
+
+    # Import the page modules so we can register their route handlers at runtime
     from .appPages import (
         abacus,
         braille,
@@ -177,18 +185,25 @@ def initialize_ui() -> None:
         InstructionalMaterials,
     )
 
-    # Create global footer that appears on all pages
-    with ui.footer(value=True) as footer:
-        with ui.row().classes(
-            "w-screen no-wrap justify-center items-center text-l font-bold"
-        ):
-            ui.label(
-                "Copyright © 2025 Michael Ryan Hunsaker, M.Ed., Ph.D.\nReport Bugs or Request Features by emailing hunsakerconsulting@gmail.com"
-            ).classes("justify-center items-center text-lg").style(
-                'font-family: "Atkinson Hyperlegible"'
-            )
+    # Register pages centrally at runtime to avoid creating UI at module import time
+    # This prevents NiceGUI's "ui.page cannot be used in NiceGUI scripts where you define UI in the global scope" error
+    ui.page("/")(index_page)
+    ui.page("/abacus_skills_ui")(abacus.create)
+    ui.page("/braille_skills_ui")(braille.create)
+    ui.page("/braillenote_skills_ui")(braillenote.create)
+    ui.page("/contactlog_ui")(contactlog.create)
+    ui.page("/cvi_skills_ui")(cvi.create)
+    ui.page("/digitalliteracy_skills_ui")(digitalliteracy.create)
+    ui.page("/ios_skills_ui")(ios.create)
+    ui.page("/keyboarding_skills_ui")(keyboarding.create)
+    ui.page("/observations_ui")(observations.create)
+    ui.page("/screenreader_skills_ui")(screenreader.create)
+    ui.page("/sessionnotes_ui")(sessionnotes.create)
+    ui.page("/instructionalmaterials")(InstructionalMaterials.create)
+
 
 MONITOR = ""
+
 
 def main() -> None:
     """
@@ -219,6 +234,7 @@ def main() -> None:
         host=os.getenv("NICEGUI_HOST", "127.0.0.1"),
         port=int(os.getenv("NICEGUI_PORT", "8080")),
     )
+
 
 if __name__ == "__main__":
     main()

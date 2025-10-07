@@ -201,7 +201,7 @@ def fetch_session_notes_for_student(conn: sqlite3.Connection, student_id: int, p
 
 def session_notes_ui() -> None:
     with theme.frame("- SESSION NOTES -"):
-        ui.label("Session Notes (Normalized DB)").classes("text-h4 text-grey-8")
+        ui.label("Session Notes").classes("text-h4 text-grey-8")
         student_name = ui.select(options=students, label="Student Name").props('aria-describedby=student_name_error').style("width: 500px")
         student_name_error = ui.label("Student name is required.").props('id=student_name_error').classes('text-red-700').style('display:none')
         ui.label("Date")
@@ -322,7 +322,6 @@ def session_notes_ui() -> None:
         ui.button("Plot Session Notes", on_click=plot_session_notes, color="secondary")
 
 # --- PAGE ENTRY POINT ---
-@ui.page("/sessionnotes_ui")
 def create():
     session_notes_ui()
 

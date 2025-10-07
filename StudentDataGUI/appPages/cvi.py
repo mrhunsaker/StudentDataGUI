@@ -214,6 +214,9 @@ def fetch_cvi_data_for_student(conn: sqlite3.Connection, student_id: int, progre
         f"""
         SELECT ar.session_id, ap.code, ar.score
         FROM AssessmentResult ar
+        def create():
+            cvi_skills_ui()
+
         JOIN AssessmentPart ap ON ar.part_id = ap.id
         WHERE ar.session_id IN ({','.join('?' for _ in session_ids)}) AND ap.code IN ({format_codes})
         """,
@@ -237,7 +240,7 @@ def fetch_cvi_data_for_student(conn: sqlite3.Connection, student_id: int, progre
 def cvi_skills_ui() -> None:
     with theme.frame("- CVI PROGRESSION -"):
         with ui.card():
-            ui.label("CVI Progression (Normalized DB)").classes("text-h4 text-grey-8")
+            ui.label("CVI Progression").classes("text-h4 text-grey-8")
         student_name = ui.select(options=students, label="Student Name").props('aria-describedby=student_name_error').style("width: 500px")
         student_name_error = ui.label("Student name is required.").props('id=student_name_error').classes('text-red-700').style('display:none')
         ui.label("Date")
@@ -413,7 +416,6 @@ def cvi_skills_ui() -> None:
         ui.button("Plot CVI Data", on_click=plot_cvi_data, color="secondary")
 
 # --- PAGE ENTRY POINT ---
-@ui.page("/cvi_skills_ui")
 def create():
     cvi_skills_ui()
 

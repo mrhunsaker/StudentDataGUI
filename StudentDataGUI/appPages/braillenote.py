@@ -259,7 +259,7 @@ def fetch_braillenote_data_for_student(conn: sqlite3.Connection, student_id: int
 
 def braillenote_skills_ui():
     with ui.card():
-        ui.label("BrailleNote Touch Plus Skills (Normalized DB)").classes("text-h4 text-grey-8")
+        ui.label("BrailleNote Touch Plus Skills").classes("text-h4 text-grey-8")
         student_name = ui.select(options=students, label="Student Name").props('aria-describedby=student_name_error').style("width: 500px")
         student_name_error = ui.label("Student name is required.").props('id=student_name_error').classes('text-red-700').style('display:none')
         ui.label("Date")
@@ -425,7 +425,6 @@ def braillenote_skills_ui():
         ui.button("Plot BrailleNote Data", on_click=plot_braillenote_data, color="secondary")
 
 # --- PAGE ENTRY POINT ---
-@ui.page("/braillenote_skills_ui")
 def create():
     with theme.frame("- BRAILLENOTE SKILLS -"):
         braillenote_skills_ui()

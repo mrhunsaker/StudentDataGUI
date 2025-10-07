@@ -224,7 +224,7 @@ def fetch_ios_data_for_student(conn: sqlite3.Connection, student_id: int, progre
 
 def ios_skills_ui() -> None:
     with ui.card():
-        ui.label("iOS / iPad OS Skills (Normalized DB)").classes("text-h4 text-grey-8")
+        ui.label("iOS / iPad OS Skills").classes("text-h4 text-grey-8")
         student_name = ui.select(options=students, label="Student Name").style("width: 500px")
         ui.label("Date")
         date_input = ui.date(value=datetime.date.today()).style("width: 500px;")
@@ -395,7 +395,6 @@ def ios_skills_ui() -> None:
         ui.button("Plot iOS Data", on_click=plot_ios_data, color="secondary")
 
 # --- PAGE ENTRY POINT ---
-@ui.page("/ios_skills_ui")
 def create():
     with theme.frame("- iOS SKILLS -"):
         ios_skills_ui()

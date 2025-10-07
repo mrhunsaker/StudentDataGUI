@@ -1,19 +1,19 @@
 #!/usr/bin/env python3
 
 """
- Copyright 2025  Michael Ryan Hunsaker, M.Ed., Ph.D.
+Copyright 2025  Michael Ryan Hunsaker, M.Ed., Ph.D.
 
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
 
-      https://www.apache.org/licenses/LICENSE-2.0
+     https://www.apache.org/licenses/LICENSE-2.0
 
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
 """
 
 import sqlite3
@@ -23,8 +23,7 @@ import os
 ##############################################################################
 ##############################################################################
 # Database Path: now uses /app_home at the project root
-from .helpers import dataBasePath
-DATABASE_PATH = dataBasePath
+from .helpers import DATABASE_PATH
 import logging
 
 logging.debug(f"Resolved DATABASE_PATH: {DATABASE_PATH}")
@@ -42,7 +41,6 @@ SCHEMA = [
         notes TEXT
     );
     """,
-
     # Table for different types of progress/tasks
     """
     CREATE TABLE IF NOT EXISTS ProgressType (
@@ -51,7 +49,6 @@ SCHEMA = [
         description TEXT
     );
     """,
-
     # Table for a session of progress (date, student, type)
     """
     CREATE TABLE IF NOT EXISTS ProgressSession (
@@ -64,7 +61,6 @@ SCHEMA = [
         FOREIGN KEY(progress_type_id) REFERENCES ProgressType(id) ON DELETE CASCADE
     );
     """,
-
     # Table for keyboarding results (example of a simple progress type)
     """
     CREATE TABLE IF NOT EXISTS KeyboardingResult (
@@ -77,7 +73,6 @@ SCHEMA = [
         FOREIGN KEY(session_id) REFERENCES ProgressSession(id) ON DELETE CASCADE
     );
     """,
-
     # Table for generic trial-based progress (for tasks with multiple trials)
     """
     CREATE TABLE IF NOT EXISTS TrialResult (
@@ -91,7 +86,6 @@ SCHEMA = [
         FOREIGN KEY(session_id) REFERENCES ProgressSession(id) ON DELETE CASCADE
     );
     """,
-
     # Table for storing median and notes for trial-based sessions
     """
     CREATE TABLE IF NOT EXISTS TrialSessionSummary (
@@ -102,7 +96,6 @@ SCHEMA = [
         FOREIGN KEY(session_id) REFERENCES ProgressSession(id) ON DELETE CASCADE
     );
     """,
-
     # Table for storing progress on multi-part assessments (e.g., Braille, Screen Reader, etc.)
     """
     CREATE TABLE IF NOT EXISTS AssessmentPart (
@@ -114,7 +107,6 @@ SCHEMA = [
         FOREIGN KEY(progress_type_id) REFERENCES ProgressType(id) ON DELETE CASCADE
     );
     """,
-
     """
     CREATE TABLE IF NOT EXISTS AssessmentResult (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -124,12 +116,13 @@ SCHEMA = [
         FOREIGN KEY(session_id) REFERENCES ProgressSession(id) ON DELETE CASCADE,
         FOREIGN KEY(part_id) REFERENCES AssessmentPart(id) ON DELETE CASCADE
     );
-    """
+    """,
 ]
 
 ##############################################################################
 # Schema Setup Functions
 ##############################################################################
+
 
 def create_connection(db_file: str) -> sqlite3.Connection | None:
     """
@@ -159,6 +152,7 @@ def create_connection(db_file: str) -> sqlite3.Connection | None:
         print(f"Error connecting to database: {e}")
     return conn
 
+
 def create_tables(conn: sqlite3.Connection) -> None:
     """
     Create all tables defined in the SCHEMA.
@@ -187,6 +181,7 @@ def create_tables(conn: sqlite3.Connection) -> None:
     except Error as e:
         print(f"Error creating tables: {e}")
 
+
 def initialize_database() -> None:
     """
     Initialize the database with the new schema.
@@ -204,6 +199,12 @@ def initialize_database() -> None:
     """
     logging.debug(f"Initializing database at {DATABASE_PATH}")
     try:
+        # Sanity check: ensure the path is not an existing directory
+        if os.path.isdir(DATABASE_PATH):
+            logging.error(
+                f"Path {DATABASE_PATH} is a directory; cannot create SQLite DB file."
+            )
+            return
         if os.path.exists(DATABASE_PATH):
             logging.info(f"Database already exists at {DATABASE_PATH}.")
         else:
@@ -215,7 +216,6 @@ def initialize_database() -> None:
                 logging.info(f"Database initialized successfully at {DATABASE_PATH}.")
     except Exception as e:
         logging.error(f"Failed to initialize database at {DATABASE_PATH}: {e}")
-        logging.info(f"Database initialized successfully at {DATABASE_PATH}.")
 
 
 ##############################################################################

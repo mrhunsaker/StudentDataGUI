@@ -54,12 +54,12 @@ def _read_svg_with_fallback(name: str) -> str:
 
 def github() -> ui.html:
     """Return GitHub SVG as ui.html, with fallback locations."""
-    return ui.html(_read_svg_with_fallback("github.svg"))
+    return ui.html(_read_svg_with_fallback("github.svg"), sanitize=False)
 
 
 def branding() -> ui.html:
     """Return branding SVG as ui.html, with fallback locations."""
-    return ui.html(_read_svg_with_fallback("dsd-mark-white.svg"))
+    return ui.html(_read_svg_with_fallback("dsd-mark-white.svg"), sanitize=False)
 
 
 @contextmanager
@@ -242,6 +242,15 @@ def frame(navtitle: str) -> None:
             ).tooltip("GitHub Repo"):
                 github().classes("fill-white scale-75 m-1 mt-2.5")
 
+def register_fonts() -> None:
+    """
+    Register local font files as static files on the NiceGUI `app`.
+
+    This function intentionally does NOT run at module import so that
+    NiceGUI `app`/`ui` calls aren't executed during import-time. Call this
+    from startup code (for example `main.initialize_ui`) after the app
+    environment is ready.
+    """
     try:
         PROJECT_ROOT = Path(ROOT_DIR)
         preferred_fonts_dir = PROJECT_ROOT.joinpath("StudentDataGUI", "appHelpers", "fonts")

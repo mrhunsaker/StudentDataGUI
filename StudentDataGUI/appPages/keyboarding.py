@@ -237,7 +237,7 @@ def fetch_keyboarding_data_for_student(conn: sqlite3.Connection, student_id: int
 def keyboarding_skills_ui() -> None:
     with theme.frame("- KEYBOARDING SKILLS -"):
         with ui.card():
-            ui.label("Keyboarding Skills (Normalized DB)").classes("text-h4 text-grey-8")
+            ui.label("Keyboarding Skills").classes("text-h4 text-grey-8")
         student_name = ui.select(options=students, label="Student Name").props('aria-describedby=student_name_error').style("width: 500px")
         student_name_error = ui.label("Student name is required.").props('id=student_name_error').classes('text-red-700').style('display:none')
         ui.label("Date")
@@ -388,7 +388,6 @@ def keyboarding_skills_ui() -> None:
         ui.button("Plot Keyboarding Data", on_click=plot_keyboarding_data, color="secondary")
 
 # --- PAGE ENTRY POINT ---
-@ui.page("/keyboarding_skills_ui")
 def create():
     keyboarding_skills_ui()
 

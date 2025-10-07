@@ -163,7 +163,7 @@ def fetch_observations_for_student(conn: sqlite3.Connection, student_id: int, pr
 
 def observations_ui():
     with theme.frame("- OBSERVATION NOTES -"):
-        ui.label("Observation Notes (Normalized DB)").classes("text-h4 text-grey-8")
+        ui.label("Observation Notes").classes("text-h4 text-grey-8")
         student_name = ui.select(options=students, label="Student Name").props('aria-describedby=student_name_error').style("width: 500px")
         student_name_error = ui.label("Student name is required.").props('id=student_name_error').classes('text-red-700').style('display:none')
         ui.label("Date")
@@ -260,7 +260,6 @@ def observations_ui():
         ui.button("Show All Observations", on_click=plot_observations, color="secondary").props('id=trigger-btn-observations')
 
 # --- PAGE ENTRY POINT ---
-@ui.page("/observations_ui")
 def create():
     observations_ui()
 

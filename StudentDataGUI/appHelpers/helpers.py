@@ -1,19 +1,19 @@
 #!/usr/bin/env python3
 
 """
- Copyright 2025  Michael Ryan Hunsaker, M.Ed., Ph.D.
+Copyright 2025  Michael Ryan Hunsaker, M.Ed., Ph.D.
 
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
 
-      https://www.apache.org/licenses/LICENSE-2.0
+     https://www.apache.org/licenses/LICENSE-2.0
 
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
 """
 
 # coding=utf-8
@@ -35,35 +35,45 @@ date_fmt = "%Y-%m-%d %H:%M:%S"
 datenow = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
 
-# Set APP_HOME to /app_home at the project root
-PROJECT_ROOT = Path(__file__).resolve().parents[2]
-APP_HOME = PROJECT_ROOT / "app_home"
-APP_HOME.mkdir(exist_ok=True)
+# Resolve project root (package root)
+PROJECT_ROOT = Path(__file__).resolve().parents[1]  # e.g. /app/StudentDataGUI
+
+# Determine APP_HOME from environment (preferred), else HOME, else fallback sibling 'app_home'
+APP_HOME = Path(
+    os.environ.get("APP_HOME")
+    or os.environ.get("HOME")
+    or (PROJECT_ROOT.parent / "app_home")
+)
+APP_HOME.mkdir(parents=True, exist_ok=True)
+
+# Persistent data roots
+DATA_ROOT = APP_HOME
+DATABASE_ROOT = DATA_ROOT / "StudentDatabase"
+DATABASE_ROOT.mkdir(parents=True, exist_ok=True)
+
+# SQLite database file (not a directory)
+DATABASE_PATH = DATABASE_ROOT / "students20252026.db"
+
+# Backward compatibility variable names used elsewhere
+dataBasePath = str(DATABASE_PATH)  # legacy name
+database_dir = str(DATABASE_ROOT)  # previously misused as file path
+
 ROOT_DIR = str(PROJECT_ROOT)
 USER_DIR = str(APP_HOME)
 IMAGE_DIR = Path(__file__).resolve().parent / "images"
 START_DIR = str(APP_HOME)
-DATA_ROOT = str(APP_HOME)
-
 
 
 def set_start_dir() -> Path:
-    """
-    Set the start directory to /app_home at the project root.
-    """
     return APP_HOME
-
-START_DIR = str(APP_HOME)
 
 
 def working_dir() -> None:
-    """
-    Set working directory to /app_home at the project root.
-    """
     os.chdir(APP_HOME)
     student_data_dir = APP_HOME / "StudentDataFiles"
     student_data_dir.mkdir(parents=True, exist_ok=True)
     logging.debug(f"Ensured StudentDataFiles directory exists at: {student_data_dir}")
+
 
 working_dir()
 
@@ -102,20 +112,83 @@ def create_roster() -> None:
         # Do not raise exceptions during roster creation
         logging.exception("Failed to create roster fallback")
 
+
 # Load students list from json_Files/students.json (runtime-controlled)
 import json
 import logging
 import datetime
 
+
+# Only warn about missing students.json once per process to avoid noisy logs
+_students_json_warned = False
+
+
 def _load_students_from_json() -> list[str]:
-    """Load student names from json_Files/students.json under the project root.
-    Returns a list of cleaned "First Last" strings (may be empty)."""
+    """Load student names from students.json.
+
+    Search these candidate locations (in order):
+      - PROJECT_ROOT/json_Files/students.json
+      - PROJECT_ROOT/json_files/students.json
+      - PROJECT_ROOT.parent/json_Files/students.json (repo root)
+      - PROJECT_ROOT.parent/json_files/students.json (repo root alt case)
+      - APP_HOME/json_Files/students.json
+      - APP_HOME/json_files/students.json
+
+    If a students.json is found outside the package-local `PROJECT_ROOT/json_Files`,
+    attempt to copy it into `PROJECT_ROOT/json_Files/students.json` so subsequent
+    accesses are stable. If no file is found, warn only once and return an empty list.
+    """
+    global _students_json_warned
     try:
-        students_path = PROJECT_ROOT.joinpath("json_Files", "students.json")
-        if not students_path.exists():
-            logging.warning("students.json not found at %s", students_path)
-            return []
-        text = students_path.read_text(encoding="utf-8")
+        candidates = [
+            PROJECT_ROOT.joinpath("json_Files", "students.json"),
+            PROJECT_ROOT.joinpath("json_files", "students.json"),
+            PROJECT_ROOT.parent.joinpath("json_Files", "students.json"),
+            PROJECT_ROOT.parent.joinpath("json_files", "students.json"),
+            APP_HOME.joinpath("json_Files", "students.json"),
+            APP_HOME.joinpath("json_files", "students.json"),
+        ]
+
+        students_path = None
+        for p in candidates:
+            if p.exists():
+                students_path = p
+                break
+
+        package_path = PROJECT_ROOT.joinpath("json_Files", "students.json")
+
+        if students_path is None:
+            # No students.json anywhere; create a minimal package-local students.json
+            try:
+                package_path.parent.mkdir(parents=True, exist_ok=True)
+                if not package_path.exists():
+                    package_path.write_text(json.dumps({"students": []}, indent=2), encoding="utf-8")
+                    logging.info("Created minimal students.json at %s", package_path)
+                students_path = package_path
+            except Exception:
+                if not _students_json_warned:
+                    logging.warning(
+                        "students.json not found in any candidate location; searched: %s",
+                        [str(p) for p in candidates],
+                    )
+                    _students_json_warned = True
+                return []
+
+        # If found outside the package-local json_Files, attempt to copy it into place
+        if students_path != package_path:
+            try:
+                package_dir = package_path.parent
+                package_dir.mkdir(parents=True, exist_ok=True)
+                # Copy only when destination doesn't already exist to avoid overwriting
+                if not package_path.exists():
+                    shutil.copy2(students_path, package_path)
+                    logging.info("Copied students.json from %s to %s", students_path, package_path)
+                # Use the package-local path for subsequent reads
+                students_path = package_path
+            except Exception:
+                logging.exception("Failed to copy students.json from %s to %s; will read from original location", students_path, package_path)
+
+        text = Path(students_path).read_text(encoding="utf-8")
         data = json.loads(text)
         raw = data.get("students") if isinstance(data, dict) else data
         result = []
@@ -137,48 +210,59 @@ def _load_students_from_json() -> list[str]:
         logging.exception("Failed to load students.json")
         return []
 
+
 class StudentsProxy:
     """List-like proxy that reloads students.json on each access."""
+
     def __iter__(self):
         return iter(_load_students_from_json())
+
     def __len__(self):
         return len(_load_students_from_json())
+
     def __getitem__(self, idx):
         return _load_students_from_json()[idx]
+
     def __contains__(self, item):
         return item in _load_students_from_json()
+
     def keys(self):
         """Compatibility: return list of student names (like dict.keys())."""
         return _load_students_from_json()
+
     def items(self):
         """Compatibility: return list of (name, name) pairs."""
         lst = _load_students_from_json()
         return [(s, s) for s in lst]
+
     def values(self):
         """Compatibility: return list of student names (like dict.values())."""
         return _load_students_from_json()
+
     def get(self, key, default=None):
         """Compatibility: return the key if present, else default."""
         lst = _load_students_from_json()
         return key if key in lst else default
+
     def __repr__(self):
         return repr(_load_students_from_json())
 
+
 # public API: students (dynamic) and accessor
 students = StudentsProxy()
+
 
 def get_students() -> list[str]:
     """Return the runtime-loaded list of students (fresh copy)."""
     return _load_students_from_json()
 
-# All database and student data will be stored in /app_home at the project root
-dataBasePath = str(APP_HOME / "students20252026.db")
-database_dir = dataBasePath
-logging.debug(f"Resolved dataBasePath: {dataBasePath}")
+
+# Database paths already initialized above: DATABASE_PATH, DATABASE_ROOT
+# Backward compatibility variables: dataBasePath, database_dir
+logging.debug(f"Resolved DATABASE_PATH: {DATABASE_PATH}")
 
 # After loading students, ensure a roster.py exists for legacy/tests
 create_roster()
-
 
 
 def createFolderHierarchy() -> None:
@@ -237,23 +321,63 @@ def createFolderHierarchy() -> None:
 
     for name in students:
         logging.debug(f"Processing student: {name}")
+
         # Sanitize student name for filesystem safety and normalize whitespace/newlines
         def _sanitize_filename(s: str) -> str:
             s = str(s)
             s = " ".join(s.split())
-            s = s.strip().strip('.')
-            for ch in ['<', '>', ':', '"', '/', '\\', '|', '?', '*']:
-                s = s.replace(ch, '_')
+            s = s.strip().strip(".")
+            for ch in ["<", ">", ":", '"', "/", "\\", "|", "?", "*"]:
+                s = s.replace(ch, "_")
             return s
 
         name_clean = _sanitize_filename(name)
         # Reassign name so the remainder of the code uses the sanitized value
         name = name_clean
-        # StudentDatabase root and sub-folders
-        student_database_root = Path(DATA_ROOT).joinpath("StudentDatabase")
-        student_datafiles_root = student_database_root.joinpath("StudentDataFiles")
-        student_errorlogs_root = student_database_root.joinpath("errorLogs")
-        student_backups_root = student_database_root.joinpath("backups")
+        # Canonical StudentDataFiles location under DATA_ROOT (APP_HOME)
+        # Historically we used DATA_ROOT/StudentDatabase/StudentDataFiles which
+        # created a duplicate nested folder. Consolidate to DATA_ROOT/StudentDataFiles
+        student_datafiles_root = Path(DATA_ROOT).joinpath("StudentDataFiles")
+        student_errorlogs_root = Path(DATA_ROOT).joinpath("errorLogs")
+        student_backups_root = Path(DATA_ROOT).joinpath("backups")
+
+        # Merge legacy nested StudentDatabase/StudentDataFiles -> StudentDataFiles
+        # If a legacy folder exists, move any student subfolders that are missing
+        # from the canonical location. Do not overwrite existing student folders
+        # in the canonical location; log conflicts for manual review.
+        try:
+            legacy_root = Path(DATA_ROOT).joinpath("StudentDatabase", "StudentDataFiles")
+            if legacy_root.exists():
+                logging.info(
+                    "Found legacy StudentDataFiles at %s; merging into %s",
+                    legacy_root,
+                    student_datafiles_root,
+                )
+                student_datafiles_root.mkdir(parents=True, exist_ok=True)
+                for entry in legacy_root.iterdir():
+                    try:
+                        target = student_datafiles_root.joinpath(entry.name)
+                        if target.exists():
+                            logging.warning(
+                                "Skipping move for %s because %s already exists; manual merge may be required",
+                                entry,
+                                target,
+                            )
+                            continue
+                        shutil.move(str(entry), str(target))
+                        logging.info("Moved %s -> %s", entry, target)
+                    except Exception:
+                        logging.exception("Failed to move %s during migration", entry)
+                # Attempt to remove legacy folder if it's now empty
+                try:
+                    if not any(legacy_root.iterdir()):
+                        legacy_root.rmdir()
+                        logging.info("Removed empty legacy folder %s", legacy_root)
+                except Exception:
+                    logging.exception("Failed to remove legacy folder %s", legacy_root)
+        except Exception:
+            logging.exception("Error while checking/migrating legacy StudentDataFiles")
+
         student_folder = student_datafiles_root.joinpath(name)
         student_datasheets = student_folder.joinpath("StudentDataSheets")
         student_instruction = student_folder.joinpath("StudentInstructionMaterials")
@@ -836,7 +960,9 @@ def createFolderHierarchy() -> None:
             "StudentDataFiles", name, "StudentDataSheets"
         )
         logging.debug(f"Resolved sourceDir: {sourceDir}")
-        logging.debug(f"Resolved destinationDir for StudentDataSheets: {destinationDir}")
+        logging.debug(
+            f"Resolved destinationDir for StudentDataSheets: {destinationDir}"
+        )
         if sourceDir.exists():
             files = os.listdir(sourceDir)
             for fileName in files:
@@ -847,13 +973,17 @@ def createFolderHierarchy() -> None:
                 except Exception as e:
                     logger.error(f"Failed to copy {tmppath} to {destinationDir}: {e}")
         else:
-            logger.debug(f"Source directory for StudentDataSheets not found: {sourceDir}. Skipping copy.")
+            logger.debug(
+                f"Source directory for StudentDataSheets not found: {sourceDir}. Skipping copy."
+            )
         sourceDir = Path(ROOT_DIR).joinpath("instructionMaterials")
         destinationDir = Path(DATA_ROOT).joinpath(
             "StudentDataFiles", name, "StudentInstructionMaterials"
         )
         logging.debug(f"Resolved sourceDir: {sourceDir}")
-        logging.debug(f"Resolved destinationDir for StudentInstructionMaterials: {destinationDir}")
+        logging.debug(
+            f"Resolved destinationDir for StudentInstructionMaterials: {destinationDir}"
+        )
         if sourceDir.exists():
             files = os.listdir(sourceDir)
             for fileName in files:
@@ -864,13 +994,17 @@ def createFolderHierarchy() -> None:
                 except Exception as e:
                     logger.error(f"Failed to copy {tmppath} to {destinationDir}: {e}")
         else:
-            logger.debug(f"Source directory for StudentInstructionMaterials not found: {sourceDir}. Skipping copy.")
+            logger.debug(
+                f"Source directory for StudentInstructionMaterials not found: {sourceDir}. Skipping copy."
+            )
         sourceDir = Path(ROOT_DIR).joinpath("visionAssessments")
         destinationDir = Path(DATA_ROOT).joinpath(
             "StudentDataFiles", name, "StudentVisionAssessments"
         )
         logging.debug(f"Resolved sourceDir: {sourceDir}")
-        logging.debug(f"Resolved destinationDir for StudentVisionAssessments: {destinationDir}")
+        logging.debug(
+            f"Resolved destinationDir for StudentVisionAssessments: {destinationDir}"
+        )
         if sourceDir.exists():
             files = os.listdir(sourceDir)
             for fileName in files:
@@ -881,7 +1015,9 @@ def createFolderHierarchy() -> None:
                 except Exception as e:
                     logger.error(f"Failed to copy {tmppath} to {destinationDir}: {e}")
         else:
-            logger.debug(f"Source directory for StudentVisionAssessments not found: {sourceDir}. Skipping copy.")
+            logger.debug(
+                f"Source directory for StudentVisionAssessments not found: {sourceDir}. Skipping copy."
+            )
 
 
 def copy_if_not_exists(source: str, destination: str) -> None:
@@ -1148,6 +1284,6 @@ task_domains = {
         "Follow directions",
         "Stay on task",
         "Complete tasks",
-        "Play make believe and dress-up activities"
-    ]
+        "Play make believe and dress-up activities",
+    ],
 }

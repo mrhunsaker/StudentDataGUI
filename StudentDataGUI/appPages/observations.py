@@ -243,7 +243,7 @@ def observations_ui():
                 trigger_id = f"trigger-btn-{uuid.uuid4().hex}"
                 trigger_btn = ui.query(f'#{trigger_id}')
                 # Display as a simple table (could be enhanced to timeline, etc.)
-                with ui.dialog().props('role=dialog aria-modal=true').classes('focus:outline-none') as dialog, ui.card():
+                with ui.dialog().props('role=dialog aria-modal=true').classes('focus:outline-none') as dialog, theme.card():
                     heading = ui.label(f"Observation Notes for {name}").classes("text-h5").props('tabindex=0 id=dialog-heading')
                     for _, row in df.iterrows():
                         ui.markdown(f"**{row['date'].strftime('%Y-%m-%d')}**: {row['notes']}")

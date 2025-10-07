@@ -262,31 +262,32 @@ def fetch_braille_data_for_student(
 
 def braille_skills_ui():
     with theme.frame("- BRAILLE SKILLS -"):
-        with ui.card():
-            ui.label("Braille Skills").classes("text-h4 text-grey-8")
-        student_name = (
-            ui.select(options=students, label="Student Name")
-            .props("aria-describedby=student_name_error")
-            .style("width: 500px")
-        )
-        student_name_error = (
-            ui.label("Student name is required.")
-            .props("id=student_name_error")
-            .classes("text-red-700")
-            .style("display:none")
-        )
-        ui.label("Date")
-        date_input = (
-            ui.date(value=datetime.date.today())
-            .props("aria-describedby=date_error")
-            .style("width: 500px")
-        )
-        date_error = (
-            ui.label("Date is required.")
-            .props("id=date_error")
-            .classes("text-red-700")
-            .style("display:none")
-        )
+        # Page title consistent styling
+        ui.label("Braille Skills").classes("text-h4 text-grey-8")
+        with theme.card():
+            student_name = (
+                ui.select(options=students, label="Student Name")
+                .props("aria-describedby=student_name_error")
+                .style("width: 500px")
+            )
+            student_name_error = (
+                ui.label("Student name is required.")
+                .props("id=student_name_error")
+                .classes("text-red-700")
+                .style("display:none")
+            )
+            ui.label("Date")
+            date_input = (
+                ui.date(value=datetime.date.today())
+                .props("aria-describedby=date_error")
+                .style("width: 500px")
+            )
+            date_error = (
+                ui.label("Date is required.")
+                .props("id=date_error")
+                .classes("text-red-700")
+                .style("display:none")
+            )
         # Braille part codes and labels
         braille_parts = [
             ("P1_1", "1.1. Track left to right"),

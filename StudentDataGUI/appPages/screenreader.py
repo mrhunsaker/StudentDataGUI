@@ -273,8 +273,9 @@ def fetch_screenreader_data_for_student(
 
 
 def screenreader_skills_ui():
-    with ui.card():
+    # Use consistent page title styling (outside of card)
     ui.label("Screen Reader Skills").classes("text-h4 text-grey-8")
+    with theme.card():
         student_name = (
             ui.select(options=students, label="Student Name")
             .props("aria-describedby=student_name_error")

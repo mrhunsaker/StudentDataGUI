@@ -253,7 +253,9 @@ def register_fonts() -> None:
     """
     try:
         PROJECT_ROOT = Path(ROOT_DIR)
-        preferred_fonts_dir = PROJECT_ROOT.joinpath("StudentDataGUI", "appHelpers", "fonts")
+        # package-local fonts (inside the installed package) and repo-root appHelpers/fonts
+        preferred_fonts_dir = PROJECT_ROOT.joinpath("appHelpers", "fonts")
+        repo_root_fonts_dir = PROJECT_ROOT.parent.joinpath("appHelpers", "fonts")
         legacy_fonts_dir = PROJECT_ROOT.joinpath("fonts")
         font_files = [
             "AtkinsonHyperlegible-BoldItalic.ttf",
@@ -268,8 +270,11 @@ def register_fonts() -> None:
 
         registered_any = False
         for fname in font_files:
-            # prefer appHelpers/fonts
+            # prefer package-local appHelpers/fonts
             fpath = preferred_fonts_dir.joinpath(fname)
+            # fall back to repo-root appHelpers/fonts, then ROOT_DIR/fonts
+            if not fpath.exists():
+                fpath = repo_root_fonts_dir.joinpath(fname)
             if not fpath.exists():
                 fpath = legacy_fonts_dir.joinpath(fname)
             if fpath.exists():
@@ -283,3 +288,25 @@ def register_fonts() -> None:
             logging.warning("No font files found in appHelpers/fonts or ROOT_DIR/fonts; continuing without registering fonts.")
     except Exception:
         logging.exception("Error while registering font static files")
+
+
+@contextmanager
+def card(**kwargs) -> None:
+    """
+    Standardized card context manager for consistent page card styling.
+
+    Usage:
+        with card():
+            ui.label("Content")
+
+    Any kwargs will be forwarded to `ui.card()` as attributes (for example
+    `.classes()` or `.props()` are applied inside). This helper applies a
+    default set of classes to keep visual appearance consistent across pages.
+    """
+    # default classes provide a subtle elevation, padding, and rounded corners
+    default_classes = "shadow-md rounded-lg p-4 max-w-4xl"
+    custom_classes = kwargs.pop("classes", None)
+    combined_classes = f"{default_classes} {custom_classes or ''}".strip()
+    # Use ui.card and apply the combined classes; yield control to caller
+    with ui.card().classes(combined_classes):
+        yield

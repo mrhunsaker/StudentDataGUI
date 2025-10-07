@@ -53,6 +53,9 @@ RUN python3 -m venv /app/venv && \
 COPY StudentDataGUI/ ./StudentDataGUI/
 COPY __init__.py .
 
+# Ensure local font files are baked into the image at the package path
+COPY StudentDataGUI/appHelpers/fonts/ ./StudentDataGUI/appHelpers/fonts/
+
 # Create necessary directories with proper permissions for rootless Podman
 RUN mkdir -p /app/home/.cache/fontconfig \
              /app/home/.matplotlib \

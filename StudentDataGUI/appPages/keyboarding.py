@@ -236,30 +236,31 @@ def fetch_keyboarding_data_for_student(conn: sqlite3.Connection, student_id: int
 
 def keyboarding_skills_ui() -> None:
     with theme.frame("- KEYBOARDING SKILLS -"):
-        with ui.card():
-            ui.label("Keyboarding Skills").classes("text-h4 text-grey-8")
-        student_name = ui.select(options=students, label="Student Name").props('aria-describedby=student_name_error').style("width: 500px")
-        student_name_error = ui.label("Student name is required.").props('id=student_name_error').classes('text-red-700').style('display:none')
-        ui.label("Date")
-        date_input = ui.date(value=datetime.date.today()).props('aria-describedby=date_error').style("width: 500px")
-        date_error = ui.label("Date is required.").props('id=date_error').classes('text-red-700').style('display:none')
-        program_input = ui.select(
-            options=[
-                "Typio", "TypeAbility", "APH Typer", "Typing Club", "MonkeyType", "Custom Assignment"
-            ],
-            label="Keyboarding Program"
-        ).props('aria-describedby=program_error').style("width: 500px;")
-        program_error = ui.label("Keyboarding program is required.").props('id=program_error').classes('text-red-700').style('display:none')
-        topic_input = ui.select(
-            options=[
-                "Home Row", "Top Row", "Bottom Row", "Numbers", "Modifier Keys", "F-Keys", "Shortcut Keystrokes"
-            ],
-            label="Topic Covered"
-        ).props('aria-describedby=topic_error').style("width: 500px;")
-        topic_error = ui.label("Topic is required.").props('id=topic_error').classes('text-red-700').style('display:none')
-        speed_input = ui.number(label="Typing Speed (WPM)", value=0, min=0, max=200, step=1).style("width: 500px;")
-        accuracy_input = ui.number(label="Typing Accuracy (%)", value=0, min=0, max=100, step=1).style("width: 500px;")
-        notes_input = ui.textarea("Notes (optional)").style("width: 500px;")
+        # Page title consistent styling
+        ui.label("Keyboarding Skills").classes("text-h4 text-grey-8")
+        with theme.card():
+            student_name = ui.select(options=students, label="Student Name").props('aria-describedby=student_name_error').style("width: 500px")
+            student_name_error = ui.label("Student name is required.").props('id=student_name_error').classes('text-red-700').style('display:none')
+            ui.label("Date")
+            date_input = ui.date(value=datetime.date.today()).props('aria-describedby=date_error').style("width: 500px")
+            date_error = ui.label("Date is required.").props('id=date_error').classes('text-red-700').style('display:none')
+            program_input = ui.select(
+                options=[
+                    "Typio", "TypeAbility", "APH Typer", "Typing Club", "MonkeyType", "Custom Assignment"
+                ],
+                label="Keyboarding Program"
+            ).props('aria-describedby=program_error').style("width: 500px;")
+            program_error = ui.label("Keyboarding program is required.").props('id=program_error').classes('text-red-700').style('display:none')
+            topic_input = ui.select(
+                options=[
+                    "Home Row", "Top Row", "Bottom Row", "Numbers", "Modifier Keys", "F-Keys", "Shortcut Keystrokes"
+                ],
+                label="Topic Covered"
+            ).props('aria-describedby=topic_error').style("width: 500px;")
+            topic_error = ui.label("Topic is required.").props('id=topic_error').classes('text-red-700').style('display:none')
+            speed_input = ui.number(label="Typing Speed (WPM)", value=0, min=0, max=200, step=1).style("width: 500px;")
+            accuracy_input = ui.number(label="Typing Accuracy (%)", value=0, min=0, max=100, step=1).style("width: 500px;")
+            notes_input = ui.textarea("Notes (optional)").style("width: 500px;")
 
         def save_keyboarding_data():
             name = student_name.value.strip()

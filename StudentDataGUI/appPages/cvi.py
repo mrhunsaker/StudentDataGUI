@@ -239,10 +239,11 @@ def fetch_cvi_data_for_student(conn: sqlite3.Connection, student_id: int, progre
 
 def cvi_skills_ui() -> None:
     with theme.frame("- CVI PROGRESSION -"):
-        with ui.card():
-            ui.label("CVI Progression").classes("text-h4 text-grey-8")
-        student_name = ui.select(options=students, label="Student Name").props('aria-describedby=student_name_error').style("width: 500px")
-        student_name_error = ui.label("Student name is required.").props('id=student_name_error').classes('text-red-700').style('display:none')
+        # Page title consistent styling
+        ui.label("CVI Progression").classes("text-h4 text-grey-8")
+        with theme.card():
+            student_name = ui.select(options=students, label="Student Name").props('aria-describedby=student_name_error').style("width: 500px")
+            student_name_error = ui.label("Student name is required.").props('id=student_name_error').classes('text-red-700').style('display:none')
         ui.label("Date")
         date_input = ui.date(value=datetime.date.today()).props('aria-describedby=date_error').style("width: 500px;")
         date_error = ui.label("Date is required.").props('id=date_error').classes('text-red-700').style('display:none')

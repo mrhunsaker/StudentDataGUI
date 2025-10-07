@@ -223,8 +223,9 @@ def fetch_ios_data_for_student(conn: sqlite3.Connection, student_id: int, progre
 # --- UI LOGIC ---
 
 def ios_skills_ui() -> None:
-    with ui.card():
-        ui.label("iOS / iPad OS Skills").classes("text-h4 text-grey-8")
+    # Consistent page title styling
+    ui.label("iOS / iPad OS Skills").classes("text-h4 text-grey-8")
+    with theme.card():
         student_name = ui.select(options=students, label="Student Name").style("width: 500px")
         ui.label("Date")
         date_input = ui.date(value=datetime.date.today()).style("width: 500px;")

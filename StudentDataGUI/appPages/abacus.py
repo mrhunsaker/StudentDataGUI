@@ -275,8 +275,9 @@ def fetch_abacus_data_for_student(
 
 
 def abacus_skills_ui() -> None:
-    with ui.card():
-        ui.label("Abacus Skills").classes("text-h4 text-grey-8")
+    # Consistent page title (outside card)
+    ui.label("Abacus Skills").classes("text-h4 text-grey-8")
+    with theme.card():
         from StudentDataGUI.appHelpers.helpers import students
 
         student_name = (

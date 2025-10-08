@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 """
- Copyright 2023  Michael Ryan Hunsaker, M.Ed., Ph.D.
+ Copyright 2025  Michael Ryan Hunsaker, M.Ed., Ph.D.
 
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -42,7 +42,7 @@ def menu() -> None:
     --------
     >>> menu()
     """
-    with ui.button("Navigation Menu", icon="apps").classes(
+    with ui.button("Navigation Menu", icon="apps").props('aria-label=Navigation Menu').classes(
         "absolute-right self-center scale=150"
     ).style('font-style:normal, font-family: "Atkinson Hyperlegible"'):
         with ui.menu().classes("w-[250px]") as menu:

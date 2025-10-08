@@ -1,333 +1,276 @@
 # StudentDataGUI
 
-Student Data Input GUI using NiceGUI and SQLite3 designed be platform-independent.
-
-To use this package, first create a file called "roster.txt" in your ~/Documents on linux/MacOS or %userprofile%\Documents in Windows. Add student names following the pattern below. Surround text with single quotes (' ') and separating entries with commas. The program will use this file to create a roster.py file in the correct location and use these student names.
-
-I recommend leaving the first entry as it is, unless of course you have a student with that name. It is just a cheeky reference to one of the inventors of SQL and a fake student I can use to test settings without accidentally inserting data into a database that I later would have to remove.
-
-If you need to add students, you can alter the roster.py file in the program directory inside the appHelpers folder. 
-
-```txt
-students = [
-    'DonaldChamberlain',
-    'StudentOne', 
-    'StudentTwo', 
-    'StudentN'
-]
-```
-
-Also create a file called "workingdirectory" in the same ~/Documents (/home/<username>/Documents) on linux/MacOS or %userprofile%\Documents in windows. 
-
-Copy the following code into the file, changing <path - to - folder> to where you want to store the documents created by this program. The program will place files in <path - to - folder> in a Documents folder. So if you want to place it in the ~/Documents folder the <path - to -folder> would be "/home/<username>"
-
-```txt
-    if os.name == "nt":
-        try:
-            tmp_path = Path(os.environ["USERPROFILE"]).joinpath(
-                "<path - to - folder>", "Documents"
-            )
-            Path.mkdir(tmp_path, parents=True, exist_ok=True)
-            USER_DIR = Path(tmp_path)
-        except NameError as e:
-            print(f"{e}\n Cannot find %USERPROFILE")
-    elif os.name == "posix":
-        try:
-            tmp_path = Path(os.environ["HOME"]).joinpath(
-                "OneDrive - Davis School District", "Documents"
-            )
-            Path.mkdir(tmp_path, parents=True, exist_ok=True)
-            USER_DIR = Path(tmp_path)
-        except NameError as e:
-            print(f"{e}\n Cannot find $HOME")
-    return USER_DIR
-```
-
-
-At present, all file paths use pathlib and check your system in order to be OS-agnostic
-
-This program will create a */StudentDatabase* folder in your *<path - to - folder>/Documents* folder for a SQLite3 database file and resulting data. It will create folders for each student and populate each of these folders with all necessary files. I have also added the
-ability for you to import files into each student folder as desired.
-
-Here is the tree view of this file structure:
-
-```bash
- <path - to -folder>/Documents # or <path - to -folder>\Documents on Windows
- +---StudentDatabase
-   +-- errorLogs
-   +-- StudentDataFiles
-   ¦   +--Filenames.txt
-   ¦   +--Student 1
-   ¦   ¦   +-- AbacusSkillsProgression.csv
-   ¦   ¦   +-- AbacusSkillsProgression.html
-   ¦   ¦   +-- BrailleSkillsProgression.csv
-   ¦   ¦   +-- cviProgression.csv
-   ¦   ¦   +-- cviProgression.html
-   ¦   ¦   +-- omnibusDatabase.csv
-   ¦   ¦   +-- ScreenReaderSkillsProgression.csv
-   ¦   ¦   +-- ScreenReaderSkillsProgression.html
-   ¦   ¦   +-- StudentDataSheets
-   ¦   ¦   +-- BlankVisionTemplate.pdf
-   ¦   ¦   +-- GenericDataSheets.pdf
-   ¦   ¦   +-- ProgressMonitoring.pdf
-   ¦   ¦   +-- StudentInstructionMaterials
-   ¦   ¦   +-- StudentVisionAssessments
-   ¦   ¦   +-- EducationVisionAssessments.pdf
-   ¦   ¦   +-- UEBLiterarySkillsProgression.html
-   ¦   ¦   +-- UEBTechnicalSkillsProgression.html
-  ...  ...
-   ¦   +-- Student n
-   ¦   ¦   +-- AbacusSkillsProgression.csv
-   ¦   ¦   +-- AbacusSkillsProgression.html
-   ¦   ¦   +-- BrailleSkillsProgression.csv
-   ¦   ¦   +-- cviProgression.csv
-   ¦   ¦   +-- cviProgression.html
-   ¦   ¦   +-- omnibusDatabase.csv
-   ¦   ¦   +-- ScreenReaderSkillsProgression.csv
-   ¦   ¦   +-- ScreenReaderSkillsProgression.html
-   ¦   ¦   +-- StudentDataSheets
-   ¦   ¦   +-- BlankVisionTemplate.pdf
-   ¦   ¦   +-- GenericDataSheets.pdf
-   ¦   ¦   +-- ProgressMonitoring.pdf
-   ¦   ¦   +-- StudentInstructionMaterials
-   ¦   ¦   +-- StudentVisionAssessments
-   ¦   ¦   +-- EducationVisionAssessments.pdf
-   ¦   ¦   +-- UEBLiterarySkillsProgression.html
-   ¦   ¦   +-- UEBTechnicalSkillsProgression.html
-   students.db
-```
-
-## Set up the Program
-
-I this program using Poetry on Python 3.12 because it allows me to keep my system python installation streamlined and allows me to install everything with precision across multiple computers. 
-
-I include a requirements.txt file as well for those who just want to install required modules globally. This requirements.txt file will work with the more traditional virtualenv or pipenv pipelines.
-
-By preference, I install either [pyenv](https://github.com/pyenv/pyenv) or [pyenv-win](https://github.com/pyenv-win/pyenv-win) to manage multiple python versions and virtual environments. 
-
-### How to set up project using Poetry
-
-#### Install Poetry
-
-Linux/MacOS
-```bash
-python3 -m pip install --user poetry
-```
-
-Windows
-```bash
-python -m pip install --user poetry
-```
-
-Enter the project repository and set up the virtual environment using the information in pyproject.toml. The program currenty works with python 3.10-3.12
-
-```bash
-poetry env 3.12
-poetry update
-```
-
-This will create a poetry.lock file in the folder.
-
-## Clone the project 
-
-Point your terminal to the folder you want to store the source code for the program in (I use a GithubRepos/ folder inside my home folder)
-
-```bash
-cd ~/GitHubRepos # cd ~\GitHubRepos on Windows
-git clone https://github.com/mrhunsaker/StudentDataGUI 
-git pull #to update
-```
-This makes a folder named StudentDataGUI inside the GitHubRepos folder 
-
-#### To run program
-
-```bash
-cd </path/to/project> # cd ~/GitHubRepos/StudentDataGUI on my WIidows system
-poetry run python main.py # poetry run python3 main.py for *nix systems
-```
-
-### How to set up project using Pipenv
-
-#### Install Pipenv
-
-Linux/MacOS
-```bash
-python3 -m pip install --user pipenv
-```
-
-Windows
-```bash
-python -m pip install --user pipenv
-```
-
-Enter the project repository and set up the virtual environment using the information inrequirements.txt. The program currenty works with python3 versions 3.10-3.12
-
-```bash
-pipenv --python 3.12
-pipenv install ./requirements.txt
-```
-
-This will create a Pipfile and Pipfile.lock 
-
-## Clone the project 
-
-Point your terminal to the folder you want to store the source code for the program in (I use a GithubRepos/ folder inside my home folder)
-
-```bash
-cd ~/GitHubRepos # cd ~\GitHubRepos on Windows
-git clone https://github.com/mrhunsaker/StudentDataGUI 
-git pull #to update
-```
-
-
-if you want to do any development, then fork the repository by checking out a branch
-```bash
-# To checkout a branch after having cloned the repository
-cd ~/GitHubRepos/StudentDataGUI
-git checkout -b my_branch 
-# To checkout a new branch when initially cloning the repository
-git clone -b my_branch https://github.com/mrhunsaker/StudentDataGUI 
-```
-
-This makes a folder named StudentDataGUI inside the GitHubRepos folder 
-
-#### To run program
-
-```bash
-cd </path/to/project> # cd ~/GitHubRepos/StudentDataGUI on my WIidows system
-poetry run python main.py # poetry run python3 main.py for *nix systems
-```
-
-## Development
-
-### Getting Started
-1. Fork the repository on GitHub.
-
-2. Clone your fork locally:
-
-```bash
-git clone https://github.com/your-username/your-repository.git
-cd your-repository
-```
-3. Create a new branch for your feature or bug fix:
-
-```bash
-git checkout -b feature-or-bugfix-branch
-```
-4. Make your changes and test thoroughly.
-
-### Submitting Changes
-1. Commit your changes:
-
-```bash
-git commit -m "Your descriptive commit message"
-```
-2. Push to your fork:
-
-```bash
-git push origin feature-or-bugfix-branch
-```
-3. Submit a pull request:
-    - Go to the Pull Requests tab on GitHub.
-    - Click the "New Pull Request" button.
-    - Select the branch with your changes.
-4. Describe your changes in detail, providing context and reasons for the changes.
-
-#### Code Style
-I try my best to follow the styles enforced by the [Black](https://black.readthedocs.io/en/stable/) code formatter [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black).  Please do your best to follow our coding style guidelines to maintain consistency across the project.
-
-### Reporting Issues
-If you encounter any issues or have suggestions, please [open an issue on GitHub](https://github.com/mrhunsaker/StudentDataGUI/issues). Provide as much detail as possible, including your operating system and relevant configuration.
-
-### Development Workflow
-- Before starting to work on an issue, make sure it's not already assigned or being worked on.
-- If you plan major changes, it's a good idea to open an issue for discussion first.
-
-### Code of Conduct
-Everyone participating in the Black project, and in particular in the issue tracker, pull requests, and social media activity, is expected to treat other people with respect and more generally to follow the guidelines articulated in the [Python Community Code of Conduct](https://www.python.org/psf/codeofconduct/).
+StudentDataGUI is a user-friendly application for managing student data, designed to be easy to set up and use—even for those with little technical experience. It runs inside containers for maximum reliability and simplicity. This guide provides detailed, step-by-step instructions for building, running, and troubleshooting the application, with a focus on using **Podman** (recommended), and **Docker** as an alternative.
 
 ---
 
-# Container Support
+## Table of Contents
 
-This project provides both Docker and Podman support with dedicated Dockerfiles optimized for each container runtime.
+- [StudentDataGUI](#studentdatagui)
+  - [Table of Contents](#table-of-contents)
+  - [Overview](#overview)
+  - [Quick Start (Podman Recommended)](#quick-start-podman-recommended)
+    - [1. Install Podman and podman-compose](#1-install-podman-and-podman-compose)
+    - [2. Download the Application](#2-download-the-application)
+    - [3. Start the Application](#3-start-the-application)
+  - [Detailed Setup Instructions](#detailed-setup-instructions)
+    - [Podman Setup](#podman-setup)
+    - [Docker Setup (Alternative)](#docker-setup-alternative)
+  - [Troubleshooting](#troubleshooting)
+  - [Support](#support)
+  - [Accessibility](#accessibility)
+  - [Customization Instructions](#customization-instructions)
+  - [Contributing](#contributing)
+  - [File Structure](#file-structure)
+  - [Additional Notes](#additional-notes)
 
-## Docker vs Podman
+---
 
-- **Docker**: Uses `Dockerfile` with traditional root-based container setup
-- **Podman**: Uses `Dockerfile.podman` optimized for rootless containers with virtual environment isolation
+## Overview
 
-## Quick Start
+StudentDataGUI provides a graphical interface for entering and managing student data. It uses NiceGUI for the interface and SQLite3 for the database. The application is designed to run inside containers, so you don’t need to worry about installing or configuring complicated software.
 
-### Create local directories first
-```bash
-mkdir -p ~/Documents/StudentDatabase/StudentDataFiles
-mkdir -p ~/Documents/StudentDatabase/errorLogs
-mkdir -p ~/Documents/StudentDatabase/backups
-chmod -R 755 ~/Documents/StudentDatabase
+---
+
+## Quick Start (Podman Recommended)
+
+If you are new to containers, **Podman** is a modern, rootless alternative to Docker. It is safe, secure, and easy to use.
+
+### 1. Install Podman and podman-compose
+
+- **Fedora/Red Hat:**
+
+  ```bash
+  sudo dnf install podman podman-compose
+  ```
+- **Ubuntu/Debian:**
+
+  ```bash
+  sudo apt-get install podman podman-compose
+  ```
+- For other systems, see the [Podman installation guide](https://podman.io/getting-started/installation).
+
+### 2. Download the Application
+
+- Download or clone the StudentDataGUI repository to your computer.
+
+### 3. Start the Application
+
+- Open a terminal in the project folder.
+- Make the start script executable (only needed once):
+
+  ```bash
+  chmod +x start.sh
+  ```
+- Start the application:
+
+  ```bash
+  ./start.sh start
+  ```
+- The application will build and run in a container.
+  When ready, open your web browser and go to:
+  [http://localhost:8080](http://localhost:8080)
+
+---
+
+## Detailed Setup Instructions
+
+### Podman Setup
+
+- **Build the Application**
+  Use the provided script for the easiest experience:
+
+  ```bash
+  podman compose -f compose.yaml build --no-cache
+
+  ```
+
+- **Manual Podman Commands**
+  If you prefer, you can use these commands:
+  To start the application, Type the following command and then open http://localhost:8080 in the browser of your choice:
+
+  ```bash
+  podman compose up -d; podman compose logs -f
+  ```
+
+  To end the application: Close the browser tab or window and then stop the container:
+
+  ```bash
+  podman-compose down
+  ```
+
+- **Configuration**
+
+  - The application uses port 8080 by default.
+    If this port is busy, you can change it:
+
+    ```bash
+    export NICEGUI_PORT=8081
+    ./start.sh start
+    ```
+  - Data is now stored in the `/app_home` folder at the project root. All database and student data files are located there.
+
+### Docker Setup (Alternative)
+
+If you prefer Docker, follow these steps:
+
+- **Install Docker and Docker Compose**
+  - [Docker installation guide](https://docs.docker.com/get-docker/)
+- **Start the Application**
+
+  ```bash
+  ./start.sh start
+  ```
+- **Manual Docker Commands**
+
+  ```bash
+  docker-compose up -d
+  docker-compose logs -f
+  docker-compose down
+  ```
+- **Configuration**
+  - Uses the same environment variables and folders as Podman.
+
+---
+
+## Troubleshooting
+
+If you run into problems, try these solutions:
+
+1. **Permission Denied Errors**
+
+   - Make sure you own the data folders:
+
+     ```bash
+     sudo chown -R $USER:$USER ./data ./database ./logs
+     ```
+
+2. **Port Already in Use**
+
+   - Change the port:
+
+     ```bash
+     export NICEGUI_PORT=8081
+     ./start.sh start
+     ```
+
+3. **Build Failures or Application Won't Start**
+
+   - Clean and rebuild:
+
+     ```bash
+     ./start.sh clean
+     ./start.sh start -b
+     ```
+
+4. **Viewing Logs**
+
+   - To see what's happening inside the application:
+
+     ```bash
+     ./start.sh logs
+     ```
+
+5. **Checking Status**
+
+   - To check if the application is running:
+
+     ```bash
+     ./start.sh status
+     ```
+
+---
+
+## Support
+
+- For container issues, use the troubleshooting steps above.
+- For application issues, [open an issue on GitHub](https://github.com/mrhunsaker/StudentDataGUI/issues).
+- For accessibility or usability questions, see the Accessibility section below.
+
+---
+
+## Accessibility
+
+StudentDataGUI is designed to be accessible for all users, including those using screen readers or keyboard navigation.
+
+- Uses ARIA landmarks and semantic HTML for easy navigation.
+- "Skip to main content" link for keyboard users.
+- All buttons and forms have visible, high-contrast focus indicators.
+- Error messages are announced to screen readers.
+- Dialogs and modals are accessible and manage focus correctly.
+- All images and icons have meaningful alternative text or are marked decorative.
+- Supports keyboard-only navigation and high-contrast mode.
+
+**Known Limitations:**
+
+- Some advanced focus trapping in modals may need further improvement.
+- Toast notifications may not always be announced by all screen readers.
+
+**Reporting Accessibility Issues:**
+
+- [Open an issue on GitHub](https://github.com/mrhunsaker/StudentDataGUI/issues) with the "Accessibility" label.
+- Or contact the maintainer directly via the email address in the repository.
+
+**Further Documentation:**
+
+- See [AccessibilityReport20250722.md](./AccessibilityReport20250722.md) for a detailed analysis.
+- See [AccessibilityTesting.md](./AccessibilityTesting.md) for a step-by-step testing checklist.
+
+---
+
+## Customization Instructions
+
+- **Changing the Logo:**
+  Replace the logo file (`dsd-mark-white`) in the project directory with your own, using the same name and format. Restart the application.
+
+- **Updating the GitHub Logo Target:**
+  Edit the relevant HTML or configuration file, change the `href` for the GitHub logo, save, and restart.
+
+- **Modifying Footer Copyright:**
+  Edit the footer component file, update the copyright text, save, and restart.
+
+---
+
+## Contributing
+
+1. Fork the repository.
+
+2. Create a new branch:
+
+   ```bash
+   git checkout -b feature-branch
+   ```
+
+3. Submit a pull request.
+- Follow the [Black](https://black.readthedocs.io/en/stable/) code formatter for Python code.
+
+---
+
+## File Structure
+
+
+The application now creates the following structure in the project root:
+
+```
+<project-root>/app_home
+├── errorLogs
+├── StudentDataFiles
+│   ├── Student1
+│   │   ├── AbacusSkillsProgression.csv
+│   │   ├── BrailleSkillsProgression.csv
+│   │   └── ...
+├── backups
+├── students20252026.db
 ```
 
-### For Docker users:
-```bash
-# Build the image
-docker build -f Dockerfile -t student-data-app .
+---
 
-# Run the container
-docker run -d \
-  --name student-data \
-  -p 8080:8080 \
-  -v ~/Documents/StudentDatabase:/app/data \
-  student-data-app
-```
+## Additional Notes
 
-### For Podman users:
-```bash
-# Build the image
-podman build -f Dockerfile.podman -t student-data-app .
+- **Data Safety:** All student data is stored locally in `/app_home` at the project root. Regularly back up the `app_home` folder to prevent data loss.
+- **Updates:** To update the application, pull the latest version from GitHub and restart the container.
+- **Security:** Only run the application on trusted computers and networks, especially when handling sensitive student information.
 
-# Run the container
-podman run -d \
-  --name student-data \
-  -p 8080:8080 \
-  -v ~/Documents/StudentDatabase:/app/data:Z \
-  student-data-app
-```
+---
 
-## Using Docker Compose
-
-### For Docker:
-```bash
-docker-compose up -d
-```
-
-### For Podman:
-```bash
-podman-compose up -d
-```
-
-## Container Features
-
-- **Ubuntu 24.04** base image with Python 3.12
-- **Updated GObject Introspection** support (girepository-2.0)
-- **Rootless-friendly** Podman configuration
-- **Health checks** for container monitoring
-- **Persistent data** storage via volume mounts
-
-## Data Directory Structure
-
-The mounted volume will contain:
-```
-~/Documents/StudentDatabase/
-  ├── StudentDataFiles/
-  ├── errorLogs/
-  ├── backups/
-  └── students.db
-```
-
-## Access the Application
-
-Once running, open your browser and navigate to:
-```
-http://localhost:8080
-```
-
+If you have any questions or need further help, please reach out via GitHub or the contact information in this repository.

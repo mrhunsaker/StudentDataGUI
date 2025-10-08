@@ -1,10 +1,8 @@
-version: "3.8"
-
 services:
   student-data-gui:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.podman
     container_name: student-data-gui
     ports:
       - "8080:8080"
@@ -12,13 +10,12 @@ services:
       - NICEGUI_HOST=0.0.0.0
       - NICEGUI_PORT=8080
       - PYTHONPATH=/app
-      - MPLCONFIGDIR=/tmp/matplotlib
       - HOME=/app/home
-      - XDG_RUNTIME_DIR=/tmp/runtime
+      - APP_HOME=/app/home
+      - MPLCONFIGDIR=/app/home/.matplotlib
+      - XDG_RUNTIME_DIR=/app/home/.runtime
     volumes:
-      - ./data:/app/data
-      - ./database:/app/database
-      - ./logs:/app/logs
+      - ./app_home:/app/home:Z
     restart: unless-stopped
     healthcheck:
       test:
@@ -38,11 +35,3 @@ services:
 networks:
   student-net:
     driver: bridge
-
-volumes:
-  student-data:
-    driver: local
-  student-database:
-    driver: local
-  student-logs:
-    driver: local

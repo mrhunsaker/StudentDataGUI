@@ -1,19 +1,19 @@
 #!/usr/bin/env python3
 
 """
- Copyright 2023  Michael Ryan Hunsaker, M.Ed., Ph.D.
+Copyright 2025  Michael Ryan Hunsaker, M.Ed., Ph.D.
 
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
 
-      https://www.apache.org/licenses/LICENSE-2.0
+     https://www.apache.org/licenses/LICENSE-2.0
 
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
 """
 
 # coding=utf-8
@@ -22,162 +22,252 @@ Program designed to be a data collection and instructional tool for
 teachers of students with Visual Impairments
 """
 
-import datetime
 import os
+import datetime
 import shutil
 from csv import writer
 from pathlib import Path
-
+import json
+import logging
 
 date_fmt = "%Y-%m-%d %H:%M:%S"
 
 datenow = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-os.chdir(os.path.dirname(os.path.abspath(__file__)))
-ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
-print(ROOT_DIR)
-USER_DIR = ""
-IMAGE_DIR = Path(ROOT_DIR).joinpath("images")
-START_DIR = ""
+
+# Resolve project root (package root)
+PROJECT_ROOT = Path(__file__).resolve().parents[1]  # e.g. /app/StudentDataGUI
+
+# Determine APP_HOME from environment (preferred), else HOME, else fallback sibling 'app_home'
+APP_HOME = Path(
+    os.environ.get("APP_HOME")
+    or os.environ.get("HOME")
+    or (PROJECT_ROOT.parent / "app_home")
+)
+APP_HOME.mkdir(parents=True, exist_ok=True)
+
+# Persistent data roots
+DATA_ROOT = APP_HOME
+DATABASE_ROOT = DATA_ROOT / "StudentDatabase"
+DATABASE_ROOT.mkdir(parents=True, exist_ok=True)
+
+# SQLite database file (not a directory)
+DATABASE_PATH = DATABASE_ROOT / "students20252026.db"
+
+# Backward compatibility variable names used elsewhere
+dataBasePath = str(DATABASE_PATH)  # legacy name
+database_dir = str(DATABASE_ROOT)  # previously misused as file path
+
+ROOT_DIR = str(PROJECT_ROOT)
+USER_DIR = str(APP_HOME)
+IMAGE_DIR = Path(__file__).resolve().parent / "images"
+START_DIR = str(APP_HOME)
 
 
 def set_start_dir() -> Path:
-    """
-    Create or retrieve the user directory path.
+    return APP_HOME
 
-    This function determines the appropriate user directory path based on the operating system
-    (Windows or POSIX) and creates the directory structure if it doesn't exist. The user directory
-    path is typically used for storing application-related data.
-
-    Returns
-    -------
-    Path
-        The path to the user directory.
-
-    Raises
-    ------
-    NameError
-        If the environment variable representing the user directory is not found.
-
-    Examples
-    --------
-    >>> user_directory = create_user_dir()
-    >>> # Use user_directory for storing application-related data
-    >>> # ...
-
-    Notes
-    -----
-    The user directory path may vary depending on the operating system:
-    - On Windows, it is typically under "%USERPROFILE%\\OneDrive - Davis School District\\Documents".
-    - On POSIX systems, it is typically under "$HOME/OneDrive - Davis School District/Documents".
-    """
-    if os.name == "nt":
-        try:
-            tmp_path = Path(os.environ["USERPROFILE"]).joinpath("Documents")
-            Path.mkdir(tmp_path, parents=True, exist_ok=True)
-            START_DIR = Path(tmp_path)
-        except NameError as e:
-            print(f"{e}\n Cannot find %USERPROFILE")
-    elif os.name == "posix":
-        try:
-            tmp_path = Path(os.environ["HOME"]).joinpath("Documents")
-            Path.mkdir(tmp_path, parents=True, exist_ok=True)
-            START_DIR = Path(tmp_path)
-        except NameError as e:
-            print(f"{e}\n Cannot find $HOME")
-    else:
-        print("Cannot determine OS Type")
-    os.chdir(START_DIR)
-    return START_DIR
-
-START_DIR = set_start_dir()
 
 def working_dir() -> None:
-    """
-    Copy the working directory information to the application's root.
+    os.chdir(APP_HOME)
+    student_data_dir = APP_HOME / "StudentDataFiles"
+    student_data_dir.mkdir(parents=True, exist_ok=True)
+    logging.debug(f"Ensured StudentDataFiles directory exists at: {student_data_dir}")
 
-    This function checks if the 'workingdirectory.py' file exists in the application's
-    root directory. If not, it copies the 'workingdirectory.txt' file from the
-    'START_DIR' (presumably a predefined starting directory) to the application's root
-    directory, naming the copy 'workingdirectory.py'.
-
-    Returns
-    -------
-    None
-
-    Examples
-    --------
-    >>> working_dir()
-    >>> # 'workingdirectory.py' is copied to the application's root directory
-    >>> # ...
-
-    Notes
-    -----
-    This function assumes the existence of 'ROOT_DIR' and 'START_DIR' variables
-    representing the application's root and starting directories, respectively.
-    """
-    if not Path(ROOT_DIR).joinpath("workingdirectory.py").exists():
-        workingdirectory_path = Path(ROOT_DIR).joinpath("workingdirectory.py")
-        tmp_path = Path(START_DIR).joinpath("workingdirectory.txt")
-        shutil.copy2(tmp_path, workingdirectory_path)
 
 working_dir()
 
+
 def create_roster() -> None:
     """
-    Create the roster file for the application.
-
-    This function checks if the 'roster' directory exists in the 'appHelpers'
-    subdirectory of the application's root directory. If not, it copies the
-    'roster.txt' file from the 'START_DIR' (presumably a predefined starting
-    directory) to the 'appHelpers' subdirectory, naming the copy 'roster.py'.
-
-    Returns
-    -------
-    None
-
-    Examples
-    --------
-    >>> create_roster()
-    >>> # 'roster.py' is created in the 'appHelpers' subdirectory
-    >>> # ...
-
-    Notes
-    -----
-    This function assumes the existence of 'ROOT_DIR' and 'START_DIR' variables
-    representing the application's root and starting directories, respectively.
+    Create the roster file for the application in /app_home.
     """
-    def create_roster() -> None:
-        roster_path = Path(ROOT_DIR).joinpath("appHelpers", "roster.py")
-        if not roster_path.exists():  # Only copy if roster.py does not exist
-            tmp_path = Path(START_DIR).joinpath("roster.txt")
-            shutil.copy2(tmp_path, roster_path)
+    # Write a simple roster.py fallback in both the package appHelpers folder
+    # and the current working directory's appHelpers so legacy imports and
+    # tests that look for a file in CWD succeed.
+    targets = [
+        Path(ROOT_DIR).joinpath("appHelpers", "roster.py"),
+        Path(os.getcwd()).joinpath("appHelpers", "roster.py"),
+    ]
+    try:
+        if students:
+            for roster_path in targets:
+                if not roster_path.exists():
+                    roster_path.parent.mkdir(parents=True, exist_ok=True)
+                    with open(roster_path, "w", encoding="utf-8") as rf:
+                        rf.write("# Auto-generated roster fallback\n")
+                        rf.write("students = [\n")
+                        for s in students:
+                            rf.write(f'    "{s}",\n')
+                        rf.write("]\n")
+        else:
+            # If students list is empty, fallback to copying roster.txt from APP_HOME
+            tmp_path = APP_HOME / "roster.txt"
+            if tmp_path.exists():
+                for roster_path in targets:
+                    if not roster_path.exists():
+                        roster_path.parent.mkdir(parents=True, exist_ok=True)
+                        shutil.copy2(tmp_path, roster_path)
+    except Exception:
+        # Do not raise exceptions during roster creation
+        logging.exception("Failed to create roster fallback")
 
+
+# Load students list from json_Files/students.json (runtime-controlled)
+import json
+import logging
+import datetime
+
+
+# Only warn about missing students.json once per process to avoid noisy logs
+_students_json_warned = False
+
+
+def _load_students_from_json() -> list[str]:
+    """Load student names from students.json.
+
+    Search these candidate locations (in order):
+      - PROJECT_ROOT/json_Files/students.json
+      - PROJECT_ROOT/json_files/students.json
+      - PROJECT_ROOT.parent/json_Files/students.json (repo root)
+      - PROJECT_ROOT.parent/json_files/students.json (repo root alt case)
+      - APP_HOME/json_Files/students.json
+      - APP_HOME/json_files/students.json
+
+    If a students.json is found outside the package-local `PROJECT_ROOT/json_Files`,
+    attempt to copy it into `PROJECT_ROOT/json_Files/students.json` so subsequent
+    accesses are stable. If no file is found, warn only once and return an empty list.
+    """
+    global _students_json_warned
+    try:
+        candidates = [
+            PROJECT_ROOT.joinpath("json_Files", "students.json"),
+            PROJECT_ROOT.joinpath("json_files", "students.json"),
+            PROJECT_ROOT.parent.joinpath("json_Files", "students.json"),
+            PROJECT_ROOT.parent.joinpath("json_files", "students.json"),
+            APP_HOME.joinpath("json_Files", "students.json"),
+            APP_HOME.joinpath("json_files", "students.json"),
+        ]
+
+        students_path = None
+        for p in candidates:
+            if p.exists():
+                students_path = p
+                break
+
+        package_path = PROJECT_ROOT.joinpath("json_Files", "students.json")
+
+        if students_path is None:
+            # No students.json anywhere; create a minimal package-local students.json
+            try:
+                package_path.parent.mkdir(parents=True, exist_ok=True)
+                if not package_path.exists():
+                    package_path.write_text(json.dumps({"students": []}, indent=2), encoding="utf-8")
+                    logging.info("Created minimal students.json at %s", package_path)
+                students_path = package_path
+            except Exception:
+                if not _students_json_warned:
+                    logging.warning(
+                        "students.json not found in any candidate location; searched: %s",
+                        [str(p) for p in candidates],
+                    )
+                    _students_json_warned = True
+                return []
+
+        # If found outside the package-local json_Files, attempt to copy it into place
+        if students_path != package_path:
+            try:
+                package_dir = package_path.parent
+                package_dir.mkdir(parents=True, exist_ok=True)
+                # Copy only when destination doesn't already exist to avoid overwriting
+                if not package_path.exists():
+                    shutil.copy2(students_path, package_path)
+                    logging.info("Copied students.json from %s to %s", students_path, package_path)
+                # Use the package-local path for subsequent reads
+                students_path = package_path
+            except Exception:
+                logging.exception("Failed to copy students.json from %s to %s; will read from original location", students_path, package_path)
+
+        text = Path(students_path).read_text(encoding="utf-8")
+        data = json.loads(text)
+        raw = data.get("students") if isinstance(data, dict) else data
+        result = []
+        if isinstance(raw, list):
+            for item in raw:
+                if not isinstance(item, str):
+                    continue
+                name = " ".join(item.split()).strip()
+                if name:
+                    result.append(name)
+        seen = set()
+        cleaned = []
+        for n in result:
+            if n not in seen:
+                cleaned.append(n)
+                seen.add(n)
+        return cleaned
+    except Exception:
+        logging.exception("Failed to load students.json")
+        return []
+
+
+class StudentsProxy:
+    """List-like proxy that reloads students.json on each access."""
+
+    def __iter__(self):
+        return iter(_load_students_from_json())
+
+    def __len__(self):
+        return len(_load_students_from_json())
+
+    def __getitem__(self, idx):
+        return _load_students_from_json()[idx]
+
+    def __contains__(self, item):
+        return item in _load_students_from_json()
+
+    def keys(self):
+        """Compatibility: return list of student names (like dict.keys())."""
+        return _load_students_from_json()
+
+    def items(self):
+        """Compatibility: return list of (name, name) pairs."""
+        lst = _load_students_from_json()
+        return [(s, s) for s in lst]
+
+    def values(self):
+        """Compatibility: return list of student names (like dict.values())."""
+        return _load_students_from_json()
+
+    def get(self, key, default=None):
+        """Compatibility: return the key if present, else default."""
+        lst = _load_students_from_json()
+        return key if key in lst else default
+
+    def __repr__(self):
+        return repr(_load_students_from_json())
+
+
+# public API: students (dynamic) and accessor
+students = StudentsProxy()
+
+
+def get_students() -> list[str]:
+    """Return the runtime-loaded list of students (fresh copy)."""
+    return _load_students_from_json()
+
+
+# Database paths already initialized above: DATABASE_PATH, DATABASE_ROOT
+# Backward compatibility variables: dataBasePath, database_dir
+logging.debug(f"Resolved DATABASE_PATH: {DATABASE_PATH}")
+
+# After loading students, ensure a roster.py exists for legacy/tests
 create_roster()
 
-from .roster import students
-from .workingdirectory import create_user_dir
-
-create_user_dir()
-USER_DIR = create_user_dir()
-
-# Use environment variable DB_DIR if set, otherwise default to /app/data (for containers), else fallback to ~/Documents/StudentDatabase
-database_dir = os.environ.get("DB_DIR")
-if not database_dir:
-    # Use /app/data if it exists (container), else fallback to ~/Documents/StudentDatabase
-    if os.path.exists("/app/data"):
-        database_dir = "/app/data"
-    else:
-        # Set the root data directory for all persistent files
-        DATA_ROOT = os.environ.get("DB_DIR", "/app/data")
-        os.makedirs(DATA_ROOT, exist_ok=True)
-        dataBasePath = os.path.join(DATA_ROOT, "students.db")
 
 def createFolderHierarchy() -> None:
     """
     Create the folder hierarchy for student data, logs, and backups under DATA_ROOT.
-    """
-    Create a folder hierarchy on the user's computer for student data.
 
     This function iterates over a list of student names and checks if the
     corresponding folder structure exists in the specified user directory
@@ -197,7 +287,7 @@ def createFolderHierarchy() -> None:
     Notes
     -----
     This function assumes the existence of the `students`, `USER_DIR`, `ROOT_DIR`,
-    `workingdirectory.py`, and other variables representing the application's
+    and other variables representing the applications
     student data and file paths.
 
     The function creates the following directory structure:
@@ -226,11 +316,68 @@ def createFolderHierarchy() -> None:
                 - bntProgression.csv
                 - bntProgression.html
     """
+    logging.basicConfig(level=logging.INFO)
+    logger = logging.getLogger("createFolderHierarchy")
+
     for name in students:
-        # StudentDataFiles root
+        logging.debug(f"Processing student: {name}")
+
+        # Sanitize student name for filesystem safety and normalize whitespace/newlines
+        def _sanitize_filename(s: str) -> str:
+            s = str(s)
+            s = " ".join(s.split())
+            s = s.strip().strip(".")
+            for ch in ["<", ">", ":", '"', "/", "\\", "|", "?", "*"]:
+                s = s.replace(ch, "_")
+            return s
+
+        name_clean = _sanitize_filename(name)
+        # Reassign name so the remainder of the code uses the sanitized value
+        name = name_clean
+        # Canonical StudentDataFiles location under DATA_ROOT (APP_HOME)
+        # Historically we used DATA_ROOT/StudentDatabase/StudentDataFiles which
+        # created a duplicate nested folder. Consolidate to DATA_ROOT/StudentDataFiles
         student_datafiles_root = Path(DATA_ROOT).joinpath("StudentDataFiles")
         student_errorlogs_root = Path(DATA_ROOT).joinpath("errorLogs")
         student_backups_root = Path(DATA_ROOT).joinpath("backups")
+
+        # Merge legacy nested StudentDatabase/StudentDataFiles -> StudentDataFiles
+        # If a legacy folder exists, move any student subfolders that are missing
+        # from the canonical location. Do not overwrite existing student folders
+        # in the canonical location; log conflicts for manual review.
+        try:
+            legacy_root = Path(DATA_ROOT).joinpath("StudentDatabase", "StudentDataFiles")
+            if legacy_root.exists():
+                logging.info(
+                    "Found legacy StudentDataFiles at %s; merging into %s",
+                    legacy_root,
+                    student_datafiles_root,
+                )
+                student_datafiles_root.mkdir(parents=True, exist_ok=True)
+                for entry in legacy_root.iterdir():
+                    try:
+                        target = student_datafiles_root.joinpath(entry.name)
+                        if target.exists():
+                            logging.warning(
+                                "Skipping move for %s because %s already exists; manual merge may be required",
+                                entry,
+                                target,
+                            )
+                            continue
+                        shutil.move(str(entry), str(target))
+                        logging.info("Moved %s -> %s", entry, target)
+                    except Exception:
+                        logging.exception("Failed to move %s during migration", entry)
+                # Attempt to remove legacy folder if it's now empty
+                try:
+                    if not any(legacy_root.iterdir()):
+                        legacy_root.rmdir()
+                        logging.info("Removed empty legacy folder %s", legacy_root)
+                except Exception:
+                    logging.exception("Failed to remove legacy folder %s", legacy_root)
+        except Exception:
+            logging.exception("Error while checking/migrating legacy StudentDataFiles")
+
         student_folder = student_datafiles_root.joinpath(name)
         student_datasheets = student_folder.joinpath("StudentDataSheets")
         student_instruction = student_folder.joinpath("StudentInstructionMaterials")
@@ -246,18 +393,22 @@ def createFolderHierarchy() -> None:
             student_vision,
         ]:
             if not folder.exists():
-                folder.mkdir(parents=True, exist_ok=True)
-        if (
-            not Path(USER_DIR)
-            .joinpath(
-                "StudentDatabase", "StudentDataFiles", name, "omnibusDatabase.csv"
-            )
-            .exists()
-        ):
-            tmppath = Path(USER_DIR).joinpath(
-                "StudentDatabase", "StudentDataFiles", name, "omnibusDatabase.csv"
-            )
-            Path.touch(tmppath)
+                try:
+                    folder.mkdir(parents=True, exist_ok=True)
+                    logger.info(f"Created folder: {folder}")
+                except Exception as e:
+                    logger.error(f"Failed to create folder {folder}: {e}")
+            else:
+                logger.debug(f"Folder already exists: {folder}")
+        if not student_folder.joinpath("omnibusDatabase.csv").exists():
+            tmppath = student_folder.joinpath("omnibusDatabase.csv")
+            logging.debug(f"Resolved tmppath for omnibusDatabase.csv: {tmppath}")
+            try:
+                tmppath.parent.mkdir(parents=True, exist_ok=True)
+                tmppath.touch(exist_ok=True)
+                logger.info(f"Created file: {tmppath}")
+            except Exception as e:
+                logger.error(f"Failed to create file {tmppath}: {e}")
             list_names = [
                 "student",
                 "date",
@@ -278,27 +429,22 @@ def createFolderHierarchy() -> None:
                 "median",
                 "notes",
             ]
-            with open(tmppath, "a", newline="", encoding="UTF-8") as f_object:
-                writer_setup = writer(f_object)
-                writer_setup.writerow(list_names)
-                f_object.close()
-        if (
-            not Path(USER_DIR)
-            .joinpath(
-                "StudentDatabase",
-                "StudentDataFiles",
-                name,
-                "BrailleSkillsProgression.csv",
-            )
-            .exists()
-        ):
-            tmppath = Path(USER_DIR).joinpath(
-                "StudentDatabase",
-                "StudentDataFiles",
-                name,
-                "BrailleSkillsProgression.csv",
-            )
-            Path.touch(tmppath)
+            try:
+                with open(tmppath, "a", newline="", encoding="UTF-8") as f_object:
+                    writer_setup = writer(f_object)
+                    writer_setup.writerow(list_names)
+                    f_object.close()
+                logger.info(f"Wrote header to file: {tmppath}")
+            except Exception as e:
+                logger.error(f"Failed to write header to file {tmppath}: {e}")
+        if not student_folder.joinpath("BrailleSkillsProgression.csv").exists():
+            tmppath = student_folder.joinpath("BrailleSkillsProgression.csv")
+            try:
+                tmppath.parent.mkdir(parents=True, exist_ok=True)
+                tmppath.touch(exist_ok=True)
+                logger.info(f"Created file: {tmppath}")
+            except Exception as e:
+                logger.error(f"Failed to create file {tmppath}: {e}")
             list_names = [
                 "date",
                 "P1_1",
@@ -366,78 +512,46 @@ def createFolderHierarchy() -> None:
                 "P8_6",
                 "P8_7",
             ]
-            with open(tmppath, "a", newline="", encoding="UTF-8") as f_object:
-                writer_setup = writer(f_object)
-                writer_setup.writerow(list_names)
-                f_object.close()
-        if (
-            not Path(USER_DIR)
-            .joinpath(
-                "StudentDatabase",
-                "StudentDataFiles",
-                name,
-                "UEBLiterarySkillsProgression.html",
-            )
-            .exists()
-        ):
-            tmppath = Path(USER_DIR).joinpath(
-                "StudentDatabase",
-                "StudentDataFiles",
-                name,
-                "UEBLiterarySkillsProgression.html",
-            )
-            Path.touch(tmppath)
-        if (
-            not Path(USER_DIR)
-            .joinpath(
-                "StudentDatabase",
-                "StudentDataFiles",
-                name,
-                "UEBTechnicalSkillsProgression.html",
-            )
-            .exists()
-        ):
-            tmppath = Path(USER_DIR).joinpath(
-                "StudentDatabase",
-                "StudentDataFiles",
-                name,
-                "UEBTechnicalSkillsProgression.html",
-            )
-            Path.touch(tmppath)
-        if (
-            not Path(USER_DIR)
-            .joinpath(
-                "StudentDatabase",
-                "StudentDataFiles",
-                name,
-                "BasicTactileRecognition.html",
-            )
-            .exists()
-        ):
-            tmppath = Path(USER_DIR).joinpath(
-                "StudentDatabase",
-                "StudentDataFiles",
-                name,
-                "BasicTactileRecognition.html",
-            )
-            Path.touch(tmppath)
-        if (
-            not Path(USER_DIR)
-            .joinpath(
-                "StudentDatabase",
-                "StudentDataFiles",
-                name,
-                "ScreenReaderSkillsProgression.csv",
-            )
-            .exists()
-        ):
-            tmppath = Path(USER_DIR).joinpath(
-                "StudentDatabase",
-                "StudentDataFiles",
-                name,
-                "ScreenReaderSkillsProgression.csv",
-            )
-            Path.touch(tmppath)
+            try:
+                with open(tmppath, "a", newline="", encoding="UTF-8") as f_object:
+                    writer_setup = writer(f_object)
+                    writer_setup.writerow(list_names)
+                    f_object.close()
+                logger.info(f"Wrote header to file: {tmppath}")
+            except Exception as e:
+                logger.error(f"Failed to write header to file {tmppath}: {e}")
+        if not student_folder.joinpath("UEBLiterarySkillsProgression.html").exists():
+            tmppath = student_folder.joinpath("UEBLiterarySkillsProgression.html")
+            try:
+                tmppath.parent.mkdir(parents=True, exist_ok=True)
+                tmppath.touch(exist_ok=True)
+                logger.info(f"Created file: {tmppath}")
+            except Exception as e:
+                logger.error(f"Failed to create file {tmppath}: {e}")
+        if not student_folder.joinpath("UEBTechnicalSkillsProgression.html").exists():
+            tmppath = student_folder.joinpath("UEBTechnicalSkillsProgression.html")
+            try:
+                tmppath.parent.mkdir(parents=True, exist_ok=True)
+                tmppath.touch(exist_ok=True)
+                logger.info(f"Created file: {tmppath}")
+            except Exception as e:
+                logger.error(f"Failed to create file {tmppath}: {e}")
+        if not student_folder.joinpath("BasicTactileRecognition.html").exists():
+            tmppath = student_folder.joinpath("BasicTactileRecognition.html")
+            try:
+                tmppath.parent.mkdir(parents=True, exist_ok=True)
+                tmppath.touch(exist_ok=True)
+                logger.info(f"Created file: {tmppath}")
+            except Exception as e:
+                logger.error(f"Failed to create file {tmppath}: {e}")
+        if not student_folder.joinpath("ScreenReaderSkillsProgression.csv").exists():
+            tmppath = student_folder.joinpath("ScreenReaderSkillsProgression.csv")
+            try:
+                tmppath.parent.mkdir(parents=True, exist_ok=True)
+                tmppath.touch(exist_ok=True)
+                logger.info(f"Created file: {tmppath}")
+            except Exception as e:
+                logger.error(f"Failed to create file {tmppath}: {e}")
             list_names = [
                 "date",
                 "P1_1",
@@ -469,44 +583,30 @@ def createFolderHierarchy() -> None:
                 "P4_6",
                 "P4_7",
             ]
-            with open(tmppath, "a", newline="", encoding="UTF-8") as f_object:
-                writer_setup = writer(f_object)
-                writer_setup.writerow(list_names)
-                f_object.close()
-        if (
-            not Path(USER_DIR)
-            .joinpath(
-                "StudentDatabase",
-                "StudentDataFiles",
-                name,
-                "ScreenReaderSkillsProgression.html",
-            )
-            .exists()
-        ):
-            tmppath = Path(USER_DIR).joinpath(
-                "StudentDatabase",
-                "StudentDataFiles",
-                name,
-                "ScreenReaderSkillsProgression.html",
-            )
-            Path.touch(tmppath)
-        if (
-            not Path(USER_DIR)
-            .joinpath(
-                "StudentDatabase",
-                "StudentDataFiles",
-                name,
-                "AbacusSkillsProgression.csv",
-            )
-            .exists()
-        ):
-            tmppath = Path(USER_DIR).joinpath(
-                "StudentDatabase",
-                "StudentDataFiles",
-                name,
-                "AbacusSkillsProgression.csv",
-            )
-            Path.touch(tmppath)
+            try:
+                with open(tmppath, "a", newline="", encoding="UTF-8") as f_object:
+                    writer_setup = writer(f_object)
+                    writer_setup.writerow(list_names)
+                    f_object.close()
+                logger.info(f"Wrote header to file: {tmppath}")
+            except Exception as e:
+                logger.error(f"Failed to write header to file {tmppath}: {e}")
+        if not student_folder.joinpath("ScreenReaderSkillsProgression.html").exists():
+            tmppath = student_folder.joinpath("ScreenReaderSkillsProgression.html")
+            try:
+                tmppath.parent.mkdir(parents=True, exist_ok=True)
+                tmppath.touch(exist_ok=True)
+                logger.info(f"Created file: {tmppath}")
+            except Exception as e:
+                logger.error(f"Failed to create file {tmppath}: {e}")
+        if not student_folder.joinpath("AbacusSkillsProgression.csv").exists():
+            tmppath = student_folder.joinpath("AbacusSkillsProgression.csv")
+            try:
+                tmppath.parent.mkdir(parents=True, exist_ok=True)
+                tmppath.touch(exist_ok=True)
+                logger.info(f"Created file: {tmppath}")
+            except Exception as e:
+                logger.error(f"Failed to create file {tmppath}: {e}")
             list_names = [
                 "date",
                 "P1_1",
@@ -534,36 +634,30 @@ def createFolderHierarchy() -> None:
                 "P8_1",
                 "P8_2",
             ]
-            with open(tmppath, "a", newline="", encoding="UTF-8") as f_object:
-                writer_setup = writer(f_object)
-                writer_setup.writerow(list_names)
-                f_object.close()
-        if (
-            not Path(USER_DIR)
-            .joinpath(
-                "StudentDatabase",
-                "StudentDataFiles",
-                name,
-                "AbacusSkillsProgression.html",
-            )
-            .exists()
-        ):
-            tmppath = Path(USER_DIR).joinpath(
-                "StudentDatabase",
-                "StudentDataFiles",
-                name,
-                "AbacusSkillsProgression.html",
-            )
-            Path.touch(tmppath)
-        if (
-            not Path(USER_DIR)
-            .joinpath("StudentDatabase", "StudentDataFiles", name, "cviProgression.csv")
-            .exists()
-        ):
-            tmppath = Path(USER_DIR).joinpath(
-                "StudentDatabase", "StudentDataFiles", name, "cviProgression.csv"
-            )
-            Path.touch(tmppath)
+            try:
+                with open(tmppath, "a", newline="", encoding="UTF-8") as f_object:
+                    writer_setup = writer(f_object)
+                    writer_setup.writerow(list_names)
+                    f_object.close()
+                logger.info(f"Wrote header to file: {tmppath}")
+            except Exception as e:
+                logger.error(f"Failed to write header to file {tmppath}: {e}")
+        if not student_folder.joinpath("AbacusSkillsProgression.html").exists():
+            tmppath = student_folder.joinpath("AbacusSkillsProgression.html")
+            try:
+                tmppath.parent.mkdir(parents=True, exist_ok=True)
+                tmppath.touch(exist_ok=True)
+                logger.info(f"Created file: {tmppath}")
+            except Exception as e:
+                logger.error(f"Failed to create file {tmppath}: {e}")
+        if not student_folder.joinpath("cviProgression.csv").exists():
+            tmppath = student_folder.joinpath("cviProgression.csv")
+            try:
+                tmppath.parent.mkdir(parents=True, exist_ok=True)
+                tmppath.touch(exist_ok=True)
+                logger.info(f"Created file: {tmppath}")
+            except Exception as e:
+                logger.error(f"Failed to create file {tmppath}: {e}")
             list_names = [
                 "date",
                 "P1_1",
@@ -577,38 +671,30 @@ def createFolderHierarchy() -> None:
                 "P2_3",
                 "P2_4",
             ]
-            with open(tmppath, "a", newline="", encoding="UTF-8") as f_object:
-                writer_setup = writer(f_object)
-                writer_setup.writerow(list_names)
-                f_object.close()
-        if (
-            not Path(USER_DIR)
-            .joinpath(
-                "StudentDatabase", "StudentDataFiles", name, "cviProgression.html"
-            )
-            .exists()
-        ):
-            tmppath = Path(USER_DIR).joinpath(
-                "StudentDatabase", "StudentDataFiles", name, "cviProgression.html"
-            )
-            Path.touch(tmppath)
-        if (
-            not Path(USER_DIR)
-            .joinpath(
-                "StudentDatabase",
-                "StudentDataFiles",
-                name,
-                "digitalliteracyProgression.csv",
-            )
-            .exists()
-        ):
-            tmppath = Path(USER_DIR).joinpath(
-                "StudentDatabase",
-                "StudentDataFiles",
-                name,
-                "digitalliteracyProgression.csv",
-            )
-            Path.touch(tmppath)
+            try:
+                with open(tmppath, "a", newline="", encoding="UTF-8") as f_object:
+                    writer_setup = writer(f_object)
+                    writer_setup.writerow(list_names)
+                    f_object.close()
+                logger.info(f"Wrote header to file: {tmppath}")
+            except Exception as e:
+                logger.error(f"Failed to write header to file {tmppath}: {e}")
+        if not student_folder.joinpath("cviProgression.html").exists():
+            tmppath = student_folder.joinpath("cviProgression.html")
+            try:
+                tmppath.parent.mkdir(parents=True, exist_ok=True)
+                tmppath.touch(exist_ok=True)
+                logger.info(f"Created file: {tmppath}")
+            except Exception as e:
+                logger.error(f"Failed to create file {tmppath}: {e}")
+        if not student_folder.joinpath("digitalliteracyProgression.csv").exists():
+            tmppath = student_folder.joinpath("digitalliteracyProgression.csv")
+            try:
+                tmppath.parent.mkdir(parents=True, exist_ok=True)
+                tmppath.touch(exist_ok=True)
+                logger.info(f"Created file: {tmppath}")
+            except Exception as e:
+                logger.error(f"Failed to create file {tmppath}: {e}")
             list_names = [
                 "date",
                 "P1_1",
@@ -689,43 +775,36 @@ def createFolderHierarchy() -> None:
                 "P14_6",
                 "P14_7",
                 "P14_8",
-                "P14_9",
                 "P15_1",
                 "P15_2",
                 "P15_3",
                 "P15_4",
                 "P15_5",
             ]
-            with open(tmppath, "a", newline="", encoding="UTF-8") as f_object:
-                writer_setup = writer(f_object)
-                writer_setup.writerow(list_names)
-                f_object.close()
-        if (
-            not Path(USER_DIR)
-            .joinpath(
-                "StudentDatabase",
-                "StudentDataFiles",
-                name,
-                "digitalliteracyProgression.html",
-            )
-            .exists()
-        ):
-            tmppath = Path(USER_DIR).joinpath(
-                "StudentDatabase",
-                "StudentDataFiles",
-                name,
-                "digitalliteracyProgression.html",
-            )
-            Path.touch(tmppath)
-        if (
-            not Path(USER_DIR)
-            .joinpath("StudentDatabase", "StudentDataFiles", name, "iosProgression.csv")
-            .exists()
-        ):
-            tmppath = Path(USER_DIR).joinpath(
-                "StudentDatabase", "StudentDataFiles", name, "iosProgression.csv"
-            )
-            Path.touch(tmppath)
+            try:
+                with open(tmppath, "a", newline="", encoding="UTF-8") as f_object:
+                    writer_setup = writer(f_object)
+                    writer_setup.writerow(list_names)
+                    f_object.close()
+                logger.info(f"Wrote header to file: {tmppath}")
+            except Exception as e:
+                logger.error(f"Failed to write header to file {tmppath}: {e}")
+        if not student_folder.joinpath("digitalliteracyProgression.html").exists():
+            tmppath = student_folder.joinpath("digitalliteracyProgression.html")
+            try:
+                tmppath.parent.mkdir(parents=True, exist_ok=True)
+                tmppath.touch(exist_ok=True)
+                logger.info(f"Created file: {tmppath}")
+            except Exception as e:
+                logger.error(f"Failed to create file {tmppath}: {e}")
+        if not student_folder.joinpath("iosProgression.csv").exists():
+            tmppath = student_folder.joinpath("iosProgression.csv")
+            try:
+                tmppath.parent.mkdir(parents=True, exist_ok=True)
+                tmppath.touch(exist_ok=True)
+                logger.info(f"Created file: {tmppath}")
+            except Exception as e:
+                logger.error(f"Failed to create file {tmppath}: {e}")
             list_names = [
                 "date",
                 "P1_1",
@@ -772,30 +851,30 @@ def createFolderHierarchy() -> None:
                 "P6_10",
                 "P6_11",
             ]
-            with open(tmppath, "a", newline="", encoding="UTF-8") as f_object:
-                writer_setup = writer(f_object)
-                writer_setup.writerow(list_names)
-                f_object.close()
-        if (
-            not Path(USER_DIR)
-            .joinpath(
-                "StudentDatabase", "StudentDataFiles", name, "iosProgression.html"
-            )
-            .exists()
-        ):
-            tmppath = Path(USER_DIR).joinpath(
-                "StudentDatabase", "StudentDataFiles", name, "iosProgression.html"
-            )
-            Path.touch(tmppath)
-        if (
-            not Path(USER_DIR)
-            .joinpath("StudentDatabase", "StudentDataFiles", name, "bntProgression.csv")
-            .exists()
-        ):
-            tmppath = Path(USER_DIR).joinpath(
-                "StudentDatabase", "StudentDataFiles", name, "bntProgression.csv"
-            )
-            Path.touch(tmppath)
+            try:
+                with open(tmppath, "a", newline="", encoding="UTF-8") as f_object:
+                    writer_setup = writer(f_object)
+                    writer_setup.writerow(list_names)
+                    f_object.close()
+                logger.info(f"Wrote header to file: {tmppath}")
+            except Exception as e:
+                logger.error(f"Failed to write header to file {tmppath}: {e}")
+        if not student_folder.joinpath("iosProgression.html").exists():
+            tmppath = student_folder.joinpath("iosProgression.html")
+            try:
+                tmppath.parent.mkdir(parents=True, exist_ok=True)
+                tmppath.touch(exist_ok=True)
+                logger.info(f"Created file: {tmppath}")
+            except Exception as e:
+                logger.error(f"Failed to create file {tmppath}: {e}")
+        if not student_folder.joinpath("bntProgression.csv").exists():
+            tmppath = student_folder.joinpath("bntProgression.csv")
+            try:
+                tmppath.parent.mkdir(parents=True, exist_ok=True)
+                tmppath.touch(exist_ok=True)
+                logger.info(f"Created file: {tmppath}")
+            except Exception as e:
+                logger.error(f"Failed to create file {tmppath}: {e}")
             list_names = [
                 "date",
                 "P1_1",
@@ -860,48 +939,88 @@ def createFolderHierarchy() -> None:
                 "P12_3",
                 "P12_4",
             ]
-            with open(tmppath, "a", newline="", encoding="UTF-8") as f_object:
-                writer_setup = writer(f_object)
-                writer_setup.writerow(list_names)
-                f_object.close()
-        if (
-            not Path(USER_DIR)
-            .joinpath(
-                "StudentDatabase", "StudentDataFiles", name, "bntProgression.html"
-            )
-            .exists()
-        ):
-            tmppath = Path(USER_DIR).joinpath(
-                "StudentDatabase", "StudentDataFiles", name, "bntProgression.html"
-            )
-            Path.touch(tmppath)
+            try:
+                with open(tmppath, "a", newline="", encoding="UTF-8") as f_object:
+                    writer_setup = writer(f_object)
+                    writer_setup.writerow(list_names)
+                    f_object.close()
+                logger.info(f"Wrote header to file: {tmppath}")
+            except Exception as e:
+                logger.error(f"Failed to write header to file {tmppath}: {e}")
+        if not student_folder.joinpath("bntProgression.html").exists():
+            tmppath = student_folder.joinpath("bntProgression.html")
+            try:
+                tmppath.parent.mkdir(parents=True, exist_ok=True)
+                tmppath.touch(exist_ok=True)
+                logger.info(f"Created file: {tmppath}")
+            except Exception as e:
+                logger.error(f"Failed to create file {tmppath}: {e}")
         sourceDir = Path(ROOT_DIR).joinpath("datasheets")
-        destinationDir = Path(USER_DIR).joinpath(
-            "StudentDatabase", "StudentDataFiles", name, "StudentDataSheets"
+        destinationDir = Path(DATA_ROOT).joinpath(
+            "StudentDataFiles", name, "StudentDataSheets"
         )
-        files = os.listdir(sourceDir)
-        for fileName in files:
-            tmppath=os.path.join(sourceDir, fileName)
-            copy_if_not_exists(tmppath, destinationDir)
+        logging.debug(f"Resolved sourceDir: {sourceDir}")
+        logging.debug(
+            f"Resolved destinationDir for StudentDataSheets: {destinationDir}"
+        )
+        if sourceDir.exists():
+            files = os.listdir(sourceDir)
+            for fileName in files:
+                tmppath = os.path.join(sourceDir, fileName)
+                try:
+                    copy_if_not_exists(tmppath, str(destinationDir))
+                    logger.info(f"Copied {tmppath} to {destinationDir}")
+                except Exception as e:
+                    logger.error(f"Failed to copy {tmppath} to {destinationDir}: {e}")
+        else:
+            logger.debug(
+                f"Source directory for StudentDataSheets not found: {sourceDir}. Skipping copy."
+            )
         sourceDir = Path(ROOT_DIR).joinpath("instructionMaterials")
-        destinationDir = Path(USER_DIR).joinpath(
-            "StudentDatabase", "StudentDataFiles", name, "StudentInstructionMaterials"
+        destinationDir = Path(DATA_ROOT).joinpath(
+            "StudentDataFiles", name, "StudentInstructionMaterials"
         )
-        files = os.listdir(sourceDir)
-        for fileName in files:
-            tmppath=os.path.join(sourceDir, fileName)
-            copy_if_not_exists(tmppath, destinationDir)
+        logging.debug(f"Resolved sourceDir: {sourceDir}")
+        logging.debug(
+            f"Resolved destinationDir for StudentInstructionMaterials: {destinationDir}"
+        )
+        if sourceDir.exists():
+            files = os.listdir(sourceDir)
+            for fileName in files:
+                tmppath = os.path.join(sourceDir, fileName)
+                try:
+                    copy_if_not_exists(tmppath, str(destinationDir))
+                    logger.info(f"Copied {tmppath} to {destinationDir}")
+                except Exception as e:
+                    logger.error(f"Failed to copy {tmppath} to {destinationDir}: {e}")
+        else:
+            logger.debug(
+                f"Source directory for StudentInstructionMaterials not found: {sourceDir}. Skipping copy."
+            )
         sourceDir = Path(ROOT_DIR).joinpath("visionAssessments")
-        destinationDir = Path(USER_DIR).joinpath(
-            "StudentDatabase", "StudentDataFiles", name, "StudentVisionAssessments"
+        destinationDir = Path(DATA_ROOT).joinpath(
+            "StudentDataFiles", name, "StudentVisionAssessments"
         )
-        files = os.listdir(sourceDir)
-        for fileName in files:
-            tmppath=os.path.join(sourceDir, fileName)
-            copy_if_not_exists(tmppath, destinationDir)
+        logging.debug(f"Resolved sourceDir: {sourceDir}")
+        logging.debug(
+            f"Resolved destinationDir for StudentVisionAssessments: {destinationDir}"
+        )
+        if sourceDir.exists():
+            files = os.listdir(sourceDir)
+            for fileName in files:
+                tmppath = os.path.join(sourceDir, fileName)
+                try:
+                    copy_if_not_exists(tmppath, str(destinationDir))
+                    logger.info(f"Copied {tmppath} to {destinationDir}")
+                except Exception as e:
+                    logger.error(f"Failed to copy {tmppath} to {destinationDir}: {e}")
+        else:
+            logger.debug(
+                f"Source directory for StudentVisionAssessments not found: {sourceDir}. Skipping copy."
+            )
 
 
-def copy_if_not_exists(source, destination):
+def copy_if_not_exists(source: str, destination: str) -> None:
     if not os.path.exists(destination):
         shutil.copy2(source, destination)
 
@@ -909,6 +1028,7 @@ def copy_if_not_exists(source, destination):
 """
 Dictionary of specific Tasks organized by task Domain to be used on the Session Notes page to specifically choose the specific task by Domain
 """
+
 task_domains = {
     "Choose a Task Domain": ["Choose a Task"],
     "abacusSkills": [
@@ -1164,195 +1284,6 @@ task_domains = {
         "Follow directions",
         "Stay on task",
         "Complete tasks",
-        "Play make believe and dress-up activities to imitate adult roles",
-        "Have responsibilities at home and school",
-        "Recognize different school & community workers",
-        "Participate in problem solving (locating lost items independently  for example)",
-        "React appropriately to unexpected changes or events",
-        "Learn to work individually and in a group",
-        "Learn to be responsible for actions",
-        "Recognize that workers get paid",
-        "Develop good communication skills",
-        "Understand the rewards of work",
-        "Organize resources such as time and money",
-        "Meet increased responsibilities at home  school and the community",
-        "Show well-developed academic  thinking and work behavior skills",
-        "Participate in work activities and jobs and possibly work part time",
-        "Show an understanding  of work performed by adults and what is involved in being successful in multiple areas of work",
-        "Show interest in particular areas of work",
-        "Plan for life beyond high school",
-    ],
-    "ECC_SocialInteractionSkills": [
-        "SELECT SKILL FROM DROPDOWN",
-        "Appropriate body language: knowing when to lean forward to hear a secret from a friend  maintaining appropriate eye contact  facing a person who is speaking  standing up to greet a new friend keeping hands to oneself during a group conversation",
-        "Social communication: engaging in appropriate verbal and nonverbal interaction with others  initiating conversations  expressing needs and wants",
-        "Effective conversation patterns:  asking for help; initiating  maintaining and end ending conversations; extending invitations",
-        "Cooperative skills: working  with another to accomplish a goal  volunteering to help in the classroom  helping with home chores",
-        "Interactions with others:  knowing how to react to humor  identify the person in charge in a given situation and respond  to the presence of a peer; develop dating skills",
-        "Social etiquette: demonstrate courteous behavior  thanking a friend for a gift  sharing a seat with another on the bus  smiling at others.",
-        "Development of relationships and friendships: taking turns  seeking friendships with others  working effectively in groups",
-        "Knowledge of self: knowing one’s likes and dislikes  taking responsibility for actions  understanding the concept of personal body space  showing pride in accomplished tasks  stating one’s point of view",
-        "Interpretation and monitoring of social behavior: knowing when to disobey an adult understanding the appropriate time to ask questions developing problem solving skills, recognizing sarcasm in a conversation, understanding the difference between reacting to requests from strangers and familiar people.",
-    ],
-    "ECC_IndependentLivingSkills": [
-        "SELECT SKILL FROM DROPDOWN",
-        "Organization: Maintaining school notes and materials where can be accessed easily  prioritizing daily demands of everyday life and of school and work  and keeping personal objects in a specific location",
-        "Personal hygiene and grooming:bathing  maintaining feminine and masculine hygiene and understanding and ensuring privacy",
-        "Dressing: participating in dressing oneself with independence  and determining appropriate clothing for the weather",
-        "Clothing care: labeling  clothing  selecting appropriate clothing for events  doing laundry and performing related tasks",
-        "Time management: establishing a routine of sleeping at appropriate times  recognizing how long it takes to complete a task  using watches and clocks and maintaining a calendar",
-        "Eating: eating with utensils   locating food on a plate  using condiments and using tableware",
-        "Cooking: preparing and cooking meals pouring liquids retrieving utensils  stirring and mixing  spreading and spooning  helping with dishes  using a stove  cleaning up  learning food-related concepts involved in gardening  visiting grocery stores  applying food nutrition  and opening and closing different kinds of packages.",
-        "Cleaning and general household tasks: participating in responsibilities at home and school  retrieving and replacing toys and games  and using cleaning supplies and equipment.",
-        "Telephone use: calling friends  knowing how to make emergency calls and having a system of phone number retrieval",
-        "Money management: identifying coins and bills using ATMs writing checks and managing money.",
-    ],
-    "ECC_SelfDetermination": [
-        "SELECT SKILL FROM DROPDOWN",
-        "Self-knowledge: developing personal preferences  needs and desires",
-        "Awareness of individual right and responsibilities: possessing knowledge of laws protecting people with disabilities",
-        "Capacity to make informed choices: knowing what to do in an emergency  being able to express one’s likes and dislikes",
-        "Problem-solving and goal-setting skills: making personal and educational goals and interacting with others to obtain assistance",
-        "Ability to engage in self-regulated and self-directed behavior: developing negotiation skills and skills involved in interacting with others and the public at large",
-        "Self-advocacy and empowerment: choosing favorite or desired activities and being able to evaluate one’s own behavior or progress",
-        "Assertiveness skills: being able to advocate for one’s needs and wants.",
-    ],
-    "ECC_RecreationLeisure": [
-        "SELECT SKILL FROM DROPDOWN",
-        "Play: interacting through play with peers and siblings  entertaining oneself for various periods of time",
-        "Physical activity: participating in physical education or other active play activities  taking part in recreation and leisure activities enjoyed by the family",
-        "Health  fitness and individual sports: developing a regimen of physical exercise that leads to improvement or maintenance of strength  stamina and endurance; developing skills for engaging in such activities as track  wrestling and weight-lifting.",
-        "Team and spectator sports: learning  to enjoy competitive and noncompetitive sports activities such as football  baseball  soccer  golf baseball or goalball  as a participant or as a spectator",
-        "Leisure activities and hobbies: being exposed to opportunities for choosing a favorite game or book experiencing arts and crafts activities appreciating and enjoying fine arts in such forms as museum visits theater dance opera and music.",
-    ],
-    "ECC_OrientationMobility": [
-        "SELECT SKILL FROM DROPDOWN",
-        "Body concepts: understanding body parts and function",
-        "Environmental concepts:  understanding concepts related to the home environment (such as windows and doors) and to buildings  residential and business areas  schools  and streets and intersections.",
-        "Spatial concepts: understanding self-to-object relationships  spatial terminology (such as right  left and next to)  landmarks and cues and cardinal directions",
-        "Perceptual/sensory skills: interpreting environmental sounds  applying meaning to tasks and determining the nature of sensory information",
-        "Mobility skills: noticing and negotiating unexpected drop-offs  using systematic search techniques  and knowing built elements such as block distances  corners  intersection types streets and road structures.",
-        "Orientation skills: knowing routes and understanding layouts",
-        "Interpersonal skills: requesting directions  arranging for rides; soliciting information from individuals such as dispatchers  drivers  and store personnel; and using appropriate telephone manners",
-        "Decision-making skills: altering travel in response to inclement weather choosing appropriate clothing and gear choosing between routes knowing the advantage and disadvantage of different modes of travel and making back up plans.",
-    ],
-    "ECC_AssistiveTechnology": [
-        "SELECT SKILL FROM DROPDOWN",
-        "Access to information: developing facility with general applications and basic technology skills such as inputting information and producing documents",
-        "Communication: developing awareness of electronic communication modes and the ability to conduct research and written assignments.",
-        "Personal productivity: practicing the use of basic applications in activities related to learning and daily living",
-    ],
-    "ECC_SensoryEfficiency": [
-        "SELECT SKILL FROM DROPDOWN",
-        "Visual function: fixating  orienting  tracking and recognizing objects and using optical devices",
-        "Auditory function: localization  aural discrimination and presentation  and sound pattern use",
-        "Tactile function: tactile discrimination  scanning  manipulation and dexterity",
-        "Gustatory (taste) function: appreciation for food  discrimination of food types and recognition of various tastes",
-        "Olfactory (smell) function: localization of smells discrimination of odors and recognition of pleasant and unpleasant odors.",
-    ],
-    "ECC_CompensatorySkills": [
-        "SELECT SKILL FROM DROPDOWN",
-        "Concept development: developing mental ideas about the environment and the objects  people and processes and interactions taking place in the world.",
-        "Spatial understanding:  understanding the physical location of objects in relation to one’s self and to other objects",
-        "Communication modes: developing facility with techniques and tools needed to access information presented in print and to write or communicate thoughts",
-        "Speaking and listening skills: learning appropriate methods of addressing others in conversation and comprehending what is said.",
-        "Study and organization skills: developing methods that allow a student to maintain order in the use of materials and time and to set priorities for such activities as they completion of school work.",
-        "Use of adapted and specialized educational materials: independently using tools and devices that provide compensatory access.",
-    ],
-    "magnifierSkills": [
-        "SELECT SKILL FROM DROPDOWN",
-        "Concept of 'in focus' and how to bring the image into focus.",
-        "Change the image size and then focus. Provide the students with materials of various print sizes and practice adjusting the image appropriately.",
-        "Spot or locate an image on the page and then focus.",
-        "Follow a line of text  and then track down to locate the next line of text.",
-        "Use various features of the electronic magnifier and when it is adventitious to use those features.",
-        "Become accustomed to writing and drawing while looking at the monitor.",
-        "Care for the video magnifier and demonstrate safe use.",
-    ],
-    "digitalLiteracySkills": [
-        "Turn computer on and off",
-        "Use pointing device such as a mouse to manipulate shapes, icons; click on urls, radio buttons, check boxes; use scroll bar ",
-        "Use desktop icons, windows and menus to open applications and documents ",
-        "Save documents ",
-        "Explain and use age-appropriate online tools and resources (e.g. tutorial, assessment, web browser) ",
-        "Keyboarding (Use proper posture and ergonomics, Locate and use letter and numbers keys with left and right hand placement, Locate and use correct finger, hand for space bar,return/enter and shift key, "
-        "Use a word processing application to write, edit, print and save simple assignments ",
-        "Use menu/tool bar functions (e.g. font/size/style/, line spacing, margins) to format, edit and print a document ",
-        "Highlight text, copy and paste text ",
-        "Copy and paste images within the document and from outside sources ",
-        "Insert and size a graphic in a document ",
-        "Proofread and edit writing using appropriate resources (e.g. dictionary, spell checker, grammar, and thesaurus) ",
-        "Demonstrate an understanding of the spreadsheet as a tool to record, organize and graph information. ",
-        "Identify and explain terms and concepts related to spreadsheets (i.e. cell, column, row, values, labels, chart graph) ",
-        "Enter/edit data in spreadsheets and perform calculations using formulas ",
-        "Use mathematical symbols e.g. + add, - minus, *multiply, /divide, ^ exponents ",
-        "Use spreadsheets and other applications to make predictions, solve problems and draw conclusions ",
-        "Create, edit and format text on a slide ",
-        "Create a series of slides and organize them to present research or convey an idea ",
-        "Copy and paste or import graphics; change their size and position on a slide ",
-        "Use painting and drawing tools/ applications to create and edit work ",
-        "Watch online videos and use play, pause, rewind and forward buttons while taking notes ",
-        "Explain and demonstrate compliance with classroom, school rules (Acceptable Use Policy) regarding responsible use of computers and networks ",
-        "Explain responsible uses of technology and digital information; describe possible consequences of inappropriate use ",
-        "Explain Fair Use Guidelines for the use of copyrighted materials,(e.g. text, images, music, video in student projects) and giving credit to media creators ",
-        "Identify and explain the strategies for the safe and efficient use of computers (e.g. passwords, virus protection software, spam filters, popup blockers)",
-        "Demonstrate safe email practices, recognition of the potentially public exposure of email and appropriate email etiquette ",
-        "Identify cyberbullying and describe strategies to deal with such a situation  ",
-        "Recognize and describe the potential risks and dangers associated with various forms of online communications ",
-        "Use age appropriate technologies to locate, collect, organize content from media collection for specific purposes, citing sources ",
-        "Perform basic searches on databases, (e.g. library, card catalog, encyclopedia) to locate information. Evaluate teacher-selected or self-selected Internet resources in terms of their usefulness for research ",
-        "Use content specific technology tools (e.g. environmental probes, sensors, and measuring devices, simulations) to gather and analyze data. ",
-        "Use Web 2.0 tools (e.g. online discussions, blogs and wikis) to gather and share information  ",
-        "Identify and analyze the purpose of a media message (to inform, persuade and entertain) ",
-        "Work collaboratively online with other students under teacher supervision  ",
-        "Use a variety of age-appropriate technologies (e.g. drawing program, presentation software) to communicate and exchange ideas ",
-        "Create projects that use text and various forms of graphics, audio, and video, (with proper citations) to communicate ideas. ",
-        "Use teacher developed guidelines to evaluate multimedia presentations for organization, content, design, presentation and appropriateness of citations. ",
-        "Use district approved Web 2.0 tools for communication and collaboration ",
-        " Identify successful troubleshooting strategies for minor hardware and software issues/problems (e.g., “frozen screen”)",
-        "Independently operate peripheral equipment (e.g., scanner, digital camera, camcorder), if available.  ",
-        "Compress and expand large files  ",
-        "Identify and use a variety of storage media (e.g., CDs, DVDs, flash drives, school servers, and online storage spaces), and provide a rationale for using a certain medium for a specific purpose.",
-        "Demonstrate automaticity in keyboarding skills by increasing accuracy and speed (For students with disabilities, demonstrate alternate input techniques as appropriate.)",
-        "Identify and assess the capabilities and limitations of emerging technologies. ",
-        "Demonstrate use of intermediate features in word processing application (e.g., tabs, indents, headers and footers, end notes, bullet and numbering, tables). ",
-        "Apply advanced formatting and page layout features when appropriate (e.g., columns, templates, and styles) to improve the appearance of documents and materials.",
-        "Highlight text, copy and paste text ",
-        "Use the Comment function in Review for peer editing of documents ",
-        "Use the Track Changes feature in Review for peer editing of documents ",
-        "Use spreadsheets to calculate, graph, organize, and present data in a variety of real-world settings and choose the most appropriate type to represent given data",
-        "Enter formulas and functions; use the auto-fill feature in a spreadsheet application.",
-        "Use functions of a spreadsheet application (e.g., sort, filter, find).",
-        "Use various number formats (e.g. scientific notations, percentages, exponents) as appropriate ",
-        "Use various number formats (e.g. scientific notations, percentages, exponents) as appropriate ",
-        "Differentiate between formulas with absolute and relative cell references. ",
-        "Use multiple sheets within a workbook, and create links among worksheets to solve problems. ",
-        "Draw two and three dimensional geometric shapes using a variety of technology tools ",
-        "Use and interpret scientific notations using a variety of technology applications ",
-        "Explain and demonstrate how specialized technology tools can be used for problem solving, decision making, and creativity in all subject areas (e.g., simulation software, environmental probes, computer aided design, "
-        "Create presentations for a variety of audiences and purposes with use of appropriate transitions and animations to add interest. ",
-        " Use a variety of technology tools (e.g., dictionary, thesaurus, grammar checker, calculator/graphing calculator) to maximize the accuracy of work. Make strategic use of digital media to enhance understanding ",
-        "Use painting and drawing tools/ applications to create and edit work ",
-        "Use note-taking skills while viewing online videos and using the play, pause, rewind and stop buttons. ",
-        "Independently use appropriate technology tools (e.g., graphic organizer, audio, visual) to define problems and propose hypotheses. ",
-        "Comply with the district’s Acceptable Use Policy related to ethical use, cyberbullying, privacy, plagiarism, spam, viruses, hacking, and file sharing. ",
-        "Explain Fair Use guidelines for using copyrighted materials and possible consequences (e.g., images, music, video, text) in school projects. ",
-        "Analyze and explain how media and technology can be used to distort, exaggerate, and misrepresent information. ",
-        "Give examples of hardware and applications that enable people with disabilities to use technology. ",
-        "Explain the potential risks associated with the use of networked digital environments (e.g., internet, mobile phones, wireless, LANs) and sharing personal information. ",
-        " Identify probable types and locations of Web sites by examining their domain names (e.g., edu, com, org, gov, au)",
-        "Use effective search strategies for locating and retrieving electronic information (e.g., using syntax and Boolean logic operators) ",
-        "Use search engines and online directories. Explain the differences among various search engines and how they rank results. ",
-        "Use appropriate academic language in online learning environments (e.g., post, thread, intranet, discussion forum, drop box, account, and password). ",
-        "Explain how technology can support communication and collaboration, personal and professional productivity, and lifelong learning. ",
-        "Write correct in-text citations and reference lists for text and images gathered from electronic sources. ",
-        "Use Web browsing to access information (e.g., enter a URL, access links, create bookmarks/favorites, print Web pages) ",
-        "Use and modify databases and spreadsheets to analyze data and propose solutions. ",
-        "Develop and use guidelines to evaluate the content, organization, design, use of citations, and presentation of technologically enhanced projects. ",
-        "Use a variety of media to present information for specific purposes (e.g., reports, research papers, presentations, newsletters, Web sites, podcasts, blogs), citing sources. ",
-        "Demonstrate how the use of various techniques and effect (e.g., editing, music, color, rhetorical devices) can be used to convey meaning in media. ",
-        "Use a variety of district approved Web 2.0 tools (e.g., email discussion groups, blogs, etc.) to collaborate and communicate with peers, experts, and other audiences using appropriate academic language. ",
-        "Use teacher developed guidelines to evaluate multimedia presentations for organization, content, design, presentation and appropriateness of citations ",
-        " Plan and implement a collaborative project with students in other classrooms and schools using telecommunications tools (e.g., e-mail, discussion forums, groupware, interactive Web sites, videoconferencing) ",
+        "Play make believe and dress-up activities",
     ],
 }

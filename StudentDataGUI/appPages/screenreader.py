@@ -1,32 +1,70 @@
 #!/usr/bin/env python3
 
 """
-Screen Reader Skills Page (Updated for Normalized SQL Schema)
-- Uses new schema from updated_sql_bestpractice.py
-- Uploads and downloads screen reader data using normalized tables and foreign keys
+Copyright 2025  Michael Ryan Hunsaker, M.Ed., Ph.D.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+     https://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
 """
 
 import sqlite3
 from pathlib import Path
 import datetime
 import pandas as pd
-import numpy as np
 import plotly.graph_objs as go
 from plotly.subplots import make_subplots
 from nicegui import ui
+from StudentDataGUI.appHelpers.helpers import students
+from ..appTheming import theme
 
-# --- CONFIGURATION ---
 from StudentDataGUI.appHelpers.helpers import dataBasePath
+from StudentDataGUI.appHelpers.artifacts import write_session_artifacts
+
+# Database is now stored in /app_home at the project root
 DATABASE_PATH = dataBasePath
 SCREENREADER_PROGRESS_TYPE = "ScreenReader"  # Must match ProgressType.name in DB
 
 
 # --- UTILITY FUNCTIONS ---
 
-def get_connection():
+
+def get_connection() -> sqlite3.Connection:
+    """
+    Establish a connection to the SQLite database.
+
+    Returns
+    -------
+    sqlite3.Connection
+        A connection object to interact with the database.
+    """
     return sqlite3.connect(DATABASE_PATH)
 
-def get_or_create_student(conn, name):
+
+def get_or_create_student(conn: sqlite3.Connection, name: str) -> int:
+    """
+    Retrieve or create a student record in the database.
+
+    Parameters
+    ----------
+    conn : sqlite3.Connection
+        The database connection object.
+    name : str
+        The name of the student.
+
+    Returns
+    -------
+    int
+        The ID of the student in the database.
+    """
     cur = conn.cursor()
     cur.execute("SELECT id FROM Student WHERE name = ?", (name,))
     row = cur.fetchone()
@@ -36,64 +74,129 @@ def get_or_create_student(conn, name):
     conn.commit()
     return cur.lastrowid
 
-def get_progress_type_id(conn, name):
+
+def get_progress_type_id(conn: sqlite3.Connection, name: str) -> int:
+    """
+    Retrieve or create a progress type record in the database.
+
+    Parameters
+    ----------
+    conn : sqlite3.Connection
+        The database connection object.
+    name : str
+        The name of the progress type.
+
+    Returns
+    -------
+    int
+        The ID of the progress type in the database.
+    """
     cur = conn.cursor()
     cur.execute("SELECT id FROM ProgressType WHERE name = ?", (name,))
     row = cur.fetchone()
     if row:
         return row[0]
-    # If not present, create it
-    cur.execute("INSERT INTO ProgressType (name, description) VALUES (?, ?)", (name, "Screen Reader skills progression"))
+    cur.execute(
+        "INSERT INTO ProgressType (name, description) VALUES (?, ?)",
+        (name, "Screen Reader skills progression"),
+    )
     conn.commit()
     return cur.lastrowid
 
-def get_screenreader_parts(conn, progress_type_id):
+
+def get_screenreader_parts(
+    conn: sqlite3.Connection, progress_type_id: int
+) -> dict[str, int]:
     """
-    Returns a dict mapping code (e.g. 'P1_1') to part_id for ScreenReader assessment.
-    If not present, creates the standard set.
+    Retrieve or create the standard set of screen reader assessment parts.
+
+    Parameters
+    ----------
+    conn : sqlite3.Connection
+        The database connection object.
+    progress_type_id : int
+        The ID of the progress type.
+
+    Returns
+    -------
+    dict[str, int]
+        A dictionary mapping part codes (e.g., 'P1_1') to their corresponding IDs.
     """
     cur = conn.cursor()
-    cur.execute("SELECT code, id FROM AssessmentPart WHERE progress_type_id = ?", (progress_type_id,))
+    cur.execute(
+        "SELECT code, id FROM AssessmentPart WHERE progress_type_id = ?",
+        (progress_type_id,),
+    )
     rows = cur.fetchall()
-    if rows and len(rows) >= 30:
+    if rows and len(rows) >= 27:
         return {code: pid for code, pid in rows}
-    # If not present, create standard screenreader parts
     screenreader_parts = [
-        # Phase 1
-        ("P1_1", "Turn ON/OFF"), ("P1_2", "Use Modifier Keys"), ("P1_3", "Use Reading Commands"), ("P1_4", "ID Titles"),
-        ("P1_5", "Access Documents"), ("P1_6", "Switch Program Focus"),
-        # Phase 2
-        ("P2_1", "Type with all keys"), ("P2_2", "Change Screen Reader Settings"),
-        ("P2_3", "Write documents"), ("P2_4", "Copy/Paste Text"),
-        # Phase 3
-        ("P3_1", "Define HTML Elements"), ("P3_2", "ID HTML Elements"), ("P3_3", "Navigate to Address Bar"),
-        ("P3_4", "TAB Navigation"), ("P3_5", "Quick Key Navigation"), ("P3_6", "Elements List Navigation"),
-        ("P3_7", "Justify Navigation Method"), ("P3_8", "ALT-TAB Focus"), ("P3_9", "Toggle Screen Reader Mode"),
-        ("P3_10", "Navigate a Table"), ("P3_11", "Navigation Sequence"),
-        # Phase 4
-        ("P4_1", "Save and Open Files"), ("P4_2", "Create Folders"), ("P4_3", "Navigate Cloud Storage"),
-        ("P4_4", "Download from Internet"), ("P4_5", "UNZIP Folders"), ("P4_6", "Use Virtual Cursor"),
+        ("P1_1", "Turn ON/OFF"),
+        ("P1_2", "Use Modifier Keys"),
+        ("P1_3", "Use Reading Commands"),
+        ("P1_4", "ID Titles"),
+        ("P1_5", "Access Documents"),
+        ("P1_6", "Switch Program Focus"),
+        ("P2_1", "Type with all keys"),
+        ("P2_2", "Change Screen Reader Settings"),
+        ("P2_3", "Write documents"),
+        ("P2_4", "Copy/Paste Text"),
+        ("P3_1", "Define HTML Elements"),
+        ("P3_2", "ID HTML Elements"),
+        ("P3_3", "Navigate to Address Bar"),
+        ("P3_4", "TAB Navigation"),
+        ("P3_5", "Quick Key Navigation"),
+        ("P3_6", "Elements List Navigation"),
+        ("P3_7", "Justify Navigation Method"),
+        ("P3_8", "ALT-TAB Focus"),
+        ("P3_9", "Toggle Screen Reader Mode"),
+        ("P3_10", "Navigate a Table"),
+        ("P3_11", "Navigation Sequence"),
+        ("P4_1", "Save and Open Files"),
+        ("P4_2", "Create Folders"),
+        ("P4_3", "Navigate Cloud Storage"),
+        ("P4_4", "Download from Internet"),
+        ("P4_5", "UNZIP Folders"),
+        ("P4_6", "Use Virtual Cursor"),
         ("P4_7", "Use Built-In OCR"),
     ]
     for code, desc in screenreader_parts:
         cur.execute(
             "INSERT OR IGNORE INTO AssessmentPart (progress_type_id, code, description) VALUES (?, ?, ?)",
-            (progress_type_id, code, desc)
+            (progress_type_id, code, desc),
         )
     conn.commit()
-    cur.execute("SELECT code, id FROM AssessmentPart WHERE progress_type_id = ?", (progress_type_id,))
+    cur.execute(
+        "SELECT code, id FROM AssessmentPart WHERE progress_type_id = ?",
+        (progress_type_id,),
+    )
     return {code: pid for code, pid in cur.fetchall()}
 
-def create_screenreader_session(conn, student_id, progress_type_id, date, notes=None):
+
+def create_screenreader_session(
+    conn: sqlite3.Connection,
+    student_id: int,
+    progress_type_id: int,
+    date: str,
+    notes: str = None,
+) -> int:
     cur = conn.cursor()
     cur.execute(
         "INSERT INTO ProgressSession (student_id, progress_type_id, date, notes) VALUES (?, ?, ?, ?)",
-        (student_id, progress_type_id, date, notes)
+        (student_id, progress_type_id, date, notes),
     )
     conn.commit()
     return cur.lastrowid
 
-def insert_screenreader_results(conn, session_id, part_scores, student_name, date_val, notes=None):
+
+def insert_screenreader_results(
+    conn: sqlite3.Connection,
+    session_id: int,
+    part_scores: dict[str, tuple[int, int]],
+    student_name: str,
+    date_val: str,
+    notes: str = None,
+) -> None:
     """
     part_scores: dict of {code: score}
     """
@@ -101,27 +204,32 @@ def insert_screenreader_results(conn, session_id, part_scores, student_name, dat
     for code, (part_id, score) in part_scores.items():
         cur.execute(
             "INSERT INTO AssessmentResult (session_id, part_id, score) VALUES (?, ?, ?)",
-            (session_id, part_id, score)
+            (session_id, part_id, score),
         )
     conn.commit()
-    # Save JSON snapshot of the inserted data
-    import json
-    from datetime import datetime
-    from StudentDataGUI.appHelpers.helpers import DATA_ROOT
-    now = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-    student_dir = Path(DATA_ROOT) / "StudentDataFiles" / student_name
-    student_dir.mkdir(parents=True, exist_ok=True)
-    json_path = student_dir / f"screenreader_{now}.json"
-    json_data = {
-        "student_name": student_name,
-        "date": date_val,
-        "notes": notes,
-        "part_scores": {code: score for code, (part_id, score) in part_scores.items()}
-    }
-    with open(json_path, "w") as f:
-        json.dump(json_data, f, indent=2)
 
-def fetch_screenreader_data_for_student(conn, student_id, progress_type_id, part_codes):
+    # Use shared artifact writer (vertical layout like Braille) for CSV + JSON
+    from StudentDataGUI.appHelpers.helpers import DATA_ROOT
+
+    normalized_scores = {code: score for code, (part_id, score) in part_scores.items()}
+    write_session_artifacts(
+        base_dir=DATA_ROOT,
+        student_name=student_name,
+        date_val=date_val,
+        part_scores=normalized_scores,
+        notes=notes,
+        prefix="ScreenReader",
+        layout="vertical",
+        include_json=True,
+    )
+
+
+def fetch_screenreader_data_for_student(
+    conn: sqlite3.Connection,
+    student_id: int,
+    progress_type_id: int,
+    part_codes: list[str],
+) -> pd.DataFrame:
     """
     Returns a DataFrame with columns: date, code1, code2, ..., codeN
     """
@@ -129,7 +237,7 @@ def fetch_screenreader_data_for_student(conn, student_id, progress_type_id, part
     cur = conn.cursor()
     cur.execute(
         "SELECT id, date FROM ProgressSession WHERE student_id = ? AND progress_type_id = ? ORDER BY date ASC",
-        (student_id, progress_type_id)
+        (student_id, progress_type_id),
     )
     sessions = cur.fetchall()
     if not sessions:
@@ -137,82 +245,152 @@ def fetch_screenreader_data_for_student(conn, student_id, progress_type_id, part
     session_ids = [sid for sid, _ in sessions]
     session_dates = {sid: date for sid, date in sessions}
     # Get all results for these sessions
-    format_codes = ','.join('?' for _ in part_codes)
+    format_codes = ",".join("?" for _ in part_codes)
     cur.execute(
         f"""
         SELECT ar.session_id, ap.code, ar.score
         FROM AssessmentResult ar
         JOIN AssessmentPart ap ON ar.part_id = ap.id
-        WHERE ar.session_id IN ({','.join('?' for _ in session_ids)}) AND ap.code IN ({format_codes})
+        WHERE ar.session_id IN ({",".join("?" for _ in session_ids)}) AND ap.code IN ({format_codes})
         """,
-        session_ids + list(part_codes)
+        session_ids + list(part_codes),
     )
     rows = cur.fetchall()
     # Build DataFrame
     data = {}
     for sid in session_ids:
         data[sid] = {code: None for code in part_codes}
-        data[sid]['date'] = session_dates[sid]
+        data[sid]["date"] = session_dates[sid]
     for sid, code, score in rows:
         data[sid][code] = score
-    df = pd.DataFrame.from_dict(data, orient='index')
-    df = df.sort_values('date')
-    df['date'] = pd.to_datetime(df['date'])
+    df = pd.DataFrame.from_dict(data, orient="index")
+    df = df.sort_values("date")
+    df["date"] = pd.to_datetime(df["date"])
     return df
+
 
 # --- UI LOGIC ---
 
+
 def screenreader_skills_ui():
-    with ui.card():
-        ui.label("Screen Reader Skills (Normalized DB)").classes("text-h4 text-grey-8")
-        student_name = ui.input("Student Name", placeholder="Enter student name")
+    # Use consistent page title styling (outside of card)
+    ui.label("Screen Reader Skills").classes("text-h4 text-grey-8")
+    with theme.card():
+        student_name = (
+            ui.select(options=students, label="Student Name")
+            .props("aria-describedby=student_name_error")
+            .style("width: 500px")
+        )
+        student_name_error = (
+            ui.label("Student name is required.")
+            .props("id=student_name_error")
+            .classes("text-red-700")
+            .style("display:none")
+        )
         ui.label("Date")
-        date_input = ui.date(value=datetime.date.today())
+        date_input = (
+            ui.date(value=datetime.date.today())
+            .props("aria-describedby=date_error")
+            .style("width: 500px")
+        )
+        date_error = (
+            ui.label("Date is required.")
+            .props("id=date_error")
+            .classes("text-red-700")
+            .style("display:none")
+        )
         # ScreenReader part codes and labels
         screenreader_parts = [
-            ("P1_1", "Turn ON/OFF"), ("P1_2", "Use Modifier Keys"), ("P1_3", "Use Reading Commands"), ("P1_4", "ID Titles"),
-            ("P1_5", "Access Documents"), ("P1_6", "Switch Program Focus"),
-            ("P2_1", "Type with all keys"), ("P2_2", "Change Screen Reader Settings"),
-            ("P2_3", "Write documents"), ("P2_4", "Copy/Paste Text"),
-            ("P3_1", "Define HTML Elements"), ("P3_2", "ID HTML Elements"), ("P3_3", "Navigate to Address Bar"),
-            ("P3_4", "TAB Navigation"), ("P3_5", "Quick Key Navigation"), ("P3_6", "Elements List Navigation"),
-            ("P3_7", "Justify Navigation Method"), ("P3_8", "ALT-TAB Focus"), ("P3_9", "Toggle Screen Reader Mode"),
-            ("P3_10", "Navigate a Table"), ("P3_11", "Navigation Sequence"),
-            ("P4_1", "Save and Open Files"), ("P4_2", "Create Folders"), ("P4_3", "Navigate Cloud Storage"),
-            ("P4_4", "Download from Internet"), ("P4_5", "UNZIP Folders"), ("P4_6", "Use Virtual Cursor"),
+            ("P1_1", "Turn ON/OFF"),
+            ("P1_2", "Use Modifier Keys"),
+            ("P1_3", "Use Reading Commands"),
+            ("P1_4", "ID Titles"),
+            ("P1_5", "Access Documents"),
+            ("P1_6", "Switch Program Focus"),
+            ("P2_1", "Type with all keys"),
+            ("P2_2", "Change Screen Reader Settings"),
+            ("P2_3", "Write documents"),
+            ("P2_4", "Copy/Paste Text"),
+            ("P3_1", "Define HTML Elements"),
+            ("P3_2", "ID HTML Elements"),
+            ("P3_3", "Navigate to Address Bar"),
+            ("P3_4", "TAB Navigation"),
+            ("P3_5", "Quick Key Navigation"),
+            ("P3_6", "Elements List Navigation"),
+            ("P3_7", "Justify Navigation Method"),
+            ("P3_8", "ALT-TAB Focus"),
+            ("P3_9", "Toggle Screen Reader Mode"),
+            ("P3_10", "Navigate a Table"),
+            ("P3_11", "Navigation Sequence"),
+            ("P4_1", "Save and Open Files"),
+            ("P4_2", "Create Folders"),
+            ("P4_3", "Navigate Cloud Storage"),
+            ("P4_4", "Download from Internet"),
+            ("P4_5", "UNZIP Folders"),
+            ("P4_6", "Use Virtual Cursor"),
             ("P4_7", "Use Built-In OCR"),
         ]
         part_inputs = {}
         for code, label in screenreader_parts:
-            part_inputs[code] = ui.number(label=label, value=0, min=0, max=3, step=1)
-        notes_input = ui.textarea("Notes (optional)")
+            part_inputs[code] = ui.number(
+                label=label, value=0, min=0, max=3, step=1
+            ).style("width: 500px")
+        notes_input = ui.textarea("Notes (optional)").style("width: 500px")
 
         def save_screenreader_data():
             name = student_name.value.strip()
             date_val = date_input.value
             notes = notes_input.value.strip()
-            if not name or not date_val:
-                ui.notify("Student name and date are required.", type="negative")
+            error_found = False
+            if not name:
+                student_name_error.style("display:block")
+                student_name.props("aria-invalid=true")
+                student_name.run_javascript("this.focus()")
+                error_found = True
+            else:
+                student_name_error.style("display:none")
+                student_name.props("aria-invalid=false")
+            if not date_val:
+                date_error.style("display:block")
+                date_input.props("aria-invalid=true")
+                if not error_found:
+                    date_input.run_javascript("this.focus()")
+                error_found = True
+            else:
+                date_error.style("display:none")
+                date_input.props("aria-invalid=false")
+            if error_found:
                 return
             # Connect and insert
             conn = get_connection()
             try:
                 student_id = get_or_create_student(conn, name)
-                progress_type_id = get_progress_type_id(conn, SCREENREADER_PROGRESS_TYPE)
+                progress_type_id = get_progress_type_id(
+                    conn, SCREENREADER_PROGRESS_TYPE
+                )
                 part_ids = get_screenreader_parts(conn, progress_type_id)
-                session_id = create_screenreader_session(conn, student_id, progress_type_id, date_val, notes)
+                session_id = create_screenreader_session(
+                    conn, student_id, progress_type_id, date_val, notes
+                )
                 part_scores = {}
                 for code in part_inputs:
                     score = part_inputs[code].value
                     part_scores[code] = (part_ids[code], score)
-                insert_screenreader_results(conn, session_id, part_scores)
-                ui.notify("Screen Reader data saved successfully!", type="positive")
+                insert_screenreader_results(
+                    conn, session_id, part_scores, name, date_val, notes
+                )
+                ui.notify(
+                    "Screen Reader data saved successfully and appended to CSV!",
+                    type="positive",
+                )
             except Exception as e:
                 ui.notify(f"Error saving data: {e}", type="negative")
             finally:
                 conn.close()
 
-        ui.button("Save Screen Reader Data", on_click=save_screenreader_data, color="primary")
+        ui.button(
+            "Save Screen Reader Data", on_click=save_screenreader_data, color="primary"
+        )
 
         def plot_screenreader_data():
             name = student_name.value.strip()
@@ -228,10 +406,14 @@ def screenreader_skills_ui():
                     ui.notify("Student not found.", type="negative")
                     return
                 student_id = row[0]
-                progress_type_id = get_progress_type_id(conn, SCREENREADER_PROGRESS_TYPE)
+                progress_type_id = get_progress_type_id(
+                    conn, SCREENREADER_PROGRESS_TYPE
+                )
                 part_ids = get_screenreader_parts(conn, progress_type_id)
                 part_codes = list(part_ids.keys())
-                df = fetch_screenreader_data_for_student(conn, student_id, progress_type_id, part_codes)
+                df = fetch_screenreader_data_for_student(
+                    conn, student_id, progress_type_id, part_codes
+                )
                 if df.empty:
                     ui.notify("No screen reader data for this student.", type="warning")
                     return
@@ -241,19 +423,23 @@ def screenreader_skills_ui():
                 print(df.to_string())
                 # Plotting
                 fig = make_subplots(
-                    rows=5, cols=2,
+                    rows=5,
+                    cols=2,
                     subplot_titles=[
-                        "Phase 1a: Reading", "Phase 2: Writing",
-                        "Phase 1b: Reading", "Phase 3a: Internet",
-                        "Phase 3b: Internet", "Phase 3c: Internet",
-                        "Phase 4a: File Management", "Phase 4b: File Management",
-                        "", ""
-                    ]
+                        "Phase 1a: Reading",
+                        "Phase 2: Writing",
+                        "Phase 1b: Reading",
+                        "Phase 3a: Internet",
+                        "Phase 3b: Internet",
+                        "Phase 3c: Internet",
+                        "Phase 4a: File Management",
+                        "Phase 4b: File Management",
+                        "",
+                        "",
+                    ],
                 )
                 # Map codes to subplot positions (simplified for demonstration)
-                phase_map = {
-                    "P1": (1, 1), "P2": (1, 2), "P3": (2, 1), "P4": (2, 2)
-                }
+                phase_map = {"P1": (1, 1), "P2": (1, 2), "P3": (2, 1), "P4": (2, 2)}
                 # For more granular mapping, you can expand this dictionary
                 for code in part_codes:
                     # Assign to subplots based on code prefix
@@ -269,22 +455,24 @@ def screenreader_skills_ui():
                         row, col = 5, 2
                     fig.add_trace(
                         go.Scatter(
-                            x=df['date'],
+                            x=df["date"],
                             y=df[code],
                             mode="lines+markers",
                             name=code,
-                            hovertemplate=f"{code}: "+"%{y}"
+                            hovertemplate=f"{code}: " + "%{y}",
                         ),
-                        row=row, col=col
+                        row=row,
+                        col=col,
                     )
                 fig.update_layout(
                     template="simple_white",
                     title_text=f"{name}: Screen Reader Skills Progression",
-                    hovermode="x unified"
+                    hovermode="x unified",
                 )
                 # Save HTML to student folder with timestamp
                 from datetime import datetime
                 from StudentDataGUI.appHelpers.helpers import DATA_ROOT
+
                 now = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
                 student_dir = Path(DATA_ROOT) / "StudentDataFiles" / name
                 student_dir.mkdir(parents=True, exist_ok=True)
@@ -296,15 +484,22 @@ def screenreader_skills_ui():
             finally:
                 conn.close()
 
-        ui.button("Plot Screen Reader Data", on_click=plot_screenreader_data, color="secondary")
+        ui.button(
+            "Plot Screen Reader Data",
+            on_click=plot_screenreader_data,
+            color="secondary",
+        )
+
 
 # --- PAGE ENTRY POINT ---
-@ui.page("/screenreader_skills_ui")
 def create():
-    screenreader_skills_ui()
+    with theme.frame("- SCREEN READER SKILLS -"):
+        screenreader_skills_ui()
+
 
 # If running standalone for testing
 if __name__ == "__main__":
     from nicegui import app
+
     create()
     app.run()

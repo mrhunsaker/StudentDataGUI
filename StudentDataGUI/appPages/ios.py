@@ -1,31 +1,65 @@
 #!/usr/bin/env python3
 
 """
-iOS/iPad OS Skills Page (Updated for Normalized SQL Schema)
-- Uses new schema from updated_sql_bestpractice.py
-- Uploads and downloads iOS data using normalized tables and foreign keys
+ Copyright 2025  Michael Ryan Hunsaker, M.Ed., Ph.D.
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+      https://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
 """
 
 import sqlite3
 from pathlib import Path
 import datetime
 import pandas as pd
-import numpy as np
 import plotly.graph_objs as go
 from plotly.subplots import make_subplots
 from nicegui import ui
+from StudentDataGUI.appHelpers.helpers import students
+from ..appTheming import theme
 
-# --- CONFIGURATION ---
 from StudentDataGUI.appHelpers.helpers import dataBasePath
+# Database is now stored in /app_home at the project root
 DATABASE_PATH = dataBasePath
 IOS_PROGRESS_TYPE = "iOS"  # Must match ProgressType.name in DB
 
 # --- UTILITY FUNCTIONS ---
 
-def get_connection():
+def get_connection() -> sqlite3.Connection:
+    """
+    Establish a connection to the SQLite database.
+
+    Returns
+    -------
+    sqlite3.Connection
+        A connection object to interact with the SQLite database.
+    """
     return sqlite3.connect(DATABASE_PATH)
 
-def get_or_create_student(conn, name):
+def get_or_create_student(conn: sqlite3.Connection, name: str) -> int:
+    """
+    Retrieve or create a student record in the database.
+
+    Parameters
+    ----------
+    conn : sqlite3.Connection
+        The database connection object.
+    name : str
+        The name of the student.
+
+    Returns
+    -------
+    int
+        The ID of the student in the database.
+    """
     cur = conn.cursor()
     cur.execute("SELECT id FROM Student WHERE name = ?", (name,))
     row = cur.fetchone()
@@ -35,7 +69,22 @@ def get_or_create_student(conn, name):
     conn.commit()
     return cur.lastrowid
 
-def get_progress_type_id(conn, name):
+def get_progress_type_id(conn: sqlite3.Connection, name: str) -> int:
+    """
+    Retrieve or create a progress type record in the database.
+
+    Parameters
+    ----------
+    conn : sqlite3.Connection
+        The database connection object.
+    name : str
+        The name of the progress type.
+
+    Returns
+    -------
+    int
+        The ID of the progress type in the database.
+    """
     cur = conn.cursor()
     cur.execute("SELECT id FROM ProgressType WHERE name = ?", (name,))
     row = cur.fetchone()
@@ -46,10 +95,21 @@ def get_progress_type_id(conn, name):
     conn.commit()
     return cur.lastrowid
 
-def get_ios_parts(conn, progress_type_id):
+def get_ios_parts(conn: sqlite3.Connection, progress_type_id: int) -> dict[str, int]:
     """
-    Returns a dict mapping code (e.g. 'P1_1') to part_id for iOS assessment.
-    If not present, creates the standard set.
+    Retrieve or create iOS assessment parts in the database.
+
+    Parameters
+    ----------
+    conn : sqlite3.Connection
+        The database connection object.
+    progress_type_id : int
+        The ID of the progress type for iOS assessments.
+
+    Returns
+    -------
+    dict[str, int]
+        A dictionary mapping assessment part codes (e.g., 'P1_1') to their IDs.
     """
     cur = conn.cursor()
     cur.execute("SELECT code, id FROM AssessmentPart WHERE progress_type_id = ?", (progress_type_id,))
@@ -84,7 +144,7 @@ def get_ios_parts(conn, progress_type_id):
     cur.execute("SELECT code, id FROM AssessmentPart WHERE progress_type_id = ?", (progress_type_id,))
     return {code: pid for code, pid in cur.fetchall()}
 
-def create_ios_session(conn, student_id, progress_type_id, date, notes=None):
+def create_ios_session(conn: sqlite3.Connection, student_id: int, progress_type_id: int, date: str, notes: str | None = None) -> int:
     cur = conn.cursor()
     cur.execute(
         "INSERT INTO ProgressSession (student_id, progress_type_id, date, notes) VALUES (?, ?, ?, ?)",
@@ -93,7 +153,7 @@ def create_ios_session(conn, student_id, progress_type_id, date, notes=None):
     conn.commit()
     return cur.lastrowid
 
-def insert_ios_results(conn, session_id, part_scores, student_name, date_val, notes=None):
+def insert_ios_results(conn: sqlite3.Connection, session_id: int, part_scores: dict[str, tuple[int, int]], student_name: str, date_val: str, notes: str | None = None) -> None:
     """
     part_scores: dict of {code: score}
     """
@@ -121,7 +181,7 @@ def insert_ios_results(conn, session_id, part_scores, student_name, date_val, no
     with open(json_path, "w") as f:
         json.dump(json_data, f, indent=2)
 
-def fetch_ios_data_for_student(conn, student_id, progress_type_id, part_codes):
+def fetch_ios_data_for_student(conn: sqlite3.Connection, student_id: int, progress_type_id: int, part_codes: list[str]) -> pd.DataFrame:
     """
     Returns a DataFrame with columns: date, code1, code2, ..., codeN
     """
@@ -162,12 +222,13 @@ def fetch_ios_data_for_student(conn, student_id, progress_type_id, part_codes):
 
 # --- UI LOGIC ---
 
-def ios_skills_ui():
-    with ui.card():
-        ui.label("iOS / iPad OS Skills (Normalized DB)").classes("text-h4 text-grey-8")
-        student_name = ui.input("Student Name", placeholder="Enter student name")
+def ios_skills_ui() -> None:
+    # Consistent page title styling
+    ui.label("iOS / iPad OS Skills").classes("text-h4 text-grey-8")
+    with theme.card():
+        student_name = ui.select(options=students, label="Student Name").style("width: 500px")
         ui.label("Date")
-        date_input = ui.date(value=datetime.date.today())
+        date_input = ui.date(value=datetime.date.today()).style("width: 500px;")
         # iOS part codes and labels
         ios_parts = [
             ("P1_1", "Turn Device On/Off"), ("P1_2", "Turn VoiceOver On/Off"), ("P1_3", "Gestures to Click Icons"),
@@ -182,16 +243,39 @@ def ios_skills_ui():
             ("P6_1", "Install Apps"), ("P6_2", "Update Apps"), ("P6_3", "Delete Apps"), ("P6_4", "Manage Storage"), ("P6_5", "Accessibility Settings"), ("P6_6", "Screen Time"), ("P6_7", "Parental Controls"), ("P6_8", "Bluetooth"), ("P6_9", "Wi-Fi"), ("P6_10", "AirDrop"), ("P6_11", "Hotspot"),
         ]
         part_inputs = {}
+        # Accessible required fields
+        student_name = ui.select(options=students, label="Student Name").props('aria-describedby=student_name_error').style("width: 500px")
+        student_name_error = ui.label("Student name is required.").props('id=student_name_error').classes('text-red-700').style('display:none')
+        ui.label("Date")
+        date_input = ui.date(value=datetime.date.today()).props('aria-describedby=date_error').style("width: 500px")
+        date_error = ui.label("Date is required.").props('id=date_error').classes('text-red-700').style('display:none')
         for code, label in ios_parts:
             part_inputs[code] = ui.number(label=label, value=0, min=0, max=3, step=1)
-        notes_input = ui.textarea("Notes (optional)")
+        notes_input = ui.textarea("Notes (optional)").style("width: 500px;")
 
-        def save_ios_data():
+        def save_ios_data() -> None:
             name = student_name.value.strip()
             date_val = date_input.value
             notes = notes_input.value.strip()
-            if not name or not date_val:
-                ui.notify("Student name and date are required.", type="negative")
+            error_found = False
+            if not name:
+                student_name_error.style('display:block')
+                student_name.props('aria-invalid=true')
+                student_name.run_javascript('this.focus()')
+                error_found = True
+            else:
+                student_name_error.style('display:none')
+                student_name.props('aria-invalid=false')
+            if not date_val:
+                date_error.style('display:block')
+                date_input.props('aria-invalid=true')
+                if not error_found:
+                    date_input.run_javascript('this.focus()')
+                error_found = True
+            else:
+                date_error.style('display:none')
+                date_input.props('aria-invalid=false')
+            if error_found:
                 return
             # Connect and insert
             conn = get_connection()
@@ -205,7 +289,38 @@ def ios_skills_ui():
                     score = part_inputs[code].value
                     part_scores[code] = (part_ids[code], score)
                 insert_ios_results(conn, session_id, part_scores)
-                ui.notify("iOS data saved successfully!", type="positive")
+
+                # Append data to iOSProgression.csv
+                from StudentDataGUI.appHelpers.helpers import DATA_ROOT
+                import csv
+                ios_csv_path = Path(DATA_ROOT) / "StudentDataFiles" / name / "iOSProgression.csv"
+                ios_csv_path.parent.mkdir(parents=True, exist_ok=True)
+                # Prepare data for horizontal writing
+                header = ["date"] + list(part_scores.keys())
+                row = [date_val] + [score for _, score in part_scores.values()]
+
+                # Write data horizontally
+                write_header = not ios_csv_path.exists()  # Write header only if file doesn't exist
+                with open(ios_csv_path, mode="a", newline="") as csvfile:
+                    writer = csv.writer(csvfile)
+                    if write_header:
+                        writer.writerow(header)
+                    writer.writerow(row)
+
+                # Save JSON snapshot of the inserted data
+                import json
+                from datetime import datetime
+                json_path = Path(DATA_ROOT) / "StudentDataFiles" / name / f"ios_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.json"
+                json_data = {
+                    "student_name": name,
+                    "date": str(date_val),
+                    "notes": notes,
+                    "part_scores": {code: score for code, (part_id, score) in part_scores.items()}
+                }
+                with open(json_path, "w") as f:
+                    json.dump(json_data, f, indent=2)
+
+                ui.notify("iOS data saved successfully and appended to CSV!", type="positive")
             except Exception as e:
                 ui.notify(f"Error saving data: {e}", type="negative")
             finally:
@@ -213,7 +328,7 @@ def ios_skills_ui():
 
         ui.button("Save iOS Data", on_click=save_ios_data, color="primary")
 
-        def plot_ios_data():
+        def plot_ios_data() -> None:
             name = student_name.value.strip()
             if not name:
                 ui.notify("Enter student name to plot.", type="negative")
@@ -281,9 +396,9 @@ def ios_skills_ui():
         ui.button("Plot iOS Data", on_click=plot_ios_data, color="secondary")
 
 # --- PAGE ENTRY POINT ---
-@ui.page("/ios_skills_ui")
 def create():
-    ios_skills_ui()
+    with theme.frame("- iOS SKILLS -"):
+        ios_skills_ui()
 
 # If running standalone for testing
 if __name__ == "__main__":

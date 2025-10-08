@@ -8,9 +8,10 @@ ENV PYTHONPATH=/app
 ENV PATH="/app/venv/bin:$PATH"
 ENV NICEGUI_HOST=0.0.0.0
 ENV NICEGUI_PORT=8080
-ENV MPLCONFIGDIR=/tmp/matplotlib
 ENV HOME=/app/home
-ENV XDG_RUNTIME_DIR=/tmp/runtime
+ENV APP_HOME=/app/home
+ENV MPLCONFIGDIR=/app/home/.matplotlib
+ENV XDG_RUNTIME_DIR=/app/home/.runtime
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Install system dependencies
@@ -52,15 +53,16 @@ RUN python3 -m venv /app/venv && \
 COPY StudentDataGUI/ ./StudentDataGUI/
 COPY __init__.py .
 
+# Ensure local font files are baked into the image at the package path
+COPY StudentDataGUI/appHelpers/fonts/ ./StudentDataGUI/appHelpers/fonts/
+
 # Create necessary directories with proper permissions for rootless Podman
 RUN mkdir -p /app/home/.cache/fontconfig \
-             /app/data \
-             /app/database \
-             /app/logs \
-             /tmp/matplotlib \
-             /tmp/runtime && \
-    chmod -R 755 /app && \
-    chmod -R 777 /tmp/matplotlib /tmp/runtime
+             /app/home/.matplotlib \
+             /app/home/.runtime \
+             /app/home/StudentDatabase/errorLogs \
+    && chmod -R 755 /app \
+    && chmod -R 777 /app/home/.matplotlib /app/home/.runtime
 
 # Expose port
 EXPOSE 8080

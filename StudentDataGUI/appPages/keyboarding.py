@@ -1,9 +1,19 @@
 #!/usr/bin/env python3
 
 """
-Keyboarding Skills Page (Updated for Normalized SQL Schema)
-- Uses new schema from updated_sql_bestpractice.py
-- Uploads and downloads keyboarding data using normalized tables and foreign keys
+ Copyright 2025  Michael Ryan Hunsaker, M.Ed., Ph.D.
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+      https://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
 """
 
 import sqlite3
@@ -13,18 +23,43 @@ import pandas as pd
 import plotly.graph_objs as go
 from plotly.subplots import make_subplots
 from nicegui import ui
+from StudentDataGUI.appHelpers.helpers import students
+from ..appTheming import theme
 
-# --- CONFIGURATION ---
 from StudentDataGUI.appHelpers.helpers import dataBasePath
+# Database is now stored in /app_home at the project root
 DATABASE_PATH = dataBasePath
 KEYBOARDING_PROGRESS_TYPE = "Keyboarding"  # Must match ProgressType.name in DB
 
 # --- UTILITY FUNCTIONS ---
 
-def get_connection():
+def get_connection() -> sqlite3.Connection:
+    """
+    Establish a connection to the SQLite database.
+
+    Returns
+    -------
+    sqlite3.Connection
+        A connection object to interact with the SQLite database.
+    """
     return sqlite3.connect(DATABASE_PATH)
 
-def get_or_create_student(conn, name):
+def get_or_create_student(conn: sqlite3.Connection, name: str) -> int:
+    """
+    Retrieve or create a student record in the database.
+
+    Parameters
+    ----------
+    conn : sqlite3.Connection
+        The database connection object.
+    name : str
+        The name of the student.
+
+    Returns
+    -------
+    int
+        The ID of the student in the database.
+    """
     cur = conn.cursor()
     cur.execute("SELECT id FROM Student WHERE name = ?", (name,))
     row = cur.fetchone()
@@ -34,18 +69,53 @@ def get_or_create_student(conn, name):
     conn.commit()
     return cur.lastrowid
 
-def get_progress_type_id(conn, name):
+def get_progress_type_id(conn: sqlite3.Connection, name: str) -> int:
+    """
+    Retrieve or create a progress type record in the database.
+
+    Parameters
+    ----------
+    conn : sqlite3.Connection
+        The database connection object.
+    name : str
+        The name of the progress type.
+
+    Returns
+    -------
+    int
+        The ID of the progress type in the database.
+    """
     cur = conn.cursor()
     cur.execute("SELECT id FROM ProgressType WHERE name = ?", (name,))
     row = cur.fetchone()
     if row:
         return row[0]
-    # If not present, create it
     cur.execute("INSERT INTO ProgressType (name, description) VALUES (?, ?)", (name, "Keyboarding skills progression"))
     conn.commit()
     return cur.lastrowid
 
-def create_keyboarding_session(conn, student_id, progress_type_id, date, notes=None):
+def create_keyboarding_session(conn: sqlite3.Connection, student_id: int, progress_type_id: int, date: datetime.date, notes: str = None) -> int:
+    """
+    Create a new keyboarding session record in the database.
+
+    Parameters
+    ----------
+    conn : sqlite3.Connection
+        The database connection object.
+    student_id : int
+        The ID of the student.
+    progress_type_id : int
+        The ID of the progress type.
+    date : datetime.date
+        The date of the session.
+    notes : str, optional
+        Additional notes for the session (default is None).
+
+    Returns
+    -------
+    int
+        The ID of the newly created session.
+    """
     cur = conn.cursor()
     cur.execute(
         "INSERT INTO ProgressSession (student_id, progress_type_id, date, notes) VALUES (?, ?, ?, ?)",
@@ -54,7 +124,35 @@ def create_keyboarding_session(conn, student_id, progress_type_id, date, notes=N
     conn.commit()
     return cur.lastrowid
 
-def insert_keyboarding_result(conn, session_id, program, topic, speed, accuracy, student_name, date_val, notes=None):
+def insert_keyboarding_result(conn: sqlite3.Connection, session_id: int, program: str, topic: str, speed: int, accuracy: int, student_name: str, date_val: datetime.date, notes: str = None) -> None:
+    """
+    Insert a keyboarding result into the database and save a JSON snapshot.
+
+    Parameters
+    ----------
+    conn : sqlite3.Connection
+        The database connection object.
+    session_id : int
+        The ID of the session.
+    program : str
+        The keyboarding program used.
+    topic : str
+        The topic covered during the session.
+    speed : int
+        The typing speed in words per minute (WPM).
+    accuracy : int
+        The typing accuracy as a percentage.
+    student_name : str
+        The name of the student.
+    date_val : datetime.date
+        The date of the session.
+    notes : str, optional
+        Additional notes for the session (default is None).
+
+    Returns
+    -------
+    None
+    """
     cur = conn.cursor()
     cur.execute(
         "INSERT INTO KeyboardingResult (session_id, program, topic, speed, accuracy) VALUES (?, ?, ?, ?, ?)",
@@ -68,20 +166,32 @@ def insert_keyboarding_result(conn, session_id, program, topic, speed, accuracy,
     now = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
     student_dir = Path(DATA_ROOT) / "StudentDataFiles" / student_name
     student_dir.mkdir(parents=True, exist_ok=True)
-    json_path = student_dir / f"keyboarding_{now}.json"
+    json_path = student_dir / f"keyboarding_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.json"
     json_data = {
         "student_name": student_name,
-        "date": date_val,
-        "notes": notes,
+        "date": str(date_val),
         "program": program,
         "topic": topic,
         "speed": speed,
-        "accuracy": accuracy
+        "accuracy": accuracy,
+        "notes": notes,
     }
     with open(json_path, "w") as f:
         json.dump(json_data, f, indent=2)
 
-def fetch_keyboarding_data_for_student(conn, student_id, progress_type_id):
+    # Append data to KeyboardingSkillsProgression.csv
+    import csv
+    keyboarding_csv_path = student_dir / "KeyboardingSkillsProgression.csv"
+    header = ["date", "program", "topic", "speed", "accuracy", "notes"]
+    row = [date_val, program, topic, speed, accuracy, notes]
+    write_header = not keyboarding_csv_path.exists()  # Write header only if file doesn't exist
+    with open(keyboarding_csv_path, mode="a", newline="") as csvfile:
+        writer = csv.writer(csvfile)
+        if write_header:
+            writer.writerow(header)
+        writer.writerow(row)
+
+def fetch_keyboarding_data_for_student(conn: sqlite3.Connection, student_id: int, progress_type_id: int) -> pd.DataFrame:
     """
     Returns a DataFrame with columns: date, program, topic, speed, accuracy
     """
@@ -124,27 +234,33 @@ def fetch_keyboarding_data_for_student(conn, student_id, progress_type_id):
 
 # --- UI LOGIC ---
 
-def keyboarding_skills_ui():
-    with ui.card():
-        ui.label("Keyboarding Skills (Normalized DB)").classes("text-h4 text-grey-8")
-        student_name = ui.input("Student Name", placeholder="Enter student name")
-        ui.label("Date")
-        date_input = ui.date(value=datetime.date.today())
-        program_input = ui.select(
-            options=[
-                "Typio", "TypeAbility", "APH Typer", "Typing Club", "MonkeyType", "Custom Assignment"
-            ],
-            label="Keyboarding Program"
-        )
-        topic_input = ui.select(
-            options=[
-                "Home Row", "Top Row", "Bottom Row", "Numbers", "Modifier Keys", "F-Keys", "Shortcut Keystrokes"
-            ],
-            label="Topic Covered"
-        )
-        speed_input = ui.number(label="Typing Speed (WPM)", value=0, min=0, max=200, step=1)
-        accuracy_input = ui.number(label="Typing Accuracy (%)", value=0, min=0, max=100, step=1)
-        notes_input = ui.textarea("Notes (optional)")
+def keyboarding_skills_ui() -> None:
+    with theme.frame("- KEYBOARDING SKILLS -"):
+        # Page title consistent styling
+        ui.label("Keyboarding Skills").classes("text-h4 text-grey-8")
+        with theme.card():
+            student_name = ui.select(options=students, label="Student Name").props('aria-describedby=student_name_error').style("width: 500px")
+            student_name_error = ui.label("Student name is required.").props('id=student_name_error').classes('text-red-700').style('display:none')
+            ui.label("Date")
+            date_input = ui.date(value=datetime.date.today()).props('aria-describedby=date_error').style("width: 500px")
+            date_error = ui.label("Date is required.").props('id=date_error').classes('text-red-700').style('display:none')
+            program_input = ui.select(
+                options=[
+                    "Typio", "TypeAbility", "APH Typer", "Typing Club", "MonkeyType", "Custom Assignment"
+                ],
+                label="Keyboarding Program"
+            ).props('aria-describedby=program_error').style("width: 500px;")
+            program_error = ui.label("Keyboarding program is required.").props('id=program_error').classes('text-red-700').style('display:none')
+            topic_input = ui.select(
+                options=[
+                    "Home Row", "Top Row", "Bottom Row", "Numbers", "Modifier Keys", "F-Keys", "Shortcut Keystrokes"
+                ],
+                label="Topic Covered"
+            ).props('aria-describedby=topic_error').style("width: 500px;")
+            topic_error = ui.label("Topic is required.").props('id=topic_error').classes('text-red-700').style('display:none')
+            speed_input = ui.number(label="Typing Speed (WPM)", value=0, min=0, max=200, step=1).style("width: 500px;")
+            accuracy_input = ui.number(label="Typing Accuracy (%)", value=0, min=0, max=100, step=1).style("width: 500px;")
+            notes_input = ui.textarea("Notes (optional)").style("width: 500px;")
 
         def save_keyboarding_data():
             name = student_name.value.strip()
@@ -154,8 +270,43 @@ def keyboarding_skills_ui():
             speed = speed_input.value
             accuracy = accuracy_input.value
             notes = notes_input.value.strip()
-            if not name or not date_val or not program or not topic:
-                ui.notify("Student name, date, program, and topic are required.", type="negative")
+            error_found = False
+            if not name:
+                student_name_error.style('display:block')
+                student_name.props('aria-invalid=true')
+                student_name.run_javascript('this.focus()')
+                error_found = True
+            else:
+                student_name_error.style('display:none')
+                student_name.props('aria-invalid=false')
+            if not date_val:
+                date_error.style('display:block')
+                date_input.props('aria-invalid=true')
+                if not error_found:
+                    date_input.run_javascript('this.focus()')
+                error_found = True
+            else:
+                date_error.style('display:none')
+                date_input.props('aria-invalid=false')
+            if not program:
+                program_error.style('display:block')
+                program_input.props('aria-invalid=true')
+                if not error_found:
+                    program_input.run_javascript('this.focus()')
+                error_found = True
+            else:
+                program_error.style('display:none')
+                program_input.props('aria-invalid=false')
+            if not topic:
+                topic_error.style('display:block')
+                topic_input.props('aria-invalid=true')
+                if not error_found:
+                    topic_input.run_javascript('this.focus()')
+                error_found = True
+            else:
+                topic_error.style('display:none')
+                topic_input.props('aria-invalid=false')
+            if error_found:
                 return
             # Connect and insert
             conn = get_connection()
@@ -163,8 +314,8 @@ def keyboarding_skills_ui():
                 student_id = get_or_create_student(conn, name)
                 progress_type_id = get_progress_type_id(conn, KEYBOARDING_PROGRESS_TYPE)
                 session_id = create_keyboarding_session(conn, student_id, progress_type_id, date_val, notes)
-                insert_keyboarding_result(conn, session_id, program, topic, speed, accuracy)
-                ui.notify("Keyboarding data saved successfully!", type="positive")
+                insert_keyboarding_result(conn, session_id, program, topic, speed, accuracy, name, date_val, notes)
+                ui.notify("Keyboarding data saved successfully and appended to CSV!", type="positive")
             except Exception as e:
                 ui.notify(f"Error saving data: {e}", type="negative")
             finally:
@@ -238,7 +389,6 @@ def keyboarding_skills_ui():
         ui.button("Plot Keyboarding Data", on_click=plot_keyboarding_data, color="secondary")
 
 # --- PAGE ENTRY POINT ---
-@ui.page("/keyboarding_skills_ui")
 def create():
     keyboarding_skills_ui()
 

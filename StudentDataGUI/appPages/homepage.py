@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 """
- Copyright 2023  Michael Ryan Hunsaker, M.Ed., Ph.D.
+ Copyright 2025  Michael Ryan Hunsaker, M.Ed., Ph.D.
 
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -18,15 +18,34 @@
 
 # coding=utf-8
 """
-Program designed to be a data collection and instructional tool for
-teachers of students with Visual Impairments
+Homepage Module
+
+This module defines the homepage for the StudentDataGUI application.
+It serves as the entry point for users, providing navigation to various
+features and functionalities.
+
+Purpose
+-------
+The homepage is designed to be a data collection and instructional tool
+for teachers of students with Visual Impairments.
 """
 
 from nicegui import ui
 from ..appTheming import theme
 
-
 def content() -> None:
+    """
+    Render the homepage content.
+
+    This function defines the layout and structure of the homepage,
+    including navigation tabs and instructional labels.
+
+    Returns
+    -------
+    None
+        This function does not return any value. It renders the UI components
+        for the homepage.
+    """
     with theme.frame("- HOW TO USE THIS APP -"):
         with ui.tabs() as tabs:
             ui.tab("DATA INPUT")

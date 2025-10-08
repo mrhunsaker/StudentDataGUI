@@ -6,17 +6,23 @@ StudentDataGUI is a user-friendly application for managing student data, designe
 
 ## Table of Contents
 
-1. [Overview](#overview)
-2. [Quick Start (Podman Recommended)](#quick-start-podman-recommended)
-3. [Detailed Setup Instructions](#detailed-setup-instructions)
-   - [Podman Setup](#podman-setup)
-   - [Docker Setup (Alternative)](#docker-setup-alternative)
-4. [Troubleshooting](#troubleshooting)
-5. [Support](#support)
-6. [Accessibility](#accessibility)
-7. [Customization](#customization-instructions)
-8. [Contributing](#contributing)
-9. [File Structure](#file-structure)
+- [StudentDataGUI](#studentdatagui)
+  - [Table of Contents](#table-of-contents)
+  - [Overview](#overview)
+  - [Quick Start (Podman Recommended)](#quick-start-podman-recommended)
+    - [1. Install Podman and podman-compose](#1-install-podman-and-podman-compose)
+    - [2. Download the Application](#2-download-the-application)
+    - [3. Start the Application](#3-start-the-application)
+  - [Detailed Setup Instructions](#detailed-setup-instructions)
+    - [Podman Setup](#podman-setup)
+    - [Docker Setup (Alternative)](#docker-setup-alternative)
+  - [Troubleshooting](#troubleshooting)
+  - [Support](#support)
+  - [Accessibility](#accessibility)
+  - [Customization Instructions](#customization-instructions)
+  - [Contributing](#contributing)
+  - [File Structure](#file-structure)
+  - [Additional Notes](#additional-notes)
 
 ---
 
@@ -33,12 +39,12 @@ If you are new to containers, **Podman** is a modern, rootless alternative to Do
 ### 1. Install Podman and podman-compose
 
 - **Fedora/Red Hat:**
-  
+
   ```bash
   sudo dnf install podman podman-compose
   ```
 - **Ubuntu/Debian:**
-  
+
   ```bash
   sudo apt-get install podman podman-compose
   ```
@@ -52,12 +58,12 @@ If you are new to containers, **Podman** is a modern, rootless alternative to Do
 
 - Open a terminal in the project folder.
 - Make the start script executable (only needed once):
-  
+
   ```bash
   chmod +x start.sh
   ```
 - Start the application:
-  
+
   ```bash
   ./start.sh start
   ```
@@ -71,32 +77,33 @@ If you are new to containers, **Podman** is a modern, rootless alternative to Do
 
 ### Podman Setup
 
-- **Start the Application**
+- **Build the Application**
   Use the provided script for the easiest experience:
-  
+
   ```bash
-  ./start.sh start
+  podman compose -f compose.yaml build --no-cache
+
   ```
 
 - **Manual Podman Commands**
   If you prefer, you can use these commands:
-  To start the application, Type the following command and then optn http://localhost:8080 in the browser of your choice:
-  
+  To start the application, Type the following command and then open http://localhost:8080 in the browser of your choice:
+
   ```bash
   podman compose up -d; podman compose logs -f
   ```
-  
+
   To end the application: Close the browser tab or window and then stop the container:
-  
+
   ```bash
   podman-compose down
   ```
 
 - **Configuration**
-  
+
   - The application uses port 8080 by default.
     If this port is busy, you can change it:
-    
+
     ```bash
     export NICEGUI_PORT=8081
     ./start.sh start
@@ -110,12 +117,12 @@ If you prefer Docker, follow these steps:
 - **Install Docker and Docker Compose**
   - [Docker installation guide](https://docs.docker.com/get-docker/)
 - **Start the Application**
-  
+
   ```bash
   ./start.sh start
   ```
 - **Manual Docker Commands**
-  
+
   ```bash
   docker-compose up -d
   docker-compose logs -f
@@ -131,43 +138,43 @@ If you prefer Docker, follow these steps:
 If you run into problems, try these solutions:
 
 1. **Permission Denied Errors**
-   
+
    - Make sure you own the data folders:
-     
+
      ```bash
      sudo chown -R $USER:$USER ./data ./database ./logs
      ```
 
 2. **Port Already in Use**
-   
+
    - Change the port:
-     
+
      ```bash
      export NICEGUI_PORT=8081
      ./start.sh start
      ```
 
 3. **Build Failures or Application Won't Start**
-   
+
    - Clean and rebuild:
-     
+
      ```bash
      ./start.sh clean
      ./start.sh start -b
      ```
 
 4. **Viewing Logs**
-   
+
    - To see what's happening inside the application:
-     
+
      ```bash
      ./start.sh logs
      ```
 
 5. **Checking Status**
-   
+
    - To check if the application is running:
-     
+
      ```bash
      ./start.sh status
      ```
@@ -229,7 +236,7 @@ StudentDataGUI is designed to be accessible for all users, including those using
 1. Fork the repository.
 
 2. Create a new branch:
-   
+
    ```bash
    git checkout -b feature-branch
    ```
